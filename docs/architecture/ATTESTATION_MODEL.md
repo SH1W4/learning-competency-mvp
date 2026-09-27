@@ -32,9 +32,9 @@ Schema
 Attestation
 ```
 
-Uma Credential representa a autoridade de atestação e seus signatários autorizados. O Schema define os campos e tipos da attestation e pode ser versionado. A Attestation contém os dados e metadados da declaração. citeturn0search0turn0search1turn0search3
+Uma Credential representa a autoridade de atestação e seus signatários autorizados. O Schema define os campos e tipos da attestation e pode ser versionado. A Attestation contém os dados e metadados da declaração.
 
-A biblioteca oficial documentada pela Solana pode ser instalada como `sas-lib` para JavaScript/TypeScript ou pelo cliente Rust correspondente. citeturn0search5
+A biblioteca oficial documentada pela Solana pode ser instalada como `sas-lib` para JavaScript/TypeScript ou pelo cliente Rust correspondente.
 
 ## Candidato de schema
 
@@ -82,4 +82,4 @@ A prova de demo deve mostrar que uma terceira parte consegue consultar a attesta
 
 ## Fonte técnica
 
-Solana documenta que somente signatários autorizados da Credential podem criar atestações e que a Attestation deve obedecer ao Schema associado. citeturn0search4turn0search6
+Solana documenta que somente signatários autorizados da Credential podem criar atestações e que a Attestation deve obedecer ao Schema associado.
