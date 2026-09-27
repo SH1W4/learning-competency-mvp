@@ -192,8 +192,8 @@ The rule is:
 
 **Phase:** MVP definition → technical implementation.
 
-**Repository status:** initial technical scaffold.
+**Repository status:** execution foundation established.
 
-**Immediate target:** validate the concrete competency and trail, then implement the smallest complete evidence → interpretation → review → state → attestation → verification path.
+**Immediate target:** close the concrete competency/trail decision, validate demand, and implement the first complete evidence → interpretation → review → state → attestation → verification path.\n\nKey execution documents:\n- [MVP Contract](docs/product/MVP_CONTRACT.md)\n- [Hackathon Execution Framework](docs/hackathon/README.md)\n- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md)\n- [Attestation Model](docs/architecture/ATTESTATION_MODEL.md)\n- [Demand Validation](docs/validation/DEMAND_VALIDATION.md)\n- [Demo Script](docs/demo/DEMO_SCRIPT.md)
 
 For project intelligence and AI-assisted development guidance, read [skills/learning-competency/SKILL.md](skills/learning-competency/SKILL.md).
