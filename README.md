@@ -1,185 +1,199 @@
 # Learning Competency MVP
 
-> MVP experimental para desenvolvimento de competências, organização de evidências de aprendizagem, interpretação assistida por IA e atestação verificável em Solana.
+> Experimental MVP for development of competencies, organization of learning evidence, AI-assisted interpretation, and verifiable attestation on Solana.
 
-**Idioma principal:** Português (Brasil) · [English version](README.en.md)
+**Primary language:** Portuguese (Brazil) · [English version](README.en.md)
 
-## 1. Contexto
+## Purpose
 
-A tese do projeto evoluiu de uma plataforma centrada apenas em microcredenciais para uma abordagem mais ampla de **desenvolvimento de competências**.
+This repository is the **technical execution base** for the Learning Competency MVP.
 
-A hipótese de trabalho é que uma organização pode definir uma competência desejada, associá-la a uma trilha curta de desenvolvimento e, a partir das atividades realizadas pela pessoa e das evidências produzidas, construir uma representação estruturada do estado daquela competência.
+The project is intentionally small: it exists to turn the current product thesis into a working end-to-end prototype that can be run, inspected, tested, and demonstrated.
 
-A IA atua na organização e interpretação das evidências, com revisão humana. Solana entra como camada de integridade, atestação e verificabilidade.
+The repository should answer one practical question:
 
-Esta formulação representa a direção atual do projeto e permanece sujeita à validação do time.
+> **Can we transform a desired competency into a short development path, collect evidence produced by a person, interpret that evidence with AI and human review, represent a competency state, and preserve a verifiable proof of that state?**
 
-## 2. O que o MVP precisa provar
+## MVP flow
 
-O MVP deve demonstrar, de ponta a ponta, uma transformação mínima:
+    ORGANIZATION / PROGRAM
+            ↓
+    DESIRED COMPETENCY
+            ↓
+    SHORT TRAIL
+            ↓
+    PERSON
+            ↓
+    ACTIVITIES
+            ↓
+    EVIDENCE
+            ↓
+    AI INTERPRETATION
+            ↓
+    HUMAN REVIEW
+            ↓
+    COMPETENCY STATE
+            ↓
+    ATTESTATION / PROOF
+            ↓
+    SOLANA
+            ↓
+    VERIFICATION
 
-`organização/programa → competência → trilha curta → pessoa → atividades → evidências → IA + revisão humana → estado de competência → atestação → Solana → verificação`
+This flow is the current implementation target. Product ideas outside this path should not enter the codebase automatically.
 
-A pergunta central do MVP é:
+## MVP boundaries
 
-> **É possível transformar uma competência desejada em uma trilha curta, reunir evidências produzidas pela pessoa, interpretá-las com IA e revisão humana, representar um estado de competência e preservar uma prova verificável desse estado?**
+### Build now
 
-O objetivo do hackathon não é construir todo o produto futuro, mas demonstrar esse fluxo de forma concreta e compreensível.
+- one concrete competency;
+- one short, controlled development trail;
+- one person;
+- a small number of evidence types;
+- evidence ingestion and normalization;
+- AI-assisted evidence interpretation;
+- human review;
+- a minimal competency-state representation;
+- a minimal attestation/proof object;
+- Solana integration for integrity/attestation/verifiability;
+- a simple verification path;
+- tests for the critical flow.
 
-## 3. Campo de ação atual
+### Do not build now
 
-### Entra no MVP
+- full LMS;
+- course marketplace;
+- recruitment platform;
+- broad course catalog;
+- extensive institutional integrations;
+- definitive competency methodology;
+- multiple markets at once;
+- definitive monetization;
+- sensitive personal documents directly on-chain.
 
-- uma competência ou capacidade concreta;
-- uma trilha curta e controlada;
-- uma pessoa percorrendo essa trilha;
-- poucos tipos de evidência;
-- estruturação e interpretação assistidas por IA;
-- revisão humana dos resultados da IA;
-- representação mínima de um estado de competência;
-- um objeto mínimo de atestação/prova;
-- Solana como camada de integridade e verificabilidade;
-- uma forma simples de verificar o resultado.
+These may remain product vision or future hypotheses, but they are not implementation requirements for the current MVP.
 
-### Deliberadamente fora do MVP
+## Technical principles
 
-- LMS completo;
-- marketplace de cursos;
-- plataforma completa de recrutamento;
-- catálogo amplo de cursos;
-- integrações institucionais extensas;
-- metodologia definitiva de competências;
-- múltiplos mercados simultaneamente;
-- modelo definitivo de monetização;
-- documentos pessoais ou sensíveis armazenados diretamente on-chain.
+### 1. Evidence is not interpretation
 
-Esses itens podem permanecer como visão, hipótese ou evolução futura, mas não devem ampliar automaticamente o escopo do MVP.
+Keep these states distinct:
 
-## 4. Papel da IA
+evidence → extraction → interpretation → human review → competency state → verification
 
-A IA é uma **camada de interpretação e organização**, não uma autoridade institucional.
+The system must preserve what came from the evidence versus what was inferred by AI.
 
-No MVP, ela pode:
+### 2. AI is not institutional authority
 
-- estruturar informações presentes nas evidências;
-- relacionar evidências a competências;
-- sintetizar sinais de desenvolvimento;
-- identificar inconsistências ou pontos que precisam de revisão;
-- apoiar a construção de um estado de competência.
+AI may:
 
-A revisão humana permanece parte do fluxo.
+- structure evidence;
+- extract fields;
+- relate evidence to competencies;
+- synthesize development signals;
+- flag inconsistencies or items for review.
 
-A IA não deve, sozinha, declarar que uma competência foi oficialmente reconhecida nem transformar uma inferência em verificação institucional.
+AI must not independently declare official recognition or institutional verification.
 
-## 5. Papel de Solana
+### 3. Human review is explicit
 
-Solana não é apresentada como substituta da instituição, do avaliador ou da evidência.
+The prototype should make review visible in the state transition. A reviewer can accept, correct, or reject AI-produced interpretation.
 
-No MVP, sua função é explorar uma camada de:
+### 4. Verification is stronger than inference
 
-- integridade;
-- atestação;
-- registro de estado/evento relevante;
-- verificabilidade.
+Use an explicit trust model:
 
-Informações pessoais ou documentos sensíveis não devem ser colocados diretamente on-chain. O objeto exato da atestação e o mecanismo técnico ainda devem ser definidos e validados pelo time.
+- **N1 — Self-declared**
+- **N2 — Evidence presented**
+- **N3 — Evidence analyzed**
+- **N4 — Source verified**
 
-## 6. Princípio de confiança
+The AI may support N1–N3. N4 requires an external authenticated verification mechanism.
 
-O projeto deve manter separadas quatro coisas:
+### 5. Solana is an integrity layer
 
-`evidência → interpretação → revisão humana → verificação`
+Solana is used to explore:
 
-Uma evidência apresentada não é automaticamente uma competência comprovada.
+- attestation;
+- integrity;
+- state/event registration;
+- verifiability.
 
-Uma interpretação da IA não é automaticamente uma confirmação institucional.
+Sensitive documents and raw personal data stay off-chain.
 
-O sistema deve evitar afirmar mais do que os dados e as verificações disponíveis sustentam.
+The exact attestation schema/mechanism must be validated against the chosen implementation before being treated as final.
 
-## 7. Arquitetura conceitual atual
+## Implementation rule
 
-```text
-ORGANIZAÇÃO / PROGRAMA
-        ↓
-COMPETÊNCIA DESEJADA
-        ↓
-TRILHA CURTA
-        ↓
-PESSOA
-        ↓
-ATIVIDADES
-        ↓
-EVIDÊNCIAS
-        ↓
-IA + REVISÃO HUMANA
-        ↓
-ESTADO DE COMPETÊNCIA
-        ↓
-ATTESTATION / PROOF
-        ↓
-SOLANA
-        ↓
-VERIFICAÇÃO
-```
+A feature belongs in the MVP only if it helps prove the central flow.
 
-Essa é uma arquitetura conceitual de trabalho, não uma especificação técnica final.
+For each proposed change, ask:
 
-## 8. Relação entre Drive e GitHub
+1. What part of the MVP flow does this enable?
+2. What evidence will show that it works?
+3. Does it introduce a product assumption that has not been validated?
+4. Can it be postponed without breaking the demonstration?
 
-O projeto utiliza dois espaços com funções diferentes:
+If the answer is unclear, keep the change out of the MVP.
 
-**Drive — contexto e governança**
-- atas;
-- pesquisas;
-- análises;
-- evolução da tese;
-- documentos de produto;
-- referências;
-- decisões e materiais de alinhamento.
+## Repository structure
 
-**GitHub — execução técnica**
-- código;
-- arquitetura técnica promovida a partir de decisões validadas;
-- especificações de implementação;
-- testes;
-- issues;
-- pull requests;
-- histórico de mudanças.
+    .
+    ├── docs/
+    │   ├── product/
+    │   ├── architecture/
+    │   └── decisions/
+    ├── skills/
+    │   └── learning-competency/
+    │       └── SKILL.md
+    ├── src/
+    └── tests/
 
-A regra é simples:
+- src/ — implementation.
+- tests/ — automated tests.
+- docs/ — technical decisions and specifications promoted from validated product decisions.
+- skills/ — reusable project intelligence and operating instructions for AI-assisted development.
 
-> **Uma hipótese não vira automaticamente uma implementação. Uma decisão validada pode ser promovida para o GitHub.**
+## Development workflow
 
-## 9. Estrutura do repositório
+1. Read the project skill before making architectural or product-sensitive changes.
+2. Check the current MVP flow and boundaries.
+3. Implement the smallest change that advances the flow.
+4. Add or update tests.
+5. Document important architectural decisions.
+6. Keep speculative features outside the implementation.
+7. Prefer small, reviewable commits.
 
-```text
-.
-├── docs/
-│   ├── product/
-│   ├── architecture/
-│   └── decisions/
-├── src/
-└── tests/
-```
+## Source of truth
 
-A estrutura será expandida somente quando houver necessidade real de implementação.
+The project has two complementary knowledge spaces:
 
-## 10. Princípios de trabalho
+**Drive — product context and governance**
+- research;
+- meeting records;
+- thesis evolution;
+- product analysis;
+- references;
+- team decisions and alignment material.
 
-1. Não afirmar mais do que as evidências sustentam.
-2. Separar evidência, interpretação, revisão humana, estado de competência e verificação.
-3. Manter o humano no circuito quando a interpretação exigir julgamento.
-4. Não colocar dados pessoais sensíveis diretamente on-chain.
-5. Registrar decisões relevantes de produto e arquitetura.
-6. Não transformar uma hipótese em requisito sem validação.
-7. Manter o MVP pequeno o suficiente para ser demonstrado de ponta a ponta.
+**GitHub — technical execution**
+- code;
+- tests;
+- implementation specifications;
+- validated architecture;
+- issues and pull requests;
+- technical history.
 
-## 11. Estado atual
+The rule is:
 
-**Fase:** delimitação do MVP → especificação técnica.
+> **Research informs the implementation. A validated decision authorizes the implementation.**
 
-**Status do repositório:** scaffold inicial.
+## Current status
 
-**Próxima decisão:** validar coletivamente o campo de ação do MVP antes de consolidar a arquitetura técnica.
+**Phase:** MVP definition → technical implementation.
 
-Veja a [Issue #1](https://github.com/SH1W4/learning-competency-mvp/issues/1).
+**Repository status:** initial technical scaffold.
+
+**Immediate target:** validate the concrete competency and trail, then implement the smallest complete evidence → interpretation → review → state → attestation → verification path.
+
+For project intelligence and AI-assisted development guidance, read [skills/learning-competency/SKILL.md](skills/learning-competency/SKILL.md).
