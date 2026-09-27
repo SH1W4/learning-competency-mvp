@@ -6,7 +6,6 @@
 
 > **Aprender → produzir evidências → interpretar → revisar → representar o estado → verificar.**
 
-
 > Experimental MVP for development of competencies, organization of learning evidence, AI-assisted interpretation, and verifiable attestation on Solana.
 
 **Primary language:** Portuguese (Brazil) · [English version](README.en.md)
@@ -130,6 +129,44 @@ Sensitive documents and raw personal data stay off-chain.
 
 The exact attestation schema/mechanism must be validated against the chosen implementation before being treated as final.
 
+## Documentation map
+
+### Product
+
+- [MVP Contract](docs/product/MVP_CONTRACT.md)
+- [User Journeys](docs/product/USER_JOURNEYS.md)
+- [MVP Use Case](docs/product/USE_CASE.md)
+
+### Architecture
+
+- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md)
+- [Attestation Model](docs/architecture/ATTESTATION_MODEL.md)
+- [Technical Architecture](docs/architecture/TECHNICAL_ARCHITECTURE.md)
+
+### Market & GTM
+
+- [Competitive Landscape](docs/market/COMPETITIVE_LANDSCAPE.md)
+- [Go-To-Market Working Model](docs/go-to-market/GTM.md)
+- [Demand Validation](docs/validation/DEMAND_VALIDATION.md)
+
+### Governance & Execution
+
+- [Project Status](docs/PROJECT_STATUS.md)
+- [Team Roles & Decision Governance](docs/governance/TEAM_ROLES.md)
+- [Contributing](CONTRIBUTING.md)
+- [Project Skill](skills/learning-competency/SKILL.md)
+
+### Hackathon & Demo
+
+- [Hackathon Execution Framework](docs/hackathon/README.md)
+- [Demo Script](docs/demo/DEMO_SCRIPT.md)
+
+### Brand
+
+- [Brand README](docs/brand/README.md)
+- [Brandbook Draft](docs/brand/BRANDBOOK_DRAFT.md)
+- [Naming Exploration](docs/brand/NAMING_EXPLORATION.md)
+
 ## Implementation rule
 
 A feature belongs in the MVP only if it helps prove the central flow.
@@ -149,10 +186,14 @@ If the answer is unclear, keep the change out of the MVP.
     ├── docs/
     │   ├── product/
     │   ├── architecture/
+    │   ├── market/
+    │   ├── go-to-market/
+    │   ├── governance/
     │   ├── decisions/
     │   ├── hackathon/
     │   ├── validation/
     │   ├── demo/
+    │   ├── brand/
     │   └── PROJECT_STATUS.md
     ├── skills/
     │   └── learning-competency/
@@ -160,12 +201,6 @@ If the answer is unclear, keep the change out of the MVP.
     ├── src/
     ├── tests/
     └── CONTRIBUTING.md
-
-- src/ — implementation.
-- tests/ — automated tests.
-- docs/ — product contracts, architecture, decisions, hackathon execution, validation and demo material.
-- skills/ — reusable project intelligence and operating instructions for AI-assisted development.
-- CONTRIBUTING.md — contribution and scope rules for the team.
 
 ## Development workflow
 
@@ -182,6 +217,7 @@ If the answer is unclear, keep the change out of the MVP.
 The project has two complementary knowledge spaces:
 
 **Drive — product context and governance**
+
 - research;
 - meeting records;
 - thesis evolution;
@@ -190,6 +226,7 @@ The project has two complementary knowledge spaces:
 - team decisions and alignment material.
 
 **GitHub — technical execution**
+
 - code;
 - tests;
 - implementation specifications;
@@ -207,10 +244,6 @@ The rule is:
 
 **Repository status:** execution foundation established; vertical slice not yet implemented.
 
-**Immediate target:** close the concrete competency/trail decision, validate demand, and implement the first complete evidence → interpretation → review → state → attestation → verification path.
+**Immediate target:** select and validate the concrete use case, then implement the first complete evidence → interpretation → review → state → attestation → verification path.
 
 Current status is tracked in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
-
-Key execution documents:\n- [MVP Contract](docs/product/MVP_CONTRACT.md)\n- [Hackathon Execution Framework](docs/hackathon/README.md)\n- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md)\n- [Attestation Model](docs/architecture/ATTESTATION_MODEL.md)\n- [Demand Validation](docs/validation/DEMAND_VALIDATION.md)\n- [Demo Script](docs/demo/DEMO_SCRIPT.md)
-
-For project intelligence and AI-assisted development guidance, read [skills/learning-competency/SKILL.md](skills/learning-competency/SKILL.md).
