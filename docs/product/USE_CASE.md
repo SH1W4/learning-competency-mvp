@@ -1,72 +1,75 @@
 # MVP Use Case
 
-> **Status:** proposed use case. The concrete scenario below is a working hypothesis and must be validated before being treated as market evidence.
+> **Status:** proposta de caso de uso — aguardando validação do time.
 
 ## Decision needed
 
-The team must select one concrete competency and one organizational context for the first end-to-end vertical slice.
+The team must validate one concrete competency and one organizational context for the first end-to-end vertical slice.
 
-## Selection criteria
-
-The use case should:
-
-- have a clearly identifiable organization/program owner;
-- contain a competency that can be described in observable terms;
-- fit a short development trail;
-- generate evidence without requiring sensitive personal documents on-chain;
-- permit AI-assisted interpretation;
-- allow meaningful human review;
-- produce a bounded competency state;
-- support a simple verification demonstration;
-- be understandable within the three-minute hackathon demo.
-
-## Proposed structure
+## Candidate 01 — Programa corporativo de desenvolvimento em análise de dados
 
 ### Organization / program
 
-**To be selected and validated.**
+**Contexto proposto:** programa interno de desenvolvimento de competências para analistas ou profissionais em início/intermediário de carreira que precisam demonstrar capacidade prática de análise de dados.
+
+**Problema organizacional:** a organização precisa desenvolver e acompanhar uma competência prática, mas os sinais de evolução ficam distribuídos entre atividades, projetos, entregas e avaliações. O programa precisa transformar esse desenvolvimento em evidências organizadas e em um estado de competência revisável.
+
+**Problem owner:** área de Desenvolvimento de Pessoas / L&D / treinamento e desenvolvimento.
+
+**Learner:** colaborador participante do programa.
+
+**Reviewer:** gestor, instrutor ou avaliador responsável pelo programa.
+
+**Verifier:** pessoa autorizada a consultar a atestação e conferir a integridade do estado registrado.
+
+### Why this context fits the MVP
+
+The candidate was selected because it can:
+
+- express the competency through observable outputs;
+- fit a short development trail;
+- generate evidence such as analysis, notebook, SQL, dashboard or written interpretation;
+- support AI-assisted extraction and relation to competency criteria;
+- allow explicit human review;
+- produce a bounded competency state;
+- avoid requiring sensitive personal documents on-chain;
+- be demonstrated with a synthetic participant and synthetic evidence;
+- fit the three-minute hackathon demonstration.
 
 ### Competency
 
-**To be selected and operationalized.**
+**To be selected and operationalized after M1.1 validation.**
 
-The competency definition must include:
+A candidate competency for this context is:
 
-- desired capability;
-- observable behaviors or outputs;
-- minimum evidence expectations;
-- reviewer criteria;
-- possible state transitions.
+> **Transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.**
+
+This remains a proposal until the team validates it in M1.2.
 
 ### Trail
 
 A short sequence of activities that intentionally generates evidence relevant to the competency.
 
-Each activity should specify:
+Initial candidate structure:
 
-| Field | Requirement |
-| --- | --- |
-| Objective | What the learner should demonstrate |
-| Activity | What the learner actually does |
-| Output | What is produced |
-| Evidence | What can be inspected |
-| Competency link | Why the evidence matters |
-| Review | What a human checks |
+1. formular uma pergunta de negócio;
+2. preparar e explorar um conjunto de dados;
+3. executar uma análise reproduzível;
+4. comunicar resultados e limitações.
+
+The exact activities remain subject to M1.3.
 
 ### Evidence
 
-Initial MVP evidence should be limited to formats that can be reliably ingested and interpreted.
+Candidate evidence types:
 
-For each evidence item record:
+- consulta ou código de análise;
+- notebook ou relatório técnico;
+- visualização ou síntese de resultados;
+- apresentação ou interpretação escrita;
+- avaliação do responsável.
 
-- source;
-- provenance;
-- activity;
-- extraction;
-- AI interpretation;
-- competency relation;
-- review status;
-- trust level.
+The evidence contract remains subject to M1.4.
 
 ### AI
 
@@ -95,13 +98,15 @@ The final competency state must remain distinguishable from the AI's proposed in
 
 The MVP should represent a bounded state of competency development, not a universal or permanent judgment about a person.
 
+Candidate states remain subject to M1.5.
+
 ### Attestation
 
 The attestation should represent the defined state/event and reference supporting evidence and review context without placing sensitive/raw evidence on-chain.
 
 ## Validation requirement
 
-Before the use case becomes the canonical demo scenario, validate:
+Before this candidate becomes the canonical demo scenario, validate:
 
 1. the problem owner;
 2. the current workflow;
@@ -113,3 +118,23 @@ Before the use case becomes the canonical demo scenario, validate:
 8. willingness to pilot or provide access/data.
 
 Do not label generic interest as traction.
+
+## Selection criteria
+
+The use case should:
+
+- have a clearly identifiable organization/program owner;
+- contain a competency that can be described in observable terms;
+- fit a short development trail;
+- generate evidence without requiring sensitive personal documents on-chain;
+- permit AI-assisted interpretation;
+- allow meaningful human review;
+- produce a bounded competency state;
+- support a simple verification demonstration;
+- be understandable within the three-minute hackathon demo.
+
+## Validation status
+
+**M1.1 — In progress.**
+
+This candidate is a working proposal, not a final team decision. The team should confirm or replace it before M1.1 is marked done.
