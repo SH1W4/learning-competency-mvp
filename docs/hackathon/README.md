@@ -4,7 +4,7 @@
 
 Usar o hackathon para provar uma tese de produto com um vertical slice funcional, e não para maximizar quantidade de features.
 
-O Colosseum informa que o Crypto World's Fair 2026 ocorre de 14 de setembro a 12 de outubro de 2026. A submissão é tratada como pitch para o venture fund e candidatura ao Accelerator. O portal pede produto, stack/blockchains, time, GitHub, vídeo de apresentação de 2–3 minutos, demo de até 3 minutos, go-to-market, validação de demanda e distribuição. citeturn1view0turn1view1
+O Colosseum informa que o Crypto World's Fair 2026 ocorre de 14 de setembro a 12 de outubro de 2026. A submissão é tratada como pitch para o venture fund e candidatura ao Accelerator. O portal pede produto, stack/blockchains, time, GitHub, vídeo de apresentação de 2–3 minutos, demo de até 3 minutos, go-to-market, validação de demanda e distribuição.
 
 ## Critérios operacionais
 
@@ -18,7 +18,7 @@ O FAQ atual do Colosseum explicita:
 - Viability
 - Traction
 
-Além disso, o regulamento formal trabalha com Functionality, Potential Impact, Novelty, UX, Open Source e Business Plan. citeturn1view0
+Além disso, o regulamento formal trabalha com Functionality, Potential Impact, Novelty, UX, Open Source e Business Plan.
 
 Não tratamos esses critérios como uma pontuação interna. Eles são uma checklist de cobertura.
 
@@ -54,13 +54,13 @@ Uma tarefa que apenas aumenta complexidade sem fortalecer esses pontos deve ser 
 
 ## Repositório
 
-O próprio Colosseum informa que, ao revisar o GitHub, procura principalmente evidência de trabalho significativo durante o hackathon, autoria do trabalho e priorização estratégica. citeturn1view0
+O próprio Colosseum informa que, ao revisar o GitHub, procura principalmente evidência de trabalho significativo durante o hackathon, autoria do trabalho e priorização estratégica.
 
 Portanto, o histórico do repositório faz parte da prova de execução.
 
 ## Integridade da submissão
 
-O FAQ permite código pré-existente, mas exige divulgação do desenvolvimento anterior relevante. O trabalho julgado é o realizado entre o início e o fim da competição. citeturn1view0
+O FAQ permite código pré-existente, mas exige divulgação do desenvolvimento anterior relevante. O trabalho julgado é o realizado entre o início e o fim da competição.
 
 Não apagar histórico nem reescrever artificialmente a cronologia para parecer que algo foi construído em outra data.
 
@@ -108,6 +108,6 @@ Não apagar histórico nem reescrever artificialmente a cronologia para parecer 
 
 ## Eventos úteis
 
-A página oficial lista workshops durante a competição, incluindo Solana Privacy em 29/09, Tokenization em 30/09 e Solana Foundation Office Hours em 05/10. citeturn1view1
+A página oficial lista workshops durante a competição, incluindo Solana Privacy em 29/09, Tokenization em 30/09 e Solana Foundation Office Hours em 05/10.
 
 Essas sessões devem ser tratadas como oportunidades para resolver dúvidas técnicas específicas, não como substitutas da implementação.
