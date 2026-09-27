@@ -1,7 +1,7 @@
 # Learning Competency MVP
 
 <p align="center">
-  <img src="docs/assets/learning-competency-banner.svg" alt="Learning Competency — Aprendizado em competências com evidências reais" width="100%" />
+  <img src="docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png" alt="Learning Competency — Aprendizado em competências com evidências reais" width="100%" />
 </p>
 
 > **Aprender → produzir evidências → interpretar → revisar → representar o estado → verificar.**
