@@ -1,13 +1,13 @@
 ---
 name: learning-competency-mvp
-description: Project intelligence and operating rules for the Learning Competency MVP. Use this skill before making product-sensitive, architectural, AI, evidence-model, attestation, or Solana implementation decisions in this repository.
+description: Project intelligence and operating rules for the Learning Competency MVP. Use this skill before making product-sensitive, architectural, AI, evidence-model, attestation, Solana, validation, or hackathon-submission decisions in this repository.
 ---
 
 # Learning Competency MVP — Project Skill
 
 ## Mission
 
-Help turn the current Learning Competency thesis into a small, demonstrable, technically coherent MVP.
+Help turn the current Learning Competency thesis into a small, demonstrable, technically coherent MVP and a credible hackathon submission.
 
 The skill is a **working memory and decision framework**, not a substitute for team decisions.
 
@@ -63,41 +63,31 @@ The MVP does not need to prove the entire future product.
 Keep these concepts separate:
 
 ### Competency
-
 The capability the organization wants to develop or observe.
 
 ### Trail
-
 A short sequence of activities intended to develop or generate evidence related to the competency.
 
 ### Activity
-
 A concrete action performed by the person.
 
-Examples may include a course module, practical task, project, assessment, or other controlled activity.
-
 ### Evidence
-
 An artifact or structured signal produced by the activity.
 
 Evidence is the source material. It is not automatically proof of competency.
 
 ### Interpretation
-
 A structured reading of evidence, including extracted fields, relationships, signals, and possible competency relevance.
 
 ### Human review
-
 A deliberate checkpoint where a human can accept, correct, or reject AI interpretation.
 
 ### Competency state
-
 A structured representation of what the available evidence and review currently support.
 
 Do not treat the state as an absolute claim of mastery unless the model and verification mechanism explicitly support that claim.
 
 ### Attestation
-
 A signed or otherwise verifiable representation of a defined state/event.
 
 The exact schema is an implementation decision and must be validated before becoming canonical.
@@ -181,7 +171,7 @@ Keep the original evidence and the AI interpretation traceable.
 
 ---
 
-## 5. Suggested evidence-processing pipeline
+## 5. Evidence-processing pipeline
 
 Use this conceptual pipeline when designing services or modules:
 
@@ -232,19 +222,24 @@ The attestation should represent a defined state or event, not an entire documen
 
 Conceptually:
 
-    WHO
-    WHAT
-    RELATED COMPETENCY
-    EVIDENCE REFERENCE
+    SUBJECT
+    COMPETENCY
     STATE
+    EVIDENCE REFERENCE
     REVIEW CONTEXT
     TIMESTAMP
+    EXPIRY
     PROOF / ATTESTATION
 
-Sensitive raw documents and personal data should remain off-chain.
+The current Solana Attestation System is organized around Credential → Schema → Attestation. A Credential defines the authority and authorized signers; a Schema defines the structure and validation rules and supports versioning; an Attestation contains the attested data and metadata.
+
+Technical references:
+- https://solana.com/docs/tools/attestations
+- https://solana.com/docs/tools/attestations/credentials
+- https://solana.com/pt/docs/tools/attestations/schemas
+- https://solana.com/pt/docs/tools/attestations/attestations
 
 Before implementing the final Solana object, confirm:
-
 - what exactly is being attested;
 - who/what is the attester;
 - what evidence reference is bound to it;
@@ -266,7 +261,6 @@ The current conceptual responsibilities are:
 - preserve historical integrity.
 
 Do not introduce:
-
 - tokenomics;
 - speculative incentives;
 - personal documents on-chain;
@@ -334,7 +328,75 @@ Prefer explicit boundaries over premature abstraction.
 
 ---
 
-## 12. Development behavior
+## 12. Hackathon operating model
+
+The Crypto World's Fair is a startup competition, not merely a coding contest. The Colosseum currently evaluates Founder + Market Fit, Insight, Product + Execution, Potential Market Size, Founder Communication, Viability, and Traction, and asks for a product pitch, demo, GitHub, go-to-market, demand validation, and distribution plan.
+
+Official reference:
+- https://colosseum.com/hackathon
+- https://colosseum.com/worldsfair
+
+### Execution rule
+
+Every major task should strengthen at least one of:
+
+- product proof;
+- insight clarity;
+- execution evidence;
+- demand validation;
+- technical credibility;
+- submission quality.
+
+Do not optimize for feature count.
+
+### GitHub rule
+
+The repository should make it possible to see:
+
+    DECISION
+      ↓
+    IMPLEMENTATION
+      ↓
+    TEST
+      ↓
+    COMMIT
+      ↓
+    DEMO
+
+The Colosseum explicitly says it looks for significant work during the hackathon, work performed by the team, and strategic prioritization.
+
+### Traction rule
+
+Do not claim traction without evidence.
+
+Useful evidence:
+- interviews;
+- pilot commitments;
+- data access;
+- active testers;
+- paid intent;
+- partner introductions.
+
+Weak evidence:
+- compliments;
+- “I would use it”;
+- generic interest.
+
+### Pitch rule
+
+The presentation explains the thesis.
+
+The demo proves the thesis.
+
+The GitHub demonstrates execution.
+
+### Scope rule
+
+If a feature does not improve the central vertical slice or materially improve validation, keep it out.
+
+---
+
+## 13. Development behavior
 
 When asked to implement something:
 
@@ -345,6 +407,7 @@ Identify whether the request is:
 - architecture decision;
 - implementation task;
 - experiment;
+- validation;
 - documentation;
 - future hypothesis.
 
@@ -359,16 +422,17 @@ If it is an implementation task:
 
 ### Avoid
 
-- building speculative infrastructure;
-- creating abstractions without a demonstrated need;
+- speculative infrastructure;
+- abstractions without a demonstrated need;
 - hiding business rules inside prompts;
 - coupling Solana directly to UI concerns;
 - treating AI output as trusted state;
-- expanding the MVP because a future feature is interesting.
+- expanding the MVP because a future feature is interesting;
+- inventing traction or user validation.
 
 ---
 
-## 13. Decision hierarchy
+## 14. Decision hierarchy
 
 When uncertain, use this order:
 
@@ -388,7 +452,7 @@ If two documents conflict, do not silently reconcile them. Flag the conflict and
 
 ---
 
-## 14. Definition of done for the first vertical slice
+## 15. Definition of done for the first vertical slice
 
 The first meaningful milestone is not “the architecture is complete.”
 
@@ -400,10 +464,9 @@ Everything else is secondary until this path works.
 
 ---
 
-## 15. Working vocabulary
+## 16. Working vocabulary
 
-Prefer these terms consistently:
-
+Prefer:
 - competency;
 - development trail;
 - activity;
@@ -421,7 +484,7 @@ Avoid using “certificate” as the central domain object unless the specific f
 
 ---
 
-## 16. Relationship to project documentation
+## 17. Relationship to project documentation
 
 This skill captures **operating intelligence**.
 
@@ -432,6 +495,9 @@ Put information in the appropriate place:
 - product thesis / market research → Drive;
 - current technical contract → docs/;
 - architecture decisions → docs/architecture/ or docs/decisions/;
+- hackathon strategy → docs/hackathon/;
+- demand validation → docs/validation/;
+- demo/pitch material → docs/demo/;
 - implementation → src/;
 - tests → tests/;
 - reusable AI/project operating intelligence → this skill.
