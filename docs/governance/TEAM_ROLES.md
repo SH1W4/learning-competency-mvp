@@ -1,0 +1,94 @@
+# Team Roles & Decision Governance
+
+> **Status:** working team operating model. Roles can evolve with demonstrated contribution and validated project needs.
+
+## Purpose
+
+Make ownership explicit without creating unnecessary hierarchy or blocking contribution.
+
+## Current role model
+
+### João / JX — Architecture, AI & Systems
+
+Primary responsibility:
+
+- system architecture;
+- AI/evidence pipeline;
+- data and integration design;
+- technical coherence;
+- attestation/verification architecture;
+- technical decisions affecting the MVP contract;
+- implementation or review of critical technical paths.
+
+### Erick — Research, Operations & Validation
+
+Primary responsibility:
+
+- research organization;
+- documentation;
+- spreadsheets and operational material;
+- market/demand research;
+- interview coordination;
+- validation evidence;
+- commercial/operational support.
+
+### João — Technical Implementation
+
+Primary responsibility:
+
+- implementation tasks assigned through the technical backlog;
+- feature development;
+- tests;
+- technical investigation;
+- pull requests and implementation documentation.
+
+The exact division of implementation tasks should be explicit in issues/PRs rather than assumed.
+
+## Decision classes
+
+| Class | Examples | Required handling |
+| --- | --- | --- |
+| Product | target user, use case, MVP scope | team decision before implementation |
+| Architecture | data model, pipeline, attestation design | technical review + documented decision |
+| Implementation | code, tests, refactors | issue/PR workflow |
+| Validation | interviews, experiments | record evidence and outcome |
+| Documentation | guides, wording, diagrams | maintain consistency with current decisions |
+| Future hypothesis | ideas outside MVP | document without treating as requirement |
+
+## Decision rule
+
+A contributor may propose any change.
+
+A proposal becomes a project requirement only after the appropriate decision is recorded.
+
+No individual assumption should silently become:
+
+- a product requirement;
+- a market fact;
+- traction;
+- an architectural constraint;
+- a claim in the hackathon pitch.
+
+## GitHub operating rule
+
+Use issues for scoped work and pull requests for implementation when practical.
+
+Prefer small, reviewable commits.
+
+Critical changes should reference the relevant product/architecture decision or issue.
+
+## Responsibility principle
+
+Ownership means responsibility for keeping a domain coherent, not unilateral authority over unrelated domains.
+
+## Conflict resolution
+
+When two proposals conflict:
+
+1. identify the decision class;
+2. return to the current source of truth;
+3. separate validated facts from hypotheses;
+4. document the decision or unresolved question;
+5. update affected implementation/docs.
+
+The goal is traceability, not hierarchy.
