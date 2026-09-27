@@ -142,17 +142,23 @@ If the answer is unclear, keep the change out of the MVP.
     ├── docs/
     │   ├── product/
     │   ├── architecture/
-    │   └── decisions/
+    │   ├── decisions/
+    │   ├── hackathon/
+    │   ├── validation/
+    │   ├── demo/
+    │   └── PROJECT_STATUS.md
     ├── skills/
     │   └── learning-competency/
     │       └── SKILL.md
     ├── src/
-    └── tests/
+    ├── tests/
+    └── CONTRIBUTING.md
 
 - src/ — implementation.
 - tests/ — automated tests.
-- docs/ — technical decisions and specifications promoted from validated product decisions.
+- docs/ — product contracts, architecture, decisions, hackathon execution, validation and demo material.
 - skills/ — reusable project intelligence and operating instructions for AI-assisted development.
+- CONTRIBUTING.md — contribution and scope rules for the team.
 
 ## Development workflow
 
@@ -192,8 +198,12 @@ The rule is:
 
 **Phase:** MVP definition → technical implementation.
 
-**Repository status:** execution foundation established.
+**Repository status:** execution foundation established; vertical slice not yet implemented.
 
-**Immediate target:** close the concrete competency/trail decision, validate demand, and implement the first complete evidence → interpretation → review → state → attestation → verification path.\n\nKey execution documents:\n- [MVP Contract](docs/product/MVP_CONTRACT.md)\n- [Hackathon Execution Framework](docs/hackathon/README.md)\n- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md)\n- [Attestation Model](docs/architecture/ATTESTATION_MODEL.md)\n- [Demand Validation](docs/validation/DEMAND_VALIDATION.md)\n- [Demo Script](docs/demo/DEMO_SCRIPT.md)
+**Immediate target:** close the concrete competency/trail decision, validate demand, and implement the first complete evidence → interpretation → review → state → attestation → verification path.
+
+Current status is tracked in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
+
+Key execution documents:\n- [MVP Contract](docs/product/MVP_CONTRACT.md)\n- [Hackathon Execution Framework](docs/hackathon/README.md)\n- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md)\n- [Attestation Model](docs/architecture/ATTESTATION_MODEL.md)\n- [Demand Validation](docs/validation/DEMAND_VALIDATION.md)\n- [Demo Script](docs/demo/DEMO_SCRIPT.md)
 
 For project intelligence and AI-assisted development guidance, read [skills/learning-competency/SKILL.md](skills/learning-competency/SKILL.md).
