@@ -503,3 +503,314 @@ Put information in the appropriate place:
 - reusable AI/project operating intelligence → this skill.
 
 Update this skill when a stable project-level principle changes. Do not update it for every temporary idea.
+
+
+---
+
+## 18. Operational execution map
+
+The repository now has a dedicated task map under tasks/.
+
+The task map is the operational layer between project strategy and implementation.
+
+### Execution order
+
+    M1 — CONCRETE USE CASE
+             ↓
+    M2 — EVIDENCE + AI + REVIEW
+             ↓
+    M3 — STATE + ATTESTATION + VERIFICATION
+             ↓
+    M4 — VALIDATION + DEMO + SUBMISSION
+
+Do not treat downstream work as unblocked merely because its code can be started. Respect product and architecture dependencies unless the task is explicitly exploratory.
+
+### Task ownership
+
+Every task must have:
+
+- one accountable owner;
+- a status;
+- explicit dependencies;
+- a concrete deliverable;
+- an objective completion criterion.
+
+Other contributors can support an owner, but accountability must remain singular.
+
+Use these statuses:
+
+- TODO;
+- IN PROGRESS;
+- BLOCKED;
+- DONE.
+
+When ownership changes, update the task file and, when relevant, the corresponding GitHub issue.
+
+### M1 — Concrete use case
+
+Goal:
+
+    organization
+      ↓
+    competency
+      ↓
+    trail
+      ↓
+    person
+      ↓
+    activity
+      ↓
+    evidence
+
+M1 tasks:
+
+1. select organizational context;
+2. define one operational competency;
+3. design a short evidence-producing trail;
+4. define the evidence contract;
+5. define minimal competency states;
+6. freeze the canonical demo scenario.
+
+Exit condition:
+
+The first use case is specific enough to implement without inventing missing product rules.
+
+Canonical task file:
+
+    tasks/M1_CONCRETE_USE_CASE.md
+
+### M2 — Evidence, AI and human review
+
+Goal:
+
+    evidence
+      ↓
+    extraction
+      ↓
+    interpretation
+      ↓
+    competency relation
+      ↓
+    human review
+
+M2 tasks:
+
+1. evidence ingestion;
+2. normalization/extraction;
+3. AI output contract;
+4. evidence-to-competency relation;
+5. human review;
+6. provenance preservation;
+7. critical-path tests.
+
+Exit condition:
+
+The canonical evidence can be interpreted and reviewed while preserving the distinction between source evidence, AI inference and human decision.
+
+Canonical task file:
+
+    tasks/M2_EVIDENCE_AI_REVIEW.md
+
+### M3 — State, attestation and verification
+
+Goal:
+
+    review
+      ↓
+    competency state
+      ↓
+    attestation
+      ↓
+    Solana
+      ↓
+    verification
+
+M3 tasks:
+
+1. finalize state model;
+2. finalize attestation payload;
+3. confirm Solana mechanism;
+4. implement attestation;
+5. implement verification;
+6. test integrity and failure cases.
+
+Exit condition:
+
+A reviewed competency-development result can be represented as a bounded state, attested and independently checked through the defined verification path.
+
+Canonical task file:
+
+    tasks/M3_STATE_ATTESTATION.md
+
+### M4 — Validation, demo and submission
+
+Goal:
+
+Turn the working vertical slice into credible product and execution evidence.
+
+M4 tasks:
+
+1. focused demand interviews;
+2. record actual demand signals;
+3. research relevant alternatives;
+4. define the initial GTM hypothesis;
+5. produce a reproducible demo;
+6. prepare the pitch;
+7. audit the repository;
+8. freeze the submission candidate.
+
+Exit condition:
+
+Product, GitHub, validation, demo, pitch and submission materials describe the same factual system and no unsupported claims remain.
+
+Canonical task file:
+
+    tasks/M4_VALIDATION_DEMO_SUBMISSION.md
+
+### What counts as done
+
+A task is not DONE because code exists.
+
+It is DONE when its explicit acceptance criterion is satisfied and the result is visible in the appropriate artifact, test, decision, validation record or demo.
+
+### Parallel work
+
+Some work may run in parallel when it does not alter unresolved product decisions.
+
+Examples:
+
+- market research can proceed while M1 is being selected;
+- interview preparation can proceed before the demo scenario is frozen;
+- technical research on Solana can proceed before the final attestation payload is approved.
+
+Parallel work must not silently become a product requirement.
+
+### Foundation Freeze
+
+The documentation foundation is now considered established.
+
+From this point forward, create new documentation only when it resolves a decision, specification, evidence requirement or execution need.
+
+The default action is implementation or validation, not additional documentation.
+
+---
+
+## 19. Current repository operating map
+
+Use the repository according to this division:
+
+    TASKS
+      ↓
+    what must be done
+
+    DOCS
+      ↓
+    what the product/architecture means
+
+    SRC
+      ↓
+    how it is implemented
+
+    TESTS
+      ↓
+    whether it works
+
+    GITHUB ISSUES / PRS
+      ↓
+    who is executing what and how the change is reviewed
+
+    SKILL
+      ↓
+    stable operating intelligence and project-level rules
+
+The task map does not replace GitHub issues. It provides the ordered execution map; issues and PRs provide the active work trail.
+
+### Required behavior before implementation
+
+Before starting a task:
+
+1. read the task file;
+2. check dependencies;
+3. check the relevant product/architecture document;
+4. confirm ownership;
+5. create or update the corresponding issue when implementation work is substantial;
+6. implement the smallest coherent change;
+7. test it;
+8. update task status and supporting documentation.
+
+### Required behavior after completion
+
+When a task reaches DONE:
+
+1. ensure the acceptance criterion is demonstrably satisfied;
+2. link the relevant commit/PR/test/evidence when useful;
+3. update dependent tasks if they are now unblocked;
+4. do not silently expand scope.
+
+---
+
+## 20. Team coordination model
+
+The current working responsibility model is documented in:
+
+    docs/governance/TEAM_ROLES.md
+
+The skill should preserve these principles:
+
+- João / JX owns architecture, AI/evidence pipeline and technical coherence;
+- Erick owns research, operations and validation support;
+- João owns assigned technical implementation work;
+- any contributor can propose changes;
+- proposals become requirements only through the appropriate decision process.
+
+Ownership is responsibility for coherence and delivery, not unilateral authority over unrelated domains.
+
+---
+
+## 21. Documentation map
+
+### Product
+
+    docs/product/MVP_CONTRACT.md
+    docs/product/USER_JOURNEYS.md
+    docs/product/USE_CASE.md
+
+### Architecture
+
+    docs/architecture/EVIDENCE_PIPELINE.md
+    docs/architecture/ATTESTATION_MODEL.md
+    docs/architecture/TECHNICAL_ARCHITECTURE.md
+
+### Market and GTM
+
+    docs/market/COMPETITIVE_LANDSCAPE.md
+    docs/go-to-market/GTM.md
+    docs/validation/DEMAND_VALIDATION.md
+
+### Governance and execution
+
+    docs/PROJECT_STATUS.md
+    docs/governance/TEAM_ROLES.md
+    docs/decisions/
+    CONTRIBUTING.md
+
+### Hackathon and demo
+
+    docs/hackathon/README.md
+    docs/demo/DEMO_SCRIPT.md
+
+### Brand
+
+    docs/brand/README.md
+    docs/brand/BRANDBOOK_DRAFT.md
+    docs/brand/NAMING_EXPLORATION.md
+
+### Operational tasks
+
+    tasks/README.md
+    tasks/M1_CONCRETE_USE_CASE.md
+    tasks/M2_EVIDENCE_AI_REVIEW.md
+    tasks/M3_STATE_ATTESTATION.md
+    tasks/M4_VALIDATION_DEMO_SUBMISSION.md
+
+This map is the current operational index. If a new stable project principle is introduced, update the appropriate source document first and then update this skill if the principle belongs in project-wide operating intelligence.
