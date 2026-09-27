@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 610" role="img" aria-labelledby="title desc">
+<title id="title">Learning Competency — Aprendizado em competências com evidências reais</title>
+<desc id="desc">Banner editorial escuro representando uma jornada de aprendizagem, evidências, competência e verificação.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1"><stop stop-color="#050505"/><stop offset=".55" stop-color="#111"/><stop offset="1" stop-color="#030303"/></linearGradient>
+  <linearGradient id="line" x1="0" x2="1"><stop stop-color="#777"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#555"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1600" height="610" fill="url(#bg)"/>
+<circle cx="1320" cy="80" r="280" fill="none" stroke="#292929" stroke-width="2"/>
+<circle cx="1320" cy="80" r="170" fill="none" stroke="#1d1d1d"/>
+<path d="M760 530 C900 470 980 420 1080 390 S1320 330 1540 250" fill="none" stroke="#333" stroke-width="2"/>
+<path d="M610 540 L820 500 L970 445 L1120 410 L1290 350 L1510 275" fill="none" stroke="#8a8a8a" stroke-width="3"/>
+<path d="M610 540 L820 500 L970 445 L1120 410 L1290 350 L1510 275 L1530 292 L1300 370 L1130 430 L980 465 L830 520 L620 560 Z" fill="#171717" stroke="#3b3b3b"/>
+<g fill="none" stroke="#555">
+ <rect x="850" y="300" width="92" height="125" rx="4"/>
+ <rect x="1005" y="245" width="92" height="125" rx="4"/>
+ <rect x="1165" y="195" width="92" height="125" rx="4"/>
+ <rect x="1325" y="130" width="92" height="125" rx="4"/>
+</g>
+<g stroke="#777" fill="none">
+ <path d="M896 300v-55 M1051 245v-65 M1211 195v-75 M1371 130V60"/>
+ <circle cx="896" cy="355" r="22"/><path d="M878 355q18-32 36 0q-18 32-36 0"/>
+ <path d="M1020 330q31-60 62 0M1022 300q30 18 58 0"/>
+ <path d="M1180 270q30-40 60 0M1180 245q30 20 60 0"/>
+ <path d="M1342 205q30-45 58 0M1340 180q31 18 61 0"/>
+</g>
+<g fill="#f3f3f3">
+ <text x="105" y="150" font-family="Inter,Arial,sans-serif" font-size="68" font-weight="500" letter-spacing="1">Learning</text>
+ <text x="105" y="220" font-family="Inter,Arial,sans-serif" font-size="68" font-weight="500" letter-spacing="1">Competency</text>
+</g>
+<rect x="108" y="250" width="95" height="2" fill="#aaa"/>
+<text x="108" y="292" fill="#aaa" font-family="Inter,Arial,sans-serif" font-size="18" letter-spacing="6">APRENDIZADO</text>
+<text x="108" y="324" fill="#aaa" font-family="Inter,Arial,sans-serif" font-size="18" letter-spacing="6">EM COMPETÊNCIAS</text>
+<text x="108" y="356" fill="#aaa" font-family="Inter,Arial,sans-serif" font-size="18" letter-spacing="6">COM EVIDÊNCIAS REAIS.</text>
+<g transform="translate(520 385)">
+ <circle cx="0" cy="0" r="38" fill="#0c0c0c" stroke="#777"/>
+ <path d="M-14 -18 L2 -32 L18 -18 L2 -4 L18 10 L2 24 L-14 10 L2 -4 Z" fill="none" stroke="#eee" stroke-width="5"/>
+</g>
+<text x="485" y="455" fill="#777" font-family="monospace" font-size="13" letter-spacing="3">LEARNING → EVIDENCE → STATE → PROOF</text>
+<g transform="translate(1430 470)">
+ <circle r="48" fill="none" stroke="#888"/>
+ <path d="M-20 0h40M0-20v40" stroke="#bbb"/>
+ <circle r="7" fill="#fff" filter="url(#glow)"/>
+</g>
+<text x="1165" y="555" fill="#666" font-family="monospace" font-size="13" letter-spacing="3">AI + HUMAN REVIEW · SOLANA · VERIFICATION</text>
+</svg>
