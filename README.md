@@ -1,5 +1,12 @@
 # Learning Competency MVP
 
+<p align="center">
+  <img src="docs/assets/learning-competency-banner.svg" alt="Learning Competency — Aprendizado em competências com evidências reais" width="100%" />
+</p>
+
+> **Aprender → produzir evidências → interpretar → revisar → representar o estado → verificar.**
+
+
 > Experimental MVP for development of competencies, organization of learning evidence, AI-assisted interpretation, and verifiable attestation on Solana.
 
 **Primary language:** Portuguese (Brazil) · [English version](README.en.md)
