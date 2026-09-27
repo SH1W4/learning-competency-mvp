@@ -6,244 +6,448 @@
 
 > **Aprender → produzir evidências → interpretar → revisar → representar o estado → verificar.**
 
-> Experimental MVP for development of competencies, organization of learning evidence, AI-assisted interpretation, and verifiable attestation on Solana.
+**MVP experimental para desenvolvimento de competências, organização de evidências de aprendizagem, interpretação assistida por IA e produção de atestação verificável em Solana.**
 
-**Primary language:** Portuguese (Brazil) · [English version](README.en.md)
+**Idioma principal:** Português (Brasil) · [Versão em inglês](README.en.md)
 
-## Purpose
+---
 
-This repository is the **technical execution base** for the Learning Competency MVP.
+## Visão geral
 
-The project is intentionally small: it exists to turn the current product thesis into a working end-to-end prototype that can be run, inspected, tested, and demonstrated.
+O **Learning Competency MVP** investiga uma pergunta central:
 
-The repository should answer one practical question:
+> **Como uma organização transforma uma necessidade de competência em uma trilha de desenvolvimento, captura evidências produzidas por uma pessoa, interpreta essas evidências com apoio de IA e revisão humana e representa, de forma verificável, o estado dessa evolução?**
 
-> **Can we transform a desired competency into a short development path, collect evidence produced by a person, interpret that evidence with AI and human review, represent a competency state, and preserve a verifiable proof of that state?**
+O repositório é a **base técnica de execução** do MVP.
 
-## MVP flow
+O projeto está sendo construído de forma deliberadamente pequena: o objetivo não é criar uma plataforma completa de aprendizagem, mas provar um fluxo vertical, rastreável e verificável de ponta a ponta.
 
-    ORGANIZATION / PROGRAM
-            ↓
-    DESIRED COMPETENCY
-            ↓
-    SHORT TRAIL
-            ↓
-    PERSON
-            ↓
-    ACTIVITIES
-            ↓
-    EVIDENCE
-            ↓
-    AI INTERPRETATION
-            ↓
-    HUMAN REVIEW
-            ↓
-    COMPETENCY STATE
-            ↓
-    ATTESTATION / PROOF
-            ↓
-    SOLANA
-            ↓
-    VERIFICATION
+---
 
-This flow is the current implementation target. Product ideas outside this path should not enter the codebase automatically.
+## O fluxo central
 
-## MVP boundaries
+```text
+ORGANIZAÇÃO / PROGRAMA
+        ↓
+COMPETÊNCIA DESEJADA
+        ↓
+TRILHA CURTA
+        ↓
+PESSOA
+        ↓
+ATIVIDADES
+        ↓
+EVIDÊNCIAS
+        ↓
+INTERPRETAÇÃO COM IA
+        ↓
+REVISÃO HUMANA
+        ↓
+ESTADO DE COMPETÊNCIA
+        ↓
+ATTESTATION / PROVA
+        ↓
+SOLANA
+        ↓
+VERIFICAÇÃO
+```
 
-### Build now
+Esse é o **fluxo que o MVP precisa provar**.
 
-- one concrete competency;
-- one short, controlled development trail;
-- one person;
-- a small number of evidence types;
-- evidence ingestion and normalization;
-- AI-assisted evidence interpretation;
-- human review;
-- a minimal competency-state representation;
-- a minimal attestation/proof object;
-- Solana integration for integrity/attestation/verifiability;
-- a simple verification path;
-- tests for the critical flow.
+Qualquer funcionalidade que não contribua diretamente para demonstrá-lo permanece fora da implementação até que exista uma decisão explícita para incluí-la.
 
-### Do not build now
+---
 
-- full LMS;
-- course marketplace;
-- recruitment platform;
-- broad course catalog;
-- extensive institutional integrations;
-- definitive competency methodology;
-- multiple markets at once;
-- definitive monetization;
-- sensitive personal documents directly on-chain.
+## O que estamos construindo
 
-These may remain product vision or future hypotheses, but they are not implementation requirements for the current MVP.
+O MVP conecta cinco elementos que normalmente aparecem separados:
 
-## Technical principles
+- **Necessidade organizacional** — qual competência precisa ser desenvolvida.
+- **Desenvolvimento** — uma trilha curta com atividades concretas.
+- **Evidências** — aquilo que a pessoa efetivamente produz durante o processo.
+- **Interpretação e revisão** — IA organiza e relaciona as evidências; uma pessoa revisa a interpretação.
+- **Estado verificável** — o resultado da revisão pode gerar uma representação de estado e uma atestação verificável.
 
-### 1. Evidence is not interpretation
+A hipótese central é que o valor não está apenas em registrar cursos ou certificados, mas em **fechar o ciclo entre necessidade de competência, desenvolvimento, evidência, interpretação, revisão e verificação**.
 
-Keep these states distinct:
+---
 
-evidence → extraction → interpretation → human review → competency state → verification
+## Princípios do MVP
 
-The system must preserve what came from the evidence versus what was inferred by AI.
+### 1. Evidência não é interpretação
 
-### 2. AI is not institutional authority
+O sistema mantém separados:
 
-AI may:
+```text
+evidência
+   ↓
+extração
+   ↓
+interpretação
+   ↓
+revisão humana
+   ↓
+estado de competência
+   ↓
+verificação
+```
 
-- structure evidence;
-- extract fields;
-- relate evidence to competencies;
-- synthesize development signals;
-- flag inconsistencies or items for review.
+A origem dos dados deve permanecer distinguível daquilo que foi inferido ou organizado pela IA.
 
-AI must not independently declare official recognition or institutional verification.
+### 2. IA não é autoridade institucional
 
-### 3. Human review is explicit
+A IA pode:
 
-The prototype should make review visible in the state transition. A reviewer can accept, correct, or reject AI-produced interpretation.
+- estruturar evidências;
+- extrair informações;
+- relacionar evidências a competências;
+- sintetizar sinais de desenvolvimento;
+- identificar inconsistências;
+- indicar pontos que precisam de revisão.
 
-### 4. Verification is stronger than inference
+A IA não deve declarar, por conta própria, reconhecimento oficial, acreditação ou verificação institucional.
 
-Use an explicit trust model:
+### 3. A revisão humana é explícita
+
+A revisão humana faz parte do fluxo do produto.
+
+O revisor pode:
+
+- aceitar uma interpretação;
+- corrigir uma interpretação;
+- rejeitar uma interpretação;
+- solicitar novas evidências.
+
+### 4. Verificação é diferente de inferência
+
+O MVP utiliza uma escala conceitual de confiança:
+
+- **N1 — Autodeclarado**
+- **N2 — Evidência apresentada**
+- **N3 — Evidência analisada**
+- **N4 — Fonte verificada**
+
+A IA pode apoiar os níveis N1–N3. O nível N4 exige um mecanismo externo de verificação autenticada.
+
+### 5. Solana é uma camada de integridade
+
+Solana é explorada como infraestrutura para:
+
+- atestação;
+- integridade;
+- registro de estado ou evento;
+- verificabilidade.
+
+Documentos sensíveis e dados pessoais brutos permanecem fora da cadeia.
+
+O mecanismo e o esquema finais de atestação ainda precisam ser validados antes de serem considerados definitivos.
+
+---
+
+## Limites do MVP
+
+### Dentro do escopo
+
+- uma competência concreta;
+- uma trilha curta e controlada;
+- uma pessoa;
+- poucos tipos de evidência;
+- ingestão e normalização de evidências;
+- interpretação assistida por IA;
+- revisão humana;
+- representação mínima de estado de competência;
+- objeto mínimo de atestação/prova;
+- integração com Solana;
+- caminho simples de verificação;
+- testes do fluxo crítico.
+
+### Fora do escopo atual
+
+- LMS completo;
+- marketplace de cursos;
+- plataforma de recrutamento;
+- catálogo amplo de cursos;
+- integrações institucionais extensas;
+- metodologia universal de competências;
+- múltiplos mercados simultaneamente;
+- modelo definitivo de monetização;
+- documentos pessoais sensíveis diretamente na cadeia;
+- automações ou agentes que não sejam necessários para provar o fluxo.
+
+Esses itens podem permanecer como hipóteses ou possibilidades futuras, mas não são requisitos da implementação atual.
+
+---
+
+## Arquitetura
+
+```text
+ORGANIZAÇÃO
+     ↓
+COMPETÊNCIA
+     ↓
+TRILHA
+     ↓
+EVIDÊNCIA
+     ↓
+PIPELINE DE EVIDÊNCIAS
+     ↓
+REVISÃO HUMANA
+     ↓
+ESTADO DE COMPETÊNCIA
+     ↓
+ATTESTATION
+     ↓
+SOLANA
+     ↓
+VERIFICAÇÃO
+```
+
+### Pipeline de evidências
+
+```text
+INGESTÃO
+   ↓
+NORMALIZAÇÃO
+   ↓
+EXTRAÇÃO
+   ↓
+INTERPRETAÇÃO
+   ↓
+RELAÇÃO COM A COMPETÊNCIA
+   ↓
+REVISÃO
+   ↓
+ATUALIZAÇÃO DO ESTADO
+   ↓
+ATTESTATION
+   ↓
+VERIFICAÇÃO
+```
+
+O pipeline preserva a proveniência e diferencia:
+
+- dado de origem;
+- informação extraída;
+- interpretação produzida pela IA;
+- decisão da revisão humana;
+- estado resultante;
+- atestação registrada.
 
-- **N1 — Self-declared**
-- **N2 — Evidence presented**
-- **N3 — Evidence analyzed**
-- **N4 — Source verified**
+---
 
-The AI may support N1–N3. N4 requires an external authenticated verification mechanism.
+## Como trabalhar neste repositório
 
-### 5. Solana is an integrity layer
+Antes de implementar:
 
-Solana is used to explore:
+1. Leia a [Skill do projeto](skills/learning-competency/SKILL.md).
+2. Consulte a pasta [`tasks/`](tasks/).
+3. Leia a documentação relacionada à tarefa assumida.
+4. Verifique as dependências e decisões ainda pendentes.
+5. Implemente apenas o necessário para avançar o fluxo.
+6. Adicione ou atualize os testes.
+7. Registre decisões arquiteturais relevantes.
+8. Mantenha hipóteses não validadas fora da implementação.
 
-- attestation;
-- integrity;
-- state/event registration;
-- verifiability.
+### Mapa operacional
 
-Sensitive documents and raw personal data stay off-chain.
+| Diretório | Função |
+|---|---|
+| `tasks/` | O que precisa ser feito |
+| `docs/` | Como produto, arquitetura e operação estão definidos |
+| `skills/` | Contexto e regras operacionais do projeto |
+| `src/` | Implementação |
+| `tests/` | Validação |
+| `CONTRIBUTING.md` | Regras de contribuição |
 
-The exact attestation schema/mechanism must be validated against the chosen implementation before being treated as final.
+---
 
-## Documentation map
+## Mapa de execução
 
-### Product
+O desenvolvimento está organizado em quatro marcos:
 
-- [MVP Contract](docs/product/MVP_CONTRACT.md)
-- [User Journeys](docs/product/USER_JOURNEYS.md)
-- [MVP Use Case](docs/product/USE_CASE.md)
+### M1 — Caso de uso concreto
 
-### Architecture
+Definir:
 
-- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md)
-- [Attestation Model](docs/architecture/ATTESTATION_MODEL.md)
-- [Technical Architecture](docs/architecture/TECHNICAL_ARCHITECTURE.md)
+- contexto organizacional;
+- competência;
+- trilha;
+- contrato de evidência;
+- estados mínimos;
+- cenário da demonstração.
 
-### Market & GTM
+### M2 — Evidência, IA e revisão
 
-- [Competitive Landscape](docs/market/COMPETITIVE_LANDSCAPE.md)
-- [Go-To-Market Working Model](docs/go-to-market/GTM.md)
-- [Demand Validation](docs/validation/DEMAND_VALIDATION.md)
+Implementar:
 
-### Governance & Execution
+- ingestão;
+- normalização e extração;
+- contrato de saída da IA;
+- relação com a competência;
+- revisão humana;
+- proveniência;
+- testes críticos.
 
-- [Project Status](docs/PROJECT_STATUS.md)
-- [Team Roles & Decision Governance](docs/governance/TEAM_ROLES.md)
-- [Contributing](CONTRIBUTING.md)
-- [Project Skill](skills/learning-competency/SKILL.md)
+### M3 — Estado, atestação e Solana
 
-### Hackathon & Demo
+Fechar e implementar:
 
-- [Hackathon Execution Framework](docs/hackathon/README.md)
-- [Demo Script](docs/demo/DEMO_SCRIPT.md)
+- modelo de estado;
+- carga de atestação;
+- mecanismo Solana;
+- registro;
+- verificação;
+- testes de integridade e falha.
 
-### Brand
+### M4 — Validação, demonstração e submissão
 
-- [Brand README](docs/brand/README.md)
-- [Brandbook Draft](docs/brand/BRANDBOOK_DRAFT.md)
-- [Naming Exploration](docs/brand/NAMING_EXPLORATION.md)
+Executar:
 
-## Implementation rule
+- entrevistas;
+- validação de demanda;
+- pesquisa competitiva;
+- hipótese de entrada no mercado;
+- demonstração reproduzível;
+- apresentação;
+- auditoria do repositório;
+- preparação da submissão.
 
-A feature belongs in the MVP only if it helps prove the central flow.
+Consulte [`tasks/README.md`](tasks/README.md) para o mapa completo.
 
-For each proposed change, ask:
+---
 
-1. What part of the MVP flow does this enable?
-2. What evidence will show that it works?
-3. Does it introduce a product assumption that has not been validated?
-4. Can it be postponed without breaking the demonstration?
+## Documentação
 
-If the answer is unclear, keep the change out of the MVP.
+### Produto
 
-## Repository structure
+- [Contrato do MVP](docs/product/MVP_CONTRACT.md)
+- [Jornadas dos usuários](docs/product/USER_JOURNEYS.md)
+- [Caso de uso](docs/product/USE_CASE.md)
 
-    .
-    ├── docs/
-    │   ├── product/
-    │   ├── architecture/
-    │   ├── market/
-    │   ├── go-to-market/
-    │   ├── governance/
-    │   ├── decisions/
-    │   ├── hackathon/
-    │   ├── validation/
-    │   ├── demo/
-    │   ├── brand/
-    │   └── PROJECT_STATUS.md
-    ├── skills/
-    │   └── learning-competency/
-    │       └── SKILL.md
-    ├── src/
-    ├── tests/
-    └── CONTRIBUTING.md
+### Arquitetura
 
-## Development workflow
+- [Pipeline de evidências](docs/architecture/EVIDENCE_PIPELINE.md)
+- [Modelo de atestação](docs/architecture/ATTESTATION_MODEL.md)
+- [Arquitetura técnica](docs/architecture/TECHNICAL_ARCHITECTURE.md)
 
-1. Read the project skill before making architectural or product-sensitive changes.
-2. Check the current MVP flow and boundaries.
-3. Implement the smallest change that advances the flow.
-4. Add or update tests.
-5. Document important architectural decisions.
-6. Keep speculative features outside the implementation.
-7. Prefer small, reviewable commits.
+### Mercado e entrada no mercado
 
-## Source of truth
+- [Cenário competitivo](docs/market/COMPETITIVE_LANDSCAPE.md)
+- [Modelo de entrada no mercado](docs/go-to-market/GTM.md)
+- [Validação de demanda](docs/validation/DEMAND_VALIDATION.md)
 
-The project has two complementary knowledge spaces:
+### Governança e execução
 
-**Drive — product context and governance**
+- [Status do projeto](docs/PROJECT_STATUS.md)
+- [Papéis e governança de decisões](docs/governance/TEAM_ROLES.md)
+- [Contribuição](CONTRIBUTING.md)
+- [Skill do projeto](skills/learning-competency/SKILL.md)
 
-- research;
-- meeting records;
-- thesis evolution;
-- product analysis;
-- references;
-- team decisions and alignment material.
+### Hackathon e demonstração
 
-**GitHub — technical execution**
+- [Estrutura de execução do hackathon](docs/hackathon/README.md)
+- [Roteiro da demonstração](docs/demo/DEMO_SCRIPT.md)
 
-- code;
-- tests;
-- implementation specifications;
-- validated architecture;
-- issues and pull requests;
-- technical history.
+### Identidade
 
-The rule is:
+- [Diretrizes de identidade](docs/brand/README.md)
+- [Rascunho do manual de marca](docs/brand/BRANDBOOK_DRAFT.md)
+- [Exploração de nomes](docs/brand/NAMING_EXPLORATION.md)
 
-> **Research informs the implementation. A validated decision authorizes the implementation.**
+---
 
-## Current status
+## Regra de implementação
 
-**Phase:** MVP definition → technical implementation.
+Uma funcionalidade pertence ao MVP somente se ajudar a provar o fluxo central.
 
-**Repository status:** execution foundation established; vertical slice not yet implemented.
+Antes de implementar uma mudança, responda:
 
-**Immediate target:** select and validate the concrete use case, then implement the first complete evidence → interpretation → review → state → attestation → verification path.
+1. **Qual parte do fluxo ela habilita?**
+2. **Que evidência demonstrará que funciona?**
+3. **Qual hipótese de produto ela introduz?**
+4. **Pode ser adiada sem comprometer a demonstração?**
 
-Current status is tracked in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
+Se a resposta não estiver clara, a mudança deve permanecer fora do MVP.
+
+---
+
+## Estrutura do repositório
+
+```text
+.
+├── docs/
+│   ├── product/
+│   ├── architecture/
+│   ├── market/
+│   ├── go-to-market/
+│   ├── governance/
+│   ├── decisions/
+│   ├── hackathon/
+│   ├── validation/
+│   ├── demo/
+│   ├── brand/
+│   └── PROJECT_STATUS.md
+├── skills/
+│   └── learning-competency/
+│       └── SKILL.md
+├── tasks/
+├── src/
+├── tests/
+└── CONTRIBUTING.md
+```
+
+---
+
+## Contexto e fonte de verdade
+
+O projeto possui dois espaços complementares:
+
+**Contexto do produto**
+
+- pesquisa;
+- registros de reuniões;
+- evolução da tese;
+- análise de produto;
+- referências;
+- decisões e alinhamentos da equipe.
+
+**GitHub — execução técnica**
+
+- código;
+- testes;
+- especificações de implementação;
+- arquitetura validada;
+- tarefas;
+- issues e pull requests;
+- histórico técnico.
+
+A regra é:
+
+> **A pesquisa informa a implementação. Uma decisão validada autoriza a implementação.**
+
+---
+
+## Estado atual
+
+**Fase:** definição do MVP → implementação técnica.
+
+**Estado do repositório:** fundação de execução estabelecida; fluxo vertical ainda não implementado.
+
+**Próximo objetivo:** selecionar e validar o caso de uso concreto e implementar o primeiro fluxo completo:
+
+```text
+EVIDÊNCIA
+→ INTERPRETAÇÃO
+→ REVISÃO
+→ ESTADO
+→ ATTESTATION
+→ VERIFICAÇÃO
+```
+
+O estado atualizado do projeto está em [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).
+
+---
+
+## Licença
+
+A licença e os termos de distribuição do projeto serão definidos antes da publicação de uma versão final.
