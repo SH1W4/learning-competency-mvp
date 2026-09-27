@@ -1,7 +1,7 @@
 # M1 — Concrete Use Case
 
 Owner: TBD
-Status: TODO
+Status: IN PROGRESS
 Priority: P0
 
 ## Objective
@@ -13,8 +13,19 @@ Choose one organizational context and one competency that can be taken through t
 ### M1.1 — Select organizational context
 Owner: TBD
 Dependency: none
+Status: IN PROGRESS
 Deliverable: one chosen context/program.
-Done when: context, problem owner and learner are named in docs/product/USE_CASE.md.
+Done when: context, problem owner and learner are named in docs/product/USE_CASE.md and explicitly validated by the team.
+
+**Current candidate:** programa corporativo de desenvolvimento de competências em análise de dados para analistas ou profissionais em início/intermediário de carreira.
+
+**Problem owner candidate:** área de Desenvolvimento de Pessoas / L&D / treinamento e desenvolvimento.
+
+**Learner candidate:** colaborador participante do programa.
+
+**Reviewer candidate:** gestor, instrutor ou avaliador responsável pelo programa.
+
+See `docs/product/USE_CASE.md` for the full candidate and rationale.
 
 ### M1.2 — Define competency
 Owner: TBD
