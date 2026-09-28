@@ -33,7 +33,7 @@ Use GitHub issues/PRs for implementation work. Use the task files for the execut
 - BLOCKED — dependency prevents progress.
 - DONE — acceptance criteria are satisfied and evidence is available.
 
-## Current task groups
+## Current execution\n\nThe active execution sprint is documented in `tasks/CURRENT_EXECUTION_001.md`. Current ownership: Joaopedro0s → M2 implementation; SH1W4 → M3 and vertical-slice integration; erickandregarcia-ai → M4 demand validation. M1.1 remains the product-decision gate.\n\n## Current task groups
 
 | Group | Objective | Primary output |
 | --- | --- | --- |
