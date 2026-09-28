@@ -32,7 +32,26 @@ M4.1 pode avançar em paralelo porque gera evidência externa e não depende da 
 | M2 — evidência, IA e revisão | Joaopedro0s | implementar o fluxo técnico de evidência e revisão |
 | M3 — estado, attestation e Solana | SH1W4 | transformar o resultado revisado em estado verificável |
 | M4.1 — validação de demanda | erickandregarcia-ai | produzir evidência externa estruturada |
-| Integração M2 → M3 → M4 | SH1W4 | garantir coerência do vertical slice |
+| Interface — UX/UI do vertical slice | TBD | materializar o fluxo funcional em interface; entra em execução quando o fluxo estiver suficientemente definido |
+| Integração M2 → M3 → Interface → M4 | SH1W4 | garantir coerência do vertical slice |
+
+## Frente de Interface
+
+**Status:** TODO  
+**Owner:** TBD  
+**Dependência:** definição progressiva do vertical slice.
+
+Escopo inicial:
+- I1 — mapear telas necessárias;
+- I2 — definir fluxo de navegação;
+- I3 — interface de evidência;
+- I4 — interface de interpretação e revisão;
+- I5 — visualização do estado;
+- I6 — resultado, attestation e verificação;
+- I7 — implementação da interface;
+- I8 — validação do fluxo completo.
+
+Regra: a interface materializa o fluxo definido pelo produto e pela arquitetura; não cria lógica de produto paralela.
 
 ## Execução imediata
 
