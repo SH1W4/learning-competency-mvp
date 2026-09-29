@@ -1,6 +1,6 @@
 # Sprint de Execução 001 — Vertical Slice
 
-**Data:** 28/09/2026  
+**Data:** 29/09/2026  
 **Fase:** 6 — VERTICAL SLICE  
 **Objetivo:** sair da fundação documental e produzir os primeiros artefatos executáveis, evidências de demanda e a ponte técnica até a verificação.
 
@@ -28,20 +28,20 @@ M4.1 pode avançar em paralelo porque gera evidência externa e não depende da 
 
 | Frente | Owner | Papel neste sprint |
 | --- | --- | --- |
-| M1.1 / decisão do caso de uso | SH1W4 + time | fechar a hipótese antes de congelar regras |
-| M2 — evidência, IA e revisão | Joaopedro0s | implementar o fluxo técnico de evidência e revisão |
-| M3 — estado, attestation e Solana | SH1W4 | transformar o resultado revisado em estado verificável |
-| M4.1 — validação de demanda | erickandregarcia-ai | produzir evidência externa estruturada |
-| Interface — UX/UI do vertical slice | TBD | materializar o fluxo funcional em interface; entra em execução quando o fluxo estiver suficientemente definido |
-| Integração M2 → M3 → Interface → M4 | SH1W4 | garantir coerência do vertical slice |
+| M1.1 / decisão do caso de uso | SH1W4 + time | fechar e preservar a hipótese operacional antes de alterações estruturais |
+| M2 — evidência, IA e revisão | JP Carvalho / Joaopedro0s | implementar o fluxo técnico de evidência, interpretação, relação com competência, revisão e proveniência |
+| M3 — estado, attestation e Solana | SH1W4 / JX | transformar o resultado revisado em estado verificável e implementar a ponte com Solana |
+| M4.1 — validação de demanda | Erick / erickandregarcia-ai | produzir evidência externa estruturada |
+| Interface — UX/UI do vertical slice | JP Fernandes | materializar o fluxo definido em telas, navegação, evidência, revisão, estado, attestation e verificação |
+| Integração M2 → M3 → Interface → M4 | SH1W4 / JX | garantir coerência do vertical slice |
 
-## Frente de Interface
+## Frente de Interface — JP Fernandes
 
-**Status:** TODO  
-**Owner:** TBD  
-**Dependência:** definição progressiva do vertical slice.
+**Status:** EXECUÇÃO A PARTIR DA DEFINIÇÃO PROGRESSIVA DO FLUXO  
+**Owner:** JP Fernandes
 
 Escopo inicial:
+
 - I1 — mapear telas necessárias;
 - I2 — definir fluxo de navegação;
 - I3 — interface de evidência;
@@ -55,22 +55,24 @@ Regra: a interface materializa o fluxo definido pelo produto e pela arquitetura;
 
 ## Execução imediata
 
-### 1. GATE 0 — fechar M1.1
+### 1. GATE 0 — caso de uso
 
-**Antes de congelar implementação**, confirmar:
+O M1 foi fechado como especificação operacional v0.1.
 
-- contexto organizacional;
-- problema;
-- pessoa que executa a trilha;
-- competência candidata;
-- reviewer;
-- cenário canônico.
+A referência canônica atual é:
 
-**Saída:** decisão registrada ou alteração explícita da hipótese.
+- contexto organizacional definido;
+- competência definida;
+- trilha curta definida;
+- contrato de evidência definido;
+- estados mínimos definidos;
+- cenário sintético de demonstração definido.
 
-### 2. M2 — começar pelo caminho crítico
+Qualquer alteração estrutural deve ser registrada como decisão explícita.
 
-João executa:
+### 2. M2 — caminho crítico
+
+JP Carvalho executa:
 
 - M2.1 — ingestão de evidências;
 - M2.2 — normalização/extração;
@@ -80,7 +82,7 @@ João executa:
 - M2.6 — proveniência;
 - M2.7 — testes críticos.
 
-**Importante:** M2.5 não deve ser tratado como concluído antes de M2.4. A mensagem de ownership é válida; a execução segue as dependências.
+**Importante:** M2.5 não deve ser tratado como concluído antes de M2.4. A execução segue as dependências.
 
 ### 3. M3 — preparar e depois implementar
 
@@ -95,9 +97,29 @@ JX executa:
 
 M3.1–M3.3 podem ter investigação/preparação antecipada, mas o modelo final deve respeitar o que M2 realmente produz.
 
-O sistema de Attestations da Solana separa **Credential → Schema → Attestation**; schemas definem estrutura/versionamento e atestações são emitidas por signatários autorizados sob uma credencial. Isso deve orientar a implementação, sem transformar a documentação externa em requisito de produto além do necessário. citeturn0search7turn0search0turn0search2
+### 4. Interface — materializar o fluxo
 
-### 4. M4 — validação externa em paralelo
+JP Fernandes trabalha sobre o contrato já definido por produto e arquitetura.
+
+A interface deve tornar demonstrável:
+
+```
+EVIDÊNCIA
+   ↓
+INTERPRETAÇÃO
+   ↓
+REVISÃO
+   ↓
+ESTADO
+   ↓
+ATTESTATION
+   ↓
+VERIFICAÇÃO
+```
+
+A implementação visual deve priorizar clareza, rastreabilidade e capacidade de demonstrar o fluxo completo, sem introduzir novas regras de negócio.
+
+### 5. M4 — validação externa em paralelo
 
 Erick executa:
 
@@ -120,7 +142,7 @@ O sprint termina quando houver:
 7. caminho de verificação reproduzível;
 8. primeiros sinais externos de demanda documentados;
 9. testes críticos do fluxo;
-10. um cenário canônico que possa virar demo.
+10. interface suficiente para demonstrar o cenário canônico.
 
 ## O que NÃO faremos agora
 
@@ -138,4 +160,5 @@ O sprint termina quando houver:
 **Código sem teste não fecha a tarefa.  
 Opinião sem fonte não vira validação.  
 AI sem revisão não vira estado.  
-Attestation sem verificação não fecha o fluxo.**
+Attestation sem verificação não fecha o fluxo.  
+Interface sem fluxo definido não vira produto.**
