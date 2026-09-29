@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
 <rect width="800" height="800" fill="#000"/>
 <g fill="none" stroke="#fff" stroke-width="10">
-<circle cx="400" cy="400" r="300" stroke-dasharray="470 35 470 35 470 35 470 35"/>
+<circle cx="400" cy="400" r="300" stroke-dasharray="440 31 440 31 440 31 440 31"/>
 <path d="M400 70v95M400 635v95M70 400h95M635 400h95"/>
 </g>
 <g fill="#fff" stroke="#000" stroke-width="8">
