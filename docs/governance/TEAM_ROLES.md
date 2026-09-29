@@ -32,17 +32,35 @@ Primary responsibility:
 - validation evidence;
 - commercial/operational support.
 
-### João — Technical Implementation
+### JP Carvalho — Technical Implementation
+
+GitHub: `Joaopedro0s`
 
 Primary responsibility:
 
 - implementation tasks assigned through the technical backlog;
+- evidence ingestion and normalization;
+- AI output contract and competency relation;
+- human review flow;
+- provenance and critical pipeline tests;
 - feature development;
-- tests;
 - technical investigation;
 - pull requests and implementation documentation.
 
-The exact division of implementation tasks should be explicit in issues/PRs rather than assumed.
+### JP Fernandes — UX/UI, Interface & Product Presentation
+
+Primary responsibility:
+
+- UX/UI of the vertical slice;
+- mapping screens and navigation flow;
+- interface for evidence submission;
+- interface for AI interpretation and human review;
+- visualization of competency state;
+- attestation and verification result presentation;
+- frontend implementation where assigned;
+- visual/brand consistency of the product experience.
+
+The interface materializes the product and architecture already defined by the team. It does not create parallel product logic or expand the MVP scope.
 
 ## Decision classes
 
