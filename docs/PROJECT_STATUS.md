@@ -101,6 +101,12 @@ Owner:
 
 **JX / SH1W4**
 
+Suporte técnico:
+
+**JP Carvalho / Joaopedro0s**, quando solicitado.
+
+O suporte não altera o ownership, as decisões ou a responsabilidade final de M3.
+
 Documento principal:
 
 - `tasks/M3_STATE_ATTESTATION.md`
