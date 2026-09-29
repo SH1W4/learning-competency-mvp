@@ -31,6 +31,7 @@ M4.1 pode avançar em paralelo porque gera evidência externa e não depende da 
 | M1.1 / decisão do caso de uso | SH1W4 + time | fechar e preservar a hipótese operacional antes de alterações estruturais |
 | M2 — evidência, IA e revisão | JP Carvalho / Joaopedro0s | implementar o fluxo técnico de evidência, interpretação, relação com competência, revisão e proveniência |
 | M3 — estado, attestation e Solana | SH1W4 / JX | transformar o resultado revisado em estado verificável e implementar a ponte com Solana |
+| M3 — suporte técnico | JP Carvalho / Joaopedro0s | apoiar implementação, integração, debugging e testes quando solicitado; sem alterar o ownership de M3 |
 | M4.1 — validação de demanda | Erick / erickandregarcia-ai | produzir evidência externa estruturada |
 | Interface — UX/UI do vertical slice | JP Fernandes | materializar o fluxo definido em telas, navegação, evidência, revisão, estado, attestation e verificação |
 | Integração M2 → M3 → Interface → M4 | SH1W4 / JX | garantir coerência do vertical slice |
