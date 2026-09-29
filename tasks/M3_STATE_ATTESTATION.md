@@ -1,6 +1,7 @@
 # M3 — State, Attestation & Verification
 
-Owner: SH1W4
+Owner: SH1W4 / JX
+Technical support: Joaopedro0s (JP Carvalho), when requested
 Status: TODO
 Priority: P0
 
