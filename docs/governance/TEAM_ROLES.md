@@ -47,6 +47,8 @@ Primary responsibility:
 - technical investigation;
 - pull requests and implementation documentation.
 
+**M3 support:** JP Carvalho may support the M3 technical execution when requested, including integration, implementation, debugging and tests. M3 ownership and final technical responsibility remain with **JX / SH1W4**.
+
 ### JP Fernandes — UX/UI, Interface & Product Presentation
 
 Primary responsibility:
