@@ -179,3 +179,80 @@ Antes de fechar o brandbook:
 ## Status
 
 **Draft / hipótese.**
+
+
+## 10. Sistema visual operacional
+
+A direção visual deve ser traduzida em critérios executáveis de:
+
+- símbolo e variantes;
+- paleta;
+- tipografia;
+- composição;
+- elementos gráficos derivados;
+- iconografia;
+- tratamento de imagens;
+- aplicações no produto;
+- responsividade e escala;
+- área de proteção;
+- fundos;
+- usos corretos/incorretos;
+- critérios de aceite;
+- handoff.
+
+Ver: [Visual System Specification](VISUAL_SYSTEM_SPEC.md).
+
+### Referência atual do símbolo
+
+Os assets atuais são:
+
+- `learning-competency-symbol-v0.svg` — base vetorial;
+- `learning-competency-symbol-reference-flat.png` — referência plana;
+- `learning-competency-symbol-reference-3d.png` — referência volumétrica.
+
+A paleta atualmente presente no símbolo v0 usa, como referência de trabalho:
+
+- preto `#000000`;
+- branco `#FFFFFF`;
+- cinza `#D9D9D9`;
+- azul `#1683FF`.
+
+Esses valores ainda não constituem uma paleta final aprovada.
+
+A família tipográfica definitiva também permanece aberta.
+
+## 11. Critério de aprovação expandido
+
+Antes de fechar o brandbook:
+
+1. nome deve sobreviver à expansão além de certificados;
+2. deve funcionar para organização e pessoa;
+3. deve permitir comunicação em português e eventualmente inglês;
+4. não deve depender da palavra “blockchain”;
+5. não deve prometer mais verificação do que o produto consegue provar;
+6. deve ser compatível com uma identidade visual técnica e editorial;
+7. deve passar por disponibilidade de domínio, marca e canais antes da escolha final;
+8. o símbolo deve funcionar em escala pequena e em monocromia;
+9. o sistema visual deve ser reproduzível por outro membro;
+10. produto, apresentação e documentação devem compartilhar a mesma linguagem.
+
+## 12. Decisões ainda abertas
+
+- nome definitivo;
+- tagline definitiva;
+- família tipográfica;
+- paleta final;
+- símbolo definitivo;
+- área de proteção;
+- tamanhos mínimos;
+- wordmark;
+- iconografia;
+- padrões derivados;
+- motion;
+- templates finais.
+
+## Status
+
+**Draft / hipótese.**
+
+Este documento define direção, não fechamento definitivo de marca.
