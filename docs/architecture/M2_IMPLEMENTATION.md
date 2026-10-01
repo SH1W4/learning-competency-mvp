@@ -7,7 +7,7 @@ Classificação (CONTRIBUTING.md): **implementação**. As decisões técnicas q
 
 ```
 npm install
-npm test                    # 39 testes do fluxo crítico
+npm test                    # 44 testes do fluxo crítico
 npm run typecheck
 npm run demo                # cenário sintético Ana → DEMONSTRATED
 npm run demo:revisao-parcial  # revisor corrige C3 e pede evidência em C4 → IN_DEVELOPMENT
