@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Learning Competency MVP — vertical slice (M2: evidence → AI → human review)",
+  "description": "Learning Competency MVP — vertical slice completo: evidência → IA → revisão humana → estado → atestação Solana → verificação",
   "engines": {
     "node": ">=20"
   },
@@ -12,7 +12,9 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "demo": "tsx src/cli/demo.ts",
-    "demo:revisao-parcial": "tsx src/cli/demo.ts --review fixtures/synthetic/ana/review_request_more.json"
+    "demo:revisao-parcial": "tsx src/cli/demo.ts --review fixtures/synthetic/ana/review_request_more.json",
+    "m3:attest": "tsx src/solana/demo.ts",
+    "m3:verify": "tsx src/solana/verify.ts"
   },
   "dependencies": {
     "@solana/web3.js": "^1.99.0",
