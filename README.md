@@ -448,6 +448,36 @@ O estado atualizado do projeto está em [`docs/PROJECT_STATUS.md`](docs/PROJECT_
 
 ---
 
+## Equipe
+
+A equipe foi formada deliberadamente com perfis complementares:
+
+| Pessoa | Contribuição central | Por que importa |
+|---|---|---|
+| **Erick** | Pesquisa, contexto, mercado e operação | Transforma sinais externos em requisitos; garante que o produto não perde contato com o problema real |
+| **JP Carvalho** | M2 — pipeline de evidência, IA e revisão | Materializa o fluxo central em código testável e rastreável |
+| **JP Fernandes** | Branding, UX/UI e interface | Torna o produto visível e compreensível para quem não vai clonar o repositório |
+| **JX** | Arquitetura, IA, evidências, attestation e Solana | Conecta a tese técnica ao modelo de integridade e verificabilidade on-chain |
+
+Nenhuma dessas contribuições substitui as outras. O valor está na combinação.
+
+---
+
+## Histórico da competição
+
+**Hackathon iniciado:** 25 de setembro de 2026.
+
+**O que existia antes do hackathon:** apenas a ideia inicial de uma plataforma de microcredenciais.
+
+**O que foi construído durante o hackathon:**
+- M1: definição do caso de uso canônico e contratos de evidência
+- M2: pipeline completo em TypeScript (ingestão → IA → revisão humana → estado), 39 testes
+- M3: infraestrutura de atestação na Solana (Memo Program, off-chain storage pattern, verificação on-chain)
+- Governança operacional v1.0
+- Diário de Bordo com rastreabilidade de decisões
+
+---
+
 ## Licença
 
 A licença e os termos de distribuição do projeto serão definidos antes da publicação de uma versão final.
