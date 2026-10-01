@@ -437,7 +437,7 @@ A regra é:
 ### M2 — Evidência, IA e Revisão ✅ CONCLUÍDO
 - Pipeline completo em TypeScript/Node: ingestão → normalização → extração → interpretação → relação → revisão → estado.
 - Contrato estrito de IA via `zod`: IA propõe, **nunca** decide `DEMONSTRATED`.
-- 39 testes cobrindo o caminho crítico — todos passando.
+- 44 testes cobrindo o caminho crítico — todos passando.
 - Handoff (`ReviewedStateRecord`) pronto para consumo pelo M3.
 
 ### M3 — Estado, Atestação e Solana ✅ CONCLUÍDO (Devnet)
@@ -482,7 +482,7 @@ Nenhuma dessas contribuições substitui as outras. O valor está na combinaçã
 
 **O que foi construído durante o hackathon:**
 - M1: definição do caso de uso canônico e contratos de evidência
-- M2: pipeline completo em TypeScript (ingestão → IA → revisão humana → estado), 39 testes
+- M2: pipeline completo em TypeScript (ingestão → IA → revisão humana → estado), 44 testes
 - M3: infraestrutura de atestação na Solana (Memo Program, off-chain storage pattern, verificação on-chain)
 - Governança operacional v1.0
 - Diário de Bordo com rastreabilidade de decisões
