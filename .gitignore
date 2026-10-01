@@ -1,5 +1,16 @@
 node_modules/
 dist/
 out/
-.env
 coverage/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.DS_Store
+Thumbs.db
+
+# Estratégia Comercial & Dataroom Privado (Apenas Google Drive)
+docs/business/
+docs/pitch/
+docs/private/

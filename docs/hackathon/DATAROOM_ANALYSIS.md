@@ -37,7 +37,7 @@ Reusable Infrastructure vs. Application Program
 (Infrastructure is the technical engine; Program is the social/L&D intervention)
          ↓ (TECHNICAL EXECUTION - Sept 29 to Oct 1, 2026)
 TECHNICAL DELIVERY (M1, M2, M3)
-39 vitest tests passing + strict Zod AI contracts + verified Solana Devnet attestation
+44 vitest tests passing + strict Zod AI contracts + verified Solana Devnet attestation
 ```
 
 ### The Fundamental Shift
@@ -112,7 +112,7 @@ Synthesizing Erick's research notes on applied AI, we established the commercial
 ### Does the MVP codebase need changes?
 **NO. The MVP codebase is in total FEATURE FREEZE.**
 * The canonical Junior Data Analyst scenario (`Ana`) already models real-world data analysis supported by modern AI tooling.
-* The pipeline (`src/evidence/`, `src/ai/contract.ts`, `src/review/`, `src/solana/`) is domain-agnostic, backed by 39 passing tests, and confirmed on Solana Devnet.
+* The pipeline (`src/evidence/`, `src/ai/contract.ts`, `src/review/`, `src/solana/`) is domain-agnostic, backed by 44 passing tests, and confirmed on Solana Devnet.
 * **The adjustment is 100% focused on framing/narrative for the Pitch video and customer interview scripts.**
 
 ---
@@ -122,7 +122,7 @@ Synthesizing Erick's research notes on applied AI, we established the commercial
 | Front / Topic | Dataroom Specification | Status in Repository (`learning-competency-mvp`) |
 |---|---|---|
 | **M1: Canonical Use Case** | Junior Data Analyst (A1–A4, C1–C4). | ✅ **100% Done.** Implemented in `src/domain/` and synthetic scenario `fixtures/synthetic/ana/`. |
-| **M2: Evidence Pipeline** | Ingest, normalize, extract, AI, and human review. | ✅ **100% Done.** TypeScript pipeline with **39 vitest tests passing**. |
+| **M2: Evidence Pipeline** | Ingest, normalize, extract, AI, and human review. | ✅ **100% Done.** TypeScript pipeline with **44 vitest tests passing**. |
 | **M3: Attestation & Solana** | Off-chain hash, SPL Memo Program, verification. | ✅ **100% Done.** Live Devnet transaction confirmed ([`27hwuMbf5SxA...3y3U`](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)) and CLI verification via `npm run m3:verify`. |
 | **GTM Wedge (Applied AI)** | Enterprise AI reskilling wedge. | ✅ **100% Documented.** Integrated into `docs/go-to-market/GTM.md` and `docs/validation/DEMAND_VALIDATION.md`. |
 | **Governance & Traceability** | Governance v1.0 and decision log. | ✅ **100% Done.** `docs/governance/TEAM_ROLES.md` and 5 entries in `docs/diario-de-bordo/`. |
@@ -137,7 +137,7 @@ Synthesizing Erick's research notes on applied AI, we established the commercial
 The technical infrastructure is 100% built, verified, and test-covered. Winning the hackathon and earning an Accelerator interview depends on three complementary deliveries:
 
 ```text
-[ TECHNICAL INFRASTRUCTURE (JX + JP Carvalho) ]   → 100% DONE (39 tests + Devnet live) [FEATURE FREEZE]
+[ TECHNICAL INFRASTRUCTURE (JX + JP Carvalho) ]   → 100% DONE (44 tests + Devnet live) [FEATURE FREEZE]
                      +
 [ EXTERNAL DEMAND VALIDATION (Erick) ]          → Conduct 3 to 5 interviews on the "AI Bluff"
                      +

@@ -1,4 +1,4 @@
-# Diário de Bordo - Registro 05: Análise Sistemática do Dataroom e Alinhamento Estratégico
+# Diário de Bordo - Registro 06: Análise Sistemática do Dataroom e Alinhamento Estratégico
 
 **Data:** 01 de Outubro de 2026  
 **Fase:** Integração Dataroom (Drive) ↔ Repositório GitHub (Execução Técnica)
@@ -21,7 +21,7 @@ Gravamos diretamente na pasta do Google Drive:
 - Atualizados os links no `README.md` (EN) e `README.pt.md` (PT).
 
 ### 4. Diagnóstico e Plano de Ataque para a Reta Final (Até 12 de Outubro)
-Com o motor técnico (M1, M2, M3) 100% blindado e com 39 testes passando, o foco absoluto do time agora é:
+Com o motor técnico (M1, M2, M3) 100% blindado e com 44 testes passando, o foco absoluto do time agora é:
 1. **Erick (M4 - Demanda):** Executar 3 a 5 conversas/entrevistas com gestores de L&D/RH usando as 10 perguntas do guia de alinhamento.
 2. **JP Fernandes (Interface):** Finalizar as telas do fluxo demonstrativo da Ana conforme o design brief.
 3. **Equipe:** Gravar os vídeos de pitch (2–3 min) e demo ($\le 3$ min) seguindo o `DEMO_SCRIPT.md`.

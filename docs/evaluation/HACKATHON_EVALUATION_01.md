@@ -10,7 +10,7 @@
 
 ## A. Diagnóstico Executivo
 
-O ponto mais forte da submissão é a **coerência interna**: a tese está clara, o fluxo está implementado com contratos explícitos, e os limites entre IA, revisão humana e atestação on-chain são um dos melhores exemplos de responsabilidade de IA que um jurado técnico pode ver num hackathon. O M2 (39 testes passando) e o M3 (transação real na Devnet confirmada) provam que o fluxo vertical funciona de ponta a ponta.
+O ponto mais forte da submissão é a **coerência interna**: a tese está clara, o fluxo está implementado com contratos explícitos, e os limites entre IA, revisão humana e atestação on-chain são um dos melhores exemplos de responsabilidade de IA que um jurado técnico pode ver num hackathon. A suíte completa de 44 testes passando (39 do M2 + 5 de atestação/verificação do M3) e a transação real na Devnet confirmada provam que o fluxo vertical funciona de ponta a ponta.
 
 O maior risco não resolvido é a **ausência completa de evidência externa de demanda**. Toda a validação do problema existe como hipótese interna da equipe. Um jurado rigoroso vai perguntar: "alguém fora da equipe confirmou que esse problema existe e que pagaria por uma solução?" A resposta hoje é: não. Isso eleva o risco da dimensão de Tração para nível crítico.
 
@@ -45,7 +45,7 @@ O maior risco não resolvido é a **ausência completa de evidência externa de 
 ### 3. Product + Execution
 | Item | Avaliação |
 |---|---|
-| Evidência atual | Fluxo completo: M1 (spec), M2 (TypeScript, 39 testes), M3 (transação real Devnet). |
+| Evidência atual | Fluxo completo: M1 (spec), M2 (TypeScript, 39 testes), M3 (transação real Devnet + verifier + 5 testes, totalizando 44 testes). |
 | Demonstrado | `EVIDÊNCIA → EXTRAÇÃO → INTERPRETAÇÃO → REVISÃO HUMANA → ESTADO → ATTESTATION → SOLANA`. Cada seta tem código e teste. |
 | Apenas hipótese | Interface (JP Fernandes ainda não entregou). Demo reproduzível end-to-end com um usuário real. |
 | Prova faltando | Não há `npm run demo` funcional que um jurado possa rodar e ver o fluxo completo em menos de 3 minutos. A demo script existe mas depende de LLM (opcional) e sem UI. |
@@ -105,7 +105,7 @@ O maior risco não resolvido é a **ausência completa de evidência externa de 
 ### 8. Technical Credibility
 | Item | Avaliação |
 |---|---|
-| Evidência atual | 39 testes cobrindo o caminho crítico. Separação de domínios exemplar (`ingest → normalize → extract → interpret → relate → review → state → attest`). Proveniência preservada. Contracts validados com Zod. |
+| Evidência atual | 44 testes cobrindo o caminho crítico (39 testes de domínio M2 + 5 testes de atestação M3). Separação de domínios exemplar (`ingest → normalize → extract → interpret → relate → review → state → attest`). Proveniência preservada. Contracts validados com Zod. |
 | Demonstrado | Altíssimo. Um avaliador técnico pode clonar e rodar `npm test` em 2 minutos. |
 | Apenas hipótese | Que o provedor LLM real produz outputs válidos consistentemente. |
 | Prova faltando | Teste com LLM real (não apenas heurístico). |
@@ -117,12 +117,12 @@ O maior risco não resolvido é a **ausência completa de evidência externa de 
 ### 9. Solana Relevance
 | Item | Avaliação |
 |---|---|
-| Evidência atual | Transação real na Devnet confirmada. Payload off-chain correto (apenas hash + metadados). |
-| Demonstrado | O Memo Program foi usado corretamente. Não há tokenomics desnecessário. Não há DAO. Sem token especulativo. |
-| Apenas hipótese | Que o verifier consegue usar o `record_hash` para verificar independentemente. |
-| Prova faltando | Um script ou endpoint de verificação: dado um `record_hash`, provar que foi registrado on-chain. Este é o passo final do fluxo e ainda não existe. |
-| Risco | **Médio.** Sem verificação, a atestação é uma afirmação de integridade que não pode ser checada. O ciclo não fecha. |
-| Ação recomendada | Implementar `src/solana/verify.ts`: recebe `record_hash` e `tx_signature`, busca a transação e confirma que o hash está no Memo. |
+| Evidência atual | Transação real na Devnet confirmada + Verificador (`src/solana/verify.ts`) implementado e testado. Payload off-chain correto (apenas hash + metadados). |
+| Demonstrado | O Memo Program foi usado corretamente. O ciclo fecha com atestação e verificação criptográfica independente. Não há tokenomics desnecessário. Sem token especulativo. |
+| Apenas hipótese | Custos operacionais em Mainnet em altíssimo volume. |
+| Prova faltando | Teste de carga com batch de atestações. |
+| Risco | **Baixo.** O pipeline Solana (atestação + verificação) está 100% implementado e coberto por testes. |
+| Ação recomendada | Manter o script de demo com a verificação automática pós-transação. |
 
 ---
 
@@ -142,9 +142,9 @@ O maior risco não resolvido é a **ausência completa de evidência externa de 
 
 | Afirmação | Nível | Fonte | Status |
 |---|---|---|---|
-| O fluxo técnico funciona end-to-end | E3 | 39 testes + tx Devnet | ✅ Demonstrado |
+| O fluxo técnico funciona end-to-end | E3 | 44 testes + tx Devnet | ✅ Demonstrado |
 | A IA propõe, nunca decide DEMONSTRATED | E3 | `state.ts` + `tests/review.test.ts` | ✅ Demonstrado |
-| Atestação na Solana é verificável | E1 | Transação existe, verifier não existe | ⚠️ Incompleto |
+| Atestação na Solana é verificável | E3 | `src/solana/verify.ts` + `tests/m3.test.ts` | ✅ Demonstrado |
 | Organizações têm dificuldade de rastrear competências | E0 | Nenhuma entrevista | ❌ Não validado |
 | L&D pagaria pela solução | E0 | Nenhuma conversa documentada | ❌ Não validado |
 | O mercado é relevante | E1 | Argumento lógico sem pesquisa | ❌ Hipótese |
