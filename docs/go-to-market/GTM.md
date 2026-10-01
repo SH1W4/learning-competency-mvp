@@ -15,17 +15,20 @@ The team should distinguish:
 
 These roles may be the same person in an early pilot.
 
-## Initial wedge
+## Initial wedge: Applied AI Competencies in Enterprise & Workforce L&D
 
-The first market wedge should be a narrow organizational competency-development workflow where:
+The primary market wedge is **verifiable competency in Applied AI** (data analysis, engineering, and operations with AI tools):
 
-- the competency matters to an identifiable program;
-- learning activities already exist or can be created quickly;
-- evidence is naturally produced;
-- review is feasible;
-- the value of a structured state can be demonstrated.
+### The "AI Bluff" Problem in Corporate Training:
+1. **High Spend, Zero Proof:** Enterprises invest millions in AI training, but course completion certificates only prove video watch-time, not practical capability.
+2. **Operational Risk:** Employees copy-paste from AI tools without validation, leading to hallucinations, security risks, and poor decisions.
+3. **Evaluation Friction:** Senior managers lack the time to manually audit every employee's AI prompts, code, and reasoning.
 
-The exact wedge remains to be validated.
+### Why this is the ideal wedge:
+- **Immediate Market Timing:** AI reskilling is the #1 enterprise L&D priority globally in 2026.
+- **Natural Evidence Generation:** Applied AI workflows naturally produce prompts, code artifacts, datasets, and structured outputs.
+- **Zero Technical Overhead:** The current MVP pipeline (`Ana` synthetic scenario, criteria C1–C4, Zod schema, and Solana Devnet attestation) directly models this exact workflow.
+- **Grant Alignment:** Seamlessly matches public R&D grant requirements such as CNPq RHAE IA.
 
 ## Pilot model
 
