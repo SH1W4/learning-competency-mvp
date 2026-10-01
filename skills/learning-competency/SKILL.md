@@ -9,6 +9,8 @@ description: Project intelligence and operating rules for the Learning Competenc
 
 Help turn the current Learning Competency thesis into a small, demonstrable, technically coherent MVP and a credible hackathon submission.
 
+**Current Phase:** The MVP vertical slice (M1 → M2 → M3) is technically complete and frozen. Focus is currently on M4 (Validation, UI/UX, Demo, and Hackathon Submission).
+
 The skill is a **working memory and decision framework**, not a substitute for team decisions.
 
 When information conflicts, prefer:
@@ -460,7 +462,7 @@ It is:
 
 > One concrete competency can be taken through a short trail, evidence can be submitted, AI can structure and interpret that evidence, a human can review it, a competency state can be produced, an attestation/proof can be created, and the result can be verified.
 
-Everything else is secondary until this path works.
+**Status:** This milestone has been ACHIVED. The technical foundation of the vertical slice is frozen. Current efforts are strictly on UI/UX integration and M4 (Validation & Submission). Everything else is secondary.
 
 ---
 
@@ -637,6 +639,8 @@ M3 tasks:
 Exit condition:
 
 A reviewed competency-development result can be represented as a bounded state, attested and independently checked through the defined verification path.
+
+**Status:** DONE (Frozen). The entire technical vertical slice is integrated and testable.
 
 Canonical task file:
 
