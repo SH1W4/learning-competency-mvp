@@ -16,7 +16,7 @@
 
 ```bash
 npm install
-npm test                     # 39 tests — all passing
+npm test                     # 44 tests — all passing
 npm run demo                 # Synthetic scenario: Ana → DEMONSTRATED
 npm run m3:attest            # Register attestation on Solana Devnet
 npm run m3:verify <hash> <tx> # Verify attestation on-chain
@@ -37,12 +37,13 @@ npm run m3:verify <hash> <tx> # Verify attestation on-chain
 ### M2 — Evidence, AI and Review ✅ DONE
 - Full TypeScript/Node pipeline: ingest → normalize → extract → interpret → relate → review → state.
 - Strict AI contract via `zod`: AI proposes, **never** decides `DEMONSTRATED`.
-- 39 tests covering the critical path — all passing.
+- **44 tests** covering the critical path and hardening — all passing.
 - Handoff (`ReviewedStateRecord`) ready for M3 consumption.
 
 ### M3 — State, Attestation and Solana ✅ DONE (Devnet)
 - `src/solana/attest.ts`: records attestation via SPL Memo Program (off-chain storage pattern).
 - `src/solana/verify.ts`: given a `record_hash` and `tx_signature`, confirms on-chain proof.
+- Attestation creation and verification are covered by dedicated M3 tests.
 
 > 🔗 **Live proof on Solana Devnet:**  
 > [`27hwuMbf5SxA...3y3U`](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
@@ -179,7 +180,7 @@ The pipeline preserves provenance and differentiates: source data, extracted inf
 │   ├── solana/                 # attest.ts + verify.ts
 │   ├── domain/                 # Types and use case definitions
 │   └── cli/                    # Demo CLI
-├── tests/                      # 39 tests — all passing
+├── tests/                      # 44 tests — all passing
 ├── .env.example · .gitattributes · CONTRIBUTING.md
 ```
 
@@ -204,7 +205,7 @@ No contribution replaces the others. The value lies in the combination.
 
 **Built during the hackathon:**
 - M1: canonical use case definition and evidence contracts
-- M2: full TypeScript pipeline (ingest → AI → human review → state), 39 tests
+- M2: full TypeScript pipeline (ingest → AI → human review → state), **44 tests**
 - M3: Solana attestation infrastructure (Memo Program, off-chain storage pattern, on-chain verification)
 - Operational governance v1.0 and Development Log with decision traceability
 
