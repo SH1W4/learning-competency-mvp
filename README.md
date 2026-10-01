@@ -348,7 +348,7 @@ The team was deliberately formed with complementary profiles:
 |---|---|---|
 | **[Erick](https://github.com/erickandregarcia-ai)** | Research, context, market and operations | Translates external signals into requirements; ensures the product stays connected to the real problem |
 | **[JP Carvalho](https://github.com/Joaopedro0s)** | M2 — evidence pipeline, AI and review | Materializes the central flow in testable, traceable code |
-| **JP Fernandes** | Branding, UX/UI and interface | Makes the product visible and understandable to those who won't clone the repository |
+| **[JP Fernandes](https://github.com/JpFernandes77)** | Branding, UX/UI and interface | Makes the product visible and understandable to those who won't clone the repository |
 | **[JX](https://github.com/SH1W4)** | Architecture, AI, evidence, attestation and Solana | Connects the technical thesis to the integrity and on-chain verifiability model |
 
 No contribution replaces the others. The value lies in the combination.
