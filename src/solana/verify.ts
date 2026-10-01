@@ -61,18 +61,35 @@ export async function verifyAttestation(
 
 // CLI Runner
 async function main() {
-  const [, , recordHash, txSignature] = process.argv;
+  const [, , arg1, arg2] = process.argv;
+  
+  let txSignature = arg1;
+  let recordHash = arg2;
 
-  if (!recordHash || !txSignature) {
-    console.error('Uso: npx tsx src/solana/verify.ts <record_hash> <tx_signature>');
+  if (!txSignature) {
+    console.error('Uso: npx tsx src/solana/verify.ts <tx_signature> [record_hash]');
     process.exit(1);
+  }
+
+  // Se não passou recordHash, tentamos ler do out/reviewed-state.json
+  if (!recordHash) {
+    try {
+      const fs = await import('fs');
+      const content = fs.readFileSync('out/reviewed-state.json', 'utf-8');
+      const record = JSON.parse(content);
+      recordHash = record.record_hash;
+      console.log(`📖 Lendo record_hash do out/reviewed-state.json: ${recordHash}`);
+    } catch (e) {
+      console.error('⚠️ Não foi possível ler out/reviewed-state.json e nenhum record_hash foi passado como argumento.');
+      process.exit(1);
+    }
   }
 
   console.log(`\n🔍 Verificando atestação on-chain...`);
   console.log(`   record_hash : ${recordHash}`);
   console.log(`   tx          : ${txSignature}\n`);
 
-  const result = await verifyAttestation(recordHash, txSignature);
+  const result = await verifyAttestation(recordHash as string, txSignature as string);
 
   if (result.verified) {
     console.log('✅ VERIFICADO — A atestação existe e o hash confere.');
@@ -84,4 +101,6 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+if (process.argv[1] && process.argv[1].endsWith('verify.ts')) {
+  main().catch(console.error);
+}
