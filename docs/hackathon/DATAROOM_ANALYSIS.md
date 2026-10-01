@@ -102,28 +102,44 @@ The Dataroom mapped clear financing and viability paths beyond hackathon prize m
 
 ---
 
-## 6. Systematic Cross-Reference: Dataroom vs. Technical Repository
+## 6. Primary Go-To-Market Wedge: Applied AI Competencies
+
+Synthesizing Erick's research notes on applied AI, we established the commercial entry wedge:
+
+* **The "AI Bluff" Problem:** Enterprises invest heavily in AI tools and video courses, but completion certificates only prove watch-time. The market is full of employees claiming AI proficiency without proof of practical capability, critical thinking, or hallucination prevention.
+* **Our Positioning:** Rather than a generic "microcredentials platform", Learning Competency is the **verifiable audit and attestation layer for Applied AI competencies in enterprise L&D**.
+
+### Does the MVP codebase need changes?
+**NO. The MVP codebase is in total FEATURE FREEZE.**
+* The canonical Junior Data Analyst scenario (`Ana`) already models real-world data analysis supported by modern AI tooling.
+* The pipeline (`src/evidence/`, `src/ai/contract.ts`, `src/review/`, `src/solana/`) is domain-agnostic, backed by 39 passing tests, and confirmed on Solana Devnet.
+* **The adjustment is 100% focused on framing/narrative for the Pitch video and customer interview scripts.**
+
+---
+
+## 7. Systematic Cross-Reference: Dataroom vs. Technical Repository
 
 | Front / Topic | Dataroom Specification | Status in Repository (`learning-competency-mvp`) |
 |---|---|---|
 | **M1: Canonical Use Case** | Junior Data Analyst (A1–A4, C1–C4). | ✅ **100% Done.** Implemented in `src/domain/` and synthetic scenario `fixtures/synthetic/ana/`. |
 | **M2: Evidence Pipeline** | Ingest, normalize, extract, AI, and human review. | ✅ **100% Done.** TypeScript pipeline with **39 vitest tests passing**. |
 | **M3: Attestation & Solana** | Off-chain hash, SPL Memo Program, verification. | ✅ **100% Done.** Live Devnet transaction confirmed ([`27hwuMbf5SxA...3y3U`](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)) and CLI verification via `npm run m3:verify`. |
-| **Governance & Traceability** | Governance v1.0 and decision log. | ✅ **100% Done.** `docs/governance/TEAM_ROLES.md` and 4 entries in `docs/diario-de-bordo/`. |
+| **GTM Wedge (Applied AI)** | Enterprise AI reskilling wedge. | ✅ **100% Documented.** Integrated into `docs/go-to-market/GTM.md` and `docs/validation/DEMAND_VALIDATION.md`. |
+| **Governance & Traceability** | Governance v1.0 and decision log. | ✅ **100% Done.** `docs/governance/TEAM_ROLES.md` and 5 entries in `docs/diario-de-bordo/`. |
 | **README & Presentation** | Primary English version with Portuguese support. | ✅ **100% Done.** `README.md` (EN) and `README.pt.md` (PT) synchronized with all 4 team profiles. |
 | **Branding & UI (JP Fernandes)** | Visual materialization and UI of Ana's flow. | ⏳ **In Progress.** Detailed brief in `docs/brand/DESIGN_BRIEF_JP_FERNANDES.md`. |
-| **M4: Demand Validation (Erick)** | 3–5 interviews with L&D/HR leads (10 questions). | ⏳ **In Progress.** Interview guide ready in `#01_ ALINHAMENTO_M1_M4_CASO_DE_USO.pdf`. |
+| **M4: Demand Validation (Erick)** | 3–5 interviews focused on the AI Bluff (5 questions). | ⏳ **In Progress.** 5 golden questions ready in Document 11. |
 
 ---
 
-## 7. Action Plan for the Final Stretch (Until October 12)
+## 8. Action Plan for the Final Stretch (Until October 12)
 
 The technical infrastructure is 100% built, verified, and test-covered. Winning the hackathon and earning an Accelerator interview depends on three complementary deliveries:
 
 ```text
-[ TECHNICAL INFRASTRUCTURE (JX + JP Carvalho) ]   → 100% DONE (39 tests + Devnet live)
+[ TECHNICAL INFRASTRUCTURE (JX + JP Carvalho) ]   → 100% DONE (39 tests + Devnet live) [FEATURE FREEZE]
                      +
-[ EXTERNAL DEMAND VALIDATION (Erick) ]          → Conduct 3 to 5 interviews using the 10 questions
+[ EXTERNAL DEMAND VALIDATION (Erick) ]          → Conduct 3 to 5 interviews on the "AI Bluff"
                      +
 [ VISUAL UI & BRANDING (JP Fernandes) ]          → Screen flows for Ana's journey (Briefing ready)
                      ↓
@@ -133,6 +149,6 @@ The technical infrastructure is 100% built, verified, and test-covered. Winning 
 ```
 
 ### Team Immediate Action Items:
-1. **Erick:** Conduct and document 3 to 5 concise interviews (15–20 min) with L&D, HR, or engineering leads using the 10 questions from `#01_ ALINHAMENTO_M1_M4_CASO_DE_USO.pdf`.
+1. **Erick:** Conduct and document 3 to 5 concise interviews (15–20 min) with L&D or engineering leads using the 5 golden questions from Document 11.
 2. **JP Fernandes:** Complete the UI layout for Ana's evidence journey so the demo video showcases an intuitive product experience alongside the CLI/test suite.
 3. **Team:** Record the product demo ($\le 3$ min) and pitch video (2–3 min) and submit on the Colosseum platform before October 12.
