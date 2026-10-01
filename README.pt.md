@@ -427,24 +427,34 @@ A regra é:
 
 ---
 
-## Estado atual
+## O que provamos
 
-**Fase:** definição do MVP → implementação técnica.
+### M1 — Caso de Uso Concreto ✅ CONCLUÍDO
+- Caso de uso canônico: competência de análise de dados em programa corporativo de L&D.
+- Trilha curta: A1 (formular pergunta) → A2 (preparar dados) → A3 (reproduzir análise) → A4 (comunicar resultados).
+- Quatro critérios observáveis: C1 (formulação), C2 (tratamento/análise), C3 (evidência), C4 (comunicação).
 
-**Estado do repositório:** fundação de execução estabelecida; fluxo vertical ainda não implementado.
+### M2 — Evidência, IA e Revisão ✅ CONCLUÍDO
+- Pipeline completo em TypeScript/Node: ingestão → normalização → extração → interpretação → relação → revisão → estado.
+- Contrato estrito de IA via `zod`: IA propõe, **nunca** decide `DEMONSTRATED`.
+- 39 testes cobrindo o caminho crítico — todos passando.
+- Handoff (`ReviewedStateRecord`) pronto para consumo pelo M3.
 
-**Próximo objetivo:** selecionar e validar o caso de uso concreto e implementar o primeiro fluxo completo:
+### M3 — Estado, Atestação e Solana ✅ CONCLUÍDO (Devnet)
+- `src/solana/attest.ts`: registra atestação via SPL Memo Program (padrão de armazenamento off-chain).
+- `src/solana/verify.ts`: dado um `record_hash` e `tx_signature`, confirma a prova on-chain.
 
-```text
-EVIDÊNCIA
-→ INTERPRETAÇÃO
-→ REVISÃO
-→ ESTADO
-→ ATTESTATION
-→ VERIFICAÇÃO
-```
+> 🔗 **Prova ao vivo na Solana Devnet:**  
+> [`27hwuMbf5SxA...3y3U`](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
 
-O estado atualizado do projeto está em [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).
+### Interface — UX/UI ⏳ EM ANDAMENTO
+- Responsável: [JP Fernandes](https://github.com/JpFernandes77).
+
+### M4 — Validação, Demo e Submissão ⏳ EM ANDAMENTO
+- Validação de demanda: [Erick](https://github.com/erickandregarcia-ai).
+- Roteiro de demo: [`docs/demo/DEMO_SCRIPT.md`](docs/demo/DEMO_SCRIPT.md).
+
+O estado detalhado do projeto está em [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).
 
 ---
 
@@ -454,10 +464,10 @@ A equipe foi formada deliberadamente com perfis complementares:
 
 | Pessoa | Contribuição central | Por que importa |
 |---|---|---|
-| **Erick** | Pesquisa, contexto, mercado e operação | Transforma sinais externos em requisitos; garante que o produto não perde contato com o problema real |
-| **JP Carvalho** | M2 — pipeline de evidência, IA e revisão | Materializa o fluxo central em código testável e rastreável |
-| **JP Fernandes** | Branding, UX/UI e interface | Torna o produto visível e compreensível para quem não vai clonar o repositório |
-| **JX** | Arquitetura, IA, evidências, attestation e Solana | Conecta a tese técnica ao modelo de integridade e verificabilidade on-chain |
+| **[Erick](https://github.com/erickandregarcia-ai)** | Pesquisa, contexto, mercado e operação | Transforma sinais externos em requisitos; garante que o produto não perde contato com o problema real |
+| **[JP Carvalho](https://github.com/Joaopedro0s)** | M2 — pipeline de evidência, IA e revisão | Materializa o fluxo central em código testável e rastreável |
+| **[JP Fernandes](https://github.com/JpFernandes77)** | Branding, UX/UI e interface | Torna o produto visível e compreensível para quem não vai clonar o repositório |
+| **[JX](https://github.com/SH1W4)** | Arquitetura, IA, evidências, attestation e Solana | Conecta a tese técnica ao modelo de integridade e verificabilidade on-chain |
 
 Nenhuma dessas contribuições substitui as outras. O valor está na combinação.
 
