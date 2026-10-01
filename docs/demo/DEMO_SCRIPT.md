@@ -1,75 +1,189 @@
 # Roteiro da Demonstração — Learning Competency MVP
 
-> **Duração alvo:** 3 minutos  
-> **Audiência:** jurados do hackathon (técnicos e não-técnicos)  
-> **Regra:** a demo prova o fluxo, não enumera features.
+> **Duração alvo:** 3 minutos
+> **Audiência:** Jurados do Colosseum (técnicos e não-técnicos)
+> **Regra:** A demo prova o fluxo, não enumera features. Cada passo existe para construir o Aha Moment.
+> **Aha Moment:** O instante em que uma decisão humana se torna matematicamente inalterável.
 
 ---
 
-## Contexto (30 seg — Erick)
+## 🗣️ Abertura — O Problema (0:00 – 0:30)
 
-> "Toda organização tem uma pergunta sem resposta simples: *como eu sei que alguém desenvolveu uma competência — de verdade?* Cursos terminados, certificados emitidos, horas de treinamento: nada disso fecha o ciclo entre o que a pessoa produziu e o que a organização consegue verificar. Nós construímos o sistema que fecha esse ciclo."
+**Quem fala:** Erick
 
----
-
-## O Fluxo (ao vivo — JX / JP Carvalho)
-
-### Passo 1 — A organização define a competência (10 seg)
-Mostrar `docs/product/USE_CASE.md` ou tela de definição.
-
-> "Uma área de L&D define: a competência é 'transformar uma pergunta de negócio em análise reproduzível'. Quatro critérios observáveis. Uma trilha de quatro atividades."
+> "Toda organização tem uma pergunta sem resposta simples:
+> *como eu sei que alguém realmente desenvolveu uma competência?*
+>
+> Cursos concluídos, certificados emitidos, horas de treinamento computadas — nada disso prova o que a pessoa produziu.
+>
+> O Learning Competency MVP fecha esse ciclo em três partes: evidência real, revisão humana, e prova imutável na blockchain. Deixa o João mostrar."
 
 ---
 
-### Passo 2 — A pessoa entrega evidências (20 seg)
-Mostrar `fixtures/synthetic/ana/` — os quatro artefatos da Ana.
+## ⚙️ Passo 1 — A organização define a competência (0:30 – 0:45)
 
-> "A Ana, analista júnior, entrega: um briefing analítico, um notebook de preparação, uma análise reproduzível e uma síntese com conclusões. Cada artefato vai para o sistema com hash de integridade."
+**Quem faz:** JX (CLI ou interface)
+**O que mostrar:** Tela inicial / `docs/product/USE_CASE.md`
 
----
+> "Uma área de L&D define: a competência é 'transformar uma pergunta de negócio em análise de dados reproduzível'. Quatro critérios observáveis. Uma trilha de quatro atividades."
 
-### Passo 3 — A IA interpreta, o revisor decide (30 seg)
-Rodar `npm run demo` ou mostrar output do pipeline.
-
-> "A IA extrai sinais de cada evidência e os relaciona aos critérios C1 a C4. Ela pode propor — mas nunca decidir. O revisor recebe a interpretação, aceita, corrige ou rejeita. Aqui, o revisor confirma que C1 a C4 estão sustentados."
-
-Mostrar estado mudando: `UNDER_REVIEW → DEMONSTRATED`.
+**Visual:** Tela mostrando a competência `LID-01` com os critérios `C1–C4` já definidos.
 
 ---
 
-### Passo 4 — A atestação vai para a Solana (20 seg)
-Mostrar a transação no Solana Explorer (link da Devnet já gravado).
+## 📂 Passo 2 — A pessoa entrega evidências (0:45 – 1:05)
 
-> "Com a revisão confirmada, o sistema cria uma atestação. O record_hash — a impressão digital do estado revisado — é registrado imutavelmente na Solana. Não os documentos. Apenas a âncora criptográfica."
+**Quem faz:** JX
+**O que mostrar:** `fixtures/synthetic/ana/` — os artefatos da Ana
 
-**[Abrir link: Explorer Devnet]**
+> "A Ana, analista júnior, entrega: um briefing analítico, um notebook de preparação, uma análise reproduzível e uma síntese executiva.
+>
+> Cada arquivo entra no sistema com seu próprio hash de integridade — a impressão digital imutável do que foi submetido."
 
----
-
-### Passo 5 — Qualquer um pode verificar (20 seg)
-Rodar `npx tsx src/solana/verify.ts <hash> <tx>`.
-
-> "Agora, qualquer verificador autorizado — um recrutador, outra organização, um auditor — pode checar: esse estado foi revisado? Esse hash confere com o que está na blockchain? A resposta é sim, com timestamp e sem depender de ninguém."
-
-Output: `✅ VERIFICADO`
+**Visual:** Lista dos 4 artefatos com seus `content_hash` exibidos ao lado.
 
 ---
 
-## Por que isso importa (30 seg — Erick)
+## 🤖 Passo 3 — A IA interpreta. Ela propõe, não decide. (1:05 – 1:35)
 
-> "Hoje, o mercado tem LMSs que entregam cursos, plataformas de certificado que emitem badges, e ferramentas de avaliação que medem desempenho. Nenhuma fecha o loop entre *a evidência que a pessoa produziu*, *a revisão humana* e *a verificação independente*. Nós fechamos esse loop — e tornamos o resultado auditável."
+**Quem faz:** JX
+**O que mostrar:** Output do `npm run demo` (pipeline M2)
+
+> "A IA lê cada evidência e cruza com os critérios da rubrica.
+>
+> Ela identifica que C1, C2 e C3 estão presentes. O critério C4 está incerto — a análise está lá, mas a síntese das conclusões está rasa.
+>
+> **Ela não decide. Ela propõe.**"
+
+**Visual:** Saída do CLI mostrando os critérios avaliados com status `supports / uncertain`.
+
+> "O estado da Ana é `UNDER_REVIEW`. A bola está com o revisor humano."
 
 ---
 
-## Equipe (20 seg)
+## 👤 Passo 4 — O Revisor decide (1:35 – 2:00)
 
-> - **Erick** — pesquisa, mercado e narrativa  
-> - **JP Carvalho** — pipeline de evidência e IA (M2)  
-> - **JP Fernandes** — identidade e interface  
-> - **JX** — arquitetura, atestação e Solana (M3)
+**Quem faz:** JX
+**O que mostrar:** Revisão no CLI / interface de review
+
+> "O líder técnico da Ana abre o sistema. Ele lê o que a IA propôs, revisa o notebook dela e concorda — mas corrige C4 manualmente: ela entregou a síntese na apresentação verbal, e o líder registra isso.
+>
+> Ele aprova. O estado muda de `UNDER_REVIEW` para `DEMONSTRATED`."
+
+**Visual:** Animação do estado mudando. O campo `reviewer: 'JX'` e `action: 'approve'` visíveis.
 
 ---
 
-## Pergunta que fecha
+## ⚡ Passo 5 — O Aha Moment: Handoff → Hash → Solana (2:00 – 2:30)
 
-> "A pergunta que guiou cada decisão técnica foi: *que evidência ainda falta para que um avaliador independente chegue à mesma conclusão sozinho?* É essa pergunta que queremos continuar respondendo."
+**Quem faz:** JX
+**O que mostrar:** Output do hash + link do Solana Explorer
+
+> "Esse é o momento central da nossa proposta.
+>
+> No instante em que o revisor aprova, o sistema gera o `ReviewedStateRecord` — um documento canônico contendo: as evidências originais, o que a IA propôs, e o que o humano decidiu.
+>
+> Esse documento fecha. E gera **um único hash SHA-256**."
+
+**Visual:** Terminal exibindo o `record_hash` gerado — ex: `a1b2c3d4...`
+
+> "Nós não colocamos os documentos da Ana na blockchain.
+>
+> **Só ancoramos esse hash** — a impressão digital matemática da decisão — no Memo Program da Solana."
+
+**Visual:** Link do Solana Explorer abre no navegador. O hash é visível no payload da transação.
+
+> *(pausa de 2 segundos)*
+>
+> "Aqui está. Timestamp. Hash. Rede pública. Inalterável."
+
+---
+
+## 🔍 Passo 6 — Verificação (2:30 – 2:50)
+
+**Quem faz:** JX
+**O que mostrar:** `npx tsx src/solana/verify.ts <hash> <tx>`
+
+> "Agora, qualquer verificador — um recrutador, uma auditoria, outra organização — pode checar de forma independente."
+
+```
+npx tsx src/solana/verify.ts a1b2c3d4... <txSignature>
+```
+
+**Visual:** Tela exibe `✅ VERIFICADO — hash confere com o registro on-chain.`
+
+---
+
+## 🔴 Passo 7 — Anti-fraude: o sistema detecta adulteração (2:50 – 3:10)
+
+**Quem faz:** JX
+**O que mostrar:** Edição manual do JSON + re-verificação
+
+> "E se alguém tentar manipular o registro depois?"
+
+**Ação:** JX abre o arquivo `out/reviewed-state.json` e muda `state: "DEMONSTRATED"` para `state: "IN_DEVELOPMENT"`.
+
+**Visual:** Salva o arquivo. Roda o verificador novamente:
+
+```
+npx tsx src/solana/verify.ts a1b2c3d4... <txSignature>
+```
+
+**Visual:** Tela exibe em vermelho: `❌ VERIFICAÇÃO FALHOU — hash do documento não confere com o registro on-chain.`
+
+> "O documento foi adulterado. O hash mudou. A Solana não mente.
+>
+> Isso é o que chamamos de confiança verificável, não confiança declarada."
+
+---
+
+## 🎤 Fechamento — Por que isso importa (3:10 – 3:30)
+
+**Quem fala:** Erick
+
+> "LMSs entregam cursos. Plataformas de certificado emitem badges. Ferramentas de avaliação medem desempenho.
+>
+> Nenhuma fecha o ciclo entre a evidência que a pessoa produziu, a decisão de um humano qualificado, e a verificação independente por qualquer terceiro.
+>
+> O Learning Competency fecha esse ciclo — e torna cada decisão matematicamente auditável.
+>
+> Obrigado."
+
+---
+
+## 📋 Checklist pré-demo
+
+- [ ] `out/reviewed-state.json` gerado via `npm run demo`
+- [ ] Saldo SOL na Devnet (`solana airdrop 2` se necessário)
+- [ ] Transação de atestação realizada via `npm run m3:attest`
+- [ ] Link do Solana Explorer copiado e testado
+- [ ] Arquivo JSON de adulteração pronto para edição ao vivo
+- [ ] Terminal com fonte grande (≥ 18px) e tema escuro
+
+---
+
+## 🧩 Sequência técnica de comandos
+
+```bash
+# 1. Gerar o ReviewedStateRecord (M2)
+npm run demo
+
+# 2. Ver o hash gerado
+cat out/reviewed-state.json | grep record_hash
+
+# 3. Ancorar na Solana (M3)
+npm run m3:attest
+
+# 4. Verificação positiva
+npx tsx src/solana/verify.ts <record_hash> <txSignature>
+
+# 5. Simular adulteração: editar reviewed-state.json manualmente
+# (mudar state para "IN_DEVELOPMENT")
+
+# 6. Verificação negativa — detecta adulteração
+npx tsx src/solana/verify.ts <record_hash> <txSignature>
+```
+
+---
+
+*"A pergunta que guiou cada decisão técnica foi: que evidência ainda falta para que um avaliador independente chegue à mesma conclusão sozinho? É essa pergunta que queremos continuar respondendo."*
