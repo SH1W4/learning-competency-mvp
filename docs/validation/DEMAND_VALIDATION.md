@@ -18,7 +18,7 @@ Meta:
 - 2 profissionais/estudantes;
 - 1 recrutador/gestor.
 
-## Perguntas
+## Perguntas Gerais
 
 1. Como vocês atualmente definem uma competência que precisa ser desenvolvida?
 2. Como uma pessoa demonstra que desenvolveu essa competência?
@@ -30,6 +30,14 @@ Meta:
 8. Em que ponto esse processo quebra?
 9. Que parte seria mais valiosa de automatizar?
 10. Que tipo de prova faria vocês confiarem no resultado?
+
+## Perguntas Específicas — Wedge de IA Aplicada (Prioridade Imediata)
+
+1. **Investimento:** Sua empresa está investindo em treinar ou incentivar colaboradores a usarem ferramentas de IA generativa (ChatGPT, Copilot, Claude)?
+2. **Avaliação Prática:** Como vocês avaliam se o funcionário realmente aprendeu a aplicar IA de forma produtiva no trabalho ou se ele só assistiu passivamente às aulas?
+3. **Risco Operacional:** Vocês sentem insegurança sobre alucinações, vazamento de dados ou uso superficial ("copiar e colar") de IA pelo time?
+4. **Custo de Auditoria:** Quanto tempo gestores seniores gastam hoje para auditar e revisar o trabalho prático de alguém que concluiu um treinamento em IA?
+5. **Adesão a Piloto:** Se existisse um sistema que recebesse as evidências reais do trabalho (prompts, código, notebooks, resultados), fizesse uma pré-análise com IA e permitisse aprovação humana em 2 minutos com atestado verificável, vocês teriam interesse em rodar um piloto gratuito com um time de 5 a 10 pessoas?
 
 ## Evitar
 
