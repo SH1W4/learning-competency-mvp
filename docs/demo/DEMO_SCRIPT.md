@@ -12,7 +12,7 @@
 **Quem fala:** Erick
 
 > "Toda organização tem uma pergunta sem resposta simples:
-> *como eu sei que alguém realmente desenvolveu uma competência?*
+> *como eu sei que alguém realmente sabe usar IA para resolver problemas reais de negócio?*
 >
 > Cursos concluídos, certificados emitidos, horas de treinamento computadas — nada disso prova o que a pessoa produziu.
 >
@@ -25,9 +25,9 @@
 **Quem faz:** Erick
 **O que mostrar:** Tela inicial / `docs/product/USE_CASE.md`
 
-> "Uma área de L&D define: a competência é 'transformar uma pergunta de negócio em análise de dados reproduzível'. Quatro critérios observáveis. Uma trilha de quatro atividades."
+> "Uma área de L&D define a competência: *usar IA de forma aplicada para resolver um problema de negócio real*. Quatro critérios observáveis: formular a pergunta, interpretar dados com apoio de IA, validar os resultados com critério humano, e comunicar conclusões sustentadas por evidências."
 
-**Visual:** Tela mostrando a competência `LID-01` com os critérios `C1–C4` já definidos.
+**Visual:** Tela mostrando a competência `IA-APLICADA-01` com os critérios `C1–C4` já definidos.
 
 ---
 
@@ -36,7 +36,7 @@
 **Quem faz:** Erick
 **O que mostrar:** `fixtures/synthetic/ana/` — os artefatos da Ana
 
-> "A Ana, analista júnior, entrega: um briefing analítico, um notebook de preparação, uma análise reproduzível e uma síntese executiva.
+> "A Ana, profissional em transição para o uso de IA no seu trabalho, entrega: um briefing com a pergunta de negócio, um notebook onde usou IA para explorar os dados, uma análise reproduzível e uma síntese executiva com as conclusões.
 >
 > Cada arquivo entra no sistema com seu próprio hash de integridade — a impressão digital imutável do que foi submetido."
 

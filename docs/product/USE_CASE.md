@@ -5,7 +5,7 @@
 
 ## 1. Contexto organizacional
 
-**Programa:** programa interno de desenvolvimento de competências para analistas de dados em início/intermediário de carreira.
+**Programa:** programa interno de desenvolvimento de competências em IA Aplicada para analistas e profissionais em transição de carreira.
 **Problema owner:** área de Desenvolvimento de Pessoas / L&D / treinamento e desenvolvimento.
 **Learner:** colaborador participante do programa.
 **Reviewer:** gestor, instrutor ou avaliador formalmente responsável pela atividade.
@@ -19,7 +19,7 @@ O MVP não afirma que este é o único ou principal problema de L&D. Essa é a e
 
 ## 2. Competência canônica
 
-> **Transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.**
+> **Usar IA de forma aplicada para resolver um problema de negócio real: formular uma pergunta, usar ferramentas de IA para interpretar dados, validar os resultados com critério humano e comunicar conclusões sustentadas por evidências.**
 
 ### Critérios observáveis
 
@@ -137,9 +137,9 @@ A transição para DEMONSTRATED exige decisão explícita do reviewer e referên
 
 Usar um participante sintético:
 
-**Participante:** Ana — Analista de Dados Júnior
-**Programa:** Trilha de Análise de Dados Aplicada
-**Problema:** entender quais fatores estão associados ao aumento de tempo de atendimento em uma operação fictícia.
+**Participante:** Ana — Profissional em desenvolvimento de competência em IA Aplicada
+**Programa:** Trilha de IA Aplicada a Problemas de Negócio
+**Problema:** entender quais fatores estão associados ao aumento de tempo de atendimento em uma operação fictícia, usando IA como apoio à análise.
 
 ### Evidências sintéticas
 1. briefing com a pergunta analítica;
@@ -177,12 +177,12 @@ Essas questões pertencem à validação externa e às próximas fases.
 
 | Item | Decisão |
 | --- | --- |
-| Contexto | programa corporativo de desenvolvimento de competências em análise de dados |
+| Contexto | programa corporativo de desenvolvimento de competências em IA Aplicada a problemas de negócio |
 | Problem owner | L&D / Desenvolvimento de Pessoas |
 | Learner | colaborador participante |
 | Reviewer | gestor/instrutor/avaliador responsável |
 | Verifier | pessoa autorizada |
-| Competência | análise de dados reproduzível + comunicação baseada em evidências |
+| Competência | IA aplicada a problemas de negócio: formular pergunta, interpretar dados com IA, validar com critério humano, comunicar conclusões |
 | Trilha | A1–A4 |
 | Evidências | briefing, artefato de análise, resultado, comunicação |
 | Estados | NOT_STARTED, IN_DEVELOPMENT, UNDER_REVIEW, DEMONSTRATED |
