@@ -16,13 +16,13 @@
 >
 > Cursos concluídos, certificados emitidos, horas de treinamento computadas — nada disso prova o que a pessoa produziu.
 >
-> O Learning Competency MVP fecha esse ciclo em três partes: evidência real, revisão humana, e prova imutável na blockchain. Deixa o João mostrar."
+> O Learning Competency MVP fecha esse ciclo em três partes: evidência real, revisão humana, e prova imutável na blockchain. Vou mostrar como."
 
 ---
 
 ## ⚙️ Passo 1 — A organização define a competência (0:30 – 0:45)
 
-**Quem faz:** JX (CLI ou interface)
+**Quem faz:** Erick
 **O que mostrar:** Tela inicial / `docs/product/USE_CASE.md`
 
 > "Uma área de L&D define: a competência é 'transformar uma pergunta de negócio em análise de dados reproduzível'. Quatro critérios observáveis. Uma trilha de quatro atividades."
@@ -33,7 +33,7 @@
 
 ## 📂 Passo 2 — A pessoa entrega evidências (0:45 – 1:05)
 
-**Quem faz:** JX
+**Quem faz:** Erick
 **O que mostrar:** `fixtures/synthetic/ana/` — os artefatos da Ana
 
 > "A Ana, analista júnior, entrega: um briefing analítico, um notebook de preparação, uma análise reproduzível e uma síntese executiva.
@@ -46,7 +46,7 @@
 
 ## 🤖 Passo 3 — A IA interpreta. Ela propõe, não decide. (1:05 – 1:35)
 
-**Quem faz:** JX
+**Quem faz:** Erick
 **O que mostrar:** Output do `npm run demo` (pipeline M2)
 
 > "A IA lê cada evidência e cruza com os critérios da rubrica.
@@ -63,7 +63,7 @@
 
 ## 👤 Passo 4 — O Revisor decide (1:35 – 2:00)
 
-**Quem faz:** JX
+**Quem faz:** Erick
 **O que mostrar:** Revisão no CLI / interface de review
 
 > "O líder técnico da Ana abre o sistema. Ele lê o que a IA propôs, revisa o notebook dela e concorda — mas corrige C4 manualmente: ela entregou a síntese na apresentação verbal, e o líder registra isso.
@@ -76,7 +76,7 @@
 
 ## ⚡ Passo 5 — O Aha Moment: Handoff → Hash → Solana (2:00 – 2:30)
 
-**Quem faz:** JX
+**Quem faz:** Erick
 **O que mostrar:** Output do hash + link do Solana Explorer
 
 > "Esse é o momento central da nossa proposta.
@@ -101,7 +101,7 @@
 
 ## 🔍 Passo 6 — Verificação (2:30 – 2:50)
 
-**Quem faz:** JX
+**Quem faz:** Erick
 **O que mostrar:** `npx tsx src/solana/verify.ts <hash> <tx>`
 
 > "Agora, qualquer verificador — um recrutador, uma auditoria, outra organização — pode checar de forma independente."
@@ -116,7 +116,7 @@ npx tsx src/solana/verify.ts a1b2c3d4... <txSignature>
 
 ## 🔴 Passo 7 — Anti-fraude: o sistema detecta adulteração (2:50 – 3:10)
 
-**Quem faz:** JX
+**Quem faz:** Erick
 **O que mostrar:** Edição manual do JSON + re-verificação
 
 > "E se alguém tentar manipular o registro depois?"
