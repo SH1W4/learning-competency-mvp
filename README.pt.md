@@ -454,7 +454,8 @@ A regra é:
 - Validação de demanda: [Erick](https://github.com/erickandregarcia-ai).
 - Roteiro de demo: [`docs/demo/DEMO_SCRIPT.md`](docs/demo/DEMO_SCRIPT.md).
 
-O estado detalhado do projeto está em [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).
+O estado detalhado do projeto está em [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md).  
+Consulte também a [Análise Sistemática do Dataroom](docs/hackathon/DATAROOM_ANALYSIS.md) e o [Diário de Bordo](docs/diario-de-bordo/).
 
 ---
 
