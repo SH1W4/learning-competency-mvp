@@ -111,3 +111,9 @@ Não apagar histórico nem reescrever artificialmente a cronologia para parecer 
 A página oficial lista workshops durante a competição, incluindo Solana Privacy em 29/09, Tokenization em 30/09 e Solana Foundation Office Hours em 05/10.
 
 Essas sessões devem ser tratadas como oportunidades para resolver dúvidas técnicas específicas, não como substitutas da implementação.
+
+---
+
+## Análise de Inteligência e Alinhamento Estratégico
+
+- [Dataroom Systematic Analysis & MVP Integration](DATAROOM_ANALYSIS.md): Consolidação analítica do acervo do Google Drive (`HACK_Plataforma_Microcredenciais`), teses de mercado, fomento (Finep, CNPq) e plano de ação final para o Colosseum.

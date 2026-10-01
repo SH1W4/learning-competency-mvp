@@ -154,7 +154,7 @@ The pipeline preserves provenance and differentiates: source data, extracted inf
 - [Project Status](docs/PROJECT_STATUS.md) · [Team Roles](docs/governance/TEAM_ROLES.md) · [Red-Team Evaluation](docs/evaluation/HACKATHON_EVALUATION_01.md) · [Contributing](CONTRIBUTING.md)
 
 ### Hackathon
-- [Demo Script](docs/demo/DEMO_SCRIPT.md) · [Development Log](docs/diario-de-bordo/) · [Hackathon Structure](docs/hackathon/README.md)
+- [Demo Script](docs/demo/DEMO_SCRIPT.md) · [Development Log](docs/diario-de-bordo/) · [Hackathon Structure](docs/hackathon/README.md) · [Dataroom Analysis](docs/hackathon/DATAROOM_ANALYSIS.md)
 
 ---
 
