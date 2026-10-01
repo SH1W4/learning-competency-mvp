@@ -18,11 +18,12 @@ async function runM3Demo() {
     keypair = Keypair.fromSecretKey(bs58.decode(privateKeyStr));
     console.log(`🔑 Usando carteira do .env: ${keypair.publicKey.toBase58()}`);
   } else {
-    keypair = Keypair.generate();
-    privateKeyStr = bs58.encode(keypair.secretKey);
-    // Salva no .env para reusarmos sem perder a carteira
-    fs.appendFileSync('.env', `\nSOLANA_PRIVATE_KEY=${privateKeyStr}\n`);
-    console.log(`🔑 Nova carteira gerada e salva no .env: ${keypair.publicKey.toBase58()}`);
+    console.error(`\n❌ ERRO DE SEGURANÇA OPERACIONAL:\n` +
+      `Variável SOLANA_PRIVATE_KEY não encontrada no arquivo .env.\n` +
+      `O script não deve gerar chaves e salvar automaticamente no .env por motivos de segurança.\n` +
+      `Por favor, crie uma carteira (ex: 'solana-keygen new') e adicione ao .env manualmente.\n` +
+      `Exemplo: SOLANA_PRIVATE_KEY=<sua_chave_em_base58>`);
+    process.exit(1);
   }
 
   const balance = await connection.getBalance(keypair.publicKey);

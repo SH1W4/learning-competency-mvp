@@ -36,12 +36,14 @@
 - modelo mínimo de revisão humana;
 - estados canônicos conforme o comportamento real do vertical slice.
 
-### Arquitetura
+### Arquitetura (Versões Futuras)
 
-- schema/mecanismo final de attestation;
-- caminho de verificação;
-- persistência mínima necessária;
-- limites finais entre dados off-chain e registro on-chain.
+O vertical slice técnico do MVP está 100% fechado. O modelo de produto e a arquitetura definitiva permanecem abertos para versões futuras e escaláveis. Isso inclui:
+
+- schema/mecanismo final e descentralizado de attestation;
+- caminho de verificação distribuído;
+- persistência mínima estruturada (ex: BD off-chain real);
+- limites finais definitivos entre dados off-chain e registro on-chain.
 
 ### Mercado e validação
 
