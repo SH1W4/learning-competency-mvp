@@ -27,6 +27,7 @@ describe("M2.6 — proveniência e handoff para o M3", () => {
     expect(h.evidence.every((e) => /^[0-9a-f]{64}$/.test(e.content_hash))).toBe(true);
     expect(verifyHandoff(h)).toBe(true);
     expect(verifyHandoff({ ...h, state: "IN_DEVELOPMENT" })).toBe(false);
+    expect(verifyHandoff({ ...h, record_hash: "0000000000000000000000000000000000000000000000000000000000000000" })).toBe(false);
   });
 
   it("handoff é determinístico para a mesma sessão", async () => {

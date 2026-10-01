@@ -2,9 +2,9 @@
 
 ## Status atual
 
-**Fase:** definição final do MVP → implementação técnica / vertical slice.
+**Fase:** MVP tecnicamente fechado (Vertical Slice concluído).
 
-**Estado do repositório:** fundação documental estabelecida; M1 fechado como especificação operacional; M2 e M4.1 em execução; M3 preparado para avançar conforme o contrato produzido por M2; interface/UX/UI agora possui ownership definido.
+**Estado do repositório:** fundação documental e técnica estabelecidas; M1 fechado como especificação operacional; M2 implementado com pipeline de ponta a ponta; M3 fechado com atestação e verificação na Solana concluídas. O ciclo vertical está executável (M1 -> M2 -> M3). Interface/UX/UI em progresso final e validação externa de mercado em curso.
 
 ## O que já está definido como base de trabalho
 
@@ -53,9 +53,9 @@
 
 ### Hackathon
 
-- vertical slice executável;
-- testes;
-- demo reproduzível;
+- vertical slice executável: concluído
+- testes: implementados
+- demo reproduzível: implementado
 - pitch coerente com o que foi realmente construído;
 - disclosure de trabalho pré-existente quando aplicável.
 
@@ -75,7 +75,7 @@ Documento principal:
 
 ### M2 — Evidência, IA e revisão
 
-**Status: IN PROGRESS**
+**Status: DONE**
 
 Resultado esperado:
 
@@ -91,7 +91,7 @@ Documento principal:
 
 ### M3 — Estado, atestação e Solana
 
-**Status: TODO / PREPARAÇÃO**
+**Status: DONE**
 
 Resultado esperado:
 
@@ -151,7 +151,7 @@ A fundação documental necessária para iniciar a implementação está estabel
 
 A partir daqui, novos documentos devem existir somente quando resolverem uma decisão, especificação, evidência ou necessidade real de execução.
 
-**Próximo movimento:** executar o vertical slice, conectando M2, M3, interface e validação externa.
+**Próximo movimento:** refinamento de interface e continuação da validação externa. O ciclo técnico vertical do MVP (M1 → M2 → M3) está concluído e validado.
 
 ## Regra de status
 

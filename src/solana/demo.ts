@@ -42,22 +42,19 @@ async function runM3Demo() {
      console.log(`✅ Saldo OK: ${balance / LAMPORTS_PER_SOL} SOL`);
   }
 
-  // Criando um mock de ReviewedStateRecord
-  const dummyRecord = {
-      subject: "ana@synthetic.com",
-      competency_id: "LID-01",
-      state: "DEMONSTRATED" as const,
-      state_history: [],
-      criteria: [],
-      evidence: [{ evidence_id: "ev-1", content_hash: "sha256-mock-hash" }],
-      interpretation: { interpretation_id: "int-1", provider: "mock", version: "1" },
-      review: { review_id: "rev-1", reviewer: "JP", at: new Date().toISOString() },
-      record_hash: "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
-  };
+  console.log("\n📖 Lendo ReviewedStateRecord do M2 (out/reviewed-state.json)...");
+  let realRecord;
+  try {
+    const fileContent = fs.readFileSync('out/reviewed-state.json', 'utf8');
+    realRecord = JSON.parse(fileContent);
+  } catch (err) {
+    console.error("⚠️ ERRO: Falha ao ler 'out/reviewed-state.json'. Execute 'npm run demo' primeiro para gerar o Handoff do M2.");
+    return;
+  }
 
   console.log("\n⛓️ Gravando estado do Handoff (M2 -> M3) na Solana...");
   try {
-      const txSig = await createAttestationOnChain(dummyRecord as any, privateKeyStr!);
+      const txSig = await createAttestationOnChain(realRecord as any, privateKeyStr!);
       console.log(`🎉 Sucesso! Atestação registrada permanentemente.`);
       console.log(`🔗 Verifique no Explorer: https://explorer.solana.com/tx/${txSig}?cluster=devnet\n`);
   } catch(e) {
