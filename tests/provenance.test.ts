@@ -26,7 +26,12 @@ describe("M2.6 — proveniência e handoff para o M3", () => {
     for (const ev of s.evidences) expect(json).not.toContain(ev.content.slice(0, 40));
     expect(h.evidence.every((e) => /^[0-9a-f]{64}$/.test(e.content_hash))).toBe(true);
     expect(verifyHandoff(h)).toBe(true);
+    
+    // Campo alterado
     expect(verifyHandoff({ ...h, state: "IN_DEVELOPMENT" })).toBe(false);
+    expect(verifyHandoff({ ...h, subject: "hacked@email.com" })).toBe(false);
+    
+    // Hash alterado
     expect(verifyHandoff({ ...h, record_hash: "0000000000000000000000000000000000000000000000000000000000000000" })).toBe(false);
   });
 
