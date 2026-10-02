@@ -126,7 +126,9 @@ Resolves an attestation and reports only what the underlying mechanism supports.
 
 Sensitive or raw evidence remains off-chain.
 
-The chain should carry only the minimum information required for integrity and verification. The final on-chain schema remains subject to implementation validation.
+The chain should carry only the minimum information required for integrity and verification. **Current MVP:** the attestation layer uses the Solana Memo Program. The payload is versioned and contains only the minimum fields needed to bind the reviewed state: MVP id, attestation version, pseudonymous subject reference, competency, state, record hash, attester and timestamp. The verifier checks the payload binding when the reviewed record is supplied.
+
+**Future option:** Solana Attestation Service (SAS) may be evaluated separately if it provides a property required by the product. It is not the current MVP mechanism.
 
 ## MVP implementation rule
 
