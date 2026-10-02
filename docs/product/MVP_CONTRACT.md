@@ -2,7 +2,7 @@
 
 ## Status
 
-**Estado:** contrato de implementação em construção  
+**Estado:** contrato de implementação fechado para o vertical slice v0.1  
 **Objetivo:** impedir que a visão futura expanda automaticamente o MVP.
 
 ## Pergunta central
