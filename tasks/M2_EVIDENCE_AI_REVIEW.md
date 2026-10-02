@@ -26,35 +26,35 @@ Done when: extracted fields can be traced back to source material.
 
 ### M2.3 — Define AI output contract
 Owner: JP Carvalho / Joaopedro0s  
-Status: TODO  
+Status: DONE  
 Dependency: M1.2 + M1.5  
 Deliverable: structured AI response schema.  
 Done when: output separates extraction, interpretation, competency signals, gaps and confidence/uncertainty.
 
 ### M2.4 — Implement competency relation
 Owner: JP Carvalho / Joaopedro0s  
-Status: TODO  
+Status: DONE  
 Dependency: M2.2 + M2.3  
 Deliverable: evidence-to-competency mapping.  
 Done when: every proposed signal identifies which competency criterion it supports or fails to support.
 
 ### M2.5 — Implement human review
 Owner: JP Carvalho / Joaopedro0s  
-Status: TODO  
+Status: DONE  
 Dependency: M2.4  
 Deliverable: review interface/state transition.  
 Done when: reviewer can accept, correct, reject or request additional evidence.
 
 ### M2.6 — Preserve provenance
 Owner: JP Carvalho / Joaopedro0s  
-Status: TODO  
+Status: DONE  
 Dependency: M2.2–M2.5  
 Deliverable: traceable evidence → extraction → interpretation → review chain.  
 Done when: system can show what came from evidence, what came from AI and what was decided by the reviewer.
 
 ### M2.7 — Test critical pipeline
 Owner: JP Carvalho / Joaopedro0s  
-Status: TODO  
+Status: DONE  
 Dependency: M2.1–M2.6  
 Deliverable: automated tests for the critical flow and failure cases.  
 Done when: tests cover valid evidence, missing evidence, AI uncertainty and reviewer correction/rejection.
