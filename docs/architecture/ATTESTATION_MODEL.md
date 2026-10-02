@@ -2,84 +2,33 @@
 
 ## Objetivo
 
-Definir o que o MVP pretende atestar antes de codificar a integração final com Solana.
+Definir o que o MVP pretende representar antes de evoluções futuras da integração de atestação.
 
 ## Princípio
 
-A attestation representa um **estado ou evento definido**, e não um arquivo inteiro.
+A atestação representa um **estado ou evento definido**, e não um arquivo inteiro.
 
 ## Modelo conceitual
 
-```
-SUBJECT
-COMPETENCY
-STATE
-EVIDENCE_REFERENCE
-REVIEW_CONTEXT
-ISSUED_AT
-EXPIRY
-```
+SUBJECT → COMPETENCY → STATE → EVIDENCE REFERENCE → REVIEW CONTEXT → ISSUED AT
 
-## Relação com Solana Attestations
+## Fronteira de dados
 
-A documentação atual do Solana Attestation System organiza o modelo em:
+Dados sensíveis, documentos pessoais e conteúdo integral de evidências devem permanecer fora da cadeia quando não forem necessários para a verificação.
 
-```
-Credential
-    ↓
-Schema
-    ↓
-Attestation
-```
-
-Uma Credential representa a autoridade de atestação e seus signatários autorizados. O Schema define os campos e tipos da attestation e pode ser versionado. A Attestation contém os dados e metadados da declaração.
-
-A biblioteca oficial documentada pela Solana pode ser instalada como `sas-lib` para JavaScript/TypeScript ou pelo cliente Rust correspondente.
-
-## Candidato de schema
-
-Nome provisório:
-
-`competency-state.v0.1`
-
-Campos candidatos:
-
-- subject_ref;
-- competency_ref;
-- state;
-- evidence_ref;
-- review_ref;
-- issued_at;
-- expiry;
-- schema_version.
-
-### Importante
-
-Este não é ainda o schema final.
-
-Antes da implementação final, o time deve validar:
-
-1. qual é o sujeito da attestation;
-2. quem é a autoridade;
-3. quem é o signer;
-4. qual estado está sendo atestado;
-5. qual referência de evidência deve ser preservada;
-6. se há necessidade de expiry;
-7. quais dados devem permanecer off-chain.
-
-## Segurança conceitual
-
-Não colocar na attestation:
-
-- documento pessoal bruto;
-- dados sensíveis desnecessários;
-- conteúdo integral da evidência;
-- informação que possa ser evitada por uma referência/hash.
+A camada on-chain deve carregar somente a representação mínima necessária para ancorar e verificar o estado definido.
 
 ## Verificação
 
-A prova de demo deve mostrar que uma terceira parte consegue consultar a attestation e validar sua estrutura e autoridade.
+A demonstração deve permitir que uma terceira parte confirme a existência da referência e a correspondência com o registro revisado.
 
-## Fonte técnica
+## Limites
 
-Solana documenta que somente signatários autorizados da Credential podem criar atestações e que a Attestation deve obedecer ao Schema associado.
+A atestação não prova, por si só:
+
+- a correção da evidência;
+- a verdade da competência;
+- o mérito do indivíduo;
+- a validade universal do estado.
+
+A arquitetura definitiva de atestação e os mecanismos distribuídos de verificação permanecem como trabalho futuro.
