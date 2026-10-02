@@ -9,7 +9,7 @@
 <p align="center"><strong>Evidence → AI interpretation → Human review → State → Proof</strong></p>
 
 [![CI](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-52%20passing-success)
+![Tests](https://img.shields.io/badge/tests-62%20passing-success)
 ![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF)
 
 ## The Problem
@@ -68,7 +68,7 @@ Sensitive learning data remains off-chain.
 
 ## Proof
 
-- 52 automated tests passing
+- 62 automated tests passing
 - M1 → M2 → M3 vertical slice implemented
 - M2 → M3 handoff hardened
 - Devnet attestation demonstrated
