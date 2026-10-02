@@ -19,7 +19,7 @@ O MVP não afirma que este é o único ou principal problema de L&D. Essa é a e
 
 ## 2. Competência canônica
 
-> **Usar IA de forma aplicada para resolver um problema de negócio real: formular uma pergunta, usar ferramentas de IA para interpretar dados, validar os resultados com critério humano e comunicar conclusões sustentadas por evidências.**
+> **Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.**
 
 ### Critérios observáveis
 
@@ -182,7 +182,7 @@ Essas questões pertencem à validação externa e às próximas fases.
 | Learner | colaborador participante |
 | Reviewer | gestor/instrutor/avaliador responsável |
 | Verifier | pessoa autorizada |
-| Competência | IA aplicada a problemas de negócio: formular pergunta, interpretar dados com IA, validar com critério humano, comunicar conclusões |
+| Competência | Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências. |
 | Trilha | A1–A4 |
 | Evidências | briefing, artefato de análise, resultado, comunicação |
 | Estados | NOT_STARTED, IN_DEVELOPMENT, UNDER_REVIEW, DEMONSTRATED |
