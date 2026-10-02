@@ -127,12 +127,19 @@ export async function verifyAttestation(
   // A verificação deve provar que a attestation representa exatamente o registro fornecido.
   if (options.record) {
     const expectedSubjectRef = subjectRef(options.record.subject, options.record.record_hash);
+
+    // Mantém o check granular do subject_ref para diagnóstico e auditoria.
+    if (payload?.subject_ref) {
+      checks.subject_ref = payload.subject_ref === expectedSubjectRef;
+    }
+
     const binding =
       payload?.mvp === MVP_ID &&
       payload?.v === ATTESTATION_VERSION &&
       payload?.record_hash === options.record.record_hash &&
       payload?.competency === options.record.competency_id &&
       payload?.state === options.record.state &&
+      checks.subject_ref !== false &&
       payload?.subject_ref === expectedSubjectRef &&
       (!options.expectedSigner || payload?.attester === options.expectedSigner);
 
@@ -153,14 +160,6 @@ export async function verifyAttestation(
     checks.signer = signers.includes(options.expectedSigner);
     if (!checks.signer) {
       return { verified: false, payload, checks, signers, error: `Transação não foi assinada pelo emissor esperado (${options.expectedSigner}).` };
-    }
-  }
-
-  // 4) Referência do sujeito (payloads v2 não carregam o subject em claro).
-  if (options.record && payload.subject_ref) {
-    checks.subject_ref = payload.subject_ref === subjectRef(options.record.subject, options.record.record_hash);
-    if (!checks.subject_ref) {
-      return { verified: false, payload, checks, signers, error: 'subject_ref on-chain não corresponde ao sujeito do reviewed-state.json.' };
     }
   }
 
