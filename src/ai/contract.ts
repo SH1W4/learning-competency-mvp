@@ -77,6 +77,12 @@ const FORBIDDEN_CLAIMS = [
   /\bcompetency (is )?(proven|certified)\b/i,
 ];
 
+export interface AIContractContext {
+  subject: string;
+  competency_id: string;
+  extraction_refs: string[];
+}
+
 export interface ContractCheck {
   ok: boolean;
   value?: AIInterpretation;
@@ -87,7 +93,7 @@ export interface ContractCheck {
  * Parses untrusted AI output. Invalid output is never "fixed" silently — it is rejected with reasons,
  * so the pipeline can surface it as uncertainty to the reviewer.
  */
-export function parseAIOutput(raw: unknown, knownEvidenceIds: string[]): ContractCheck {
+export function parseAIOutput(raw: unknown, knownEvidenceIds: string[], context?: AIContractContext): ContractCheck {
   const parsed = AIInterpretationSchema.safeParse(raw);
   if (!parsed.success) {
     return { ok: false, errors: parsed.error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`) };
@@ -96,6 +102,13 @@ export function parseAIOutput(raw: unknown, knownEvidenceIds: string[]): Contrac
   const errors: string[] = [];
   const known = new Set(knownEvidenceIds);
   const ids = new Set<string>();
+  if (context) {
+    if (v.subject !== context.subject) errors.push("subject da interpretação não corresponde à sessão atual");
+    if (v.competency_id !== context.competency_id) errors.push("competency_id da interpretação não corresponde à competência atual");
+    const expected = new Set(context.extraction_refs);
+    const actual = new Set(v.extraction_refs);
+    if (expected.size !== actual.size || [...expected].some((id) => !actual.has(id))) errors.push("extraction_refs não correspondem às extrações fornecidas à IA");
+  }
   for (const s of v.signals) {
     if (ids.has(s.signal_id)) errors.push(`signal_id duplicado: ${s.signal_id}`);
     ids.add(s.signal_id);
