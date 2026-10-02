@@ -39,6 +39,18 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     expect(verifyClaimSupport(claim, record)).toBe(false);
   });
 
+
+  it("rejects a claim that omits criterion support", async () => {
+    const { s, env } = await underReview();
+    s.review(reviewFor(s, {}, true, env));
+
+    const record = s.handoff();
+    const claim = buildVerifiableClaim(record);
+    claim.criterion_support = claim.criterion_support.slice(1);
+
+    expect(verifyClaimSupport(claim, record)).toBe(false);
+  });
+
   it("rejects a claim whose reviewer confirmation was changed", async () => {
     const { s, env } = await underReview();
     s.review(reviewFor(s, {}, true, env));
