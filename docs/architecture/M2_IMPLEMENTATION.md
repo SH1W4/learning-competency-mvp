@@ -1,13 +1,13 @@
 # M2 — Implementação: evidência → IA → revisão humana
 
 Status: implementação v0.1 do M2 (owner: Joaopedro0s). Segue `docs/product/USE_CASE.md` v0.1, `docs/architecture/EVIDENCE_PIPELINE.md` e `skills/learning-competency/SKILL.md`.
-Classificação (CONTRIBUTING.md): **implementação**. As decisões técnicas que isso abre estão no fim do documento.
+Classificação (CONTRIBUTING.md): **implementação**. M2 está implementado; este documento descreve o estado técnico atual e não mantém decisões já resolvidas como abertas.
 
 ## Como rodar
 
 ```
 npm install
-npm test                    # 44 testes do fluxo crítico
+npm test                    # suíte automatizada atual (62 testes)
 npm run typecheck
 npm run demo                # cenário sintético Ana → DEMONSTRATED
 npm run demo:revisao-parcial  # revisor corrige C3 e pede evidência em C4 → IN_DEVELOPMENT
@@ -57,11 +57,11 @@ O modelo canônico de estado é do **M3.1**. Este módulo cobre só o necessári
 - `review`: id, revisor, papel, data e confirmação
 - `record_hash`: sha256 do JSON canônico (chaves ordenadas) do registro
 
-O M3 decide o que desse registro entra no payload da attestation (SAS: Credential → Schema → Attestation).
+O M3 atual registra um payload mínimo via **Solana Memo Program**. O Memo funciona como âncora de integridade; não é Solana Attestation Service (SAS). Uma futura migração para SAS (Credential → Schema → Attestation) é uma opção de evolução, não parte do MVP atual.
 
-## Decisões em aberto (para o time)
+## Decisões resolvidas no M3
 
-1. **Provedor de IA do demo:** heurístico (offline, só verifica presença de elementos) ou LLM? Hoje o LLM é opcional.
-2. **Persistência:** memória basta para o demo, ou precisamos de um arquivo/banco antes da interface?
-3. **Handoff para o M3:** os campos acima atendem o M3.2? Algum sobra ou falta?
-4. **Múltiplos sinais por critério:** hoje vale o de maior suporte depois da revisão. Confirmar a regra.
+1. **Provedor de IA:** heurístico offline/determinístico permanece disponível; LLM é opcional.
+2. **Persistência:** o MVP continua sem banco; o handoff é materializado em arquivo.
+3. **Handoff:** o reviewed-state é validado por hash antes da atestação e novamente na verificação quando o registro é fornecido.
+4. **Attestation:** o MVP usa Solana Memo com payload versionado e verificador que vincula MVP, versão, competência, estado, record_hash, subject_ref e attester esperado.
