@@ -59,6 +59,8 @@ export function verifyClaimSupport(claim: VerifiableClaim, record: ReviewedState
   if (claim.state !== record.state) return false;
   if (claim.review_ref !== record.review.review_id) return false;
   if (claim.scope.reviewer_confirmed !== record.review.confirm_demonstrated) return false;
+  if (claim.scope.competency !== claim.competency_id) return false;
+  if (claim.scope.state !== claim.state) return false;
 
   const recordEvidence = new Set(record.evidence.map((e) => e.evidence_id));
   const claimEvidence = new Set(claim.evidence_refs);
