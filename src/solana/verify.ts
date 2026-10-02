@@ -1,6 +1,6 @@
 import { Connection } from '@solana/web3.js';
 import { verifyHandoff, type ReviewedStateRecord } from '../provenance/trace.js';
-import { subjectRef } from './attest.js';
+import { ATTESTATION_VERSION, MVP_ID, subjectRef } from './attest.js';
 
 /**
  * M3 — Verificação: dado um record_hash e uma tx_signature,
@@ -36,8 +36,6 @@ export interface VerifyResult {
 }
 
 const MEMO_PROGRAM_ID = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr';
-const ATTESTATION_VERSION = 'm3.attestation.v2';
-const MVP_ID = 'learning-competency';
 
 /** Lista as chaves que assinaram a transação (formato parsed ou legado). */
 export function extractSigners(tx: any): string[] {
