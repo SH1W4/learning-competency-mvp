@@ -47,6 +47,42 @@ describe("M2.3 — contrato de saída da IA", () => {
     expect(parseAIOutput(bad, s.evidences.map((e) => e.evidence_id)).errors.join()).toMatch(/proibida/);
   });
 
+  it("recusa subject divergente quando o contexto da sessão é fornecido", () => {
+    const { s } = fullSession();
+    const bad = { ...baseOutput(s.evidences[0]!.evidence_id), subject: "person:other" };
+    const r = parseAIOutput(bad, s.evidences.map((e) => e.evidence_id), {
+      subject: s.subject,
+      competency_id: "comp:data-analysis-reproducible",
+      extraction_refs: s.evidences.map((e) => e.evidence_id),
+    });
+    expect(r.ok).toBe(false);
+    expect(r.errors.join()).toMatch(/subject/);
+  });
+
+  it("recusa competency_id divergente no contexto da sessão", () => {
+    const { s } = fullSession();
+    const bad = { ...baseOutput(s.evidences[0]!.evidence_id), competency_id: "comp:other" };
+    const r = parseAIOutput(bad, s.evidences.map((e) => e.evidence_id), {
+      subject: s.subject,
+      competency_id: "comp:data-analysis-reproducible",
+      extraction_refs: s.evidences.map((e) => e.evidence_id),
+    });
+    expect(r.ok).toBe(false);
+    expect(r.errors.join()).toMatch(/competency_id/);
+  });
+
+  it("recusa extraction_refs divergentes do conjunto fornecido", () => {
+    const { s } = fullSession();
+    const bad = { ...baseOutput(s.evidences[0]!.evidence_id), extraction_refs: ["ev_inventada"] };
+    const r = parseAIOutput(bad, s.evidences.map((e) => e.evidence_id), {
+      subject: s.subject,
+      competency_id: "comp:data-analysis-reproducible",
+      extraction_refs: s.evidences.map((e) => e.evidence_id),
+    });
+    expect(r.ok).toBe(false);
+    expect(r.errors.join()).toMatch(/extraction_refs/);
+  });
+
   it("pipeline rejeita saída inválida em vez de corrigir em silêncio", async () => {
     const { s } = fullSession();
     const broken: InterpretationProvider = { name: "broken", interpret: async () => ({ hello: "world" }) };
