@@ -8,7 +8,7 @@ import type { Competency, CriterionId, EvidenceType, Trail } from "./types.js";
 export const COMPETENCY: Competency = {
   id: "comp:data-analysis-reproducible",
   statement:
-    "Transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.",
+    "Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.",
   criteria: [
     {
       id: "C1",
