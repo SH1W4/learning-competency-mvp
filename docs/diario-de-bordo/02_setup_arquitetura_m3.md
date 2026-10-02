@@ -1,18 +1,22 @@
-# Diário de Bordo - Registro 02: Setup e Arquitetura M3 (Solana)
+# Diário de Bordo — Registro 02: Setup e Arquitetura M3
 
 **Data:** 01 de Outubro de 2026
-**Fase:** Implementação Inicial do M3
+**Fase:** Implementação inicial do M3
 
 ## O que foi realizado
-- Instalação e travamento de versões das bibliotecas essenciais de Web3 (`@solana/web3.js`, `bs58`, `dotenv`).
-- Implementação da prova de conceito do M3 (`src/solana/attest.ts` e `src/solana/demo.ts`).
 
-## Decisões Técnicas e Melhores Práticas Adotadas
-Para garantir a maturidade do repositório desde o primeiro dia, as seguintes práticas foram estabelecidas:
+- A camada de integração com Solana foi estabelecida.
+- Foi implementada a primeira versão da atestação do estado produzido pelo M2.
+- A arquitetura adotou uma fronteira clara entre dados off-chain e a referência mínima necessária on-chain.
 
-1. **Gestão de Segredos (SecOps):** A chave privada efêmera da carteira é gerada e isolada localmente no arquivo `.env`. Verificamos a integridade do `.gitignore` para garantir risco zero de vazamento de credenciais no GitHub.
-2. **Design Pattern de Blockchain (Off-chain Storage):** O contrato de atestação utiliza o *SPL Memo Program* na Solana. Em vez de enviar o JSON inteiro (o que seria caro e comprometeria dados privados), apenas metadados mínimos e a âncora criptográfica (`record_hash`) são publicados. Isso alcança o nível N4 de verificação sem onerar a rede.
-3. **Resiliência (Error Handling):** O motor prevê falhas de *Rate Limit* nativas da Devnet e aplica tratamento de exceção elegante, indicando fluxo de fallback (faucet manual) sem estourar *stack traces* desnecessários.
+## Decisões
 
-## Próximos Passos
-- Executar a atestação ponta a ponta gerando o primeiro registro na Devnet Explorer.
+1. Segredos permanecem locais e não devem ser publicados.
+2. O conteúdo integral das evidências não é enviado à cadeia.
+3. A atestação referencia a integridade do estado revisado.
+4. O tratamento de falhas da Devnet deve permitir repetição controlada da demonstração.
+
+## Próximo passo
+
+Executar e validar a atestação ponta a ponta na Devnet.
+
