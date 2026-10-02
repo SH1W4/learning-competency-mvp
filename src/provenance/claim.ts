@@ -1,4 +1,4 @@
-import type { CriterionId, EvidenceRef, ReviewRecord } from "../domain/types.js";
+import type { CriterionId } from "../domain/types.js";
 import type { ReviewedStateRecord } from "./trace.js";
 
 export interface VerifiableClaim {
