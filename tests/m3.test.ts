@@ -78,6 +78,15 @@ describe("M3 — Attestation e Verification", () => {
     expect(payload.timestamp).toBeDefined();
   });
 
+  it("3.1a: Recusa atestar um estado que não seja DEMONSTRATED", async () => {
+    const { createAttestationOnChain } = await import("../src/solana/attest.js");
+    const { sendAndConfirmTransaction } = await import("@solana/web3.js");
+    const record = await realHandoff();
+    const tampered = { ...record, state: "IN_DEVELOPMENT", record_hash: record.record_hash };
+    await expect(createAttestationOnChain(tampered, FAKE_KEY)).rejects.toThrow(/precisa estar em DEMONSTRATED/);
+    expect(sendAndConfirmTransaction).not.toHaveBeenCalled();
+  });
+
   it("3.1b: Recusa atestar um reviewed-state.json adulterado", async () => {
     const { createAttestationOnChain } = await import("../src/solana/attest.js");
     const { sendAndConfirmTransaction } = await import("@solana/web3.js");
