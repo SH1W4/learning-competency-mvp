@@ -213,7 +213,7 @@ npx tsx src/solana/verify.ts <record_hash> <txSignature>
 > *We close the loop: **Real evidence → AI extraction → Human review → On-chain Solana attestation**."*
 
 ### The Execution & Proof
-> *"Our MVP is live. We have 44 passing tests, a strict Zod-governed AI boundary, and live Devnet proof on Solana.*
+> *"Our MVP is live. We have 52 passing tests, a strict Zod-governed AI boundary, and live Devnet proof on Solana.*
 >
 > *We turn vague training into cryptographic, employer-verifiable competence."*
 

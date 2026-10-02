@@ -16,7 +16,7 @@
 
 ```bash
 npm install
-npm test                     # 44 tests — all passing
+npm test                     # 52 tests — all passing
 npm run demo                 # Synthetic scenario: Ana → DEMONSTRATED
 npm run m3:attest            # Register attestation on Solana Devnet
 npm run m3:verify <hash> <tx> # Verify attestation on-chain
@@ -37,7 +37,7 @@ npm run m3:verify <hash> <tx> # Verify attestation on-chain
 ### M2 — Evidence, AI and Review ✅ DONE
 - Full TypeScript/Node pipeline: ingest → normalize → extract → interpret → relate → review → state.
 - Strict AI contract via `zod`: AI proposes, **never** decides `DEMONSTRATED`.
-- **44 tests** covering the critical path and hardening — all passing.
+- **52 tests** covering the critical path and hardening — all passing.
 - Handoff (`ReviewedStateRecord`) ready for M3 consumption.
 
 ### M3 — State, Attestation and Solana ✅ DONE (Devnet)
@@ -180,7 +180,7 @@ The pipeline preserves provenance and differentiates: source data, extracted inf
 │   ├── solana/                 # attest.ts + verify.ts
 │   ├── domain/                 # Types and use case definitions
 │   └── cli/                    # Demo CLI
-├── tests/                      # 44 tests — all passing
+├── tests/                      # 52 tests — all passing
 ├── .env.example · .gitattributes · CONTRIBUTING.md
 ```
 
@@ -205,7 +205,7 @@ No contribution replaces the others. The value lies in the combination.
 
 **Built during the hackathon:**
 - M1: canonical use case definition and evidence contracts
-- M2: full TypeScript pipeline (ingest → AI → human review → state), **44 tests**
+- M2: full TypeScript pipeline (ingest → AI → human review → state), **52 tests**
 - M3: Solana attestation infrastructure (Memo Program, off-chain storage pattern, on-chain verification)
 - Operational governance v1.0 and Development Log with decision traceability
 
