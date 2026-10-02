@@ -58,7 +58,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
-    claim.criterion_support = [claim.criterion_support[0], claim.criterion_support[0]];
+    const firstCriterion = claim.criterion_support[0];
+    expect(firstCriterion).toBeDefined();
+    claim.criterion_support = [firstCriterion!, firstCriterion!];
 
     expect(verifyClaimSupport(claim, record)).toBe(false);
   });
