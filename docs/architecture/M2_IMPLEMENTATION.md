@@ -7,7 +7,7 @@ Classificação (CONTRIBUTING.md): **implementação**. M2 está implementado; e
 
 ```
 npm install
-npm test                    # suíte automatizada atual (70 testes)
+npm test                    # suíte automatizada atual — conferir contagem no CI
 npm run typecheck
 npm run demo                # cenário sintético Ana → DEMONSTRATED
 npm run demo:revisao-parcial  # revisor corrige C3 e pede evidência em C4 → IN_DEVELOPMENT
@@ -46,7 +46,7 @@ TypeScript (Node ≥ 20), `zod` para validar contratos, `vitest` para testes. Se
 
 O modelo canônico de estado é do **M3.1**. Este módulo cobre só o necessário para o M2 e pode ser substituído.
 
-## Contrato M2 → M3 (proposta para o M3.2)
+## Contrato M2 → M3 (implementado)
 
 `CompetencySession.handoff()` gera um `ReviewedStateRecord` (`m2.reviewed-state.v1`):
 
