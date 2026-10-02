@@ -74,6 +74,18 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     expect(verifyClaimSupport(claim, record)).toBe(false);
   });
 
+
+  it("rejects a claim with a different claim id", async () => {
+    const { s, env } = await underReview();
+    s.review(reviewFor(s, {}, true, env));
+
+    const record = s.handoff();
+    const claim = buildVerifiableClaim(record);
+    claim.claim_id = "claim:tampered";
+
+    expect(verifyClaimSupport(claim, record)).toBe(false);
+  });
+
   it("rejects a claim whose reviewer confirmation was changed", async () => {
     const { s, env } = await underReview();
     s.review(reviewFor(s, {}, true, env));
