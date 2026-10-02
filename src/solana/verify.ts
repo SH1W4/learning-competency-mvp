@@ -24,6 +24,7 @@ export interface VerifyChecks {
   record_integrity?: boolean;
   signer?: boolean;
   subject_ref?: boolean;
+  payload_binding?: boolean;
 }
 
 export interface VerifyResult {
@@ -35,6 +36,8 @@ export interface VerifyResult {
 }
 
 const MEMO_PROGRAM_ID = 'MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr';
+const ATTESTATION_VERSION = 'm3.attestation.v2';
+const MVP_ID = 'learning-competency';
 
 /** Lista as chaves que assinaram a transação (formato parsed ou legado). */
 export function extractSigners(tx: any): string[] {
@@ -120,7 +123,30 @@ export async function verifyAttestation(
   const checks: VerifyChecks = { hash_on_chain: true };
   if (options.record) checks.record_integrity = true;
 
-  // 2) Assinante: qualquer carteira pode publicar um memo; só vale se quem assinou foi o emissor esperado.
+  // 2) Binding completo do payload v2 ao reviewed-state: encontrar o hash não basta.
+  // A verificação deve provar que a attestation representa exatamente o registro fornecido.
+  if (options.record) {
+    const expectedSubjectRef = subjectRef(options.record.subject, options.record.record_hash);
+    const binding =
+      payload?.mvp === MVP_ID &&
+      payload?.v === ATTESTATION_VERSION &&
+      payload?.record_hash === options.record.record_hash &&
+      payload?.competency === options.record.competency_id &&
+      payload?.state === options.record.state &&
+      payload?.subject_ref === expectedSubjectRef;
+
+    checks.payload_binding = binding;
+    if (!binding) {
+      return {
+        verified: false,
+        payload,
+        checks,
+        error: 'Payload on-chain não está completamente vinculado ao reviewed-state.json.',
+      };
+    }
+  }
+
+  // 3) Assinante: qualquer carteira pode publicar um memo; só vale se quem assinou foi o emissor esperado.
   const signers = extractSigners(tx);
   if (options.expectedSigner) {
     checks.signer = signers.includes(options.expectedSigner);
@@ -129,7 +155,7 @@ export async function verifyAttestation(
     }
   }
 
-  // 3) Referência do sujeito (payloads v2 não carregam o subject em claro).
+  // 4) Referência do sujeito (payloads v2 não carregam o subject em claro).
   if (options.record && payload.subject_ref) {
     checks.subject_ref = payload.subject_ref === subjectRef(options.record.subject, options.record.record_hash);
     if (!checks.subject_ref) {
