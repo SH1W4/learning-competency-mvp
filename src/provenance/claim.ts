@@ -68,6 +68,7 @@ export function verifyClaimSupport(claim: VerifiableClaim, record: ReviewedState
     if (!record.criteria.some((c) =>
       c.criterion_id === criterion.criterion_id &&
       c.final_assessment === criterion.assessment &&
+      criterion.evidence_ids.length === c.evidence_ids.length &&
       criterion.evidence_ids.every((id) => c.evidence_ids.includes(id))
     )) return false;
   }
