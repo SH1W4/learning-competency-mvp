@@ -6,6 +6,7 @@ import { sha256 } from '../util.js';
 // Endereço do Memo Program nativo da Solana (usado para registrar dados arbitrários off-chain)
 const MEMO_PROGRAM_ID = new PublicKey('MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr');
 
+export const MVP_ID = 'learning-competency';
 export const ATTESTATION_VERSION = 'm3.attestation.v2';
 
 /**
