@@ -37,7 +37,7 @@ O Learning Competency explora uma mudança simples:
 
 O sistema conecta todo o caminho:
 
-\`\`\`mermaid
+```mermaid
 flowchart LR
     A["Necessidade de competência"] --> B["Trilha de desenvolvimento"]
     B --> C["Evidência real"]
@@ -45,7 +45,7 @@ flowchart LR
     D --> E["Revisão humana"]
     E --> F["Estado de competência"]
     F --> G["Prova verificável"]
-\`\`\`
+```
 
 ---
 
@@ -71,7 +71,7 @@ Essa separação é a base do MVP.
 
 Um cenário corporativo de L&D para uma **competência de análise de dados**.
 
-\`\`\`text
+```text
 A1  Formular pergunta
  ↓
 A2  Preparar dados
@@ -79,7 +79,7 @@ A2  Preparar dados
 A3  Reproduzir análise
  ↓
 A4  Comunicar resultados
-\`\`\`
+```
 
 Quatro critérios observáveis conectam as atividades à competência.
 
@@ -89,7 +89,7 @@ Quatro critérios observáveis conectam as atividades à competência.
 
 Pipeline completo em TypeScript/Node:
 
-\`\`\`mermaid
+```mermaid
 flowchart LR
     A["INGESTÃO"] --> B["NORMALIZAÇÃO"]
     B --> C["EXTRAÇÃO"]
@@ -97,7 +97,7 @@ flowchart LR
     D --> E["RELAÇÃO"]
     E --> F["REVISÃO HUMANA"]
     F --> G["ESTADO DE COMPETÊNCIA"]
-\`\`\`
+```
 
 **Restrição central:** a camada de IA não pode, sozinha, transicionar uma pessoa para \`DEMONSTRATED\`.
 
@@ -109,13 +109,13 @@ O resultado revisado torna-se um \`ReviewedStateRecord\` determinístico.
 
 O handoff real do M2 é consumido pelo M3.
 
-\`\`\`mermaid
+```mermaid
 flowchart LR
     A["ReviewedStateRecord"] --> B["record_hash"]
     B --> C["Atestação"]
     C --> D["Solana Devnet"]
     D --> E["Verificação"]
-\`\`\`
+```
 
 ### On-chain
 
@@ -173,7 +173,7 @@ O valor não está em um componente isolado.
 
 Está na **rastreabilidade entre os componentes**:
 
-\`\`\`mermaid
+```mermaid
 flowchart TB
     A["Evidência"] --> B["Interpretação com IA"]
     B --> C["Revisão humana"]
@@ -185,7 +185,7 @@ flowchart TB
     A -. "origem" .-> E
     C -. "decisão" .-> E
     D -. "estado" .-> E
-\`\`\`
+```
 
 Um verificador pode perguntar:
 
@@ -240,7 +240,7 @@ Testes dedicados cobrem adulteração, assinante incorreto, referência de sujei
 
 # Arquitetura em uma visão
 
-\`\`\`mermaid
+```mermaid
 flowchart TB
     subgraph OFF["OFF-CHAIN"]
         A["Evidências"]
@@ -257,7 +257,7 @@ flowchart TB
         H --> I["Atestação"]
         I --> J["Verificação"]
     end
-\`\`\`
+```
 
 **Dados sensíveis permanecem off-chain.**
 
@@ -310,35 +310,35 @@ A separação é intencional: provar o núcleo antes de expandi-lo.
 
 # Quick Start
 
-\`\`\`bash
+```bash
 npm install
 npm test
 npm run typecheck
 npm run demo
-\`\`\`
+```
 
 O demo padrão usa um provedor heurístico determinístico.
 
 ### Solana Devnet
 
-\`\`\`bash
+```bash
 npm run m3:attest
 npm run m3:verify <tx_signature> [record_hash]
-\`\`\`
+```
 
 ### Provedor LLM opcional
 
-\`\`\`bash
+```bash
 AI_PROVIDER=anthropic
 ANTHROPIC_API_KEY=...
 ANTHROPIC_MODEL=...
-\`\`\`
+```
 
 ---
 
 # Repositório
 
-\`\`\`text
+```text
 src/
 ├── ai/            contrato + provedor de IA
 ├── evidence/      ingestão + normalização + extração
@@ -353,7 +353,7 @@ src/
 tests/             52 testes
 fixtures/          cenário sintético da Ana
 docs/              produto + arquitetura + validação + diário técnico
-\`\`\`
+```
 
 ---
 
