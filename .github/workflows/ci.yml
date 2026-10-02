@@ -30,3 +30,7 @@ jobs:
 
       - name: Typecheck
         run: npm run typecheck
+
+      - name: Dependency audit
+        run: npm audit --json
+        continue-on-error: true
