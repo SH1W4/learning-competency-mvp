@@ -68,7 +68,7 @@ Dados sensíveis de aprendizagem permanecem off-chain.
 
 ## Prova
 
-- 62 testes automatizados passando;
+- suíte automatizada — a contagem deve ser obtida pela execução do CI;
 - vertical slice M1 → M2 → M3 implementado;
 - handoff M2 → M3 endurecido;
 - atestação demonstrada na Devnet;
