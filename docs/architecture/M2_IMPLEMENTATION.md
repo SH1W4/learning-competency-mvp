@@ -7,7 +7,7 @@ Classificação (CONTRIBUTING.md): **implementação**. M2 está implementado; e
 
 ```
 npm install
-npm test                    # suíte automatizada atual (62 testes)
+npm test                    # suíte automatizada atual (70 testes)
 npm run typecheck
 npm run demo                # cenário sintético Ana → DEMONSTRATED
 npm run demo:revisao-parcial  # revisor corrige C3 e pede evidência em C4 → IN_DEVELOPMENT
