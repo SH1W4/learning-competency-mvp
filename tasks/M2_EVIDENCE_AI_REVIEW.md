@@ -1,7 +1,7 @@
 # M2 — Evidence, AI & Human Review
 
 Owner: JP Carvalho / Joaopedro0s  
-Status: IN PROGRESS  
+Status: DONE  
 Priority: P0
 
 ## Objective
@@ -12,14 +12,14 @@ Implement the smallest reliable pipeline that transforms submitted evidence into
 
 ### M2.1 — Implement evidence ingestion
 Owner: JP Carvalho / Joaopedro0s  
-Status: IN PROGRESS  
+Status: DONE  
 Dependency: M1.4  
 Deliverable: ingestion interface for the selected evidence types.  
 Done when: evidence enters the system with source/provenance metadata.
 
 ### M2.2 — Implement normalization/extraction
 Owner: JP Carvalho / Joaopedro0s  
-Status: TODO  
+Status: DONE  
 Dependency: M2.1  
 Deliverable: structured representation of evidence.  
 Done when: extracted fields can be traced back to source material.
