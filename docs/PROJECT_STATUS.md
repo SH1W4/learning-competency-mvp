@@ -2,9 +2,9 @@
 
 ## Status atual
 
-**Fase:** MVP tecnicamente fechado (Vertical Slice concluído).
+**Fase:** MVP tecnicamente fechado (Vertical Slice concluído) — feature freeze.
 
-**Estado do repositório:** fundação documental e técnica estabelecidas; M1 fechado como especificação operacional; M2 implementado com pipeline de ponta a ponta; M3 fechado com atestação e verificação na Solana concluídas. O ciclo vertical está executável (M1 -> M2 -> M3). Interface/UX/UI em progresso final e validação externa de mercado em curso.
+**Estado do repositório:** fundação documental e técnica estabelecidas; M1 fechado como especificação operacional; M2 implementado com pipeline de ponta a ponta; M3 fechado com atestação e verificação na Solana concluídas; handoff M2 → M3 validado e endurecido (integridade do JSON, assinante e sem dados pessoais on-chain). O ciclo vertical está executável (M1 -> M2 -> M3). Interface/UX/UI em progresso final e validação externa de mercado em curso.
 
 ## O que já está definido como base de trabalho
 
@@ -56,7 +56,7 @@ O vertical slice técnico do MVP está 100% fechado. O modelo de produto e a arq
 ### Hackathon
 
 - vertical slice executável: concluído
-- testes: implementados
+- testes: implementados (52 passando)
 - demo reproduzível: implementado
 - pitch coerente com o que foi realmente construído;
 - disclosure de trabalho pré-existente quando aplicável.
@@ -108,6 +108,15 @@ Suporte técnico:
 **JP Carvalho / Joaopedro0s**, quando solicitado.
 
 O suporte não altera o ownership, as decisões ou a responsabilidade final de M3.
+
+Hardening do handoff M2 → M3 (validação cruzada, a pedido do owner do M3):
+
+- `verify` recalcula o hash do `reviewed-state.json` via `verifyHandoff()` e rejeita JSON adulterado;
+- `verify` valida o assinante da transação (`ATTESTER_PUBKEY`);
+- payload on-chain `m3.attestation.v2` sem `subject` em claro (`subject_ref` pseudônimo);
+- `attest` recusa handoff com `record_hash` inconsistente.
+
+Registro: `docs/diario-de-bordo/05_hardening_handoff_m2_m3.md`
 
 Documento principal:
 
