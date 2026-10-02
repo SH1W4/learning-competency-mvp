@@ -4,231 +4,436 @@
   <img src="docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png" alt="Learning Competency — Competency development with real evidence" width="100%" />
 </p>
 
-> **Learn → produce evidence → interpret → review → represent state → verify.**
+<p align="center">
+  <strong>Turn real learning evidence into a reviewable, traceable and verifiable competency state.</strong>
+</p>
 
-**Experimental MVP for competency development, learning-evidence organization, AI-assisted interpretation, and verifiable attestation on Solana.**
-
-**Primary language:** English · [Versão em Português](README.pt.md)
-
----
-
-## Quick Start
-
-```bash
-npm install
-npm test                          # 52 tests — all passing
-npm run demo                      # Synthetic scenario: Ana → DEMONSTRATED
-npm run m3:attest                 # Register attestation on Solana Devnet
-npm run m3:verify <tx_signature> [record_hash] # Verify attestation on-chain
-```
-
-> No API key required. AI runs with a deterministic heuristic provider by default.  
-> For an LLM demo: set `AI_PROVIDER=anthropic`, `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` in `.env`.
+<p align="center">
+  Evidence → AI interpretation → Human review → Competency state → Verifiable proof
+</p>
 
 ---
 
-## What We Proved
+## The Problem
 
-### M1 — Concrete Use Case ✅ DONE
-- Canonical use case: data analysis competency in a corporate L&D program.
-- Short trail: A1 (formulate question) → A2 (prepare data) → A3 (reproduce analysis) → A4 (communicate results).
-- Four observable criteria: C1 (formulation), C2 (treatment/analysis), C3 (evidence), C4 (communication).
+Organizations can record courses completed, certificates issued and activities performed.
 
-### M2 — Evidence, AI and Review ✅ DONE
-- Full TypeScript/Node pipeline: ingest → normalize → extract → interpret → relate → review → state.
-- Strict AI contract via `zod`: AI proposes, **never** decides `DEMONSTRATED`.
-- **52 tests** covering the critical path, attestation, verification and handoff hardening — all passing.
-- Handoff (`ReviewedStateRecord`) is consumed directly by M3.
+But those records do not, by themselves, answer a more useful question:
 
-### M3 — State, Attestation and Solana ✅ DONE (Devnet)
-- `src/solana/attest.ts`: records an attestation through the Solana Memo Program.
-- `src/solana/verify.ts`: verifies the on-chain `record_hash`, optional handoff integrity, expected signer and pseudonymous subject reference.
-- M2 → M3 handoff is hardened:
-  - `verifyHandoff()` rejects tampered `reviewed-state.json` content;
-  - the expected attester can be validated through `ATTESTER_PUBKEY`;
-  - the on-chain payload uses `subject_ref` instead of the subject in clear text;
-  - attestation creation refuses an inconsistent `record_hash`.
-- Dedicated M3 tests cover positive verification, tampering, signer mismatch, subject-reference mismatch, malformed memos and compatibility with legacy payloads.
+> **What can this person actually demonstrate — and what evidence supports that conclusion?**
 
-> 🔗 **Reference proof on Solana Devnet:**  
-> [Transaction](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
+Learning Competency explores a different model:
 
-> The Devnet transaction above is a reference proof from the M3 implementation. The current attestation payload is versioned as `m3.attestation.v2` and keeps sensitive evidence off-chain.
+**competency is represented through evidence produced during a development trail, interpreted with AI, reviewed by a human, and anchored as a verifiable state.**
 
-### Interface — UX/UI ⏳ IN PROGRESS
-- Owner: [JP Fernandes](https://github.com/JpFernandes77).
+The goal is not to replace human judgment with AI or to put learning records on-chain.
 
-### M4 — Validation, Demo and Submission ⏳ IN PROGRESS
-- Demand validation: [Erick](https://github.com/erickandregarcia-ai).
-- Demo script: [`docs/demo/DEMO_SCRIPT.md`](docs/demo/DEMO_SCRIPT.md).
+The goal is to make the path from **competency need → evidence → interpretation → review → state → verification** explicit and traceable.
 
 ---
 
-## Overview
+## The Core Idea
 
-The **Learning Competency MVP** investigates a central question:
-
-> **How does an organization transform a competency need into a development trail, capture evidence produced by a person, interpret that evidence with AI and human review, and represent — in a verifiable way — the state of that evolution?**
-
-The project is deliberately small: the goal is not to build a complete learning platform, but to prove a vertical, traceable, and end-to-end verifiable flow.
-
-The central hypothesis is that the value lies not only in recording courses or certificates, but in **closing the loop between competency need, development, evidence, interpretation, review, and verification**.
-
----
-
-## The Central Flow
-
-```text
+\`\`\`text
 ORGANIZATION / PROGRAM
-        ↓
-DESIRED COMPETENCY
-        ↓
-SHORT DEVELOPMENT TRAIL
-        ↓
-PERSON
-        ↓
-ACTIVITIES
-        ↓
-EVIDENCE
-        ↓
-AI INTERPRETATION
-        ↓
+          ↓
+   DESIRED COMPETENCY
+          ↓
+  DEVELOPMENT TRAIL
+          ↓
+       PERSON
+          ↓
+     ACTIVITIES
+          ↓
+      EVIDENCE
+          ↓
+  AI INTERPRETATION
+          ↓
+    HUMAN REVIEW
+          ↓
+  COMPETENCY STATE
+          ↓
+     ATTESTATION
+          ↓
+       SOLANA
+          ↓
+     VERIFICATION
+\`\`\`
+
+### The important distinction
+
+> **AI proposes. Humans decide. Evidence supports the state.**
+
+The system does not allow the AI layer to independently transition a person to \`DEMONSTRATED\`.
+
+---
+
+# What We Actually Built
+
+This repository contains a working **vertical slice** of the concept.
+
+### M1 — Concrete Use Case ✅
+
+A concrete corporate L&D scenario for a data-analysis competency:
+
+\`\`\`text
+A1 — formulate question
+A2 — prepare data
+A3 — reproduce analysis
+A4 — communicate results
+\`\`\`
+
+With four observable criteria covering formulation, analysis/treatment, evidence and communication.
+
+### M2 — Evidence, AI & Human Review ✅
+
+A complete TypeScript/Node pipeline:
+
+\`\`\`text
+INGEST
+  ↓
+NORMALIZE
+  ↓
+EXTRACT
+  ↓
+INTERPRET (AI)
+  ↓
+RELATE TO COMPETENCY
+  ↓
 HUMAN REVIEW
-        ↓
+  ↓
 COMPETENCY STATE
-        ↓
-ATTESTATION / PROOF
-        ↓
-SOLANA
-        ↓
-VERIFICATION
-```
+\`\`\`
+
+The AI layer is constrained by a typed \`zod\` contract and produces proposals/interpretations. The human review layer is responsible for the state transition.
+
+The M2 handoff is represented as a deterministic \`ReviewedStateRecord\`.
+
+### M3 — Attestation & Verification on Solana ✅
+
+The reviewed state is handed directly from M2 into the attestation layer.
+
+The system:
+
+- computes and preserves a deterministic \`record_hash\`;
+- creates a minimal attestation through the Solana Memo Program;
+- keeps evidence and sensitive data off-chain;
+- verifies the on-chain record against the expected hash;
+- can validate the expected attester through \`ATTESTER_PUBKEY\`;
+- uses a pseudonymous \`subject_ref\` instead of exposing the subject in clear text.
+
+### M2 → M3 Hardening ✅
+
+The handoff was explicitly hardened after cross-review:
+
+- \`verifyHandoff()\` detects tampering in \`reviewed-state.json\`;
+- attestation creation rejects an inconsistent \`record_hash\`;
+- verification can reject an unexpected transaction signer;
+- the on-chain payload does not contain the subject in clear text;
+- dedicated tests cover tampering, signer mismatch, subject-reference mismatch and malformed payloads.
 
 ---
 
-## Core Principles
+# The Proof
 
-1. **Evidence ≠ Interpretation.** Source data, AI extraction, and human decisions are kept separate and traceable at every step.
-2. **AI proposes, humans decide.** AI may structure, relate, and synthesize evidence — but only a human reviewer can transition state to `DEMONSTRATED`.
-3. **Human review is a product mechanism, not a checkbox.** The reviewer accepts, corrects, rejects, or requests new evidence. Every decision is recorded.
-4. **Verification ≠ inference.** The trust scale goes N1 (self-declared) → N2 (evidence presented) → N3 (evidence analyzed) → N4 (source verified). AI supports N1–N3. N4 requires external authenticated verification.
-5. **Solana is an integrity layer, not decoration.** The `record_hash` and minimal attestation metadata go on-chain. Sensitive evidence remains off-chain.
+The current technical vertical slice is backed by a **52-test suite**, covering the critical path plus attestation, verification and handoff hardening.
 
----
+\`\`\`text
+M1
+ ↓
+M2
+ ↓
+ReviewedStateRecord
+ ↓
+record_hash
+ ↓
+M3 Attestation
+ ↓
+Solana Devnet
+ ↓
+Verification
+\`\`\`
 
-## Architecture — Evidence Pipeline
+### Live Devnet proof
 
-```text
-INGEST → NORMALIZE → EXTRACT → INTERPRET (AI) → RELATE TO COMPETENCY
-                                                        ↓
-                                               HUMAN REVIEW
-                                                        ↓
-                                               STATE UPDATE
-                                                        ↓
-                                          ATTESTATION → SOLANA → VERIFICATION
-```
+[View the reference transaction on Solana Explorer](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
 
-The pipeline preserves provenance and differentiates: source data, extracted information, AI-produced interpretation, human review decision, resulting state, and registered attestation.
-
----
-
-## MVP Scope
-
-### In scope
-- one concrete competency; one short trail; one person; a small set of evidence types;
-- evidence ingestion, normalization, AI-assisted interpretation, human review;
-- minimal competency state representation and attestation object;
-- Solana integration and verification path; critical flow tests.
-
-### Out of scope
-- complete LMS; course marketplace; recruitment platform; broad course catalog;
-- extensive institutional integrations; universal competency methodology;
-- definitive monetization model; sensitive data directly on-chain.
+> The transaction is a reference proof from the M3 implementation. The current attestation payload is versioned as \`m3.attestation.v2\`.
 
 ---
 
-## Documentation
+# Why the Architecture Matters
 
-### Product
-- [MVP Contract](docs/product/MVP_CONTRACT.md) · [User Journeys](docs/product/USER_JOURNEYS.md) · [Use Case](docs/product/USE_CASE.md)
+The project deliberately separates layers that are often collapsed together:
 
-### Architecture
-- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md) · [Attestation Model](docs/architecture/ATTESTATION_MODEL.md) · [M2 Implementation](docs/architecture/M2_IMPLEMENTATION.md)
+| Layer | Responsibility |
+|---|---|
+| **Evidence** | What was actually produced or submitted |
+| **AI** | Extract, structure, interpret and relate evidence |
+| **Human review** | Accept, correct, reject or request evidence |
+| **Competency state** | Represent what the reviewed evidence supports |
+| **Provenance** | Preserve how the state was produced |
+| **Attestation** | Register a verifiable representation of that state |
+| **Solana** | Provide an integrity and verification layer |
 
-### Market and Validation
-- [Competitive Landscape](docs/market/COMPETITIVE_LANDSCAPE.md) · [GTM Model](docs/go-to-market/GTM.md) · [Demand Validation](docs/validation/DEMAND_VALIDATION.md)
+This separation is central to the design.
 
-### Governance and Execution
-- [Project Status](docs/PROJECT_STATUS.md) · [Team Roles](docs/governance/TEAM_ROLES.md) · [Contributing](CONTRIBUTING.md)
+**Verification is not inference.**
 
-### Demo and Development
-- [Demo Script](docs/demo/DEMO_SCRIPT.md) · [Development Log](docs/diario-de-bordo/)
+A blockchain record can help prove that a particular state record existed and was anchored by an expected signer. It does not independently prove that the underlying competency is true.
 
 ---
 
-## Repository Structure
+# What Stays Off-Chain
 
-```text
+The architecture intentionally avoids putting sensitive learning evidence directly on-chain.
+
+\`\`\`text
+OFF-CHAIN
+─────────────────────────────────
+Evidence
+Interpretation
+Review
+State record
+Provenance
+Sensitive subject information
+─────────────────────────────────
+             │
+             │ deterministic hash +
+             │ minimal attestation metadata
+             ▼
+ON-CHAIN
+─────────────────────────────────
+Solana attestation
+record_hash
+minimal metadata
+pseudonymous subject_ref
+signer
+─────────────────────────────────
+\`\`\`
+
+This makes Solana an **integrity layer**, rather than the storage layer for the learning system.
+
+---
+
+# The Technical Vertical Slice
+
+\`\`\`text
+┌──────────────────────────────────────────────┐
+│              LEARNING COMPETENCY             │
+└──────────────────────────────────────────────┘
+                     │
+                     ▼
+              Evidence Ingestion
+                     │
+                     ▼
+             Normalization
+                     │
+                     ▼
+                Extraction
+                     │
+                     ▼
+              AI Interpretation
+                     │
+                     ▼
+          Competency Relationship
+                     │
+                     ▼
+              Human Review
+                     │
+                     ▼
+           Competency State
+                     │
+                     ▼
+             Provenance Trace
+                     │
+                     ▼
+            ReviewedStateRecord
+                     │
+                     ▼
+              record_hash
+                     │
+                     ▼
+             Solana Attestation
+                     │
+                     ▼
+               Verification
+\`\`\`
+
+The important property is not any individual component.
+
+It is the **traceable connection between them**.
+
+---
+
+# Current Status
+
+## Technical foundation
+
+| Milestone | Status |
+|---|---|
+| M1 — Concrete Use Case | ✅ DONE |
+| M2 — Evidence, AI & Review | ✅ DONE |
+| M3 — State, Attestation & Solana | ✅ DONE |
+| M2 → M3 hardening | ✅ DONE |
+| 52-test suite | ✅ PASSING |
+| Technical vertical slice | ✅ COMPLETE |
+| Feature freeze | ✅ ACTIVE |
+
+## Current work
+
+### UX/UI
+**In progress — JP Fernandes**
+
+The interface is being built around the already-defined technical flow rather than introducing parallel product logic.
+
+### M4 — Validation, Demo & Submission
+**In progress — Erick**
+
+Current focus:
+
+- external demand validation;
+- reproducible demonstration;
+- pitch alignment with what is actually implemented.
+
+The technical foundation is intentionally frozen while these external-facing layers progress.
+
+---
+
+# What This MVP Does Not Claim
+
+This is intentionally **not**:
+
+- a complete LMS;
+- a course marketplace;
+- a recruitment platform;
+- a universal competency framework;
+- a definitive monetization model;
+- a replacement for human assessment;
+- a claim that blockchain itself validates competency.
+
+The MVP proves a narrower proposition:
+
+> **A competency development trail can produce structured evidence that is interpreted, reviewed, represented as a state, and anchored in a way that can later be independently verified.**
+
+---
+
+# Quick Start
+
+\`\`\`bash
+npm install
+npm test
+npm run demo
+\`\`\`
+
+The default demo uses a deterministic heuristic AI provider and does not require an API key.
+
+### M3 — Solana Devnet
+
+\`\`\`bash
+npm run m3:attest
+npm run m3:verify <tx_signature> [record_hash]
+\`\`\`
+
+For an LLM-backed demo, configure:
+
+\`\`\`bash
+AI_PROVIDER=anthropic
+ANTHROPIC_API_KEY=...
+ANTHROPIC_MODEL=...
+\`\`\`
+
+---
+
+# Repository Structure
+
+\`\`\`text
 .
 ├── docs/
-│   ├── product/ · architecture/ · market/ · go-to-market/
-│   ├── governance/ · decisions/ · validation/
-│   ├── demo/ · brand/ · diario-de-bordo/
-│   └── PROJECT_STATUS.md
+│   ├── product/
+│   ├── architecture/
+│   ├── market/
+│   ├── go-to-market/
+│   ├── governance/
+│   ├── decisions/
+│   ├── validation/
+│   ├── demo/
+│   ├── brand/
+│   └── diario-de-bordo/
 ├── fixtures/
-│   └── synthetic/ana/          # Synthetic scenario: Ana, Junior Data Analyst
+│   └── synthetic/ana/
 ├── src/
-│   ├── ai/                     # AI contract and provider (zod-validated)
-│   ├── evidence/               # Ingest, normalize, extract
-│   ├── relation/               # Relate evidence to competency criteria
-│   ├── review/                 # Human review engine
-│   ├── state/                  # Competency state machine
-│   ├── provenance/             # Trace and handoff (M2 → M3)
-│   ├── solana/                 # attest.ts + verify.ts
-│   ├── domain/                 # Types and use case definitions
-│   └── cli/                    # Demo CLI
-├── tests/                      # 52 tests — all passing
-├── .env.example · .gitattributes · CONTRIBUTING.md
-```
+│   ├── ai/
+│   ├── evidence/
+│   ├── relation/
+│   ├── review/
+│   ├── state/
+│   ├── provenance/
+│   ├── solana/
+│   ├── domain/
+│   └── cli/
+├── tests/
+├── .env.example
+├── CONTRIBUTING.md
+└── README.md
+\`\`\`
 
 ---
 
-## Team
+# Documentation
 
-| Person | Core Contribution | Why It Matters |
-|---|---|---|
-| **[Erick](https://github.com/erickandregarcia-ai)** | Research, context, market and operations | Translates external signals into requirements; ensures the product stays connected to the real problem |
-| **[JP Carvalho](https://github.com/Joaopedro0s)** | M2 — evidence pipeline, AI and review | Materializes the central flow in testable, traceable code |
-| **[JP Fernandes](https://github.com/JpFernandes77)** | Branding, UX/UI and interface | Makes the product visible and understandable to those who won't clone the repository |
-| **[JX](https://github.com/SH1W4)** | Architecture, AI, evidence, attestation and Solana | Connects the technical thesis to the integrity and on-chain verifiability model |
+### Product
+- [MVP Contract](docs/product/MVP_CONTRACT.md)
+- [User Journeys](docs/product/USER_JOURNEYS.md)
+- [Use Case](docs/product/USE_CASE.md)
 
-No contribution replaces the others. The value lies in the combination.
+### Architecture
+- [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md)
+- [Attestation Model](docs/architecture/ATTESTATION_MODEL.md)
+- [M2 Implementation](docs/architecture/M2_IMPLEMENTATION.md)
+
+### Market & Validation
+- [Competitive Landscape](docs/market/COMPETITIVE_LANDSCAPE.md)
+- [GTM Model](docs/go-to-market/GTM.md)
+- [Demand Validation](docs/validation/DEMAND_VALIDATION.md)
+
+### Governance & Execution
+- [Project Status](docs/PROJECT_STATUS.md)
+- [Team Roles](docs/governance/TEAM_ROLES.md)
+- [Contributing](CONTRIBUTING.md)
+
+### Demo & Development
+- [Demo Script](docs/demo/DEMO_SCRIPT.md)
+- [Development Log](docs/diario-de-bordo/)
 
 ---
 
-## Hackathon History
+# Team
 
-**Started:** September 25, 2026. **What existed before:** only the initial idea of a microcredential platform.
+| Person | Core Contribution |
+|---|---|
+| **Erick** | Research, context, market and operations |
+| **JP Carvalho** | M2 — evidence pipeline, AI and review |
+| **JP Fernandes** | Branding, UX/UI and interface |
+| **JX** | Architecture, AI, evidence, attestation and Solana |
 
-**Built during the hackathon:**
-- M1: canonical use case definition and evidence contracts
-- M2: full TypeScript pipeline (ingest → AI → human review → state), with a 52-test suite
-- M3: Solana attestation infrastructure (Memo Program, off-chain evidence pattern, on-chain verification)
-- M2 → M3 handoff hardening: integrity checks, signer validation and pseudonymous subject reference
-- Operational governance v1.0 and Development Log with decision traceability
+The project is deliberately cross-functional: research, product, interface and technical architecture converge in the same vertical slice.
 
 ---
 
-## Current Technical Status
+# Hackathon History
 
-**M1 → M2 → M3 vertical slice: complete and validated.**
+**Started:** September 25, 2026.
 
-The technical MVP is in **feature freeze**. Current work is focused on:
-- UX/UI implementation;
-- reproducible demo and pitch;
-- external demand validation.
+The project evolved from an initial microcredential-platform idea into a concrete, traceable and verifiable competency vertical slice.
 
-Future architecture work may include decentralized attestation schemas, distributed verification, structured off-chain persistence and refined off-chain/on-chain boundaries.
+Built during the hackathon:
+
+- M1 — concrete use case and evidence contracts;
+- M2 — evidence → AI → human review → state;
+- M3 — state → attestation → Solana → verification;
+- M2 → M3 hardening for integrity, signer validation and privacy;
+- operational governance and development traceability.
 
 ---
 
