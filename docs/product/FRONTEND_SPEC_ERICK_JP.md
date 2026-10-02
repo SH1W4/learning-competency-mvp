@@ -1,3 +1,5 @@
+> **Nota de manutenção (2026-10-02):** este documento contém decisões e exemplos de interface de uma etapa anterior. Não use seus nomes de competência, modelos de credencial, hashes ou formatos de saída como contrato atual sem conferir as fontes canônicas do repositório.
+
 # #03 — Guia de Integração Técnica & Blueprint de Frontend: Learning Competency MVP
 
 **Documento:** 03 / Handoff de Arquitetura & Especificação de Integração  
@@ -6,13 +8,13 @@
 **Pasta:** `00_INDENTIDADE_&_INTERFACE` & `07_ANALISE_PARTICIPANTES/JX`  
 **Data-base:** 01 de Outubro de 2026  
 **Público-alvo:** JP Fernandes (UX/UI & Design), Erick (Produto, Pitch & Roteiro de Demo) e JX e JP Carvalho (Arquitetura, Backend & Suporte Técnico)  
-**Status:** Blueprint de Referência para Apoio à Demonstração da Colosseum (Crypto World's Fair 2026)  
+**Status:** HISTÓRICO — referência de colaboração; não é a especificação técnica canônica. Para o contrato atual, use `docs/product/USE_CASE.md`, `src/domain/useCase.ts` e a documentação de arquitetura.  
 
 ---
 
 ## 🎯 1. Propósito deste Guia: Apoiar e Desbloquear, sem Engessar
 
-O backend do **Learning Competency MVP** está **100% implementado, congelado e testado** (44 testes no Vitest cobrindo ingestão, proveniência determinística, contratos Zod e atestação on-chain na Solana Devnet via Memo Program).
+O backend do **Learning Competency MVP** está **100% implementado, congelado e testado** (suíte atual de 62 testes no Vitest cobrindo ingestão, proveniência determinística, contratos Zod e atestação on-chain na Solana Devnet via Memo Program).
 
 O objetivo deste documento **não é prescrever como a interface deve ser desenhada ou como o vídeo deve ser gravado** — a sensibilidade visual pertence ao **JP Fernandes** e a narrativa do produto pertence ao **Erick**.
 
