@@ -54,7 +54,7 @@ Done when: no unsupported traction, market, verification or AI claims remain.
 
 ### M4.7 — Audit repository
 Owner: SH1W4
-Status: TODO
+Status: IN PROGRESS
 Dependency: M4.5 + M4.6
 Deliverable: final repository audit.
 Done when: README, docs, tests, code, task status and demo agree with one another.
