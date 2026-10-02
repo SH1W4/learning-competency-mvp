@@ -17,10 +17,11 @@ Após a finalização do M1 (Especificação de Caso de Uso), M2 (Evidência, IA
    - Teste unitário que prova a geração correta do Payload JSON do `attest.ts` mockando a transação.
    - Reforço no `provenance.test.ts` (testes de adulteração), provando que se um único campo ou hash no documento for modificado/tampered, a validação retorna *false*.
    - Alteração em `demo.ts` para abortar imediatamente caso a `SOLANA_PRIVATE_KEY` não exista, impedindo a geração insegura e automática de chaves locais em um MVP na Devnet.
-   - Clarificação total na documentação: o Vertical Slice está tecnicamente fechado, enquanto os debates arquiteturais em aberto pertencem ao escopo de versões futuras. Com isso atingimos **44 testes** 100% integrados.
+   - Clarificação total na documentação: o Vertical Slice está tecnicamente fechado, enquanto os debates arquiteturais em aberto pertencem ao escopo de versões futuras. Com isso atingimos **52 testes** 100% integrados.
 
 ## Consequências
 
 - **Vertical Slice Concluído:** A afirmação "M1 → M2 → M3 está implementado, testável e demonstrável de ponta a ponta" agora é verdadeira tecnicamente e comprovável. O repositório reflete uma arquitetura end-to-end sem "pulos lógicos".
 - **Solana como Âncora (não validadora de mérito):** Refinamos o conceito para garantir clareza técnica: a blockchain Solana não valida se o aluno "possui a competência"; ela apenas ancora o `record_hash` do estado *revisado* gerado off-chain.
 - **Fechamento de Código (FREEZE):** Foi aplicado um congelamento (freeze) da camada base do produto, não cabendo adições de features não-críticas, focando-se no UI/UX (em progresso) e nas hipóteses de GTM/Validação externa.
+}
