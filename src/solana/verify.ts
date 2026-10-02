@@ -133,7 +133,8 @@ export async function verifyAttestation(
       payload?.record_hash === options.record.record_hash &&
       payload?.competency === options.record.competency_id &&
       payload?.state === options.record.state &&
-      payload?.subject_ref === expectedSubjectRef;
+      payload?.subject_ref === expectedSubjectRef &&
+      (!options.expectedSigner || payload?.attester === options.expectedSigner);
 
     checks.payload_binding = binding;
     if (!binding) {
