@@ -153,7 +153,7 @@ describe("Hardening do handoff M2 → M3", () => {
     await anchored(record);
     const r = await verifyAttestation(record.record_hash, "tx", undefined, { record, expectedSigner: ATTESTER });
     expect(r.verified).toBe(true);
-    expect(r.checks).toEqual({ hash_on_chain: true, record_integrity: true, signer: true, subject_ref: true });
+    expect(r.checks).toEqual({ hash_on_chain: true, record_integrity: true, payload_binding: true, signer: true, subject_ref: true });
   });
 
   it("H1: JSON adulterado mantendo o hash antigo → falha (antes passava)", async () => {
@@ -201,6 +201,52 @@ describe("Hardening do handoff M2 → M3", () => {
     const r = await verifyAttestation(record.record_hash, "tx", undefined, { record, expectedSigner: ATTESTER });
     expect(r.verified).toBe(false);
     expect(r.checks?.subject_ref).toBe(false);
+  });
+
+  it("H4: payload com competência divergente falha mesmo com record_hash correto", async () => {
+    const { buildAttestationPayload } = await import("../src/solana/attest.js");
+    const record = await realHandoff();
+    const payload = { ...buildAttestationPayload(record, ATTESTER), competency: "competency:other" };
+    mockGetParsedTransaction.mockResolvedValue(mockTransaction(payload, { signers: [ATTESTER] }));
+    const r = await verifyAttestation(record.record_hash, "tx", undefined, { record, expectedSigner: ATTESTER });
+    expect(r.verified).toBe(false);
+    expect(r.checks?.payload_binding).toBe(false);
+  });
+
+  it("H4: payload com estado divergente falha mesmo com record_hash correto", async () => {
+    const { buildAttestationPayload } = await import("../src/solana/attest.js");
+    const record = await realHandoff();
+    const payload = { ...buildAttestationPayload(record, ATTESTER), state: "IN_DEVELOPMENT" };
+    mockGetParsedTransaction.mockResolvedValue(mockTransaction(payload, { signers: [ATTESTER] }));
+    const r = await verifyAttestation(record.record_hash, "tx", undefined, { record, expectedSigner: ATTESTER });
+    expect(r.verified).toBe(false);
+    expect(r.checks?.payload_binding).toBe(false);
+  });
+
+  it("H4: payload com versão ou MVP divergente falha", async () => {
+    const { buildAttestationPayload } = await import("../src/solana/attest.js");
+    const record = await realHandoff();
+    const versionPayload = { ...buildAttestationPayload(record, ATTESTER), v: "m3.attestation.v1" };
+    mockGetParsedTransaction.mockResolvedValue(mockTransaction(versionPayload, { signers: [ATTESTER] }));
+    let r = await verifyAttestation(record.record_hash, "tx-version", undefined, { record, expectedSigner: ATTESTER });
+    expect(r.verified).toBe(false);
+    expect(r.checks?.payload_binding).toBe(false);
+
+    const mvpPayload = { ...buildAttestationPayload(record, ATTESTER), mvp: "other-mvp" };
+    mockGetParsedTransaction.mockResolvedValue(mockTransaction(mvpPayload, { signers: [ATTESTER] }));
+    r = await verifyAttestation(record.record_hash, "tx-mvp", undefined, { record, expectedSigner: ATTESTER });
+    expect(r.verified).toBe(false);
+    expect(r.checks?.payload_binding).toBe(false);
+  });
+
+  it("H4: attester divergente falha quando o emissor esperado está configurado", async () => {
+    const { buildAttestationPayload } = await import("../src/solana/attest.js");
+    const record = await realHandoff();
+    const payload = { ...buildAttestationPayload(record, "OutraCarteira111111111111111111111111111") };
+    mockGetParsedTransaction.mockResolvedValue(mockTransaction(payload, { signers: [ATTESTER] }));
+    const r = await verifyAttestation(record.record_hash, "tx", undefined, { record, expectedSigner: ATTESTER });
+    expect(r.verified).toBe(false);
+    expect(r.checks?.payload_binding).toBe(false);
   });
 
   it("H3: payload on-chain não contém o subject em claro", async () => {
