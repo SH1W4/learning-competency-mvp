@@ -92,7 +92,9 @@ Do not treat the state as an absolute claim of mastery unless the model and veri
 ### Attestation
 A signed or otherwise verifiable representation of a defined state/event.
 
-The exact schema is an implementation decision and must be validated before becoming canonical.
+Current MVP implementation: Solana Memo Program with versioned payload m3.attestation.v2. The Memo is an integrity anchor for the reviewed state; it is not Solana Attestation Service (SAS).
+
+SAS is a future option and must not be described as the current MVP mechanism.
 
 ---
 
@@ -212,7 +214,9 @@ The implementation should be able to distinguish at least:
     ATTESTED
     VERIFIABLE
 
-The exact domain model may evolve.
+Implemented MVP states: NOT_STARTED, IN_DEVELOPMENT, UNDER_REVIEW, DEMONSTRATED.
+
+The conceptual states DECLARED, EVIDENCE_PRESENTED, EVIDENCE_ANALYZED, REVIEWED, STATE_ACCEPTED, ATTESTED and VERIFIABLE are future vocabulary, not additional states in the current implementation.
 
 Do not create a large state machine before the first end-to-end demo requires it.
 
@@ -233,7 +237,7 @@ Conceptually:
     EXPIRY
     PROOF / ATTESTATION
 
-The current Solana Attestation System is organized around Credential → Schema → Attestation. A Credential defines the authority and authorized signers; a Schema defines the structure and validation rules and supports versioning; an Attestation contains the attested data and metadata.
+A future SAS integration may use Credential → Schema → Attestation. This is not the current MVP implementation.
 
 Technical references:
 - https://solana.com/docs/tools/attestations
