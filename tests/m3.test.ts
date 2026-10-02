@@ -82,8 +82,10 @@ describe("M3 — Attestation e Verification", () => {
     const { createAttestationOnChain } = await import("../src/solana/attest.js");
     const { sendAndConfirmTransaction } = await import("@solana/web3.js");
     const record = await realHandoff();
-    const tampered = { ...record, state: "IN_DEVELOPMENT", record_hash: record.record_hash };
-    await expect(createAttestationOnChain(tampered, FAKE_KEY)).rejects.toThrow(/precisa estar em DEMONSTRATED/);
+    const { canonicalJSON, sha256 } = await import("../src/util.js");
+    const { record_hash: _hash, ...body } = { ...record, state: "IN_DEVELOPMENT" };
+    const nonDemonstrated = { ...body, record_hash: sha256(canonicalJSON(body)) } as ReviewedStateRecord;
+    await expect(createAttestationOnChain(nonDemonstrated, FAKE_KEY)).rejects.toThrow(/precisa estar em DEMONSTRATED/);
     expect(sendAndConfirmTransaction).not.toHaveBeenCalled();
   });
 
