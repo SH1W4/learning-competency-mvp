@@ -66,6 +66,16 @@ export function verifyClaimSupport(claim: VerifiableClaim, record: ReviewedState
   const claimEvidence = new Set(claim.evidence_refs);
   if ([...claimEvidence].some((id) => !recordEvidence.has(id))) return false;
 
+  const expectedEvidence = new Set(record.criteria.flatMap((c) => c.evidence_ids));
+  if (claimEvidence.size !== expectedEvidence.size) return false;
+  if ([...expectedEvidence].some((id) => !claimEvidence.has(id))) return false;
+
+  if (claim.criterion_support.length !== record.criteria.length) return false;
+  const recordCriteria = new Set(record.criteria.map((c) => c.criterion_id));
+  const claimCriteria = claim.criterion_support.map((c) => c.criterion_id);
+  if (new Set(claimCriteria).size !== claimCriteria.length) return false;
+  if (claimCriteria.some((id) => !recordCriteria.has(id))) return false;
+
   for (const criterion of claim.criterion_support) {
     if (!record.criteria.some((c) =>
       c.criterion_id === criterion.criterion_id &&
