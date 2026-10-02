@@ -56,7 +56,11 @@ export class CompetencySession {
   async interpret(provider: InterpretationProvider): Promise<RelationResult> {
     if (!this.evidences.length) throw new TransitionError("não há evidências para interpretar");
     const raw = await provider.interpret({ subject: this.subject, evidences: this.evidences, extractions: this.extractions });
-    const check = parseAIOutput(raw, this.evidences.map((e) => e.evidence_id));
+    const check = parseAIOutput(raw, this.evidences.map((e) => e.evidence_id), {
+      subject: this.subject,
+      competency_id: COMPETENCY.id,
+      extraction_refs: this.extractions.map((x) => x.evidence_id),
+    });
     if (!check.ok) throw new InterpretationRejected(check.errors);
     this.interpretation = check.value!;
     this.relation = relateToCompetency(this.interpretation, this.evidences);
