@@ -20,7 +20,7 @@ A camada on-chain deve carregar somente a representação mínima necessária pa
 
 ## Implementação atual
 
-O MVP usa o **Solana Memo Program** como âncora de integridade. O payload é versionado (`m3.attestation.v2`) e vincula `mvp`, versão, `subject_ref`, `competency`, `state`, `record_hash`, `attester` e `timestamp`.
+O MVP usa o **Solana Memo Program** como âncora de integridade. No fluxo canônico do MVP, uma atestação só é emitida para um `ReviewedStateRecord` em `DEMONSTRATED`, com confirmação explícita do reviewer. O payload é versionado (`m3.attestation.v2`) e vincula `mvp`, versão, `subject_ref`, `competency`, `state`, `record_hash`, `attester` e `timestamp`.
 
 O verificador, quando recebe o `ReviewedStateRecord`, recalcula sua integridade e exige correspondência dos campos relevantes do payload com o registro. A assinatura da transação também pode ser comparada ao emissor esperado.
 
@@ -28,7 +28,7 @@ Isso é diferente de **Solana Attestation Service (SAS)**. SAS permanece uma pos
 
 ## Verificação
 
-A demonstração permite que uma terceira parte confirme a existência da referência e a correspondência entre o payload on-chain e o registro revisado.
+A verificação completa exige o `ReviewedStateRecord`; sem ele, o verificador pode confirmar a presença do `record_hash` na transação, mas não todas as relações do payload com o registro.
 
 ## Limites
 
