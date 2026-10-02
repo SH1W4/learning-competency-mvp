@@ -51,6 +51,29 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     expect(verifyClaimSupport(claim, record)).toBe(false);
   });
 
+
+  it("rejects duplicated criterion support that omits another criterion", async () => {
+    const { s, env } = await underReview();
+    s.review(reviewFor(s, {}, true, env));
+
+    const record = s.handoff();
+    const claim = buildVerifiableClaim(record);
+    claim.criterion_support = [claim.criterion_support[0], claim.criterion_support[0]];
+
+    expect(verifyClaimSupport(claim, record)).toBe(false);
+  });
+
+  it("rejects a claim with inconsistent scope metadata", async () => {
+    const { s, env } = await underReview();
+    s.review(reviewFor(s, {}, true, env));
+
+    const record = s.handoff();
+    const claim = buildVerifiableClaim(record);
+    claim.scope.state = "IN_DEVELOPMENT";
+
+    expect(verifyClaimSupport(claim, record)).toBe(false);
+  });
+
   it("rejects a claim whose reviewer confirmation was changed", async () => {
     const { s, env } = await underReview();
     s.review(reviewFor(s, {}, true, env));
