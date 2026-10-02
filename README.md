@@ -16,14 +16,14 @@
 
 ```bash
 npm install
-npm test                     # 44 tests — all passing
-npm run demo                 # Synthetic scenario: Ana → DEMONSTRATED
-npm run m3:attest            # Register attestation on Solana Devnet
-npm run m3:verify <hash> <tx> # Verify attestation on-chain
+npm test                          # 52 tests — all passing
+npm run demo                      # Synthetic scenario: Ana → DEMONSTRATED
+npm run m3:attest                 # Register attestation on Solana Devnet
+npm run m3:verify <tx_signature> [record_hash] # Verify attestation on-chain
 ```
 
 > No API key required. AI runs with a deterministic heuristic provider by default.  
-> For LLM demo: set `AI_PROVIDER=anthropic`, `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` in `.env`.
+> For an LLM demo: set `AI_PROVIDER=anthropic`, `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` in `.env`.
 
 ---
 
@@ -37,16 +37,23 @@ npm run m3:verify <hash> <tx> # Verify attestation on-chain
 ### M2 — Evidence, AI and Review ✅ DONE
 - Full TypeScript/Node pipeline: ingest → normalize → extract → interpret → relate → review → state.
 - Strict AI contract via `zod`: AI proposes, **never** decides `DEMONSTRATED`.
-- **44 tests** covering the critical path and hardening — all passing.
-- Handoff (`ReviewedStateRecord`) ready for M3 consumption.
+- **52 tests** covering the critical path, attestation, verification and handoff hardening — all passing.
+- Handoff (`ReviewedStateRecord`) is consumed directly by M3.
 
 ### M3 — State, Attestation and Solana ✅ DONE (Devnet)
-- `src/solana/attest.ts`: records attestation via SPL Memo Program (off-chain storage pattern).
-- `src/solana/verify.ts`: given a `record_hash` and `tx_signature`, confirms on-chain proof.
-- Attestation creation and verification are covered by dedicated M3 tests.
+- `src/solana/attest.ts`: records an attestation through the Solana Memo Program.
+- `src/solana/verify.ts`: verifies the on-chain `record_hash`, optional handoff integrity, expected signer and pseudonymous subject reference.
+- M2 → M3 handoff is hardened:
+  - `verifyHandoff()` rejects tampered `reviewed-state.json` content;
+  - the expected attester can be validated through `ATTESTER_PUBKEY`;
+  - the on-chain payload uses `subject_ref` instead of the subject in clear text;
+  - attestation creation refuses an inconsistent `record_hash`.
+- Dedicated M3 tests cover positive verification, tampering, signer mismatch, subject-reference mismatch, malformed memos and compatibility with legacy payloads.
 
-> 🔗 **Live proof on Solana Devnet:**  
-> [`27hwuMbf5SxA...3y3U`](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
+> 🔗 **Reference proof on Solana Devnet:**  
+> [Transaction](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
+
+> The Devnet transaction above is a reference proof from the M3 implementation. The current attestation payload is versioned as `m3.attestation.v2` and keeps sensitive evidence off-chain.
 
 ### Interface — UX/UI ⏳ IN PROGRESS
 - Owner: [JP Fernandes](https://github.com/JpFernandes77).
@@ -105,7 +112,7 @@ VERIFICATION
 2. **AI proposes, humans decide.** AI may structure, relate, and synthesize evidence — but only a human reviewer can transition state to `DEMONSTRATED`.
 3. **Human review is a product mechanism, not a checkbox.** The reviewer accepts, corrects, rejects, or requests new evidence. Every decision is recorded.
 4. **Verification ≠ inference.** The trust scale goes N1 (self-declared) → N2 (evidence presented) → N3 (evidence analyzed) → N4 (source verified). AI supports N1–N3. N4 requires external authenticated verification.
-5. **Solana is an integrity layer, not decoration.** Only the `record_hash` and minimal metadata go on-chain. Sensitive data stays off-chain.
+5. **Solana is an integrity layer, not decoration.** The `record_hash` and minimal attestation metadata go on-chain. Sensitive evidence remains off-chain.
 
 ---
 
@@ -152,10 +159,10 @@ The pipeline preserves provenance and differentiates: source data, extracted inf
 - [Competitive Landscape](docs/market/COMPETITIVE_LANDSCAPE.md) · [GTM Model](docs/go-to-market/GTM.md) · [Demand Validation](docs/validation/DEMAND_VALIDATION.md)
 
 ### Governance and Execution
-- [Project Status](docs/PROJECT_STATUS.md) · [Team Roles](docs/governance/TEAM_ROLES.md) · [Red-Team Evaluation](docs/evaluation/HACKATHON_EVALUATION_01.md) · [Contributing](CONTRIBUTING.md)
+- [Project Status](docs/PROJECT_STATUS.md) · [Team Roles](docs/governance/TEAM_ROLES.md) · [Contributing](CONTRIBUTING.md)
 
-### Hackathon
-- [Demo Script](docs/demo/DEMO_SCRIPT.md) · [Development Log](docs/diario-de-bordo/) · [Hackathon Structure](docs/hackathon/README.md) · [Dataroom Analysis](docs/hackathon/DATAROOM_ANALYSIS.md)
+### Demo and Development
+- [Demo Script](docs/demo/DEMO_SCRIPT.md) · [Development Log](docs/diario-de-bordo/)
 
 ---
 
@@ -165,8 +172,8 @@ The pipeline preserves provenance and differentiates: source data, extracted inf
 .
 ├── docs/
 │   ├── product/ · architecture/ · market/ · go-to-market/
-│   ├── governance/ · decisions/ · validation/ · evaluation/
-│   ├── hackathon/ · demo/ · brand/ · diario-de-bordo/
+│   ├── governance/ · decisions/ · validation/
+│   ├── demo/ · brand/ · diario-de-bordo/
 │   └── PROJECT_STATUS.md
 ├── fixtures/
 │   └── synthetic/ana/          # Synthetic scenario: Ana, Junior Data Analyst
@@ -180,7 +187,7 @@ The pipeline preserves provenance and differentiates: source data, extracted inf
 │   ├── solana/                 # attest.ts + verify.ts
 │   ├── domain/                 # Types and use case definitions
 │   └── cli/                    # Demo CLI
-├── tests/                      # 44 tests — all passing
+├── tests/                      # 52 tests — all passing
 ├── .env.example · .gitattributes · CONTRIBUTING.md
 ```
 
@@ -205,9 +212,23 @@ No contribution replaces the others. The value lies in the combination.
 
 **Built during the hackathon:**
 - M1: canonical use case definition and evidence contracts
-- M2: full TypeScript pipeline (ingest → AI → human review → state), **44 tests**
-- M3: Solana attestation infrastructure (Memo Program, off-chain storage pattern, on-chain verification)
+- M2: full TypeScript pipeline (ingest → AI → human review → state), with a 52-test suite
+- M3: Solana attestation infrastructure (Memo Program, off-chain evidence pattern, on-chain verification)
+- M2 → M3 handoff hardening: integrity checks, signer validation and pseudonymous subject reference
 - Operational governance v1.0 and Development Log with decision traceability
+
+---
+
+## Current Technical Status
+
+**M1 → M2 → M3 vertical slice: complete and validated.**
+
+The technical MVP is in **feature freeze**. Current work is focused on:
+- UX/UI implementation;
+- reproducible demo and pitch;
+- external demand validation.
+
+Future architecture work may include decentralized attestation schemas, distributed verification, structured off-chain persistence and refined off-chain/on-chain boundaries.
 
 ---
 
