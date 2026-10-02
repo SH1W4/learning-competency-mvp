@@ -30,7 +30,7 @@ Learning Competency explores a simple shift:
 
 The system connects the entire path:
 
-\x60\x60\x60mermaid
+```mermaid
 flowchart LR
     A["Competency need"] --> B["Development trail"]
     B --> C["Real evidence"]
@@ -38,7 +38,7 @@ flowchart LR
     D --> E["Human review"]
     E --> F["Competency state"]
     F --> G["Verifiable proof"]
-\x60\x60\x60
+```
 
 ---
 
@@ -66,7 +66,7 @@ That separation is the foundation of the MVP.
 
 A corporate L&D scenario for a **data-analysis competency**.
 
-\x60\x60\x60text
+```text
 A1  Formulate question
  ↓
 A2  Prepare data
@@ -74,7 +74,7 @@ A2  Prepare data
 A3  Reproduce analysis
  ↓
 A4  Communicate results
-\x60\x60\x60
+```
 
 Four observable criteria connect the activities to the competency.
 
@@ -84,7 +84,7 @@ Four observable criteria connect the activities to the competency.
 
 A complete TypeScript/Node pipeline:
 
-\x60\x60\x60mermaid
+```mermaid
 flowchart LR
     A["INGEST"] --> B["NORMALIZE"]
     B --> C["EXTRACT"]
@@ -92,13 +92,13 @@ flowchart LR
     D --> E["RELATE"]
     E --> F["HUMAN REVIEW"]
     F --> G["COMPETENCY STATE"]
-\x60\x60\x60
+```
 
-**Key constraint:** the AI layer cannot independently transition a person to \x60DEMONSTRATED\x60.
+**Key constraint:** the AI layer cannot independently transition a person to `DEMONSTRATED`.
 
 The reviewed result becomes a deterministic:
 
-\x60ReviewedStateRecord\x60
+`ReviewedStateRecord`
 
 ---
 
@@ -106,19 +106,19 @@ The reviewed result becomes a deterministic:
 
 The real M2 handoff is consumed by M3.
 
-\x60\x60\x60mermaid
+```mermaid
 flowchart LR
     A["ReviewedStateRecord"] --> B["record_hash"]
     B --> C["Attestation"]
     C --> D["Solana Devnet"]
     D --> E["Verification"]
-\x60\x60\x60
+```
 
 ### On-chain
 
-- \x60record_hash\x60
+- `record_hash`
 - minimal attestation metadata
-- pseudonymous \x60subject_ref\x60
+- pseudonymous `subject_ref`
 - transaction signer
 
 ### Off-chain
@@ -160,7 +160,7 @@ flowchart LR
 **[View the reference transaction on Solana Explorer →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)**
 
 > The transaction is a reference proof from the M3 implementation.  
-> The current attestation payload is versioned as \x60m3.attestation.v2\x60.
+> The current attestation payload is versioned as `m3.attestation.v2`.
 
 ---
 
@@ -170,7 +170,7 @@ The value is not any single component.
 
 It is the **traceability between the components**:
 
-\x60\x60\x60mermaid
+```mermaid
 flowchart TB
     A["Evidence"] --> B["AI interpretation"]
     B --> C["Human review"]
@@ -182,7 +182,7 @@ flowchart TB
     A -. "source" .-> E
     C -. "decision" .-> E
     D -. "state" .-> E
-\x60\x60\x60
+```
 
 A verifier can therefore ask:
 
@@ -205,7 +205,7 @@ The handoff was reviewed and hardened around three boundaries:
 
 ### Integrity
 
-\x60verifyHandoff()\x60
+`verifyHandoff()`
 
 Detects tampering in the reviewed state before verification.
 
@@ -214,7 +214,7 @@ Detects tampering in the reviewed state before verification.
 
 ### Authenticity
 
-\x60ATTESTER_PUBKEY\x60
+`ATTESTER_PUBKEY`
 
 Can validate the expected transaction signer.
 
@@ -223,7 +223,7 @@ Can validate the expected transaction signer.
 
 ### Privacy
 
-\x60subject_ref\x60
+`subject_ref`
 
 Avoids exposing the subject in clear text on-chain.
 
@@ -237,7 +237,7 @@ Dedicated tests cover tampering, signer mismatch, subject-reference mismatch and
 
 # Architecture at a Glance
 
-\x60\x60\x60mermaid
+```mermaid
 flowchart TB
     subgraph OFF["OFF-CHAIN"]
         A["Evidence"]
@@ -254,7 +254,7 @@ flowchart TB
         H --> I["Attestation"]
         I --> J["Verification"]
     end
-\x60\x60\x60
+```
 
 **Sensitive learning data stays off-chain.**
 
@@ -307,34 +307,34 @@ That separation is intentional: prove the core before expanding it.
 
 # Quick Start
 
-\x60\x60\x60bash
+```bash
 npm install
 npm test
 npm run demo
-\x60\x60\x60
+```
 
 The default demo uses a deterministic heuristic AI provider.
 
 ### Solana Devnet
 
-\x60\x60\x60bash
+```bash
 npm run m3:attest
 npm run m3:verify <tx_signature> [record_hash]
-\x60\x60\x60
+```
 
 ### Optional LLM provider
 
-\x60\x60\x60bash
+```bash
 AI_PROVIDER=anthropic
 ANTHROPIC_API_KEY=...
 ANTHROPIC_MODEL=...
-\x60\x60\x60
+```
 
 ---
 
 # Repository
 
-\x60\x60\x60text
+```text
 src/
 ├── ai/            AI contract + provider
 ├── evidence/      ingest + normalize + extract
@@ -349,7 +349,7 @@ src/
 tests/             52 tests
 fixtures/          synthetic Ana scenario
 docs/              product + architecture + validation + development log
-\x60\x60\x60
+```
 
 ---
 
