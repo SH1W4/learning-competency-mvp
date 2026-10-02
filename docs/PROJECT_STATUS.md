@@ -2,6 +2,8 @@
 
 ## Status atual
 
+**Hardening:** M1→M3 coerente, verifier com payload binding completo, contrato de IA contextualizado, canonicalização v1 documentada e CI com audit de alta severidade bloqueante. Integração real de Devnet disponível via workflow manual (`Solana Devnet Integration`).
+
 **Fase:** MVP tecnicamente fechado — vertical slice concluído e feature freeze ativo.
 
 O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A interface e a validação externa permanecem como frentes de trabalho.
