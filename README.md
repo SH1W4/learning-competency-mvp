@@ -68,7 +68,7 @@ Sensitive learning data remains off-chain.
 
 ## Proof
 
-- 70 automated tests passing
+- automated test suite validated by CI
 - M1 → M2 → M3 vertical slice implemented
 - M2 → M3 handoff hardened
 - Devnet attestation demonstrated
