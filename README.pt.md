@@ -9,7 +9,7 @@
 <p align="center"><strong>Evidência → interpretação com IA → revisão humana → estado → prova</strong></p>
 
 [![CI](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml)
-![Testes](https://img.shields.io/badge/testes-52%20passando-success)
+![Testes](https://img.shields.io/badge/testes-62%20passando-success)
 ![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF)
 
 ## O problema
@@ -68,7 +68,7 @@ Dados sensíveis de aprendizagem permanecem off-chain.
 
 ## Prova
 
-- 52 testes automatizados passando;
+- 62 testes automatizados passando;
 - vertical slice M1 → M2 → M3 implementado;
 - handoff M2 → M3 endurecido;
 - atestação demonstrada na Devnet;
