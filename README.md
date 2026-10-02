@@ -13,8 +13,14 @@
 <p align="center">
   <a href="#the-problem">Problem</a> ·
   <a href="#the-proof">Proof</a> ·
-  <a href="#how-it-works">How it works</a> ·
+  <a href="#what-we-built">What we built</a> ·
   <a href="#current-status">Status</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml"><img src="https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/tests-52%20passing-success" alt="52 tests passing">
+  <img src="https://img.shields.io/badge/Solana-Devnet-9945FF" alt="Solana Devnet">
 </p>
 
 ---
