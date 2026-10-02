@@ -72,7 +72,7 @@ Sensitive learning data remains off-chain.
 - M1 → M2 → M3 vertical slice implemented
 - M2 → M3 handoff hardened
 - Devnet attestation demonstrated
-- tamper detection and signer validation covered by tests
+- tamper detection, signer validation and payload binding covered by tests
 - synthetic demonstration data clearly identified as synthetic
 
 [View the reference Devnet transaction →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
@@ -107,7 +107,7 @@ For the Solana Devnet demonstration:
 | Area | Resource |
 |---|---|
 | Product | [MVP Contract](docs/product/MVP_CONTRACT.md) · [User Journeys](docs/product/USER_JOURNEYS.md) · [Use Case](docs/product/USE_CASE.md) |
-| Architecture | [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md) · [Attestation Model](docs/architecture/ATTESTATION_MODEL.md) |
+| Architecture | [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md) · [Attestation Model](docs/architecture/ATTESTATION_MODEL.md) · [Canonicalization](docs/architecture/CANONICALIZATION.md) |
 | Execution | [Project Status](docs/PROJECT_STATUS.md) · [Development Log](docs/diario-de-bordo/) |
 | Demo | [Demo Overview](docs/demo/DEMO_SCRIPT.md) |
 
