@@ -14,7 +14,8 @@
     "demo": "tsx src/cli/demo.ts",
     "demo:revisao-parcial": "tsx src/cli/demo.ts --review fixtures/synthetic/ana/review_request_more.json",
     "m3:attest": "tsx src/solana/demo.ts",
-    "m3:verify": "tsx src/solana/verify.ts"
+    "m3:verify": "tsx src/solana/verify.ts",
+    "test:solana:devnet": "tsx src/solana/integration.ts"
   },
   "dependencies": {
     "@solana/web3.js": "^1.99.0",
