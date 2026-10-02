@@ -6,126 +6,46 @@ Separar claramente fonte, extração, interpretação, revisão, estado e verifi
 
 ## Pipeline
 
-```
-INGEST
-  ↓
-NORMALIZE
-  ↓
-EXTRACT
-  ↓
-INTERPRET
-  ↓
-RELATE TO COMPETENCY
-  ↓
-REVIEW
-  ↓
-UPDATE STATE
-  ↓
-ATTEST
-  ↓
-VERIFY
-```
+INGEST → NORMALIZE → EXTRACT → INTERPRET → RELATE → REVIEW → UPDATE STATE → ATTEST → VERIFY
 
-## 1. Ingest
+## Princípios
 
-Recebe uma evidência produzida ou apresentada pela pessoa.
+### Evidência
 
-Exemplos iniciais:
+A evidência deve preservar referência à sua origem e representar aquilo que foi efetivamente produzido ou apresentado.
 
-- documento;
-- URL;
-- resultado de atividade;
-- repositório;
-- avaliação.
+### Extração
 
-O MVP deve escolher poucos tipos.
+A extração deve permanecer distinguível de qualquer inferência posterior.
 
-## 2. Normalize
+### Interpretação
 
-Converte a entrada para uma representação interna estável.
+A IA pode identificar relações, sinais e pontos que exigem revisão. Essas saídas são propostas, não decisões finais.
 
-Nenhuma normalização deve destruir a referência à fonte original.
+### Relação com competência
 
-## 3. Extract
+Cada sinal relevante deve poder ser relacionado à competência e ao critério que o sustenta.
 
-Extrai somente informações observáveis na evidência.
+### Revisão humana
 
-Exemplo:
+O revisor pode aceitar, corrigir, rejeitar ou solicitar nova evidência. A decisão deve ser registrada.
 
-- título;
-- data;
-- instituição;
-- descrição;
-- resultado;
-- arquivo/referência.
+### Estado
 
-## 4. Interpret
+O estado representa somente o que as evidências e a revisão permitem sustentar.
 
-A IA pode produzir inferências.
+### Atestação
 
-Exemplo:
+A atestação representa um estado ou evento definido, não o conteúdo integral da evidência.
 
-- competências candidatas;
-- relação entre evidência e critério;
-- sinais de desenvolvimento;
-- pontos que exigem revisão.
+### Verificação
 
-Inferências devem permanecer identificáveis como inferências.
-
-## 5. Relate to competency
-
-A interpretação deve responder:
-
-- qual competência está sendo analisada;
-- qual evidência sustenta o sinal;
-- qual critério da competência é relevante;
-- qual nível de confiança existe.
-
-## 6. Review
-
-O humano pode:
-
-- aceitar;
-- corrigir;
-- rejeitar;
-- solicitar nova evidência.
-
-A revisão deve ser registrada.
-
-## 7. Update state
-
-O sistema produz um estado estruturado.
-
-O estado não deve afirmar mais do que as evidências e a revisão permitem.
-
-## 8. Attest
-
-Somente um estado/evento definido deve ser atestado.
-
-Não transformar o arquivo inteiro em uma attestation sem necessidade.
-
-## 9. Verify
-
-A verificação deve permitir recuperar a attestation e confirmar:
-
-- credencial;
-- schema;
-- signer;
-- dados;
-- validade;
-- referência relevante.
+A verificação deve permitir confirmar a integridade e a referência da atestação.
 
 ## Proveniência
 
-Cada campo importante deve poder responder:
+Para informações relevantes, deve ser possível distinguir se vieram diretamente da evidência, de uma interpretação assistida ou da revisão humana.
 
-> veio diretamente da evidência, foi inferido pela IA ou foi confirmado na revisão?
+## Modelo de confiança
 
-## Trust model
-
-- N1 — Self-declared
-- N2 — Evidence presented
-- N3 — Evidence analyzed
-- N4 — Source verified
-
-N4 depende de mecanismo externo autenticado.
+O MVP trabalha com níveis conceituais de confiança. A definição e os mecanismos finais de verificação permanecem sujeitos a evolução futura.
