@@ -195,4 +195,4 @@ Essas questões pertencem à validação externa e às próximas fases.
 
 **M1 fechado como especificação operacional v0.1.**
 
-A próxima etapa é implementar M2 sobre este contrato. Qualquer alteração na competência, trilha, evidências ou estados deve ser tratada como mudança explícita do contrato do MVP.
+M1 permanece fechado como contrato de referência para M2/M3. Qualquer alteração na competência, trilha, evidências ou estados deve ser tratada como mudança explícita do contrato do MVP.
