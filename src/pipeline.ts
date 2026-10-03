@@ -10,6 +10,7 @@ import { extractFields } from "./evidence/extract.js";
 import { parseAIOutput, type AIInterpretation } from "./ai/contract.js";
 import type { InterpretationProvider } from "./ai/provider.js";
 import { relateToCompetency, type RelationResult } from "./relation/relate.js";
+import { evaluateConsensus, type ConsensusResult } from "./consensus/consensus.js";
 import { applyReview, type ReviewOutcome } from "./review/review.js";
 import { initialState, transition, TransitionError } from "./state/state.js";
 import { buildHandoff, buildTrace, type ProvenanceTrace, type ReviewedStateRecord } from "./provenance/trace.js";
@@ -28,6 +29,7 @@ export class CompetencySession {
   interpretation?: AIInterpretation;
   relation?: RelationResult;
   outcome?: ReviewOutcome;
+  consensus?: ConsensusResult;
   state: CompetencyState;
 
   constructor(
@@ -83,6 +85,18 @@ export class CompetencySession {
     if (missing.length) throw new TransitionError(`atividades sem evidência: ${missing.join("; ")}`);
     this.state = transition(this.state, "UNDER_REVIEW", "system", "pipeline", `trilha completa; interpretação ${this.interpretation.interpretation_id} pronta para revisão`, this.env.now());
     return this.state;
+  }
+
+  /** Consensus Core — automatic transition only when all required verifications converge. */
+  consensusAdvance(): ConsensusResult {
+    if (this.state.value !== "UNDER_REVIEW") throw new TransitionError(`consenso só pode ser aplicado em UNDER_REVIEW (estado atual: ${this.state.value})`);
+    if (!this.relation) throw new TransitionError("não há interpretação para consenso");
+    const result = evaluateConsensus(this.evidences, this.relation);
+    this.consensus = result;
+    if (result.can_auto_advance) {
+      this.state = transition(this.state, "DEMONSTRATED", "consensus", "consensus-core", "verificações independentes convergiram para todos os critérios", this.env.now());
+    }
+    return result;
   }
 
   /** M2.5 */
