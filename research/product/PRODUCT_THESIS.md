@@ -135,3 +135,254 @@ O Learning Competency não pretende substituir universidades, plataformas educac
 Em vez de começar exclusivamente pela pergunta “Onde você estudou?”, o projeto procura acrescentar uma pergunta mais ampla:
 
 > **“What can you demonstrably do?”**
+
+
+---
+
+# Relatório de evolução após consultoria — Tarug
+
+**Data da revisão:** 2026-10-03  
+**Natureza:** consolidação de direcionamento estratégico  
+**Status:** hipótese de produto / pesquisa de mercado
+
+## 12. O que mudou após a consultoria
+
+A consultoria reforçou que o projeto não deveria avançar apenas pela consistência técnica da arquitetura. A próxima camada necessária é tornar a tese **comercialmente inteligível, economicamente mensurável e externamente verificável**.
+
+As mudanças abaixo não significam que as hipóteses estejam validadas. Elas registram como o projeto passou a tratá-las.
+
+### 12.1. Da arquitetura para uma tese de produto comunicável
+
+Antes, a documentação estava fortemente concentrada em:
+
+- Learning Competency;
+- Evidence Pipeline;
+- Assessment;
+- Human Review;
+- Attestation;
+- Solana;
+- Proof-of-Competency.
+
+Após a consultoria, a prioridade passa a ser conseguir explicar, em linguagem simples:
+
+**qual problema existe → para quem existe → como é resolvido hoje → por que é insuficiente → o que propomos → quem se beneficia → quem paga → quanto custa operar → como validaremos.**
+
+Isso leva à necessidade de um **Pitch L1** capaz de apresentar a tese sem exigir que o interlocutor conheça toda a arquitetura.
+
+### 12.2. Custo passa a ser uma dimensão obrigatória da tese
+
+Foi identificado um ponto ausente no modelo de negócio: **a estrutura de custos do produto**, tanto no MVP quanto em uma operação sustentável.
+
+A tese passa, portanto, a exigir três camadas econômicas:
+
+**Custo de construção → Custo de operação → Modelo de captura de valor**
+
+O custo do MVP deve considerar, conforme aplicável:
+
+- infraestrutura;
+- armazenamento e processamento de evidências;
+- inferência/modelos de IA;
+- revisão humana;
+- manutenção e observabilidade;
+- infraestrutura blockchain/attestation;
+- segurança e governança;
+- suporte e operação.
+
+O custo de operação não deve ser tratado como detalhe financeiro posterior. Ele é parte da validação do modelo de negócio.
+
+**Regra:** nenhuma hipótese de preço ou monetização deve ser apresentada como fato enquanto não houver dados que a sustentem.
+
+### 12.3. A tese precisa separar claramente problema, solução e mercado
+
+A consultoria reforçou a necessidade de evitar um discurso em que arquitetura, tecnologia e mercado sejam apresentados como se fossem a mesma coisa.
+
+A estrutura passa a ser:
+
+**PROBLEMA**  
+Organizações precisam entender competências reais e em transformação, mas as evidências estão fragmentadas e os papéis formais não representam completamente o trabalho que acontece.
+
+**SOLUÇÃO**  
+Uma camada de evidências e competências que organiza sinais de aprendizagem, aplicação e execução, permitindo avaliação, revisão humana e representação verificável do estado de competência.
+
+**EXTENSÃO**  
+A partir de mudanças observáveis em tarefas e competências, investigar como modelar novos requisitos de função e apoiar requalificação.
+
+**INFRAESTRUTURA DE CONFIANÇA**  
+Attestation e verificabilidade, com Solana como camada técnica específica — não como proposta de valor principal.
+
+### 12.4. Role Engineering ganha posição estratégica
+
+A consultoria ajudou a explicitar uma direção que já estava emergindo na pesquisa: **Dynamic Role Architecture / Role Engineering** pode ser uma extensão estratégica relevante do Learning Competency.
+
+A hipótese é:
+
+**Mudança no trabalho → Mudança nas tarefas → Mudança nas competências necessárias → Gap de competência → Requalificação → Nova demonstração de competência**
+
+Isso desloca parte da narrativa de:
+
+> “provar o que uma pessoa sabe”
+
+para uma questão organizacional mais ampla:
+
+> **“entender como o trabalho está mudando, quais competências passam a ser necessárias e como preparar pessoas para essa mudança.”**
+
+Essa extensão permanece em pesquisa. Não deve ser apresentada como funcionalidade comercial validada.
+
+### 12.5. O problema de dados passa a ser parte explícita da proposta
+
+A pesquisa passou a tratar a fragmentação organizacional como uma questão estrutural.
+
+Informações relevantes podem estar distribuídas entre:
+
+- RH;
+- operações;
+- sistemas corporativos;
+- planilhas;
+- treinamentos;
+- avaliações;
+- registros de atividade;
+- documentos;
+- dados de produção;
+- informações qualitativas de gestores.
+
+O desafio não é simplesmente “colocar tudo em um dashboard”.
+
+A hipótese arquitetural é construir uma camada de:
+
+**dados → proveniência → qualidade → evidência → competência → estado → decisão humana**
+
+Isso também explica por que o trabalho recente sobre **Data & Statistical Robustness** é necessário: uma inferência sobre competência ou mudança de função não pode ser mais forte que a qualidade e a independência das evidências que a sustentam.
+
+### 12.6. A validação de mercado passa a ser tratada como uma trilha independente
+
+A consultoria reforçou que qualidade técnica não equivale a validação comercial.
+
+O projeto passa a separar explicitamente:
+
+**M0 — sinal de mercado**  
+Estatísticas e estudos externos demonstram que o problema geral existe.
+
+**M1 — problema real**  
+Organizações confirmam que enfrentam o problema em seu contexto.
+
+**M2 — solução relevante**  
+Organizações reconhecem valor na solução proposta.
+
+**M3 — comportamento**  
+Uma organização utiliza a solução em um piloto ou fluxo real.
+
+**M4 — compromisso comercial**  
+Existe pagamento, contrato, LOI com condições concretas ou outro compromisso verificável.
+
+O documento research/04_MARKET_VALIDATION_EVIDENCE.md foi criado para manter essa distinção rastreável.
+
+### 12.7. Pitch e identidade passam a ser parte da execução
+
+Foi apontada também a necessidade de decidir e consolidar:
+
+- nome da marca;
+- identidade visual;
+- slogan/mensagem central;
+- linguagem de apresentação;
+- coerência visual dos documentos.
+
+Isso não altera a arquitetura do produto. O objetivo é evitar que diferentes documentos apresentem produtos aparentemente diferentes por utilizarem nomes, mensagens ou posicionamentos distintos.
+
+A identidade deve servir à tese, e não substituí-la.
+
+### 12.8. Matchmaking deixa de ser confundido com validação
+
+O contato com mentores, comunidades, programas e matchmaking pode gerar conexões e oportunidades, mas não deve ser contado automaticamente como validação de mercado.
+
+Da mesma forma:
+
+- uma conversa não é um piloto;
+- um elogio não é demanda;
+- uma indicação não é intenção de compra;
+- uma apresentação não é receita.
+
+Esses contatos devem ser tratados como **canais de acesso a evidência**, não como evidência comercial por si só.
+
+---
+
+## 13. Consequência estratégica
+
+Após a consultoria, a direção do projeto pode ser resumida em quatro frentes:
+
+### A. Produto
+
+Construir e demonstrar o vertical slice de:
+
+**Evidence → Competency → Review → State → Attestation → Verification**
+
+### B. Inteligência organizacional
+
+Investigar:
+
+**Organizational Data → Evidence Graph → Competency State → Role Delta → Competency Gap → Requalification**
+
+### C. Economia
+
+Quantificar:
+
+**MVP Cost → Operating Cost → Value Created → Buyer → Pricing Hypothesis**
+
+### D. Mercado
+
+Converter:
+
+**Market Signal → Customer Interview → Problem Evidence → Solution Fit → Pilot → Commercial Evidence**
+
+Essas quatro frentes devem evoluir em paralelo, mas não devem ser confundidas.
+
+---
+
+## 14. O que não mudou
+
+A consultoria não altera os seguintes princípios:
+
+- competência deve ser avaliada por evidências, não apenas por credenciais;
+- evidência deve preservar proveniência;
+- IA pode propor interpretações, mas decisões relevantes permanecem sujeitas à governança humana;
+- dados sensíveis não precisam ser expostos on-chain;
+- Solana é infraestrutura de verificabilidade, não o produto;
+- Dynamic Role Architecture continua sendo hipótese de pesquisa;
+- não devemos declarar market fit sem evidência comercial;
+- o MVP continua delimitado pelo seu contrato técnico.
+
+---
+
+## 15. Nova regra de comunicação
+
+A partir desta revisão, qualquer apresentação externa deve conseguir responder, de forma objetiva:
+
+1. **Qual é a dor?**
+2. **Quem sente essa dor?**
+3. **Como ela é resolvida hoje?**
+4. **Por que o processo atual é insuficiente?**
+5. **O que o Learning Competency acrescenta?**
+6. **Qual é o primeiro caso de uso?**
+7. **Quem usa?**
+8. **Quem paga?**
+9. **Qual é o custo para entregar o valor?**
+10. **Qual evidência já temos?**
+11. **O que ainda é hipótese?**
+12. **Qual é o próximo experimento para reduzir a incerteza?**
+
+Se uma dessas respostas não possuir evidência suficiente, deve ser marcada como **hipótese**, e não apresentada como fato.
+
+---
+
+## 16. Síntese pós-consultoria
+
+A evolução da tese não é simplesmente adicionar funcionalidades.
+
+É passar de uma arquitetura tecnicamente consistente para uma tese que consiga conectar:
+
+**DOR → DADOS → COMPETÊNCIA → MUDANÇA DO TRABALHO → REQUALIFICAÇÃO → PROVA → CONFIANÇA → VALOR ECONÔMICO**
+
+A principal mudança de direção é, portanto:
+
+> **Não basta provar que conseguimos construir o sistema. Precisamos demonstrar que o problema é real, que alguém sofre com ele, que nossa solução muda o processo de forma relevante e que existe uma forma economicamente sustentável de entregar esse valor.**
+
+Essa passa a ser a disciplina de produto após a consultoria.
