@@ -8,7 +8,7 @@ A camada não substitui a revisão humana, mas também não a trata como etapa o
 
 ## Posição arquitetural
 
-`INGEST → NORMALIZE → EXTRACT → INTERPRET → RELATE → REVIEW → GOVERNANCE / COMPLIANCE → UPDATE STATE → ATTEST → VERIFY`
+`INGEST → NORMALIZE → EXTRACT → INTERPRET → RELATE → VERIFICATION MECHANISMS → GOVERNANCE / COMPLIANCE → CONSENSUS CORE → UPDATE STATE → ATTEST → VERIFY`
 
 A camada de Governance / Compliance contém, entre outros mecanismos, um **Consensus Core**, responsável por operacionalizar a convergência entre verificações independentes.
 
@@ -42,7 +42,7 @@ A camada não presume que um avaliador seja parcial. Ela registra condições re
 
 ## Consensus Core
 
-O Consensus Core não depende exclusivamente de múltiplos avaliadores humanos. Ele pode receber resultados de diferentes mecanismos de verificação, desde que cada resultado preserve sua origem, regra/modelo, versão, justificativa e timestamp.
+O Consensus Core opera depois que as regras de governança/compliance aplicáveis foram definidas para o caso. Ele não depende exclusivamente de múltiplos avaliadores humanos. Ele pode receber resultados de diferentes mecanismos de verificação, desde que cada resultado preserve sua origem, regra/modelo, versão, justificativa e timestamp.
 
 Exemplo:
 
@@ -70,11 +70,11 @@ Somente depois da camada de Governance / Compliance o sistema pode atualizar o e
 
 Exemplo:
 
-`Evidence → Review → Governance → DEMONSTRATED`
+`Evidence → Verification → Governance → Consensus → DEMONSTRATED`
 
 ou:
 
-`Evidence → Review → Governance → INSUFFICIENT_EVIDENCE`
+`Evidence → Verification → Governance → Consensus → INSUFFICIENT_EVIDENCE`
 
 A existência de consenso não significa, por si só, que a competência seja verdadeira. Significa que o processo definido para avaliação foi satisfeito segundo as regras registradas.
 
@@ -152,12 +152,13 @@ Essas regras não devem ser inventadas como constantes universais; devem ser def
 
 A camada pode ser introduzida inicialmente de forma mínima, sem exigir uma rede complexa de avaliadores:
 
-1. registrar reviewer e critérios;
-2. registrar justificativa estruturada;
-3. registrar conflitos/independência;
+1. registrar os mecanismos de verificação e suas versões;
+2. registrar critérios e justificativas estruturadas;
+3. registrar conflitos/independência quando houver revisão humana;
 4. permitir segunda revisão quando a política exigir;
 5. bloquear atualização automática do estado quando houver conflito ou evidência insuficiente;
-6. preservar o contexto de governança no `ReviewedStateRecord`.
+6. encaminhar conflitos e exceções para adjudicação humana;
+7. preservar o contexto de governança no `ReviewedStateRecord`.
 
 A implementação mais sofisticada do Consensus Core permanece uma evolução incremental.
 
