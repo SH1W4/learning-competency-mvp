@@ -6,6 +6,8 @@ Reduzir a dependência de julgamento individual na transformação de evidência
 
 O Consensus Core não pretende eliminar julgamento humano. Ele desloca a intervenção humana para os casos em que as verificações são insuficientes, conflitantes ou exigem decisão contextual.
 
+**Regra de independência:** o Deterministic Rule Check não consome sinais, confiança ou classificação produzidos pela IA. Ele opera diretamente sobre o contrato da competência, atividades, tipos de evidência e evidências presentes.
+
 ## Princípio
 
 O sistema deve preferir:
@@ -57,7 +59,7 @@ Verifica se a evidência:
 
 ### 2. Deterministic Rule Check
 
-Aplica critérios objetivos e previamente definidos.
+Aplica critérios objetivos e previamente definidos diretamente sobre o contrato da competência e as evidências. Ele não recebe `relation.signals`, confiança ou classificação da IA.
 
 Exemplos:
 
