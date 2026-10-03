@@ -115,7 +115,7 @@ export class CompetencySession {
 
   /** Handoff to M3 (attestation). Only meaningful after review. */
   handoff(): ReviewedStateRecord {
-    if (!this.outcome || !this.interpretation) throw new TransitionError("handoff disponível após a revisão");
-    return buildHandoff(this.evidences, this.interpretation, this.outcome);
+    if (!this.interpretation || (!this.outcome && !this.consensus?.can_auto_advance)) throw new TransitionError("handoff disponível após uma decisão humana ou consenso");
+    return buildHandoff(this.evidences, this.interpretation, this.outcome, this.consensus);
   }
 }
