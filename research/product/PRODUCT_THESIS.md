@@ -139,7 +139,7 @@ Em vez de começar exclusivamente pela pergunta “Onde você estudou?”, o pro
 
 ---
 
-# Relatório de evolução após consultoria — Tarug
+# Relatório de evolução após o Contato #1 — Consultor externo
 
 **Data da revisão:** 2026-10-03  
 **Natureza:** consolidação de direcionamento estratégico  
