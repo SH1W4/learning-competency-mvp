@@ -4,108 +4,122 @@
   <img src="docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png" alt="Learning Competency" width="100%" />
 </p>
 
-<h3 align="center">Da evidência de aprendizagem ao estado verificável de competência.</h3>
+<h3 align="center">From learning evidence to verifiable competency state.</h3>
 
-<p align="center"><strong>Evidência → Verificação independente → Consenso → Estado → Prova</strong></p>
+<p align="center"><strong>Evidence → Independent Verification → Consensus → State → Proof</strong></p>
 
 [![CI](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml)
-![Testes](https://img.shields.io/badge/testes-78%20passing-success)
 ![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF)
 
-## O problema
+## The Problem
 
-Um certificado pode mostrar conclusão. Ele não necessariamente preserva aquilo que uma pessoa realmente demonstrou.
+A certificate can show completion. It does not necessarily preserve what a person actually demonstrated.
 
-O Learning Competency explora um modelo diferente:
+Learning Competency explores a different model:
 
-**atividade de desenvolvimento → evidência → interpretação → verificação → estado de competência → prova verificável**
+**development activity → evidence → interpretation → independent verification → competency state → verifiable proof**
 
-## Princípio central
+The current MVP focuses on the narrowest technically demonstrable wedge: turning learning evidence into a reviewed, verifiable competency state.
 
-### A IA não decide a competência.
+## Core Principle
 
-A IA auxilia na interpretação das evidências. O sistema separa interpretação, verificação, governança e decisão de estado.
+### AI does not decide competency.
 
-O Consensus Core reduz a dependência de julgamento individual ao exigir convergência entre mecanismos de verificação independentes. Casos conflitantes, ambíguos ou insuficientes podem ser encaminhados para adjudicação humana.
+AI assists with evidence interpretation. The system separates interpretation, verification, governance, and state transition.
 
-| Evidência | Interpretação | Verificação | Estado / Prova |
+The **Consensus Core** reduces dependence on individual judgment by requiring convergence across independent verification mechanisms. Conflicting, ambiguous, or insufficient cases can be routed to human adjudication.
+
+| Evidence | Interpretation | Verification | State / Proof |
 |---|---|---|---|
-| O que foi produzido | IA assistida | Regras e mecanismos independentes | Estado verificável |
+| What was produced | AI-assisted | Independent mechanisms | Verifiable state |
 
-## O que construímos
+## What We Built
 
-### M1 — Caso de uso concreto
+### M1 — Concrete competency scenario
 
-Um cenário corporativo focado em uma competência aplicada de análise de dados.
+A corporate learning scenario centered on an applied data-analysis competency.
 
-### M2 — Evidência, IA e revisão
+### M2 — Evidence and AI interpretation
 
-Um pipeline TypeScript/Node que recebe evidências, extrai informações observáveis, relaciona evidências a critérios de competência, produz interpretação assistida por IA e registra o contexto de verificação/revisão.
+A TypeScript/Node pipeline that receives evidence, extracts observable information, relates evidence to competency criteria, and produces AI-assisted interpretation.
 
-### M3 — Estado, atestação e verificação
+### M3 — State, attestation, and verification
 
-O estado de competência é representado por um registro determinístico. Sua integridade pode ser ancorada na Solana Devnet e posteriormente verificada.
+A competency state is represented as a deterministic record. Its integrity can be anchored to Solana Devnet and subsequently verified.
 
-    Evidência
+    Evidence
        ↓
-    Interpretação assistida
+    Integrity Check
        ↓
-    Verificações independentes
+    Deterministic Rule Check
+       ↓
+    AI Interpretation
+       ↓
+    Governance / Compliance
        ↓
     Consensus Core
        ↓
-    Estado de competência
+    Competency State
        ↓
-    Atestação
+    Attestation
        ↓
-    Verificação
+    Verification
 
-### Fronteira importante
+### Human adjudication is an exception layer
 
-A Solana **não determina independentemente se uma pessoa possui uma competência**.
+Human review is not removed. It is preserved for conflicts, ambiguity, insufficient evidence, contextual criteria, contestation, or other governance-defined exceptions.
 
-Ela fornece uma camada de integridade e verificação para um estado que já foi produzido pelo processo definido.
+### Blockchain is an integrity layer
 
-Dados sensíveis de aprendizagem permanecem off-chain.
+Solana does **not** independently determine whether a person has a competency.
 
-## Prova técnica
+It provides an integrity and verification layer for a state produced by the defined evidence and verification process.
 
-- suíte automatizada validada por CI;
-- vertical slice M1 → M2 → M3 implementado;
-- handoff M2 → M3 endurecido;
-- Consensus Core com verificação determinística independente da IA;
-- atestação em Solana Devnet demonstrada;
-- detecção de adulteração, validação do emissor e binding do payload cobertos por testes;
-- dados sintéticos da demonstração claramente identificados como sintéticos.
+Sensitive learning data remains off-chain.
 
-[Ver a transação de referência na Devnet →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
+## Technical Proof
 
-## O que este MVP faz — e o que não afirma
+- automated test suite and type checking;
+- M1 → M2 → M3 vertical slice implemented;
+- M2 → M3 handoff hardened;
+- Consensus Core with a deterministic verifier independent of AI signals;
+- Solana Devnet attestation demonstrated;
+- tamper detection, signer validation, and payload binding covered by tests;
+- synthetic demonstration data explicitly identified as synthetic.
 
-O MVP demonstra que um fluxo de desenvolvimento de competência pode produzir evidências estruturadas, auxiliar sua interpretação, aplicar verificações independentes, registrar contexto de decisão, representar um estado limitado e preservar uma referência verificável de integridade.
+[View the reference Devnet transaction →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
 
-Ele **não** afirma:
+## What This MVP Claims — and Does Not Claim
 
-- substituir a avaliação humana em todos os casos;
-- ser um LMS completo;
-- definir um framework universal de competências;
-- provar a verdade ou o mérito de uma competência por meio de blockchain;
-- colocar dados sensíveis de aprendizagem on-chain;
-- ter pricing, tração ou modelo comercial definitivo validados.
+The MVP demonstrates that a competency-development workflow can:
 
-## Documentação
+- structure learning evidence;
+- assist evidence interpretation with AI;
+- apply independent verification mechanisms;
+- preserve provenance and decision context;
+- produce a bounded competency state;
+- create a verifiable integrity reference.
 
-### Documentação de trabalho — português
+It does **not** claim to:
 
-A documentação principal de desenvolvimento, arquitetura, decisões e pesquisa permanece em português dentro de docs/ e research/.
+- replace human evaluation in every case;
+- operate as a complete LMS;
+- define a universal competency framework;
+- prove the truth or merit of a competency through blockchain;
+- place sensitive learning data on-chain;
+- have validated final pricing, traction, or a definitive commercial model.
 
-### Documentação para avaliação — inglês
+## Documentation
 
-Para avaliadores externos e para a submissão do hackathon, consulte:
+### For Hackathon Evaluators
 
 **[Evaluation Documentation — English](docs/evaluation/README.md)**
 
-Essa camada apresenta apenas o produto, arquitetura, modelo de verificação, demonstração, limitações e claims suportados pelo MVP.
+This is the curated evaluator layer covering product, architecture, verification and governance, demo/proof, limitations, and supported claims.
+
+### Working Documentation
+
+The project's operational architecture, implementation notes, and research remain in Portuguese under `docs/` and `research/`.
 
 ## Quick Start
 
@@ -114,12 +128,12 @@ Essa camada apresenta apenas o produto, arquitetura, modelo de verificação, de
     npm run typecheck
     npm run demo
 
-Para a demonstração de atestação na Solana Devnet:
+For Solana Devnet attestation:
 
     npm run m3:attest
     npm run m3:verify <tx_signature> [record_hash]
 
-## Estrutura do repositório
+## Repository Structure
 
     src/
     ├── ai/
@@ -137,23 +151,23 @@ Para a demonstração de atestação na Solana Devnet:
     docs/
     research/
 
-## Equipe
+## Team
 
-| Pessoa | Contribuição principal |
+| Contributor | Primary contribution |
 |---|---|
-| Erick | Pesquisa, contexto, mercado e operações |
-| JP Carvalho | M2 — pipeline de evidências, IA e revisão |
-| JP Fernandes | Branding, UX/UI e interface |
-| JX | Arquitetura, IA, evidências, atestação e Solana |
+| Erick | Research, context, market, and operations |
+| JP Carvalho | M2 — evidence pipeline, AI, and review |
+| JP Fernandes | Branding, UX/UI, and interface |
+| JX | Architecture, AI, evidence, attestation, and Solana |
 
-## Histórico do hackathon
+## Hackathon History
 
-Iniciado em 25 de setembro de 2026.
+Started on September 25, 2026.
 
-O projeto evoluiu de um conceito inicial de microcredenciais para um vertical slice focado, rastreável e verificável de competência.
+The project evolved from an initial micro-credential concept into a focused, traceable, and verifiable competency vertical slice.
 
 **M1 → M2 → M3 → Hardening → Feature Freeze**
 
-## Licença
+## License
 
-Os termos de licença e distribuição serão definidos antes da publicação de uma versão final.
+License and distribution terms will be defined before a final public release.
