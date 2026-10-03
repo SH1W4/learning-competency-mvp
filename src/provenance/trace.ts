@@ -14,7 +14,7 @@ import { canonicalJSON, sha256 } from "../util.js";
 
 export interface TraceNode {
   origin: Origin;
-  kind: "evidence" | "extracted_field" | "ai_signal" | "review_decision" | "final";
+  kind: "evidence" | "extracted_field" | "ai_signal" | "review_decision" | "consensus_decision" | "final";
   ref: string;
   detail: string;
 }
@@ -37,12 +37,17 @@ export function buildTrace(
   extractions: ExtractionResult[],
   interp: AIInterpretation,
   relation: RelationResult,
-  outcome: ReviewOutcome,
+  outcome: ReviewOutcome | undefined,
+  consensus?: ConsensusResult,
 ): ProvenanceTrace {
   const evById = new Map(evidences.map((e) => [e.evidence_id, e]));
   const exById = new Map(extractions.map((x) => [x.evidence_id, x]));
 
-  const criteria = outcome.criteria.map<CriterionTrace>((cr) => {
+  const criteria = (outcome?.criteria ?? consensus?.criteria.map((c) => ({
+    criterion_id: c.criterion_id,
+    final_assessment: c.status === "AGREEMENT" ? "supports" : "not_assessed",
+    evidence_refs: [],
+  })) ?? []).map<CriterionTrace>((cr) => {
     const chain: TraceNode[] = [];
     const sigs = relation.signals.filter((s) => s.criterion_id === cr.criterion_id);
     const citedEvidence = new Set(sigs.flatMap((s) => s.evidence_refs.map((r) => r.evidence_id)));
@@ -62,7 +67,7 @@ export function buildTrace(
         ref: s.signal_id,
         detail: `${s.support} (confiança ${s.confidence}) — ${s.rationale} [${interp.model.provider}/${interp.model.name}]`,
       });
-      const d = outcome.review.decisions.find((x) => x.signal_id === s.signal_id);
+      const d = outcome?.review.decisions.find((x) => x.signal_id === s.signal_id);
       if (d)
         chain.push({
           origin: "reviewer",
@@ -71,7 +76,18 @@ export function buildTrace(
           detail: `${d.action}${d.corrected_support ? ` → ${d.corrected_support}` : ""}${d.note ? ` — "${d.note}"` : ""} · ${outcome.review.reviewer.name}`,
         });
     }
-    chain.push({ origin: "reviewer", kind: "final", ref: cr.criterion_id, detail: `avaliação final: ${cr.final_assessment}` });
+    if (outcome) {
+      chain.push({ origin: "reviewer", kind: "final", ref: cr.criterion_id, detail: `avaliação final: ${cr.final_assessment}` });
+    } else {
+      const cc = consensus!.criteria.find((x) => x.criterion_id === cr.criterion_id)!;
+      chain.push({
+        origin: "consensus",
+        kind: "consensus_decision",
+        ref: `consensus:${cr.criterion_id}`,
+        detail: `resultado: ${cc.status}; ${cc.verifications.map((v) => `${v.mechanism}=${v.status}`).join(", ")}`,
+      });
+      chain.push({ origin: "consensus", kind: "final", ref: cr.criterion_id, detail: `avaliação final: ${cr.final_assessment}` });
+    }
     return { criterion_id: cr.criterion_id, chain };
   });
 
