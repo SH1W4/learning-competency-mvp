@@ -21,10 +21,11 @@ describe("Consensus Core — avaliação não-mutante", () => {
     const { s } = fullSession(env);
     await s.interpret(new HeuristicProvider(env));
     const before = s.state.value;
+    const historyBefore = structuredClone(s.state.history);
     evaluateConsensus(s.evidences, s.relation!);
 
     expect(s.state.value).toBe(before);
-    expect(s.state.history).toEqual([]);
+    expect(s.state.history).toEqual(historyBefore);
   });
 
   it("retorna INSUFFICIENT_EVIDENCE quando um critério não possui evidência elegível", async () => {
