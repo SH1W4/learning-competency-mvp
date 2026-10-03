@@ -1,7 +1,6 @@
 /**
  * Minimal competency state for the M2 side of the vertical slice (USE_CASE.md §6).
- * M3.1 (owner: SH1W4) finalizes the canonical state model; this module only covers the transitions M2 needs
- * and guarantees the core rule: nobody but a reviewer moves a state to DEMONSTRATED.
+ * M3.1 (owner: SH1W4) finalizes the canonical state model; this module only covers the transitions M2 needs.
  */
 import type { CompetencyState, CompetencyStateValue, Origin } from "../domain/types.js";
 
