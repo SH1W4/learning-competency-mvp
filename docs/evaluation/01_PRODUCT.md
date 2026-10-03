@@ -1,10 +1,10 @@
-# Product Overview
+# LASTRO — Product Overview
 
 ## The problem
 
 Completion records and certificates can show that an activity or course was completed. They do not necessarily preserve what a person actually demonstrated, which evidence supported the assessment, or how a competency state was reached.
 
-Learning Competency explores a traceable path from observable work to a bounded, verifiable competency state.
+LASTRO is the product identity for this Learning Competency infrastructure. It explores a traceable path from observable work to a bounded, verifiable competency state.
 
 ## Product thesis
 
