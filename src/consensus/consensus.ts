@@ -44,7 +44,7 @@ function evaluateCriterion(criterionId: CriterionId, evidences: Evidence[], rela
   const evidenceIntegrity: VerificationResult = {
     mechanism: "evidence_integrity",
     criterion_id: criterionId,
-    status: eligibleEvidence.length > 0 && eligibleEvidence.every((e) => Boolean(e.provenance.contentHash)),
+    status: eligibleEvidence.length > 0 && eligibleEvidence.every((e) => Boolean(e.provenance.contentHash)) ? "PASS" : "FAIL",
     rationale:
       eligibleEvidence.length > 0
         ? `há ${eligibleEvidence.length} evidência(s) elegível(is) com hash de conteúdo`
@@ -54,7 +54,7 @@ function evaluateCriterion(criterionId: CriterionId, evidences: Evidence[], rela
   const deterministic: VerificationResult = {
     mechanism: "deterministic_criteria",
     criterion_id: criterionId,
-    status: signals.length > 0 && signals.every((s) => s.evidence_refs.length > 0 && s.rejected_refs.length === 0),
+    status: signals.length > 0 && signals.every((s) => s.evidence_refs.length > 0 && s.rejected_refs.length === 0) ? "PASS" : "FAIL",
     rationale:
       signals.length > 0
         ? "há sinal(is) relacionado(s) exclusivamente a evidências aceitas pelo contrato"
@@ -64,7 +64,7 @@ function evaluateCriterion(criterionId: CriterionId, evidences: Evidence[], rela
   const interpretation: VerificationResult = {
     mechanism: "ai_interpretation",
     criterion_id: criterionId,
-    status: coverage.ai_assessment === "supports",
+    status: coverage.ai_assessment === "supports" ? "PASS" : "FAIL",
     rationale: `avaliação interpretativa: ${coverage.ai_assessment}`,
   };
 
