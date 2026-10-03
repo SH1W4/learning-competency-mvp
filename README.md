@@ -6,10 +6,10 @@
 
 <h3 align="center">From learning evidence to verifiable competency state.</h3>
 
-<p align="center"><strong>Evidence → AI interpretation → Human review → State → Proof</strong></p>
+<p align="center"><strong>Evidence → Independent verification → Consensus → State → Proof</strong></p>
 
 [![CI](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-70%20passing-success)
+![Tests](https://img.shields.io/badge/tests-77%20passing-success)
 ![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF)
 
 ## The Problem
