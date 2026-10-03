@@ -5,7 +5,7 @@
  * It produces an auditable decision that can later be wired to state transitions
  * after the rules are validated.
  */
-import { ALL_CRITERIA, EVIDENCE_CONTRACT } from "../domain/useCase.js";
+import { ALL_CRITERIA, EVIDENCE_CONTRACT, TRAIL } from "../domain/useCase.js";
 import type { CriterionId, Evidence } from "../domain/types.js";
 import type { RelationResult } from "../relation/relate.js";
 
