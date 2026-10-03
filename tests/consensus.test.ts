@@ -7,7 +7,7 @@ import { fixedEnv } from "../src/util.js";
 describe("Consensus Core — avaliação não-mutante", () => {
   it("produz AGREEMENT quando evidência, contrato determinístico e interpretação convergem", async () => {
     const env = fixedEnv();
-    const s = fullSession();
+    const { s } = fullSession(env);
     await s.interpret(new HeuristicProvider(env));
     const result = evaluateConsensus(s.evidences, s.relation!);
 
@@ -18,7 +18,7 @@ describe("Consensus Core — avaliação não-mutante", () => {
 
   it("não altera o estado da sessão", async () => {
     const env = fixedEnv();
-    const s = fullSession();
+    const { s } = fullSession(env);
     await s.interpret(new HeuristicProvider(env));
     const before = s.state.value;
     evaluateConsensus(s.evidences, s.relation!);
@@ -29,7 +29,7 @@ describe("Consensus Core — avaliação não-mutante", () => {
 
   it("retorna INSUFFICIENT_EVIDENCE quando um critério não possui evidência elegível", async () => {
     const env = fixedEnv();
-    const s = fullSession();
+    const { s } = fullSession(env);
     await s.interpret(new HeuristicProvider(env));
     const evidence = s.evidences.filter((e) => e.activity_id !== "A4");
     const relation = {
