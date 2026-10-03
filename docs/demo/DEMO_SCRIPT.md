@@ -7,10 +7,11 @@
 1. Uma competência é definida.
 2. Uma pessoa produz evidências em uma trilha curta.
 3. A evidência é processada e interpretada com apoio de IA.
-4. Um revisor humano avalia a interpretação.
-5. O sistema representa o estado revisado.
-6. O registro é atestado na Solana Devnet.
-7. Uma terceira parte pode verificar a integridade do registro.
+4. Verificações independentes avaliam integridade e critérios objetivos.
+5. O Consensus Core verifica a convergência.
+6. O sistema representa o estado quando há acordo; casos conflitantes seguem para adjudicação humana.
+7. O registro é atestado na Solana Devnet.
+8. Uma terceira parte pode verificar a integridade do registro.
 
 ## Aha moment
 
