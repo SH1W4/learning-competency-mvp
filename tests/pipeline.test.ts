@@ -52,15 +52,6 @@ describe("M2.7 — fluxo crítico ponta a ponta (cenário sintético Ana)", () =
     expect(() => s.submitForReview()).toThrow(/A3.*A4|atividades sem evidência/);
   });
 
-  it("evidência faltando bloqueia o envio para revisão", async () => {
-    const env = fixedEnv();
-    const s = new CompetencySession(SUBJECT, env);
-    s.submit(ANA.briefing());
-    s.submit(ANA.preparation());
-    await s.interpret(new HeuristicProvider(env));
-    expect(() => s.submitForReview()).toThrow(/A3.*A4|atividades sem evidência/);
-  });
-
   it("nova evidência invalida a interpretação anterior", async () => {
     const env = fixedEnv();
     const s = new CompetencySession(SUBJECT, env);
