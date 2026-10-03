@@ -8,7 +8,7 @@ import type { CompetencyState, CompetencyStateValue, Origin } from "../domain/ty
 const ALLOWED: Record<CompetencyStateValue, Partial<Record<CompetencyStateValue, Origin[]>>> = {
   NOT_STARTED: { IN_DEVELOPMENT: ["system"] },
   IN_DEVELOPMENT: { UNDER_REVIEW: ["system"] },
-  UNDER_REVIEW: { DEMONSTRATED: ["reviewer"], IN_DEVELOPMENT: ["reviewer"] },
+  UNDER_REVIEW: { DEMONSTRATED: ["reviewer", "consensus"], IN_DEVELOPMENT: ["reviewer", "consensus"] },
   DEMONSTRATED: {},
 };
 
