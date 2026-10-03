@@ -5,6 +5,7 @@ This directory contains exploratory research that may inform future product and 
 ## Active research tracks
 
 - [Dynamic Role Architecture](./01_DYNAMIC_ROLE_ARCHITECTURE.md)
+- [Role Delta Model](./02_ROLE_DELTA_MODEL.md)
 
 ## Research boundary
 
