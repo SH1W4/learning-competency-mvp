@@ -7,6 +7,7 @@ This directory contains exploratory research that may inform future product and 
 - [Dynamic Role Architecture](./01_DYNAMIC_ROLE_ARCHITECTURE.md)
 - [Role Delta Model](./02_ROLE_DELTA_MODEL.md)
 - [Data & Statistical Robustness](./03_DATA_STATISTICAL_ROBUSTNESS.md)
+- [Market Validation Evidence](./04_MARKET_VALIDATION_EVIDENCE.md)
 
 ## Research boundary
 
