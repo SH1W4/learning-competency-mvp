@@ -1,6 +1,5 @@
 /**
- * M2 orchestration: INGEST → NORMALIZE → EXTRACT → INTERPRET → RELATE → REVIEW (+ provenance, handoff to M3).
- * Each stage stays separate so provenance and review remain possible (SKILL.md §5).
+ * M2 orchestration: INGEST → NORMALIZE → EXTRACT → INTERPRET → RELATE → REVIEW / CONSENSUS.
  */
 import { COMPETENCY, TRAIL } from "./domain/useCase.js";
 import type { CompetencyState, Evidence, EvidenceSubmission, ExtractionResult, ReviewRecord } from "./domain/types.js";
@@ -10,6 +9,7 @@ import { extractFields } from "./evidence/extract.js";
 import { parseAIOutput, type AIInterpretation } from "./ai/contract.js";
 import type { InterpretationProvider } from "./ai/provider.js";
 import { relateToCompetency, type RelationResult } from "./relation/relate.js";
+import { evaluateConsensus, type ConsensusResult } from "./consensus/consensus.js";
 import { applyReview, type ReviewOutcome } from "./review/review.js";
 import { initialState, transition, TransitionError } from "./state/state.js";
 import { buildHandoff, buildTrace, type ProvenanceTrace, type ReviewedStateRecord } from "./provenance/trace.js";
@@ -28,16 +28,13 @@ export class CompetencySession {
   interpretation?: AIInterpretation;
   relation?: RelationResult;
   outcome?: ReviewOutcome;
+  consensus?: ConsensusResult;
   state: CompetencyState;
 
-  constructor(
-    readonly subject: string,
-    private env: Env = defaultEnv,
-  ) {
+  constructor(readonly subject: string, private env: Env = defaultEnv()) {
     this.state = initialState(subject, COMPETENCY.id);
   }
 
-  /** M2.1 + M2.2 */
   submit(sub: EvidenceSubmission): Evidence {
     if (this.state.value === "UNDER_REVIEW" || this.state.value === "DEMONSTRATED")
       throw new TransitionError(`não é possível enviar evidência com o estado em ${this.state.value}`);
@@ -46,13 +43,12 @@ export class CompetencySession {
     this.extractions.push(extractFields(normalizeEvidence(ev)));
     if (this.state.value === "NOT_STARTED")
       this.state = transition(this.state, "IN_DEVELOPMENT", "system", "pipeline", `primeira evidência recebida (${ev.evidence_id})`, this.env.now());
-    // New evidence invalidates any previous interpretation.
     this.interpretation = undefined;
     this.relation = undefined;
+    this.consensus = undefined;
     return ev;
   }
 
-  /** M2.3 + M2.4. Invalid AI output is rejected, not patched. */
   async interpret(provider: InterpretationProvider): Promise<RelationResult> {
     if (!this.evidences.length) throw new TransitionError("não há evidências para interpretar");
     const raw = await provider.interpret({ subject: this.subject, evidences: this.evidences, extractions: this.extractions });
@@ -64,28 +60,38 @@ export class CompetencySession {
     if (!check.ok) throw new InterpretationRejected(check.errors);
     this.interpretation = check.value!;
     this.relation = relateToCompetency(this.interpretation, this.evidences);
-    // Evidence that went through analysis moves N2 → N3. Never to N4 (requires external authenticated source).
     const analyzed = new Set(this.relation.signals.flatMap((s) => s.evidence_refs.map((r) => r.evidence_id)));
     for (const ev of this.evidences) if (analyzed.has(ev.evidence_id) && ev.trust_level === "N2_EVIDENCE_PRESENTED") ev.trust_level = "N3_EVIDENCE_ANALYZED";
     return this.relation;
   }
 
-  /** Activities of the trail that still have no evidence. */
   missingActivities(): string[] {
     const have = new Set(this.evidences.map((e) => e.activity_id));
     return TRAIL.activities.filter((a) => !have.has(a.id)).map((a) => `${a.id} — ${a.title}`);
   }
 
-  /** IN_DEVELOPMENT → UNDER_REVIEW (system), only with complete trail + valid interpretation. */
   submitForReview(): CompetencyState {
     if (!this.relation || !this.interpretation) throw new TransitionError("interprete as evidências antes de enviar para revisão");
     const missing = this.missingActivities();
     if (missing.length) throw new TransitionError(`atividades sem evidência: ${missing.join("; ")}`);
-    this.state = transition(this.state, "UNDER_REVIEW", "system", "pipeline", `trilha completa; interpretação ${this.interpretation.interpretation_id} pronta para revisão`, this.env.now());
+    this.state = transition(this.state, "UNDER_REVIEW", "system", "pipeline", `trilha completa; interpretação ${this.interpretation.interpretation_id} pronta para decisão`, this.env.now());
     return this.state;
   }
 
-  /** M2.5 */
+  consensusAdvance(): ConsensusResult {
+    if (this.state.value !== "UNDER_REVIEW") throw new TransitionError(`consenso só pode ser aplicado em UNDER_REVIEW (estado atual: ${this.state.value})`);
+    if (!this.relation) throw new TransitionError("não há interpretação para consenso");
+    const result = evaluateConsensus(this.evidences, this.relation);
+    this.consensus = result;
+    if (result.can_auto_advance) {
+      this.state = transition(
+        this.state, "DEMONSTRATED", "consensus", "consensus-core",
+        "verificações independentes convergiram para todos os critérios", this.env.now()
+      );
+    }
+    return result;
+  }
+
   review(record: ReviewRecord): ReviewOutcome {
     if (!this.relation) throw new TransitionError("não há interpretação para revisar");
     this.outcome = applyReview(this.state, this.relation, record);
@@ -93,15 +99,15 @@ export class CompetencySession {
     return this.outcome;
   }
 
-  /** M2.6 */
   trace(): ProvenanceTrace {
-    if (!this.outcome || !this.interpretation || !this.relation) throw new TransitionError("trace disponível após a revisão");
-    return buildTrace(this.evidences, this.extractions, this.interpretation, this.relation, this.outcome);
+    if ((!this.outcome && !this.consensus?.can_auto_advance) || !this.interpretation || !this.relation)
+      throw new TransitionError("trace disponível após uma decisão humana ou consenso");
+    return buildTrace(this.evidences, this.extractions, this.interpretation, this.relation, this.outcome, this.consensus);
   }
 
-  /** Handoff to M3 (attestation). Only meaningful after review. */
   handoff(): ReviewedStateRecord {
-    if (!this.outcome || !this.interpretation) throw new TransitionError("handoff disponível após a revisão");
-    return buildHandoff(this.evidences, this.interpretation, this.outcome);
+    if (!this.interpretation || (!this.outcome && !this.consensus?.can_auto_advance))
+      throw new TransitionError("handoff disponível após uma decisão humana ou consenso");
+    return buildHandoff(this.evidences, this.interpretation, this.outcome, this.consensus);
   }
 }
