@@ -35,7 +35,7 @@ describe("Consensus Core — avaliação não-mutante", () => {
     const relation = {
       ...s.relation!,
       signals: [],
-      coverage: s.relation!.coverage.map((c) => ({ ...c, ai_assessment: "supports" as const })),
+      coverage: s.relation!.coverage.map((c) => ({ ...c, ai_assessment: "does_not_support" as const })),
     };
     const result = evaluateConsensus(s.evidences, relation);
     expect(result.criteria.every((c) => c.verifications.find((v) => v.mechanism === "deterministic_criteria")?.status === "PASS")).toBe(true);
