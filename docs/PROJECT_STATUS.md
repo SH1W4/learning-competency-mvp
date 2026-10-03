@@ -78,3 +78,37 @@ Mudanças materiais devem manter rastreabilidade no GitHub.
 A camada técnica central está congelada. Novos trabalhos devem priorizar interface, demonstração, validação e correções críticas.
 
 Detalhes estratégicos de mercado, entrevistas e operação comercial são mantidos separadamente pelo time.
+
+
+## Roadmap de fechamento — M4
+
+### P0 — Prova técnica atualizada
+- [ ] Gerar nova attestation `m3.attestation.v2` em Solana Devnet.
+- [ ] Executar a verificação correspondente.
+- [ ] Registrar a transação atual em `docs/evaluation/04_DEMO_AND_PROOF.md`.
+- [ ] Atualizar o README com a prova pública atual.
+
+### P1 — Produto
+- [ ] Implementar o frontend conforme `docs/product/PITCH_ARCHITECTURE.md`.
+- [ ] Demonstrar o fluxo ponta a ponta sem criar lógica paralela.
+- [ ] Manter a arquitetura central em feature freeze.
+
+### P2 — Demonstração
+- [ ] Executar o cenário canônico.
+- [ ] Capturar a evidência técnica necessária para os jurados.
+- [ ] Finalizar o roteiro de demo.
+
+### P3 — Pitch
+- [ ] Problema.
+- [ ] LASTRO.
+- [ ] Aha moment.
+- [ ] Demonstração.
+- [ ] Diferencial técnico.
+- [ ] Mercado e hipótese de validação.
+- [ ] Limitações e próximos passos.
+
+### P4 — Validação externa
+- [ ] Entrevistas com organizações-alvo.
+- [ ] Validar o problema.
+- [ ] Validar o wedge.
+- [ ] Testar hipótese de piloto.
