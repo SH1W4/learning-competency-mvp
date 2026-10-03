@@ -1,183 +1,269 @@
 # LASTRO — Learning Competency Infrastructure
 
 <p align="center">
-  <img src="docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png" alt="Learning Competency" width="100%" />
+  <img src="docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png" alt="LASTRO" width="100%" />
 </p>
 
-<h3 align="center">LASTRO</h3>
+<p align="center"><strong>LASTRO</strong></p>
 
 <p align="center"><strong>Learning Competency Infrastructure</strong></p>
 
 <p align="center">Evidence-backed competency.</p>
 
-<p align="center"><strong>Evidence → Independent Verification → Consensus → State → Proof</strong></p>
+<p align="center"><strong>From evidence to verifiable competency.</strong></p>
 
 [![CI](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml)
 ![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF)
 
-## The Problem
+## Work is changing. Competency systems are not.
 
-A certificate can show completion. It does not necessarily preserve what a person actually demonstrated.
+Organizations are continuously changing how work gets done.
 
-Learning Competency explores a different model:
+Tasks change. Tools change. Responsibilities change. New capabilities emerge while existing ones become less relevant.
 
-**development activity → evidence → interpretation → independent verification → competency state → verifiable proof**
+Yet competency systems still tend to rely on **self-reports, static profiles, certificates, and subjective evaluation**.
 
-The current MVP focuses on the narrowest technically demonstrable wedge: turning learning evidence into a reviewed, verifiable competency state.
+The result is a gap between:
 
-## Core Principle
+**what someone says they can do**
 
-### AI does not decide competency.
+and
 
-AI assists with evidence interpretation. The system separates interpretation, verification, governance, and state transition.
+**what the organization can actually verify.**
 
-The **Consensus Core** reduces dependence on individual judgment by requiring convergence across independent verification mechanisms. Conflicting, ambiguous, or insufficient cases can be routed to human adjudication.
+## LASTRO
 
-| Evidence | Interpretation | Verification | State / Proof |
-|---|---|---|---|
-| What was produced | AI-assisted | Independent mechanisms | Verifiable state |
+LASTRO is infrastructure for turning **evidence of work into verifiable competency states**.
 
-## What We Built
+It connects observable evidence to competency criteria, applies independent verification mechanisms, preserves decision context, and produces a bounded state that can be independently verified.
 
-### M1 — Concrete competency scenario
+**Evidence → Verification → Competency State → Proof**
 
-A corporate learning scenario centered on an applied data-analysis competency.
+The current MVP demonstrates the narrowest version of this idea:
 
-### M2 — Evidence and AI interpretation
+> **A demonstrated competency does not have to remain a claim inside a system. It can become a verifiable state backed by evidence.**
 
-A TypeScript/Node pipeline that receives evidence, extracts observable information, relates evidence to competency criteria, and produces AI-assisted interpretation.
+## How it works
 
-### M3 — State, attestation, and verification
+A competency claim moves through a traceable process:
 
-A competency state is represented as a deterministic record. Its integrity can be anchored to Solana Devnet and subsequently verified.
+```text
+WORK
+  ↓
+EVIDENCE
+  ↓
+INTERPRETATION
+  ↓
+INDEPENDENT VERIFICATION
+  ↓
+CONSENSUS
+  ↓
+COMPETENCY STATE
+  ↓
+PROOF
+```
 
-    Evidence
-       ↓
-    Integrity Check
-       ↓
-    Deterministic Rule Check
-       ↓
-    AI Interpretation
-       ↓
-    Governance / Compliance
-       ↓
-    Consensus Core
-       ↓
-    Competency State
-       ↓
-    Attestation
-       ↓
-    Verification
+### 1. Evidence
 
-### Human adjudication is an exception layer
+The system captures evidence generated during learning and applied work.
 
-Human review is not removed. It is preserved for conflicts, ambiguity, insufficient evidence, contextual criteria, contestation, or other governance-defined exceptions.
+Evidence retains its origin, context, relationship to activities, and provenance.
 
-### Blockchain is an integrity layer
+### 2. Interpretation
 
-Solana does **not** independently determine whether a person has a competency.
+AI helps structure and interpret evidence against competency criteria.
 
-It provides an integrity and verification layer for a state produced by the defined evidence and verification process.
+**AI does not independently decide competency.**
+
+### 3. Independent verification
+
+Different mechanisms examine the evidence from different perspectives:
+
+- evidence and integrity checks;
+- deterministic criteria verification;
+- statistical or robustness checks where applicable;
+- AI-assisted interpretation;
+- governance and compliance rules.
+
+The deterministic criteria verifier is intentionally independent from AI interpretation.
+
+### 4. Consensus
+
+The **Consensus Core** reduces dependence on individual judgment by requiring convergence across verification mechanisms.
+
+Possible outcomes include:
+
+- **AGREEMENT** — evidence and verification converge;
+- **INSUFFICIENT EVIDENCE** — the system does not have enough support;
+- **CONFLICT** — verification mechanisms disagree;
+- **HUMAN ADJUDICATION** — an exception requires contextual judgment.
+
+Human judgment is not eliminated. It becomes an explicit, traceable exception layer.
+
+### 5. Competency state
+
+Only what the evidence and verification process supports becomes state.
+
+The system does not pretend certainty where evidence is insufficient.
+
+### 6. Proof
+
+The resulting state can be represented as a deterministic record with provenance and an integrity reference.
+
+In the current MVP, that integrity reference can be anchored on **Solana Devnet** using the Memo Program.
+
+Blockchain does not determine whether someone is competent.
+
+It helps prove that a particular state and its referenced record existed in a verifiable form.
+
+## The bigger opportunity
+
+The current MVP starts with competency evidence.
+
+The larger product vision is to understand how competency requirements change as work changes:
+
+```text
+WORK CHANGE
+    ↓
+ROLE DELTA
+    ↓
+COMPETENCY GAP
+    ↓
+REQUALIFICATION
+    ↓
+EVIDENCE
+    ↓
+VERIFICATION
+    ↓
+PROOF OF COMPETENCY
+```
+
+This creates a potential bridge between **organizational change, workforce intelligence, requalification, and verifiable competency**.
+
+This broader layer is a research and validation hypothesis, not a claim that the current MVP already solves organizational workforce planning.
+
+## Why this is different
+
+LASTRO is not simply another learning platform.
+
+It is built around the question:
+
+> **What evidence supports the competency state we are claiming?**
+
+That leads to a different architecture:
+
+| Conventional approach | LASTRO approach |
+|---|---|
+| Completion | Demonstrated competency |
+| Self-report | Evidence-backed state |
+| Single evaluation | Independent verification mechanisms |
+| Opaque score | Traceable decision context |
+| Static record | State with provenance |
+| Certificate | Verifiable proof |
+
+The goal is not to automate every human decision.
+
+The goal is to make competency decisions **more evidence-based, more traceable, and less dependent on a single judgment**.
+
+## What the MVP proves
+
+The current implementation demonstrates a complete technical vertical slice:
+
+**evidence → interpretation → independent verification → consensus → competency state → attestation → verification**
+
+It demonstrates:
+
+- structured learning evidence;
+- AI-assisted evidence interpretation;
+- deterministic verification independent of AI signals;
+- governance-aware state transitions;
+- conflict and insufficient-evidence handling;
+- provenance and deterministic record hashing;
+- Solana Devnet integrity anchoring;
+- independent verification of the resulting proof.
+
+It does **not** claim:
+
+- universal competency assessment;
+- replacement of human evaluation in every context;
+- a complete LMS;
+- autonomous hiring or firing decisions;
+- blockchain-based proof of truth or merit;
+- validated final pricing, traction, or recurring commercial adoption.
+
+## See the evidence behind the narrative
+
+The repository separates the product story from the technical and research evidence.
+
+### Product
+
+- **[Product Overview](docs/evaluation/01_PRODUCT.md)** — product thesis, wedge, differentiation, user journey, and current boundary.
+- **[Pitch Architecture](docs/product/PITCH_ARCHITECTURE.md)** — the product narrative from work change to proof of competency.
+
+### Technical proof
+
+- **[Architecture & Evidence Pipeline](docs/evaluation/02_ARCHITECTURE.md)** — end-to-end architecture and evidence flow.
+- **[Verification, Governance & Attestation](docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md)** — Consensus Core, governance, human adjudication, and attestation model.
+- **[Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md)** — reproducible demo path and what the implementation actually demonstrates.
+- **[Limitations & Claims](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md)** — explicit boundary between implementation, evidence, and hypothesis.
+
+### Research / future opportunity
+
+- **[Dynamic Role Architecture](research/01_DYNAMIC_ROLE_ARCHITECTURE.md)** — research hypothesis for deriving emerging competency requirements from changes in work.
+- **[Role Delta Model](research/02_ROLE_DELTA_MODEL.md)** — formal model for representing how tasks, responsibilities, competencies, and tools change.
+- **[Data & Statistical Robustness](research/03_DATA_STATISTICAL_ROBUSTNESS.md)** — evidence-quality and statistical requirements for organizational inference.
+- **[Market Validation Evidence](research/04_MARKET_VALIDATION_EVIDENCE.md)** — what is supported by market signals and what still requires customer validation.
+
+**[Full Evaluation Documentation →](docs/evaluation/README.md)**
+
+## Technical stack
+
+- TypeScript / Node.js
+- AI-assisted evidence interpretation
+- deterministic verification
+- governance and provenance layer
+- Consensus Core
+- Solana Devnet integrity anchoring
 
 Sensitive learning data remains off-chain.
 
-## Technical Proof
+## Quick start
 
-- automated test suite and type checking;
-- M1 → M2 → M3 vertical slice implemented;
-- M2 → M3 handoff hardened;
-- Consensus Core with a deterministic verifier independent of AI signals;
-- Solana Devnet attestation demonstrated;
-- tamper detection, signer validation, and payload binding covered by tests;
-- synthetic demonstration data explicitly identified as synthetic.
+```bash
+npm install
+npm test
+npm run typecheck
+npm run demo
+```
 
-**Live proof:** generate a current `m3.attestation.v2` Devnet attestation with `npm run m3:attest`, then verify it with `npm run m3:verify <tx_signature> [record_hash]`.
+For a current Solana Devnet attestation:
 
-## What This MVP Claims — and Does Not Claim
+```bash
+npm run m3:attest
+npm run m3:verify <tx_signature> [record_hash]
+```
 
-The MVP demonstrates that a competency-development workflow can:
+## Repository structure
 
-- structure learning evidence;
-- assist evidence interpretation with AI;
-- apply independent verification mechanisms;
-- preserve provenance and decision context;
-- produce a bounded competency state;
-- create a verifiable integrity reference.
-
-It does **not** claim to:
-
-- replace human evaluation in every case;
-- operate as a complete LMS;
-- define a universal competency framework;
-- prove the truth or merit of a competency through blockchain;
-- place sensitive learning data on-chain;
-- have validated final pricing, traction, or a definitive commercial model.
-
-## Documentation
-
-### For Hackathon Evaluators
-
-**[LASTRO — Evaluation Documentation](docs/evaluation/README.md)**
-
-Start here. This is the curated evaluator layer and should be read in this order:
-
-1. [Product Overview](docs/evaluation/01_PRODUCT.md) — what LASTRO is and why it matters
-2. [Architecture & Evidence Pipeline](docs/evaluation/02_ARCHITECTURE.md) — how the system works
-3. [Consensus, Governance & Attestation](docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md) — why the state is trustworthy and bounded
-4. [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md) — what is actually demonstrated
-5. [Limitations & Claims](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md) — what is implemented versus still a hypothesis
-
-### Working Documentation
-
-The project's operational architecture, implementation notes, and research remain in Portuguese under `docs/` and `research/`.
-
-## Quick Start
-
-    npm install
-    npm test
-    npm run typecheck
-    npm run demo
-
-For Solana Devnet attestation:
-
-    npm run m3:attest
-    npm run m3:verify <tx_signature> [record_hash]
-
-## Repository Structure
-
-    src/
-    ├── ai/
-    ├── evidence/
-    ├── relation/
-    ├── review/
-    ├── state/
-    ├── provenance/
-    ├── solana/
-    ├── domain/
-    └── cli/
-
-    tests/
-    fixtures/
-    docs/
-    research/
+```text
+src/          implementation
+tests/        automated coverage
+docs/         product, architecture, evaluation, and operational docs
+research/     research hypotheses and validation work
+```
 
 ## Team
 
 | Contributor | Primary contribution |
 |---|---|
 | Erick | Research, context, market, and operations |
-| JP Carvalho | M2 — evidence pipeline, AI, and review |
+| JP Carvalho | Evidence pipeline, AI, and review |
 | JP Fernandes | Branding, UX/UI, and interface |
 | JX | Architecture, AI, evidence, attestation, and Solana |
 
-## Hackathon History
+---
 
-Started on September 25, 2026.
+**LASTRO — Evidence-backed competency.**
 
-The project evolved from an initial micro-credential concept into a focused, traceable, and verifiable competency vertical slice.
+From evidence to a competency state that can be understood, verified, and built upon.
 
-**M1 → M2 → M3 → Hardening → Feature Freeze**
-
-## License
-
-License and distribution terms will be defined before a final public release.
