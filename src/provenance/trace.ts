@@ -120,7 +120,7 @@ export interface ReviewedStateRecord {
   record_hash: string;
 }
 
-export function buildHandoff(evidences: Evidence[], interp: AIInterpretation, outcome: ReviewOutcome | undefined, consensus?: ConsensusResult): ReviewedStateRecord {
+export function buildHandoff(evidences: Evidence[], interp: AIInterpretation, outcome: ReviewOutcome | undefined, consensus?: ConsensusResult, state?: CompetencyState): ReviewedStateRecord {
   if (!outcome && !consensus) throw new Error("handoff exige decisão humana ou consenso");
   const used = new Set(outcome ? outcome.criteria.flatMap((c) => c.evidence_refs.map((r) => r.evidence_id)) : evidences.map((e) => e.evidence_id));
   const body: Omit<ReviewedStateRecord, "record_hash"> = {
