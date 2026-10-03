@@ -1,14 +1,14 @@
 /**
  * Minimal competency state for the M2 side of the vertical slice (USE_CASE.md §6).
  * M3.1 (owner: SH1W4) finalizes the canonical state model; this module only covers the transitions M2 needs
- * and guarantees the core rule: nobody but a reviewer moves a state to DEMONSTRATED.
+ * and allows a validated Consensus Core decision to move a state to DEMONSTRATED.
  */
 import type { CompetencyState, CompetencyStateValue, Origin } from "../domain/types.js";
 
 const ALLOWED: Record<CompetencyStateValue, Partial<Record<CompetencyStateValue, Origin[]>>> = {
   NOT_STARTED: { IN_DEVELOPMENT: ["system"] },
   IN_DEVELOPMENT: { UNDER_REVIEW: ["system"] },
-  UNDER_REVIEW: { DEMONSTRATED: ["reviewer"], IN_DEVELOPMENT: ["reviewer"] },
+  UNDER_REVIEW: { DEMONSTRATED: ["reviewer", "consensus"], IN_DEVELOPMENT: ["reviewer", "consensus"] },
   DEMONSTRATED: {},
 };
 
