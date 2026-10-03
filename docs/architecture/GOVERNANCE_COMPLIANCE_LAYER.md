@@ -4,13 +4,13 @@
 
 Reduzir o risco de que uma interpretação ou avaliação individual transforme evidência em estado de competência de forma arbitrária, inconsistente ou não auditável.
 
-A camada não substitui a revisão humana. Ela **governa as condições sob as quais a revisão pode produzir um estado**.
+A camada não substitui a revisão humana, mas também não a trata como etapa obrigatória em todos os casos. Ela **governa as condições sob as quais verificações convergentes ou uma decisão humana podem produzir um estado**.
 
 ## Posição arquitetural
 
 `INGEST → NORMALIZE → EXTRACT → INTERPRET → RELATE → REVIEW → GOVERNANCE / COMPLIANCE → UPDATE STATE → ATTEST → VERIFY`
 
-A camada de Governance / Compliance contém, entre outros mecanismos, um **Consensus Core**.
+A camada de Governance / Compliance contém, entre outros mecanismos, um **Consensus Core**, responsável por operacionalizar a convergência entre verificações independentes.
 
 ## Princípio central
 
@@ -42,11 +42,17 @@ A camada não presume que um avaliador seja parcial. Ela registra condições re
 
 ## Consensus Core
 
-Cada avaliação deve poder registrar:
+O Consensus Core não depende exclusivamente de múltiplos avaliadores humanos. Ele pode receber resultados de diferentes mecanismos de verificação, desde que cada resultado preserve sua origem, regra/modelo, versão, justificativa e timestamp.
+
+Exemplo:
+
+`mechanism → input/reference → result → rationale → version → timestamp`
+
+Quando houver revisão humana, também deve ser preservado:
 
 `reviewer → criteria → evidence → decision → rationale → conflicts → timestamp`
 
-O Consensus Core compara avaliações e determina o resultado de governança conforme regras previamente definidas.
+O Consensus Core compara os resultados e determina o resultado de governança conforme regras previamente definidas.
 
 Estados possíveis do processo incluem:
 
@@ -87,6 +93,8 @@ Esses metadados devem influenciar as regras de elegibilidade quando a política 
 
 ## Human-in-the-loop
 
+O humano passa a ser prioritariamente uma camada de exceção, contestação e adjudicação. A intervenção é acionada quando as verificações não convergem, quando a evidência é insuficiente ou quando o contexto não pode ser adequadamente formalizado.
+
 A IA pode:
 
 - organizar evidências;
@@ -97,7 +105,7 @@ A IA pode:
 
 A IA não deve, sozinha, converter evidência em `DEMONSTRATED`.
 
-O Consensus Core também não deve substituir o julgamento humano: ele operacionaliza regras de governança para tornar o processo mais consistente, explicável e auditável.
+O Consensus Core não substitui julgamento humano nos casos em que ele é necessário. Ele reduz a quantidade de casos que dependem de uma decisão subjetiva individual ao operacionalizar regras de governança e convergência.
 
 ## Adjudicação
 
