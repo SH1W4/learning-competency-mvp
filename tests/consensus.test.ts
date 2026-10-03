@@ -28,6 +28,20 @@ describe("Consensus Core — avaliação não-mutante", () => {
     expect(s.state.history).toEqual(historyBefore);
   });
 
+  it("não usa os sinais da IA para o deterministic_criteria", async () => {
+    const env = fixedEnv();
+    const { s } = fullSession(env);
+    await s.interpret(new HeuristicProvider(env));
+    const relation = {
+      ...s.relation!,
+      signals: [],
+      coverage: s.relation!.coverage.map((c) => ({ ...c, ai_assessment: "supports" as const })),
+    };
+    const result = evaluateConsensus(s.evidences, relation);
+    expect(result.criteria.every((c) => c.verifications.find((v) => v.mechanism === "deterministic_criteria")?.status === "PASS")).toBe(true);
+    expect(result.status).toBe("CONFLICT");
+  });
+
   it("retorna INSUFFICIENT_EVIDENCE quando um critério não possui evidência elegível", async () => {
     const env = fixedEnv();
     const { s } = fullSession(env);
