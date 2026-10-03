@@ -67,14 +67,16 @@ export function buildTrace(
         ref: s.signal_id,
         detail: `${s.support} (confiança ${s.confidence}) — ${s.rationale} [${interp.model.provider}/${interp.model.name}]`,
       });
-      const d = outcome?.review.decisions.find((x) => x.signal_id === s.signal_id);
-      if (d)
-        chain.push({
-          origin: "reviewer",
-          kind: "review_decision",
-          ref: `${outcome.review.review_id}:${s.signal_id}`,
-          detail: `${d.action}${d.corrected_support ? ` → ${d.corrected_support}` : ""}${d.note ? ` — "${d.note}"` : ""} · ${outcome.review.reviewer.name}`,
-        });
+      if (outcome) {
+        const d = outcome.review.decisions.find((x) => x.signal_id === s.signal_id);
+        if (d)
+          chain.push({
+            origin: "reviewer",
+            kind: "review_decision",
+            ref: `${outcome.review.review_id}:${s.signal_id}`,
+            detail: `${d.action}${d.corrected_support ? ` → ${d.corrected_support}` : ""}${d.note ? ` — "${d.note}"` : ""} · ${outcome.review.reviewer.name}`,
+          });
+      }
     }
     if (outcome) {
       chain.push({ origin: "reviewer", kind: "final", ref: cr.criterion_id, detail: `avaliação final: ${cr.final_assessment}` });
