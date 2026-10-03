@@ -4,10 +4,12 @@
  *
  * Also builds the M2 → M3 handoff record (input proposal for M3.2 — the final attestation payload is owned by M3).
  */
+import { EVIDENCE_CONTRACT } from "../domain/useCase.js";
 import type { CriterionId, Evidence, ExtractionResult, Origin } from "../domain/types.js";
 import type { AIInterpretation } from "../ai/contract.js";
 import type { RelationResult } from "../relation/relate.js";
 import type { ReviewOutcome } from "../review/review.js";
+import type { ConsensusResult } from "../consensus/consensus.js";
 import { canonicalJSON, sha256 } from "../util.js";
 
 export interface TraceNode {
@@ -96,37 +98,51 @@ export interface ReviewedStateRecord {
   criteria: Array<{ criterion_id: CriterionId; final_assessment: string; evidence_ids: string[] }>;
   evidence: Array<{ evidence_id: string; type: string; activity_id: string; content_hash: string; trust_level: string }>;
   interpretation: { id: string; model: string; contract_version: string };
-  review: { review_id: string; reviewer_id: string; reviewer_role: string; reviewed_at: string; confirm_demonstrated: boolean };
+  decision: { mode: "human_review" | "consensus"; review_id?: string; reviewer_id?: string; reviewer_role?: string; decided_at: string; confirm_demonstrated: boolean };
   record_hash: string;
 }
 
-export function buildHandoff(evidences: Evidence[], interp: AIInterpretation, outcome: ReviewOutcome): ReviewedStateRecord {
-  const used = new Set(outcome.criteria.flatMap((c) => c.evidence_refs.map((r) => r.evidence_id)));
+export function buildHandoff(evidences: Evidence[], interp: AIInterpretation, outcome: ReviewOutcome | undefined, consensus?: ConsensusResult): ReviewedStateRecord {
+  if (!outcome && !consensus) throw new Error("handoff exige decisão humana ou consenso");
+  const used = new Set(outcome ? outcome.criteria.flatMap((c) => c.evidence_refs.map((r) => r.evidence_id)) : evidences.map((e) => e.evidence_id));
   const body: Omit<ReviewedStateRecord, "record_hash"> = {
     record_version: "m2.reviewed-state.v1",
     synthetic: evidences.some((e) => e.provenance.synthetic),
-    subject: outcome.state.subject,
-    competency_id: outcome.state.competency_id,
-    state: outcome.state.value,
-    state_history: outcome.state.history,
-    criteria: outcome.criteria.map((c) => ({
+    subject: outcome?.state.subject ?? interp.subject,
+    competency_id: outcome?.state.competency_id ?? "comp:data-analysis-reproducible",
+    state: outcome?.state.value ?? "DEMONSTRATED",
+    state_history: outcome?.state.history ?? [],
+    criteria: outcome ? outcome.criteria.map((c) => ({
       criterion_id: c.criterion_id,
       final_assessment: c.final_assessment,
       evidence_ids: [...new Set(c.evidence_refs.map((r) => r.evidence_id))],
+    })) : consensus!.criteria.map((c) => ({
+      criterion_id: c.criterion_id,
+      final_assessment: c.status === "AGREEMENT" ? "supports" : "not_assessed",
+      evidence_ids: [...new Set(relationEvidenceIds(evidences, c.criterion_id))],
     })),
     evidence: evidences
       .filter((e) => used.has(e.evidence_id))
       .map((e) => ({ evidence_id: e.evidence_id, type: e.type, activity_id: e.activity_id, content_hash: e.provenance.contentHash, trust_level: e.trust_level })),
     interpretation: { id: interp.interpretation_id, model: `${interp.model.provider}/${interp.model.name}`, contract_version: interp.contract_version },
-    review: {
+    decision: outcome ? {
+      mode: "human_review",
       review_id: outcome.review.review_id,
       reviewer_id: outcome.review.reviewer.id,
       reviewer_role: outcome.review.reviewer.role,
-      reviewed_at: outcome.review.reviewed_at,
+      decided_at: outcome.review.reviewed_at,
       confirm_demonstrated: outcome.review.confirm_demonstrated,
+    } : {
+      mode: "consensus",
+      decided_at: new Date().toISOString(),
+      confirm_demonstrated: true,
     },
   };
   return { ...body, record_hash: sha256(canonicalJSON(body)) };
+}
+
+function relationEvidenceIds(evidences: Evidence[], criterionId: CriterionId): string[] {
+  return evidences.filter((e) => EVIDENCE_CONTRACT[e.type].criteria.includes(criterionId)).map((e) => e.evidence_id);
 }
 
 export function verifyHandoff(rec: ReviewedStateRecord): boolean {
