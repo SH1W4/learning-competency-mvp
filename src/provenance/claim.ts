@@ -24,9 +24,14 @@ export interface VerifiableClaim {
 /**
  * Builds an explicit, bounded declaration from the existing reviewed state.
  * This is additive: it does not replace ReviewedStateRecord or change the M1→M3 flow.
+ *
+ * Compatibility note: the claim layer historically called the decision reference
+ * "review_ref". The source of truth is now ReviewedStateRecord.decision, which
+ * may be human review or Consensus Core.
  */
 export function buildVerifiableClaim(record: ReviewedStateRecord): VerifiableClaim {
   const evidenceRefs = [...new Set(record.criteria.flatMap((c) => c.evidence_ids))];
+  const decisionRef = record.decision.review_id ?? "consensus-core";
 
   return {
     claim_id: `claim:${record.record_hash.slice(0, 16)}`,
@@ -39,28 +44,30 @@ export function buildVerifiableClaim(record: ReviewedStateRecord): VerifiableCla
       evidence_ids: [...c.evidence_ids],
     })),
     evidence_refs: evidenceRefs,
-    review_ref: record.review.review_id,
+    review_ref: decisionRef,
     scope: {
       competency: record.competency_id,
       state: record.state,
       evidence_bound: true,
-      reviewer_confirmed: record.review.confirm_demonstrated,
+      reviewer_confirmed: record.decision.confirm_demonstrated,
     },
   };
 }
 
 /**
  * Structural support check for the claim.
- * It establishes references and reviewer confirmation, not truth or competency correctness.
+ * It establishes references and decision confirmation, not truth or competency correctness.
  */
 export function verifyClaimSupport(claim: VerifiableClaim, record: ReviewedStateRecord): boolean {
+  const decisionRef = record.decision.review_id ?? "consensus-core";
+
   if (claim.claim_id !== `claim:${record.record_hash.slice(0, 16)}`) return false;
   if (claim.scope.evidence_bound !== true) return false;
   if (claim.subject !== record.subject) return false;
   if (claim.competency_id !== record.competency_id) return false;
   if (claim.state !== record.state) return false;
-  if (claim.review_ref !== record.review.review_id) return false;
-  if (claim.scope.reviewer_confirmed !== record.review.confirm_demonstrated) return false;
+  if (claim.review_ref !== decisionRef) return false;
+  if (claim.scope.reviewer_confirmed !== record.decision.confirm_demonstrated) return false;
   if (claim.scope.competency !== claim.competency_id) return false;
   if (claim.scope.state !== claim.state) return false;
 

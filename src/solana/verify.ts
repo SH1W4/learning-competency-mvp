@@ -127,13 +127,15 @@ export async function verifyAttestation(
   // A verificação deve provar que a attestation representa exatamente o registro fornecido.
   if (options.record) {
     const expectedSubjectRef = subjectRef(options.record.subject, options.record.record_hash);
+    checks.subject_ref = payload?.subject_ref === expectedSubjectRef;
+
     const binding =
       payload?.mvp === MVP_ID &&
       payload?.v === ATTESTATION_VERSION &&
       payload?.record_hash === options.record.record_hash &&
       payload?.competency === options.record.competency_id &&
       payload?.state === options.record.state &&
-      payload?.subject_ref === expectedSubjectRef &&
+      checks.subject_ref === true &&
       (!options.expectedSigner || payload?.attester === options.expectedSigner);
 
     checks.payload_binding = binding;

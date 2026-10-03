@@ -1,0 +1,91 @@
+# Demo & Technical Proof
+
+## Demonstration scenario
+
+The MVP uses a synthetic competency-development scenario centered on one person and one short learning trail.
+
+The data is explicitly synthetic. It is not presented as customer, pilot, traction, or market-validation evidence.
+
+## Canonical demo flow
+
+```
+Competency
+   ↓
+Activities
+   ↓
+Evidence
+   ↓
+AI interpretation
+   ↓
+Independent verification
+   ↓
+Consensus
+   ↓
+DEMONSTRATED
+   ↓
+Attestation
+   ↓
+Public verification
+```
+
+## Technical path
+
+Local demonstration:
+
+```bash
+npm install
+npm test
+npm run typecheck
+npm run demo
+```
+
+Attestation:
+
+```bash
+npm run m3:attest
+```
+
+Verification:
+
+```bash
+npm run m3:verify <tx_signature> [record_hash]
+```
+
+## What the demo proves
+
+The vertical slice demonstrates that:
+
+1. evidence can be structured and linked to activities;
+2. AI interpretation can be kept separate from source evidence;
+3. deterministic criteria can be evaluated independently of AI signals;
+4. verification results can converge in the covered scenario;
+5. the competency state can be updated from that convergent result;
+6. the resulting state can be represented by a deterministic record;
+7. the record can be anchored on Solana Devnet;
+8. the integrity relationship can later be verified.
+
+## What the demo does not prove
+
+The demo does not prove:
+
+- commercial demand;
+- customer adoption;
+- pricing;
+- generalized competency assessment across domains;
+- absence of bias;
+- universal truth of a competency;
+- production-scale reliability.
+
+## Test evidence
+
+The repository maintains automated coverage for the core flow, including:
+
+- human-review progression;
+- Consensus Core agreement;
+- insufficient evidence;
+- deterministic verifier independence from AI signals;
+- invalidation of prior interpretation when new evidence arrives;
+- evidence submission restrictions during review;
+- provenance and consensus handoff.
+
+The current branch records **78 passing tests** at the latest stabilized CI point. Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.

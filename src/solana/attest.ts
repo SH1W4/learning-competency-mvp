@@ -43,8 +43,8 @@ export async function createAttestationOnChain(
   if (!verifyHandoff(record)) {
     throw new Error('Handoff inválido: o record_hash não confere com o conteúdo do reviewed-state.json. Atestação recusada.');
   }
-  if (record.state !== 'DEMONSTRATED' || !record.review.confirm_demonstrated) {
-    throw new Error('Atestação recusada: o reviewed-state precisa estar em DEMONSTRATED com confirmação explícita do reviewer.');
+  if (record.state !== 'DEMONSTRATED' || !record.decision.confirm_demonstrated) {
+    throw new Error('Atestação recusada: o reviewed-state precisa estar em DEMONSTRATED com decisão válida.');
   }
 
   const connection = new Connection(networkUrl, 'confirmed');

@@ -21,11 +21,13 @@ Activities
   ↓
 Evidence
   ↓
-AI interpretation
+Independent verification mechanisms
   ↓
-Human review
+Consensus Core
   ↓
 Competency state
+  ↓
+Human adjudication only when necessary
   ↓
 Attestation
   ↓
@@ -55,11 +57,11 @@ Verification
 
 ## Reviewer
 
-1. Receives evidence and AI interpretation.
+1. Receives the verification context when adjudication is required.
 2. Distinguishes source material from AI inference.
-3. Accepts, corrects, rejects or requests additional evidence.
-4. Records the review context.
-5. Enables or prevents the corresponding state transition according to the defined rules.
+3. Reviews conflicting or ambiguous evidence.
+4. Records the adjudication context.
+5. Resolves the case according to the defined governance rules.
 
 ## Verifier
 

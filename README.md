@@ -6,10 +6,9 @@
 
 <h3 align="center">From learning evidence to verifiable competency state.</h3>
 
-<p align="center"><strong>Evidence → AI interpretation → Human review → State → Proof</strong></p>
+<p align="center"><strong>Evidence → Independent Verification → Consensus → State → Proof</strong></p>
 
 [![CI](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-70%20passing-success)
 ![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF)
 
 ## The Problem
@@ -18,77 +17,109 @@ A certificate can show completion. It does not necessarily preserve what a perso
 
 Learning Competency explores a different model:
 
-**development activity → evidence → interpretation → human review → competency state → verifiable proof**
+**development activity → evidence → interpretation → independent verification → competency state → verifiable proof**
 
-## The Core Principle
+The current MVP focuses on the narrowest technically demonstrable wedge: turning learning evidence into a reviewed, verifiable competency state.
+
+## Core Principle
 
 ### AI does not decide competency.
 
-AI assists with evidence interpretation. A human reviewer is responsible for the decision.
+AI assists with evidence interpretation. The system separates interpretation, verification, governance, and state transition.
 
-| Evidence | Interpretation | Decision | Proof |
+The **Consensus Core** reduces dependence on individual judgment by requiring convergence across independent verification mechanisms. Conflicting, ambiguous, or insufficient cases can be routed to human adjudication.
+
+| Evidence | Interpretation | Verification | State / Proof |
 |---|---|---|---|
-| What was produced | AI-assisted analysis | Human review | Verifiable attestation |
+| What was produced | AI-assisted | Independent mechanisms | Verifiable state |
 
 ## What We Built
 
-### M1 — Concrete use case
+### M1 — Concrete competency scenario
 
-A focused corporate learning scenario for applied data-analysis competency.
+A corporate learning scenario centered on an applied data-analysis competency.
 
-### M2 — Evidence, AI and review
+### M2 — Evidence and AI interpretation
 
-A TypeScript/Node pipeline that ingests evidence, extracts observable information, relates it to competency criteria, produces an AI-assisted interpretation and records human review.
+A TypeScript/Node pipeline that receives evidence, extracts observable information, relates evidence to competency criteria, and produces AI-assisted interpretation.
 
-### M3 — State, attestation and verification
+### M3 — State, attestation, and verification
 
-The reviewed state is represented by a deterministic record. Its integrity can be anchored on Solana Devnet and independently checked later.
+A competency state is represented as a deterministic record. Its integrity can be anchored to Solana Devnet and subsequently verified.
 
     Evidence
        ↓
-    AI interpretation
+    Integrity Check
        ↓
-    Human review
+    Deterministic Rule Check
        ↓
-    Competency state
+    AI Interpretation
        ↓
-    Record integrity
+    Governance / Compliance
+       ↓
+    Consensus Core
+       ↓
+    Competency State
        ↓
     Attestation
        ↓
     Verification
 
-### Important boundary
+### Human adjudication is an exception layer
+
+Human review is not removed. It is preserved for conflicts, ambiguity, insufficient evidence, contextual criteria, contestation, or other governance-defined exceptions.
+
+### Blockchain is an integrity layer
 
 Solana does **not** independently determine whether a person has a competency.
 
-It provides an integrity and verification layer around a previously reviewed state.
+It provides an integrity and verification layer for a state produced by the defined evidence and verification process.
 
 Sensitive learning data remains off-chain.
 
-## Proof
+## Technical Proof
 
-- automated test suite validated by CI
-- M1 → M2 → M3 vertical slice implemented
-- M2 → M3 handoff hardened
-- Devnet attestation demonstrated
-- tamper detection, signer validation and payload binding covered by tests
-- synthetic demonstration data clearly identified as synthetic
+- automated test suite and type checking;
+- M1 → M2 → M3 vertical slice implemented;
+- M2 → M3 handoff hardened;
+- Consensus Core with a deterministic verifier independent of AI signals;
+- Solana Devnet attestation demonstrated;
+- tamper detection, signer validation, and payload binding covered by tests;
+- synthetic demonstration data explicitly identified as synthetic.
 
 [View the reference Devnet transaction →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
 
-## What This MVP Does — and Does Not — Claim
+## What This MVP Claims — and Does Not Claim
 
-It demonstrates that a competency-development workflow can produce structured evidence, assist interpretation, record human review, represent a bounded state and preserve a verifiable integrity reference.
+The MVP demonstrates that a competency-development workflow can:
+
+- structure learning evidence;
+- assist evidence interpretation with AI;
+- apply independent verification mechanisms;
+- preserve provenance and decision context;
+- produce a bounded competency state;
+- create a verifiable integrity reference.
 
 It does **not** claim to:
 
-- replace human assessment;
-- be a complete LMS;
+- replace human evaluation in every case;
+- operate as a complete LMS;
 - define a universal competency framework;
 - prove the truth or merit of a competency through blockchain;
 - place sensitive learning data on-chain;
-- have validated pricing, traction or a definitive commercial model.
+- have validated final pricing, traction, or a definitive commercial model.
+
+## Documentation
+
+### For Hackathon Evaluators
+
+**[Evaluation Documentation — English](docs/evaluation/README.md)**
+
+This is the curated evaluator layer covering product, architecture, verification and governance, demo/proof, limitations, and supported claims.
+
+### Working Documentation
+
+The project's operational architecture, implementation notes, and research remain in Portuguese under `docs/` and `research/`.
 
 ## Quick Start
 
@@ -97,21 +128,10 @@ It does **not** claim to:
     npm run typecheck
     npm run demo
 
-For the Solana Devnet demonstration:
+For Solana Devnet attestation:
 
     npm run m3:attest
     npm run m3:verify <tx_signature> [record_hash]
-
-## Documentation
-
-| Area | Resource |
-|---|---|
-| Product | [MVP Contract](docs/product/MVP_CONTRACT.md) · [User Journeys](docs/product/USER_JOURNEYS.md) · [Use Case](docs/product/USE_CASE.md) |
-| Architecture | [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md) · [Attestation Model](docs/architecture/ATTESTATION_MODEL.md) · [Canonicalization](docs/architecture/CANONICALIZATION.md) |
-| Execution | [Project Status](docs/PROJECT_STATUS.md) · [Development Log](docs/diario-de-bordo/) |
-| Demo | [Demo Overview](docs/demo/DEMO_SCRIPT.md) |
-
-Detailed market, demand-validation and operating strategy is intentionally maintained separately from this public repository.
 
 ## Repository Structure
 
@@ -129,24 +149,25 @@ Detailed market, demand-validation and operating strategy is intentionally maint
     tests/
     fixtures/
     docs/
+    research/
 
 ## Team
 
-| Person | Core contribution |
+| Contributor | Primary contribution |
 |---|---|
-| Erick | Research, context, market and operations |
-| JP Carvalho | M2 — evidence pipeline, AI and review |
-| JP Fernandes | Branding, UX/UI and interface |
-| JX | Architecture, AI, evidence, attestation and Solana |
+| Erick | Research, context, market, and operations |
+| JP Carvalho | M2 — evidence pipeline, AI, and review |
+| JP Fernandes | Branding, UX/UI, and interface |
+| JX | Architecture, AI, evidence, attestation, and Solana |
 
 ## Hackathon History
 
-Started September 25, 2026.
+Started on September 25, 2026.
 
-The project evolved from an initial microcredential concept into a focused, traceable and verifiable competency vertical slice.
+The project evolved from an initial micro-credential concept into a focused, traceable, and verifiable competency vertical slice.
 
 **M1 → M2 → M3 → Hardening → Feature Freeze**
 
 ## License
 
-License and distribution terms will be defined before a final version is published.
+License and distribution terms will be defined before a final public release.

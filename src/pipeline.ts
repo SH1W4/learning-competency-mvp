@@ -10,6 +10,7 @@ import { extractFields } from "./evidence/extract.js";
 import { parseAIOutput, type AIInterpretation } from "./ai/contract.js";
 import type { InterpretationProvider } from "./ai/provider.js";
 import { relateToCompetency, type RelationResult } from "./relation/relate.js";
+import { evaluateConsensus, type ConsensusResult } from "./consensus/consensus.js";
 import { applyReview, type ReviewOutcome } from "./review/review.js";
 import { initialState, transition, TransitionError } from "./state/state.js";
 import { buildHandoff, buildTrace, type ProvenanceTrace, type ReviewedStateRecord } from "./provenance/trace.js";
@@ -28,6 +29,7 @@ export class CompetencySession {
   interpretation?: AIInterpretation;
   relation?: RelationResult;
   outcome?: ReviewOutcome;
+  consensus?: ConsensusResult;
   state: CompetencyState;
 
   constructor(
@@ -85,6 +87,18 @@ export class CompetencySession {
     return this.state;
   }
 
+  /** Consensus Core — automatic transition only when all required verifications converge. */
+  consensusAdvance(): ConsensusResult {
+    if (this.state.value !== "UNDER_REVIEW") throw new TransitionError(`consenso só pode ser aplicado em UNDER_REVIEW (estado atual: ${this.state.value})`);
+    if (!this.relation) throw new TransitionError("não há interpretação para consenso");
+    const result = evaluateConsensus(this.evidences, this.relation);
+    this.consensus = result;
+    if (result.can_auto_advance) {
+      this.state = transition(this.state, "DEMONSTRATED", "consensus", "consensus-core", "verificações independentes convergiram para todos os critérios", this.env.now());
+    }
+    return result;
+  }
+
   /** M2.5 */
   review(record: ReviewRecord): ReviewOutcome {
     if (!this.relation) throw new TransitionError("não há interpretação para revisar");
@@ -95,13 +109,13 @@ export class CompetencySession {
 
   /** M2.6 */
   trace(): ProvenanceTrace {
-    if (!this.outcome || !this.interpretation || !this.relation) throw new TransitionError("trace disponível após a revisão");
-    return buildTrace(this.evidences, this.extractions, this.interpretation, this.relation, this.outcome);
+    if ((!this.outcome && !this.consensus?.can_auto_advance) || !this.interpretation || !this.relation) throw new TransitionError("trace disponível após uma decisão humana ou consenso");
+    return buildTrace(this.evidences, this.extractions, this.interpretation, this.relation, this.outcome, this.consensus);
   }
 
   /** Handoff to M3 (attestation). Only meaningful after review. */
   handoff(): ReviewedStateRecord {
-    if (!this.outcome || !this.interpretation) throw new TransitionError("handoff disponível após a revisão");
-    return buildHandoff(this.evidences, this.interpretation, this.outcome);
+    if (!this.interpretation || (!this.outcome && !this.consensus?.can_auto_advance)) throw new TransitionError("handoff disponível após uma decisão humana ou consenso");
+    return buildHandoff(this.evidences, this.interpretation, this.outcome, this.consensus, this.state);
   }
 }

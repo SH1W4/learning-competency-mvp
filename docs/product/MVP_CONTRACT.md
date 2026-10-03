@@ -7,7 +7,7 @@
 
 ## Pergunta central
 
-> É possível transformar uma competência desejada em uma trilha curta, reunir evidências produzidas pela pessoa, interpretá-las com IA e revisão humana, representar um estado de competência e preservar uma prova verificável desse estado?
+> É possível transformar uma competência desejada em uma trilha curta, reunir evidências produzidas pela pessoa, submetê-las a verificações independentes e regras de governança, representar um estado de competência e preservar uma prova verificável desse estado?
 
 ## Fluxo obrigatório
 
@@ -24,9 +24,11 @@ ATIVIDADES
   ↓
 EVIDÊNCIAS
   ↓
-IA
+VERIFICAÇÕES INDEPENDENTES
   ↓
-REVISÃO HUMANA
+CONSENSUS CORE
+  ↓
+GOVERNANCE / COMPLIANCE
   ↓
 ESTADO
   ↓
@@ -46,8 +48,9 @@ O primeiro caso deve ter:
 - uma pessoa;
 - poucas atividades;
 - poucos formatos de evidência;
-- uma interpretação assistida;
-- uma revisão humana;
+- verificações independentes mínimas;
+- uma decisão de Consensus Core;
+- revisão humana apenas quando necessária por conflito, insuficiência ou regra do processo;
 - um estado de competência;
 - uma attestation;
 - uma consulta de verificação.
@@ -70,7 +73,7 @@ Não são requisitos do MVP:
 
 ## Critério de conclusão
 
-O MVP está funcional quando uma única competência percorre o fluxo completo sem intervenção manual de desenvolvimento entre as etapas.
+O MVP está funcional quando uma única competência percorre o fluxo completo sem intervenção manual de desenvolvimento entre as etapas. A intervenção humana não deve ser necessária em casos que satisfaçam automaticamente as regras e verificações do processo.
 
 ## Regra de mudança
 
