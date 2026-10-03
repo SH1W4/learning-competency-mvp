@@ -5,7 +5,7 @@
  * Also builds the M2 → M3 handoff record (input proposal for M3.2 — the final attestation payload is owned by M3).
  */
 import { EVIDENCE_CONTRACT } from "../domain/useCase.js";
-import type { CriterionId, Evidence, ExtractionResult, Origin } from "../domain/types.js";
+import type { CompetencyState, CriterionId, Evidence, ExtractionResult, Origin } from "../domain/types.js";
 import type { AIInterpretation } from "../ai/contract.js";
 import type { RelationResult } from "../relation/relate.js";
 import type { ReviewOutcome } from "../review/review.js";
@@ -129,7 +129,7 @@ export function buildHandoff(evidences: Evidence[], interp: AIInterpretation, ou
     subject: outcome?.state.subject ?? interp.subject,
     competency_id: outcome?.state.competency_id ?? "comp:data-analysis-reproducible",
     state: outcome?.state.value ?? "DEMONSTRATED",
-    state_history: outcome?.state.history ?? [],
+    state_history: outcome?.state.history ?? state?.history ?? [],
     criteria: outcome ? outcome.criteria.map((c) => ({
       criterion_id: c.criterion_id,
       final_assessment: c.final_assessment,
@@ -152,7 +152,7 @@ export function buildHandoff(evidences: Evidence[], interp: AIInterpretation, ou
       confirm_demonstrated: outcome.review.confirm_demonstrated,
     } : {
       mode: "consensus",
-      decided_at: new Date().toISOString(),
+      decided_at: state?.history.at(-1)?.at ?? interp.model.name,
       confirm_demonstrated: true,
     },
   };
