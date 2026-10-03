@@ -16,7 +16,7 @@ export type TrustLevel = "N1_SELF_DECLARED" | "N2_EVIDENCE_PRESENTED" | "N3_EVID
 export type CompetencyStateValue = "NOT_STARTED" | "IN_DEVELOPMENT" | "UNDER_REVIEW" | "DEMONSTRATED";
 
 /** Where a piece of information came from. Every important field must answer this. */
-export type Origin = "evidence" | "ai" | "reviewer" | "system";
+export type Origin = "evidence" | "ai" | "reviewer" | "consensus" | "system";
 
 export interface Criterion {
   id: CriterionId;
