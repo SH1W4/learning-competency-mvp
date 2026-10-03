@@ -109,8 +109,8 @@ export class CompetencySession {
 
   /** M2.6 */
   trace(): ProvenanceTrace {
-    if (!this.outcome || !this.interpretation || !this.relation) throw new TransitionError("trace disponível após a revisão");
-    return buildTrace(this.evidences, this.extractions, this.interpretation, this.relation, this.outcome);
+    if ((!this.outcome && !this.consensus?.can_auto_advance) || !this.interpretation || !this.relation) throw new TransitionError("trace disponível após uma decisão humana ou consenso");
+    return buildTrace(this.evidences, this.extractions, this.interpretation, this.relation, this.outcome, this.consensus);
   }
 
   /** Handoff to M3 (attestation). Only meaningful after review. */
