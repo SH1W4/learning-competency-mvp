@@ -48,7 +48,7 @@ The system must preserve the distinction between:
 
 ---
 
-## 3. Role Delta
+## 3. Data Robustness Gate\n\nRole Delta derivation must occur only after the underlying observations pass the Data & Statistical Robustness layer defined in `03_DATA_STATISTICAL_ROBUSTNESS.md`.\n\n```text\nRAW DATA\n  ↓\nPROVENANCE / QUALITY\n  ↓\nSTATISTICAL VALIDATION\n  ↓\nEVIDENCE SET\n  ↓\nROLE DELTA\n```\n\nIf evidence quality is insufficient, the model must return `INSUFFICIENT_EVIDENCE` rather than infer a role transition.\n\nThe delta must preserve observation period, population scope, observation count, source independence, uncertainty and provenance.\n\n---\n\n## 4. Role Delta
 
 For two role states, the delta is:
 
