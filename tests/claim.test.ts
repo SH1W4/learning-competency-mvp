@@ -14,7 +14,7 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     expect(claim.state).toBe("DEMONSTRATED");
     expect(claim.scope.evidence_bound).toBe(true);
     expect(claim.scope.reviewer_confirmed).toBe(true);
-    expect(claim.review_ref).toBe(record.review.review_id);
+    expect(claim.review_ref).toBe(record.decision.review_id);
     expect(new Set(claim.evidence_refs).size).toBeGreaterThan(0);
   });
 
