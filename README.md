@@ -1,10 +1,14 @@
-# Learning Competency MVP
+# LASTRO — Learning Competency Infrastructure
 
 <p align="center">
   <img src="docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png" alt="Learning Competency" width="100%" />
 </p>
 
-<h3 align="center">From learning evidence to verifiable competency state.</h3>
+<h3 align="center">LASTRO</h3>
+
+<p align="center"><strong>Learning Competency Infrastructure</strong></p>
+
+<p align="center">Evidence-backed competency.</p>
 
 <p align="center"><strong>Evidence → Independent Verification → Consensus → State → Proof</strong></p>
 
@@ -87,7 +91,7 @@ Sensitive learning data remains off-chain.
 - tamper detection, signer validation, and payload binding covered by tests;
 - synthetic demonstration data explicitly identified as synthetic.
 
-[View the reference Devnet transaction →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
+**Live proof:** generate a current `m3.attestation.v2` Devnet attestation with `npm run m3:attest`, then verify it with `npm run m3:verify <tx_signature> [record_hash]`.
 
 ## What This MVP Claims — and Does Not Claim
 
@@ -113,9 +117,15 @@ It does **not** claim to:
 
 ### For Hackathon Evaluators
 
-**[Evaluation Documentation — English](docs/evaluation/README.md)**
+**[LASTRO — Evaluation Documentation](docs/evaluation/README.md)**
 
-This is the curated evaluator layer covering product, architecture, verification and governance, demo/proof, limitations, and supported claims.
+Start here. This is the curated evaluator layer and should be read in this order:
+
+1. [Product Overview](docs/evaluation/01_PRODUCT.md) — what LASTRO is and why it matters
+2. [Architecture & Evidence Pipeline](docs/evaluation/02_ARCHITECTURE.md) — how the system works
+3. [Consensus, Governance & Attestation](docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md) — why the state is trustworthy and bounded
+4. [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md) — what is actually demonstrated
+5. [Limitations & Claims](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md) — what is implemented versus still a hypothesis
 
 ### Working Documentation
 
