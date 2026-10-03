@@ -39,6 +39,7 @@ describe("M2.7 — fluxo crítico ponta a ponta (cenário sintético Ana)", () =
     expect(s.state.value).toBe("DEMONSTRATED");
     expect(s.state.history.at(-1)).toMatchObject({ by: "consensus", to: "DEMONSTRATED" });
     expect(s.handoff().decision.mode).toBe("consensus");
+    expect(s.trace().criteria.every((c) => c.chain.some((n) => n.origin === "consensus"))).toBe(true);
   });
 
   it("Consensus Core não promove sem evidência suficiente", async () => {
