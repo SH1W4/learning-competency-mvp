@@ -4,91 +4,108 @@
   <img src="docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png" alt="Learning Competency" width="100%" />
 </p>
 
-<h3 align="center">From learning evidence to verifiable competency state.</h3>
+<h3 align="center">Da evidência de aprendizagem ao estado verificável de competência.</h3>
 
-<p align="center"><strong>Evidence → Independent verification → Consensus → State → Proof</strong></p>
+<p align="center"><strong>Evidência → Verificação independente → Consenso → Estado → Prova</strong></p>
 
 [![CI](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml/badge.svg)](https://github.com/SH1W4/learning-competency-mvp/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-78%20passing-success)
+![Testes](https://img.shields.io/badge/testes-78%20passing-success)
 ![Solana](https://img.shields.io/badge/Solana-Devnet-9945FF)
 
-## The Problem
+## O problema
 
-A certificate can show completion. It does not necessarily preserve what a person actually demonstrated.
+Um certificado pode mostrar conclusão. Ele não necessariamente preserva aquilo que uma pessoa realmente demonstrou.
 
-Learning Competency explores a different model:
+O Learning Competency explora um modelo diferente:
 
-**development activity → evidence → interpretation → human review → competency state → verifiable proof**
+**atividade de desenvolvimento → evidência → interpretação → verificação → estado de competência → prova verificável**
 
-## The Core Principle
+## Princípio central
 
-### AI does not decide competency.
+### A IA não decide a competência.
 
-AI assists with evidence interpretation. A human reviewer is responsible for the decision.
+A IA auxilia na interpretação das evidências. O sistema separa interpretação, verificação, governança e decisão de estado.
 
-| Evidence | Interpretation | Decision | Proof |
+O Consensus Core reduz a dependência de julgamento individual ao exigir convergência entre mecanismos de verificação independentes. Casos conflitantes, ambíguos ou insuficientes podem ser encaminhados para adjudicação humana.
+
+| Evidência | Interpretação | Verificação | Estado / Prova |
 |---|---|---|---|
-| What was produced | AI-assisted analysis | Human review | Verifiable attestation |
+| O que foi produzido | IA assistida | Regras e mecanismos independentes | Estado verificável |
 
-## What We Built
+## O que construímos
 
-### M1 — Concrete use case
+### M1 — Caso de uso concreto
 
-A focused corporate learning scenario for applied data-analysis competency.
+Um cenário corporativo focado em uma competência aplicada de análise de dados.
 
-### M2 — Evidence, AI and review
+### M2 — Evidência, IA e revisão
 
-A TypeScript/Node pipeline that ingests evidence, extracts observable information, relates it to competency criteria, produces an AI-assisted interpretation and records human review.
+Um pipeline TypeScript/Node que recebe evidências, extrai informações observáveis, relaciona evidências a critérios de competência, produz interpretação assistida por IA e registra o contexto de verificação/revisão.
 
-### M3 — State, attestation and verification
+### M3 — Estado, atestação e verificação
 
-The reviewed state is represented by a deterministic record. Its integrity can be anchored on Solana Devnet and independently checked later.
+O estado de competência é representado por um registro determinístico. Sua integridade pode ser ancorada na Solana Devnet e posteriormente verificada.
 
-    Evidence
+    Evidência
        ↓
-    AI interpretation
+    Interpretação assistida
        ↓
-    Human review
+    Verificações independentes
        ↓
-    Competency state
+    Consensus Core
        ↓
-    Record integrity
+    Estado de competência
        ↓
-    Attestation
+    Atestação
        ↓
-    Verification
+    Verificação
 
-### Important boundary
+### Fronteira importante
 
-Solana does **not** independently determine whether a person has a competency.
+A Solana **não determina independentemente se uma pessoa possui uma competência**.
 
-It provides an integrity and verification layer around a previously reviewed state.
+Ela fornece uma camada de integridade e verificação para um estado que já foi produzido pelo processo definido.
 
-Sensitive learning data remains off-chain.
+Dados sensíveis de aprendizagem permanecem off-chain.
 
-## Proof
+## Prova técnica
 
-- automated test suite validated by CI
-- M1 → M2 → M3 vertical slice implemented
-- M2 → M3 handoff hardened
-- Devnet attestation demonstrated
-- tamper detection, signer validation and payload binding covered by tests
-- synthetic demonstration data clearly identified as synthetic
+- suíte automatizada validada por CI;
+- vertical slice M1 → M2 → M3 implementado;
+- handoff M2 → M3 endurecido;
+- Consensus Core com verificação determinística independente da IA;
+- atestação em Solana Devnet demonstrada;
+- detecção de adulteração, validação do emissor e binding do payload cobertos por testes;
+- dados sintéticos da demonstração claramente identificados como sintéticos.
 
-[View the reference Devnet transaction →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
+[Ver a transação de referência na Devnet →](https://explorer.solana.com/tx/27hwuMbf5SxAERnHa277vFLUzkutqHFkp85dmNQ2TpeVsvMw5EASoShbtipn6EqzPK15GurpJuuXE1KtCYhr3y3U?cluster=devnet)
 
-## What This MVP Does — and Does Not — Claim
+## O que este MVP faz — e o que não afirma
 
-It demonstrates that a competency-development workflow can produce structured evidence, assist interpretation, record human review, represent a bounded state and preserve a verifiable integrity reference.
+O MVP demonstra que um fluxo de desenvolvimento de competência pode produzir evidências estruturadas, auxiliar sua interpretação, aplicar verificações independentes, registrar contexto de decisão, representar um estado limitado e preservar uma referência verificável de integridade.
 
-It does **not** claim to:
+Ele **não** afirma:
 
-- replace human assessment;
-- be a complete LMS;
-- define a universal competency framework;
-- prove the truth or merit of a competency through blockchain;
-- place sensitive learning data on-chain;
-- have validated pricing, traction or a definitive commercial model.
+- substituir a avaliação humana em todos os casos;
+- ser um LMS completo;
+- definir um framework universal de competências;
+- provar a verdade ou o mérito de uma competência por meio de blockchain;
+- colocar dados sensíveis de aprendizagem on-chain;
+- ter pricing, tração ou modelo comercial definitivo validados.
+
+## Documentação
+
+### Documentação de trabalho — português
+
+A documentação principal de desenvolvimento, arquitetura, decisões e pesquisa permanece em português dentro de docs/ e research/.
+
+### Documentação para avaliação — inglês
+
+Para avaliadores externos e para a submissão do hackathon, consulte:
+
+**[Evaluation Documentation — English](docs/evaluation/README.md)**
+
+Essa camada apresenta apenas o produto, arquitetura, modelo de verificação, demonstração, limitações e claims suportados pelo MVP.
 
 ## Quick Start
 
@@ -97,23 +114,12 @@ It does **not** claim to:
     npm run typecheck
     npm run demo
 
-For the Solana Devnet demonstration:
+Para a demonstração de atestação na Solana Devnet:
 
     npm run m3:attest
     npm run m3:verify <tx_signature> [record_hash]
 
-## Documentation
-
-| Area | Resource |
-|---|---|
-| Product | [MVP Contract](docs/product/MVP_CONTRACT.md) · [User Journeys](docs/product/USER_JOURNEYS.md) · [Use Case](docs/product/USE_CASE.md) |
-| Architecture | [Evidence Pipeline](docs/architecture/EVIDENCE_PIPELINE.md) · [Attestation Model](docs/architecture/ATTESTATION_MODEL.md) · [Canonicalization](docs/architecture/CANONICALIZATION.md) |
-| Execution | [Project Status](docs/PROJECT_STATUS.md) · [Development Log](docs/diario-de-bordo/) |
-| Demo | [Demo Overview](docs/demo/DEMO_SCRIPT.md) |
-
-Detailed market, demand-validation and operating strategy is intentionally maintained separately from this public repository.
-
-## Repository Structure
+## Estrutura do repositório
 
     src/
     ├── ai/
@@ -129,24 +135,25 @@ Detailed market, demand-validation and operating strategy is intentionally maint
     tests/
     fixtures/
     docs/
+    research/
 
-## Team
+## Equipe
 
-| Person | Core contribution |
+| Pessoa | Contribuição principal |
 |---|---|
-| Erick | Research, context, market and operations |
-| JP Carvalho | M2 — evidence pipeline, AI and review |
-| JP Fernandes | Branding, UX/UI and interface |
-| JX | Architecture, AI, evidence, attestation and Solana |
+| Erick | Pesquisa, contexto, mercado e operações |
+| JP Carvalho | M2 — pipeline de evidências, IA e revisão |
+| JP Fernandes | Branding, UX/UI e interface |
+| JX | Arquitetura, IA, evidências, atestação e Solana |
 
-## Hackathon History
+## Histórico do hackathon
 
-Started September 25, 2026.
+Iniciado em 25 de setembro de 2026.
 
-The project evolved from an initial microcredential concept into a focused, traceable and verifiable competency vertical slice.
+O projeto evoluiu de um conceito inicial de microcredenciais para um vertical slice focado, rastreável e verificável de competência.
 
 **M1 → M2 → M3 → Hardening → Feature Freeze**
 
-## License
+## Licença
 
-License and distribution terms will be defined before a final version is published.
+Os termos de licença e distribuição serão definidos antes da publicação de uma versão final.
