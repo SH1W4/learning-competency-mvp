@@ -21,11 +21,13 @@ Activities
   ↓
 Evidence
   ↓
-AI interpretation
+Independent verification mechanisms
   ↓
-Human review
+Consensus Core
   ↓
 Competency state
+  ↓
+Human adjudication only when necessary
   ↓
 Attestation
   ↓
@@ -38,10 +40,11 @@ Verification
 2. Define the desired competency.
 3. Configure a short development trail.
 4. Observe evidence produced during the trail.
-5. Review the interpreted evidence.
-6. Register a resulting competency state when the defined criteria are met.
-7. Issue an attestation when the MVP flow supports it.
-8. Allow an authorized verifier to inspect the proof.
+5. Run independent verification mechanisms.
+6. Update the competency state when the required mechanisms converge.
+7. Route conflicts, insufficient evidence or contextual cases to human adjudication.
+8. Issue an attestation when the MVP flow supports it.
+9. Allow an authorized verifier to inspect the proof.
 
 ## Person
 
@@ -55,11 +58,11 @@ Verification
 
 ## Reviewer
 
-1. Receives evidence and AI interpretation.
+1. Receives the verification context when adjudication is required.
 2. Distinguishes source material from AI inference.
-3. Accepts, corrects, rejects or requests additional evidence.
-4. Records the review context.
-5. Enables or prevents the corresponding state transition according to the defined rules.
+3. Reviews conflicting or ambiguous evidence.
+4. Records the adjudication context.
+5. Resolves the case according to the defined governance rules.
 
 ## Verifier
 
