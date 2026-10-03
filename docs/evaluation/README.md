@@ -58,3 +58,11 @@ Market validation, pricing, recurring commercial adoption, and the broader Dynam
 ## Important distinction
 
 This documentation describes what the current MVP implements and what remains a hypothesis. It does not present synthetic demonstration data as customer evidence or claim that blockchain independently proves competency.
+
+## Evaluator reading path
+
+For a fast technical evaluation, use this order:
+
+**Product → Architecture → Verification & Governance → Demo & Proof → Limitations & Claims**
+
+The repository root README is the public entry point. This directory is the curated evidence layer for judging the implementation and its claims.
