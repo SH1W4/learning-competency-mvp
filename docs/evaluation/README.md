@@ -1,6 +1,6 @@
-# Learning Competency — Evaluation Documentation
+# LASTRO — Evaluation Documentation
 
-This directory contains the English-language documentation intended for external evaluation, hackathon reviewers, technical reviewers, and other readers who need a concise understanding of the project.
+**LASTRO** is the product identity. **Learning Competency** is the technical domain and repository context. This directory contains the English-language documentation intended for external evaluation, hackathon reviewers, technical reviewers, and other readers who need a concise understanding of the project.
 
 The Portuguese documentation remains the team's primary working documentation. This evaluation layer is deliberately smaller: it explains the product, architecture, verification model, demonstration path, and current limitations without exposing internal operating material.
 
