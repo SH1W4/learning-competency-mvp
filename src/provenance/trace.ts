@@ -152,7 +152,7 @@ export function buildHandoff(evidences: Evidence[], interp: AIInterpretation, ou
       confirm_demonstrated: outcome.review.confirm_demonstrated,
     } : {
       mode: "consensus",
-      decided_at: state?.history.at(-1)?.at ?? interp.model.name,
+      decided_at: state?.history.at(-1)?.at ?? (() => { throw new Error("consensus handoff exige histórico de estado"); })(),
       confirm_demonstrated: true,
     },
   };
