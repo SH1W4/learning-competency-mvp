@@ -88,4 +88,4 @@ The repository maintains automated coverage for the core flow, including:
 - evidence submission restrictions during review;
 - provenance and consensus handoff.
 
-The current branch records **78 passing tests** at the latest stabilized CI point. Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
+The repository includes automated coverage for the core flow. Exact test counts are intentionally kept out of this evaluator document so this page does not become stale as coverage evolves. Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
