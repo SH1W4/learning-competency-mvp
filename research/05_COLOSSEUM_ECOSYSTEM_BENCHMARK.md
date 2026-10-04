@@ -4,6 +4,7 @@
 **Track:** Learning Competency  
 **Date:** 2026-10-04  
 **Scope:** Public Colosseum hackathon ecosystem  
+**Verification pass:** 2026-10-04  
 **Research question:** Has the Colosseum ecosystem already produced a project substantially similar to LASTRO?
 
 ---
@@ -80,6 +81,22 @@ Search terms were expanded beyond "competency" to include:
 - attestation;
 - reputation;
 - professional identity.
+
+### Evidence standard
+
+Each candidate is evaluated against the same dimensions:
+
+| Dimension | Question |
+|---|---|
+| Primary object | What does the project actually represent or decide? |
+| Evidence | Is observable work or source evidence central to the model? |
+| Verification | Is verification explicit, and what is being verified? |
+| Independence | Are verification mechanisms independent of the originating interpretation? |
+| Consensus | Does the system reconcile multiple signals or verification mechanisms? |
+| Competency state | Is capability represented as an explicit bounded state? |
+| Attestation | Is the resulting state or claim independently attestable/verifiable? |
+
+Classification is based on the **public project description**, not on assumptions about hidden implementation. A missing feature is therefore recorded as **not established**, rather than as proof that the feature does not exist.
 
 ### Limitation
 
@@ -276,7 +293,7 @@ Strikesense is relevant as a pattern-level reference because observable activity
 | VeriCred | Verified professional | Professional profile / verification | Platform-level | Not specified | Yes | Blockchain-based | Verified talent |
 | Solana Matcher | Profile / persona | CV, social, achievements | Platform-level | Skills as profile signals | Yes | On-chain profile | Skills + matching |
 | SpineDAO | Clinician credential | Professional / clinical data | Yes | Domain-specific | Limited | Credential NFTs | Professional verification |
-| Strikesense | Achievement | Observed performance | Performance-based | Domain-specific | No | Optional | Performance → achievement |
+| Strikesense | Achievement | Observed performance | Performance-based | Domain-specific | No | Optional | Performance → achievement |\n| Rei | Skill-verified human / agent | Skill / talent signals | Platform-level | Not specified | Yes | Proof-of-Talent | Verified talent routing |
 | **LASTRO** | **Competency state** | **Evidence of work** | **Independent mechanisms + consensus** | **Explicit** | **Potential downstream use** | **Attestation** | **Evidence → competency** |
 
 ---
