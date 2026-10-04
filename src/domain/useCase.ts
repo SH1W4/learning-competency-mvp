@@ -1,7 +1,7 @@
 import type { Competency, CriterionId, EvidenceType, Trail } from "./types.js";
 
 /**
- * Canonical use case v0.1 — transcribed from docs/product/USE_CASE.md.
+ * Canonical use case v0.2 — transcribed from docs/product/USE_CASE.md.
  * If the use case changes, change it there first and then here.
  */
 
