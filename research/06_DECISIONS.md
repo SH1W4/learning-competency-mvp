@@ -303,18 +303,22 @@ These require additional evidence.
 # 5. Decision dependency map
 
 PHASE #0 — Research baseline
-↓
-04 — Market Validation Evidence
-Broad problem materially relevant
-↓
-05 — Colosseum Ecosystem Benchmark
-Adjacent solutions already exist
-↓
-06 — Research Decisions
-Narrow differentiation around evidence-backed competency
-↓
-MVP
-Evidence → Verification → State → Proof
+       │
+       ├────────→ 04 — Market Validation Evidence
+       │          Broad problem materially relevant
+       │
+       └────────→ 05 — Colosseum Ecosystem Benchmark
+                  Adjacent solutions already exist
+                         │
+                         └────────┐
+                                  ↓
+                         06 — Research Decisions
+                         Narrow differentiation
+                         around evidence-backed competency
+                                  ↓
+                                 MVP
+                         Evidence → Verification
+                         → State → Proof
 
 The chain should not be read backwards.
 
