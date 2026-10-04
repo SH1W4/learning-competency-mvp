@@ -4,7 +4,7 @@
 **Review pass:** 2026-10-04 — content-level reconciliation of public candidates
 **Date:** 2026-10-04
 
-This is the authoritative file-level classification for the current LASTRO repository. It marks every tracked file; it does not move, delete, hide, or rewrite any file.
+This is the authoritative file-level classification for the current LASTRO repository. It marks every file currently tracked in the public repository; migrated files are recorded in the private Vault manifest.
 
 ## Classes
 
@@ -22,7 +22,6 @@ This is the authoritative file-level classification for the current LASTRO repos
 
 | Path | Class |
 |---|---|
-| `.agents/skills/lastro/SKILL.md` | `RESTRICTED-LATER` |
 | `.env.example` | `PUBLIC` |
 | `.gitattributes` | `PUBLIC` |
 | `.github/workflows/ci.yml` | `PUBLIC` |
@@ -75,26 +74,11 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `docs/governance/VAULT_BOUNDARY.md` | `PUBLIC` |
 | `docs/market/COMPETITIVE_LANDSCAPE.md` | `PUBLIC` |
 | `docs/product/FRONTEND_PRODUCT_SPEC.md` | `PUBLIC` |
-| `docs/product/FRONTEND_SPEC_ERICK_JP.md` | `REVIEW` |
 | `docs/product/MVP_CONTRACT.md` | `PUBLIC` |
 | `docs/product/PITCH_ARCHITECTURE.md` | `PUBLIC` |
 | `docs/product/README.md` | `PUBLIC` |
 | `docs/product/USER_JOURNEYS.md` | `PUBLIC` |
 | `docs/product/USE_CASE.md` | `PUBLIC` |
-| `docs/product/VICTORY_EXECUTION.md` | `REVIEW` |
-| `docs/project-journal/01_m2_merge_and_decisions.md` | `REVIEW` |
-| `docs/project-journal/02_m3_architecture_setup.md` | `REVIEW` |
-| `docs/project-journal/03_m2_m3_end_to_end_validation.md` | `REVIEW` |
-| `docs/project-journal/04_m3_cycle_closure.md` | `REVIEW` |
-| `docs/project-journal/05_m2_m3_handoff_hardening.md` | `REVIEW` |
-| `docs/project-journal/06_mvp_technical_closure.md` | `REVIEW` |
-| `docs/project-journal/07_bounded_verifiable_claim_pr7.md` | `REVIEW` |
-| `docs/project-journal/08_semantic_hardening_and_ci_recovery.md` | `REVIEW` |
-| `docs/project-journal/09_m4_execution_and_core_freeze.md` | `REVIEW` |
-| `docs/project-journal/10_thesis_market_evidence_and_external_validation.md` | `REVIEW` |
-| `docs/project-journal/11_positioning_and_ecosystem_benchmark.md` | `REVIEW` |
-| `docs/project-journal/12_final_evaluation_and_documentation_freeze.md` | `REVIEW` |
-| `docs/project-journal/README.md` | `REVIEW` |
 | `docs/validation/DEMAND_VALIDATION.md` | `PUBLIC` |
 | `fixtures/synthetic/ana/README.md` | `PUBLIC` |
 | `fixtures/synthetic/ana/a1_briefing.md` | `PUBLIC` |
@@ -108,11 +92,7 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `research/01_DYNAMIC_ROLE_ARCHITECTURE.md` | `PUBLIC-WITH-REVIEW` |
 | `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` |
 | `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` |
-| `research/04_MARKET_VALIDATION_EVIDENCE.md` | `REVIEW` |
 | `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` |
-| `research/06_DECISIONS.md` | `REVIEW` |
-| `research/07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md` | `REVIEW` |
-| `research/08_WINNING_PATTERN_AUDIT.md` | `REVIEW` |
 | `research/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` |
 | `research/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` |
 | `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` |
@@ -122,12 +102,9 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `research/RELATED_WORK_MATRIX.md` | `PUBLIC` |
 | `research/RESEARCH_MAP.md` | `PUBLIC` |
 | `research/product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | `PUBLIC-WITH-REVIEW` |
-| `research/product/FUTURE_PLATFORM_VISION.md` | `REVIEW` |
 | `research/product/PRODUCT_THESIS.md` | `PUBLIC` |
 | `research/product/README.md` | `PUBLIC-WITH-REVIEW` |
 | `research/product/RESEARCH_AGENDA.md` | `PUBLIC-WITH-REVIEW` |
-| `skills/hackathon-evaluator/SKILL.md` | `RESTRICTED-LATER` |
-| `skills/learning-competency/SKILL.md` | `RESTRICTED-LATER` |
 | `src/.gitkeep` | `PUBLIC` |
 | `src/README.md` | `PUBLIC` |
 | `src/adjudication/adjudication.ts` | `PUBLIC` |
@@ -151,12 +128,6 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `src/solana/verify.ts` | `PUBLIC` |
 | `src/state/state.ts` | `PUBLIC` |
 | `src/util.ts` | `PUBLIC` |
-| `tasks/CURRENT_EXECUTION_001.md` | `RESTRICTED-LATER` |
-| `tasks/M1_CONCRETE_USE_CASE.md` | `RESTRICTED-LATER` |
-| `tasks/M2_EVIDENCE_AI_REVIEW.md` | `RESTRICTED-LATER` |
-| `tasks/M3_STATE_ATTESTATION.md` | `RESTRICTED-LATER` |
-| `tasks/M4_VALIDATION_DEMO_SUBMISSION.md` | `RESTRICTED-LATER` |
-| `tasks/README.md` | `RESTRICTED-LATER` |
 | `tests/.gitkeep` | `PUBLIC` |
 | `tests/adjudication.test.ts` | `PUBLIC` |
 | `tests/ai-contract.test.ts` | `PUBLIC` |
@@ -183,7 +154,7 @@ This is the authoritative file-level classification for the current LASTRO repos
 
 ## Current interpretation
 
-The repository is already public. This matrix is the **file-level publication authority** for deciding which tracked material is intentionally public, requires review, or belongs in the controlled Vault.
+The repository is already public. This matrix is the **file-level publication authority for the current public repository**. Files migrated to the private Vault are no longer tracked here; their migration is recorded in `MIGRATION_MANIFEST_2026-10-04.md` in `SH1W4/lastro-vault-1`.
 
 The authoritative principle is:
 
@@ -192,3 +163,7 @@ The authoritative principle is:
 ## Reclassification
 
 Any classification change should be made through a reviewable commit and, where material, recorded in the project decision history. No file should be hidden merely because it has competitive value; the distinction is between public auditability and genuinely controlled information.
+
+## Completed Vault migration
+
+On 2026-10-04, the files classified as `REVIEW` or `RESTRICTED-LATER` in the migration pass were copied to the private Vault and then removed from this public repository. The migration contained **29 files: 9 `RESTRICTED-LATER` + 20 `REVIEW`**. No public files were moved as part of that cleanup.
