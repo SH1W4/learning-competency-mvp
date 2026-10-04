@@ -45,62 +45,27 @@ ATTESTATION
 VERIFICATION
 ```
 
-## Mecanismos de verificação
+## Mecanismos de Verificação Independentes (MVP)
 
-### 1. Evidence / Integrity Check
+O Consensus Core do MVP opera com **três** mecanismos de verificação distintos, separando rigidamente a validação estrutural da interpretação semântica:
 
-Verifica se a evidência:
+### 1. Evidence Integrity Check (Estrutural)
 
-- existe;
-- possui origem identificável;
-- está associada ao sujeito correto;
-- possui integridade preservada;
-- contém os elementos mínimos exigidos pelo critério.
+Verifica a existência, origem identificável, integridade criptográfica (`sha256` recalculado e comparado com `contentHash`) e associação da evidência ao sujeito e atividade corretos. **Falha fechada (fail-closed)** em caso de qualquer adulteração pós-ingestão.
 
-### 2. Deterministic Rule Check
+### 2. Deterministic Criteria Check (Estrutural)
 
-Aplica critérios objetivos e previamente definidos diretamente sobre o contrato da competência e as evidências. Ele não recebe `relation.signals`, confiança ou classificação da IA.
+Aplica regras objetivas e pré-definidas diretamente sobre os metadados e a estrutura da evidência canônica (ex: "a atividade C2 possui um artefato do tipo `analysis_artifact` vinculado?").
 
-Exemplos:
+**Nota crítica:** Este verificador **não consome** sinais, confiança, resumos ou classificações geradas pela IA. Ele valida a *cobertura estrutural* exigida pelo contrato da competência.
 
-- requisitos mínimos presentes;
-- formato válido;
-- quantidade mínima de evidências;
-- critérios observáveis satisfeitos;
-- condições obrigatórias cumpridas.
+### 3. AI Interpretation (Semântico)
 
-Quando uma decisão puder ser expressa como regra determinística, ela não deve depender de interpretação humana desnecessária.
+Modelos de linguagem interpretam o conteúdo semântico da evidência (ex: "o briefing realmente formula uma pergunta analítica clara?"). A saída é tratada como um sinal interpretativo, não como autoridade final.
 
-### 3. Statistical / Robustness Check
+---
 
-Quando a conclusão depender de padrões ou múltiplas observações, verifica:
-
-- tamanho da amostra;
-- período observado;
-- cobertura;
-- dependência entre observações;
-- missingness;
-- estabilidade;
-- comparação ou baseline quando aplicável;
-- incerteza;
-- qualidade e independência das fontes.
-
-A ausência de robustez deve produzir **INSUFFICIENT_EVIDENCE**, e não uma conclusão artificialmente precisa.
-
-### 4. AI Interpretation
-
-Modelos podem:
-
-- interpretar evidências;
-- relacionar evidências a critérios;
-- detectar inconsistências;
-- propor classificação;
-- identificar lacunas;
-- solicitar evidência adicional.
-
-A saída do modelo é uma **verificação interpretativa**, não uma autoridade final.
-
-Quando possível, interpretações independentes podem ser comparadas para identificar convergência ou divergência.
+> **Nota sobre Statistical / Robustness Check:** A arquitetura prevê a adição futura de verificações estatísticas (tamanho de amostra, estabilidade, baseline) para cenários de múltiplas observações. No entanto, esta camada está explicitamente classificada como **Future Research / M4+** e não faz parte do escopo de verificação do MVP atual, que foca na trilha curta de evidência única.
 
 ## Consensus Core
 
