@@ -18,13 +18,17 @@ This map makes the epistemic status of the research library explicit: what is ob
 | `07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md` | Could external infrastructure strengthen future verification? | Potential adapter/substrate; not required for current MVP | **RESEARCH / DEFERRED** | Future architecture |
 | `08_WINNING_PATTERN_AUDIT.md` | What patterns characterize strong hackathon projects? | Technical proof + clear problem/user/value linkage are strategically important | **OBSERVED / INFERRED** | Submission strategy |
 | `RELATED_WORK_AND_EVIDENCE.md` | What prior standards, research and adjacent systems support or bound LASTRO's argument? | Foundational work and adjacent systems support parts of the thesis; the full composition remains a bounded differentiation hypothesis | **FOUNDATION / SUPPORT / ADJACENT** | Argument / positioning |
-| `09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | What does academic literature establish about work/performance evidence → competency inference/state? | Strong academic foundation for the inference and longitudinal state; full independent-verification → consensus → attestation composition remains a research hypothesis | **FOUNDATION / SUPPORT / GAP** | Argument / architecture |
-| `10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | How should validity, verification, provenance, consensus and attestation be separated? | They are distinct functions; cryptographic verifiability does not imply truth, and provenance supports trust/auditability without establishing competency validity | **FOUNDATION / GAP** | Argument / architecture |
 | `ETHICAL_COMPLIANCE_LAYER.md` | Can competency rules receive explicit governance constraints? | Interesting future mechanism; cannot claim universal fairness | **HYPOTHESIS / DEFERRED** | Future governance |
 | `product/PRODUCT_THESIS.md` | What broader product thesis follows from the evidence and MVP? | Evidence-backed capability verification is the current strategic thesis | **THESIS** | Product narrative |
 | `product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | What organizational capability problem does applied AI create? | Broader context for the capability-verification wedge | **THESIS / CONTEXT** | Product / GTM |
 | `product/FUTURE_PLATFORM_VISION.md` | What could the platform become beyond the MVP? | Future vision, not current capability | **HYPOTHESIS** | Future product |
 | `product/RESEARCH_AGENDA.md` | What should be investigated next? | Defines future investigation priorities | **OPEN** | Research |
+
+## Article research working set
+
+The article-level research corpus is currently maintained in the private Vault under `research/article/`. It contains the working literature review, related-work matrix, verification/provenance conceptual review and literature-closure protocol. These artifacts are intentionally not treated as public canonical findings until the literature closure and counterexample process are completed.
+
+The public repository retains only consolidated research artifacts that are necessary to understand or audit current LASTRO claims.
 
 ## Evidence status model
 
