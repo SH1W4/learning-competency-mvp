@@ -6,6 +6,16 @@
 
 > **Transformamos mudanças no trabalho em inteligência de competências, requalificação orientada por evidências e estados de competência verificáveis.**
 
+### One-line mechanism
+
+> **LASTRO turns evidence of work into a competency state that can be independently verified.**
+
+### Problem statement
+
+> **Organizations can see certificates, profiles and job titles, but cannot reliably trace a claimed competency back to observable work and an independently verified decision.**
+
+This is a product hypothesis and must not be presented as customer-validated without external evidence.
+
 ## 2. Wedge atual
 
 O MVP começa deliberadamente menor:
@@ -111,6 +121,22 @@ O momento principal não é “usamos blockchain”.
 
 Blockchain aparece como infraestrutura dessa etapa.
 
+### Blockchain role
+
+The blockchain does not determine whether a person is competent.
+
+The role of Solana in the MVP is:
+
+~~~text
+Verified competency state
+        ↓
+Integrity / attestation reference
+        ↓
+Public verification
+~~~
+
+The competency state is produced by the evidence, verification, governance and Consensus Core process. Solana anchors the resulting attestation/integrity reference.
+
 ## 8. Claims discipline
 
 ### Podemos afirmar
@@ -121,7 +147,8 @@ Blockchain aparece como infraestrutura dessa etapa.
 - regras determinísticas verificam condições objetivas;
 - Consensus Core pode produzir AGREEMENT no cenário coberto;
 - estados podem gerar attestation;
-- integridade pode ser verificada.
+- integridade pode ser verificada;
+- o MVP possui uma arquitetura explícita para transformar evidência em estado de competência verificável.
 
 ### Ainda são hipóteses
 
@@ -131,8 +158,38 @@ Blockchain aparece como infraestrutura dessa etapa.
 - recorrência comercial;
 - Dynamic Role Architecture como wedge;
 - impacto econômico quantitativo;
-- superioridade frente a workflows existentes.
+- superioridade frente a workflows existentes;
+- demanda específica pelo produto;
+- retorno econômico específico do produto.
 
-## 9. Pergunta final
+## 9. Pitch compression
+
+The judge should understand the core before seeing the architecture.
+
+Recommended sequence:
+
+~~~text
+PROBLEM
+  ↓
+INSIGHT
+  ↓
+ONE-LINE MECHANISM
+  ↓
+LIVE EVIDENCE
+  ↓
+VERIFICATION
+  ↓
+COMPETENCY STATE
+  ↓
+PUBLIC PROOF
+  ↓
+VALUE / MARKET HYPOTHESIS
+  ↓
+WHY THIS TEAM
+~~~
+
+Do not open the pitch with infrastructure terminology. Architecture is evidence for the claim, not the claim itself.
+
+## 10. Pergunta final
 
 > **Se o trabalho muda continuamente, por que a representação de competência deveria continuar sendo estática?**
