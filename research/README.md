@@ -118,6 +118,10 @@ The research library does **not** establish:
 
 These remain hypotheses, unknowns, or future research directions.
 
+## Article research boundary
+
+The article research working set is maintained in the private Vault while literature closure, counterexample review and contribution framing are still in development. Public research should expose consolidated findings needed to understand or audit current LASTRO claims; it should not expose every intermediate article artifact.
+
 ## Promotion rule
 
 Before promoting a research conclusion into product or architecture, record:
