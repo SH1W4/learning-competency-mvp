@@ -529,13 +529,13 @@ Separate Consensus outcomes from Governance/process states.
 
 **Acceptance:** no document uses CONFLICTED, PENDING_REVIEW, or ADJUDICATED as interchangeable replacements for canonical Consensus outcomes.
 
-### A-002 — Separate Human Review from Human Adjudication
+### A-002 — Remove routine Human Review from the canonical pipeline
 
 **Priority:** P0
 
-Define normal human review and exception adjudication consistently across product, architecture and demo documentation.
+Remove Human Review as a normal pipeline stage. Preserve Human Adjudication only as an exception path for unresolved conflict, ambiguity, contestation or unsupported context.
 
-**Acceptance:** the two concepts have distinct positions in the documented pipeline.
+**Acceptance:** no canonical MVP flow requires a human reviewer before Consensus Core; Human Adjudication appears only as an exception.
 
 ### A-003 — Correct research dependency map
 
