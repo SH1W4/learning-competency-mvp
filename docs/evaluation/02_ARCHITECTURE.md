@@ -115,7 +115,7 @@ Important information should remain distinguishable by origin, including:
 - deterministic verification;
 - AI interpretation;
 - statistical validation when applicable;
-- human review;
+- human adjudication when an exception requires contextual resolution;
 - consensus decision;
 - governance context.
 
