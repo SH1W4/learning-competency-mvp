@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { verifyAttestation } from "../src/solana/verify.js";
 import { Connection, PublicKey } from "@solana/web3.js";
-import { reviewFor, underReview } from "./helpers.js";
+import { underVerification } from "./helpers.js";
 import type { ReviewedStateRecord } from "../src/provenance/trace.js";
 
 // Mock do @solana/web3.js para simular a rede
@@ -23,8 +23,9 @@ const FAKE_KEY = "4wBqpZM9xaSheZzJSMawUKKwhdpChKbZ5eu5ky4Vigw6X9SHVWJwBR3N9YuSpe
 
 /** Handoff real produzido pelo pipeline do M2 (cenário sintético Ana → DEMONSTRATED). */
 async function realHandoff(): Promise<ReviewedStateRecord> {
-  const { s, env } = await underReview();
-  s.review(reviewFor(s, {}, true, env));
+  const { s } = await underVerification();
+  const result = s.consensusAdvance();
+  if (result.status !== "AGREEMENT") throw new Error(`expected AGREEMENT, got ${result.status}`);
   return s.handoff();
 }
 
