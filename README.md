@@ -116,6 +116,16 @@ Blockchain does not determine whether someone is competent.
 
 It helps prove that a particular state and its referenced record existed in a verifiable form.
 
+## Governance & project state
+
+The current public-facing state is governed by:
+
+- [Vault Boundary](docs/governance/VAULT_BOUNDARY.md)
+- [Source of Truth Map](docs/governance/SOURCE_OF_TRUTH.md)
+- [Project Audit — 2026-10-04](docs/governance/PROJECT_AUDIT_2026-10-04.md)
+
+These documents prepare a future Public Vault / Private Vault split. No vault migration has been performed yet.
+
 ## The bigger opportunity
 
 The current MVP starts with competency evidence.
