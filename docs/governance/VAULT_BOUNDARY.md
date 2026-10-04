@@ -18,6 +18,12 @@ Commercial strategy, sensitive team material, unpublished research, private deli
 
 Credentials, API keys, private keys, tokens and passwords never belong in either vault. They belong in a secret manager.
 
+## Current Migration Status
+
+The project has a strictly defined public/private information architecture and publication policy.
+
+**Note:** The physical migration of files into separated Public/Private Vaults is prepared and gated by the 10-point migration checklist, but has not yet been executed. Current claims of "IP BLINDADA" refer to the logical separation of concerns, interface contracts, and the exclusion of sensitive heuristics from public endpoints, not a completed physical repository split.
+
 ## Current repository status
 
 This repository is currently a **pre-vault mixed state**.
