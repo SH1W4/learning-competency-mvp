@@ -30,9 +30,17 @@ Research on the broader product opportunity beyond the current MVP.
 - [Future Platform Vision](./product/FUTURE_PLATFORM_VISION.md)
 - [Research Agenda](./product/RESEARCH_AGENDA.md)
 
-### Market & ecosystem evidence
+### Market, related work & ecosystem evidence
 
-External evidence and competitive/ecosystem research.
+External evidence, foundational standards, related work, and competitive/ecosystem research.
+
+- [Market Validation Evidence](./04_MARKET_VALIDATION_EVIDENCE.md)
+- [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
+- [Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
+- [Winning Pattern Audit](./08_WINNING_PATTERN_AUDIT.md)
+
+The related-work map distinguishes **foundation**, **supporting evidence**, **adjacent prior art**, and **LASTRO differentiation hypotheses**. It does not treat external sources as proof of product-market fit, uniqueness, or legal novelty.
+
 
 - [Market Validation Evidence](./04_MARKET_VALIDATION_EVIDENCE.md)
 - [Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
