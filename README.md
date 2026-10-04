@@ -189,7 +189,7 @@ It demonstrates:
 - governance-aware state transitions;
 - conflict and insufficient-evidence handling;
 - provenance and deterministic record hashing;
-- Solana Devnet integrity anchoring;
+- Solana Devnet integrity anchoring with a documented resilience fallback protocol;
 - independent verification of an anchored record when a current Devnet transaction is available.
 
 It does **not** claim:
