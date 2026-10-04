@@ -137,9 +137,9 @@ Show each verification mechanism separately.
 Current conceptual mechanisms include:
 - Evidence Integrity;
 - Deterministic Rule Check;
-- Statistical / Robustness;
-- AI Interpretation;
-- Source / Provenance.
+- AI Interpretation.
+
+Statistical / Robustness and Source / Provenance remain contextual/future or provenance dimensions, not additional current Consensus mechanisms.
 
 ### Consensus
 Supported outcomes:
