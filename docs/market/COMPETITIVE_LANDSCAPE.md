@@ -60,6 +60,31 @@ For each competitor/alternative record:
 
 Do not claim that an alternative “cannot” perform a function unless the evidence supports that claim.
 
+## Evidence and Credential Trust Boundary
+
+Blockchain-backed credentials and W3C Verifiable Credentials address an important problem: making claims tamper-evident, portable and machine-verifiable. They do not, by themselves, establish that the underlying competency claim is true or that the issuer's assessment process is substantively reliable.
+
+The W3C Verifiable Credentials Data Model 2.0 explicitly describes a trust model in which the verifier expects the issuer to stand behind the claims made about the subject. It also states that how verifiers decide which issuers to trust is outside the specification's scope. [CL-01]
+
+The same specification allows an issuer to include **evidence** that can help a verifier determine how much confidence to place in a credential. This is important because cryptographic verification of a credential's provenance and integrity is distinct from verification of the evidence and assessment process behind the claim. [CL-01]
+
+Therefore the defensible LASTRO distinction is not:
+
+> "Blockchain credentials are untrustworthy."
+
+It is:
+
+> **Cryptographic credential integrity and issuer authenticity solve a different problem from evidence quality and competency validation.**
+
+LASTRO's current model uses the blockchain as an integrity anchor **after** the off-chain evidence, verification and consensus path has produced a competency state. The chain is not presented as an oracle of truth or merit.
+
+This distinction is also consistent with the current MVP threat model: integrity of a record is explicitly separated from truth of the underlying claim.
+
+### References
+
+- [CL-01] W3C — *Verifiable Credentials Data Model v2.0*, Recommendation, 15 May 2025 — https://www.w3.org/TR/vc-data-model/
+- W3C — *Verifiable Credentials 2.0* publication announcement, 15 May 2025 — https://www.w3.org/press-releases/2025/verifiable-credentials-2-0/
+
 ## Output
 
 The final competitive analysis should identify:
