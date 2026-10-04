@@ -48,10 +48,6 @@ Exemplo:
 
 `mechanism → input/reference → result → rationale → version → timestamp`
 
-Quando houver revisão humana, também deve ser preservado:
-
-`reviewer → criteria → evidence → decision → rationale → conflicts → timestamp`
-
 O Consensus Core compara os resultados e determina o resultado de governança conforme regras previamente definidas.
 
 ### Consensus outcomes
@@ -72,7 +68,7 @@ Estados operacionais podem acompanhar o processo de governança:
 - `PENDING_REVIEW`;
 - `ADJUDICATED`.
 
-Esses estados não substituem os resultados canônicos do Consensus Core.
+Esses estados não fazem parte do MVP canônico e não devem ser usados para introduzir uma etapa de revisão humana no pipeline.
 
 ## Competency State
 
@@ -101,9 +97,11 @@ A governança deve permitir registrar metadados como:
 
 Esses metadados devem influenciar as regras de elegibilidade quando a política do processo exigir, mas não devem ser usados para inferir automaticamente intenção, caráter ou parcialidade.
 
-## Human-in-the-loop
+## Human Adjudication
 
-O humano permanece no processo. **Human Review** é uma etapa normal de inspeção quando exigida pelas regras; **Human Adjudication** é a camada de exceção para conflitos, ambiguidades, contestações ou casos não cobertos pelas regras. A intervenção é acionada quando as verificações não convergem, quando a evidência é insuficiente ou quando o contexto não pode ser adequadamente formalizado.
+A intervenção humana não é uma etapa normal do pipeline. O Consensus Core foi introduzido para reduzir a dependência de revisão individual e resolver casos cobertos pelas verificações independentes sem exigir um revisor humano a cada avaliação.
+
+**Human Adjudication** é a camada de exceção para conflitos materiais, ambiguidades, contestações ou casos não cobertos pelas regras.
 
 A IA pode:
 
@@ -164,11 +162,8 @@ A camada pode ser introduzida inicialmente de forma mínima, sem exigir uma rede
 
 1. registrar os mecanismos de verificação e suas versões;
 2. registrar critérios e justificativas estruturadas;
-3. registrar conflitos/independência quando houver revisão humana;
-4. permitir segunda revisão quando a política exigir;
-5. bloquear atualização automática do estado quando houver conflito ou evidência insuficiente;
-6. encaminhar conflitos e exceções para adjudicação humana;
-7. preservar o contexto de governança no `ReviewedStateRecord`.
+3. encaminhar conflitos e exceções para adjudicação humana;
+4. preservar o contexto de governança no `ReviewedStateRecord`.
 
 A implementação mais sofisticada do Consensus Core permanece uma evolução incremental.
 
