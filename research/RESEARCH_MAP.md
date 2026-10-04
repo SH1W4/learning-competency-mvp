@@ -17,6 +17,7 @@ This map makes the epistemic status of the research library explicit: what is ob
 | `06_DECISIONS.md` | Which project decisions were derived from research? | Records adopted boundaries and unresolved questions | **ADOPTED REGISTER** | Governance |
 | `07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md` | Could external infrastructure strengthen future verification? | Potential adapter/substrate; not required for current MVP | **RESEARCH / DEFERRED** | Future architecture |
 | `08_WINNING_PATTERN_AUDIT.md` | What patterns characterize strong hackathon projects? | Technical proof + clear problem/user/value linkage are strategically important | **OBSERVED / INFERRED** | Submission strategy |
+| `RELATED_WORK_AND_EVIDENCE.md` | What prior standards, research and adjacent systems support or bound LASTRO's argument? | Foundational work and adjacent systems support parts of the thesis; the full composition remains a bounded differentiation hypothesis | **FOUNDATION / SUPPORT / ADJACENT** | Argument / positioning |
 | `ETHICAL_COMPLIANCE_LAYER.md` | Can competency rules receive explicit governance constraints? | Interesting future mechanism; cannot claim universal fairness | **HYPOTHESIS / DEFERRED** | Future governance |
 | `product/PRODUCT_THESIS.md` | What broader product thesis follows from the evidence and MVP? | Evidence-backed capability verification is the current strategic thesis | **THESIS** | Product narrative |
 | `product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | What organizational capability problem does applied AI create? | Broader context for the capability-verification wedge | **THESIS / CONTEXT** | Product / GTM |
@@ -33,6 +34,9 @@ This map makes the epistemic status of the research library explicit: what is ob
 - **HYPOTHESIS** — proposition requiring further validation.
 - **OPEN** — material question with insufficient current evidence.
 - **DEFERRED** — intentionally excluded from the current MVP or commercial wedge.
+- **FOUNDATION** — established external standard, framework, or body of work used as conceptual/technical context.
+- **SUPPORT** — external evidence that strengthens a bounded project argument without validating the product itself.
+- **ADJACENT** — existing system or architecture that occupies a neighboring problem space.
 
 ## Promotion rule
 
@@ -57,13 +61,14 @@ Promotion is not automatic. A research artifact may remain useful without becomi
 The research library currently supports these bounded conclusions:
 
 1. The workforce/capability problem is materially relevant.
-2. Adjacent credential, talent, matching, performance-verification and attestation solutions exist.
-3. LASTRO's evidence → independent verification → consensus → competency state → attestation composition is a defensible differentiation hypothesis.
-4. The MVP should remain narrow and verifiable.
-5. Dynamic Role Architecture and related future-platform concepts remain research.
-6. External verification infrastructure may become an adapter or substrate, not LASTRO's semantic authority.
+2. Explicit competency frameworks, provenance models, machine-verifiable claims, AI evaluation frameworks and distributed verification systems provide established external foundations or adjacent prior art.
+3. Adjacent credential, talent, matching, performance-verification and attestation solutions exist.
+4. LASTRO's evidence → independent verification → consensus → competency state → attestation composition is a defensible differentiation hypothesis.
+5. The MVP should remain narrow and verifiable.
+6. Dynamic Role Architecture and related future-platform concepts remain research.
+7. External verification infrastructure may become an adapter or substrate, not LASTRO's semantic authority.
 
-These do **not** establish product-market fit, willingness to pay, market uniqueness, or universal competency assessment.
+These do **not** establish product-market fit, willingness to pay, market uniqueness, legal/patent novelty, or universal competency assessment.
 
 ## Do not promote by repetition
 
@@ -78,7 +83,8 @@ Unless new evidence changes the decision register, keep these explicitly bounded
 - Dynamic Role Architecture as the initial commercial wedge;
 - privacy-preserving transfer of arbitrary human knowledge;
 - blockchain as a source of competency truth;
-- external verification infrastructure as a replacement for the Consensus Core.
+- external verification infrastructure as a replacement for the Consensus Core;
+- legal/patent novelty claims.
 
 ## Relationship to governance
 
