@@ -13,6 +13,11 @@ The journal is historical evidence, not the current source of truth for product 
 5. [M2 → M3 Handoff Hardening](./05_m2_m3_handoff_hardening.md)
 6. [MVP Technical Closure](./06_mvp_technical_closure.md)
 7. [Bounded Verifiable Claim — PR #7](./07_bounded_verifiable_claim_pr7.md)
+8. [Semantic Hardening & CI Recovery](./08_semantic_hardening_and_ci_recovery.md)
+9. [M4 Execution & Core Freeze](./09_m4_execution_and_core_freeze.md)
+10. [Thesis, Market Evidence & External Validation](./10_thesis_market_evidence_and_external_validation.md)
+11. [Positioning & Ecosystem Benchmark](./11_positioning_and_ecosystem_benchmark.md)
+12. [Final Evaluation & Documentation Freeze](./12_final_evaluation_and_documentation_freeze.md)
 
 ## Historical-language policy
 
