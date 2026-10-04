@@ -28,6 +28,20 @@ Attestation
 Public verification
 ```
 
+## Exceptional conflict flow
+
+```
+Independent verification
+   ↓
+CONFLICT
+   ↓
+Human adjudication
+   ↓
+DEMONSTRATED or IN_DEVELOPMENT
+```
+
+Human adjudication is not part of the normal demonstration path.
+
 ## Technical path
 
 Local demonstration:
@@ -37,6 +51,12 @@ npm install
 npm test
 npm run typecheck
 npm run demo
+```
+
+Exceptional adjudication demonstration:
+
+```bash
+npm run demo:adjudication
 ```
 
 Attestation:
@@ -54,20 +74,19 @@ npm run m3:verify <tx_signature> [record_hash]
 ## What the demo proves
 
 The vertical slice demonstrates that:
-
 1. evidence can be structured and linked to activities;
 2. AI interpretation can be kept separate from source evidence;
 3. deterministic criteria can be evaluated independently of AI signals;
-4. verification results can converge in the covered scenario;
-5. the competency state can be updated from that convergent result;
-6. the resulting state can be represented by a deterministic record;
-7. the record can be anchored on Solana Devnet;
-8. the integrity relationship can later be verified when a current Devnet transaction is available.
+4. verification results can produce agreement, insufficient-evidence, or conflict outcomes;
+5. agreement can update the competency state automatically;
+6. conflict can enter an explicit human adjudication path;
+7. the resulting state can be represented by a deterministic record;
+8. the record can be anchored on Solana Devnet;
+9. the integrity relationship can later be verified when a current Devnet transaction is available.
 
 ## What the demo does not prove
 
 The demo does not prove:
-
 - commercial demand;
 - customer adoption;
 - pricing;
@@ -79,17 +98,15 @@ The demo does not prove:
 ## Test evidence
 
 The repository maintains automated coverage for the core flow, including:
-
-- human-adjudication exception path;
 - Consensus Core agreement;
 - insufficient evidence;
 - deterministic verifier independence from AI signals;
+- explicit conflict routing to human adjudication;
+- rejection of human adjudication outside the conflict path;
 - invalidation of prior interpretation when new evidence arrives;
-- evidence submission restrictions during adjudication;
 - provenance and consensus handoff.
 
-The repository includes automated coverage for the core flow. Exact test counts are intentionally kept out of this evaluator document so this page does not become stale as coverage evolves. Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
-
+Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
 
 ## Current public-proof status
 
