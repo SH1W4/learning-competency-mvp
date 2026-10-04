@@ -12,7 +12,7 @@ import type {
   EvidenceSubmission,
   ExtractionResult,
 } from "./domain/types.js";
-import { ingestEvidence } from "./evidence/ingest.js";
+import { ingestEvidence, verifyEvidenceIntegrity } from "./evidence/ingest.js";
 import { normalizeEvidence } from "./evidence/normalize.js";
 import { extractFields } from "./evidence/extract.js";
 import { parseAIOutput, type AIInterpretation } from "./ai/contract.js";
@@ -77,10 +77,14 @@ export class CompetencySession {
   async interpret(provider: InterpretationProvider): Promise<RelationResult> {
     if (!this.evidences.length) throw new TransitionError("não há evidências para interpretar");
 
+    // Providers are untrusted. Give them detached snapshots so an AI adapter
+    // cannot mutate the canonical evidence objects before verification.
+    const providerEvidences = structuredClone(this.evidences);
+    const providerExtractions = structuredClone(this.extractions);
     const raw = await provider.interpret({
       subject: this.subject,
-      evidences: this.evidences,
-      extractions: this.extractions,
+      evidences: providerEvidences,
+      extractions: providerExtractions,
     });
 
     const check = parseAIOutput(raw, this.evidences.map((e) => e.evidence_id), {
@@ -143,6 +147,9 @@ export class CompetencySession {
       );
     }
     if (!this.relation) throw new TransitionError("não há interpretação para consenso");
+    if (!this.evidences.every(verifyEvidenceIntegrity)) {
+      throw new TransitionError("integridade da evidência falhou antes do Consensus Core");
+    }
 
     const result = evaluateConsensus(this.evidences, this.relation);
     this.consensus = result;
