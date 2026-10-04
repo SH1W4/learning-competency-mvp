@@ -1,8 +1,45 @@
 # Research
 
-This directory contains exploratory research, external evidence, architectural benchmarks, and future product hypotheses that inform LASTRO without silently changing the current MVP contract.
+This directory is the public research index for LASTRO.
+
+It connects **external evidence → research interpretation → project thesis → canonical product/architecture → implementation and reproducible proof**, while preserving the distinction between what is established, what is inferred, what has been adopted, and what remains hypothetical.
 
 Research is **not the source of truth for current runtime behavior**. The current implementation, canonical product/architecture documentation, and governance records take precedence where they conflict.
+
+## How to navigate the research
+
+If you are new to LASTRO, follow this path:
+
+1. **Start here** — understand the research library and its epistemic boundaries.
+2. **[Research Map](./RESEARCH_MAP.md)** — see every public research track, question, status, and promotion target.
+3. **[Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)** — trace the main public arguments to external sources and adjacent systems.
+4. **[Article Research Track](./article/README.md)** — inspect the focused literature/research line behind the evidence → competency verification thesis.
+5. **Product research** — understand the broader product thesis and future questions without confusing them with the MVP contract.
+6. **Canonical implementation** — move from research to the current product/architecture and executable proof in `docs/`, `src/`, `tests/`, and `fixtures/`.
+
+### The public evidence chain
+
+```
+PROBLEM / CONTEXT
+      ↓
+EXTERNAL EVIDENCE
+      ↓
+RELATED WORK / PRIOR ART
+      ↓
+RESEARCH INTERPRETATION
+      ↓
+LASTRO THESIS / HYPOTHESIS
+      ↓
+CANONICAL PRODUCT & ARCHITECTURE
+      ↓
+IMPLEMENTATION / TESTS
+      ↓
+REPRODUCIBLE DEMO
+      ↓
+LIMITATIONS / WHAT REMAINS UNPROVEN
+```
+
+The repository intentionally keeps these layers separate. A source can support the problem without validating the product; research can motivate an architecture without proving it; implementation proves what the system does, not that the underlying commercial or scientific hypothesis is true.
 
 ## Research boundary
 
@@ -19,6 +56,18 @@ Research material must preserve the distinction between:
 
 ## Active research tracks
 
+### Article research — evidence to competency verification
+
+The article research track is intentionally public because its literature foundations, counterexamples, methodological limits, and unresolved research questions are relevant to understanding and challenging LASTRO's public thesis.
+
+- [Article Research Track](./article/README.md)
+- [09 — Work Evidence → Competency Inference](./article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md)
+- [10 — Verification, Consensus, Provenance & Attestation](./article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md)
+- [Related Work Matrix](./article/RELATED_WORK_MATRIX.md)
+- [Literature Closure Protocol](./article/LITERATURE_CLOSURE_PROTOCOL.md)
+
+**Status:** scoped review / research hypothesis. These documents are not a systematic review, legal novelty analysis, or proof of academic novelty.
+
 ### Product thesis & future platform
 
 Research on the broader product opportunity beyond the current MVP.
@@ -30,8 +79,6 @@ Research on the broader product opportunity beyond the current MVP.
 Future-platform material may exist in the private Vault and is not assumed to be a public capability.
 
 ### Market, related work & ecosystem evidence
-
-External evidence, foundational standards, related work, and competitive/ecosystem research.
 
 - [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
 - [Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
@@ -56,27 +103,21 @@ Future research on deriving role and competency changes from observable changes 
 
 The current project does **not** claim Dynamic Role Architecture as an implemented or commercially validated capability.
 
-### Article research — evidence to competency verification
-
-The article research track is intentionally public because its literature foundations, counterexamples, methodological limits, and unresolved research questions are relevant to understanding and challenging LASTRO's public thesis.
-
-- [Article Research Track](./article/README.md)
-- [09 — Work Evidence → Competency Inference](./article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md)
-- [10 — Verification, Consensus, Provenance & Attestation](./article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md)
-- [Related Work Matrix](./article/RELATED_WORK_MATRIX.md)
-- [Literature Closure Protocol](./article/LITERATURE_CLOSURE_PROTOCOL.md)
-
-**Status:** scoped review / research hypothesis. These documents are not a systematic review, legal novelty analysis, or proof of academic novelty.
-
-## Research → evidence → decision
+## Research → evidence → decision → implementation
 
 The intended flow is:
 
-`RESEARCH → EVIDENCE → INTERPRETATION → DECISION → PROMOTION`
+`RESEARCH → EVIDENCE → INTERPRETATION → DECISION → PROMOTION → IMPLEMENTATION`
 
 A research artifact may influence the project only when the relevant conclusion is explicitly promoted into the appropriate canonical layer.
 
-For current decision status, consult the project's decision/governance records where available.
+For current product and implementation claims, continue to:
+
+- [Product / MVP documentation](../docs/product/README.md)
+- [Architecture documentation](../docs/architecture/README.md)
+- [Evaluation & proof](../docs/evaluation/README.md)
+- [Reproducible demo contract](../docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md)
+- [Repository README](../README.md)
 
 ## What research currently supports
 
