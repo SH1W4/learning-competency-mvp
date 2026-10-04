@@ -195,6 +195,28 @@ A atestação deve representar o estado produzido pelo processo e permitir recon
 
 O MVP não precisa colocar os resultados completos de todos os mecanismos on-chain. O registro local deve preservar o contexto necessário; a attestation pode carregar uma representação mínima e verificável desse contexto.
 
+## Research Evidence — Automated Evaluation and Human Oversight
+
+The current Consensus Core is grounded in a documented limitation of automated evaluation: an AI evaluator can produce systematically distorted judgments even when the output is structurally valid.
+
+A 2024 ACL study, *Large Language Models are not Fair Evaluators*, found positional bias in LLM-based evaluation: changing the order of candidate responses could materially alter rankings. The authors report that a simple calibration approach reduced the observed evaluation bias and brought results closer to human judgments. [CC-01]
+
+A 2024 IEEE BigComp paper investigated combining human-in-the-loop systems with AI fairness toolkits to reduce age bias in AI hiring algorithms, treating human review and fairness tooling as complementary mitigation approaches in a high-stakes domain. [CC-02]
+
+A 2024 study of algorithmic recruitment also found that bias can emerge from the interaction between algorithmic recommendations and human decision-makers, rather than originating exclusively in the algorithm itself. [CC-03]
+
+These findings do **not** prove that the LASTRO Consensus Core is optimal or universally bias-resistant. They support the narrower architectural rationale already implemented:
+
+> **AI interpretation should remain an input to a broader verification process rather than become the sole authority over competency state.**
+
+In particular, the current Deterministic Criteria Check is intentionally isolated from AI-generated signals, confidence scores and classifications.
+
+### References
+
+- [CC-01] Wang et al. — *Large Language Models are not Fair Evaluators*, ACL 2024 — https://aclanthology.org/2024.acl-long.511/
+- [CC-02] Harris — *Combining Human-in-the-Loop Systems and AI Fairness Toolkits to Reduce Age Bias in AI Job Hiring Algorithms*, IEEE BigComp 2024 — https://doi.org/10.1109/BigComp60711.2024.00019
+- [CC-03] Bursell & Roumbanis — *After the algorithms: A study of meta-algorithmic judgments and diversity in the hiring process at a large multisite company*, 2024 — https://journals.sagepub.com/doi/full/10.1177/20539517231221758
+
 ## MVP
 
 A implementação atual compreende:
