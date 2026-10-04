@@ -54,7 +54,8 @@ INDEPENDENT VERIFICATION
       ├─ AI Interpretation
       └─ Robustness / other verifiers
       ↓
-GOVERNANCE / COMPLIANCE
+OPTIONAL GOVERNANCE GATE
+(future research; not MVP)
       ↓
 CONSENSUS CORE
       ├─ AGREEMENT → STATE
