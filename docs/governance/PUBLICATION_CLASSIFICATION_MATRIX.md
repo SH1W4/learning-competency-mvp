@@ -94,13 +94,9 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` |
 | `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` |
 | `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` |
-| `research/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PRIVATE / VAULT` |
-| `research/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PRIVATE / VAULT` |
 | `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` |
-| `research/LITERATURE_CLOSURE_PROTOCOL.md` | `PRIVATE / VAULT` |
 | `research/README.md` | `PUBLIC-WITH-REVIEW` |
 | `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC` |
-| `research/RELATED_WORK_MATRIX.md` | `PRIVATE / VAULT` |
 | `research/RESEARCH_MAP.md` | `PUBLIC` |
 | `research/product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | `PUBLIC-WITH-REVIEW` |
 | `research/product/PRODUCT_THESIS.md` | `PUBLIC` |
@@ -148,7 +144,7 @@ This is the authoritative file-level classification for the current LASTRO repos
 
 1. `src/`, `tests/`, synthetic fixtures, canonical architecture and bounded research remain public when they are part of the reproducible proof.
 2. Strategic execution, private operating intelligence, internal agent skills and task planning are candidates for the future restricted layer.
-3. Research is **not** private by default. It is classified by content.
+3. Research is **not** public by default. It is classified by content and maturity. Article working material may be kept in the private Vault until literature closure and explicit promotion.
 4. A file may move from `PUBLIC-WITH-REVIEW` or `REVIEW` to `PUBLIC` after evidence/claim review and removal of confidential material.
 5. A file may move to `RESTRICTED-LATER` when publication would expose non-public strategy, partner information, sensitive competitive intelligence, private deliberation, or other controlled information.
 6. Credentials, private keys, tokens and signing material are never solved by classification; they must not enter the repository.
