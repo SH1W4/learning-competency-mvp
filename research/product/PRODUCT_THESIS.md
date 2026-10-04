@@ -200,7 +200,7 @@ O custo do MVP deve considerar, conforme aplicável:
 - infraestrutura;
 - armazenamento e processamento de evidências;
 - inferência/modelos de IA;
-- revisão humana;
+- Consensus Core e adjudicação humana como exceção;
 - manutenção e observabilidade;
 - infraestrutura blockchain/attestation;
 - segurança e governança;
@@ -220,7 +220,7 @@ A estrutura passa a ser:
 Organizações precisam entender competências reais e em transformação, mas as evidências estão fragmentadas e os papéis formais não representam completamente o trabalho que acontece.
 
 **SOLUÇÃO**  
-Uma camada de evidências e competências que organiza sinais de aprendizagem, aplicação e execução, permitindo avaliação, revisão humana e representação verificável do estado de competência.
+Uma camada de evidências e competências que organiza sinais de aprendizagem, aplicação e execução, permitindo verificação independente, consenso e representação verificável do estado de competência.
 
 **EXTENSÃO**  
 A partir de mudanças observáveis em tarefas e competências, investigar como modelar novos requisitos de função e apoiar requalificação.
@@ -331,7 +331,7 @@ Após a consultoria, a direção do projeto pode ser resumida em quatro frentes:
 
 Construir e demonstrar o vertical slice de:
 
-**Evidence → Competency → Review → State → Attestation → Verification**
+**Evidence → Verification → Consensus → State → Attestation → Verification**
 
 ### B. Inteligência organizacional
 
