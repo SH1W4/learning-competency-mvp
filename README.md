@@ -167,7 +167,7 @@ The goal is to make competency decisions **more evidence-based, more traceable, 
 
 ## What the MVP proves
 
-The current implementation demonstrates a complete technical vertical slice:
+The current implementation demonstrates the technical vertical slice:
 
 **evidence → interpretation → independent verification → consensus → competency state → attestation → verification**
 
@@ -180,7 +180,7 @@ It demonstrates:
 - conflict and insufficient-evidence handling;
 - provenance and deterministic record hashing;
 - Solana Devnet integrity anchoring;
-- independent verification of the resulting proof.
+- independent verification of an anchored record when a current Devnet transaction is available.
 
 It does **not** claim:
 
@@ -236,7 +236,7 @@ npm run typecheck
 npm run demo
 ```
 
-For a current Solana Devnet attestation:
+To generate the current Solana Devnet attestation proof:
 
 ```bash
 npm run m3:attest
