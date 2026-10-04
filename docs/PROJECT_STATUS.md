@@ -8,6 +8,8 @@
 
 O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A capacidade de atestação está implementada; a prova pública Devnet corrente permanece como artefato de fechamento do M4. A interface e a validação externa permanecem como frentes de trabalho.
 
+**Instrumento de fechamento competitivo:** `docs/product/VICTORY_EXECUTION.md`.
+
 ## Base definida
 
 - caso de uso concreto;
@@ -52,7 +54,12 @@ A interface materializa o fluxo existente e não deve criar lógica paralela.
 ### M4 — Validação, demonstração e submissão
 **Status: IN PROGRESS**
 
-Validação externa e preparação da demonstração.
+M4 agora segue quatro frentes:
+
+1. **PROVE** — prova técnica pública atualizada;
+2. **DEMONSTRATE** — frontend e fluxo end-to-end;
+3. **VALIDATE** — buyer, wedge, pain e demand;
+4. **COMMUNICATE** — pitch, differentiation e blockchain relevance.
 
 ## Limites atuais
 
@@ -79,36 +86,41 @@ A camada técnica central está congelada. Novos trabalhos devem priorizar inter
 
 Detalhes estratégicos de mercado, entrevistas e operação comercial são mantidos separadamente pelo time.
 
-
 ## Roadmap de fechamento — M4
 
-### P0 — Prova técnica atualizada
+### P0 — PROVE: prova técnica atualizada
 - [ ] Gerar nova attestation `m3.attestation.v2` em Solana Devnet.
 - [ ] Executar a verificação correspondente.
 - [ ] Registrar a transação atual em `docs/evaluation/04_DEMO_AND_PROOF.md`.
 - [ ] Atualizar o README com a prova pública atual.
 
-### P1 — Produto
+### P0 — DEMONSTRATE: produto e demo
 - [ ] Implementar o frontend conforme `docs/product/PITCH_ARCHITECTURE.md` e `docs/product/FRONTEND_PRODUCT_SPEC.md`.
 - [ ] Demonstrar o fluxo ponta a ponta sem criar lógica paralela.
-- [ ] Manter a arquitetura central em feature freeze.
-
-### P2 — Demonstração
 - [ ] Executar o cenário canônico.
 - [ ] Capturar a evidência técnica necessária para os jurados.
 - [ ] Finalizar o roteiro de demo.
 
-### P3 — Pitch
-- [ ] Problema.
-- [ ] LASTRO.
+### P1 — COMMUNICATE: pitch e diferenciação
+- [ ] Problema concreto.
+- [ ] One-line product mechanism.
 - [ ] Aha moment.
-- [ ] Demonstração.
-- [ ] Diferencial técnico.
+- [ ] Diferencial técnico/ecossistema sem claim de mercado vazio.
+- [ ] Explicação objetiva da relevância da blockchain.
+- [ ] Founder + Market Fit.
 - [ ] Mercado e hipótese de validação.
 - [ ] Limitações e próximos passos.
 
-### P4 — Validação externa
-- [ ] Entrevistas com organizações-alvo.
-- [ ] Validar o problema.
+### P1 — VALIDATE: buyer, wedge e demand
+- [ ] Identificar primeiro buyer e decisão recorrente.
+- [ ] Validar o problema com organizações-alvo.
 - [ ] Validar o wedge.
+- [ ] Testar consequência econômica do problema.
 - [ ] Testar hipótese de piloto.
+- [ ] Registrar evidências externas sem convertê-las em claims maiores do que suportam.
+
+### P2 — FINAL SUBMISSION
+- [ ] Revisar GitHub e documentação pública.
+- [ ] Revisar demo e pitch contra a matriz de vitória.
+- [ ] Confirmar que nenhuma hipótese está apresentada como fato.
+- [ ] Confirmar que nenhum artefato histórico é apresentado como prova atual.
