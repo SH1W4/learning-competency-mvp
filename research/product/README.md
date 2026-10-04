@@ -1,54 +1,65 @@
 # Research / Product
 
-Esta camada registra a pesquisa e a evolução conceitual do produto além do escopo fechado do MVP.
+This area records product research and future product hypotheses beyond the closed MVP scope.
 
-Ela existe para investigar como o núcleo atual — evidência → interpretação assistida por IA → revisão humana → estado → atestação → verificação — pode evoluir para uma plataforma de **engenharia de competências e desenvolvimento profissional**.
+## Current boundary
 
-## Relação com o MVP
+The current LASTRO MVP is **Capability Evidence & Verification Infrastructure**. Its canonical vertical slice is:
 
-O MVP continua sendo o núcleo técnico validado em M1–M3.
+`WORK → EVIDENCE → AI INTERPRETATION → INDEPENDENT VERIFICATION → CONSENSUS → COMPETENCY STATE → ATTESTATION → PUBLIC VERIFICATION`
 
-A camada Research / Product:
+Research / Product does not alter that contract.
 
-- não altera o contrato do MVP;
-- não introduz funcionalidades no vertical slice atual;
-- não transforma hipóteses em requisitos;
-- separa claramente produto futuro, pesquisa e implementação existente;
-- serve como espaço para testar teses antes de convertê-las em produto.
+It exists to investigate what could be built **above or around** the current verification core after further validation.
 
-### Regra
+> **Research / Product may propose. The MVP only incorporates what is explicitly specified, validated, and implemented.**
 
-> **Research / Product pode propor. O MVP só incorpora aquilo que for posteriormente especificado, validado e implementado.**
+## Future product hypothesis
 
-## Tese de expansão
+A broader product direction may connect organizational work changes to competency development:
 
-A hipótese de produto é que o núcleo de evidências e estados possa sustentar uma camada superior capaz de conectar:
+`WORK CHANGE → ROLE DELTA → COMPETENCY REQUIREMENTS → COMPETENCY GAP → REQUALIFICATION → NEW EVIDENCE → VERIFIED CAPABILITY`
 
-`NECESSIDADE ORGANIZACIONAL → FUNÇÃO → RESPONSABILIDADES → COMPETÊNCIAS → LACUNAS → TRILHAS → EVIDÊNCIAS → ESTADO → VERIFICAÇÃO`
+This is a research direction, not a current product capability.
 
-Isso permite investigar dois casos:
+### Research areas
 
-1. **Reskilling / upskilling de funções existentes**
-   - partir de uma função real;
-   - decompor responsabilidades e competências;
-   - identificar lacunas;
-   - construir trilhas de desenvolvimento;
-   - produzir evidências observáveis.
+1. **Existing-role development**
+   - represent responsibilities and tasks;
+   - derive candidate competency requirements;
+   - identify evidence-backed gaps;
+   - investigate requalification paths.
 
-2. **Construção de novas funções**
-   - partir de uma necessidade emergente da organização;
-   - modelar responsabilidades prováveis;
-   - formular competências candidatas;
-   - definir critérios observáveis;
-   - construir experiências de aprendizagem;
-   - revisar e evoluir o modelo conforme evidências reais de trabalho.
+2. **Emerging-role engineering**
+   - observe changes in work;
+   - model candidate role deltas;
+   - derive candidate competencies;
+   - validate proposed role models with humans and organizational evidence.
 
-## Documentos desta camada
+3. **Capability infrastructure**
+   - investigate how verified competency states could become organizational capability signals without becoming opaque people scores or autonomous employment decisions.
 
-- [Visão futura da plataforma](./FUTURE_PLATFORM_VISION.md)
-- [IA aplicada à engenharia de competências](./APPLIED_AI_WORKFORCE_CAPABILITY.md)
-- [Agenda de pesquisa](./RESEARCH_AGENDA.md)
+## Relationship to the MVP
 
-## Status
+The current MVP answers:
 
-**Área de pesquisa — fora do escopo do MVP atual.**
+> **Can a defined capability be demonstrated through evidence and independently verified into a bounded competency state?**
+
+Research / Product investigates the upstream and downstream questions:
+
+> **How are the right capabilities defined as work changes?**
+
+and:
+
+> **How can verified capability states support responsible organizational development?**
+
+These questions remain intentionally separated until sufficient evidence exists to promote them.
+
+## Related research
+
+- [Product Thesis](./PRODUCT_THESIS.md)
+- [Applied AI — Workforce Capability](./APPLIED_AI_WORKFORCE_CAPABILITY.md)
+- [Future Platform Vision](./FUTURE_PLATFORM_VISION.md)
+- [Research Agenda](./RESEARCH_AGENDA.md)
+
+**Status:** Research / future product hypothesis. Outside the current MVP contract.
