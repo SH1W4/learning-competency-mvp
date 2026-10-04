@@ -163,7 +163,7 @@ The future **Ethical Compliance Gate** is proposed as a **pre-consensus governan
 ```
 ORGANIZATION RULE SCHEMA
         ↓
-ETHICAL COMPLIANCE GATE  [FUTURE / M2-M3]
+ETHICAL COMPLIANCE GATE  [FUTURE RESEARCH]
         ↓
 VALIDATED RULE SCHEMA
         ↓
