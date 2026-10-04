@@ -59,7 +59,7 @@ INTERPRETATION
       ↓
 INDEPENDENT VERIFICATION
       ↓
-GOVERNANCE / COMPLIANCE
+GOVERNANCE / POLICY
       ↓
 CONSENSUS CORE
       ↓
@@ -110,9 +110,9 @@ The deterministic verifier must operate directly on explicit competency criteria
 
 It must not silently consume AI confidence, AI classification, or AI-generated relation signals as its authority.
 
-### 4.4 Governance / Compliance
+### 4.4 Governance / Policy
 
-Governance defines the conditions under which verification results may produce a state transition.
+Governance defines the conditions under which verification results may produce a state transition. The proposed Ethical Compliance Gate is a separate future research option; it is not part of the current MVP pipeline.
 
 Relevant context can include eligibility, reviewer role, independence, conflicts of interest, escalation rules, policy version, and additional review requirements.
 
@@ -252,7 +252,7 @@ No DRA capability should be presented as implemented unless it exists in the imp
 
 ## 7. Product alignment
 
-The broader product thesis, “Transform changing work into evidence-based competency intelligence, requalification pathways, and verifiable competency states,” is a strategic product thesis.
+The broader workforce/role-engineering thesis remains a strategic research hypothesis. The current product positioning is **Capability Evidence & Verification Infrastructure**, with the implemented wedge centered on evidence-backed competency.
 
 The narrower implemented product is:
 
@@ -260,7 +260,7 @@ The narrower implemented product is:
 
 The MVP proves the narrower wedge.
 
-**Audit result: ALIGNED, WITH NARRATIVE BOUNDARY.**
+**Audit result: ALIGNED, WITH CURRENT-POSITIONING BOUNDARY.**
 
 The broader thesis must continue to be labeled as strategic/research direction where it exceeds the implemented MVP.
 
