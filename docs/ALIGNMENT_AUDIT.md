@@ -443,7 +443,7 @@ The project can currently claim that the MVP demonstrates:
 - AI-assisted interpretation;
 - deterministic verification independent of AI signals;
 - bounded competency states;
-- explicit human review;
+- human adjudication only when required by unresolved conflict, ambiguity, contestation, or unsupported context;
 - consensus handling for covered scenarios;
 - conflict and insufficient-evidence handling;
 - deterministic record hashing;
@@ -529,7 +529,7 @@ Separate Consensus outcomes from Governance/process states.
 
 **Acceptance:** no document uses CONFLICTED, PENDING_REVIEW, or ADJUDICATED as interchangeable replacements for canonical Consensus outcomes.
 
-### A-002 — Remove routine Human Review from the canonical pipeline
+### A-002 — Keep Human Adjudication as the only human exception path
 
 **Priority:** P0
 
