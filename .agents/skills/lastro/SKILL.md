@@ -33,12 +33,15 @@ Canonical references:
 - README.md — public project narrative and MVP boundary.
 - docs/product/USE_CASE.md — product contract.
 - docs/evaluation/02_ARCHITECTURE.md — architecture.
+- docs/architecture/DOMAIN_MODEL.md — domain model and competency state contract.
+- docs/architecture/API_CONTRACT.md — interface and handoff contract.
 - docs/architecture/CONSENSUS_CORE.md — Consensus Core decision model.
 - docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md — governance, adjudication, attestation boundary.
 - docs/evaluation/04_DEMO_AND_PROOF.md — reproducible proof path.
 - docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md — claim discipline.
 - docs/governance/SOURCE_OF_TRUTH.md — canonical hierarchy.
 - docs/governance/VAULT_BOUNDARY.md — public/private publication boundary.
+- docs/governance/SECURITY_THREAT_MODEL.md — security threats and trust boundaries.
 - docs/governance/PROJECT_AUDIT_2026-10-04.md — latest repository audit baseline.
 - research/ETHICAL_COMPLIANCE_LAYER.md — future Ethical Compliance Gate research hypothesis.
 
@@ -253,11 +256,24 @@ When discussing live Devnet proof:
 
 ---
 
-## 9. Public / Private Vault Boundary
+## 9. Publication, Vault & IP Boundary
 
 The repository is currently a pre-vault mixed state.
 
 The Public Vault / Private Vault architecture is defined but physical migration has not been completed.
+
+### Publication Classes
+
+The vault model uses four publication classes:
+
+- **PUBLIC** — material intentionally publishable and suitable for the public repository.
+- **RESTRICTED** — controlled-disclosure material that may be shared selectively but is not public.
+- **PRIVATE** — internal material that should not be published.
+- **SECRET STORE** — credentials, secrets, keys, or other sensitive operational material that must never live in either vault.
+
+RESTRICTED is a controlled-disclosure classification, not a mandate to create a third physical repository before the hackathon.
+
+### Public Candidates
 
 Public candidates include:
 
@@ -272,7 +288,11 @@ Public candidates include:
 - source code, tests, synthetic fixtures;
 - selected research after review.
 
-Private candidates include:
+The current MVP source tree is intentionally public because reproducibility and technical auditability are part of the proof strategy. Do not claim that current prompts, heuristics, weights, or other implementation details are proprietary unless they are actually withheld/classified that way. If future implementation contains intentionally proprietary details, publish the public contract separately and classify the implementation before release.
+
+### Restricted / Private Candidates
+
+Private or restricted candidates include:
 
 - commercial strategy;
 - pricing and buyer experiments;
@@ -283,7 +303,13 @@ Private candidates include:
 - unpublished competitive intelligence;
 - restricted security findings.
 
+RESTRICTED/PRIVATE material may be promoted to PUBLIC only after content, metadata, security and claim review, with SOURCE_OF_TRUTH updated and the promotion recorded through a reviewable change.
+
+For controlled disclosure, provide the minimum necessary scope, prefer redaction, use NDA/access control when appropriate, record the disclosure, and never copy restricted material into the public repository merely for convenience.
+
 Secrets belong in a secret manager, never in either vault.
+
+### Migration Protocol
 
 Never claim that logical separation equals completed physical vault migration.
 
@@ -297,9 +323,9 @@ Before migration:
 6. assign every private file a destination;
 7. create the vaults through a reviewable change set.
 
-Do not perform a blind directory move.
+Before hackathon submission, perform a file-by-file publication audit and dedicated secret scan. A keyword grep alone is not sufficient evidence of a clean public repository.
 
----
+Do not perform a blind directory move.
 
 ## 10. Claim Discipline
 
@@ -500,6 +526,8 @@ When working on LASTRO:
 - Do not claim attestation proves truth or merit.
 - Do not claim the vault split is complete.
 - When uncertain, inspect the repository and canonical documents before deciding.
+- If uncertainty remains after inspection, classify the capability as **unverified** rather than inferred or implemented.
+- Never claim external verification without corresponding execution or external evidence.
 - When a requested change conflicts with this skill, surface the conflict explicitly instead of silently overriding the boundary.
 
 ---
@@ -522,18 +550,3 @@ The standard is not “more features”.
 The standard is:
 
 > **more verifiable capability with less ambiguity.**
-
-
-## 9A. Publication Classes and IP Boundary
-
-The vault model uses four publication classes: PUBLIC, RESTRICTED, PRIVATE, and SECRET STORE.
-
-RESTRICTED is a controlled-disclosure classification, not a mandate to create a third physical repository before the hackathon.
-
-The current MVP source tree is intentionally public because reproducibility and technical auditability are part of the proof strategy. Do not claim that current prompts, heuristics, weights, or other implementation details are proprietary unless they are actually withheld/classified that way. If future implementation contains intentionally proprietary details, publish the public contract separately and classify the implementation before release.
-
-RESTRICTED/PRIVATE material may be promoted to PUBLIC only after content, metadata, security and claim review, with SOURCE_OF_TRUTH updated and the promotion recorded through a reviewable change.
-
-For controlled disclosure, provide the minimum necessary scope, prefer redaction, use NDA/access control when appropriate, record the disclosure, and never copy restricted material into the public repository merely for convenience.
-
-Before hackathon submission, perform a file-by-file publication audit and dedicated secret scan. A keyword grep alone is not sufficient evidence of a clean public repository.
