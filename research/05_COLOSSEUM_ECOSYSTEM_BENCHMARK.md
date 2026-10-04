@@ -285,6 +285,38 @@ Strikesense is relevant as a pattern-level reference because observable activity
 
 ---
 
+---
+
+## 6.6 Rei
+
+**Colosseum:** Frontier  
+**Primary object:** skill-verified human / AI-agent routing  
+**Pattern:** verified talent → Proof-of-Talent → bounty matching
+
+Colosseum describes Rei as a go-to-market layer that routes bounties to **Twitter-verified, skill-verified humans and AI agents with Proof-of-Talent**.
+
+### Relevant overlap
+
+- skill verification;
+- proof of talent;
+- opportunity matching;
+- human + AI participants;
+- work-oriented talent routing.
+
+### Not established by the public description
+
+- evidence-of-work as the central data object;
+- independent verification mechanisms;
+- consensus across verification mechanisms;
+- explicit competency state;
+- competency attestation as the output of an evidence pipeline.
+
+**Classification:** Adjacent — high relevance.
+
+Source: https://colosseum.com/arena/projects/rei
+
+---
+
 # 7. Comparative matrix
 
 | Project | Primary object | Evidence | Verification | Competency state | Talent / hiring | On-chain proof | Main overlap |
@@ -403,7 +435,7 @@ It remains a **differentiation hypothesis**, not proof of market uniqueness or c
 
 ---
 
-# 11. Research limitations
+# 12. Research limitations
 
 1. Public project descriptions are not technical implementation audits.
 2. A hackathon submission does not establish market traction.
@@ -415,7 +447,7 @@ It remains a **differentiation hypothesis**, not proof of market uniqueness or c
 
 ---
 
-# 12. Open research questions
+# 13. Open research questions
 
 1. Are there private or poorly indexed Colosseum projects with stronger overlap?
 2. Which of the closest projects evolved into active products?
@@ -430,7 +462,7 @@ These questions belong to subsequent research rather than being resolved by assu
 
 ---
 
-# 13. Source register
+# 14. Source register
 
 ### Colosseum
 
@@ -446,6 +478,8 @@ These questions belong to subsequent research rather than being resolved by assu
   https://colosseum.com/arena/projects/solana-matcher
 - SpineDAO:
   https://colosseum.com/arena/projects/spinedao
+- Rei:
+  https://colosseum.com/arena/projects/rei
 
 ### Internal
 
@@ -454,7 +488,7 @@ These questions belong to subsequent research rather than being resolved by assu
 
 ---
 
-# 14. Evidence discipline
+# 15. Evidence discipline
 
 Future updates to this document must preserve:
 
