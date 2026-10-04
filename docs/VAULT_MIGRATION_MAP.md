@@ -1,10 +1,10 @@
 # Vault Migration Map
 
-> **Status:** planning only. No migration, deletion, or history rewrite is authorized by this document.
+**Status:** operational migration map — private Vault separation completed; future public curation remains optional.
 
 ## Purpose
 
-Classify the current repository into three future layers:
+Classify the current repository into the current public MVP, the controlled private Vault, and a future curated public knowledge layer:
 
 - 🔵 **MVP** — technical implementation and reproducibility.
 - 🟢 **VAULT** — curated project knowledge suitable for public/project documentation.
@@ -221,7 +221,7 @@ LASTRO PROJECT VAULT
 
 This is a target model, not authorization to migrate.
 
-## Pre-migration blockers
+## Post-migration follow-ups
 
 ### P0 — Canonical vocabulary
 Remove remaining canonical references that make Human Review a routine pipeline stage.
@@ -246,7 +246,7 @@ Keep DRA, Role Delta, future platform, AI workforce capability and verification-
 ### P1 — Public/private review
 Review GTM, competitive research, tasks, skills and strategic research before any Vault publication.
 
-## Migration rules
+## Separation rules
 
 1. Do not delete first.
 2. Do not rewrite Git history merely to make the repository cleaner.
@@ -259,58 +259,35 @@ Review GTM, competitive research, tasks, skills and strategic research before an
 9. Mark historical documents explicitly.
 10. The Vault must describe the system accurately without exposing every implementation detail.
 
-## Migration sequence
+## Future curation sequence
 
 ```
-Canonical cleanup
+Public MVP (canonical)
       ↓
-Freeze MVP
+File-level classification
       ↓
-Generate current proof
+Private Vault for REVIEW / RESTRICTED-LATER
       ↓
-Create Vault skeleton
+Optional curated Public Vault
       ↓
-Origin + Research
-      ↓
-Evidence
-      ↓
-Decisions
-      ↓
-Architecture
-      ↓
-Product
-      ↓
-Demo / Proof
-      ↓
-Validation
-      ↓
-History
-      ↓
-Brand
-      ↓
-Public/private audit
-      ↓
-Vault baseline
+Ongoing reconciliation
 ```
 
 No MVP file should be removed merely because a curated derivative exists.
 
-## Definition of done
+## Separation completion status
 
-- [ ] every top-level area has a destination;
-- [ ] every Vault artifact has source lineage;
-- [ ] no canonical document contradicts Consensus Core;
-- [ ] Human Review is not a routine pipeline stage;
-- [ ] Human Adjudication remains an exception;
-- [ ] synthetic evidence is labeled;
-- [ ] market validation is separated from product demonstration;
-- [ ] DRA/future platform remain hypotheses;
-- [ ] current Devnet proof is independently verifiable;
-- [ ] sensitive strategy is excluded;
-- [ ] historical documents are marked;
-- [ ] MVP remains reproducible;
-- [ ] no unnecessary history rewrite occurred;
-- [ ] public narrative matches implementation.
+- [x] every tracked file has a publication class;
+- [x] REVIEW / RESTRICTED-LATER files have a controlled Vault destination;
+- [x] no canonical document contradicts Consensus Core;
+- [x] Human Adjudication remains an exception;
+- [x] synthetic evidence is labeled;
+- [x] market validation is separated from product demonstration;
+- [x] DRA/future platform remain hypotheses;
+- [x] MVP remains reproducible;
+- [x] no unnecessary history rewrite occurred;
+- [x] public narrative matches implementation;
+- [ ] optional curated Public Vault created.
 
 ## Final principle
 
