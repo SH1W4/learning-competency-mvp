@@ -1,7 +1,7 @@
 # Ethical Compliance Layer — Research Specification
 
-> **Status:** Research hypothesis — M2/M3 roadmap. Not part of the current MVP.
-> **Canonical position:** Pre-consensus governance gate. Not a verification mechanism.
+> **Status:** Future research hypothesis. Not part of the current MVP or committed roadmap.
+> **Proposed position:** Optional pre-consensus governance gate. Not a verification mechanism.
 > **Scope:** Defines how the LASTRO architecture can validate organization-specific competency rules against explicit fairness constraints before those rules are applied to evidence.
 
 ---
@@ -32,7 +32,7 @@ ORGANIZATION DEFINES COMPETENCY RULES
                 ↓
 ┌─────────────────────────────────────┐
 │   ETHICAL COMPLIANCE GATE           │
-│   (FUTURE / M2-M3 RESEARCH)         │
+│   (FUTURE RESEARCH)                  │
 │                                     │
 │   ├─ PASS → Rules versioned &       │
 │   │         accepted for execution  │
@@ -181,7 +181,7 @@ CONSTRAINT CHECK: PASS
 ```
 RULE: "C1 requires proficiency in [tool version 2.3]"
 VALID_UNTIL: 2025-12-31
-CURRENT_DATE: 2026-10-05
+CURRENT_DATE: 2026-10-04
 CONSTRAINT CHECK: FAIL
 RATIONALE: Rule expired. Requires update or renewal.
 ```
@@ -255,7 +255,7 @@ To maintain claim discipline:
 - **It does not eliminate human bias in rule design.** Passing explicit constraints does not prove absence of bias.
 - **It is not universal.** Constraints depend on declared frameworks, organizational policy, and applicable jurisdiction.
 - **It is not a fourth verifier.** It does not evaluate evidence.
-- **It is not part of the current MVP.** It is a research hypothesis for M2/M3.
+- **It is not part of the current MVP.** It remains a future research hypothesis.
 - **It does not make the system "ethical" in an absolute sense.** At most, a future implementation could make selected constraints explicit, auditable, and contestable.
 
 ---
@@ -278,16 +278,17 @@ To maintain claim discipline:
 
 ---
 
-## 9. Roadmap
+## 9. Promotion boundary
 
-| Phase | Scope | Status |
-|---|---|---|
-| **M1 (Current MVP)** | Explicit C1–C4 rules; no automated ethical gate | ✅ Implemented |
-| **M2** | Rule Engine with configurable schemas + initial Ethical Compliance Gate | 🟡 Research |
-| **M3** | Expanded constraint set + framework declarability + provenance integration | 🔴 Planned |
-| **M4** | Statistical monitoring of disparate impact + dynamic constraint evolution | 🔴 Hypothesis |
+This layer has no committed implementation milestone. Any future promotion would require, at minimum:
 
-M2/M3 implementation must follow a separate research and legal/compliance validation process before becoming a product claim.
+1. validated problem relevance in a real organizational context;
+2. authoritative legal/framework mapping for the applicable jurisdiction;
+3. machine-evaluable constraints with documented limitations;
+4. human governance for conditional or contested outcomes;
+5. explicit architecture and product approval before implementation.
+
+Until those conditions are met, this document remains research only.
 
 ---
 
