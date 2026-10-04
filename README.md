@@ -22,13 +22,52 @@ and
 
 That gap affects decisions around capability development, internal mobility, workforce planning, learning and other people-related workflows.
 
-The broader market signals support the existence of a capability challenge, but **they do not validate LASTRO commercially**. In the World Economic Forum's 2025 employer survey, 63% of employers identified skills gaps as a leading barrier to business transformation for 2025–2030. Deloitte's 2026 enterprise AI research similarly identifies insufficient worker skills as a major barrier to integrating AI into workflows. [1]
+## 2. External Evidence of the Pain
 
-### Research references
+The capability problem is not unique to LASTRO. Independent workforce research points to a widening gap between changing work, changing skills, and organizational ability to respond.
 
-[1] World Economic Forum, *Future of Jobs Report 2025* — https://www.weforum.org/publications/the-future-of-jobs-report-2025/; Deloitte, *State of AI in the Enterprise 2026* — https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
+### Three signals
 
-## 2. The LASTRO Insight
+**Skills gaps are already a business-transformation barrier.**  
+The World Economic Forum's *Future of Jobs Report 2025*, based on more than 1,000 employers, found that **63% of surveyed employers** identify skills gaps as a primary barrier to business transformation for 2025–2030. Employers also expect **39% of workers' core skills to change by 2030**. citeturn0search7turn0search14
+
+**AI is accelerating the rate of skill change.**  
+PwC's *2026 Global AI Jobs Barometer*, based on more than one billion job postings across six continents, reports that the skills needed for the most AI-exposed jobs are changing **more than twice as fast** as those in the least AI-exposed jobs. citeturn0search10turn0search38
+
+**Organizations are struggling to close the capability gap.**  
+Deloitte's *State of AI in the Enterprise 2026* reports that **insufficient worker skills are the biggest barrier** identified by surveyed leaders to integrating AI into existing workflows. Organizations report responding through workforce AI education (53%) and upskilling/reskilling strategies (48%). citeturn0search0turn0search1
+
+### What these signals establish — and what they do not
+
+Together, these sources establish an external market signal:
+
+```text
+WORK IS CHANGING
+      ↓
+SKILLS ARE CHANGING
+      ↓
+ORGANIZATIONS NEED NEW CAPABILITIES
+      ↓
+CAPABILITY DEVELOPMENT BECOMES A BUSINESS PROBLEM
+```
+
+They **do not establish that LASTRO is already commercially validated**.
+
+Our thesis begins at the next gap:
+
+> **If organizations need people to develop new capabilities, they also need stronger evidence that those capabilities have actually been demonstrated.**
+
+That evidence-and-verification gap is the problem LASTRO is designed to address.
+
+### Source discipline
+
+These sources validate the **existence and urgency of the broader pain**, not customer demand for LASTRO, willingness to pay, product-market fit, or ROI.
+
+Research sources: [WEF — Future of Jobs Report 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/); [PwC — 2026 Global AI Jobs Barometer](https://www.pwc.com/gx/en/issues/artificial-intelligence/publications/artificial-intelligence-study.html); [Deloitte — State of AI in the Enterprise 2026](https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html).
+
+---
+
+## 3. The LASTRO Insight
 
 A certificate can show that something was completed. A profile can state what someone has done. A job title can describe a role.
 
@@ -52,7 +91,7 @@ ATTESTATION / PUBLIC VERIFICATION
 
 The product does not attempt to automate human judgment. It makes the decision process more evidence-based, traceable, and resilient to a single human or AI signal becoming the sole authority.
 
-## 3. What LASTRO Does
+## 4. What LASTRO Does
 
 LASTRO turns evidence of work into a competency state that can be independently verified.
 
@@ -92,7 +131,7 @@ Deterministic checks evaluate objective conditions independently of AI-generated
 
 This separation is a core product principle, not an implementation detail.
 
-## 4. The MVP — What We Actually Built
+## 5. The MVP — What We Actually Built
 
 The product narrative is broader than the current implementation. **The MVP is intentionally narrow:** it proves one complete vertical slice from observable work to a bounded, independently verifiable competency state.
 
@@ -154,7 +193,7 @@ The **MVP is the proof**. The broader product narrative is the **hypothesis to v
 
 ---
 
-## 5. Why This Matters
+## 6. Why This Matters
 
 The long-term value of LASTRO is not another place to store credentials.
 
@@ -174,7 +213,7 @@ Potential decisions include capability development, internal mobility, workforce
 
 **These commercial applications remain hypotheses until validated externally.** The MVP proves the technical mechanism, not market demand or economic impact.
 
-## 6. The Role of Blockchain
+## 7. The Role of Blockchain
 
 Blockchain is infrastructure for the proof layer, not the product authority.
 
@@ -192,7 +231,7 @@ PUBLIC VERIFICATION
 
 The blockchain does **not** prove that a person is universally competent, truthful, or professionally qualified. It anchors the integrity of a defined state produced by the system.
 
-## 7. What the MVP Proves
+## 8. What the MVP Proves
 
 - Evidence can be structured and linked to activities and competency criteria.
 - Source evidence can remain separate from AI interpretation.
@@ -203,7 +242,7 @@ The blockchain does **not** prove that a person is universally competent, truthf
 - The resulting state can be anchored through the current Solana Devnet attestation path.
 - The integrity relationship can be independently verified.
 
-## 8. What the MVP Does NOT Claim
+## 9. What the MVP Does NOT Claim
 
 - Universal competency assessment.
 - Replacement of human evaluation in high-stakes decisions.
@@ -214,7 +253,7 @@ The blockchain does **not** prove that a person is universally competent, truthf
 - A universal credentialing, recruiting, LMS, or workforce-management platform.
 - That strategic extensions such as Dynamic Role Architecture are currently implemented or commercially validated.
 
-## 9. For Evaluators — Recommended Reading Path
+## 10. For Evaluators — Recommended Reading Path
 
 If you are evaluating LASTRO for the first time, use this path:
 
@@ -232,7 +271,7 @@ If you are evaluating LASTRO for the first time, use this path:
 
 The repository contains additional research, governance, product, brand, and execution documents for deeper review.
 
-## 10. Current Status & Execution Roadmap
+## 11. Current Status & Execution Roadmap
 
 The core M1–M3 vertical slice is implemented. The project is now in the **M4 execution / closing phase**, focused on reproducible proof, demonstration, external validation, communication, and final submission.
 
@@ -249,7 +288,7 @@ For the authoritative project status and execution roadmap, see:
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
 
-## 11. Quick Start & Resilient Demo
+## 12. Quick Start & Resilient Demo
 
 ```bash
 npm install
@@ -267,14 +306,14 @@ npm run m3:verify <tx_signature> [record_hash]
 
 If a live Devnet write is unavailable, the presentation can use the previously validated synthetic fallback fixture described in [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md).
 
-## 12. Repository Structure
+## 13. Repository Structure
 
 - `src/` — Core implementation and hardened pipelines.
 - `tests/` — Automated coverage, including adversarial integrity tests.
 - `docs/` — Product, architecture, evaluation, governance and operational documentation.
 - `research/` — Future hypotheses and research extensions.
 
-## 13. Team
+## 14. Team
 
 | Contributor | Primary Contribution |
 |---|---|
