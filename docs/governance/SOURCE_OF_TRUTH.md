@@ -68,3 +68,14 @@ Promotion from RESTRICTED/PRIVATE to PUBLIC requires content and metadata review
 For evaluators, investors, partners or technical reviewers, disclose the minimum necessary scope, prefer redaction, use NDA/access control where appropriate, record the disclosure, and never copy restricted material into the public repository merely for convenience.
 
 No physical vault migration is required before the hackathon unless explicitly approved.
+
+
+## Operational classification baseline — 2026-10-04
+
+The file-level publication baseline is maintained in `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md`.
+
+The classification is content-based. The current baseline explicitly keeps the following public: source code, tests, synthetic fixtures, canonical architecture, public product narrative, public GTM framing, public competitive framework, and the public Colosseum ecosystem benchmark.
+
+The following are RESTRICTED by default: hackathon execution strategy, market-validation evidence, strategic research decisions, winning-pattern/readiness audits, and decision records whose contents expose internal trade-offs.
+
+The diary remains PRIVATE by default. Secrets remain SECRET STORE. No physical migration is authorized by this baseline.
