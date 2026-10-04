@@ -1,114 +1,103 @@
 # Future Platform Vision
 
-> Documento de visão. Não é especificação de implementação do MVP.
+> **Status:** Strategic research hypothesis. Not an implementation specification and not part of the current MVP.
 
-## 1. Hipótese
+## 1. Hypothesis
 
-O Learning Competency pode evoluir de um núcleo de **evidência e estado de competência** para uma plataforma que ajude organizações a transformar necessidades de trabalho em capacidades humanas desenvolvíveis e observáveis.
+LASTRO could eventually evolve from a capability evidence and verification core into infrastructure that helps organizations understand changing work, define candidate competency requirements, support requalification, and preserve verifiable evidence of resulting capability.
 
-O produto futuro não seria apenas um LMS.
+The future product would not be an LMS or generic credential platform.
 
-Seu objeto seria a relação entre **trabalho, competência, desenvolvimento, evidência e capacidade organizacional**.
+Its research object would be the relationship between:
 
-## 2. Modelo conceitual
+**work → capability → development → evidence → verification → organizational capacity**
 
-`ORGANIZAÇÃO
-  ↓
-NECESSIDADE / FUNÇÃO
-  ↓
-RESPONSABILIDADES
-  ↓
-TAREFAS
-  ↓
-COMPETÊNCIAS
-  ↓
-NÍVEL DE PROFICIÊNCIA
-  ↓
-LACUNAS INDIVIDUAIS
-  ↓
-TRILHA DE DESENVOLVIMENTO
-  ↓
-ATIVIDADES
-  ↓
-EVIDÊNCIAS
-  ↓
-IA + REVISÃO HUMANA
-  ↓
-ESTADO DE CAPACIDADE
-  ↓
-ATTESTATION / VERIFICAÇÃO`
+## 2. Conceptual extension
 
-O núcleo M1–M3 já implementa a parte final dessa cadeia: evidência → interpretação → revisão → estado → atestação → verificação.
+```
+OBSERVED WORK
+    ↓
+WORK / ROLE CHANGE
+    ↓
+ROLE DELTA
+    ↓
+CANDIDATE COMPETENCY REQUIREMENTS
+    ↓
+COMPETENCY GAP
+    ↓
+REQUALIFICATION / PRACTICE
+    ↓
+NEW EVIDENCE
+    ↓
+INDEPENDENT VERIFICATION
+    ↓
+CONSENSUS
+    ↓
+VERIFIED CAPABILITY STATE
+    ↓
+ATTESTATION
+```
 
-A expansão investigada nesta camada adiciona principalmente a parte anterior: função → competência → lacuna → desenvolvimento.
+The current MVP implements the latter verification-oriented portion of this chain for a narrow synthetic use case.
 
-## 3. Caso A — funções existentes
+The upstream role-engineering portion remains research.
 
-Para uma função já presente na organização, a plataforma poderia:
+## 3. Existing-role scenario
 
-1. representar responsabilidades e tarefas;
-2. derivar um modelo de competências candidato;
-3. associar níveis de proficiência a comportamentos observáveis;
-4. comparar o estado atual de uma pessoa com o estado requerido pela função;
-5. identificar lacunas;
-6. construir uma trilha de desenvolvimento;
-7. propor atividades que produzam evidências;
-8. acompanhar a evolução dessas evidências;
-9. submeter decisões relevantes à revisão humana.
+A future system could investigate:
 
-O objetivo não seria simplesmente recomendar cursos.
+1. represent responsibilities and tasks;
+2. derive candidate competency requirements;
+3. compare required criteria with verified competency states;
+4. identify evidence-backed gaps;
+5. propose development activities;
+6. collect new evidence;
+7. run that evidence through the existing verification model.
 
-A unidade de valor seria a **capacidade desenvolvida e demonstrada em contexto de trabalho**.
+The objective would be capability development, not simplistic ranking of people.
 
-## 4. Caso B — novas profissões e funções emergentes
+## 4. Emerging-role scenario
 
-Uma organização pode precisar executar trabalho para o qual ainda não existe uma função consolidada no mercado.
+When automation or AI changes task composition, the system could represent:
 
-Nesse cenário, a plataforma poderia tratar o modelo profissional como hipótese:
+`OBSERVED WORK CHANGE → TASK DELTA → COMPETENCY DELTA → CANDIDATE ROLE`
 
-`NECESSIDADE FUTURA → RESPONSABILIDADES CANDIDATAS → COMPETÊNCIAS CANDIDATAS → CRITÉRIOS OBSERVÁVEIS → TRILHAS → EVIDÊNCIAS → VALIDAÇÃO HUMANA → MODELO EVOLUTIVO`
+The candidate role would remain provisional until supported by organizational evidence and human governance.
 
-A IA pode ajudar a estruturar hipóteses, mas não deve transformar uma inferência em verdade organizacional sem validação.
+A generated job title is therefore an output, not the starting point.
 
-O modelo da função deve poder evoluir à medida que a organização observa o trabalho real.
+## 5. Role of the current core
 
-## 5. O papel do núcleo atual
+The future vision depends on the existing trust boundary:
 
-O MVP atual pode funcionar como uma camada de infraestrutura para essa visão:
+**Research / Product**  
+proposes role and competency models.
 
-**Research / Product**
-→ define e testa modelos de função, competência e desenvolvimento
+**LASTRO Core**  
+processes evidence, applies independent verification, reaches Consensus Core outcomes, and represents bounded competency state.
 
-**Learning Competency Core**
-→ transforma atividades em evidências, interpreta, registra revisão e representa estados
+**Attestation / Verification**  
+provides an integrity and public-verification layer for the resulting state.
 
-**Verification**
-→ preserva a integridade e permite verificar o estado atestado
+This separation prevents future product concepts from silently becoming MVP capabilities.
 
-Isso mantém a arquitetura incremental: a plataforma futura não precisa substituir o núcleo que já foi construído.
+## 6. Explicit non-claims
 
-## 6. O que não está sendo afirmado
+This vision does not demonstrate:
 
-Este documento não demonstra:
+- product-market fit;
+- willingness to pay;
+- efficacy of requalification;
+- universal competency modeling;
+- correct autonomous role generation;
+- superiority over LMS, LXP, talent-intelligence, or skills platforms;
+- validity of any emerging profession proposed by the system;
+- autonomous employment decisions.
 
-- demanda de mercado;
-- disposição a pagar;
-- eficácia pedagógica;
-- qualidade universal de modelos de competência;
-- capacidade de a IA definir competências corretamente;
-- superioridade sobre LMS, LXP, talent intelligence ou plataformas de skills;
-- validade de qualquer nova profissão proposta pela plataforma.
+## 7. Current strategic hypothesis
 
-Esses pontos pertencem à pesquisa e validação futura.
+A concise future-product hypothesis is:
 
-## 7. Hipótese de posicionamento
+> **Organizations may need infrastructure that connects changing work to evolving competency requirements and then connects those requirements to evidence-backed, independently verifiable capability.**
 
-Uma direção de investigação é:
-
-> **IA aplicada à engenharia de competências e ao desenvolvimento profissional.**
-
-Em termos de produto:
-
-> transformar necessidades de trabalho em modelos de competência, lacunas de desenvolvimento, experiências de aprendizagem e evidências observáveis.
-
-Esta formulação deve ser tratada como hipótese de posicionamento, não como posicionamento validado.
+This remains a hypothesis to validate, not the current MVP positioning.
