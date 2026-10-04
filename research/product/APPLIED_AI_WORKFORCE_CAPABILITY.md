@@ -1,94 +1,98 @@
 # Applied AI — Workforce Capability
 
-> Documento de pesquisa de produto. Fora do escopo do MVP atual.
+> **Status:** Product research / future hypothesis. Outside the current MVP.
 
-## Pergunta central
+## Question
 
-**Como usar IA para transformar uma função profissional em um modelo de competências humanas e, a partir dessas competências, construir experiências de aprendizagem capazes de desenvolvê-las e produzir evidências observáveis?**
+How might AI help organizations translate changing work into structured competency requirements, development paths, and observable evidence without becoming the authority that decides a person's capability?
 
-## Pipeline investigado
+## Investigated chain
 
-`PROFISSÃO / FUNÇÃO
-→ RESPONSABILIDADES
-→ TAREFAS
-→ COMPETÊNCIAS HUMANAS
-→ CRITÉRIOS OBSERVÁVEIS
-→ PROFICIÊNCIA
-→ LACUNAS
-→ TRILHAS
-→ ATIVIDADES
-→ EVIDÊNCIAS
-→ REVISÃO
-→ ESTADO`
+`WORK / ROLE → RESPONSIBILITIES → TASKS → CANDIDATE COMPETENCIES → OBSERVABLE CRITERIA → DEVELOPMENT → ACTIVITIES → EVIDENCE → VERIFICATION → STATE`
 
-## Onde a IA pode atuar
+This extends the current LASTRO core rather than replacing it.
 
-### 1. Estruturação do trabalho
+## Potential AI roles
 
-Analisar descrições de função, responsabilidades, processos e exemplos de trabalho para produzir uma representação estruturada do que a função exige.
+### 1. Structure work
 
-### 2. Hipóteses de competências
+Analyze role descriptions, workflows, operational records, and examples of work to propose structured representations of responsibilities and tasks.
 
-Propor competências candidatas associadas às responsabilidades e tarefas.
+### 2. Propose competency hypotheses
 
-A saída deve ser tratada como hipótese, com origem e justificativa rastreáveis.
+Suggest candidate competencies associated with observed responsibilities and tasks.
 
-### 3. Critérios observáveis
+Outputs remain hypotheses with provenance and uncertainty.
 
-Ajudar a converter competências abstratas em sinais observáveis no trabalho.
+### 3. Define observable criteria
 
-Exemplo conceitual:
+Help translate abstract competencies into observable work behaviors.
 
-`"análise de dados"`
+For example, “applied data analysis” may be decomposed into:
 
-pode ser decomposta em comportamentos como:
+- formulate a useful question;
+- prepare relevant data;
+- execute reproducible analysis;
+- interpret results;
+- communicate evidence-supported conclusions.
 
-- formular uma pergunta adequada;
-- selecionar ou preparar dados;
-- executar uma análise reproduzível;
-- interpretar resultados;
-- comunicar conclusões sustentadas por evidências.
+### 4. Identify candidate gaps
 
-### 4. Lacunas
+Compare required competency criteria with available evidence and propose areas for development.
 
-Comparar requisitos de uma função com evidências disponíveis sobre uma pessoa e propor áreas de desenvolvimento.
+A proposed gap is not a definitive judgment about a person.
 
-A lacuna não deve ser confundida com uma sentença definitiva sobre a pessoa.
+### 5. Design evidence-producing activities
 
-### 5. Experiências de aprendizagem
+Investigate activities that allow a person to practice a competency and produce evidence that can enter the existing verification pipeline.
 
-Gerar ou adaptar atividades que permitam praticar uma competência e, principalmente, produzir evidências observáveis.
+### 6. Detect work-model change
 
-Isso diferencia a proposta de um catálogo de cursos.
+Use evidence about changing tasks and workflows to propose when a role or competency model may need revision.
 
-### 6. Evolução do modelo profissional
+## Trust boundary
 
-Usar evidências acumuladas do trabalho para identificar quando o modelo de uma função precisa ser revisado.
+The current MVP establishes a stronger separation than the earlier research wording suggested:
 
-Uma função emergente pode começar como hipótese e tornar-se progressivamente mais precisa com validação humana e observação do trabalho real.
+```
+AI INTERPRETATION
+       ↓
+INDEPENDENT VERIFICATION
+       ↓
+CONSENSUS CORE
+       ↓
+COMPETENCY STATE
+       ↓
+ATTESTATION
+```
 
-## Fronteira fundamental
+AI may interpret, extract, relate, summarize, and propose.
 
-> **IA aplicada não é IA que avalia pessoas. É IA que ajuda a estruturar trabalho, aprendizagem e evidências; a decisão sobre competência permanece humana.**
+AI does **not** independently establish the final competency state.
 
-Essa fronteira preserva a separação já estabelecida no MVP:
+Independent verification and Consensus Core remain the decision mechanism for the current MVP, with human adjudication reserved for explicit conflict or exceptional ambiguity.
 
-`IA → sinais / interpretação`
+## Relationship to current MVP
 
-`HUMANO → revisão / decisão`
+The MVP primarily demonstrates:
 
-`SISTEMA → estado / proveniência / integridade`
+> **How can evidence become a bounded, independently verifiable competency state?**
 
-`VERIFICAÇÃO → confirmação do registro atestado`
+This research investigates the preceding question:
 
-## Relação com o MVP
+> **How can organizations define and evolve the competencies worth demonstrating as work changes?**
 
-O MVP atual responde principalmente:
+The two layers are complementary but must not be conflated.
 
-> Como transformar evidências em um estado de competência revisado e verificável?
+## Research boundary
 
-A pesquisa desta camada investiga a pergunta anterior:
+This document does not establish:
 
-> Como chegar, de uma necessidade de trabalho, às competências que devem ser desenvolvidas e às experiências que podem produzir essas evidências?
+- autonomous hiring, firing, promotion, or compensation;
+- universal competency taxonomies;
+- universal people scoring;
+- validated commercial demand;
+- that AI can correctly define competencies without human governance;
+- that changing work automatically implies a new role.
 
-As duas perguntas formam uma cadeia, mas devem continuar separadas até que a segunda seja suficientemente validada para entrar no produto.
+Those remain research questions.
