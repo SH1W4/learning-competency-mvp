@@ -26,6 +26,8 @@ Dynamic Role Architecture continua sendo hipótese de pesquisa, não funcionalid
 
 ## 4. Frontend narrative
 
+The narrative below is the product-level information architecture. The implementation contract for the frontend is defined in `docs/product/FRONTEND_PRODUCT_SPEC.md`.
+
 ### Tela 1 — Mudanças no Trabalho
 
 Mostrar competências rastreadas, competências em transformação, gaps e sinais de mudança de tarefa.
@@ -65,7 +67,7 @@ Nunca reduzir a decisão a um score opaco.
 
 Mostrar competência, estado, referências de evidência, decisão, record hash, attestation e verificação pública.
 
-## 5. Demo flow
+## 5. Product narrative flow
 
 ~~~text
 ORGANIZATION
@@ -91,7 +93,17 @@ ATTESTATION
 PUBLIC VERIFICATION
 ~~~
 
-## 6. Aha moment
+## 6. Technical demo wedge
+
+The hackathon's technical proof begins at the MVP wedge and follows:
+
+~~~text
+Competency → Activities → Evidence → AI interpretation → Independent verification → Consensus → DEMONSTRATED → Attestation → Public verification
+~~~
+
+This distinction prevents the strategic product narrative from being confused with the narrower implemented vertical slice.
+
+## 7. Aha moment
 
 O momento principal não é “usamos blockchain”.
 
@@ -99,7 +111,7 @@ O momento principal não é “usamos blockchain”.
 
 Blockchain aparece como infraestrutura dessa etapa.
 
-## 7. Claims discipline
+## 8. Claims discipline
 
 ### Podemos afirmar
 
@@ -121,6 +133,6 @@ Blockchain aparece como infraestrutura dessa etapa.
 - impacto econômico quantitativo;
 - superioridade frente a workflows existentes.
 
-## 8. Pergunta final
+## 9. Pergunta final
 
 > **Se o trabalho muda continuamente, por que a representação de competência deveria continuar sendo estática?**
