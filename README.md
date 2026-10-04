@@ -52,6 +52,22 @@ The Consensus Core evaluates convergence across **three distinct mechanisms**:
 
 > **Note on Statistical / Robustness Checks**: While the architecture allows for future statistical validation (e.g., sample size, baseline comparison, stability), this layer is explicitly classified as **Future Research / M4+** and is intentionally excluded from the current MVP scope to maintain a focused, verifiable vertical slice.
 
+## 4. Current Status & Execution Roadmap
+The core M1–M3 vertical slice is implemented. The project is now in the **M4 execution / closing phase**, focused on reproducible proof, demonstration, external validation, communication, and final submission.
+
+Canonical execution order:
+
+```text
+PROVE → DEMONSTRATE → VALIDATE → COMMUNICATE → FINAL SUBMISSION
+```
+
+For the authoritative project status and execution roadmap, see:
+- `docs/PROJECT_STATUS.md`
+- `docs/product/VICTORY_EXECUTION.md`
+- `tasks/CURRENT_EXECUTION_001.md`
+
+The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
+
 ## 4. What the MVP Proves
 - Structured learning evidence with cryptographic boundary hardening (`structuredClone` isolation pre-AI processing).
 - Strict, enforced separation between structural deterministic verification and semantic AI interpretation.
