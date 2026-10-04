@@ -217,9 +217,9 @@ Evidence → Independent Verification → Consensus → Competency State → Att
 
 ## D-010 — Reserve human adjudication for uncertainty and conflict
 
-**Decision:** Human review remains an explicit governance path for insufficient, ambiguous or conflicting evidence.
+**Decision:** Human adjudication remains an explicit exception path for insufficient, ambiguous or conflicting evidence.
 
-**Rationale:** The research and architecture do not support the claim that automated systems can eliminate human judgment.
+**Rationale:** The Consensus Core was introduced precisely to reduce dependence on routine individual review. Human intervention is reserved for cases that cannot be resolved safely by the independent verification and consensus process.
 
 **Supported consensus outcomes include:**
 
