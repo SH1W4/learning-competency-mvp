@@ -10,7 +10,7 @@ Escolher um contexto organizacional e uma competência que possam percorrer o fl
 
 ## Resultado
 
-O M1 foi fechado como **especificação operacional v0.1**. O fechamento do M1 significa que existe um contrato suficientemente específico para implementação; não significa validação externa de mercado.
+O M1 foi fechado como especificação operacional v0.1. O fechamento do M1 significa que existe um contrato suficientemente específico para implementação; não significa validação externa de mercado.
 
 ## M1.1 — Contexto organizacional
 Status: DONE
@@ -32,7 +32,7 @@ Competência canônica:
 
 Critérios observáveis: C1 formulação; C2 tratamento e análise; C3 evidência; C4 comunicação.
 
-A IA pode propor sinais; somente a revisão humana pode confirmar o estado DEMONSTRATED.
+A IA pode propor sinais de competência, mas não determina sozinha o estado de competência. O estado resulta do Consensus Core; conflitos ou ambiguidades podem ser encaminhados para Human Adjudication como exceção.
 
 ## M1.3 — Trilha curta
 Status: DONE
@@ -54,7 +54,7 @@ Quatro classes: briefing, analysis_artifact, analysis_result e communication.
 
 Metadados mínimos: evidence_id, type, source_ref, activity_id, submitted_by, submitted_at, content_ref e provenance.
 
-A cadeia deve distinguir fonte, extração, interpretação da IA e decisão do reviewer.
+A cadeia deve distinguir fonte, extração, interpretação da IA, verificação independente e decisão resultante.
 
 ## M1.5 — Estados mínimos
 Status: DONE
@@ -62,7 +62,7 @@ Owner: SH1W4
 
 Estados canônicos: NOT_STARTED, IN_DEVELOPMENT, UNDER_REVIEW, DEMONSTRATED.
 
-Regra crítica: a IA não pode executar sozinha a transição para DEMONSTRATED.
+Regra crítica: AI interpretation não pode executar sozinha a transição para DEMONSTRATED. O estado é determinado pelo fluxo de consenso definido pelo Consensus Core; Human Adjudication permanece um caminho excepcional para conflito ou ambiguidade.
 
 ## M1.6 — Cenário de demonstração
 Status: DONE
@@ -73,19 +73,19 @@ Cenário canônico:
 - programa sintético: Trilha de Análise de Dados Aplicada;
 - problema fictício: investigar fatores associados ao aumento de tempo de atendimento;
 - quatro evidências sintéticas;
-- revisão humana simulada;
+- consenso/revisão no fluxo canônico;
 - posterior attestation e verificação.
 
 O cenário não representa usuário real, piloto ou tração.
 
 ## Exit criteria
 
-**ATENDIDO.**
+ATENDIDO.
 
 A cadeia organização → competência → trilha → pessoa → atividade → evidência está suficientemente especificada para implementação do vertical slice.
 
 ## Gate seguinte
 
-**M2 desbloqueado.**
+M2 desbloqueado.
 
 Qualquer mudança no contrato de competência, evidências ou estados deve ser registrada como decisão explícita antes de alterar a implementação.
