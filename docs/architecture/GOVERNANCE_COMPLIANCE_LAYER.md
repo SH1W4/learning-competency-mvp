@@ -4,7 +4,7 @@
 
 Reduzir o risco de que uma interpretação ou avaliação individual transforme evidência em estado de competência de forma arbitrária, inconsistente ou não auditável.
 
-A camada não substitui a revisão humana, mas também não a trata como etapa obrigatória em todos os casos. Ela **governa as condições sob as quais verificações convergentes ou uma decisão humana podem produzir um estado**.
+A camada não trata revisão humana como etapa obrigatória. Ela **governa as condições sob as quais verificações convergentes ou uma decisão humana podem produzir um estado**.
 
 ## Posição arquitetural
 
@@ -63,12 +63,12 @@ Esses são resultados do Consensus Core, não estados operacionais do processo d
 
 ### Process states
 
-Estados operacionais podem acompanhar o processo de governança:
+Estados operacionais podem existir em sistemas de governança mais amplos, mas são distintos dos resultados do Consensus Core. Exemplos conceituais:
 
 - `PENDING_REVIEW`;
 - `ADJUDICATED`.
 
-Esses estados não fazem parte do MVP canônico e não devem ser usados para introduzir uma etapa de revisão humana no pipeline.
+Esses estados **não fazem parte do vocabulário canônico do MVP** e não devem ser usados para introduzir uma etapa de revisão humana no pipeline.
 
 ## Competency State
 
@@ -109,7 +109,7 @@ A IA pode:
 - apontar critérios;
 - detectar inconsistências;
 - propor interpretação;
-- identificar necessidade de revisão adicional.
+- identificar necessidade de evidência ou adjudicação adicional.
 
 A IA não deve, sozinha, converter evidência em `DEMONSTRATED`.
 
