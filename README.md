@@ -199,6 +199,7 @@ The repository separates the product story from the technical and research evide
 
 - **[Product Overview](docs/evaluation/01_PRODUCT.md)** — product thesis, wedge, differentiation, user journey, and current boundary.
 - **[Pitch Architecture](docs/product/PITCH_ARCHITECTURE.md)** — the product narrative from work change to proof of competency.
+- **[Frontend Product Specification](docs/product/FRONTEND_PRODUCT_SPEC.md)** — implementation contract for the interface, states, interactions, and product boundaries.
 
 ### Technical proof
 
