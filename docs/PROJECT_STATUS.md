@@ -6,7 +6,7 @@
 
 **Fase:** MVP tecnicamente fechado — vertical slice concluído e feature freeze ativo.
 
-O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A interface e a validação externa permanecem como frentes de trabalho.
+O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A capacidade de atestação está implementada; a prova pública Devnet corrente permanece como artefato de fechamento do M4. A interface e a validação externa permanecem como frentes de trabalho.
 
 ## Base definida
 
@@ -89,7 +89,7 @@ Detalhes estratégicos de mercado, entrevistas e operação comercial são manti
 - [ ] Atualizar o README com a prova pública atual.
 
 ### P1 — Produto
-- [ ] Implementar o frontend conforme `docs/product/PITCH_ARCHITECTURE.md`.
+- [ ] Implementar o frontend conforme `docs/product/PITCH_ARCHITECTURE.md` e `docs/product/FRONTEND_PRODUCT_SPEC.md`.
 - [ ] Demonstrar o fluxo ponta a ponta sem criar lógica paralela.
 - [ ] Manter a arquitetura central em feature freeze.
 
