@@ -135,34 +135,28 @@ HUMAN_ADJUDICATION
 
 The competency state must not advance while the case is materially insufficient or conflicted.
 
-### 4.6 Human Review vs. Human Adjudication
+### 4.6 Human Adjudication as Exception
 
-These concepts must remain separate.
+Human Review is not a normal pipeline stage.
 
-**Human Review** is a normal review step used to inspect interpreted evidence, criteria, provenance, or verification context.
+**Human Adjudication** is an exception path used only when verification mechanisms conflict, evidence remains materially ambiguous, contextual judgment is required, an existing rule does not adequately cover the case, or a contestation requires resolution.
 
-**Human Adjudication** is an exception path used when verification mechanisms conflict, evidence remains materially ambiguous, contextual judgment is required, an existing rule does not adequately cover the case, or a contestation requires resolution.
-
-~~~text
-NORMAL REVIEW
-AI / evidence interpretation
-        ↓
-HUMAN REVIEW
-        ↓
-verification / governance
-~~~
-
-is distinct from:
+Canonical shape:
 
 ~~~text
-CONFLICT / EXCEPTION
-        ↓
-HUMAN ADJUDICATION
-        ↓
-RESOLUTION
+EVIDENCE
+   ↓
+INDEPENDENT VERIFICATION
+   ↓
+CONSENSUS CORE
+   ├─ AGREEMENT → STATE
+   ├─ INSUFFICIENT_EVIDENCE → HOLD
+   └─ CONFLICT → HUMAN ADJUDICATION → STATE
 ~~~
 
-No document should use the terms as interchangeable labels.
+The Consensus Core exists precisely to reduce dependence on routine individual review.
+
+No canonical MVP flow should require a human reviewer before Consensus Core.
 
 ### 4.7 Competency State
 
