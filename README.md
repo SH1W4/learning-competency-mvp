@@ -258,7 +258,7 @@ research/     research hypotheses and validation work
 | Contributor | Primary contribution |
 |---|---|
 | Erick | Research, context, market, and operations |
-| JP Carvalho | Evidence pipeline, AI, and review |
+| JP Carvalho | Evidence pipeline, AI, and verification |
 | JP Fernandes | Branding, UX/UI, and interface |
 | JX | Architecture, AI, evidence, attestation, and Solana |
 
