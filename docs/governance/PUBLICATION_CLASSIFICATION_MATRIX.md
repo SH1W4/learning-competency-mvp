@@ -149,6 +149,17 @@ This is the authoritative file-level classification for the current LASTRO repos
 5. A file may move to `RESTRICTED-LATER` when publication would expose non-public strategy, partner information, sensitive competitive intelligence, private deliberation, or other controlled information.
 6. Credentials, private keys, tokens and signing material are never solved by classification; they must not enter the repository.
 
+## Article research track
+
+The curated article-research artifacts are intentionally public because they provide evidence, prior-art boundaries, counterexamples, and methodological constraints needed to understand or challenge the public LASTRO thesis.
+
+
+| `research/article/README.md` | `PUBLIC` |
+| `research/article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` |
+| `research/article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` |
+| `research/article/RELATED_WORK_MATRIX.md` | `PUBLIC` |
+| `research/article/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC` |
+
 ## Current interpretation
 
 The repository is already public. This matrix is the **file-level publication authority for the current public repository**. Files migrated to the private Vault are no longer tracked here; their migration is recorded in `MIGRATION_MANIFEST_2026-10-04.md` in `SH1W4/lastro-vault-1`.
@@ -163,4 +174,4 @@ Any classification change should be made through a reviewable commit and, where 
 
 ## Completed Vault migration
 
-On 2026-10-04, the files classified as `REVIEW` or `RESTRICTED-LATER` in the migration pass were copied to the private Vault and then removed from this public repository. The initial migration contained **29 files: 9 `RESTRICTED-LATER` + 20 `REVIEW`**. A subsequent article-research migration moved **4 additional research artifacts** into the private Vault, bringing the controlled migrated set to **33 source files**. The later article-research move was an explicit reclassification of four previously public research artifacts as private working research; they are preserved in `research/article/` in the private Vault.
+On 2026-10-04, the files classified as `REVIEW` or `RESTRICTED-LATER` in the migration pass were copied to the private Vault and then removed from this public repository. The initial controlled migration remains **29 files: 9 `RESTRICTED-LATER` + 20 `REVIEW`**. Four article-research artifacts were subsequently curated back into a public `research/article/` track because their evidence and methodological boundaries materially support public auditability. Private Vault copies may be retained for lineage, but the public versions are canonical for the public research layer.
