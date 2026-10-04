@@ -1,11 +1,13 @@
-# Lastro — Tese, Validação e Direção do Produto
+# LASTRO — Product Thesis, Validation & Direction
 
-> **Produto:** Lastro  
-> **Tese / núcleo conceitual:** Learning Competency
+> **Current product positioning:** LASTRO — Capability Evidence & Verification Infrastructure  
+> **Research lineage:** Learning Competency
 >
-> Este documento registra a tese e a direção de produto. Ele não substitui o contrato do MVP nem altera o escopo técnico de M1–M3.
+> Este documento preserva a evolução da tese de produto e suas hipóteses. Ele não substitui o contrato do MVP nem altera o escopo técnico atual.
 >
 > As hipóteses de usuários, pagadores, modelo econômico e valor comercial descritas aqui permanecem hipóteses de pesquisa e validação. Não devem ser interpretadas como funcionalidades implementadas, demanda validada ou modelo de receita comprovado.
+
+> **Current positioning note — 2026-10-04:** The MVP narrative has since been narrowed from the broader Learning Competency thesis to **Capability Evidence & Verification Infrastructure**. The current canonical mechanism is **Evidence → AI Interpretation → Independent Verification → Consensus → Competency State → Attestation → Public Verification**. The broader workforce-development, role-engineering, and commercial hypotheses below remain research unless explicitly promoted elsewhere.
 
 ## 1. Problema
 
@@ -62,7 +64,7 @@ Solana é uma camada de confiança e verificação, não a finalidade do produto
 
 ## 6. Papel humano
 
-A inteligência artificial pode auxiliar na organização, classificação e relacionamento de grandes quantidades de evidências. A arquitetura investiga como combinar verificações independentes — integridade da evidência, regras determinísticas, robustez estatística quando aplicável e interpretação assistida — antes de recorrer à adjudicação humana quando necessário.
+A inteligência artificial pode auxiliar na organização, classificação e relacionamento de evidências. A arquitetura combina interpretação assistida por IA com verificações independentes, consenso e adjudicação humana apenas quando o processo não resolve um conflito ou caso excepcional.
 
 O objetivo é reduzir a dependência de decisões individuais sem transformar automação em autoridade absoluta. Casos conflitantes, ambíguos, contestados ou fora das regras permanecem elegíveis para adjudicação humana.
 
@@ -134,7 +136,7 @@ Uma evolução arquitetural investigada pelo projeto é tratar a adjudicação h
 
 A hipótese é:
 
-**Evidência → Verificações independentes → Consensus Core → Estado**
+**Evidência → Interpretação por IA → Verificações independentes → Consensus Core → Estado**
 
 Quando as verificações não convergem:
 
