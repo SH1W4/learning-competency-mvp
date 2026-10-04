@@ -31,7 +31,7 @@ export interface VerifiableClaim {
  */
 export function buildVerifiableClaim(record: ReviewedStateRecord): VerifiableClaim {
   const evidenceRefs = [...new Set(record.criteria.flatMap((c) => c.evidence_ids))];
-  const decisionRef = record.decision.review_id ?? "consensus-core";
+  const decisionRef = record.decision.adjudication_id ?? "consensus-core";
 
   return {
     claim_id: `claim:${record.record_hash.slice(0, 16)}`,
