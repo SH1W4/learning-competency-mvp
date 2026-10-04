@@ -5,6 +5,8 @@
 **Source of truth:** `docs/product/PITCH_ARCHITECTURE.md`, `docs/product/USER_JOURNEYS.md`, `docs/architecture/CONSENSUS_CORE.md`, `docs/architecture/GOVERNANCE_COMPLIANCE_LAYER.md`
 
 > **Core invariant:** the frontend is a projection of the existing product architecture. It must not invent business logic, verification logic, competency rules, or parallel state transitions.
+>
+> **Narrative boundary:** the frontend has two presentation layers. The **MVP demonstrable layer** exposes Evidence → Verification → Consensus → Competency State → Proof. The **Strategic / Research layer** may present Work Change → Role Delta → Competency Gap → Requalification as future direction, but must not imply that those backend capabilities are already implemented or validated.
 
 ---
 
@@ -1118,6 +1120,8 @@ Build in this order:
 - Role Delta;
 - Competency Gap;
 - Requalification.
+
+These screens are strategic/research narrative unless corresponding backend capabilities are explicitly implemented and validated.
 
 This order protects the MVP wedge even if time becomes constrained. The strategic screens remain presentation-layer context and must not be mistaken for implemented backend capabilities.
 
