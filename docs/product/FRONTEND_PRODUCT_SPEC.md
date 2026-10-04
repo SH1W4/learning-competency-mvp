@@ -8,7 +8,7 @@
 
 ## 1. Product objective
 
-LASTRO turns observable work evidence into a bounded, verifiable competency state.
+LASTRO provides an evidence and verification layer for demonstrated capability, turning observable work evidence into a bounded, verifiable competency state.
 
 The core progression is:
 
@@ -30,11 +30,11 @@ ATTESTATION
 PUBLIC VERIFICATION
 ```
 
-**Primary product statement:** **Evidence-backed competency.**
+**Primary product statement:** **Evidence-backed capability.**
 
-**Aha moment:** a demonstrated competency stops being only a claim inside the application and becomes a verifiable state backed by evidence.
+**Aha moment:** a demonstrated capability stops being only a claim inside the application and becomes a bounded state backed by evidence and independently verifiable.
 
-Blockchain is infrastructure for the proof layer, not the product story.
+Blockchain is infrastructure for the proof layer, not the product story or competency authority.
 
 ## 2. MVP vs strategic narrative
 
