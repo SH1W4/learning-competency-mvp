@@ -38,7 +38,7 @@ The separation must preserve:
 | `docs/PROJECT_STATUS.md` | 🟡 | Derive public status |
 | `docs/PROJECT_HANDOFF.md` | 🔵 | Technical continuity |
 | `docs/ALIGNMENT_AUDIT.md` | 🟡 | Derive public alignment principles |
-| `research/` | 🟡 mixed | Classify by sensitivity |
+| `research/` | 🟡 mixed + 🔴 article working set | Classify by content and research maturity |
 | `research/product/` | 🟡 | Curate research/vision |
 | `skills/` | 🔴 | Do not migrate |
 | `tasks/` | 🔴 + 🔵 | Keep operational planning out of Vault |
@@ -171,8 +171,15 @@ Public derivative should explain the demo objective, canonical journey, what eac
 - `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` → 🟡
 - `research/06_DECISIONS.md` → 🟡
 - `research/07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md` → 🔴 initially; future public derivative only by explicit decision.
+- Article working set (`09`, `10`, `RELATED_WORK_MATRIX`, `LITERATURE_CLOSURE_PROTOCOL`) → 🔴 private research; publish only after literature closure and explicit promotion decision.
 
 All DRA, Role Delta, future-platform and verification-infrastructure work must remain clearly labeled research/hypothesis where it exceeds the implemented MVP.
+
+## Article research
+
+The article research program is intentionally maintained in the private Vault while the literature review is being closed. The working set is under `research/article/` in the Vault and includes the evidence-to-competency review, verification/provenance review, related-work matrix and literature-closure protocol.
+
+The publication gate is methodological, not commercial: the corpus must survive database expansion, screening, counterexample review and explicit limitation analysis before a public article-level gap claim is promoted.
 
 ## Product research
 
