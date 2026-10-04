@@ -92,7 +92,69 @@ Deterministic checks evaluate objective conditions independently of AI-generated
 
 This separation is a core product principle, not an implementation detail.
 
-## 4. Why This Matters
+## 4. The MVP — What We Actually Built
+
+The product narrative is broader than the current implementation. **The MVP is intentionally narrow:** it proves one complete vertical slice from observable work to a bounded, independently verifiable competency state.
+
+### The concrete MVP
+
+The canonical demonstration covers:
+
+```text
+ONE PERSON
+    ↓
+ONE COMPETENCY
+    ↓
+FOUR ACTIVITIES
+    ↓
+FOUR EVIDENCE TYPES
+    ↓
+AI INTERPRETATION
+    ↓
+INDEPENDENT VERIFICATION
+    ↓
+CONSENSUS
+    ↓
+COMPETENCY STATE
+    ↓
+SOLANA ATTESTATION
+    ↓
+INDEPENDENT VERIFICATION
+```
+
+The scenario is **Ana**, a synthetic professional participating in an applied-AI learning program. She develops one defined competency: using AI tools as support to transform a business question into a reproducible data analysis and communicate evidence-supported conclusions.
+
+Her short trail produces four evidence artifacts:
+
+1. **Briefing** — the analytical question and objective.
+2. **Analysis artifact** — data preparation and exploration.
+3. **Analysis result** — reproducible analysis and results.
+4. **Communication** — synthesis, conclusions and limitations.
+
+Those artifacts are related to explicit competency criteria. AI interprets the evidence, while deterministic and integrity checks operate independently. The Consensus Core then produces a bounded outcome: **DEMONSTRATED**, **IN_DEVELOPMENT**, or an explicit conflict requiring human adjudication.
+
+The resulting demonstrated state can then be anchored through the current Solana Devnet attestation path and independently checked for integrity.
+
+### What this means
+
+**We did not build the entire enterprise capability platform.** We built and proved the narrow verification flow that the broader LASTRO product thesis depends on.
+
+The distinction is deliberate:
+
+| Layer | Current MVP | Future product hypothesis |
+|---|---|---|
+| Evidence | Structured work evidence | Evidence across broader organizational workflows |
+| Verification | Independent mechanisms + Consensus Core | Broader capability decision workflows |
+| Competency | One bounded canonical competency | Multiple competencies and evolving capability models |
+| Attestation | Solana Devnet integrity anchor | Production-grade public verification infrastructure |
+| Product value | Technical proof of the verification mechanism | Capability development, mobility, planning and requalification |
+| Market | Synthetic demonstration | External validation, pricing, adoption and ROI |
+
+The **MVP is the proof**. The broader product narrative is the **hypothesis to validate**.
+
+---
+
+## 5. Why This Matters
 
 The long-term value of LASTRO is not another place to store credentials.
 
@@ -112,7 +174,7 @@ Potential decisions include capability development, internal mobility, workforce
 
 **These commercial applications remain hypotheses until validated externally.** The MVP proves the technical mechanism, not market demand or economic impact.
 
-## 5. The Role of Blockchain
+## 6. The Role of Blockchain
 
 Blockchain is infrastructure for the proof layer, not the product authority.
 
@@ -130,7 +192,7 @@ PUBLIC VERIFICATION
 
 The blockchain does **not** prove that a person is universally competent, truthful, or professionally qualified. It anchors the integrity of a defined state produced by the system.
 
-## 6. What the MVP Proves
+## 7. What the MVP Proves
 
 - Evidence can be structured and linked to activities and competency criteria.
 - Source evidence can remain separate from AI interpretation.
@@ -141,7 +203,7 @@ The blockchain does **not** prove that a person is universally competent, truthf
 - The resulting state can be anchored through the current Solana Devnet attestation path.
 - The integrity relationship can be independently verified.
 
-## 7. What the MVP Does NOT Claim
+## 8. What the MVP Does NOT Claim
 
 - Universal competency assessment.
 - Replacement of human evaluation in high-stakes decisions.
@@ -152,7 +214,7 @@ The blockchain does **not** prove that a person is universally competent, truthf
 - A universal credentialing, recruiting, LMS, or workforce-management platform.
 - That strategic extensions such as Dynamic Role Architecture are currently implemented or commercially validated.
 
-## 8. For Evaluators — Recommended Reading Path
+## 9. For Evaluators — Recommended Reading Path
 
 If you are evaluating LASTRO for the first time, use this path:
 
@@ -170,7 +232,7 @@ If you are evaluating LASTRO for the first time, use this path:
 
 The repository contains additional research, governance, product, brand, and execution documents for deeper review.
 
-## 9. Current Status & Execution Roadmap
+## 10. Current Status & Execution Roadmap
 
 The core M1–M3 vertical slice is implemented. The project is now in the **M4 execution / closing phase**, focused on reproducible proof, demonstration, external validation, communication, and final submission.
 
@@ -187,7 +249,7 @@ For the authoritative project status and execution roadmap, see:
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
 
-## 10. Quick Start & Resilient Demo
+## 11. Quick Start & Resilient Demo
 
 ```bash
 npm install
@@ -205,14 +267,14 @@ npm run m3:verify <tx_signature> [record_hash]
 
 If a live Devnet write is unavailable, the presentation can use the previously validated synthetic fallback fixture described in [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md).
 
-## 11. Repository Structure
+## 12. Repository Structure
 
 - `src/` — Core implementation and hardened pipelines.
 - `tests/` — Automated coverage, including adversarial integrity tests.
 - `docs/` — Product, architecture, evaluation, governance and operational documentation.
 - `research/` — Future hypotheses and research extensions.
 
-## 12. Team
+## 13. Team
 
 | Contributor | Primary Contribution |
 |---|---|
