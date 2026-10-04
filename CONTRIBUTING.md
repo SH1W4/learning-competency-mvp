@@ -13,14 +13,13 @@ Este repositório é a base técnica de execução do Learning Competency MVP.
 
 ## Fluxo de trabalho
 
-1. Leia `skills/learning-competency/SKILL.md`.
-2. Consulte o contrato do MVP e a documentação da área afetada.
-3. Verifique as issues abertas relacionadas.
-4. Faça a menor alteração coerente com o objetivo.
-5. Adicione ou atualize testes quando houver mudança de comportamento.
-6. Atualize a documentação quando a mudança alterar contrato ou arquitetura.
-7. Prefira commits pequenos e explicáveis.
-8. Use Pull Requests para mudanças que precisem de revisão do time.
+1. Consulte `docs/product/MVP_CONTRACT.md` e a documentação da área afetada.
+2. Verifique as issues ou Pull Requests relacionadas quando houver mudança em andamento.
+3. Faça a menor alteração coerente com o objetivo.
+4. Adicione ou atualize testes quando houver mudança de comportamento.
+5. Atualize a documentação quando a mudança alterar contrato ou arquitetura.
+6. Prefira commits pequenos e explicáveis.
+7. Use Pull Requests para mudanças que precisem de revisão do time.
 
 ## Antes de implementar
 
