@@ -7,7 +7,14 @@ LASTRO is an infrastructure designed to transform observable work evidence into 
 ---
 
 ## 1. The Problem
-Work evolves continuously, but competency systems still rely on self-reports, static profiles, disconnected certificates, and subjective evaluation. This creates a critical gap between **what someone claims they can do** and **what an organization can actually verify**.
+Work evolves continuously, while organizations report material difficulty keeping workforce capabilities aligned with changing requirements. In the World Economic Forum's 2025 employer survey, **63% of employers identified skills gaps as the leading barrier to business transformation** for 2025–2030. Deloitte's 2026 enterprise AI research similarly identifies **insufficient worker skills as the biggest barrier to integrating AI into existing workflows**. These signals do not validate LASTRO commercially, but they establish the broader capability problem the project addresses. [1]
+
+This creates a critical gap between **what someone claims they can do** and **what an organization can actually verify**.
+
+
+### Research references
+
+[1] World Economic Forum, *Future of Jobs Report 2025* — https://www.weforum.org/publications/the-future-of-jobs-report-2025/; Deloitte, *State of AI in the Enterprise 2026* — https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
 
 ## 2. The LASTRO Approach
 We do not automate human judgment; we make it more evidence-based, traceable, and resilient to single points of failure (human or AI). 
