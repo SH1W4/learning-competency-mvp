@@ -76,7 +76,7 @@ Requalification
 Proof of Competency
 ```
 
-Any emerging role should be evidence-supported and human-reviewed rather than invented by an LLM.
+Any emerging role should be evidence-supported and subject to human adjudication when the verification process cannot resolve the case, rather than being invented by an LLM.
 
 ## Guiding principle
 
