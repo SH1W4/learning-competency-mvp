@@ -165,3 +165,8 @@ The file-level publication baseline is maintained in `docs/governance/PUBLICATIO
 The important correction is that `research/`, `docs/product/`, and `docs/decisions/` are not intrinsically public or private. Each artifact is classified by actual information content. Current source code remains PUBLIC because reproducibility and technical auditability are part of the MVP proof strategy.
 
 No physical file movement is authorized by this classification. RESTRICTED means controlled disclosure, not a requirement for a third repository before the hackathon.
+
+
+## File-level authority
+
+For current repository triage, `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md` is authoritative at file level. Directory-level labels in this document are defaults and do not override an explicit file classification.
