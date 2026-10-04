@@ -1,8 +1,8 @@
 # Market Validation Evidence
 
 **Status:** research / external evidence + validation gap register  
-**Date:** 2026-10-03  
-**Scope:** Learning Competency MVP / Dynamic Role Architecture
+**Date:** 2026-10-04  
+**Scope:** LASTRO capability-evidence thesis / Dynamic Role Architecture research extension
 
 ## 1. Purpose
 
@@ -14,7 +14,7 @@ This document separates three different claims that must not be conflated:
 
 Current evidence supports the first two at a broad market level. It does **not** yet establish the third.
 
-The purpose of this document is not to declare product-market fit. It is to maintain a traceable evidence base for the market hypothesis and make the remaining validation work explicit.
+The purpose of this document is not to declare product-market fit. It is to maintain a traceable evidence base for the market hypothesis and make the remaining validation work explicit.\n> **Current boundary:** the active MVP is narrower than this market thesis. The implemented product is LASTRO's capability-evidence and verification vertical slice; Dynamic Role Architecture and broader workforce-development workflows remain research extensions. Broad market evidence below supports the problem context, not demand for the current product.\n
 
 ## 2. Core market hypothesis
 
@@ -26,7 +26,7 @@ Organizations are experiencing a growing mismatch between:
 - what training or requalification they complete;
 - and what evidence decision-makers can use to understand current capability.
 
-The product hypothesis is that an evidence-centered competency layer can help organizations:
+The broader product hypothesis is that an evidence-centered competency layer can help organizations:
 
 **observe work → structure evidence → understand competency state → identify gaps → model emerging role requirements → support requalification → verify demonstrated competency.**
 
