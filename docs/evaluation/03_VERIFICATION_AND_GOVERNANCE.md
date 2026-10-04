@@ -35,6 +35,14 @@ The process distinguishes at least:
 
 The competency state must not be advanced while the case is materially insufficient or conflicted.
 
+## Human Review and Human Adjudication
+
+**Human Review** is a normal inspection step when the process requires review of evidence, interpretation, criteria, provenance, or verification context.
+
+**Human Adjudication** is an exception path for material conflict, unresolved ambiguity, contestation, or cases not adequately covered by existing rules.
+
+They are not interchangeable.
+
 ## Human role
 
 Human intervention is preserved for:
