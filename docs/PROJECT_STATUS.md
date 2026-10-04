@@ -124,3 +124,25 @@ Detalhes estratégicos de mercado, entrevistas e operação comercial são manti
 - [ ] Revisar demo e pitch contra a matriz de vitória.
 - [ ] Confirmar que nenhuma hipótese está apresentada como fato.
 - [ ] Confirmar que nenhum artefato histórico é apresentado como prova atual.
+
+
+## Documentation Freeze — 2026-10-04
+
+The minimum enabling contracts for the next implementation step are now defined:
+
+- `docs/architecture/DOMAIN_MODEL.md`
+- `docs/architecture/API_CONTRACT.md`
+- `docs/governance/SECURITY_THREAT_MODEL.md`
+
+These documents formalize the current implementation; they do not introduce new MVP capabilities.
+
+**Documentation freeze:** active.
+
+No new architecture/documentation expansion should be introduced before the following closure checks:
+
+1. `npm run typecheck` green;
+2. `npm test` green;
+3. current `m3.attestation.v2` generated and verified on Solana Devnet;
+4. PR #12 frontend rendered against the frozen domain/interface contract.
+
+Any exception must be justified by a concrete implementation blocker or contradiction in the current system.
