@@ -171,15 +171,15 @@ Public derivative should explain the demo objective, canonical journey, what eac
 - `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` → 🟡
 - `research/06_DECISIONS.md` → 🟡
 - `research/07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md` → 🔴 initially; future public derivative only by explicit decision.
-- Article working set (`09`, `10`, `RELATED_WORK_MATRIX`, `LITERATURE_CLOSURE_PROTOCOL`) → 🔴 private research; publish only after literature closure and explicit promotion decision.
+- Article research track (`research/article/`) → 🟢 public curated research. It must remain labeled as scoped review / research hypothesis. Private drafts or sensitive article working material may remain in the Vault.
 
 All DRA, Role Delta, future-platform and verification-infrastructure work must remain clearly labeled research/hypothesis where it exceeds the implemented MVP.
 
 ## Article research
 
-The article research program is intentionally maintained in the private Vault while the literature review is being closed. The working set is under `research/article/` in the Vault and includes the evidence-to-competency review, verification/provenance review, related-work matrix and literature-closure protocol.
+The article research program has a public curated track under `research/article/`. The public versions expose the current scoped review, counterexamples and literature-closure protocol without presenting them as systematic review results or novelty proof.
 
-The publication gate is methodological, not commercial: the corpus must survive database expansion, screening, counterexample review and explicit limitation analysis before a public article-level gap claim is promoted.
+The publication gate remains methodological: a future article-level claim must survive database expansion, screening, counterexample review and explicit limitation analysis. Private working copies may remain in the Vault when they contain unfinished or sensitive material.
 
 ## Product research
 
