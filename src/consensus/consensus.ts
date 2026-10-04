@@ -7,6 +7,7 @@
  */
 import { ALL_CRITERIA, EVIDENCE_CONTRACT, TRAIL } from "../domain/useCase.js";
 import type { CriterionId, Evidence } from "../domain/types.js";
+import { verifyEvidenceIntegrity } from "../evidence/ingest.js";
 import type { RelationResult } from "../relation/relate.js";
 
 export type ConsensusStatus =
@@ -70,11 +71,11 @@ function evaluateCriterion(
   const evidenceIntegrity: VerificationResult = {
     mechanism: "evidence_integrity",
     criterion_id: criterionId,
-    status: eligibleEvidence.length > 0 && eligibleEvidence.every((e) => Boolean(e.provenance.contentHash))
+    status: eligibleEvidence.length > 0 && eligibleEvidence.every(verifyEvidenceIntegrity)
       ? "PASS"
       : "FAIL",
     rationale: eligibleEvidence.length > 0
-      ? `há ${eligibleEvidence.length} evidência(s) elegível(is) com hash de conteúdo`
+      ? `há ${eligibleEvidence.length} evidência(s) elegível(is) com integridade de conteúdo verificada`
       : "não há evidência elegível para o critério",
   };
 
