@@ -16,7 +16,7 @@ describe("M2.3 — contrato de saída da IA", () => {
     expect(v.interpretations.every((i) => i.kind === "inference")).toBe(true);
     expect(v.signals.map((x) => x.criterion_id).sort()).toEqual(["C1", "C2", "C3", "C4"]);
     expect(v.uncertainty.length).toBeGreaterThan(0);
-    expect(v.requires_human_review).toBe(true);
+    expect(v.requires_consensus).toBe(true);
   });
 
   it("recusa sinal sem evidência citada", () => {
@@ -107,7 +107,7 @@ function baseOutput(evidenceId: string) {
     uncertainty: [],
     overall_confidence: 0.7,
     proposed_state: "UNDER_REVIEW" as const,
-    requires_human_review: true as const,
+    requires_consensus: true as const,
   };
 }
 
