@@ -1,10 +1,10 @@
 # Vault Boundary & Publication Policy
 
-**Status:** preparation baseline — no vault migration performed yet.
+**Status:** operational publication boundary — private Vault migration completed on 2026-10-04.
 
 ## Purpose
 
-Define the boundary between the future Public Vault and Private Vault before any migration.
+Define and maintain the boundary between the public MVP repository, the controlled Private Vault and any future curated Public Vault.
 
 ### Public Vault
 
@@ -20,13 +20,18 @@ Credentials, API keys, private keys, tokens and passwords never belong in either
 
 ## Current Migration Status
 
-The project has a strictly defined public/private information architecture and publication policy.
+The first controlled physical separation has been completed.
 
-**Note:** The physical migration of files into separated Public/Private Vaults is prepared and gated by the 10-point migration checklist, but has not yet been executed. Current claims of "IP BLINDADA" refer to the logical separation of concerns, interface contracts, and the exclusion of sensitive heuristics from public endpoints, not a completed physical repository split.
+- Public MVP repository: `SH1W4/learning-competency-mvp` — remains canonical and unchanged as the public execution/reproducibility layer.
+- Private Vault: `SH1W4/lastro-vault-1` — contains the 29 files classified `REVIEW` or `RESTRICTED-LATER`.
+- File-level authority: `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md`.
+- Migration manifest: `MIGRATION_MANIFEST_2026-10-04.md` in the Private Vault.
+
+This does not mean the public repository is a complete curated Public Vault. A separate public curation layer remains optional.
 
 ## Current repository status
 
-This repository is currently a **pre-vault mixed state**.
+This repository remains the **canonical public MVP repository**. Controlled material classified for the private layer has been copied to the Private Vault; files were not deleted or history-rewritten.
 
 Important: .gitignore does not make an already tracked file private. A later migration must classify tracked content explicitly.
 
@@ -84,9 +89,9 @@ Keep in the Private Vault:
 | Private meeting notes | PRIVATE | confidentiality |
 | Secrets | SECRET STORE | never committed |
 
-## Migration gate
+## Ongoing publication gate
 
-Do not perform the final split until:
+For future changes or a possible curated Public Vault:
 1. repository inventory is complete;
 2. every file has a publication class;
 3. tracked private files are identified;
@@ -100,9 +105,9 @@ Do not perform the final split until:
 
 ## Decision
 
-**No migration is performed by this audit.**
+**The initial private Vault separation is complete.** Future publication changes must use the file-level matrix, preserve source lineage, and be recorded through reviewable changes.
 
-This file is the preparation contract for the later Public Vault / Private Vault operation.
+The public repository remains the canonical implementation and reproducibility surface.
 
 
 ## Publication Classes — 2026-10-04 clarification
@@ -155,7 +160,7 @@ Before public submission or a major release, review the tracked repository file-
 
 ## Physical Migration Decision
 
-**No physical Public/Private Vault migration is performed before the hackathon unless explicitly approved.** The current priority remains consolidation, proof and reproducibility. The eventual topology may use a Public Vault, a controlled Private Vault, a restricted-access workspace/package, and a Secret Store. The exact topology is a later implementation decision.
+**Private Vault migration was explicitly executed on 2026-10-04.** The public repository was not deleted, rewritten or stripped. The eventual curated Public Vault remains a separate future decision and is not required for the current MVP.
 
 
 ## Operational classification baseline — 2026-10-04
