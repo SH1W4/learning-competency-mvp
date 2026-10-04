@@ -350,7 +350,27 @@ The next objective is therefore not to collect more generic statistics.
 
 It is to convert the broad market signal into **organization-level evidence** through structured interviews, workflow observation, pilot commitments, and eventually commercial behavior.
 
-## 12. Source registry
+## 12. Thesis Evidence Matrix: External Validation of Architectural Decisions
+
+The LASTRO architecture is not presented as a speculative response to an invented problem. Each core design decision is connected below to an independently published market, academic, institutional, or standards-based signal.
+
+This matrix establishes **epistemic support for the thesis and architectural rationale**. It does not establish product-market fit, customer willingness to pay, or empirical proof that LASTRO is the uniquely correct solution.
+
+| LASTRO Thesis / Claim | Independent External Evidence | Source Type | Architectural Implication in LASTRO |
+| :--- | :--- | :--- | :--- |
+| **The skills gap is a structural transformation problem, not only a training deficit.** | WEF 2025 reports that 63% of surveyed employers identify skills gaps as a leading barrier to business transformation; Deloitte 2026 identifies insufficient worker skills as the biggest barrier to integrating AI into existing workflows. | Market Research | Supports an evidence-based competency layer focused on demonstrated capability and changing requirements rather than static, time-based certificates alone. |
+| **Cryptographic authenticity does not by itself establish the substantive truth or quality of a claim.** | W3C Verifiable Credentials Data Model v2.0 defines `evidence` as information that can help a verifier evaluate a credential and explicitly leaves trust in issuers and the broader assessment of claims to the verifier/context. | Technical Standard | Supports LASTRO's focus on the off-chain evidence pipeline and Consensus Core rather than treating on-chain attestation as sufficient proof by itself. |
+| **LLMs can exhibit evaluation bias and should not be treated as sole arbiters.** | ACL 2024 research, *Large Language Models are not Fair Evaluators*, documents positional bias and instability in LLM-based evaluation. | Academic Research | Supports the separation of AI Interpretation from final Consensus and the existence of an independent deterministic verification path. |
+| **Competency should be represented through explicit dimensions and criteria, not merely declared as a label.** | UNESCO's 2024 AI Competency Framework for Teachers structures competency through dimensions, progression levels, and competency statements. | Institutional Research | Supports the `Competency → Criteria → Evidence → State` domain model and rejects an unstructured skill-tag interpretation of competency. |
+| **Higher-stakes automated assessment requires governance, transparency, evaluation, and meaningful human oversight.** | NIST AI RMF and the EU AI Act establish risk-management and oversight expectations for AI systems; the ACL evidence above also demonstrates why evaluation quality cannot be assumed from model output alone. | Governance / Regulatory / Academic Research | Supports independent verification and the explicit exceptional `Human Adjudication` path for unresolved conflicts, without making human review a routine pipeline stage. |
+
+### Strategic Conclusion
+
+LASTRO does not claim to have "solved" the global skills gap. The defensible claim is narrower: **the project translates documented failures and constraints in skills visibility, credential trust, and automated evaluation into an auditable evidence-centered architecture.**
+
+The external literature therefore validates the **problem space and rationale for the architectural boundaries**. It does not yet validate customer demand, commercial viability, or the superiority of LASTRO over competing workflows. Those remain empirical validation questions.
+
+## 13. Source registry
 
 ### External
 
@@ -368,6 +388,16 @@ It is to convert the broad market signal into **organization-level evidence** th
 - Microsoft — *2025 Work Trend Index*
 - Microsoft — AI-at-work research
 
+### Thesis / architecture evidence
+
+- [TE-01] World Economic Forum — *Future of Jobs Report 2025* — https://www.weforum.org/publications/the-future-of-jobs-report-2025/
+- [TE-02] Deloitte — *State of AI in the Enterprise 2026* — https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
+- [TE-03] W3C — *Verifiable Credentials Data Model v2.0* — https://www.w3.org/TR/vc-data-model/
+- [TE-04] ACL Anthology — *Large Language Models are not Fair Evaluators* (2024) — https://aclanthology.org/2024.acl-long.511/
+- [TE-05] UNESCO — *AI Competency Framework for Teachers* (2024) — https://www.unesco.org/en/articles/ai-competency-framework-teachers
+- [TE-06] NIST — *Artificial Intelligence Risk Management Framework (AI RMF 1.0)* — https://www.nist.gov/itl/ai-risk-management-framework
+- [TE-07] European Union — *Regulation (EU) 2024/1689 (Artificial Intelligence Act)* — https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+
 ### Internal
 
 - `alinhamento_erick_caso_de_uso_m1_validacao_m4.pdf`
@@ -376,7 +406,7 @@ It is to convert the broad market signal into **organization-level evidence** th
 - `08_VALIDACAO_INTERNA_DO_GRUPO_E_CRITICAS.pdf`
 - `CONSOLIDACAO_ANALISE_CAMADA_HUMANA_M2_M4.pdf`
 
-## 13. Relationship to the research stack
+## 14. Relationship to the research stack
 
 This document complements:
 
