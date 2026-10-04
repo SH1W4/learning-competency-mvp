@@ -2,148 +2,235 @@
 
 **Data:** 29/09/2026  
 **Fase:** 6 — VERTICAL SLICE  
-**Objetivo:** sair da fundação documental e produzir os primeiros artefatos executáveis, evidências de demanda e a ponte técnica até a verificação.
+**Status:** execution / closing  
+**Objetivo:** fechar o vertical slice reproduzível e converter a fundação técnica já concluída em prova pública, demo, validação externa e submissão coerente.
 
 ## Regra deste sprint
 
-Não abrir novas frentes de produto. Cada contribuição deve produzir código, teste, evidência de campo, decisão técnica ou integração verificável.
+Não abrir novas frentes de produto. Cada contribuição deve produzir código, teste, evidência de campo, decisão técnica, integração verificável ou material de fechamento.
 
-A ordem é:
+A ordem estratégica agora é:
 
 ```
-GATE 0 — validar M1.1
-       ↓
-M2 — evidência + IA + revisão
-       ↓
-M3 — estado + attestation + Solana
-       ↓
-INTEGRAÇÃO — vertical slice
-       ↓
-M4 — validação + demo
+PROVE
+  ↓
+DEMONSTRATE
+  ↓
+VALIDATE
+  ↓
+COMMUNICATE
+  ↓
+FINAL SUBMISSION
 ```
 
-M4.1 pode avançar em paralelo porque gera evidência externa e não depende da implementação completa.
+A referência estratégica para essa sequência é `docs/product/VICTORY_EXECUTION.md`.
+
+## Estado atual
+
+- M1 — DONE
+- M2 — DONE
+- M3 — DONE
+- Feature Freeze — ATIVO
+- Documentation Freeze — ATIVO
+- Interface — execução
+- M4 — execução / fechamento
+
+A arquitetura canônica permanece:
+
+```
+Evidence
+  ↓
+AI Interpretation
+  ↓
+Independent Verification
+  ↓
+Consensus
+  ↓
+Competency State
+  ↓
+Attestation
+  ↓
+Public Verification
+
+CONFLICT
+  ↓
+Human Adjudication
+```
+
+Human Adjudication é excepcional e não constitui uma etapa normal de revisão.
 
 ## Ownership
 
 | Frente | Owner | Papel neste sprint |
 | --- | --- | --- |
-| M1.1 / decisão do caso de uso | SH1W4 + time | fechar e preservar a hipótese operacional antes de alterações estruturais |
-| M2 — evidência, IA e revisão | JP Carvalho / Joaopedro0s | implementar o fluxo técnico de evidência, interpretação, relação com competência, revisão e proveniência |
-| M3 — estado, attestation e Solana | SH1W4 / JX | transformar o resultado revisado em estado verificável e implementar a ponte com Solana |
-| M3 — suporte técnico | JP Carvalho / Joaopedro0s | apoiar implementação, integração, debugging e testes quando solicitado; sem alterar o ownership de M3 |
-| M4.1 — validação de demanda | Erick / erickandregarcia-ai | produzir evidência externa estruturada |
-| Interface — UX/UI do vertical slice | JP Fernandes | materializar o fluxo definido em telas, navegação, evidência, revisão, estado, attestation e verificação |
-| Integração M2 → M3 → Interface → M4 | SH1W4 / JX | garantir coerência do vertical slice |
+| M1 — caso de uso | SH1W4 + time | preservar a hipótese operacional já fechada |
+| M2 — evidência, IA, verificação e consenso | JP Carvalho / Joaopedro0s | manter e apoiar a integridade do pipeline já concluído |
+| M3 — estado, attestation e Solana | SH1W4 / JX | fechar a prova pública e integração necessária |
+| M4 — validação de demanda | Erick / erickandregarcia-ai | produzir evidência externa estruturada |
+| Interface — UX/UI | JP Fernandes | materializar o fluxo existente sem criar lógica paralela |
+| Integração / fechamento | SH1W4 / JX | garantir coerência entre produto, prova, demo e submission |
 
-## Frente de Interface — JP Fernandes
+## 1. PROVE — prova técnica pública
 
-**Status:** EXECUÇÃO A PARTIR DA DEFINIÇÃO PROGRESSIVA DO FLUXO  
-**Owner:** JP Fernandes
+### P0.1 — Current Devnet proof
 
-Escopo inicial:
+- gerar nova attestation `m3.attestation.v2` em Solana Devnet;
+- executar a verificação correspondente;
+- registrar transação, resultado e binding verificável;
+- atualizar `docs/evaluation/04_DEMO_AND_PROOF.md`;
+- atualizar o README com a prova pública atual.
 
-- I1 — mapear telas necessárias;
-- I2 — definir fluxo de navegação;
-- I3 — interface de evidência;
-- I4 — interface de interpretação e revisão;
-- I5 — visualização do estado;
-- I6 — resultado, attestation e verificação;
-- I7 — implementação da interface;
-- I8 — validação do fluxo completo.
+**Done when:** existe uma prova atual, reproduzível e publicamente verificável, sem apresentar artefato histórico como prova corrente.
 
-Regra: a interface materializa o fluxo definido pelo produto e pela arquitetura; não cria lógica de produto paralela.
+### P0.2 — Testes e integridade
 
-## Execução imediata
+Executar:
 
-### 1. GATE 0 — caso de uso
+- `npm run typecheck`;
+- `npm test`;
+- verificação do fluxo M3;
+- testes de falha/integridade relevantes.
 
-O M1 foi fechado como especificação operacional v0.1.
+**Done when:** CI/testes locais e o caminho de verificação suportam o estado que será demonstrado.
 
-A referência canônica atual é:
+## 2. DEMONSTRATE — frontend e fluxo end-to-end
 
-- contexto organizacional definido;
-- competência definida;
-- trilha curta definida;
-- contrato de evidência definido;
-- estados mínimos definidos;
-- cenário sintético de demonstração definido.
+### P0.3 — Frontend
 
-Qualquer alteração estrutural deve ser registrada como decisão explícita.
+Implementar somente o necessário para tornar a arquitetura existente legível.
 
-### 2. M2 — caminho crítico
-
-JP Carvalho executa:
-
-- M2.1 — ingestão de evidências;
-- M2.2 — normalização/extração;
-- M2.3 — contrato de saída da IA;
-- M2.4 — relação evidência → competência;
-- M2.5 — revisão humana;
-- M2.6 — proveniência;
-- M2.7 — testes críticos.
-
-**Importante:** M2.5 não deve ser tratado como concluído antes de M2.4. A execução segue as dependências.
-
-### 3. M3 — preparar e depois implementar
-
-JX executa:
-
-- M3.1 — estado mínimo;
-- M3.2 — payload de attestation;
-- M3.3 — mecanismo Solana;
-- M3.4 — emissão;
-- M3.5 — verificação;
-- M3.6 — testes de integridade.
-
-M3.1–M3.3 podem ter investigação/preparação antecipada, mas o modelo final deve respeitar o que M2 realmente produz.
-
-### 4. Interface — materializar o fluxo
-
-JP Fernandes trabalha sobre o contrato já definido por produto e arquitetura.
-
-A interface deve tornar demonstrável:
+O frontend deve materializar:
 
 ```
-EVIDÊNCIA
+EVIDENCE
    ↓
-INTERPRETAÇÃO
+AI INTERPRETATION
    ↓
-REVISÃO
+INDEPENDENT VERIFICATION
    ↓
-ESTADO
+CONSENSUS
+   ↓
+COMPETENCY STATE
    ↓
 ATTESTATION
    ↓
-VERIFICAÇÃO
+PUBLIC VERIFICATION
 ```
 
-A implementação visual deve priorizar clareza, rastreabilidade e capacidade de demonstrar o fluxo completo, sem introduzir novas regras de negócio.
+Em caso de conflito:
 
-### 5. M4 — validação externa em paralelo
+```
+CONFLICT
+   ↓
+HUMAN ADJUDICATION
+```
 
-Erick executa:
+A interface não cria novas regras de negócio, verificadores ou transições paralelas.
 
-- M4.1 — entrevistas focadas;
-- M4.2 — registro de sinais reais;
-- preparação de M4.3 — alternativas/concorrentes.
+### P0.4 — Canonical demo
 
-Nenhuma percepção será registrada como validação sem fonte, contexto e data.
+- executar o cenário sintético canônico;
+- demonstrar o caminho completo;
+- capturar as evidências técnicas necessárias;
+- finalizar o roteiro em `docs/demo/DEMO_SCRIPT.md`.
 
-## Critério de saída do sprint
+**Done when:** outro membro da equipe consegue reproduzir a demonstração a partir de um setup limpo.
 
-O sprint termina quando houver:
+## 3. VALIDATE — buyer, wedge e demand
 
-1. caso de uso definido o suficiente para implementação;
-2. primeiro fluxo de evidência entrando no sistema;
-3. interpretação de IA separada da evidência original;
-4. revisão humana funcional ou demonstrável;
-5. modelo de estado definido;
-6. attestation mínima implementada ou com contrato técnico fechado;
-7. caminho de verificação reproduzível;
-8. primeiros sinais externos de demanda documentados;
-9. testes críticos do fluxo;
-10. interface suficiente para demonstrar o cenário canônico.
+### P1.1 — First buyer / wedge
+
+Identificar um buyer inicial e uma decisão recorrente.
+
+Registrar:
+- quem sente o problema;
+- qual decisão está sendo tomada;
+- evidência usada hoje;
+- onde ocorre ambiguidade/trabalho manual;
+- frequência;
+- consequência de uma decisão ruim ou lenta.
+
+### P1.2 — Demand signals
+
+Executar entrevistas focadas e registrar:
+- problem confirmation;
+- buyer/wedge confirmation;
+- interesse em piloto ou acesso a dados, quando existir;
+- outros sinais externos verificáveis.
+
+Nenhuma percepção vira validação sem fonte, contexto e data.
+
+### P1.3 — Competitive landscape
+
+Consolidar alternativas relevantes com fontes atuais, sem claims de diferenciação absoluta.
+
+### P1.4 — Economic consequence / GTM
+
+Testar a hipótese:
+
+```
+Evidence-backed competency
+        ↓
+Better decision
+        ↓
+Operational / financial consequence
+```
+
+Pricing, ROI e distribuição permanecem hipóteses até haver evidência externa.
+
+## 4. COMMUNICATE — pitch e narrativa
+
+### P1.5 — Pitch
+
+Seguir:
+
+```
+PROBLEM
+  ↓
+INSIGHT
+  ↓
+MECHANISM
+  ↓
+PROOF
+  ↓
+VALUE
+  ↓
+WHY US
+```
+
+Mecanismo canônico:
+
+> LASTRO turns evidence of work into a competency state that can be independently verified.
+
+Blockchain deve ser apresentada como **integrity / attestation anchor**, não como autoridade sobre competência.
+
+### P1.6 — Claims discipline
+
+Não apresentar como fato:
+- traction não comprovada;
+- PMF;
+- willingness to pay;
+- ROI não validado;
+- competência provada apenas pela blockchain;
+- capacidade futura como capacidade atual.
+
+## 5. FINAL SUBMISSION
+
+### P2.1 — Repository / documentation audit
+
+Revisar README, docs, tests, code, task status e demo contra o estado real.
+
+### P2.2 — Submission freeze
+
+Congelar:
+- código;
+- documentação pública;
+- demo;
+- pitch;
+- prova pública;
+- disclosures necessários.
+
+**Done when:** GitHub, produto, validação, demo, pitch e submission contam a mesma história factual.
 
 ## O que NÃO faremos agora
 
@@ -154,12 +241,29 @@ O sprint termina quando houver:
 - dashboards complexos;
 - múltiplos casos de uso;
 - expansão para vários padrões de credenciais;
-- novas camadas de documentação sem necessidade de decisão.
+- novas camadas de arquitetura;
+- novas camadas de documentação sem blocker concreto;
+- implementação de Dynamic Role Architecture;
+- segundo consenso semântico;
+- dados sensíveis on-chain.
+
+## Critério de saída do sprint
+
+1. prova Devnet atual e verificável;
+2. typecheck e testes críticos verdes;
+3. fluxo end-to-end demonstrável;
+4. frontend materializando a arquitetura real;
+5. primeiros sinais externos de demanda documentados;
+6. pitch e diferenciação alinhados às evidências;
+7. repository audit concluído;
+8. submission candidate congelado.
 
 ## Regra de conclusão
 
-**Código sem teste não fecha a tarefa.  
-Opinião sem fonte não vira validação.  
-AI sem revisão não vira estado.  
-Attestation sem verificação não fecha o fluxo.  
-Interface sem fluxo definido não vira produto.**
+**Código sem teste não fecha a tarefa.**  
+**Opinião sem fonte não vira validação.**  
+**AI interpretation não vira estado por autoridade própria.**  
+**Conflito segue para Human Adjudication como exceção.**  
+**Attestation sem verificação não fecha o fluxo.**  
+**Interface sem fluxo definido não vira produto.**  
+**Documentação não será expandida sem blocker concreto.**
