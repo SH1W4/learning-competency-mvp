@@ -175,3 +175,24 @@ No physical file movement is authorized by this classification. RESTRICTED means
 ## File-level authority
 
 For current repository triage, `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md` is authoritative at file level. Directory-level labels in this document are defaults and do not override an explicit file classification.
+
+## Operational Brain — 2026-10-04
+
+The Private Vault now serves as the storage layer for the **LASTRO Operational Brain**.
+
+The distinction is intentional:
+
+- **Vault** = private storage and publication boundary.
+- **Operational Brain** = functional role: private operational memory, decision context, execution history and working knowledge.
+- **MCP** = read-only interface through which compatible AI agents can query that private context.
+
+The current MCP implementation is maintained inside `SH1W4/lastro-vault-1/mcp/` and is read-only by design.
+
+The MCP does not change the source-of-truth hierarchy:
+
+1. current implementation/tests remain canonical for executable behavior;
+2. public canonical documents remain authoritative for current public architecture and claims;
+3. Operational Brain material provides private operational or historical context;
+4. historical/lineage material must never silently override current public state.
+
+No write-capable MCP surface is authorized by this boundary. Any future write capability requires a separate security, authorization, audit and concurrency review.
