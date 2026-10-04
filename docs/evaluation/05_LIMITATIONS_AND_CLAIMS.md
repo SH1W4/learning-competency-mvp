@@ -13,8 +13,8 @@ The project can currently demonstrate:
 - bounded competency state transitions;
 - human adjudication as an exception path;
 - deterministic state records;
-- Solana Devnet integrity anchoring;
-- later verification of the anchored record.
+- Solana Devnet integrity-anchoring capability;
+- verification of an anchored record when a current Devnet transaction is available.
 
 ## Claims that remain hypotheses
 
