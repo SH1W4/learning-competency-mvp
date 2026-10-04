@@ -2,13 +2,11 @@
 
 **Scope:** repository state, executable architecture, documentation, research boundary, brand/interface handoff, security hygiene and future Public/Private Vault preparation.
 
-**Status:** audited / migration not performed.
+**Status:** audited / private Vault migration completed; public repository remains canonical MVP.
 
 ## Executive result
 
-The project is structurally ready for a future Public Vault / Private Vault split, but the split should not be performed yet as a blind directory move.
-
-The current repository is a pre-vault mixed state with a clear emerging public core.
+The project has completed the first controlled separation pass. The public repository remains the canonical MVP and a private Vault now holds the files classified as `REVIEW` or `RESTRICTED-LATER` by the authoritative file-level matrix.
 
 ## Current canonical public core
 
@@ -66,13 +64,13 @@ The documentation distinguishes implemented capability from market hypotheses, t
 
 The canonical demo is explicitly synthetic and is not presented as customer, pilot or traction evidence.
 
-### A6 — Documentation consistency: PASS WITH FOLLOW-UP
+### A6 — Documentation consistency: PASS
 
 Product, architecture, governance, demo/proof, claims and brand documents have been aligned.
 
-The remaining work is operational: maintain one canonical source of truth and prevent future drift.
+The publication matrix is now reconciled against all 149 tracked files. Governance documents were updated to reflect the completed private Vault migration.
 
-### A7 — Repository privacy boundary: PASS WITH FOLLOW-UP
+### A7 — Repository privacy boundary: PASS
 
 The previous ignore rules treated docs/evaluation as restricted even though those files are already tracked.
 
@@ -101,34 +99,29 @@ PR #13 is merged and establishes the current Consensus Core decision model.
 | Public/private boundary defined | PASS |
 | Source-of-truth hierarchy defined | PASS |
 | Private-path ignore rules | PASS |
-| Tracked-content inventory | PARTIAL |
+| Tracked-content inventory | PASS — 149/149 classified |
 | Secret scan | TARGETED PASS |
 | Public claims discipline | PASS |
 | Synthetic evidence boundary | PASS |
-| Migration destination for every file | NOT YET |
-| Final Public Vault creation | NOT YET |
-| Final Private Vault creation | NOT YET |
+| Migration destination for every file | PASS — matrix reconciled |
+| Public repository as canonical MVP | PASS |
+| Private Vault creation | PASS — `SH1W4/lastro-vault-1` |
+| Public Vault creation | NOT YET — future curated layer |
 
-## Required sequence for the future migration
+## Remaining governance sequence
 
-1. Freeze the current canonical MVP state.
-2. Reconcile and close interface/brand PR work.
-3. Inventory every tracked file.
-4. Assign PUBLIC / PUBLIC-WITH-REVIEW / PRIVATE / SECRET-STORE.
-5. Run dedicated secret scanning.
-6. Review public research claims and citations.
-7. Separate real/private evidence from synthetic examples.
-8. Create the Public Vault from the approved public set.
-9. Create the Private Vault from the restricted set.
-10. Record the migration as a reviewable PR / change set.
-11. Establish the Public Vault as the canonical public state.
-12. Keep historical archives explicitly labelled as historical.
+1. Keep the public repository and private Vault aligned through reviewable changes.
+2. Complete dedicated secret scanning before any major public release.
+3. Continue reviewing public research claims and citations.
+4. Build a curated Public Vault only if/when that layer is explicitly needed.
+5. Keep historical and operational material explicitly classified.
+6. Record material reclassifications in reviewable commits or decision records.
 
 ## Important non-goals
 
 This audit does not:
-- create the vaults;
-- move commercial strategy;
+- create or expose a public curated Vault;
+- move commercial strategy into the public repository;
 - expose private material;
 - close PR #12;
 - change the MVP architecture;
@@ -142,6 +135,8 @@ This audit does not:
 
 **Public proof:** structurally ready; current M3 attestation transaction remains a closing proof artifact.
 
-**Vault split:** ready to plan, not yet ready to execute blindly.
+**Private Vault:** operational.
 
-The next meaningful gate is not another architecture layer. It is a controlled file-by-file publication classification followed by the Public/Private Vault migration.
+**Public Vault:** not yet created; the public GitHub repository remains the canonical public MVP.
+
+The next meaningful gate is not another architecture layer. It is maintaining this boundary while closing proof, validation and remaining release work.
