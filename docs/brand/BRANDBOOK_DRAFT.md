@@ -1,258 +1,420 @@
-# Brandbook — Esboço
+# LASTRO — Brandbook Draft
 
-## 01. Essência
+> Working brand direction aligned with LASTRO Identity v0.2 and the current product architecture.
+>
+> This document is a brand direction and implementation reference. The canonical visual source of truth is docs/brand/LASTRO_IDENTIDADE_v0.2.html.
 
-### Ideia central
+## 01. Essence
 
-Transformar desenvolvimento de competências em um processo observável, organizado e verificável.
+### Brand
 
-### Promessa de produto — hipótese
+**LASTRO**
 
-> Ajudar organizações e pessoas a transformar experiências de aprendizagem em evidências estruturadas de desenvolvimento de competências.
+The name expresses the idea of a base of evidence that gives substance and traceability to a claim.
 
-### Território
+### Core idea
 
-**Aprendizagem × Competência × Evidência × Verificação**
+Turn observable work and learning evidence into **verifiable competency states**.
 
-## 02. Personalidade
+### Product promise — working version
 
-A marca deve parecer:
+> **Evidence-backed competency.**
 
-- técnica sem ser fria;
-- inteligente sem parecer “AI hype”;
-- confiável sem parecer institucional demais;
-- contemporânea;
-- precisa;
-- transparente;
-- orientada a evidências.
+Supporting expression:
 
-Evitar uma estética que remeta excessivamente a:
+> LASTRO turns evidence of work and learning into competency states that can be independently verified.
 
-- criptomoedas especulativas;
-- plataformas genéricas de cursos;
+### Core insight
+
+A demonstrated competency does not have to remain a claim inside a system. It can become a **verifiable state backed by evidence**.
+
+### Territory
+
+**Work × Learning × Competency × Evidence × Verification**
+
+Learning remains part of the territory, but the brand is not limited to courses, certificates, or formal education.
+
+## 02. Brand personality
+
+LASTRO should feel:
+
+- technical without being cold;
+- intelligent without AI hype;
+- trustworthy without looking overly institutional;
+- contemporary;
+- precise;
+- transparent;
+- evidence-oriented;
+- restrained;
+- editorial.
+
+Avoid aesthetics associated with:
+
+- speculative crypto;
+- generic course platforms;
 - “AI magic”;
-- certificados decorativos;
-- dashboards corporativos saturados.
+- decorative certificates;
+- saturated corporate dashboards;
+- generic Web3 visual language.
 
-## 03. Linguagem
+## 03. Language
 
-### Palavras preferenciais
+### Preferred concepts
 
 - competência
-- desenvolvimento
 - evidência
+- trabalho
 - experiência
-- trilha
+- desenvolvimento
 - estado
-- revisão
-- confiança
 - verificação
-- attestation / prova verificável
+- consenso
+- proveniência
+- prova
+- attestation
+- competency state
+- evidence-backed
+- independently verified
 
-### Linguagem a evitar como centro da marca
+### Concepts that require contextual care
 
-- “certificado” como conceito principal;
-- “blockchain” como promessa;
+- confiança
+- revisão
+- IA
+- blockchain
+- Solana
+- certificado
+
+These may appear when technically relevant, but should not become the center of the brand.
+
+### Avoid as central claims
+
+- “certificado” as the primary product concept;
+- “blockchain” as the product promise;
 - “revolucionário”;
 - “disruptivo”;
 - “100% confiável”;
-- “competência verificada” quando o mecanismo não sustenta essa afirmação.
+- “AI proves competency”;
+- “competency verified” when the underlying mechanism does not support the claim;
+- “eliminates human judgment”;
+- “universal competency”.
 
-## 04. Mensagem
+## 04. Product narrative
 
-### Estrutura
+### Problem
 
-**Problema**
+Organizations can see certificates, profiles, job titles and training records, but these artifacts do not reliably show **what a person can demonstrate through observable work**.
 
-Organizações acumulam cursos, projetos, avaliações e certificados, mas têm dificuldade para transformar esse material em uma visão organizada da evolução de competências.
+### Mechanism
 
-**Mecanismo**
+LASTRO connects:
 
-O produto organiza trilhas, captura evidências, utiliza IA para estruturar e interpretar sinais e mantém revisão humana.
+**WORK / ACTIVITY → EVIDENCE → INTERPRETATION → INDEPENDENT VERIFICATION → CONSENSUS → COMPETENCY STATE → ATTESTATION → PUBLIC VERIFICATION**
 
-**Resultado**
+AI may assist interpretation. It is not the authority that proves competency.
 
-Um estado de desenvolvimento pode ser representado e, quando aplicável, transformado em uma prova verificável.
+### Result
 
-**Tecnologia**
+A bounded competency state can be represented with its evidence, verification context and provenance.
 
-Solana entra como infraestrutura de integridade e verificabilidade — não como a proposta de valor isolada.
+### Human intervention
 
-## 05. Direção visual — hipótese
+Human **adjudication** is an exception path for ambiguous or conflicting cases. It is not a routine pipeline stage.
+
+### Blockchain role
+
+Solana serves as an integrity and attestation layer.
+
+**Verified competency state → integrity / attestation reference → public verification**
+
+Blockchain is infrastructure, not the product's standalone value proposition.
+
+## 05. Visual direction
 
 ### Base
 
-- fundo escuro;
-- alto contraste;
-- branco / cinza;
-- poucos elementos;
-- bastante espaço negativo;
-- tipografia limpa;
-- diagramas finos;
-- linguagem editorial / tecnológica.
+- black background;
+- white and gray as primary tones;
+- high contrast;
+- restrained use of color;
+- generous negative space;
+- editorial hierarchy;
+- precise typography;
+- thin diagrams and structural lines;
+- technical but human visual language.
 
-### Elementos gráficos
+### Typography
 
-Preferir:
+Current identity uses:
 
-- trajetórias;
-- nós e conexões discretas;
-- camadas;
-- estados;
-- evidências;
-- progressão;
-- estruturas geométricas;
-- sinais de verificação.
+- **Inter Tight**
+- **JetBrains Mono**
 
-Evitar:
+These are the working typographic references established in Identity v0.2.
 
-- cadeias de blocos literais;
-- moedas;
-- foguetes;
-- cérebros de IA;
-- robôs;
-- excesso de neon;
-- estética crypto genérica.
+### Color system
 
-## 06. Sistema visual conceitual
+Core:
 
-Uma possível gramática:
+- Black #000000
+- White #FFFFFF
+- Gray #D9D9D9
+- Surface #2A2A2E
 
-`EXPERIÊNCIA → EVIDÊNCIA → INTERPRETAÇÃO → REVISÃO → ESTADO → PROVA`
+Semantic proof blue:
 
-Esses estágios podem funcionar como elementos recorrentes em:
+- Blue #1683FF
 
-- apresentações;
-- produto;
-- documentação;
-- diagramas;
-- site;
-- social;
-- demo.
+### Blue rule
 
-## 07. Assinatura
+Blue is **semantic**, not decorative.
 
-Hipótese atual:
+Use it where the interface or communication represents:
 
-> **Aprender. Evidenciar. Evoluir. Verificar.**
+- proof;
+- attestation;
+- verification;
+- verified state;
+- public proof.
 
-Outras linhas exploratórias:
+Do not use blue merely to make the composition more visually attractive.
 
-> **Competências que deixam evidências.**
+## 06. Symbol
 
-> **Do aprendizado à prova.**
+The current symbol is designed to communicate integrity and verification without relying on literal crypto, AI, education, or blockchain imagery.
 
-> **Transformando experiências em evidências de competência.**
+### Symbol language
 
-Nenhuma está aprovada como tagline.
+- **Ring** — integrity / verification;
+- **Layered V forms** — evidence and state;
+- **Blue diamond** — proof / attestation.
 
-## 08. Arquitetura de marca
+The symbol should remain independent of:
 
-A marca pode futuramente separar:
+- AI;
+- blockchain;
+- Solana;
+- certificates;
+- diplomas;
+- coins;
+- brains;
+- literal chains.
 
-**Marca principal**  
-produto / plataforma
+The symbol must work as an independent mark and at small sizes.
 
-**Sistema**  
-modelo de competências + evidências + revisão
+## 07. Visual grammar
 
-**Infraestrutura**  
-attestation / verificação / Solana
+The canonical product grammar is:
 
-**Experiência**  
-trilhas e desenvolvimento
+**EVIDENCE → AI INTERPRETATION → INDEPENDENT VERIFICATION → CONSENSUS → COMPETENCY STATE → ATTESTATION → PUBLIC VERIFICATION**
 
-Isso permite que blockchain permaneça como infraestrutura sem dominar a identidade.
+### Important distinction
 
-## 09. Critério para aprovação
+These are different semantic layers:
 
-Antes de fechar o brandbook:
+- **Evidence** — what was observed or submitted;
+- **Interpretation** — structured meaning proposed from evidence;
+- **Verification** — independent checks;
+- **Consensus** — convergence of verification results;
+- **Competency State** — bounded system state;
+- **Attestation** — integrity/reference representation;
+- **Public Verification** — checking the resulting proof/reference.
 
-1. nome deve sobreviver à expansão além de certificados;
-2. deve funcionar para organização e pessoa;
-3. deve permitir comunicação em português e eventualmente inglês;
-4. não deve depender da palavra “blockchain”;
-5. não deve prometer mais verificação do que o produto consegue provar;
-6. deve ser compatível com uma identidade visual técnica e editorial;
-7. deve passar por disponibilidade de domínio, marca e canais antes da escolha final.
+### Human Adjudication
+
+Human Adjudication is represented as an **exception path** from conflict or ambiguity.
+
+It must not be visually presented as a mandatory step between evidence and state.
+
+## 08. Competency states
+
+LASTRO uses the following bounded competency states:
+
+NOT_STARTED · IN_DEVELOPMENT · UNDER_REVIEW · DEMONSTRATED
+
+These states are product semantics, not visual maturity levels.
+
+The brand must not confuse competency state with evidence maturity, confidence, or credential type.
+
+## 09. Consensus outcomes
+
+The visual/product language may represent:
+
+AGREEMENT · INSUFFICIENT_EVIDENCE · CONFLICT · HUMAN_ADJUDICATION
+
+These outcomes should remain distinguishable.
+
+In particular:
+
+- **AGREEMENT** does not mean absolute truth;
+- **INSUFFICIENT_EVIDENCE** means the available evidence does not support advancement;
+- **CONFLICT** means independent mechanisms disagree;
+- **HUMAN_ADJUDICATION** means an exception requires human judgment.
+
+## 10. Graphic elements
+
+Prefer:
+
+- evidence fragments;
+- trajectories;
+- layers;
+- nodes and connections used with restraint;
+- state transitions;
+- verification marks;
+- provenance trails;
+- geometric structures;
+- bounded diagrams;
+- evidence-to-state transformations.
+
+Avoid:
+
+- literal blockchains;
+- coins;
+- rockets;
+- generic AI brains;
+- humanoid robots;
+- excessive neon;
+- glowing “Web3” interfaces;
+- decorative verification badges with no semantic meaning.
+
+The visual system should make the architecture legible without turning the interface into a technical diagram everywhere.
+
+## 11. Signature / tagline
+
+### Current working tagline
+
+> **Competências que deixam lastro.**
+
+### Product statement
+
+> **Evidence-backed competency.**
+
+### Supporting line
+
+> **From evidence to verifiable competency.**
+
+These expressions should be preferred over the previous learning-first tagline **“Do aprendizado à prova.”**
+
+The previous line may remain as historical exploration but is no longer the primary identity direction.
+
+## 12. Brand architecture
+
+The current brand architecture should remain simple:
+
+### LASTRO
+
+The product and primary brand.
+
+### Learning Competency
+
+The technical domain / product architecture terminology.
+
+### Verification infrastructure
+
+The underlying verification and attestation infrastructure.
+
+### Solana
+
+An integrity / attestation layer, not a sub-brand and not the product identity.
+
+The brand should not fragment into separate public identities unless product scope later requires it.
+
+## 13. Applications
+
+The identity should remain coherent across:
+
+- web product;
+- frontend states;
+- demo;
+- pitch deck;
+- GitHub documentation;
+- technical diagrams;
+- research material;
+- public verification pages;
+- social communication.
+
+The frontend must project the existing architecture rather than introduce a parallel visual or semantic architecture.
+
+## 14. Product-facing visual priorities
+
+For the MVP, prioritize visual clarity in this order:
+
+1. **Evidence**
+2. **Verification**
+3. **Consensus**
+4. **Competency State**
+5. **Attestation / Proof**
+6. Strategic narrative: Work Change → Role Delta → Competency Gap → Requalification
+
+The strategic layer is a research and product narrative extension, not evidence that every capability is already commercially validated.
+
+## 15. Claims discipline
+
+The visual identity must not imply capabilities that the system does not support.
+
+Do not visually imply:
+
+- automatic hiring or firing;
+- universal competency assessment;
+- guaranteed truth;
+- elimination of human judgment;
+- blockchain as proof of human ability by itself;
+- AI as competency authority;
+- validated market demand where only research evidence exists.
+
+The brand should communicate **traceability and verifiability**, not certainty beyond the evidence.
+
+## 16. Current reference assets
+
+Current identity reference:
+
+- docs/brand/LASTRO_IDENTIDADE_v0.2.html
+
+Frontend implementation reference:
+
+- docs/product/FRONTEND_PRODUCT_SPEC.md
+
+Operational design handoff:
+
+- docs/brand/DESIGN_BRIEF_JP_FERNANDES.md
+
+These documents should remain aligned. The Brandbook defines identity; the Frontend Product Spec defines product/interface behavior; the Design Brief translates the identity into execution guidance.
+
+## 17. Approval criteria
+
+The identity should:
+
+1. survive expansion beyond certificates and formal learning;
+2. work for both organizations and people;
+3. communicate clearly in Portuguese and English;
+4. not depend on the word “blockchain”;
+5. not promise more verification than the system can demonstrate;
+6. support a technical and editorial visual language;
+7. remain coherent with the evidence-backed competency thesis;
+8. work at small and large scales;
+9. work in monochrome;
+10. be reproducible by another designer;
+11. maintain semantic use of the proof blue;
+12. keep product, presentation and documentation visually coherent.
+
+## 18. Open decisions
+
+The following remain subject to future design validation:
+
+- final wordmark refinements;
+- final spacing and grid specifications;
+- minimum sizes;
+- clear-space measurements;
+- complete iconography system;
+- derived patterns;
+- motion rules;
+- final templates;
+- production asset library.
+
+These are visual production decisions, not changes to the product's semantic architecture.
 
 ## Status
 
-**Draft / hipótese.**
+**Brand direction v0.2 aligned with current product architecture.**
 
-
-## 10. Sistema visual operacional
-
-A direção visual deve ser traduzida em critérios executáveis de:
-
-- símbolo e variantes;
-- paleta;
-- tipografia;
-- composição;
-- elementos gráficos derivados;
-- iconografia;
-- tratamento de imagens;
-- aplicações no produto;
-- responsividade e escala;
-- área de proteção;
-- fundos;
-- usos corretos/incorretos;
-- critérios de aceite;
-- handoff.
-
-Ver: [Visual System Specification](VISUAL_SYSTEM_SPEC.md).
-
-### Referência atual do símbolo
-
-Os assets atuais são:
-
-- `learning-competency-symbol-v0.svg` — base vetorial;
-- `learning-competency-symbol-reference-flat.png` — referência plana;
-- `learning-competency-symbol-reference-3d.png` — referência volumétrica.
-
-A paleta atualmente presente no símbolo v0 usa, como referência de trabalho:
-
-- preto `#000000`;
-- branco `#FFFFFF`;
-- cinza `#D9D9D9`;
-- azul `#1683FF`.
-
-Esses valores ainda não constituem uma paleta final aprovada.
-
-A família tipográfica definitiva também permanece aberta.
-
-## 11. Critério de aprovação expandido
-
-Antes de fechar o brandbook:
-
-1. nome deve sobreviver à expansão além de certificados;
-2. deve funcionar para organização e pessoa;
-3. deve permitir comunicação em português e eventualmente inglês;
-4. não deve depender da palavra “blockchain”;
-5. não deve prometer mais verificação do que o produto consegue provar;
-6. deve ser compatível com uma identidade visual técnica e editorial;
-7. deve passar por disponibilidade de domínio, marca e canais antes da escolha final;
-8. o símbolo deve funcionar em escala pequena e em monocromia;
-9. o sistema visual deve ser reproduzível por outro membro;
-10. produto, apresentação e documentação devem compartilhar a mesma linguagem.
-
-## 12. Decisões ainda abertas
-
-- nome definitivo;
-- tagline definitiva;
-- família tipográfica;
-- paleta final;
-- símbolo definitivo;
-- área de proteção;
-- tamanhos mínimos;
-- wordmark;
-- iconografia;
-- padrões derivados;
-- motion;
-- templates finais.
-
-## Status
-
-**Draft / hipótese.**
-
-Este documento define direção, não fechamento definitivo de marca.
+This document is a working draft. The canonical visual reference is **LASTRO Identity v0.2**.
