@@ -463,7 +463,7 @@ from
 
 from
 
-**Human review**
+**Human adjudication**
 
 from
 
@@ -563,7 +563,7 @@ Explain the final convergence decision.
 | AGREEMENT | Verification mechanisms converge sufficiently for the covered scenario |
 | INSUFFICIENT_EVIDENCE | Available evidence does not support advancement |
 | CONFLICT | Verification mechanisms disagree |
-| HUMAN_ADJUDICATION | Human intervention is required |
+| HUMAN_ADJUDICATION | Human adjudication is required as an exception |
 
 ### AGREEMENT
 
@@ -590,7 +590,7 @@ Show:
 - conflicting mechanisms;
 - points of divergence;
 - why automatic advancement did not occur;
-- human review path.
+- human adjudication exception path.
 
 ### HUMAN_ADJUDICATION
 
