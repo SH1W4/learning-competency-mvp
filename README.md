@@ -115,6 +115,46 @@ ATTESTATION / PUBLIC VERIFICATION
 
 The product does not attempt to automate human judgment. It makes the decision process more evidence-based, traceable, and resilient to a single human or AI signal becoming the sole authority.
 
+## 4. Where LASTRO Fits
+
+The ecosystem around learning, skills, credentials and professional verification is already populated.
+
+Existing Colosseum projects demonstrate different parts of this landscape:
+
+- **Learning credentials** — certificates and verifiable completion.
+- **Skills intelligence** — skills extraction, profiling and matching.
+- **Verified talent** — professional verification and talent discovery.
+- **Performance verification** — observable activity converted into measurable achievements.
+- **Proof-of-talent** — skill-verified people and opportunity matching.
+
+LASTRO investigates a different layer:
+
+```text
+WORK
+  ↓
+EVIDENCE
+  ↓
+AI INTERPRETATION
++
+INDEPENDENT VERIFICATION
+  ↓
+CONSENSUS
+  ↓
+COMPETENCY STATE
+  ↓
+ATTESTATION
+  ↓
+PUBLIC VERIFICATION
+```
+
+The current public Colosseum ecosystem benchmark identified several adjacent projects, but did not identify a project whose publicly described architecture explicitly combines this complete evidence-to-competency workflow.
+
+> **LASTRO does not replace learning, skills, credentials or attestation infrastructure. It investigates the layer that connects demonstrated work to a verifiable capability state.**
+
+This is a **research-backed differentiation hypothesis, not a claim of market uniqueness**.
+
+See the full [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) for the methodology, comparison matrix, project-level evidence and research limitations.
+
 ## 4. The Core Insight
 
 **Learning is not the same as demonstrated capability.**
