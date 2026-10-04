@@ -230,7 +230,7 @@ A implementação atual compreende:
 
 O Statistical / Robustness Check é Future Research / M4+.
 
-O Ethical Compliance Gate é Future Research / M2-M3 e **não faz parte do MVP atual**.
+O Ethical Compliance Gate é **Future Research** e **não faz parte do MVP atual nem do roadmap comprometido**.
 
 ## Evolução
 
