@@ -100,7 +100,7 @@ export class HeuristicProvider implements InterpretationProvider {
       ],
       overall_confidence: signals.length ? Math.min(...signals.map((s) => s.confidence)) : 0,
       proposed_state: complete && allPresent ? "UNDER_REVIEW" : "IN_DEVELOPMENT",
-      requires_human_review: true,
+      requires_consensus: true,
     };
   }
 }
