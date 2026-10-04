@@ -32,7 +32,13 @@ Primeiro provamos que uma competência pode sair de evidências observáveis e c
 Work Change → Role Delta → Competency Gap → Requalification → Proof of Competency
 ~~~
 
-Dynamic Role Architecture continua sendo hipótese de pesquisa, não funcionalidade comercial validada.
+### Verified Competencies → Role Engineering
+
+Once competencies can be represented as bounded, independently verifiable states, those competencies can become modular building blocks for defining evolving roles, identifying competency gaps, and supporting internal mobility.
+
+This is a strategic extension of the MVP, not a currently implemented commercial capability.
+
+Dynamic Role Architecture continues to be a research hypothesis rather than a validated commercial wedge.
 
 ## 4. Frontend narrative
 
