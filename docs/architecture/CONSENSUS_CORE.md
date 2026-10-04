@@ -227,3 +227,8 @@ Isso permite substituir ou adicionar verificadores sem transformar qualquer meca
 ## Questão de pesquisa
 
 > Qual o menor conjunto de verificações independentes necessário para produzir um estado de competência suficientemente consistente, auditável e verificável, mantendo intervenção humana apenas onde a automação não é adequada?
+
+
+## Interface boundary
+
+The frontend exposes Consensus Core results and provenance but does not reproduce its rules. UI state must remain a projection of the domain decision; no frontend code may independently advance competency state or manufacture verification results.
