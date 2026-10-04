@@ -522,3 +522,18 @@ The standard is not “more features”.
 The standard is:
 
 > **more verifiable capability with less ambiguity.**
+
+
+## 9A. Publication Classes and IP Boundary
+
+The vault model uses four publication classes: PUBLIC, RESTRICTED, PRIVATE, and SECRET STORE.
+
+RESTRICTED is a controlled-disclosure classification, not a mandate to create a third physical repository before the hackathon.
+
+The current MVP source tree is intentionally public because reproducibility and technical auditability are part of the proof strategy. Do not claim that current prompts, heuristics, weights, or other implementation details are proprietary unless they are actually withheld/classified that way. If future implementation contains intentionally proprietary details, publish the public contract separately and classify the implementation before release.
+
+RESTRICTED/PRIVATE material may be promoted to PUBLIC only after content, metadata, security and claim review, with SOURCE_OF_TRUTH updated and the promotion recorded through a reviewable change.
+
+For controlled disclosure, provide the minimum necessary scope, prefer redaction, use NDA/access control when appropriate, record the disclosure, and never copy restricted material into the public repository merely for convenience.
+
+Before hackathon submission, perform a file-by-file publication audit and dedicated secret scan. A keyword grep alone is not sufficient evidence of a clean public repository.
