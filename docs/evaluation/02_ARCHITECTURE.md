@@ -18,15 +18,16 @@ VERIFICATION MECHANISMS
 GOVERNANCE / COMPLIANCE
   ↓
 CONSENSUS CORE
-  ↓
-UPDATE STATE
+  ├─ AGREEMENT → UPDATE STATE
+  ├─ INSUFFICIENT EVIDENCE → MORE EVIDENCE
+  └─ CONFLICT → HUMAN ADJUDICATION → UPDATE STATE
   ↓
 ATTEST
   ↓
 VERIFY
 ```
 
-The architecture keeps source material, extraction, interpretation, verification, governance, state, and attestation distinguishable.
+The architecture keeps source material, extraction, interpretation, verification, governance, state, adjudication, and attestation distinguishable.
 
 ## Evidence
 
@@ -35,7 +36,6 @@ Evidence must preserve its origin and represent what was actually produced or su
 Extraction is kept separate from inference.
 
 Relevant evidence can be related to both:
-
 - the competency;
 - the specific criterion it supports.
 
@@ -44,7 +44,6 @@ This makes the path from source material to state inspectable.
 ## AI interpretation
 
 AI can:
-
 - organize evidence;
 - identify relationships;
 - map evidence to criteria;
@@ -72,7 +71,6 @@ Applies explicit competency requirements directly to the competency contract, ac
 ### Statistical / Robustness Check
 
 When a decision depends on repeated observations or inference, the architecture can evaluate:
-
 - sample size;
 - observation period;
 - coverage;
@@ -89,9 +87,39 @@ If evidence is not sufficiently robust, the correct result is insufficient evide
 
 AI provides an interpretive verification signal. It can be compared with other mechanisms, but it does not independently authorize a demonstrated state.
 
+## Consensus Core
+
+Consensus Core is the normal decision authority for the bounded MVP.
+
+```
+Independent verification
+        ↓
+   Consensus Core
+        ├─ AGREEMENT → DEMONSTRATED
+        ├─ INSUFFICIENT_EVIDENCE → IN_DEVELOPMENT
+        └─ CONFLICT → HUMAN ADJUDICATION
+```
+
+Consensus is not simple vote counting. It evaluates whether independently produced verification results satisfy explicit requirements and whether relevant conflicts or insufficiencies exist.
+
+### Human Adjudication
+
+Human adjudication is **not a normal pipeline stage**.
+
+It is an explicit exception path for material conflict, unresolved ambiguity, contestation, high-impact cases, or cases outside the formalized rules.
+
+Adjudication does not replace the evidence or verification results. It resolves a documented conflict and preserves:
+- original evidence references;
+- verification results;
+- adjudicator identity and role;
+- decision;
+- rationale;
+- timestamp;
+- applicable rule/version.
+
 ## State model
 
-A competency state represents only what the available evidence, verification results, and governance rules can support.
+A competency state represents only what the available evidence, verification results, governance rules, and any exceptional adjudication can support.
 
 The system therefore distinguishes:
 
@@ -107,16 +135,17 @@ Consensus
 Competency State
 ```
 
+Human adjudication is attached to the conflict branch rather than inserted between interpretation and consensus.
+
 ## Provenance
 
 Important information should remain distinguishable by origin, including:
-
 - source evidence;
 - deterministic verification;
 - AI interpretation;
 - statistical validation when applicable;
-- human adjudication when an exception requires contextual resolution;
 - consensus decision;
+- human adjudication when an exception occurs;
 - governance context.
 
 This allows later inspection of how a state was produced rather than only storing the final label.

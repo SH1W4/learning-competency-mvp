@@ -60,7 +60,11 @@ Attestation
 External verification
 ```
 
-When verification mechanisms do not converge, the case is not silently promoted. It can remain insufficient, conflicted, or require human adjudication according to the applicable rules.
+When verification mechanisms do not converge, the case is not silently promoted:
+
+- insufficient evidence returns the competency to development;
+- conflict remains pending for explicit human adjudication;
+- only agreement or an exceptional adjudication can produce a demonstrated state.
 
 ## What makes the vertical slice different
 
@@ -92,8 +96,8 @@ Implemented:
 - evidence normalization and extraction;
 - AI-assisted interpretation;
 - deterministic verification;
-- explicit human review;
-- Consensus Core for the covered convergent case;
+- Consensus Core for agreement, insufficient evidence and conflict;
+- human adjudication as an explicit conflict exception;
 - competency state transition;
 - Solana Devnet attestation capability;
 - verification of an anchored record when a current Devnet transaction is available.

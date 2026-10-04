@@ -5,7 +5,7 @@
  * Rules enforced here (docs/product/USE_CASE.md §2, §6; SKILL.md §4):
  *  - AI output is a PROPOSAL. It never changes state by itself.
  *  - Every signal must cite evidence.
- *  - The AI may suggest UNDER_REVIEW at most; DEMONSTRATED requires an explicit reviewer decision.
+ *  - The AI may suggest UNDER_REVIEW at most; DEMONSTRATED requires an explicit adjudicator decision.
  *  - The AI cannot claim source verification (N4) or accreditation.
  */
 import { z } from "zod";
@@ -61,8 +61,8 @@ export const AIInterpretationSchema = z
     uncertainty: z.array(UncertaintySchema),
     overall_confidence: z.number().min(0).max(1),
     proposed_state: z.enum(["IN_DEVELOPMENT", "UNDER_REVIEW"]),
-    /** Always true: marks the whole object as a proposal awaiting human review. */
-    requires_human_review: z.literal(true),
+    /** Always true: marks the whole object as a proposal awaiting Consensus Core evaluation. */
+    requires_consensus: z.literal(true),
   })
   .strict();
 
@@ -91,7 +91,7 @@ export interface ContractCheck {
 
 /**
  * Parses untrusted AI output. Invalid output is never "fixed" silently — it is rejected with reasons,
- * so the pipeline can surface it as uncertainty to the reviewer.
+ * so the pipeline can surface it as uncertainty to the adjudicator.
  */
 export function parseAIOutput(raw: unknown, knownEvidenceIds: string[], context?: AIContractContext): ContractCheck {
   const parsed = AIInterpretationSchema.safeParse(raw);
@@ -126,6 +126,6 @@ contract_version ("m2.ai-output.v1"), interpretation_id, subject, competency_id,
 extraction_refs [string], interpretations [{evidence_id, statement, kind:"inference"}],
 signals [{signal_id, criterion_id ("C1"|"C2"|"C3"|"C4"), support ("supports"|"partially_supports"|"does_not_support"), rationale, evidence_refs [{evidence_id, field?}], confidence 0..1}],
 gaps [{criterion_id?, description, suggested_evidence?}], uncertainty [{description, evidence_id?}],
-overall_confidence 0..1, proposed_state ("IN_DEVELOPMENT"|"UNDER_REVIEW"), requires_human_review: true.
+overall_confidence 0..1, proposed_state ("IN_DEVELOPMENT"|"UNDER_REVIEW"), requires_consensus: true.
 Regras: você propõe, não decide. Não afirme que a competência foi comprovada, não declare verificação institucional,
 não acuse fraude, não invente evidências. Cite apenas evidence_id fornecidos. Um sinal por critério C1–C4.`;

@@ -98,7 +98,7 @@ Possible outcomes include:
 - **CONFLICT** — verification mechanisms disagree;
 - **HUMAN ADJUDICATION** — an exception requires contextual judgment.
 
-Human judgment is not eliminated. It becomes an explicit, traceable exception layer.
+Human judgment is not eliminated. It becomes an explicit, traceable exception layer after a Consensus Core conflict.
 
 ### 5. Competency state
 
@@ -258,7 +258,7 @@ research/     research hypotheses and validation work
 | Contributor | Primary contribution |
 |---|---|
 | Erick | Research, context, market, and operations |
-| JP Carvalho | Evidence pipeline, AI, and review |
+| JP Carvalho | Evidence pipeline, AI, and verification |
 | JP Fernandes | Branding, UX/UI, and interface |
 | JX | Architecture, AI, evidence, attestation, and Solana |
 

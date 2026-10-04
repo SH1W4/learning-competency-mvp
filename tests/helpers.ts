@@ -1,7 +1,11 @@
 import { CompetencySession } from "../src/pipeline.js";
 import { HeuristicProvider } from "../src/ai/provider.js";
-import { ANA, REVIEWER, SUBJECT } from "../src/scenario.js";
-import type { CriterionId, ReviewDecision, ReviewRecord } from "../src/domain/types.js";
+import { ANA, ADJUDICATOR, SUBJECT } from "../src/scenario.js";
+import type {
+  AdjudicationDecision,
+  AdjudicationRecord,
+  CriterionId,
+} from "../src/domain/types.js";
 import { fixedEnv, type Env } from "../src/util.js";
 
 export function fullSession(env: Env = fixedEnv()) {
@@ -14,26 +18,33 @@ export function fullSession(env: Env = fixedEnv()) {
   return { s, env, analysis };
 }
 
-export async function underReview(env: Env = fixedEnv()) {
+export async function underVerification(env: Env = fixedEnv()) {
   const ctx = fullSession(env);
   await ctx.s.interpret(new HeuristicProvider(env));
-  ctx.s.submitForReview();
+  ctx.s.submitForVerification();
   return ctx;
 }
 
-type PerCriterion = Partial<Record<CriterionId, Omit<ReviewDecision, "signal_id" | "criterion_id">>>;
+type PerCriterion = Partial<Record<CriterionId, Omit<AdjudicationDecision, "signal_id" | "criterion_id">>>;
 
-export function reviewFor(s: CompetencySession, per: PerCriterion, confirm: boolean, env: Env): ReviewRecord {
-  const decisions: ReviewDecision[] = s.relation!.signals.map((sig) => ({
+export function adjudicationFor(
+  s: CompetencySession,
+  per: PerCriterion,
+  confirm: boolean,
+  env: Env,
+): AdjudicationRecord {
+  const decisions: AdjudicationDecision[] = s.relation!.signals.map((sig) => ({
     signal_id: sig.signal_id,
     criterion_id: sig.criterion_id,
     ...(per[sig.criterion_id] ?? { action: "accept" as const }),
   }));
+
   return {
-    review_id: env.id("rev"),
-    reviewer: REVIEWER,
-    reviewed_at: env.now(),
+    adjudication_id: env.id("adj"),
+    adjudicator: ADJUDICATOR,
+    adjudicated_at: env.now(),
     interpretation_id: s.interpretation!.interpretation_id,
+    consensus_status: "CONFLICT",
     decisions,
     confirm_demonstrated: confirm,
   };
