@@ -49,11 +49,11 @@ The repository contains a working M1→M3 vertical slice covering:
 - human review;
 - Consensus Core for covered convergent cases;
 - competency state transitions;
-- attestation on Solana Devnet;
+- attestation capability on Solana Devnet;
 - integrity and payload-binding verification;
 - automated tests and type checking.
 
-Market validation, pricing, recurring commercial adoption, and the broader Dynamic Role Architecture remain hypotheses under validation.
+The attestation implementation is complete, while the current `m3.attestation.v2` public Devnet proof is a remaining M4 validation artifact. Market validation, pricing, recurring commercial adoption, and the broader Dynamic Role Architecture remain hypotheses under validation.
 
 ## Important distinction
 
