@@ -26,13 +26,11 @@ Consenso não é simplesmente contagem de votos. É convergência verificável e
 EVIDENCE
    ↓
 ┌─────────────────────────────────────────────┐
-│ Independent Verification Mechanisms         │
+│ Independent Verification Mechanisms (MVP)   │
 │                                             │
 │ • Evidence / Integrity Check                │
 │ • Deterministic Rule Check                  │
-│ • Statistical / Robustness Check             │
-│ • AI Interpretation                          │
-│ • Source / Provenance Check                  │
+│ • AI Interpretation                         │
 └─────────────────────────────────────────────┘
    ↓
 CONSENSUS CORE
@@ -44,6 +42,10 @@ ATTESTATION
    ↓
 VERIFICATION
 ```
+
+Governance defines the conditions under which the process may operate, but governance is **not a fourth verification mechanism** and does not enter the Consensus Core as an additional vote.
+
+A future Ethical Compliance Gate may validate the rule schema **before** it is applied to evidence. That capability is research and is not implemented in the current MVP.
 
 ## Mecanismos de Verificação Independentes (MVP)
 
@@ -69,7 +71,7 @@ Modelos de linguagem interpretam o conteúdo semântico da evidência (ex: "o br
 
 ## Consensus Core
 
-O Consensus Core recebe os resultados dos mecanismos e aplica regras explícitas.
+O Consensus Core recebe os resultados dos três mecanismos e aplica regras explícitas.
 
 Cada resultado deve preservar:
 
@@ -135,32 +137,57 @@ O Consensus Core não prova:
 - ausência de viés;
 - mérito universal;
 - competência em qualquer contexto;
-- correção automática de avaliações subjetivas.
+- correção automática de avaliações subjetivas;
+- que as regras aplicadas sejam universalmente justas ou não discriminatórias.
 
 Ele reduz dependência de julgamento individual ao exigir múltiplas condições verificáveis e tornar divergências explícitas.
 
-## Relação com Governance / Compliance
+## Relação com Governance
 
-Governance / Compliance define as condições e regras sob as quais o Consensus Core pode produzir um resultado de processo.
+Governance defines the policy and organizational conditions under which the Consensus Core may operate.
 
 ```
-GOVERNANCE / COMPLIANCE
+GOVERNANCE / POLICY
+        ↓
+RULE SCHEMA
         ↓
 CONSENSUS CORE
         ↓
 STATE UPDATE
 ```
 
-A governança permanece responsável por:
+No current MVP component automatically validates whether a rule schema is fair, proportionate, or non-discriminatory.
 
-- critérios de elegibilidade;
-- independência;
-- conflitos de interesse;
-- regras de escalonamento;
-- necessidade de adjudicação humana;
-- versionamento das políticas.
+The future **Ethical Compliance Gate** is proposed as a **pre-consensus governance layer**:
 
-O Consensus Core operacionaliza essas regras.
+```
+ORGANIZATION RULE SCHEMA
+        ↓
+ETHICAL COMPLIANCE GATE  [FUTURE / M2-M3]
+        ↓
+VALIDATED RULE SCHEMA
+        ↓
+EVIDENCE + MVP VERIFICATION
+        ↓
+CONSENSUS CORE
+```
+
+The future gate is **not** a verifier, **not** a fourth Consensus mechanism, and **not** an implementation claim of the current MVP.
+
+Its research specification is documented separately in:
+
+`research/ETHICAL_COMPLIANCE_LAYER.md`
+
+Governance remains responsible for:
+
+- criteria of eligibility;
+- independence;
+- conflicts of interest;
+- escalation rules;
+- need for human adjudication;
+- policy versioning.
+
+The current MVP operationalizes explicit competency rules; it does not claim universal ethical validation of those rules.
 
 ## Relação com Attestation
 
@@ -170,30 +197,34 @@ O MVP não precisa colocar os resultados completos de todos os mecanismos on-cha
 
 ## MVP
 
-A primeira implementação não precisa introduzir múltiplos modelos ou infraestrutura complexa.
-
-O MVP pode começar com:
+A implementação atual compreende:
 
 1. Evidence / Integrity Check;
 2. Deterministic Rule Check;
 3. AI Interpretation;
-4. Governance / Compliance;
+4. Governance / Policy as an external condition, not a fourth verifier;
 5. Consensus Core;
 6. Human Adjudication somente quando necessário.
 
-O Statistical / Robustness Check deve ser ativado quando a decisão depender de múltiplas observações ou inferências estatísticas.
+O Statistical / Robustness Check é Future Research / M4+.
+
+O Ethical Compliance Gate é Future Research / M2-M3 e **não faz parte do MVP atual**.
 
 ## Evolução
 
-A arquitetura deve permitir adicionar novos mecanismos sem alterar o conceito central:
+A arquitetura deve permitir adicionar novos mecanismos de verificação sem alterar o conceito central:
 
 `NEW VERIFIER → CONSENSUS CORE`
 
-Isso permite substituir ou adicionar verificadores sem transformar qualquer mecanismo individual em autoridade absoluta.
+Governance layers are different from verification mechanisms and must not be added to the Consensus Core merely because they constrain its operation.
 
 ## Questão de pesquisa
 
 > Qual o menor conjunto de verificações independentes necessário para produzir um estado de competência suficientemente consistente, auditável e verificável, mantendo intervenção humana apenas onde a automação não é adequada?
+
+Uma questão adicional de pesquisa para a governança futura é:
+
+> Como validar que um rule schema é explicitamente justificável, contestável e proporcional ao contexto sem transformar o sistema em uma autoridade moral ou jurídica?
 
 ## Interface boundary
 
