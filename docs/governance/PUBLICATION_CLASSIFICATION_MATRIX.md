@@ -59,6 +59,7 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `docs/decisions/0001-repository-operating-model.md` | `PUBLIC` |
 | `docs/decisions/README.md` | `PUBLIC` |
 | `docs/demo/DEMO_SCRIPT.md` | `PUBLIC` |
+| `docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md` | `PUBLIC` |
 | `docs/evaluation/01_PRODUCT.md` | `PUBLIC` |
 | `docs/evaluation/02_ARCHITECTURE.md` | `PUBLIC` |
 | `docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md` | `PUBLIC` |
