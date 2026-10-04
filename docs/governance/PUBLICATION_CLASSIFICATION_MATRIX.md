@@ -94,13 +94,13 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` |
 | `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` |
 | `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` |
-| `research/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` |
-| `research/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` |
+| `research/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PRIVATE / VAULT` |
+| `research/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PRIVATE / VAULT` |
 | `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` |
-| `research/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC` |
+| `research/LITERATURE_CLOSURE_PROTOCOL.md` | `PRIVATE / VAULT` |
 | `research/README.md` | `PUBLIC-WITH-REVIEW` |
 | `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC` |
-| `research/RELATED_WORK_MATRIX.md` | `PUBLIC` |
+| `research/RELATED_WORK_MATRIX.md` | `PRIVATE / VAULT` |
 | `research/RESEARCH_MAP.md` | `PUBLIC` |
 | `research/product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | `PUBLIC-WITH-REVIEW` |
 | `research/product/PRODUCT_THESIS.md` | `PUBLIC` |
@@ -167,4 +167,4 @@ Any classification change should be made through a reviewable commit and, where 
 
 ## Completed Vault migration
 
-On 2026-10-04, the files classified as `REVIEW` or `RESTRICTED-LATER` in the migration pass were copied to the private Vault and then removed from this public repository. The migration contained **29 files: 9 `RESTRICTED-LATER` + 20 `REVIEW`**. No public files were moved as part of that cleanup.
+On 2026-10-04, the files classified as `REVIEW` or `RESTRICTED-LATER` in the migration pass were copied to the private Vault and then removed from this public repository. The initial migration contained **29 files: 9 `RESTRICTED-LATER` + 20 `REVIEW`**. A subsequent article-research migration moved **4 additional research artifacts** into the private Vault, bringing the controlled migrated set to **33 source files**. The later article-research move was an explicit reclassification of four previously public research artifacts as private working research; they are preserved in `research/article/` in the private Vault.
