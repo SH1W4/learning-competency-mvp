@@ -11,12 +11,12 @@ The public repository is the canonical surface for **reproducible product, techn
 | Class | Location | Default visibility | Purpose |
 |---|---|---:|---|
 | Public — Product | `README.md`, `docs/`, canonical product docs | Public | Explain what LASTRO is, what the MVP does, its boundaries, and current claims. |
-| Public — Research | `research/` | Public | Preserve the research trail, prior art, evidence, counterexamples, hypotheses, and research decisions that support the public thesis. |
+| Public — Research | selected `research/` artifacts | Public | Preserve consolidated prior art, evidence, limitations, and research findings needed to support public claims. |
 | Public — Implementation | `src/`, `tests/`, `fixtures/`, `skills/` | Public | Make the MVP reproducible and technically auditable. |
 | Public — Project governance | `CONTRIBUTING.md`, selected decision records and task documentation | Public | Explain how the public project is developed and maintained. |
 | Restricted — Internal strategy | Outside the public repository | Restricted | Unreleased commercial strategy, negotiation positions, competitive intelligence, internal prioritization, and sensitive strategic hypotheses. |
 | Restricted — Partner/confidential | Outside the public repository | Restricted | NDA material, partner communications, private customer information, private datasets, credentials, and other information whose disclosure is not authorized. |
-| Restricted — Working material | Outside the public repository | Restricted | Drafts, private meeting notes, exploratory material, or experiments that are not yet intended to support a public claim. |
+| Restricted — Working material | Outside the public repository | Restricted | Drafts, private meeting notes, exploratory material, article working sets, or experiments that are not yet intended to support a public claim. |
 
 ## Core rule
 
@@ -28,9 +28,9 @@ Conversely:
 
 ## Research boundary
 
-The `research/` directory is intentionally public.
+The `research/` directory is **mixed by file classification**, not intrinsically public.
 
-Research documents may contain:
+Public research documents may contain:
 
 - literature and standards;
 - prior-art analysis;
