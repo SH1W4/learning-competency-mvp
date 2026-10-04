@@ -35,17 +35,15 @@ The process distinguishes at least:
 
 The competency state must not be advanced while the case is materially insufficient or conflicted.
 
-## Human Review and Human Adjudication
+## Human Adjudication
 
-**Human Review** is a normal inspection step when the process requires review of evidence, interpretation, criteria, provenance, or verification context.
+Human review is not a normal pipeline step. The Consensus Core exists to reduce dependence on individual review by requiring independent verification mechanisms to converge.
 
-**Human Adjudication** is an exception path for material conflict, unresolved ambiguity, contestation, or cases not adequately covered by existing rules.
-
-They are not interchangeable.
+**Human Adjudication** is the exception path for material conflict, unresolved ambiguity, contestation, or cases not adequately covered by existing rules.
 
 ## Human role
 
-Human intervention is preserved for:
+Human intervention is preserved only for:
 
 - conflicting verification results;
 - ambiguous evidence;
@@ -63,11 +61,11 @@ Governance defines the conditions under which a verification result can produce 
 Relevant governance metadata can include:
 
 - eligibility criteria;
-- reviewer role;
+- adjudicator role;
 - independence;
 - conflicts of interest;
 - escalation rules;
-- required additional review;
+- required adjudication;
 - policy version.
 
 The system does not infer character, intent, or bias from these fields. They exist to make decision conditions explicit and auditable.
