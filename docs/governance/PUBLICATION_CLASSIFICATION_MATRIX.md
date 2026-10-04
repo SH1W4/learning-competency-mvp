@@ -1,6 +1,7 @@
 # File-Level Publication Classification Matrix
 
 **Status:** operational baseline — file-level triage
+**Review pass:** 2026-10-04 — content-level reconciliation of public candidates
 **Date:** 2026-10-04
 
 This is the authoritative file-level classification for the current LASTRO repository. It marks every tracked file; it does not move, delete, hide, or rewrite any file.
@@ -28,8 +29,8 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `.github/workflows/solana-devnet.yml` | `PUBLIC` |
 | `.gitignore` | `PUBLIC` |
 | `CONTRIBUTING.md` | `PUBLIC` |
-| `README.md` | `PUBLIC-WITH-REVIEW` |
-| `README.pt.md` | `PUBLIC-WITH-REVIEW` |
+| `README.md` | `PUBLIC` |
+| `README.pt.md` | `PUBLIC` |
 | `docs/ALIGNMENT_AUDIT.md` | `PUBLIC` |
 | `docs/PROJECT_HANDOFF.md` | `PUBLIC` |
 | `docs/PROJECT_STATUS.md` | `PUBLIC` |
@@ -65,14 +66,14 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `docs/evaluation/04_DEMO_AND_PROOF.md` | `PUBLIC` |
 | `docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md` | `PUBLIC` |
 | `docs/evaluation/README.md` | `PUBLIC` |
-| `docs/go-to-market/GTM.md` | `PUBLIC-WITH-REVIEW` |
+| `docs/go-to-market/GTM.md` | `PUBLIC` |
 | `docs/governance/PROJECT_AUDIT_2026-10-04.md` | `PUBLIC` |
 | `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md` | `PUBLIC` |
 | `docs/governance/SECURITY_THREAT_MODEL.md` | `PUBLIC` |
 | `docs/governance/SOURCE_OF_TRUTH.md` | `PUBLIC` |
-| `docs/governance/TEAM_ROLES.md` | `PUBLIC-WITH-REVIEW` |
+| `docs/governance/TEAM_ROLES.md` | `PUBLIC` |
 | `docs/governance/VAULT_BOUNDARY.md` | `PUBLIC` |
-| `docs/market/COMPETITIVE_LANDSCAPE.md` | `PUBLIC-WITH-REVIEW` |
+| `docs/market/COMPETITIVE_LANDSCAPE.md` | `PUBLIC` |
 | `docs/product/FRONTEND_PRODUCT_SPEC.md` | `PUBLIC` |
 | `docs/product/FRONTEND_SPEC_ERICK_JP.md` | `REVIEW` |
 | `docs/product/MVP_CONTRACT.md` | `PUBLIC` |
@@ -94,7 +95,7 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `docs/project-journal/11_positioning_and_ecosystem_benchmark.md` | `REVIEW` |
 | `docs/project-journal/12_final_evaluation_and_documentation_freeze.md` | `REVIEW` |
 | `docs/project-journal/README.md` | `REVIEW` |
-| `docs/validation/DEMAND_VALIDATION.md` | `PUBLIC-WITH-REVIEW` |
+| `docs/validation/DEMAND_VALIDATION.md` | `PUBLIC` |
 | `fixtures/synthetic/ana/README.md` | `PUBLIC` |
 | `fixtures/synthetic/ana/a1_briefing.md` | `PUBLIC` |
 | `fixtures/synthetic/ana/a2_preparacao.ipynb` | `PUBLIC` |
@@ -103,26 +104,26 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `fixtures/synthetic/ana/a4_sintese.md` | `PUBLIC` |
 | `fixtures/synthetic/ana/adjudication_demonstrated.json` | `PUBLIC` |
 | `package-lock.json` | `PUBLIC-WITH-REVIEW` |
-| `package.json` | `PUBLIC-WITH-REVIEW` |
+| `package.json` | `PUBLIC` |
 | `research/01_DYNAMIC_ROLE_ARCHITECTURE.md` | `PUBLIC-WITH-REVIEW` |
 | `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` |
 | `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` |
 | `research/04_MARKET_VALIDATION_EVIDENCE.md` | `REVIEW` |
-| `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC-WITH-REVIEW` |
+| `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` |
 | `research/06_DECISIONS.md` | `REVIEW` |
 | `research/07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md` | `REVIEW` |
 | `research/08_WINNING_PATTERN_AUDIT.md` | `REVIEW` |
-| `research/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC-WITH-REVIEW` |
-| `research/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC-WITH-REVIEW` |
-| `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC-WITH-REVIEW` |
-| `research/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC-WITH-REVIEW` |
+| `research/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` |
+| `research/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` |
+| `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` |
+| `research/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC` |
 | `research/README.md` | `PUBLIC-WITH-REVIEW` |
-| `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC-WITH-REVIEW` |
-| `research/RELATED_WORK_MATRIX.md` | `PUBLIC-WITH-REVIEW` |
-| `research/RESEARCH_MAP.md` | `PUBLIC-WITH-REVIEW` |
+| `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC` |
+| `research/RELATED_WORK_MATRIX.md` | `PUBLIC` |
+| `research/RESEARCH_MAP.md` | `PUBLIC` |
 | `research/product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | `PUBLIC-WITH-REVIEW` |
 | `research/product/FUTURE_PLATFORM_VISION.md` | `REVIEW` |
-| `research/product/PRODUCT_THESIS.md` | `PUBLIC-WITH-REVIEW` |
+| `research/product/PRODUCT_THESIS.md` | `PUBLIC` |
 | `research/product/README.md` | `PUBLIC-WITH-REVIEW` |
 | `research/product/RESEARCH_AGENDA.md` | `PUBLIC-WITH-REVIEW` |
 | `skills/hackathon-evaluator/SKILL.md` | `RESTRICTED-LATER` |
@@ -169,7 +170,7 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `tests/pipeline.test.ts` | `PUBLIC` |
 | `tests/provenance.test.ts` | `PUBLIC` |
 | `tests/relate.test.ts` | `PUBLIC` |
-| `tsconfig.json` | `PUBLIC-WITH-REVIEW` |
+| `tsconfig.json` | `PUBLIC` |
 
 ## Classification rules
 
@@ -182,7 +183,7 @@ This is the authoritative file-level classification for the current LASTRO repos
 
 ## Current interpretation
 
-The repository remains physically public. This matrix is the **triage map** that will be used when the future Public Vault / Restricted Vault is created.
+The repository is already public. This matrix is the **file-level publication authority** for deciding which tracked material is intentionally public, requires review, or belongs in the controlled Vault.
 
 The authoritative principle is:
 
