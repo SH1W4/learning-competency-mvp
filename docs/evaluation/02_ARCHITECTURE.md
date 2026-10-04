@@ -56,36 +56,23 @@ AI output is an interpretation layer, not the final authority over competency st
 
 ## Independent verification
 
-The MVP separates verification mechanisms so that one mechanism does not silently become the authority for the whole decision.
+The MVP uses **three verification mechanisms** with an explicit structural/semantic boundary.
 
-### Evidence / Integrity Check
+### Evidence / Integrity Check — Structural
 
-Checks that evidence exists, has an identifiable origin, is associated with the expected subject, preserves integrity, and contains required minimum elements.
+Recomputes the evidence `sha256` and compares it with the canonical `contentHash`. The check fails closed if the evidence was altered after ingestion. Evidence provenance and activity association remain part of the canonical record.
 
-### Deterministic Rule Check
+### Deterministic Criteria Check — Structural
 
-Applies explicit competency requirements directly to the competency contract, activities, evidence types, and evidence present.
+Applies explicit competency-contract rules directly to canonical evidence metadata and structure.
 
-**Important implementation property:** the deterministic verifier does not consume AI-generated signals, confidence, or classification.
+**It does not consume AI-generated signals, confidence, summaries, or classifications.** It evaluates structural coverage required by the competency contract.
 
-### Statistical / Robustness Check
+### AI Interpretation — Semantic
 
-When a decision depends on repeated observations or inference, the architecture can evaluate:
-- sample size;
-- observation period;
-- coverage;
-- dependence;
-- missingness;
-- stability;
-- baseline or comparison;
-- uncertainty;
-- source quality and independence.
+AI interprets the semantic content of evidence and proposes signals, gaps, and relationships to criteria. AI output is a proposal and never becomes competency state by itself.
 
-If evidence is not sufficiently robust, the correct result is insufficient evidence rather than artificial precision.
-
-### AI Interpretation
-
-AI provides an interpretive verification signal. It can be compared with other mechanisms, but it does not independently authorize a demonstrated state.
+> Statistical / Robustness verification is **Future Research / M4+**. It is intentionally outside the current MVP verification path because the present scenario is a short synthetic evidence trail rather than a multi-observation statistical inference problem.
 
 ## Consensus Core
 
