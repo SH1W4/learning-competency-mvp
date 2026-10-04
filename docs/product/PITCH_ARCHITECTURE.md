@@ -26,7 +26,36 @@ Evidence → Competency → Verification → State → Attestation → Verificat
 
 The MVP starts deliberately narrow: prove that observable work can become a bounded, independently verifiable capability state.
 
-## 3. Strategic Expansion
+## 3. The Concrete MVP
+
+The strategic product narrative is intentionally broader than the current implementation. The MVP proves one complete vertical slice:
+
+```text
+ONE PERSON → ONE COMPETENCY → FOUR ACTIVITIES → FOUR EVIDENCE TYPES
+→ AI INTERPRETATION → INDEPENDENT VERIFICATION → CONSENSUS
+→ COMPETENCY STATE → SOLANA ATTESTATION → PUBLIC VERIFICATION
+```
+
+The canonical synthetic scenario is **Ana**, developing one applied-AI/data-analysis competency through four activities: formulation, data preparation/exploration, reproducible analysis, and communication.
+
+The four evidence classes are briefing, analysis artifact, analysis result, and communication. AI interprets evidence, independent mechanisms verify it, and the Consensus Core produces a bounded state. Conflict is routed to exceptional human adjudication.
+
+The MVP therefore proves the **verification mechanism**, not the entire enterprise capability platform.
+
+### MVP vs. product hypothesis
+
+| Current MVP | Broader product hypothesis |
+|---|---|
+| One bounded competency | Multiple competencies and evolving capability models |
+| One short evidence trail | Broader organizational evidence workflows |
+| Synthetic demonstration | External pilots and real-world validation |
+| Technical verification proof | Better capability decisions |
+| Solana Devnet attestation | Production-grade public verification |
+| No validated commercial model | Pricing, adoption, ROI and market fit |
+
+This boundary should remain visible in every pitch, demo and evaluator-facing artifact.
+
+## 4. Strategic Expansion
 
 ~~~text
 Work Change → Role Delta → Competency Gap → Requalification → Proof of Competency
@@ -40,7 +69,7 @@ This is a strategic extension of the MVP, not a currently implemented commercial
 
 Dynamic Role Architecture continues to be a research hypothesis rather than a validated commercial wedge.
 
-## 4. Frontend narrative
+## 5. Frontend narrative
 
 The narrative below is the product-level information architecture. The implementation contract for the frontend is defined in `docs/product/FRONTEND_PRODUCT_SPEC.md`.
 
@@ -83,7 +112,7 @@ Nunca reduzir a decisão a um score opaco.
 
 Mostrar competência, estado, referências de evidência, decisão, record hash, attestation e verificação pública.
 
-## 5. Product narrative flow
+## 6. Product narrative flow
 
 ~~~text
 ORGANIZATION
@@ -109,7 +138,7 @@ ATTESTATION
 PUBLIC VERIFICATION
 ~~~
 
-## 6. Technical demo wedge
+## 7. Technical demo wedge
 
 The hackathon's technical proof begins at the MVP wedge and follows:
 
@@ -119,7 +148,7 @@ Competency → Activities → Evidence → AI interpretation → Independent ver
 
 This distinction prevents the strategic product narrative from being confused with the narrower implemented vertical slice.
 
-## 7. Aha Moment
+## 8. Aha Moment
 
 The aha moment is not “we use blockchain”.
 
@@ -143,7 +172,7 @@ Public verification
 
 The competency state is produced by the evidence, verification, governance and Consensus Core process. Solana anchors the resulting attestation/integrity reference.
 
-## 8. Claims discipline
+## 9. Claims discipline
 
 ### Podemos afirmar
 
@@ -168,7 +197,7 @@ The competency state is produced by the evidence, verification, governance and C
 - demanda específica pelo produto;
 - retorno econômico específico do produto.
 
-## 9. Pitch Compression
+## 10. Pitch Compression
 
 The buyer, judge or investor should understand the business problem before seeing the architecture.
 
@@ -196,6 +225,6 @@ WHY THIS TEAM
 
 Do not open the pitch with infrastructure terminology. Architecture is evidence for the claim, not the claim itself.
 
-## 10. Pergunta final
+## 11. Pergunta final
 
 > **Se o trabalho muda continuamente, por que a representação de competência deveria continuar sendo estática?**
