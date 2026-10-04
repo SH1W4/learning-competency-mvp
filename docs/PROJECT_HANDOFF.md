@@ -12,6 +12,7 @@ This document records the current handoff point of the MVP before validation, de
 - Research / Product layer: established
 - Consensus Core: implemented for the covered scenario
 - Frontend narrative: defined
+- Frontend product contract: defined
 - Demo and pitch: next focus
 
 ## What is implemented
@@ -25,7 +26,7 @@ This document records the current handoff point of the MVP before validation, de
 - human adjudication as an exception layer;
 - competency state transitions;
 - deterministic record hashing;
-- Solana Memo attestation on Devnet;
+- Solana Memo attestation capability on Devnet;
 - on-chain payload binding and verification;
 - bounded claim/provenance layer;
 - automated tests and type checking.
@@ -44,7 +45,7 @@ npm run demo
 
 The dependency audit is currently treated as a controlled security follow-up because the remaining findings are transitive dependency issues; breaking dependency upgrades are not part of the stabilization step.
 
-For the real Devnet flow, configure `SOLANA_PRIVATE_KEY` as a GitHub Actions secret and run the manual `solana-devnet.yml` workflow.
+For the current public Devnet proof, configure `SOLANA_PRIVATE_KEY` as a GitHub Actions secret and run the manual `solana-devnet.yml` workflow. Register the resulting `m3.attestation.v2` transaction in the evaluator documentation only after verification.
 
 ## Product boundary
 
