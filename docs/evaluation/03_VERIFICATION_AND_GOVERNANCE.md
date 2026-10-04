@@ -79,6 +79,16 @@ ISSUED AT
 
 Sensitive learning data and full evidence content remain off-chain.
 
+## MVP verification boundary
+
+The current MVP has exactly **three** verification mechanisms:
+
+1. **Evidence Integrity Check — structural:** recomputes the canonical evidence hash and fails closed on tampering.
+2. **Deterministic Criteria Check — structural:** evaluates competency-contract coverage directly from canonical evidence and does not consume AI signals.
+3. **AI Interpretation — semantic:** interprets evidence content and produces a proposal, never the final competency state.
+
+Statistical / Robustness verification is explicitly **Future Research / M4+** and is not part of the current MVP decision path.
+
 ## Current implementation
 
 The MVP uses the **Solana Memo Program** as an integrity anchor on Solana Devnet.
