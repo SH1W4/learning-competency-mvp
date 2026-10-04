@@ -77,7 +77,7 @@ The product therefore treats evidence and decision context as first-class object
 
 ## Aha moment
 
-The central demonstration is:
+The central product demonstration is:
 
 > **A demonstrated competency stops being only a claim inside the application and gains a verifiable integrity reference.**
 
@@ -95,8 +95,8 @@ Implemented:
 - explicit human review;
 - Consensus Core for the covered convergent case;
 - competency state transition;
-- Solana Devnet attestation;
-- verification of the resulting record.
+- Solana Devnet attestation capability;
+- verification of an anchored record when a current Devnet transaction is available.
 
 Not yet validated:
 
