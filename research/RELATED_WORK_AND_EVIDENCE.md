@@ -1,6 +1,6 @@
 # Related Work, Prior Art & External Evidence
 
-**Status:** Active evidence map  
+**Status:** Active public evidence map  
 **Date:** 2026-10-04
 
 This document maps the external foundations, standards, research, and adjacent systems that inform LASTRO's argument.
@@ -26,11 +26,9 @@ A source can support an argument without proving the product claim.
 
 > **Prior art explains the landscape. It does not automatically determine whether LASTRO's composition is novel, useful, or commercially valuable.**
 
----
+## 2. Problem & capability-change evidence
 
-# 2. Problem & capability-change evidence
-
-## 2.1 World Economic Forum — Future of Jobs Report 2025
+### 2.1 World Economic Forum — Future of Jobs Report 2025
 
 **Role:** SUPPORT
 
@@ -44,9 +42,7 @@ It supports the premise that organizations face a material capability challenge.
 
 Source: https://www.weforum.org/publications/the-future-of-jobs-report-2025/
 
-Related repository analysis: [Market Validation Evidence](./04_MARKET_VALIDATION_EVIDENCE.md)
-
-## 2.2 PwC — 2026 Global AI Jobs Barometer
+### 2.2 PwC — 2026 Global AI Jobs Barometer
 
 **Role:** SUPPORT
 
@@ -60,7 +56,7 @@ Again, this supports the problem context rather than the commercial thesis.
 
 Source: https://www.pwc.com/gx/en/issues/artificial-intelligence/publications/artificial-intelligence-study.html
 
-## 2.3 Deloitte — State of AI in the Enterprise 2026
+### 2.3 Deloitte — State of AI in the Enterprise 2026
 
 **Role:** SUPPORT
 
@@ -72,11 +68,9 @@ Deloitte's research identifies insufficient worker skills as a major barrier to 
 
 Source: https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
 
----
+## 3. Competency & AI capability frameworks
 
-# 3. Competency & AI capability frameworks
-
-## 3.1 UNESCO — AI Competency Framework for Students
+### 3.1 UNESCO — AI Competency Framework for Students
 
 **Role:** FOUNDATION / CONTEXT
 
@@ -90,7 +84,7 @@ It does **not** provide LASTRO's evidence-verification mechanism.
 
 Source: https://www.unesco.org/en/articles/ai-competency-framework-students
 
-## 3.2 UNESCO — AI Competency Framework for Teachers
+### 3.2 UNESCO — AI Competency Framework for Teachers
 
 **Role:** FOUNDATION / CONTEXT
 
@@ -102,7 +96,7 @@ It supports the use of explicit competency criteria and progression models as a 
 
 Source: https://www.unesco.org/en/articles/ai-competency-framework-teachers
 
-## 3.3 UNESCO — Guidance for Generative AI in Education and Research
+### 3.3 UNESCO — Guidance for Generative AI in Education and Research
 
 **Role:** SUPPORT / GOVERNANCE CONTEXT
 
@@ -114,11 +108,9 @@ This reinforces the project's separation between AI assistance and final compete
 
 Source: https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research
 
----
+## 4. Verifiable credentials & attestations
 
-# 4. Verifiable credentials & attestations
-
-## 4.1 W3C — Verifiable Credentials Data Model v2.0
+### 4.1 W3C — Verifiable Credentials Data Model v2.0
 
 **Role:** FOUNDATION / ADJACENT PRIOR ART
 
@@ -145,7 +137,7 @@ LASTRO should therefore not describe attestations as a novel concept.
 
 Source: https://www.w3.org/TR/vc-data-model/
 
-## 4.2 W3C — Verifiable Credential Data Integrity
+### 4.2 W3C — Verifiable Credential Data Integrity
 
 **Role:** FOUNDATION / ADJACENT PRIOR ART
 
@@ -162,11 +154,9 @@ LASTRO's current Solana Memo attestation is intentionally an MVP integrity ancho
 
 Source family: https://www.w3.org/2025/credentials/
 
----
+## 5. Evidence provenance
 
-# 5. Evidence provenance
-
-## 5.1 W3C — PROV
+### 5.1 W3C — PROV
 
 **Role:** FOUNDATION
 
@@ -186,11 +176,9 @@ Source: https://www.w3.org/TR/prov-overview/
 
 Accessible primer: https://www.w3.org/TR/prov-primer/
 
----
+## 6. AI evaluation & independent verification
 
-# 6. AI evaluation & independent verification
-
-## 6.1 NIST AI Risk Management Framework
+### 6.1 NIST AI Risk Management Framework
 
 **Role:** FOUNDATION / SUPPORT
 
@@ -202,7 +190,7 @@ It supports placing AI systems within explicit trustworthiness, evaluation, acco
 
 Source: https://www.nist.gov/itl/ai-risk-management-framework
 
-## 6.2 NIST AI measurement and evaluation
+### 6.2 NIST AI measurement and evaluation
 
 **Role:** SUPPORT
 
@@ -220,7 +208,7 @@ and
 
 Source: https://www.nist.gov/ai-measurement-and-evaluation
 
-## 6.3 NIST TEVV-Athlon
+### 6.3 NIST TEVV-Athlon
 
 **Role:** CONTEMPORARY RESEARCH / SUPPORT
 
@@ -234,15 +222,11 @@ This is supporting evidence for the verification direction, not evidence that LA
 
 Source: https://www.nist.gov/artificial-intelligence/ai-research/tevv-athlon-framework-evaluating-ai-systems
 
----
+## 7. Distributed verification infrastructure
 
-# 7. Distributed verification infrastructure
+The detailed verification-infrastructure benchmark is currently maintained in the private Vault. This public document therefore limits itself to the bounded architectural conclusion supported by the public research track.
 
-These systems are already mapped in detail in:
-
-[Verification Infrastructure Benchmark](./07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md)
-
-The relevant prior-art classes include:
+Relevant prior-art classes include:
 
 - Chainlink CRE / DON workflows;
 - AVS / restaking-based verification;
@@ -262,15 +246,11 @@ rather than:
 
 `external infrastructure = competency authority`
 
----
-
-# 8. Competitive / ecosystem prior art
+## 8. Competitive / ecosystem prior art
 
 The Colosseum ecosystem is mapped separately because it answers a different question: **what adjacent products have already been built in the relevant ecosystem?**
 
-See:
-
-[Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
+See [Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md).
 
 The benchmark covers:
 
@@ -287,9 +267,7 @@ The benchmark conclusion is intentionally bounded:
 
 This remains a **research-backed differentiation hypothesis**, not proof of market uniqueness.
 
----
-
-# 9. Argument-to-source matrix
+## 9. Argument-to-source matrix
 
 | LASTRO argument | Relevant prior work / evidence | What it supports | What it does not prove |
 |---|---|---|---|
@@ -304,9 +282,7 @@ This remains a **research-backed differentiation hypothesis**, not proof of mark
 | LASTRO separates interpretation from verification | Multiple foundations + project architecture | Architectural rationale | Empirical superiority |
 | LASTRO combines evidence → verification → consensus → state → attestation | Project architecture + adjacent prior art | Differentiation hypothesis | Legal patent novelty / PMF |
 
----
-
-# 10. What is actually LASTRO's claimed contribution?
+## 10. What is actually LASTRO's claimed contribution?
 
 The project should avoid claiming novelty at the level of individual primitives.
 
@@ -332,9 +308,7 @@ The project also does **not** claim patentability, legal novelty, or freedom fro
 
 Those require dedicated legal / patent research.
 
----
-
-# 11. Research gaps still open
+## 11. Research gaps still open
 
 The following areas could strengthen the argument further but should not be fabricated or overstated:
 
@@ -348,25 +322,24 @@ The following areas could strengthen the argument further but should not be fabr
 
 These are **OPEN**, not missing citations to be filled merely for completeness.
 
----
-
-# 12. Reading order for evaluators
+## 12. Reading order for evaluators
 
 For a technical evaluator:
 
 1. [Research Map](./RESEARCH_MAP.md)
-2. [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
-3. [Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
-4. [Verification Infrastructure Benchmark](./07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md)
-5. [Technical Architecture](../docs/architecture/TECHNICAL_ARCHITECTURE.md)
-6. [Consensus Core](../docs/architecture/CONSENSUS_CORE.md)
+2. [Article Research Track](./article/README.md)
+3. [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
+4. [Technical Architecture](../docs/architecture/README.md)
+5. [Consensus Core](../docs/architecture/CONSENSUS_CORE.md)
+6. [Evaluation & Proof](../docs/evaluation/README.md)
 
 For a non-technical evaluator:
 
-1. [README](../README.md)
-2. [Market Validation Evidence](./04_MARKET_VALIDATION_EVIDENCE.md)
+1. [Repository README](../README.md)
+2. [Research Map](./RESEARCH_MAP.md)
 3. [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
-4. [Demo & Technical Proof](../docs/evaluation/04_DEMO_AND_PROOF.md)
+4. [Evaluation & Proof](../docs/evaluation/README.md)
+5. [Reproducible Demo Contract](../docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md)
 
 ---
 
