@@ -62,7 +62,7 @@ Solana é uma camada de confiança e verificação, não a finalidade do produto
 
 ## 6. Papel humano
 
-A inteligência artificial pode auxiliar na organização, classificação e relacionamento de grandes quantidades de evidências. A arquitetura passa a investigar como combinar verificações independentes — integridade da evidência, regras determinísticas, robustez estatística quando aplicável e interpretação assistida — antes de recorrer a julgamento humano.
+A inteligência artificial pode auxiliar na organização, classificação e relacionamento de grandes quantidades de evidências. A arquitetura investiga como combinar verificações independentes — integridade da evidência, regras determinísticas, robustez estatística quando aplicável e interpretação assistida — antes de recorrer à adjudicação humana quando necessário.
 
 O objetivo é reduzir a dependência de decisões individuais sem transformar automação em autoridade absoluta. Casos conflitantes, ambíguos, contestados ou fora das regras permanecem elegíveis para adjudicação humana.
 
@@ -123,14 +123,14 @@ O MVP poderá testar:
 - **Evidence** — quais evidências podem ser incorporadas;
 - **Mapping** — como são relacionadas a competências;
 - **Assessment** — como a força das evidências é avaliada;
-- **Governance / Consensus** — como verificações independentes convergem e quando revisão humana é necessária;
+- **Governance / Consensus** — como verificações independentes convergem e quando adjudicação humana é necessária;
 - **Attestation** — quais informações devem ser verificáveis;
 - **Portability** — como a pessoa utiliza essa competência fora da plataforma;
 - **Value** — quem recebe valor suficiente para utilizar ou financiar o processo.
 
 ## 10.1. Redução de dependência de julgamento individual
 
-Uma evolução arquitetural investigada pelo projeto é tratar a revisão humana como uma camada de exceção, e não como requisito obrigatório para cada evidência.
+Uma evolução arquitetural investigada pelo projeto é tratar a adjudicação humana como uma camada de exceção, e não como requisito obrigatório para cada evidência.
 
 A hipótese é:
 
@@ -176,10 +176,10 @@ Antes, a documentação estava fortemente concentrada em:
 - Learning Competency;
 - Evidence Pipeline;
 - Assessment;
-- Human Review;
+- Consensus Core;
 - Attestation;
 - Solana;
-- Proof-of-Competency.
+- Proof-of-Competency;
 
 Após a consultoria, a prioridade passa a ser conseguir explicar, em linguagem simples:
 
