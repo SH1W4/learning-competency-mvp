@@ -1,44 +1,33 @@
-# Naming — Exploração
+# Naming Exploration — Historical
 
-## Contexto
+**Status:** historical exploration / superseded  
+**Current brand:** **LASTRO**
 
-O nome definitivo ainda não foi decidido.
+> This document preserves the original naming exploration for traceability. It is no longer the source of truth for the product name.
 
-A exploração parte da tese atual: o produto conecta desenvolvimento de competências, experiências, evidências, interpretação, revisão humana e prova verificável.
+## Context
 
-O nome não precisa explicar toda a tecnologia. Deve criar espaço para o produto crescer.
+The original exploration considered names for a product connecting competency development, experiences, evidence, interpretation, human adjudication and verifiable proof.
 
-## Direções de naming
+The exploration is preserved because naming decisions are part of project history.
 
-### 01 — Competência
+## Directions explored
 
-Nomes que colocam o domínio no centro.
+### 01 — Competency
 
 - **Competia**
 - **Competa**
 - **Compency**
 - **Competia Labs**
 
-**Leitura:** direta e relacionada ao domínio.
-
-**Risco:** nomes derivados de “competência” podem soar genéricos ou corporativos.
-
-### 02 — Evidência
-
-Nomes centrados na transformação de experiência em prova.
+### 02 — Evidence
 
 - **Evidentia**
 - **Eviden**
 - **Proofa**
 - **Evidra**
 
-**Leitura:** enfatiza confiança e evidência.
-
-**Risco:** pode estreitar a percepção para validação/documentos.
-
-### 03 — Desenvolvimento / evolução
-
-Nomes que enfatizam trajetória.
+### 03 — Development / evolution
 
 - **Evolva**
 - **Trajecta**
@@ -46,13 +35,7 @@ Nomes que enfatizam trajetória.
 - **Nexa**
 - **Progressa**
 
-**Leitura:** mais amplo e adequado a uma plataforma de desenvolvimento.
-
-**Risco:** alguns conceitos podem perder a ligação imediata com competências.
-
-### 04 — Estado / sinal / prova
-
-Nomes mais abstratos, próximos da arquitetura conceitual.
+### 04 — State / signal / proof
 
 - **State**
 - **Proofstate**
@@ -60,13 +43,7 @@ Nomes mais abstratos, próximos da arquitetura conceitual.
 - **Veristate**
 - **Attesta**
 
-**Leitura:** conversa diretamente com o modelo de estado + prova.
-
-**Risco:** alguns nomes podem ficar excessivamente técnicos ou jurídicos.
-
-### 05 — Marca conceitual
-
-Nomes que não explicam literalmente o produto.
+### 05 — Conceptual brand
 
 - **NODO**
 - **VÉRTICE**
@@ -76,47 +53,41 @@ Nomes que não explicam literalmente o produto.
 - **TRAÇO**
 - **ELO**
 
-**Leitura:** maior liberdade para construir significado.
+## Historical selection criteria
 
-**Risco:** exigem narrativa de marca mais forte e investigação de disponibilidade.
+The original exploration considered:
 
-## Primeira matriz
+- easy pronunciation;
+- easy spelling;
+- constructible meaning;
+- domain availability;
+- trademark availability;
+- GitHub/social availability;
+- absence of strong conflicts with existing companies;
+- Portuguese usability;
+- English usability;
+- expansion potential.
 
-| Direção | Clareza | Expansão | Técnica | Risco |
-|---|---|---|---|---|
-| Competência | alta | média | média | genericidade |
-| Evidência | alta | média | média | estreitamento |
-| Evolução | média | alta | baixa/média | pouca diferenciação |
-| Estado/prova | média | alta | alta | excesso técnico |
-| Conceitual | baixa inicial | alta | variável | exige branding |
+These criteria remain useful for future naming changes, but no longer indicate that the current brand is undecided.
 
-Esta tabela é **exploratória**, não uma classificação de melhores nomes.
+## Current decision
 
-## Critérios de seleção
+**LASTRO** is the current product brand.
 
-Antes de escolher:
+Current identity references:
 
-- pronúncia fácil;
-- escrita fácil;
-- significado construível;
-- disponibilidade de domínio;
-- disponibilidade de marca;
-- disponibilidade em GitHub/social;
-- ausência de conflito forte com empresas existentes;
-- funcionamento em português;
-- funcionamento em inglês;
-- possibilidade de extensão para novos mercados.
+- **Tagline:** Competências que deixam lastro.
+- **Product statement:** Evidence-backed competency.
+- **Supporting line:** From evidence to verifiable competency.
+- **Technical domain:** Learning Competency.
+- **Product/repository:** learning-competency-mvp.
 
-## Próxima etapa
+A future brand change would require an explicit product/brand decision and should update the canonical identity, brandbook, visual system and product-facing references together.
 
-Reduzir a exploração para 5–8 candidatos e fazer uma investigação de:
+## Governance
 
-1. domínio;
-2. marca;
-3. concorrentes;
-4. significado em outros idiomas;
-5. percepção por organizações;
-6. percepção por profissionais;
-7. adequação ao produto após o MVP.
+Do not use this document to reopen the naming decision implicitly.
 
-**Status: exploração. Não há nome aprovado.**
+If naming is revisited, create a new dated exploration or decision record rather than rewriting this historical artifact.
+
+**Status: historical exploration. Current brand: LASTRO.**
