@@ -1,25 +1,63 @@
-# LASTRO — Learning Competency Infrastructure
+# LASTRO — Capability Evidence & Verification Infrastructure
 
-> **From observable evidence to verifiable competency states.**
+> **From work evidence to verifiable capability.**
 
-LASTRO is an infrastructure designed to transform observable work evidence into bounded, verifiable competency states. It connects evidence to explicit criteria, applies independent verification mechanisms, preserves decision context, and produces an auditable state anchored by cryptographic integrity.
+LASTRO is infrastructure for organizations that need better evidence for capability decisions. It connects observable work to explicit competency criteria, applies independent verification mechanisms, and produces a bounded competency state with an auditable integrity and attestation layer.
+
+**LASTRO is not another credentialing platform.** It is an evidence and verification layer for demonstrated capability.
 
 ---
 
 ## 1. The Problem
-Work evolves continuously, while organizations report material difficulty keeping workforce capabilities aligned with changing requirements. In the World Economic Forum's 2025 employer survey, **63% of employers identified skills gaps as the leading barrier to business transformation** for 2025–2030. Deloitte's 2026 enterprise AI research similarly identifies **insufficient worker skills as the biggest barrier to integrating AI into existing workflows**. These signals do not validate LASTRO commercially, but they establish the broader capability problem the project addresses. [1]
 
-This creates a critical gap between **what someone claims they can do** and **what an organization can actually verify**.
+Organizations have more information about people's skills than ever — certificates, profiles, job titles, course completions, portfolios, assessments and AI-generated signals. But these sources are often fragmented, indirect, and difficult to verify against observable work.
 
+This creates a gap between:
+
+> **what someone claims they can do**
+
+and
+
+> **what an organization can reliably verify.**
+
+That gap affects decisions around capability development, internal mobility, workforce planning, learning and other people-related workflows.
+
+The broader market signals support the existence of a capability challenge, but **they do not validate LASTRO commercially**. In the World Economic Forum's 2025 employer survey, 63% of employers identified skills gaps as a leading barrier to business transformation for 2025–2030. Deloitte's 2026 enterprise AI research similarly identifies insufficient worker skills as a major barrier to integrating AI into workflows. [1]
 
 ### Research references
 
 [1] World Economic Forum, *Future of Jobs Report 2025* — https://www.weforum.org/publications/the-future-of-jobs-report-2025/; Deloitte, *State of AI in the Enterprise 2026* — https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
 
-## 2. The LASTRO Approach
-We do not automate human judgment; we make it more evidence-based, traceable, and resilient to single points of failure (human or AI). 
+## 2. The LASTRO Insight
 
-The current MVP demonstrates a strict, traceable pipeline:
+A certificate can show that something was completed. A profile can state what someone has done. A job title can describe a role.
+
+**None of these, by themselves, creates a reliable evidence trail from observable work to a bounded capability decision.**
+
+LASTRO explores a different model:
+
+```text
+OBSERVABLE WORK
+      ↓
+EVIDENCE
+      ↓
+INDEPENDENT VERIFICATION
+      ↓
+CONSENSUS
+      ↓
+VERIFIED CAPABILITY STATE
+      ↓
+ATTESTATION / PUBLIC VERIFICATION
+```
+
+The product does not attempt to automate human judgment. It makes the decision process more evidence-based, traceable, and resilient to a single human or AI signal becoming the sole authority.
+
+## 3. What LASTRO Does
+
+LASTRO turns evidence of work into a competency state that can be independently verified.
+
+The current MVP demonstrates:
+
 ```text
 EVIDENCE
    ↓
@@ -35,42 +73,105 @@ EVIDENCE
 └───────────────────────────────┘
    ↓
 CONSENSUS CORE
-  ├─ AGREEMENT → DEMONSTRATED STATE
+  ├─ AGREEMENT → DEMONSTRATED
   ├─ INSUFFICIENT EVIDENCE → IN_DEVELOPMENT
-  └─ CONFLICT → HUMAN ADJUDICATION (Explicit Exception Path)
+  └─ CONFLICT → HUMAN ADJUDICATION
    ↓
-ATTESTATION & PUBLIC VERIFICATION
+COMPETENCY STATE
+   ↓
+ATTESTATION
+   ↓
+PUBLIC VERIFICATION
 ```
 
-## 3. Core Architecture & Security Boundaries
-The architecture defines a strict boundary between public interface contracts and private verification heuristics. 
+### AI-assisted, verification-led
 
-The Consensus Core evaluates convergence across **three distinct mechanisms**:
-1. **Evidence Integrity Check (Structural)**: Verifies cryptographic integrity and preserved provenance metadata (`sha256` is recalculated and strictly matched against `contentHash`). The pipeline is **fail-closed** on any post-ingestion tampering attempt.
-2. **Deterministic Criteria Check (Structural)**: Applies objective, pre-defined rules directly to the canonical evidence metadata (e.g., "Does activity C2 possess the required artifact type?"). *Crucially, this verifier does NOT consume AI-generated signals, summaries, or confidence scores.*
-3. **AI Interpretation (Semantic)**: Provides semantic analysis of the evidence content (e.g., "Does the briefing clearly formulate an analytical question?"). This is treated strictly as an interpretive signal, never as the final authority.
+AI interprets evidence. It does **not** decide competency by itself.
 
-> **Note on Statistical / Robustness Checks**: While the architecture allows for future statistical validation (e.g., sample size, baseline comparison, stability), this layer is explicitly classified as **Future Research / M4+** and is intentionally excluded from the current MVP scope to maintain a focused, verifiable vertical slice.
+Deterministic checks evaluate objective conditions independently of AI-generated signals. When relevant mechanisms converge, the Consensus Core can advance the bounded competency state. Conflicts enter an explicit human adjudication path.
 
-## 4. For Evaluators — Recommended Reading Path
+This separation is a core product principle, not an implementation detail.
 
-If you are evaluating LASTRO for the first time, use this path instead of reading the repository in arbitrary order:
+## 4. Why This Matters
+
+The long-term value of LASTRO is not another place to store credentials.
+
+It is an evidence layer that can eventually support better capability decisions:
+
+```text
+OBSERVABLE WORK
+      ↓
+BETTER EVIDENCE
+      ↓
+VERIFIED CAPABILITY
+      ↓
+BETTER DECISION
+```
+
+Potential decisions include capability development, internal mobility, workforce planning, learning and other organizational workflows.
+
+**These commercial applications remain hypotheses until validated externally.** The MVP proves the technical mechanism, not market demand or economic impact.
+
+## 5. The Role of Blockchain
+
+Blockchain is infrastructure for the proof layer, not the product authority.
+
+LASTRO's competency state is produced by evidence, verification, governance and the Consensus Core.
+
+Solana provides the current MVP's integrity / attestation anchor:
+
+```text
+VERIFIED CAPABILITY STATE
+        ↓
+INTEGRITY / ATTESTATION REFERENCE
+        ↓
+PUBLIC VERIFICATION
+```
+
+The blockchain does **not** prove that a person is universally competent, truthful, or professionally qualified. It anchors the integrity of a defined state produced by the system.
+
+## 6. What the MVP Proves
+
+- Evidence can be structured and linked to activities and competency criteria.
+- Source evidence can remain separate from AI interpretation.
+- Deterministic verification can operate independently of AI signals.
+- Independent mechanisms can converge, remain insufficient, or conflict.
+- Conflict can enter an explicit, auditable human adjudication path.
+- A bounded competency state can be represented deterministically.
+- The resulting state can be anchored through the current Solana Devnet attestation path.
+- The integrity relationship can be independently verified.
+
+## 7. What the MVP Does NOT Claim
+
+- Universal competency assessment.
+- Replacement of human evaluation in high-stakes decisions.
+- That blockchain proves truth, merit, or professional mastery.
+- Validated commercial pricing, market traction, recurring adoption, or product-market fit.
+- Quantified ROI or economic impact.
+- Superiority over existing alternatives.
+- A universal credentialing, recruiting, LMS, or workforce-management platform.
+- That strategic extensions such as Dynamic Role Architecture are currently implemented or commercially validated.
+
+## 8. For Evaluators — Recommended Reading Path
+
+If you are evaluating LASTRO for the first time, use this path:
 
 | Step | Read | Purpose |
 |---|---|---|
-| 1 | [Current project status](docs/PROJECT_STATUS.md) | Understand what is implemented, what is frozen, and what remains for M4. |
-| 2 | [MVP use case](docs/product/USE_CASE.md) | Understand the concrete problem and the bounded product scenario. |
-| 3 | [Technical architecture](docs/architecture/TECHNICAL_ARCHITECTURE.md) | See how evidence becomes a competency state. |
-| 4 | [Consensus Core](docs/architecture/CONSENSUS_CORE.md) | Understand how independent mechanisms converge, conflict, or remain insufficient. |
-| 5 | [Demo & technical proof](docs/evaluation/04_DEMO_AND_PROOF.md) | Follow the reproducible end-to-end demonstration and verification path. |
-| 6 | [Claims & limitations](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md) | See exactly what the MVP proves — and what it deliberately does not claim. |
-| 7 | [Source code & tests](src/README.md) / [tests](tests/) | Inspect the implementation and automated evidence behind the documented behavior. |
+| 1 | [Current project status](docs/PROJECT_STATUS.md) | Understand what is implemented, frozen, and still open. |
+| 2 | [MVP use case](docs/product/USE_CASE.md) | Understand the concrete organizational scenario and bounded competency. |
+| 3 | [Technical architecture](docs/architecture/TECHNICAL_ARCHITECTURE.md) | Understand how evidence becomes a competency state. |
+| 4 | [Consensus Core](docs/architecture/CONSENSUS_CORE.md) | Understand independent verification and decision convergence. |
+| 5 | [Demo & technical proof](docs/evaluation/04_DEMO_AND_PROOF.md) | Follow the reproducible technical demonstration and proof path. |
+| 6 | [Claims & limitations](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md) | See exactly what the MVP proves and does not prove. |
+| 7 | [Source code & tests](src/README.md) / [tests](tests/) | Inspect the implementation and automated evidence. |
 
-**If you only have 5 minutes:** read this README → [Demo & technical proof](docs/evaluation/04_DEMO_AND_PROOF.md) → [Claims & limitations](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md).
+**If you only have 5 minutes:** README → [Demo & technical proof](docs/evaluation/04_DEMO_AND_PROOF.md) → [Claims & limitations](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md).
 
-This path is the recommended evaluation route. The repository contains additional research, governance, product, brand, and execution documents for deeper review.
+The repository contains additional research, governance, product, brand, and execution documents for deeper review.
 
-## 5. Current Status & Execution Roadmap
+## 9. Current Status & Execution Roadmap
+
 The core M1–M3 vertical slice is implemented. The project is now in the **M4 execution / closing phase**, focused on reproducible proof, demonstration, external validation, communication, and final submission.
 
 Canonical execution order:
@@ -86,20 +187,8 @@ For the authoritative project status and execution roadmap, see:
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
 
-## 6. What the MVP Proves
-- Structured learning evidence with cryptographic boundary hardening (`structuredClone` isolation pre-AI processing).
-- Strict, enforced separation between structural deterministic verification and semantic AI interpretation.
-- A Consensus Core that evaluates convergence between these distinct layers, preventing any single mechanism from becoming the absolute authority.
-- Governance-aware state transitions, routing conflicts exclusively to an auditable Human Adjudication path (preserving full provenance).
-- Solana Devnet integrity anchoring with a resilient demonstration fallback protocol.
+## 10. Quick Start & Resilient Demo
 
-## 7. What the MVP Does NOT Claim
-- Universal competency assessment or the replacement of human evaluation in high-stakes contexts.
-- That blockchain proves "truth" or "merit" (it only anchors the cryptographic integrity of the state generated by the system).
-- Validated commercial pricing, market traction, or recurring adoption.
-- That the physical Public/Private Vault migration is complete (the logical architecture and publication policy are strictly defined, but physical repository separation is pending execution).
-
-## 8. Quick Start & Resilient Demo
 ```bash
 npm install
 npm run typecheck
@@ -107,23 +196,24 @@ npm test
 npm run demo
 ```
 
-**Attestation & Verification (with Fallback Protocol):**
-```bash
-# Attempt live Devnet attestation
-npm run m3:attest
+**Attestation & Verification:**
 
-# Independently verify the integrity of the anchored record.
-# Note: If the live Devnet write is unavailable, the demo can switch to a previously validated synthetic transaction registered as a fallback fixture.
+```bash
+npm run m3:attest
 npm run m3:verify <tx_signature> [record_hash]
 ```
 
-## 9. Repository Structure
-- `src/` : Core implementation and hardened pipelines.
-- `tests/` : Automated coverage (including adversarial tampering and malicious provider tests).
-- `docs/` : Product, architecture, evaluation, and operational documentation.
-- `research/` : Future hypotheses (e.g., Dynamic Role Architecture, Statistical Robustness).
+If a live Devnet write is unavailable, the presentation can use the previously validated synthetic fallback fixture described in [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md).
 
-## 10. Team
+## 11. Repository Structure
+
+- `src/` — Core implementation and hardened pipelines.
+- `tests/` — Automated coverage, including adversarial integrity tests.
+- `docs/` — Product, architecture, evaluation, governance and operational documentation.
+- `research/` — Future hypotheses and research extensions.
+
+## 12. Team
+
 | Contributor | Primary Contribution |
 |---|---|
 | Erick | Research, market context, and operations |
@@ -132,5 +222,7 @@ npm run m3:verify <tx_signature> [record_hash]
 | JX | Architecture, evidence, cryptographic attestation, and Solana integration |
 
 ---
-**LASTRO** — Evidence-backed competency.  
-*From a subjective claim to a verifiable, understandable, and buildable state.*
+
+**LASTRO** — From work evidence to verifiable capability.
+
+*Evidence-backed capability infrastructure.*
