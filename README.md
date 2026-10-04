@@ -155,6 +155,18 @@ This is a **research-backed differentiation hypothesis, not a claim of market un
 
 See the full [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) for the methodology, comparison matrix, project-level evidence and research limitations.
 
+### Research, related work & prior art
+
+LASTRO is built on established work in competency frameworks, provenance, machine-verifiable claims, AI evaluation, and distributed verification. The project does not claim those primitives as novel. Instead, it maps the prior landscape and identifies the narrower composition it is testing.
+
+- [Research Map](research/RESEARCH_MAP.md) — epistemic status and research-to-decision index.
+- [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md) — standards, frameworks, research, external evidence, adjacent systems, and argument-to-source mapping.
+- [Verification Infrastructure Benchmark](research/07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md) — distributed verification and proof infrastructure.
+- [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) — adjacent projects and ecosystem prior art.
+
+> **Prior art explains the landscape. It does not by itself prove LASTRO's uniqueness, commercial value, or legal novelty.**
+
+
 ## 4. The Core Insight
 
 **Learning is not the same as demonstrated capability.**
