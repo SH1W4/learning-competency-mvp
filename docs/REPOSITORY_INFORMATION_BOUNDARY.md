@@ -28,7 +28,7 @@ Conversely:
 
 ## Research boundary
 
-The `research/` directory is **mixed by file classification**, not intrinsically public.
+The `research/` directory is **public by default for bounded, auditable research artifacts**, while private drafts, confidential strategy and sensitive working material remain outside the repository.
 
 Public research documents may contain:
 
@@ -52,6 +52,10 @@ The public research layer should favor:
 4. separation between established knowledge and LASTRO hypotheses;
 5. dated decisions where useful;
 6. clear distinction between evidence and interpretation.
+
+## Article research boundary
+
+The public article track under `research/article/` contains curated research artifacts that are relevant to understanding and challenging the LASTRO thesis. They are explicitly labeled as scoped reviews, matrices, protocols, or hypotheses. Private drafts and unreleased article working material may remain in the Vault, but the existence of private working copies does not justify hiding evidence needed to audit a public claim.
 
 ## Restricted boundary
 
