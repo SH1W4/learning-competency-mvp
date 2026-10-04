@@ -2,26 +2,22 @@
 
 **Status:** implementation contract  
 **Audience:** frontend engineer, UX/UI owner, product/architecture reviewers  
-**Source of truth:** `docs/product/PITCH_ARCHITECTURE.md`, `docs/product/USER_JOURNEYS.md`, `docs/architecture/CONSENSUS_CORE.md`, `docs/architecture/GOVERNANCE_COMPLIANCE_LAYER.md`
+**Source of truth:** product and architecture documents in this repository
 
-> **Core invariant:** the frontend is a projection of the existing product architecture. It must not invent business logic, verification logic, competency rules, or parallel state transitions.
->
-> **Narrative boundary:** the frontend has two presentation layers. The **MVP demonstrable layer** exposes Evidence → Verification → Consensus → Competency State → Proof. The **Strategic / Research layer** may present Work Change → Role Delta → Competency Gap → Requalification as future direction, but must not imply that those backend capabilities are already implemented or validated.
-
----
+> **Core invariant:** the frontend is a projection of the existing LASTRO architecture. It must not invent business logic, verification logic, competency rules, or parallel state transitions.
 
 ## 1. Product objective
 
 LASTRO turns observable work evidence into a bounded, verifiable competency state.
 
-The frontend must make this progression understandable:
+The core progression is:
 
 ```text
 WORK
   ↓
 EVIDENCE
   ↓
-INTERPRETATION
+AI INTERPRETATION
   ↓
 INDEPENDENT VERIFICATION
   ↓
@@ -34,56 +30,33 @@ ATTESTATION
 PUBLIC VERIFICATION
 ```
 
-The frontend is not the place where these rules are invented. It visualizes and exposes the state produced by the existing domain pipeline.
+**Primary product statement:** **Evidence-backed competency.**
 
-**Document status:** implementation contract aligned with the current M4 product/documentation baseline.
-
-### Primary product statement
-
-> **Evidence-backed competency.**
-
-### Aha moment
-
-> **A demonstrated competency stops being only a claim inside the application and becomes a verifiable state backed by evidence.**
+**Aha moment:** a demonstrated competency stops being only a claim inside the application and becomes a verifiable state backed by evidence.
 
 Blockchain is infrastructure for the proof layer, not the product story.
 
----
+## 2. MVP vs strategic narrative
 
-## 2. Product scope
-
-### MVP wedge
+### MVP wedge — must be demonstrable
 
 ```text
-Evidence → Competency → Verification → State → Attestation → Verification
+Competency → Activities → Evidence → Interpretation
+→ Independent Verification → Consensus
+→ Demonstrated Competency → Attestation → Public Verification
 ```
 
-### Strategic narrative
+### Strategic / research narrative — presentation only
 
 ```text
-Work Change → Role Delta → Competency Gap → Requalification → Proof of Competency
+Work Change → Role Delta → Competency Gap → Requalification
 ```
 
-The strategic layer is presented as a product direction and research hypothesis. It must not be represented by the frontend as a commercially validated capability.
-
-### Explicit non-goals
-
-The frontend must not imply that LASTRO is:
-
-- an LMS replacement;
-- a universal competency framework;
-- a recruiting or hiring system;
-- a marketplace;
-- a universal credentialing platform;
-- a system that eliminates human judgment;
-- a system that guarantees truth;
-- a system that stores sensitive personal data on-chain.
-
----
+Dynamic Role Architecture is a research hypothesis. Do not present these strategic screens as validated backend capabilities unless the corresponding implementation exists and is explicitly validated.
 
 ## 3. Canonical demo journey
 
-The primary demo follows exactly this order:
+The full product narrative may be shown as:
 
 ```text
 ORGANIZATION
@@ -109,109 +82,44 @@ ATTESTATION
 PUBLIC VERIFICATION
 ```
 
-The interface should allow a juror or evaluator to understand the complete story without needing to inspect source code.
+If time is constrained, **MVP core + proof always take priority over strategic narrative screens.**
 
----
+## 4. Information architecture
 
-## 4. Route model
-
-The frontend should be organized around the product narrative rather than around backend modules.
-
-Recommended route structure:
+Recommended routes:
 
 | Route | Purpose |
 |---|---|
-| `/` | Product entry / dashboard |
-| `/work-change` | Work-change signals |
+| `/` | Product entry / demo context |
+| `/work-change` | Strategic work-change context |
 | `/role` | Role Delta |
-| `/competencies` | Competency state and gaps |
-| `/requalification` | Development path |
+| `/competencies` | Competency states and gaps |
+| `/requalification` | Proposed development path |
 | `/evidence` | Evidence inspection |
 | `/verification` | Verification mechanisms and consensus |
-| `/proof` | Competency proof and public verification |
+| `/proof` | Attestation and public verification |
 
-A single-page implementation may be used if the chosen frontend architecture makes this clearer. These routes describe the information architecture, not a requirement to introduce unnecessary routing complexity.
+A single-page implementation is acceptable if it makes the journey clearer. Do not add routing complexity for its own sake.
 
----
-
-# 5. Global domain model
-
-The UI should operate on a shared product model.
-
-```ts
-type ProductContext = {
-  organization: Organization;
-  role: Role;
-  competencies: Competency[];
-  activities: Activity[];
-  evidence: Evidence[];
-  verifications: Verification[];
-  consensus?: ConsensusDecision;
-  competencyStates: CompetencyStateRecord[];
-  attestation?: Attestation;
-};
-```
-
-The exact TypeScript representation may follow the existing implementation contracts. Do not duplicate domain types merely for UI convenience if reusable types already exist.
-
----
-
-## 6. Core domain objects
+## 5. Core domain objects
 
 ### Organization
-
-Represents the organization defining or observing a competency need.
-
-Minimum display information:
-
-- name;
-- context;
-- role being analyzed;
-- relevant competency need.
+Show organization context, role and competency need.
 
 ### Role
-
-Represents the role whose work is changing.
-
-Minimum display information:
-
-- role name;
-- previous responsibilities;
-- current responsibilities;
-- tools;
-- required competencies.
+Show role name, previous/current responsibilities, tools and required competencies.
 
 ### Competency
-
-Represents a defined capability with criteria.
-
-Minimum display information:
-
-- name;
-- description;
-- criteria;
-- current state;
-- evidence coverage.
+Show name, description, criteria, current state and evidence coverage.
 
 ### Activity
-
-Represents an observable task or activity in a trail.
-
-Minimum display information:
-
-- title;
-- description;
-- competency relation;
-- expected evidence;
-- completion state.
+Show observable task, competency relation, expected evidence and completion state.
 
 ### Evidence
-
 Evidence is the primary object supporting a competency claim.
 
-Minimum display information:
-
-- evidence identifier;
+Show, when available:
+- evidence ID;
 - type;
 - origin/source;
 - activity;
@@ -221,16 +129,12 @@ Minimum display information:
 - interpretation status;
 - verification status.
 
-**Important:** evidence and interpretation are separate concepts.
+**Evidence and interpretation are separate concepts.**
 
 ### Verification
-
-Represents one verification mechanism applied to the evidence/context.
-
-The UI must preserve the distinction between mechanisms.
+Show each verification mechanism separately.
 
 Current conceptual mechanisms include:
-
 - Evidence Integrity;
 - Deterministic Rule Check;
 - Statistical / Robustness;
@@ -238,127 +142,17 @@ Current conceptual mechanisms include:
 - Source / Provenance.
 
 ### Consensus
-
-Represents the convergence result across verification mechanisms.
-
 Supported outcomes:
 
-- `AGREEMENT`;
-- `INSUFFICIENT_EVIDENCE`;
-- `CONFLICT`;
-- `HUMAN_ADJUDICATION`.
+```text
+AGREEMENT
+INSUFFICIENT_EVIDENCE
+CONFLICT
+HUMAN_ADJUDICATION
+```
 
 ### Competency State
-
-The competency state represents only what the evidence, verification and governance process supports.
-
-Current state vocabulary:
-
-- `NOT_STARTED`;
-- `IN_DEVELOPMENT`;
-- `UNDER_REVIEW`;
-- `DEMONSTRATED`.
-
-Do not invent additional competency states in the frontend.
-
-### Attestation
-
-Represents a recorded competency state/event.
-
-Minimum display information:
-
-- competency;
-- state;
-- decision;
-- record hash;
-- attestation reference;
-- public verification reference.
-
-Attestation is not the full evidence payload.
-
----
-
-# 7. Screen specifications
-
-## Screen 1 — Work Change
-
-### Goal
-
-Answer:
-
-> **Como o trabalho está mudando?**
-
-### Show
-
-- competencies being tracked;
-- competencies changing;
-- task-change signals;
-- identified gaps;
-- relevant role context.
-
-### Narrative
-
-The screen establishes why a competency system needs to represent change instead of only static profiles.
-
-### Important limitation
-
-Dynamic Role Architecture is a research hypothesis. If this screen uses synthetic change data, label it clearly as demo/synthetic data.
-
-### Primary CTA
-
-`Ver impacto no papel`
-
-Leads to Role Delta.
-
----
-
-# 8. Screen 2 — Role Delta
-
-### Goal
-
-Show the difference between the previous and current role representation.
-
-### Compare
-
-| Dimension | Before | Now |
-|---|---|---|
-| Tasks | previous tasks | current tasks |
-| Responsibilities | previous | current |
-| Tools | previous | current |
-| Competencies | previous | current |
-
-Each meaningful change should expose:
-
-- source/evidence reference when available;
-- confidence/context when the underlying data supports it;
-- affected competency.
-
-### Primary CTA
-
-`Ver gaps de competência`
-
----
-
-# 9. Screen 3 — Competency Gap
-
-### Goal
-
-Make competency state visible.
-
-Each competency card should show:
-
-- competency name;
-- required state;
-- current state;
-- criteria;
-- evidence coverage;
-- gap status.
-
-### State presentation
-
-Use explicit labels, not ambiguous color-only indicators.
-
-Example:
+Use only:
 
 ```text
 NOT_STARTED
@@ -367,82 +161,61 @@ UNDER_REVIEW
 DEMONSTRATED
 ```
 
-### Primary CTA
+Do not invent additional competency states.
 
-For a gap:
+### Attestation
+Show competency, state, decision, record hash, attestation reference and public verification reference.
 
-`Ver requalificação`
+Attestation is not the full evidence payload.
 
-For a demonstrated competency:
+## 6. Screen specifications
 
-`Ver evidências`
+### Screen 1 — Work Change
 
----
+**Question:** How is work changing?
 
-# 10. Screen 4 — Requalification
+Show competency-change signals, task-change context, identified gaps and role context.
 
-### Goal
+If synthetic, label it clearly as demo/synthetic data.
 
-Connect a competency gap to concrete activities and expected evidence.
+### Screen 2 — Role Delta
 
-### Show
+Compare previous/current:
+- tasks;
+- responsibilities;
+- tools;
+- competencies.
 
+Expose source/evidence references when available.
+
+### Screen 3 — Competency Gap
+
+Each competency card should show:
+- competency name;
+- required state;
+- current state;
+- criteria;
+- evidence coverage;
+- gap status.
+
+Use explicit state labels; never rely on color alone.
+
+### Screen 4 — Requalification
+
+Connect a competency gap to:
 - target competency;
 - missing criteria;
 - recommended activities;
 - expected evidence;
-- current progress;
+- progress;
 - next observable proof.
 
-### Important constraint
+Use **recommended/proposed** language. Do not claim an optimal or guaranteed learning path unless such logic exists.
 
-This screen does not claim that the system has validated an optimal learning path unless such logic actually exists.
+### Screen 5 — Evidence
 
-Use wording such as:
-
-- "recommended activity";
-- "expected evidence";
-- "proposed path".
-
-Avoid:
-
-- "guaranteed path";
-- "optimal training";
-- "automatically certified".
-
-### Primary CTA
-
-`Ver evidências`
-
----
-
-# 11. Screen 5 — Evidence
-
-### Goal
-
-Make evidence inspectable.
-
-### Evidence card
-
-Each evidence item should expose, when available:
-
-```text
-Evidence ID
-Type
-Source / Origin
-Activity
-Criterion
-Integrity / Hash
-Provenance
-Interpretation
-Verification status
-```
-
-### Evidence detail
-
-Clicking an evidence item should open a detail view/panel containing:
-
-1. source material metadata;
+The evaluator must be able to inspect:
+1. source metadata;
 2. activity relation;
 3. criterion relation;
 4. extracted information;
@@ -451,41 +224,14 @@ Clicking an evidence item should open a detail view/panel containing:
 7. integrity information;
 8. verification results.
 
-### Critical distinction
+Visually distinguish:
+**observed evidence ≠ AI interpretation ≠ human adjudication ≠ consensus decision.**
 
-The UI must visually distinguish:
+### Screen 6 — Verification
 
-**Observed evidence**
+Show mechanisms independently.
 
-from
-
-**AI interpretation**
-
-from
-
-**Human adjudication**
-
-from
-
-**Consensus decision**
-
-Never present AI interpretation as if it were the original evidence.
-
-### Primary CTA
-
-`Verificar evidência`
-
----
-
-# 12. Screen 6 — Verification
-
-### Goal
-
-Show how the competency state was reached.
-
-The interface must show mechanisms separately.
-
-Canonical representation:
+Example:
 
 ```text
 Evidence Integrity       PASS
@@ -494,130 +240,60 @@ AI Interpretation        PASS
 Consensus                AGREEMENT
 ```
 
-Additional mechanisms may appear when actually implemented.
+Never reduce the decision to an opaque score such as “87% competency confidence”.
 
-### Never use
-
-A single opaque score such as:
-
-```text
-87% competency confidence
-```
-
-as the primary decision representation.
-
-The product is based on converging mechanisms, not one magical score.
-
-### Verification mechanism component
-
-Each mechanism should expose:
-
+For each mechanism show:
 - name;
 - status;
-- what it checked;
+- what was checked;
 - relevant evidence/criteria;
 - result;
 - short rationale;
 - provenance when available.
 
-### Deterministic Rule Check
+Deterministic checks must be presented as independent from AI interpretation.
 
-The UI must make clear that deterministic checks are independent from AI interpretation.
+AI is an assistive/interpretive mechanism. Never say “AI proved the competency”.
 
-Do not describe it as:
+### Screen 7 — Consensus
 
-> "AI confirmed the rule."
+Show the convergence decision.
 
-Prefer:
-
-> "Deterministic rule check passed against the defined criteria and eligible evidence."
-
-### AI Interpretation
-
-Present AI as an interpretive/assistive mechanism.
-
-Never state:
-
-> "AI proved the competency."
-
-Prefer:
-
-> "AI interpretation supports the criterion."
-
-### Primary CTA
-
-`Ver decisão de consenso`
-
----
-
-# 13. Screen 7 — Consensus
-
-### Goal
-
-Explain the final convergence decision.
-
-### Supported outcomes
-
-| Outcome | Meaning |
-|---|---|
-| AGREEMENT | Verification mechanisms converge sufficiently for the covered scenario |
-| INSUFFICIENT_EVIDENCE | Available evidence does not support advancement |
-| CONFLICT | Verification mechanisms disagree |
-| HUMAN_ADJUDICATION | Human adjudication is required as an exception |
-
-### AGREEMENT
-
-Show:
-
+**AGREEMENT**
 - participating mechanisms;
-- their results;
+- individual results;
 - convergence;
 - resulting state;
-- decision timestamp/context.
+- decision context.
 
-### INSUFFICIENT_EVIDENCE
-
-Show:
-
+**INSUFFICIENT_EVIDENCE**
 - what is missing;
-- which criterion remains unsupported;
-- next evidence needed.
+- unsupported criterion;
+- evidence needed next.
 
-### CONFLICT
-
-Show:
-
+**CONFLICT**
 - conflicting mechanisms;
-- points of divergence;
+- divergence;
 - why automatic advancement did not occur;
-- human adjudication exception path.
+- adjudication path.
 
-### HUMAN_ADJUDICATION
-
-Show:
-
+**HUMAN_ADJUDICATION**
 - reason for escalation;
 - review context;
-- reviewer decision when available;
-- provenance of the decision.
+- decision, when available;
+- provenance.
 
-### Critical principle
+> Human adjudication is an explicit exception, not a normal pipeline stage.
 
-Human adjudication is an explicit exception layer, not a hidden fallback.
+### Screen 8 — Proof of Competency
 
----
+This is the strongest visual moment.
 
-# 14. Screen 8 — Proof of Competency
+Answer:
 
-### Goal
+> **What was demonstrated, based on what evidence, and how can another person verify it?**
 
-Deliver the product's strongest visual moment.
-
-The screen should answer:
-
-> **O que foi demonstrado, com base em quê, e como outra pessoa pode verificar?**
-
-### Show
+Show:
 
 ```text
 COMPETENCY
@@ -629,32 +305,7 @@ ATTESTATION
 PUBLIC VERIFICATION
 ```
 
-### Example hierarchy
-
-```text
-Data Analysis
-────────────────────────
-DEMONSTRATED
-
-Supported by
-3 evidence references
-
-Verification
-AGREEMENT
-
-Record
-<hash>
-
-Attestation
-<m3.attestation.v2 reference>
-
-Public verification
-[ Verify ]
-```
-
-### Aha moment
-
-The most important visual transition is:
+The key transition is:
 
 ```text
 claim
@@ -668,30 +319,9 @@ demonstrated state
 verifiable proof
 ```
 
----
+## 7. State and interaction rules
 
-# 15. Evidence state model
-
-If the frontend needs an evidence lifecycle, use only states supported by the implementation.
-
-Recommended presentation states:
-
-- `MISSING`;
-- `SUBMITTED`;
-- `PROCESSING`;
-- `INTERPRETED`;
-- `VERIFIED`;
-- `CONFLICTED`.
-
-These are **UI/presentation states** unless corresponding domain states already exist.
-
-Do not persist a new backend state merely because the frontend needs a label.
-
----
-
-# 16. Competency state model
-
-Use the existing domain vocabulary:
+### Competency state
 
 ```text
 NOT_STARTED
@@ -703,31 +333,11 @@ UNDER_REVIEW
 DEMONSTRATED
 ```
 
-Possible failure/non-advancement paths:
+The frontend does not perform these transitions.
 
-```text
-UNDER_REVIEW
-    ↓
-INSUFFICIENT_EVIDENCE
-    ↓
-remain UNDER_REVIEW / collect more evidence
-```
+### Verification presentation
 
-```text
-UNDER_REVIEW
-    ↓
-CONFLICT
-    ↓
-HUMAN_ADJUDICATION
-```
-
-The frontend must not perform these transitions itself.
-
----
-
-# 17. Verification state model
-
-Verification mechanisms should have explicit states such as:
+Use only states supported by the underlying implementation, such as:
 
 ```text
 PASS
@@ -737,49 +347,9 @@ CONFLICT
 NOT_RUN
 ```
 
-Only use a state when it is supported by the underlying mechanism.
+Do not turn INSUFFICIENT into FAIL or CONFLICT into a lower confidence score.
 
-Do not transform `INSUFFICIENT` into `FAIL`.
-
-Do not transform `CONFLICT` into a lower confidence score.
-
----
-
-# 18. Component vocabulary
-
-The frontend should favor reusable domain components.
-
-Recommended components:
-
-- `ProductHeader`
-- `JourneyStepper`
-- `OrganizationContext`
-- `RoleDeltaCard`
-- `CompetencyCard`
-- `CompetencyStateBadge`
-- `GapCard`
-- `RequalificationCard`
-- `EvidenceCard`
-- `EvidenceTimeline`
-- `EvidenceDetail`
-- `VerificationPanel`
-- `VerificationMechanism`
-- `ConsensusStatus`
-- `ConsensusDecision`
-- `ProvenanceTimeline`
-- `AttestationCard`
-- `ProofPanel`
-- `PublicVerification`
-
-These are vocabulary recommendations, not mandatory file names.
-
----
-
-# 19. Interaction rules
-
-## Evidence
-
-Clicking an evidence item:
+### Evidence interaction
 
 ```text
 Evidence Card
@@ -789,21 +359,17 @@ Evidence Card
 → Provenance
 ```
 
-## Verification
-
-Clicking a mechanism:
+### Verification interaction
 
 ```text
-Verification Mechanism
+Mechanism
 → What was checked
 → Input/context
 → Result
 → Rationale
 ```
 
-## Consensus
-
-Clicking the consensus result:
+### Consensus interaction
 
 ```text
 Consensus
@@ -813,9 +379,7 @@ Consensus
 → State transition
 ```
 
-## Attestation
-
-Clicking the attestation:
+### Attestation interaction
 
 ```text
 Attestation
@@ -824,15 +388,13 @@ Attestation
 → Public verification
 ```
 
-The user should be able to move from a final claim backward to its supporting evidence.
+The user must be able to move from a final claim backward to its supporting evidence.
 
----
+## 8. Provenance
 
-# 20. Provenance visualization
+Keep provenance explicit.
 
-Provenance must remain explicit.
-
-Recommended chain:
+Canonical visual chain:
 
 ```text
 EVIDENCE
@@ -848,10 +410,9 @@ COMPETENCY STATE
 ATTESTATION
 ```
 
-Each stage should identify its origin where the underlying record supports it.
+Do not collapse all origins into “system generated”.
 
-Existing origin vocabulary:
-
+Existing origin vocabulary includes:
 ```text
 evidence
 ai
@@ -860,127 +421,76 @@ consensus
 system
 ```
 
-The UI must not collapse all origins into a generic "system generated" label.
+Routine human review must not be implied. Human adjudication appears only when it actually occurs.
 
----
+## 9. Visual system requirements
 
-# 21. Synthetic demo data
+Follow `docs/brand/LASTRO_IDENTIDADE_v0.2.html`.
 
-The hackathon demo may use synthetic data.
+Preserve:
+- layered/symmetric symbol;
+- black, white and gray foundation;
+- #1683FF as semantic proof/verification color;
+- high contrast;
+- technical/editorial minimalism;
+- no generic crypto aesthetic.
 
-Synthetic data must be visually identifiable where confusion with real customer evidence could occur.
+Recommended brand line:
 
-Recommended label:
+> **Competências que deixam lastro.**
+
+Product thesis:
+
+> **Evidence-backed competency.**
+
+The interface must visually distinguish evidence, AI interpretation, verification, consensus, competency state, attestation and public verification.
+
+### Blue is semantic
+
+Use #1683FF for:
+- registered proof;
+- attestation;
+- public verification;
+- explicitly verified elements.
+
+Do not use it as generic decoration.
+
+## 10. Synthetic demo data
+
+Synthetic data is allowed for the hackathon demo.
+
+Where confusion with real customer evidence is possible, show:
 
 > **Demo scenario — synthetic data**
 
-Do not imply:
-
+Never imply:
 - customer deployment;
 - production traction;
 - pilot results;
 - validated market demand;
 - real organizational data.
 
-The demo exists to prove the technical/product flow.
+## 11. No parallel domain logic
 
----
-
-# 22. Frontend data contract
-
-The frontend should consume the domain state already produced by the backend/pipeline.
-
-Conceptual read model:
-
-```ts
-type FrontendReadModel = {
-  organization: {
-    id: string;
-    name: string;
-  };
-
-  role: {
-    id: string;
-    name: string;
-    previous?: RoleSnapshot;
-    current: RoleSnapshot;
-  };
-
-  competencies: CompetencyView[];
-
-  activities: ActivityView[];
-
-  evidence: EvidenceView[];
-
-  verification: VerificationView[];
-
-  consensus?: ConsensusView;
-
-  competencyState?: CompetencyStateView;
-
-  attestation?: AttestationView;
-};
-```
-
-This is a conceptual UI contract. Existing domain types should be reused where possible.
-
-### No parallel domain logic
-
-Do not create frontend versions of:
-
-- consensus rules;
-- competency advancement rules;
-- deterministic criteria;
-- attestation validation;
+Do not duplicate or invent frontend logic for:
+- competency criteria;
 - evidence eligibility;
-- governance rules.
+- deterministic rules;
+- consensus;
+- state transitions;
+- attestation validation;
+- governance;
+- reviewer authority;
+- verification results;
+- market claims.
 
-The frontend renders results.
+If the backend does not provide a value, show the missing/unavailable state.
 
----
+## 12. Responsive behavior
 
-# 23. Data loading and failure states
+Desktop first, responsive on smaller screens.
 
-Every major screen must define at least:
-
-- loading;
-- loaded;
-- empty;
-- error;
-- unavailable/not-supported.
-
-Example:
-
-```text
-Loading evidence...
-No evidence available.
-Evidence could not be loaded.
-Verification not available for this record.
-```
-
-Do not fabricate fallback values that look like real verification results.
-
----
-
-# 24. Responsive behavior
-
-The demo must work on desktop first, with responsive behavior preserved for smaller screens.
-
-### Desktop
-
-Prioritize:
-
-1. narrative;
-2. current state;
-3. evidence;
-4. verification;
-5. proof.
-
-### Mobile
-
-Use vertical progressive disclosure.
-
-Recommended order:
+Mobile priority:
 
 ```text
 State
@@ -994,59 +504,23 @@ Verification
 Proof
 ```
 
-Avoid dense multi-column verification tables on narrow screens.
+Avoid dense verification tables on narrow screens.
 
----
+## 13. UX principles
 
-# 25. UX principles
+1. **Evidence before assertion** — every competency claim should lead to supporting evidence.
+2. **State before detail** — show the state first, then explain how it was reached.
+3. **Mechanisms stay separate** — no magical combined score.
+4. **Explainability without overload** — simple first layer, technical detail progressively.
+5. **Human adjudication remains visible** — only when it occurs.
+6. **Infrastructure is subordinate to product value** — Solana belongs in the proof layer.
+7. **No false certainty** — use precise language such as “supports”, “verified against”, “agreement”, “insufficient evidence”, and “requires adjudication”.
 
-### 1. Evidence before assertion
+Avoid “guaranteed”, “objective truth”, “bias-free”, and “AI certified”.
 
-Whenever the UI makes a competency claim, the user should be able to reach its supporting evidence.
+## 14. Demo hierarchy
 
-### 2. State before detail
-
-Show the current competency state first, then explain how it was reached.
-
-### 3. Mechanisms stay separate
-
-Do not merge independent verification mechanisms into one visual score.
-
-### 4. Explainability without overload
-
-Expose rationale progressively. The first layer should be understandable to a non-technical evaluator; deeper layers can expose technical detail.
-
-### 5. Human adjudication remains visible
-
-Human adjudication is not hidden when it occurs. It is shown as an exception path, with its provenance and rationale.
-
-### 6. Technical infrastructure is subordinate to product value
-
-Solana should appear at the proof/integrity layer, not dominate the home screen.
-
-### 7. No false certainty
-
-Use precise language:
-
-- "supports";
-- "verified against";
-- "meets the defined criteria";
-- "agreement";
-- "insufficient evidence";
-- "requires adjudication".
-
-Avoid:
-
-- "guaranteed";
-- "objective truth";
-- "bias-free";
-- "AI certified".
-
----
-
-# 26. Visual hierarchy for the demo
-
-The evaluator should understand these five things in order:
+The evaluator should understand these in order:
 
 ```text
 1. WHAT changed?
@@ -1056,125 +530,67 @@ The evaluator should understand these five things in order:
 5. WHAT can now be verified externally?
 ```
 
-The interface should not lead with:
+Do not lead with blockchain, hashes, model names or implementation details.
 
-- blockchain;
-- hashes;
-- technical architecture;
-- model names;
-- implementation details.
+## 15. Implementation priority
 
-Those are supporting proof.
+### P0 — Core wedge
+- application shell;
+- competency;
+- evidence;
+- verification;
+- consensus;
+- competency state.
 
----
-
-# 27. What the frontend must NOT invent
-
-The frontend must not independently invent:
-
-- competency criteria;
-- role definitions;
-- evidence validity;
-- verification results;
-- consensus decisions;
-- state transitions;
-- governance policies;
-- reviewer authority;
-- attestation validity;
-- market claims;
-- customer traction.
-
-If data does not exist, the UI should represent the missing state explicitly.
-
----
-
-# 28. Implementation order
-
-Build in this order:
-
-### P0 — Shell
-
-- app shell;
-- navigation;
-- journey indicator;
-- global demo context;
-- responsive layout.
-
-### P1 — Core wedge
-
-- Competency;
-- Evidence;
-- Verification;
-- Consensus;
-- Competency State.
-
-### P2 — Proof
-
-- Attestation;
+### P1 — Proof
+- attestation;
 - record hash;
 - public verification.
 
-### P3 — Strategic narrative
+### P2 — Strategic narrative
+- work change;
+- role delta;
+- competency gap;
+- requalification.
 
-- Work Change;
-- Role Delta;
-- Competency Gap;
-- Requalification.
+If time becomes constrained, **P0 + P1 win over P2.**
 
-These screens are strategic/research narrative unless corresponding backend capabilities are explicitly implemented and validated.
-
-This order protects the MVP wedge even if time becomes constrained. The strategic screens remain presentation-layer context and must not be mistaken for implemented backend capabilities.
-
----
-
-# 29. Definition of Done
-
-The frontend is considered ready for the hackathon demo when:
+## 16. Definition of Done
 
 ### Product
-
-- [ ] The evaluator can understand the problem without reading technical documentation.
-- [ ] The aha moment is visible.
-- [ ] The wedge is clear.
-- [ ] Strategic hypotheses are not presented as validated facts.
+- evaluator understands the problem without reading technical documentation;
+- aha moment is visible;
+- MVP wedge is clear;
+- strategic hypotheses are not presented as validated facts.
 
 ### Journey
-
-- [ ] The canonical demo can be executed end-to-end.
-- [ ] The user can move from work change to proof.
-- [ ] Evidence can be inspected.
-- [ ] Verification mechanisms are visible separately.
-- [ ] Consensus is visible.
-- [ ] Competency state is explicit.
-- [ ] Attestation can be inspected.
-- [ ] Public verification path is visible.
+- canonical demo runs end-to-end;
+- evidence is inspectable;
+- verification mechanisms are separate;
+- consensus is visible;
+- competency state is explicit;
+- attestation is inspectable;
+- public verification path is visible.
 
 ### Integrity
-
-- [ ] No frontend business logic duplicates backend rules.
-- [ ] No opaque competency score replaces the verification model.
-- [ ] AI interpretation is visibly distinct from evidence.
-- [ ] Human adjudication is visible when applicable.
-- [ ] Provenance remains inspectable.
-- [ ] Synthetic data is clearly identified.
+- no duplicated backend business logic;
+- no opaque competency score replacing verification;
+- AI interpretation is distinct from evidence;
+- human adjudication is visible when applicable;
+- provenance is inspectable;
+- synthetic data is identified.
 
 ### Technical
+- existing tests remain passing;
+- typecheck remains passing;
+- frontend does not modify the frozen core without an explicit architecture decision;
+- no unnecessary backend abstractions are introduced.
 
-- [ ] Existing tests remain passing.
-- [ ] Typecheck remains passing.
-- [ ] Frontend does not modify the frozen core without an explicit architecture decision.
-- [ ] No unnecessary new backend abstractions are introduced.
-- [ ] Demo works from a clean environment according to the repository setup instructions.
-
----
-
-# 30. Final implementation principle
+## 17. Final principle
 
 > **The frontend should make the architecture legible. It should not become a second architecture.**
 
-The strongest implementation is therefore not the one with the most screens or effects.
-
-It is the one where an evaluator can follow:
+The strongest implementation is the one where an evaluator can follow:
 
 ```text
 Work
@@ -1188,17 +604,12 @@ Work
 
 and understand why each step exists.
 
----
-
 ## Related documents
 
+- `docs/brand/LASTRO_IDENTIDADE_v0.2.html`
 - `docs/product/PITCH_ARCHITECTURE.md`
 - `docs/product/USER_JOURNEYS.md`
 - `docs/architecture/CONSENSUS_CORE.md`
 - `docs/architecture/GOVERNANCE_COMPLIANCE_LAYER.md`
-- `docs/evaluation/01_PRODUCT.md`
-- `docs/evaluation/02_ARCHITECTURE.md`
-- `docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md`
-- `docs/evaluation/04_DEMO_AND_PROOF.md`
 - `docs/PROJECT_STATUS.md`
 - `docs/PROJECT_HANDOFF.md`
