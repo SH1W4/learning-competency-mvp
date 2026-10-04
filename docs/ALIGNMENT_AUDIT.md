@@ -304,13 +304,11 @@ Requalification
 
 The strategic layer may explain the larger product direction, but must not visually imply that corresponding backend capabilities are already validated or fully implemented.
 
-**Audit result: ALIGNED WITH REQUIRED PRESENTATION CONTROL.**
+**Audit result: ALIGNED. Strategic/research presentation boundary is explicit in the frontend contract.**
 
 ## 9. Consensus vocabulary alignment
 
-A material documentation inconsistency was identified between the Consensus Core and Governance/Compliance documents.
-
-Some documents mix consensus outcomes with operational process states.
+The vocabulary has been normalized across the current architecture/evaluation documents.
 
 ### Canonical consensus outcomes
 
@@ -334,11 +332,9 @@ may exist separately.
 
 They must not be presented as interchangeable with Consensus Core outcomes.
 
-**Required correction:** review docs/architecture/CONSENSUS_CORE.md, docs/architecture/GOVERNANCE_COMPLIANCE_LAYER.md, docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md, and frontend state documentation.
+**Acceptance:** a reader can distinguish what the verification mechanisms concluded from any separate operational process state.
 
-**Acceptance criterion:** a reader must be able to distinguish what the verification mechanisms concluded from what the operational state of the review process is.
-
-**Status: OPEN — DOCUMENTATION CORRECTION REQUIRED.**
+**Status: CLOSED — documentation vocabulary consolidated.**
 
 ## 10. Evidence / review alignment
 
@@ -465,15 +461,14 @@ The project cannot currently claim:
 ~~~text
 PHASE #0 / ORIGIN
        │
-       ├──────────────→ MARKET VALIDATION
-       │
-       └──────────────→ COLOSSEUM BENCHMARK
-                              │
-                              ↓
-                       RESEARCH DECISIONS
-                              │
-                              ↓
-                     EXISTING MVP ARCHITECTURE
+       ├──────────────→ MARKET VALIDATION ──────┐
+       │                                        │
+       └──────────────→ COLOSSEUM BENCHMARK ────┤
+                                                ↓
+                                         RESEARCH DECISIONS
+                                                │
+                                                ↓
+                                       EXISTING MVP ARCHITECTURE
                               │
               ┌───────────────┼────────────────┐
               ↓               ↓                ↓
@@ -498,9 +493,9 @@ Market validation and ecosystem research are parallel evidence tracks, not a cau
 | Research decisions | research/06 | Aligned | Use as decision register |
 | MVP architecture | docs/architecture/ | Baseline | Do not expand |
 | Implementation | src/ + tests | Aligned with MVP boundary | Preserve feature freeze |
-| Product | docs/product/ | Mostly aligned | Clarify strategic layer |
+| Product | docs/product/ | Aligned | Preserve strategic boundary |
 | Frontend | FRONTEND_PRODUCT_SPEC | Aligned | Do not create parallel logic |
-| Evaluation | docs/evaluation/ | Aligned | Normalize vocabulary |
+| Evaluation | docs/evaluation/ | Aligned | Preserve vocabulary discipline |
 | Attestation | M3 implementation | Aligned | Generate current M4 proof |
 | Demo | 04_DEMO_AND_PROOF | Aligned | Execute canonical scenario |
 | Claims | 05_LIMITATIONS_AND_CLAIMS | Aligned | Preserve discipline |
@@ -512,22 +507,17 @@ Market validation and ecosystem research are parallel evidence tracks, not a cau
 
 **Priority:** P0
 
-Separate Consensus outcomes from Governance/process states.
+**Status: CLOSED.**
 
-**Affected documents:**
-
-- docs/architecture/CONSENSUS_CORE.md
-- docs/architecture/GOVERNANCE_COMPLIANCE_LAYER.md
-- docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md
-- frontend specification where applicable
-
-**Acceptance:** no document uses CONFLICTED, PENDING_REVIEW, or ADJUDICATED as interchangeable replacements for canonical Consensus outcomes.
+Consensus outcomes are explicitly separated from operational governance/process states. The canonical vocabulary remains AGREEMENT, INSUFFICIENT_EVIDENCE, CONFLICT, HUMAN_ADJUDICATION.
 
 ### A-002 — Keep Human Adjudication as the only human exception path
 
 **Priority:** P0
 
-Remove Human Review as a normal pipeline stage. Preserve Human Adjudication only as an exception path for unresolved conflict, ambiguity, contestation or unsupported context.
+**Status: CLOSED.**
+
+Human review is no longer represented as a normal MVP pipeline stage. Human Adjudication remains only as an exception for unresolved conflict, ambiguity, contestation or unsupported context.
 
 **Acceptance:** no canonical MVP flow requires a human reviewer before Consensus Core; Human Adjudication appears only as an exception.
 
@@ -535,7 +525,9 @@ Remove Human Review as a normal pipeline stage. Preserve Human Adjudication only
 
 **Priority:** P1
 
-Update the research decision dependency map so Market Validation and Colosseum Benchmark are parallel evidence tracks feeding Research Decisions.
+**Status: CLOSED.**
+
+Market Validation and Colosseum Benchmark are represented as parallel evidence tracks feeding Research Decisions.
 
 **Acceptance:**
 
@@ -551,9 +543,11 @@ PHASE #0
 
 **Priority:** P1
 
-Ensure Work Change, Role Delta, Competency Gap and Requalification are visibly identified as strategic/research narrative where they exceed the implemented MVP.
+**Status: CLOSED.**
 
-**Acceptance:** a juror cannot reasonably interpret these screens as proof of implemented organizational intelligence.
+The frontend contract explicitly separates the MVP demonstrable layer from the Strategic / Research layer and marks Work Change, Role Delta, Competency Gap and Requalification as strategic/research narrative when they exceed the implemented MVP.
+
+**Acceptance:** a juror should not reasonably interpret these screens as proof of implemented organizational intelligence.
 
 ### A-005 — Preserve canonical architecture
 
@@ -671,10 +665,10 @@ The governing principle for the next phase is:
 
 **Evaluation claims:** 🟢 Aligned
 
-**Documentation vocabulary:** 🟢 Normalized
+**Documentation vocabulary:** 🟢 Consolidated
 
 **Current Devnet proof:** 🟡 M4 closure required
 
-**Overall alignment:** 🟢 **Structurally aligned; documentation hardening required**
+**Overall alignment:** 🟢 **Structurally aligned; architectural/documentary baseline consolidated**
 
-**Next authorized action:** execute A-001 → A-004, then close A-006 before final demo/submission.
+**Next authorized action:** close A-006 on PC by generating and verifying the current m3.attestation.v2 Devnet proof, then synchronize demo/submission artifacts.
