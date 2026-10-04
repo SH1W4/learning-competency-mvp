@@ -80,12 +80,12 @@ The demo does not prove:
 
 The repository maintains automated coverage for the core flow, including:
 
-- human-review progression;
+- human-adjudication exception path;
 - Consensus Core agreement;
 - insufficient evidence;
 - deterministic verifier independence from AI signals;
 - invalidation of prior interpretation when new evidence arrives;
-- evidence submission restrictions during review;
+- evidence submission restrictions during adjudication;
 - provenance and consensus handoff.
 
 The repository includes automated coverage for the core flow. Exact test counts are intentionally kept out of this evaluator document so this page does not become stale as coverage evolves. Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
