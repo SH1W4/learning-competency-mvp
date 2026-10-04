@@ -140,15 +140,7 @@ Uma regra de decisão pode exigir condições mínimas em cada dimensão.
 
 ## Papel humano
 
-O humano não é removido do processo. A arquitetura distingue **Human Review** de **Human Adjudication**.
-
-### Human Review
-
-É a revisão normal de evidências, interpretação, critérios ou contexto de verificação quando o processo exigir inspeção humana.
-
-### Human Adjudication
-
-É a camada de exceção acionada quando:
+A intervenção humana não é uma etapa normal do pipeline. O Consensus Core existe precisamente para reduzir a dependência de revisão individual. **Human Adjudication** é a camada de exceção acionada somente quando:
 
 - há conflito entre verificações;
 - a evidência é ambígua;
@@ -200,21 +192,10 @@ A governança permanece responsável por:
 - independência;
 - conflitos de interesse;
 - regras de escalonamento;
-- necessidade de revisão humana;
+- necessidade de adjudicação humana;
 - versionamento das políticas.
 
 O Consensus Core operacionaliza essas regras.
-
-### Process states
-
-Estados operacionais da revisão, quando necessários, são distintos dos resultados de consenso.
-
-Exemplos:
-
-- `PENDING_REVIEW`;
-- `ADJUDICATED`.
-
-Eles descrevem o processo de governança/revisão e **não substituem** `CONFLICT` ou `HUMAN_ADJUDICATION` como resultados do Consensus Core.
 
 ## Relação com Attestation
 
