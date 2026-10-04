@@ -1016,9 +1016,9 @@ Do not merge independent verification mechanisms into one visual score.
 
 Expose rationale progressively. The first layer should be understandable to a non-technical evaluator; deeper layers can expose technical detail.
 
-### 5. Human judgment remains visible
+### 5. Human adjudication remains visible
 
-Human review is not hidden when it occurs.
+Human adjudication is not hidden when it occurs. It is shown as an exception path, with its provenance and rationale.
 
 ### 6. Technical infrastructure is subordinate to product value
 
