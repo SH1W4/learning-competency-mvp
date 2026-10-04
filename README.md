@@ -159,12 +159,31 @@ See the full [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BEN
 
 LASTRO is built on established work in competency frameworks, provenance, machine-verifiable claims, AI evaluation, and distributed verification. The project does not claim those primitives as novel. Instead, it maps the prior landscape and identifies the narrower composition it is testing.
 
-- [Research Map](research/RESEARCH_MAP.md) — epistemic status and research-to-decision index.
-- [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md) — standards, frameworks, research, external evidence, adjacent systems, and argument-to-source mapping.
-- [Verification Infrastructure Benchmark](research/07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md) — distributed verification and proof infrastructure.
-- [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) — adjacent projects and ecosystem prior art.
+The public research path is intentionally directional:
+
+```text
+RESEARCH MAP
+    ↓
+RELATED WORK + EXTERNAL EVIDENCE
+    ↓
+ARTICLE RESEARCH / PRODUCT RESEARCH
+    ↓
+CANONICAL PRODUCT + ARCHITECTURE
+    ↓
+IMPLEMENTATION + TESTS
+    ↓
+REPRODUCIBLE DEMO
+```
+
+- [Research Map](research/RESEARCH_MAP.md) — public research index, epistemic status, and promotion path.
+- [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md) — external sources, standards, prior art, and argument-to-source mapping.
+- [Article Research Track](research/article/README.md) — scoped literature review, counterexamples, verification/consensus/provenance research, and open questions.
+- [Product Research](research/product/PRODUCT_THESIS.md) — broader product thesis and future hypotheses; not the MVP contract.
+- [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) — adjacent ecosystem prior art.
 
 > **Prior art explains the landscape. It does not by itself prove LASTRO's uniqueness, commercial value, or legal novelty.**
+
+The research directory is public where its contents are necessary to understand, audit, challenge, or contextualize public claims. Private working material remains outside the public repository under the project's information boundary.
 
 
 ## 5. The Core Insight
