@@ -54,15 +54,25 @@ Quando houver revisão humana, também deve ser preservado:
 
 O Consensus Core compara os resultados e determina o resultado de governança conforme regras previamente definidas.
 
-Estados possíveis do processo incluem:
+### Consensus outcomes
+
+Os resultados canônicos do Consensus Core são:
 
 - `AGREEMENT` — avaliações compatíveis segundo os critérios aplicáveis;
-- `CONFLICTED` — divergência relevante que exige resolução;
+- `CONFLICT` — divergência relevante entre verificações;
 - `INSUFFICIENT_EVIDENCE` — não há evidência suficiente para sustentar o estado;
-- `PENDING_REVIEW` — requisitos de revisão ainda não foram satisfeitos;
-- `ADJUDICATED` — divergência resolvida por procedimento de adjudicação definido.
+- `HUMAN_ADJUDICATION` — resolução contextual necessária.
 
-Esses estados são estados do **processo de decisão**, não necessariamente estados da competência.
+Esses são resultados do Consensus Core, não estados operacionais do processo de revisão.
+
+### Process states
+
+Estados operacionais podem acompanhar o processo de governança:
+
+- `PENDING_REVIEW`;
+- `ADJUDICATED`.
+
+Esses estados não substituem os resultados canônicos do Consensus Core.
 
 ## Competency State
 
@@ -93,7 +103,7 @@ Esses metadados devem influenciar as regras de elegibilidade quando a política 
 
 ## Human-in-the-loop
 
-O humano passa a ser prioritariamente uma camada de exceção, contestação e adjudicação. A intervenção é acionada quando as verificações não convergem, quando a evidência é insuficiente ou quando o contexto não pode ser adequadamente formalizado.
+O humano permanece no processo. **Human Review** é uma etapa normal de inspeção quando exigida pelas regras; **Human Adjudication** é a camada de exceção para conflitos, ambiguidades, contestações ou casos não cobertos pelas regras. A intervenção é acionada quando as verificações não convergem, quando a evidência é insuficiente ou quando o contexto não pode ser adequadamente formalizado.
 
 A IA pode:
 
