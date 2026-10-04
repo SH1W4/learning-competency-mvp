@@ -81,7 +81,7 @@ Different mechanisms examine the evidence from different perspectives:
 
 - evidence and integrity checks;
 - deterministic criteria verification;
-- statistical or robustness checks where applicable;
+- statistical or robustness checks only as future research / M4+ where applicable;
 - AI-assisted interpretation;
 - governance and compliance rules.
 
@@ -183,9 +183,9 @@ The current implementation demonstrates the technical vertical slice:
 
 It demonstrates:
 
-- structured learning evidence;
-- AI-assisted evidence interpretation;
-- deterministic verification independent of AI signals;
+- structured learning evidence with cryptographic integrity hardening (fail-closed on tampering);
+- **strict separation between structural deterministic verification (coverage/rules) and semantic AI interpretation;**
+- Consensus Core evaluating convergence between these distinct layers;
 - governance-aware state transitions;
 - conflict and insufficient-evidence handling;
 - provenance and deterministic record hashing;
