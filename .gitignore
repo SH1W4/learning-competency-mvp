@@ -10,10 +10,10 @@ coverage/
 .DS_Store
 Thumbs.db
 
-# Estratégia Comercial & Dataroom Privado (Apenas Google Drive)
+# Future private vault / restricted project material.
+# IMPORTANT: this does not make already tracked files private.
 docs/business/
 docs/pitch/
 docs/private/
 docs/hackathon/
-docs/evaluation/
 docs/diario-de-bordo/*dataroom*
