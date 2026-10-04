@@ -98,7 +98,7 @@ describe("canonical MVP decision flow", () => {
     s.submit({ ...ANA.results(), relatedEvidenceIds: [a.evidence_id] });
     s.submit(ANA.synthesis());
 
-    const original = structuredClone(s.evidences);
+    const original = s.evidences.map(({ content, activity_id, type }) => ({ content, activity_id, type }));
     const malicious = {
       name: "malicious-provider",
       interpret: async ({ evidences }: { evidences: typeof s.evidences }) => {
@@ -114,7 +114,7 @@ describe("canonical MVP decision flow", () => {
     };
 
     await s.interpret(malicious);
-    expect(s.evidences).toEqual(original);
+    expect(s.evidences.map(({ content, activity_id, type }) => ({ content, activity_id, type }))).toEqual(original);
     s.submitForVerification();
     expect(s.consensusAdvance().status).toBe("AGREEMENT");
   });

@@ -31,7 +31,7 @@ export interface VerifiableClaim {
  */
 export function buildVerifiableClaim(record: ReviewedStateRecord): VerifiableClaim {
   const evidenceRefs = [...new Set(record.criteria.flatMap((c) => c.evidence_ids))];
-  const decisionRef = record.decision.review_id ?? "consensus-core";
+  const decisionRef = record.decision.adjudication_id ?? "consensus-core";
 
   return {
     claim_id: `claim:${record.record_hash.slice(0, 16)}`,
@@ -59,7 +59,7 @@ export function buildVerifiableClaim(record: ReviewedStateRecord): VerifiableCla
  * It establishes references and decision confirmation, not truth or competency correctness.
  */
 export function verifyClaimSupport(claim: VerifiableClaim, record: ReviewedStateRecord): boolean {
-  const decisionRef = record.decision.review_id ?? "consensus-core";
+  const decisionRef = record.decision.adjudication_id ?? "consensus-core";
 
   if (claim.claim_id !== `claim:${record.record_hash.slice(0, 16)}`) return false;
   if (claim.scope.evidence_bound !== true) return false;

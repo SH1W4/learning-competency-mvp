@@ -33,7 +33,7 @@ describe("Human Adjudication — exceptional conflict path", () => {
       consensus_status: "CONFLICT",
       decisions: [],
       confirm_demonstrated: false,
-    })).toThrow(/CONFLICT/);
+    })).toThrow(/Consensus Core/);
   });
 
   it("resolves a conflict to DEMONSTRATED when the adjudicator confirms all criteria", async () => {

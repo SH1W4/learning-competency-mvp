@@ -87,13 +87,13 @@ describe("Provenance and M2 → M3 handoff", () => {
     expect(a.s.handoff().record_hash).toBe(b.s.handoff().record_hash);
   });
 
-  it("new evidence clears a previous consensus decision", async () => {
+  it("new evidence is rejected after consensus advances to DEMONSTRATED", async () => {
     const env = fixedEnv();
     const { s } = await underVerification(env);
     await s.interpret(new HeuristicProvider(env));
     s.consensusAdvance();
 
     expect(s.consensus).toBeDefined();
-    expect(() => s.submit(ANA.synthesis())).toThrow(/UNDER_REVIEW/);
+    expect(() => s.submit(ANA.synthesis())).toThrow(/DEMONSTRATED/);
   });
 });

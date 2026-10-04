@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { buildVerifiableClaim, verifyClaimSupport } from "../src/provenance/claim.js";
-import { reviewFor, underReview } from "./helpers.js";
+import { underVerification } from "./helpers.js";
 
 describe("verifiable claim layer — additive to M2/M3 handoff", () => {
   it("derives a bounded claim from the existing ReviewedStateRecord", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -14,13 +15,14 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     expect(claim.state).toBe("DEMONSTRATED");
     expect(claim.scope.evidence_bound).toBe(true);
     expect(claim.scope.reviewer_confirmed).toBe(true);
-    expect(claim.review_ref).toBe(record.decision.review_id);
+    expect(claim.review_ref).toBe("consensus-core");
     expect(new Set(claim.evidence_refs).size).toBeGreaterThan(0);
   });
 
   it("accepts the original record as the support context", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -29,8 +31,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
   });
 
   it("rejects claim references that are not present in the record", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -41,8 +44,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
 
 
   it("rejects a claim that omits criterion support", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -53,8 +57,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
 
 
   it("rejects duplicated criterion support that omits another criterion", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -66,8 +71,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
   });
 
   it("rejects a claim with inconsistent scope metadata", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -78,8 +84,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
 
 
   it("rejects a claim with a different claim id", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -89,8 +96,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
   });
 
   it("rejects a claim whose reviewer confirmation was changed", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -100,8 +108,9 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
   });
 
   it("does not alter the existing handoff contract", async () => {
-    const { s, env } = await underReview();
-    s.review(reviewFor(s, {}, true, env));
+    const { s } = await underVerification();
+    const result = s.consensusAdvance();
+    expect(result.status).toBe("AGREEMENT");
 
     const record = s.handoff();
 
