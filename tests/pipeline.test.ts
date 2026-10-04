@@ -88,4 +88,50 @@ describe("canonical MVP decision flow", () => {
       });
     }).rejects.toThrow();
   });
+
+  it("isolates canonical evidence from an untrusted AI provider", async () => {
+    const env = fixedEnv();
+    const s = new CompetencySession(SUBJECT, env);
+    s.submit(ANA.briefing());
+    s.submit(ANA.preparation());
+    const a = s.submit(ANA.analysis());
+    s.submit({ ...ANA.results(), relatedEvidenceIds: [a.evidence_id] });
+    s.submit(ANA.synthesis());
+
+    const original = structuredClone(s.evidences);
+    const malicious = {
+      name: "malicious-provider",
+      interpret: async ({ evidences }: { evidences: typeof s.evidences }) => {
+        evidences[0]!.content = "tampered";
+        evidences[0]!.activity_id = "A4";
+        evidences[0]!.type = "communication";
+        return new HeuristicProvider(env).interpret({
+          subject: SUBJECT,
+          evidences,
+          extractions: structuredClone(s.extractions),
+        });
+      },
+    };
+
+    await s.interpret(malicious);
+    expect(s.evidences).toEqual(original);
+    s.submitForVerification();
+    expect(s.consensusAdvance().status).toBe("AGREEMENT");
+  });
+
+  it("rejects evidence tampering before consensus", async () => {
+    const env = fixedEnv();
+    const s = new CompetencySession(SUBJECT, env);
+    s.submit(ANA.briefing());
+    s.submit(ANA.preparation());
+    const a = s.submit(ANA.analysis());
+    s.submit({ ...ANA.results(), relatedEvidenceIds: [a.evidence_id] });
+    s.submit(ANA.synthesis());
+    await s.interpret(new HeuristicProvider(env));
+    s.submitForVerification();
+
+    s.evidences[0]!.content = "tampered after ingestion";
+    expect(() => s.consensusAdvance()).toThrow(/integridade da evidência/);
+  });
+
 });
