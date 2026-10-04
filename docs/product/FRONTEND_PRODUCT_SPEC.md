@@ -34,6 +34,8 @@ PUBLIC VERIFICATION
 
 The frontend is not the place where these rules are invented. It visualizes and exposes the state produced by the existing domain pipeline.
 
+**Document status:** implementation contract aligned with the current M4 product/documentation baseline.
+
 ### Primary product statement
 
 > **Evidence-backed competency.**
@@ -1117,7 +1119,7 @@ Build in this order:
 - Competency Gap;
 - Requalification.
 
-This order protects the MVP wedge even if time becomes constrained.
+This order protects the MVP wedge even if time becomes constrained. The strategic screens remain presentation-layer context and must not be mistaken for implemented backend capabilities.
 
 ---
 
