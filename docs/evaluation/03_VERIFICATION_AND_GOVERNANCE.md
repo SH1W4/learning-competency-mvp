@@ -90,9 +90,9 @@ Sensitive learning data and full evidence content remain off-chain.
 
 The MVP uses the **Solana Memo Program** as an integrity anchor on Solana Devnet.
 
-The current payload is versioned as `m3.attestation.v2` and binds the relevant MVP/version, subject reference, competency, state, record hash, attester, and timestamp.
+The attestation payload is versioned as `m3.attestation.v2` and binds the relevant MVP/version, subject reference, competency, state, record hash, attester, and timestamp.
 
-The verifier can:
+When a current Devnet transaction is available, the verifier can:
 
 - confirm the transaction contains the expected reference;
 - recompute record integrity when the associated record is available;
@@ -110,3 +110,8 @@ An attestation does not, by itself, prove:
 - that blockchain independently assessed the competency.
 
 It anchors the representation defined by the system so that the recorded state can later be checked for integrity.
+
+
+## Current proof status
+
+The attestation implementation is part of the completed M3 vertical slice. The current `m3.attestation.v2` Devnet transaction is tracked as an M4 closing artifact and must be generated and registered before it is presented as the project's current public proof.
