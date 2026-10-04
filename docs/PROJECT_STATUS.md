@@ -14,7 +14,7 @@ O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A capaci
 - trilha curta;
 - evidência separada de interpretação;
 - IA como assistência;
-- revisão humana explícita;
+- adjudicação humana apenas como exceção de conflito ou ambiguidade;
 - estado de competência limitado ao que o registro suporta;
 - atestação como representação de um estado definido;
 - dados sensíveis mantidos off-chain;
@@ -38,7 +38,7 @@ Evidência → extração → interpretação → relação → revisão.
 ### M3 — Estado, atestação e Solana
 **Status: DONE**
 
-Revisão → estado → atestação → Solana → verificação.
+Estado → atestação → Solana → verificação.
 
 **Owner:** JX.
 
