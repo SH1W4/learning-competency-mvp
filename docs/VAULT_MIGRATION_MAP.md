@@ -317,3 +317,8 @@ No MVP file should be removed merely because a curated derivative exists.
 > **The Vault is not a copy of the repository. It is the curated knowledge layer that allows an independent person to reconstruct why the project exists, what was researched, what was decided, what was built, what was proven, and what remains unknown.**
 
 > **The MVP repository proves execution. The Vault explains the knowledge behind the execution. The Core protects the intelligence required to continue building.**
+
+
+## File-level authority
+
+For current repository triage, `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md` is authoritative at file level. The area-level mapping below is a planning model and does not override an explicit file classification.
