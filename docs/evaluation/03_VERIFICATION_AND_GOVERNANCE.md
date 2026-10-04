@@ -11,40 +11,28 @@ Evidence
    ↓
 Independent verification mechanisms
    ↓
-Convergence
-   ↓
-State update
-```
-
-rather than:
-
-```
-Evidence → individual interpretation → state
+Consensus
+   ├─ AGREEMENT → STATE
+   ├─ INSUFFICIENT_EVIDENCE → MORE EVIDENCE
+   └─ CONFLICT → HUMAN ADJUDICATION
 ```
 
 Consensus is not simple vote counting. It evaluates whether independently produced verification results satisfy explicit requirements and whether relevant conflicts or insufficiencies exist.
 
 ## Consensus outcomes
 
-The process distinguishes at least:
-
 - **AGREEMENT** — applicable verification requirements converge;
 - **INSUFFICIENT_EVIDENCE** — available evidence does not support the required conclusion;
 - **CONFLICT** — relevant verification mechanisms disagree;
-- **HUMAN_ADJUDICATION** — contextual resolution is required.
+- **HUMAN_ADJUDICATION** — a CONFLICT has entered the explicit human exception path.
 
 The competency state must not be advanced while the case is materially insufficient or conflicted.
 
 ## Human Adjudication
 
-Human review is not a normal pipeline step. The Consensus Core exists to reduce dependence on routine individual review by requiring independent verification mechanisms to converge.
+Human adjudication is not a normal pipeline step.
 
-**Human Adjudication** is the exception path for material conflict, unresolved ambiguity, contestation, or cases not adequately covered by existing rules.
-
-## Human role
-
-Human intervention is preserved only for:
-
+It is the exception path for:
 - conflicting verification results;
 - ambiguous evidence;
 - contextual criteria that cannot be adequately formalized;
@@ -52,14 +40,13 @@ Human intervention is preserved only for:
 - high-impact decisions requiring additional review;
 - cases not covered by existing rules.
 
-When adjudication occurs, the system should preserve the original evidence, criteria, verification results, rationale, decision, responsible actor, timestamp, and rule version.
+When adjudication occurs, the system preserves the original evidence references, criteria, verification results, rationale, decision, responsible actor, timestamp, and applicable rule version.
 
 ## Governance
 
 Governance defines the conditions under which a verification result can produce a state transition.
 
 Relevant governance metadata can include:
-
 - eligibility criteria;
 - adjudicator role;
 - independence;
@@ -69,8 +56,6 @@ Relevant governance metadata can include:
 - policy version.
 
 The system does not infer character, intent, or bias from these fields. They exist to make decision conditions explicit and auditable.
-
-Any operational review state is separate from the canonical Consensus Core outcome vocabulary.
 
 ## Attestation model
 
@@ -101,7 +86,6 @@ The MVP uses the **Solana Memo Program** as an integrity anchor on Solana Devnet
 The attestation payload is versioned as `m3.attestation.v2` and binds the relevant MVP/version, subject reference, competency, state, record hash, attester, and timestamp.
 
 When a current Devnet transaction is available, the verifier can:
-
 - confirm the transaction contains the expected reference;
 - recompute record integrity when the associated record is available;
 - check payload binding;
@@ -110,7 +94,6 @@ When a current Devnet transaction is available, the verifier can:
 ## What attestation does not prove
 
 An attestation does not, by itself, prove:
-
 - that the underlying evidence is objectively true;
 - that a competency is universally true;
 - the merit or worth of a person;
@@ -119,7 +102,6 @@ An attestation does not, by itself, prove:
 
 It anchors the representation defined by the system so that the recorded state can later be checked for integrity.
 
-
 ## Current proof status
 
-The attestation implementation is part of the completed M3 vertical slice. The current `m3.attestation.v2` Devnet transaction is tracked as an M4 closing artifact and must be generated and registered before it is presented as the project's current public proof.
+The attestation implementation is part of the completed M3 vertical slice. The current `m3.attestation.v2` Devnet transaction is an M4 closing artifact and must be generated and registered before it is presented as the project's current public proof.
