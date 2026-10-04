@@ -16,7 +16,37 @@
 
 This is a product hypothesis and must not be presented as customer-validated without external evidence.
 
-## 2. Product Wedge
+## 2. External Evidence of the Pain
+
+The pitch should establish that the underlying workforce problem exists independently of LASTRO.
+
+### Market signals
+
+- **63% of employers** surveyed by the World Economic Forum identify skills gaps as a primary barrier to business transformation for 2025–2030; employers expect **39% of workers' core skills to change by 2030**. citeturn0search7turn0search14
+- PwC's 2026 Global AI Jobs Barometer finds that skills in the most AI-exposed jobs are changing **more than twice as fast** as in the least exposed jobs, based on more than one billion job postings. citeturn0search10turn0search38
+- Deloitte's 2026 enterprise AI research identifies **insufficient worker skills as the biggest barrier** to integrating AI into existing workflows; 53% of surveyed organizations report workforce AI education and 48% report upskilling/reskilling strategies as responses. citeturn0search0turn0search1
+
+### Narrative interpretation
+
+These sources support the external problem chain:
+
+```text
+WORK CHANGES
+   ↓
+SKILLS CHANGE
+   ↓
+ORGANIZATIONS MUST DEVELOP CAPABILITY
+   ↓
+THE EVIDENCE OF THAT CAPABILITY MATTERS
+```
+
+They validate the **pain context**, not LASTRO's commercial success.
+
+> **The market signal tells us the capability problem is real. LASTRO's thesis is that the evidence layer around demonstrated capability is still weak.**
+
+The next sections must therefore distinguish external evidence from our own technical proof and future commercial hypotheses.
+
+## 3. Product Wedge
 
 O MVP começa deliberadamente menor:
 
@@ -26,7 +56,7 @@ Evidence → Competency → Verification → State → Attestation → Verificat
 
 The MVP starts deliberately narrow: prove that observable work can become a bounded, independently verifiable capability state.
 
-## 3. The Concrete MVP
+## 4. The Concrete MVP
 
 The strategic product narrative is intentionally broader than the current implementation. The MVP proves one complete vertical slice:
 
@@ -55,7 +85,7 @@ The MVP therefore proves the **verification mechanism**, not the entire enterpri
 
 This boundary should remain visible in every pitch, demo and evaluator-facing artifact.
 
-## 4. Strategic Expansion
+## 5. Strategic Expansion
 
 ~~~text
 Work Change → Role Delta → Competency Gap → Requalification → Proof of Competency
@@ -69,7 +99,7 @@ This is a strategic extension of the MVP, not a currently implemented commercial
 
 Dynamic Role Architecture continues to be a research hypothesis rather than a validated commercial wedge.
 
-## 5. Frontend narrative
+## 6. Frontend narrative
 
 The narrative below is the product-level information architecture. The implementation contract for the frontend is defined in `docs/product/FRONTEND_PRODUCT_SPEC.md`.
 
@@ -112,7 +142,7 @@ Nunca reduzir a decisão a um score opaco.
 
 Mostrar competência, estado, referências de evidência, decisão, record hash, attestation e verificação pública.
 
-## 6. Product narrative flow
+## 7. Product narrative flow
 
 ~~~text
 ORGANIZATION
@@ -138,7 +168,7 @@ ATTESTATION
 PUBLIC VERIFICATION
 ~~~
 
-## 7. Technical demo wedge
+## 8. Technical demo wedge
 
 The hackathon's technical proof begins at the MVP wedge and follows:
 
@@ -148,7 +178,7 @@ Competency → Activities → Evidence → AI interpretation → Independent ver
 
 This distinction prevents the strategic product narrative from being confused with the narrower implemented vertical slice.
 
-## 8. Aha Moment
+## 9. Aha Moment
 
 The aha moment is not “we use blockchain”.
 
@@ -172,7 +202,7 @@ Public verification
 
 The competency state is produced by the evidence, verification, governance and Consensus Core process. Solana anchors the resulting attestation/integrity reference.
 
-## 9. Claims discipline
+## 10. Claims discipline
 
 ### Podemos afirmar
 
@@ -197,7 +227,7 @@ The competency state is produced by the evidence, verification, governance and C
 - demanda específica pelo produto;
 - retorno econômico específico do produto.
 
-## 10. Pitch Compression
+## 11. Pitch Compression
 
 The buyer, judge or investor should understand the business problem before seeing the architecture.
 
@@ -225,6 +255,6 @@ WHY THIS TEAM
 
 Do not open the pitch with infrastructure terminology. Architecture is evidence for the claim, not the claim itself.
 
-## 11. Pergunta final
+## 12. Pergunta final
 
 > **Se o trabalho muda continuamente, por que a representação de competência deveria continuar sendo estática?**
