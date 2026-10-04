@@ -28,7 +28,12 @@
 └──────────┬───────────┘
            ↓
 ┌──────────────────────┐
-│ Human Review         │
+│ Independent          │
+│ Verification         │
+└──────────┬───────────┘
+           ↓
+┌──────────────────────┐
+│ Consensus Core       │
 └──────────┬───────────┘
            ↓
 ┌──────────────────────┐
@@ -58,10 +63,14 @@ INGEST
   → EXTRACT
   → INTERPRET
   → RELATE TO COMPETENCY
-  → REVIEW
+  → INDEPENDENT VERIFICATION
+  → CONSENSUS
   → UPDATE STATE
   → ATTEST
   → VERIFY
+
+Exceptional path:
+CONSENSUS CONFLICT → HUMAN ADJUDICATION → STATE
 ~~~
 
 The existing EVIDENCE_PIPELINE.md remains the source for evidence semantics.
@@ -77,7 +86,7 @@ Owns:
 - trails;
 - activities;
 - learner progression;
-- reviewer workflow.
+- verification / adjudication workflow.
 
 ### Evidence layer
 
@@ -101,13 +110,13 @@ Owns:
 
 AI outputs are proposals/interpretations, not automatic institutional truth.
 
-### Review layer
+### Consensus / adjudication layer
 
 Owns:
 
-- reviewer identity/context;
-- accept/correct/reject/request-more-evidence;
-- review outcome;
+- Consensus Core outcomes;
+- convergence/divergence across independent verification mechanisms;
+- exceptional human adjudication after conflict;
 - state transition authorization.
 
 ### State layer
@@ -136,6 +145,6 @@ Prefer one end-to-end vertical slice over broad abstractions.
 
 A component is justified when it helps prove:
 
-**competency → trail → evidence → AI/review → state → attestation → verification.**
+**competency → trail → evidence → interpretation → independent verification → consensus → state → attestation → verification.**
 
 Avoid premature multi-agent orchestration, generalized integrations and infrastructure that does not contribute to this proof.
