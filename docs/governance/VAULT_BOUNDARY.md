@@ -156,3 +156,12 @@ Before public submission or a major release, review the tracked repository file-
 ## Physical Migration Decision
 
 **No physical Public/Private Vault migration is performed before the hackathon unless explicitly approved.** The current priority remains consolidation, proof and reproducibility. The eventual topology may use a Public Vault, a controlled Private Vault, a restricted-access workspace/package, and a Secret Store. The exact topology is a later implementation decision.
+
+
+## Operational classification baseline — 2026-10-04
+
+The file-level publication baseline is maintained in `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md` and overrides directory-based assumptions for the current review.
+
+The important correction is that `research/`, `docs/product/`, and `docs/decisions/` are not intrinsically public or private. Each artifact is classified by actual information content. Current source code remains PUBLIC because reproducibility and technical auditability are part of the MVP proof strategy.
+
+No physical file movement is authorized by this classification. RESTRICTED means controlled disclosure, not a requirement for a third repository before the hackathon.
