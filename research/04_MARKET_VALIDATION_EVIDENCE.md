@@ -78,6 +78,50 @@ Microsoft's broader AI-at-work research reports that many organizations are stru
 
 **Does not prove:** that competency verification is the primary purchasing problem for AI transformation.
 
+## 3.6 Statistical Validation of the Competency Gap — 2024–2026 evidence
+
+Recent external research strengthens the market-level problem signal, while remaining distinct from customer validation.
+
+### Skills gaps as a transformation barrier
+
+The World Economic Forum's *Future of Jobs Report 2025* reports that **63% of surveyed employers identify skills gaps as the leading barrier to business transformation** for 2025–2030. The same report says **85% plan to prioritize workforce upskilling** and estimates that **39% of workers' existing skill sets will be transformed or become outdated by 2030**. [MV-01]
+
+**Supports:** a material organizational problem around changing skills, capability development, and workforce adaptation.
+
+**Does not prove:** demand for LASTRO, willingness to pay, or superiority over existing workflows.
+
+### AI skills as an enterprise integration constraint
+
+Deloitte's *State of AI in the Enterprise 2026*, based on **3,235 business and IT leaders across 24 countries**, identifies insufficient worker skills as the **biggest barrier to integrating AI into existing workflows**. The report says organizations are responding primarily through workforce education (53%) and upskilling/reskilling strategies (48%). [MV-02]
+
+**Supports:** the skills/capability problem is directly connected to current enterprise AI adoption.
+
+**Does not prove:** that competency verification is the primary buying problem.
+
+### Technical/cybersecurity capability gaps
+
+The 2026 SANS | GIAC Cybersecurity Workforce Research Report, based on **947 global respondents**, reports that **60% of organizations identify skills gaps as their top workforce challenge**, versus 40% citing headcount shortages. It also reports that **27% of organizations experienced a breach they attribute directly to workforce skills gaps**. [MV-03]
+
+A separate 2025 cybersecurity workforce study reports that **95% of respondents have at least one skills gap on their team**, with 59% describing needs as critical or significant. [MV-04]
+
+**Supports:** the gap is not merely an abstract training issue; in technical domains it is associated with operational risk.
+
+**Does not prove:** that the same prevalence or causal relationship applies across all industries.
+
+### An important correction to the commonly repeated "87%" claim
+
+The frequently cited **87%** figure should not be presented as "87% of organizations globally have skills gaps" without qualification.
+
+A recent 2024 ATD report cited **87% of organizations reporting gaps specifically in leadership and executive-level skills**, while 85% reported communication-skills gaps and 86% managerial/supervisor gaps. [MV-05]
+
+An older McKinsey survey found 87% of respondents either already had skills gaps or expected them within five years, but that evidence predates the current 2024–2026 evidence window. [MV-06]
+
+Therefore, for current LASTRO positioning, the stronger defensible formulation is:
+
+> **Recent employer research shows skills gaps are a material barrier to transformation and AI adoption, while specialized technical domains report high prevalence and measurable operational consequences.**
+
+This is stronger than presenting a decontextualized global 87% statistic.
+
 ## 4. Evidence map
 
 | Claim | Evidence | Strength | Remaining uncertainty |
@@ -309,6 +353,13 @@ It is to convert the broad market signal into **organization-level evidence** th
 ## 12. Source registry
 
 ### External
+
+- [MV-01] World Economic Forum — *Future of Jobs Report 2025* — https://www.weforum.org/publications/the-future-of-jobs-report-2025/
+- [MV-02] Deloitte — *State of AI in the Enterprise 2026* — https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html
+- [MV-03] SANS / GIAC — *2026 Cybersecurity Workforce Research Report* — https://www.sans.org/white-papers/2026-cybersecurity-workforce-research-report/
+- [MV-04] ISC2 — *2025 Cybersecurity Workforce Study* — https://www.isc2.org/Research/Workforce-Study
+- [MV-05] ATD — *Bridging the Skills Gap* (2024) — https://www.td.org/content/atd-blog/bridging-current-and-future-skills-gaps
+- [MV-06] McKinsey — *Beyond hiring: How companies are reskilling to address talent gaps* — https://www.mckinsey.com.br/business-functions/organization/our-insights/beyond-hiring-how-companies-are-reskilling-to-address-talent-gaps
 
 - World Economic Forum — *Future of Jobs Report 2025*
 - LinkedIn — *Workplace Learning Report 2025*
