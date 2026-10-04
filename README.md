@@ -167,7 +167,7 @@ LASTRO is built on established work in competency frameworks, provenance, machin
 > **Prior art explains the landscape. It does not by itself prove LASTRO's uniqueness, commercial value, or legal novelty.**
 
 
-## 4. The Core Insight
+## 5. The Core Insight
 
 **Learning is not the same as demonstrated capability.**
 
@@ -179,7 +179,7 @@ LASTRO is built around that missing chain.
 
 ---
 
-## 5. What LASTRO Does
+## 6. What LASTRO Does
 
 LASTRO turns evidence of work into a competency state that can be independently verified.
 
@@ -257,7 +257,7 @@ AI interprets evidence; deterministic checks verify defined conditions independe
 
 This separation is a core product principle, not an implementation detail.
 
-## 6. The MVP — What We Actually Built
+## 7. The MVP — What We Actually Built
 
 The product narrative is broader than the current implementation. **The MVP is intentionally narrow:** it proves one complete vertical slice from observable work to a bounded, independently verifiable competency state.
 
@@ -319,7 +319,7 @@ The **MVP is the proof**. The broader product narrative is the **hypothesis to v
 
 ---
 
-## 7. Why This Matters
+## 8. Why This Matters
 
 The long-term value of LASTRO is not another place to store credentials.
 
@@ -339,7 +339,7 @@ Potential decisions include capability development, internal mobility, workforce
 
 **These commercial applications remain hypotheses until validated externally.** The MVP proves the technical mechanism, not market demand or economic impact.
 
-## 8. The Role of Blockchain
+## 9. The Role of Blockchain
 
 Blockchain is infrastructure for the proof layer, not the product authority.
 
@@ -359,7 +359,7 @@ PUBLIC VERIFICATION
 
 The blockchain does **not** prove that a person is universally competent, truthful, or professionally qualified. It anchors the integrity of a defined state produced by the system.
 
-## 9. What the MVP Proves
+## 10. What the MVP Proves
 
 - Evidence can be structured and linked to activities and competency criteria.
 - Source evidence can remain separate from AI interpretation.
@@ -370,7 +370,7 @@ The blockchain does **not** prove that a person is universally competent, truthf
 - The resulting state can be anchored through the current Solana Devnet attestation path.
 - The integrity relationship can be independently verified.
 
-## 10. What the MVP Does NOT Claim
+## 11. What the MVP Does NOT Claim
 
 - Universal competency assessment.
 - Replacement of human evaluation in high-stakes decisions.
@@ -383,7 +383,7 @@ The blockchain does **not** prove that a person is universally competent, truthf
 
 Strategic product concepts such as role evolution, workforce planning and Dynamic Role Architecture are intentionally kept outside the MVP story. They belong to the future product hypothesis and research layer.
 
-## 11. For Evaluators — Recommended Reading Path
+## 12. For Evaluators — Recommended Reading Path
 
 If you are evaluating LASTRO for the first time, use this path:
 
@@ -401,7 +401,7 @@ If you are evaluating LASTRO for the first time, use this path:
 
 The repository contains additional research, governance, product, brand, and execution documents for deeper review.
 
-## 12. Current Status & Execution Roadmap
+## 13. Current Status & Execution Roadmap
 
 The core M1–M3 vertical slice is implemented. The project is now in the **M4 execution / closing phase**, focused on reproducible proof, demonstration, external validation, communication, and final submission.
 
@@ -418,7 +418,7 @@ For the authoritative project status and execution roadmap, see:
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
 
-## 13. Quick Start & Resilient Demo
+## 14. Quick Start & Resilient Demo
 
 ```bash
 npm install
@@ -436,14 +436,14 @@ npm run m3:verify <tx_signature> [record_hash]
 
 If a live Devnet write is unavailable, the presentation can use the previously validated synthetic fallback fixture described in [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md).
 
-## 14. Repository Structure
+## 15. Repository Structure
 
 - `src/` — Core implementation and hardened pipelines.
 - `tests/` — Automated coverage, including adversarial integrity tests.
 - `docs/` — Product, architecture, evaluation, governance and operational documentation.
 - `research/` — Future hypotheses and research extensions.
 
-## 15. Team
+## 16. Team
 
 | Contributor | Primary Contribution |
 |---|---|
