@@ -62,7 +62,7 @@ The vertical slice demonstrates that:
 5. the competency state can be updated from that convergent result;
 6. the resulting state can be represented by a deterministic record;
 7. the record can be anchored on Solana Devnet;
-8. the integrity relationship can later be verified.
+8. the integrity relationship can later be verified when a current Devnet transaction is available.
 
 ## What the demo does not prove
 
@@ -89,3 +89,8 @@ The repository maintains automated coverage for the core flow, including:
 - provenance and consensus handoff.
 
 The repository includes automated coverage for the core flow. Exact test counts are intentionally kept out of this evaluator document so this page does not become stale as coverage evolves. Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
+
+
+## Current public-proof status
+
+The repository contains the attestation and verification path. The current `m3.attestation.v2` Devnet transaction remains an M4 closing artifact; no historical transaction should be presented as the current proof.
