@@ -1,14 +1,14 @@
-# Pitch Architecture — Learning Competency
+# Pitch Architecture — LASTRO Capability Verification
 
 **Status:** product / presentation contract
 
 ## 1. One-line thesis
 
-> **Transformamos mudanças no trabalho em inteligência de competências, requalificação orientada por evidências e estados de competência verificáveis.**
+> **LASTRO provides an evidence and verification layer for demonstrated capability.**
 
 ### One-line mechanism
 
-> **LASTRO turns evidence of work into a competency state that can be independently verified.**
+> **LASTRO turns evidence of work into a competency state that can be independently verified — giving organizations a stronger evidence layer for capability decisions.**
 
 ### Problem statement
 
@@ -16,7 +16,7 @@
 
 This is a product hypothesis and must not be presented as customer-validated without external evidence.
 
-## 2. Wedge atual
+## 2. Product Wedge
 
 O MVP começa deliberadamente menor:
 
@@ -24,17 +24,17 @@ O MVP começa deliberadamente menor:
 Evidence → Competency → Verification → State → Attestation → Verification
 ~~~
 
-Primeiro provamos que uma competência pode sair de evidências observáveis e chegar a um estado verificável.
+The MVP starts deliberately narrow: prove that observable work can become a bounded, independently verifiable capability state.
 
-## 3. Extensão estratégica
+## 3. Strategic Expansion
 
 ~~~text
 Work Change → Role Delta → Competency Gap → Requalification → Proof of Competency
 ~~~
 
-### Verified Competencies → Role Engineering
+### Verified Capability → Better Decisions
 
-Once competencies can be represented as bounded, independently verifiable states, those competencies can become modular building blocks for defining evolving roles, identifying competency gaps, and supporting internal mobility.
+Once capabilities can be represented as bounded, independently verifiable states, they can become inputs to evolving roles, competency-gap analysis, requalification and internal mobility.
 
 This is a strategic extension of the MVP, not a currently implemented commercial capability.
 
@@ -119,11 +119,11 @@ Competency → Activities → Evidence → AI interpretation → Independent ver
 
 This distinction prevents the strategic product narrative from being confused with the narrower implemented vertical slice.
 
-## 7. Aha moment
+## 7. Aha Moment
 
-O momento principal não é “usamos blockchain”.
+The aha moment is not “we use blockchain”.
 
-> **Uma competência demonstrada deixa de ser apenas uma afirmação dentro da aplicação e passa a possuir uma referência verificável de integridade.**
+> **A demonstrated capability stops being only a claim inside an application and becomes a bounded state that can be independently verified.**
 
 Blockchain aparece como infraestrutura dessa etapa.
 
@@ -168,9 +168,9 @@ The competency state is produced by the evidence, verification, governance and C
 - demanda específica pelo produto;
 - retorno econômico específico do produto.
 
-## 9. Pitch compression
+## 9. Pitch Compression
 
-The judge should understand the core before seeing the architecture.
+The buyer, judge or investor should understand the business problem before seeing the architecture.
 
 Recommended sequence:
 
