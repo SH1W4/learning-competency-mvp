@@ -28,10 +28,10 @@ O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A capaci
 
 Organização → competência → trilha → pessoa → atividade → evidência.
 
-### M2 — Evidência, IA e revisão
+### M2 — Evidência, IA e verificação
 **Status: DONE**
 
-Evidência → extração → interpretação → relação → revisão.
+Evidência → extração → interpretação → relação → verificação.
 
 **Owner:** JP Carvalho.
 
