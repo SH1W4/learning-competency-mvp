@@ -37,7 +37,7 @@ The competency state must not be advanced while the case is materially insuffici
 
 ## Human Adjudication
 
-Human review is not a normal pipeline step. The Consensus Core exists to reduce dependence on individual review by requiring independent verification mechanisms to converge.
+Human review is not a normal pipeline step. The Consensus Core exists to reduce dependence on routine individual review by requiring independent verification mechanisms to converge.
 
 **Human Adjudication** is the exception path for material conflict, unresolved ambiguity, contestation, or cases not adequately covered by existing rules.
 
@@ -69,6 +69,8 @@ Relevant governance metadata can include:
 - policy version.
 
 The system does not infer character, intent, or bias from these fields. They exist to make decision conditions explicit and auditable.
+
+Any operational review state is separate from the canonical Consensus Core outcome vocabulary.
 
 ## Attestation model
 
