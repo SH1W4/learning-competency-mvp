@@ -59,7 +59,7 @@ export function buildVerifiableClaim(record: ReviewedStateRecord): VerifiableCla
  * It establishes references and decision confirmation, not truth or competency correctness.
  */
 export function verifyClaimSupport(claim: VerifiableClaim, record: ReviewedStateRecord): boolean {
-  const decisionRef = record.decision.review_id ?? "consensus-core";
+  const decisionRef = record.decision.adjudication_id ?? "consensus-core";
 
   if (claim.claim_id !== `claim:${record.record_hash.slice(0, 16)}`) return false;
   if (claim.scope.evidence_bound !== true) return false;
