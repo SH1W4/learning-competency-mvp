@@ -198,7 +198,7 @@ NIST's AI RMF frames trustworthy AI around characteristics including validity, r
 
 **LASTRO relevance:**
 
-It supports the architectural principle that an AI-generated signal should be evaluated within an explicit verification and governance framework rather than treated as unquestionable authority.
+It supports placing AI systems within explicit trustworthiness, evaluation, accountability, transparency and governance considerations. LASTRO applies that broader principle to its narrower architecture by treating AI interpretation as one signal rather than the sole competency authority.
 
 Source: https://www.nist.gov/itl/ai-risk-management-framework
 
@@ -224,13 +224,13 @@ Source: https://www.nist.gov/ai-measurement-and-evaluation
 
 **Role:** CONTEMPORARY RESEARCH / SUPPORT
 
-NIST's 2026 TEVV-Athlon framework further develops structured test, evaluation, verification and validation for AI systems.
+NIST's 2026 **initial public draft** of the TEVV-Athlon Framework proposes a structured approach for developing customized test, evaluation, verification and validation assessments of AI systems. It is a draft under public review, not a finalized standard.
 
 **LASTRO relevance:**
 
 It is relevant to future verifier design, especially where AI interpretation becomes one input among independently assessed signals.
 
-This is supporting evidence for the verification direction, not evidence that LASTRO's architecture is equivalent to NIST TEVV.
+This is supporting evidence for the verification direction, not evidence that LASTRO's architecture is equivalent to NIST TEVV or that the framework validates LASTRO.
 
 Source: https://www.nist.gov/artificial-intelligence/ai-research/tevv-athlon-framework-evaluating-ai-systems
 
@@ -295,7 +295,7 @@ This remains a **research-backed differentiation hypothesis**, not proof of mark
 |---|---|---|---|
 | Skills and work are changing | WEF, PwC, Deloitte | Problem relevance | LASTRO demand |
 | Competency can be explicitly defined | UNESCO competency frameworks | Structured competency model | LASTRO's assessment mechanism |
-| AI should not be treated as unquestionable authority | UNESCO, NIST | Human agency / evaluation boundary | LASTRO superiority |
+| AI interpretation should sit within human-centered evaluation and governance | UNESCO, NIST | Human agency / evaluation boundary | LASTRO superiority |
 | Evidence needs provenance | W3C PROV | Evidence lineage and traceability | LASTRO provenance novelty |
 | Claims can be machine-verifiable | W3C VC | Verification-oriented representations | LASTRO credential novelty |
 | AI systems require evaluation | NIST TEVV / AI RMF | Verification and evaluation rationale | Competency semantics |
