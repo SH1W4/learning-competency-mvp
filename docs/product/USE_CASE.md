@@ -1,198 +1,207 @@
 # MVP Use Case
 
-> **Status:** caso de uso canônico do MVP v0.1 — especificação operacional fechada.
-> **Nota:** esta definição fecha o escopo do vertical slice; não constitui validação externa de demanda.
+> **Status:** canonical MVP use case v0.2 — operational specification aligned with the Consensus Core.
+> **Note:** this closes the vertical-slice scope; it does not constitute external demand validation.
 
-## 1. Contexto organizacional
+## 1. Organizational context
 
-**Programa:** programa interno de desenvolvimento de competências em IA Aplicada para analistas e profissionais em transição de carreira.
-**Problema owner:** área de Desenvolvimento de Pessoas / L&D / treinamento e desenvolvimento.
-**Learner:** colaborador participante do programa.
-**Reviewer:** gestor, instrutor ou avaliador formalmente responsável pela atividade.
-**Verifier:** pessoa autorizada a consultar a attestation e verificar sua integridade.
+**Program:** internal applied-AI competency development program for analysts and career-transition professionals.
+**Problem owner:** People Development / L&D.
+**Learner:** employee participating in the program.
+**Adjudicator:** authorized human who resolves an exceptional verification conflict.
+**Verifier:** authorized person or system that checks the resulting attestation and integrity reference.
 
-### Problema operacional do MVP
+### MVP operational problem
 
-A organização precisa acompanhar o desenvolvimento de uma competência prática por meio de atividades e entregas observáveis. Para o MVP, o sistema deve organizar essas entregas, relacioná-las aos critérios da competência, apresentar uma interpretação assistida por IA e permitir que um revisor humano aceite, corrija ou rejeite a interpretação antes da atualização do estado.
+The organization needs to observe development of one practical competency through activities and observable work. The MVP organizes those outputs, relates them to competency criteria, produces an AI-assisted interpretation, applies independent verification mechanisms, and reaches a bounded competency state through Consensus Core.
 
-O MVP não afirma que este é o único ou principal problema de L&D. Essa é a escolha de escopo para o vertical slice.
+Human adjudication is available only when the verification mechanisms materially conflict or the case falls outside the rules.
 
-## 2. Competência canônica
+## 2. Canonical competency
 
-> **Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.**
+> **Use AI tools as support to transform a business question into a reproducible data analysis and communicate evidence-supported conclusions.**
 
-### Critérios observáveis
+### Observable criteria
 
-**C1 — Formulação**
-- transforma uma necessidade/pergunta de negócio em uma pergunta analítica clara;
-- define o que pretende responder.
+**C1 — Formulation**
+- transforms a business need/question into a clear analytical question;
+- defines what it intends to answer.
 
-**C2 — Tratamento e análise**
-- identifica/prepara os dados necessários;
-- executa uma análise coerente com a pergunta;
-- registra passos suficientes para reprodução.
+**C2 — Treatment and analysis**
+- identifies/prepares required data;
+- executes analysis coherent with the question;
+- records enough steps for reproduction.
 
-**C3 — Evidência**
-- apresenta resultados apoiados pelos dados;
-- diferencia observação, interpretação e limitação;
-- evita conclusões que não sejam sustentadas pelo material apresentado.
+**C3 — Evidence**
+- presents results supported by data;
+- distinguishes observation, interpretation and limitation;
+- avoids conclusions not supported by the presented material.
 
-**C4 — Comunicação**
-- comunica resultado, contexto e limitações de forma compreensível para o público definido.
+**C4 — Communication**
+- communicates result, context and limitations understandably for the defined audience.
 
-### Regra
+### Rule
 
-A IA pode propor sinais para C1–C4, mas não pode determinar sozinha que a competência foi demonstrada.
+AI may propose signals for C1–C4, but it cannot determine competency by itself.
 
-## 3. Trilha curta canônica
+## 3. Short canonical trail
 
-### A1 — Formular a pergunta
-Objetivo: transformar um problema de negócio em uma pergunta analítica.
-Ação: registrar pergunta, objetivo e indicador/resultado esperado.
-Saída: briefing analítico curto.
-Evidência: documento/texto estruturado.
-Critérios: C1.
+### A1 — Formulate the question
+Output: short analytical briefing. Criteria: C1.
 
-### A2 — Preparar e explorar os dados
-Objetivo: preparar o conjunto de dados e identificar padrões relevantes.
-Ação: documentar origem, preparação, variáveis relevantes e exploração inicial.
-Saída: notebook ou script acompanhado de descrição dos dados.
-Evidência: notebook/script + referência ao conjunto de dados.
-Critérios: C2.
+### A2 — Prepare and explore data
+Output: notebook/script with data preparation and exploration. Criteria: C2.
 
-### A3 — Executar análise reproduzível
-Objetivo: responder à pergunta analítica por meio de uma análise reproduzível.
-Ação: executar consultas/código, produzir resultados e registrar o caminho analítico.
-Saída: análise reproduzível.
-Evidência: notebook/script/consultas + resultados.
-Critérios: C2, C3.
+### A3 — Execute reproducible analysis
+Output: reproducible analysis plus results. Criteria: C2, C3.
 
-### A4 — Comunicar resultado
-Objetivo: transformar a análise em uma comunicação útil para decisão.
-Ação: apresentar conclusão, evidências utilizadas e limitações.
-Saída: síntese escrita ou apresentação curta.
-Evidência: síntese/apresentação.
-Critérios: C3, C4.
+### A4 — Communicate result
+Output: short synthesis/presentation with conclusions, evidence and limitations. Criteria: C3, C4.
 
-## 4. Contrato mínimo de evidência
+## 4. Minimum evidence contract
 
-O MVP aceita somente quatro classes de evidência:
+The MVP accepts four evidence classes:
 
-| Tipo | Conteúdo | Proveniência mínima | Relação |
+| Type | Content | Minimum provenance | Relation |
 | --- | --- | --- | --- |
-| briefing | pergunta e objetivo | atividade A1 + autor | C1 |
-| analysis_artifact | notebook, script ou consultas | atividade A2/A3 + referência de origem | C2/C3 |
-| analysis_result | resultados/tabelas/visualizações | atividade A3 + referência ao artefato | C3 |
-| communication | síntese/apresentação | atividade A4 + autor | C3/C4 |
+| briefing | question and objective | activity A1 + author | C1 |
+| analysis_artifact | notebook, script or queries | activity A2/A3 + origin reference | C2/C3 |
+| analysis_result | results/tables/visualizations | activity A3 + artifact reference | C3 |
+| communication | synthesis/presentation | activity A4 + author | C3/C4 |
 
-### Metadados mínimos
+Minimum metadata:
 - evidence_id;
 - type;
 - source_ref;
 - activity_id;
 - submitted_by;
 - submitted_at;
-- content_ref ou referência equivalente;
+- content_ref;
 - provenance.
 
-O sistema deve distinguir:
-- conteúdo observado na evidência;
-- interpretação produzida pela IA;
-- decisão produzida pelo reviewer.
+The system distinguishes:
+- source evidence;
+- AI interpretation;
+- independent verification results;
+- Consensus Core decision;
+- human adjudication, only when the exception path occurs.
 
-## 5. Revisão humana
+## 5. Decision and verification model
 
-O reviewer recebe evidências originais/referências, extrações, interpretações da IA, relação proposta com C1–C4 e lacunas/incertezas.
+The canonical path is:
 
-Pode:
-1. aceitar o sinal;
-2. corrigir o sinal;
-3. rejeitar o sinal;
-4. solicitar evidência adicional.
+    EVIDENCE
+       ↓
+    INTERPRETATION
+       ↓
+    INDEPENDENT VERIFICATION
+       ↓
+    CONSENSUS CORE
+       ├─ AGREEMENT → DEMONSTRATED
+       ├─ INSUFFICIENT_EVIDENCE → IN_DEVELOPMENT
+       └─ CONFLICT → HUMAN ADJUDICATION → STATE
 
-A decisão do reviewer deve ser registrada separadamente da saída da IA.
+`UNDER_REVIEW` is the competency state used while a complete evidence set is awaiting verification/consensus. It does not mean that a human reviewer is required.
 
-## 6. Estado mínimo
+### Consensus outcomes
 
-Para o vertical slice, serão usados quatro estados de desenvolvimento:
+- **AGREEMENT** — verification mechanisms converge;
+- **INSUFFICIENT_EVIDENCE** — required support is missing; the state returns to development so more evidence can be produced;
+- **CONFLICT** — relevant verification mechanisms disagree;
+- **HUMAN_ADJUDICATION** — the conflict has entered the explicit human exception path.
+
+## 6. Competency states
 
 ### NOT_STARTED
-Nenhuma evidência relevante foi apresentada.
+No relevant evidence has been presented.
 
 ### IN_DEVELOPMENT
-Existem atividades/evidências em desenvolvimento, mas os critérios necessários ainda não estão suficientemente sustentados.
+Evidence exists, but the required criteria are not yet sufficiently supported or additional evidence is needed.
 
 ### UNDER_REVIEW
-Há evidência suficiente para submeter o conjunto à revisão humana.
+The complete trail is ready for independent verification and Consensus Core evaluation.
 
 ### DEMONSTRATED
-O reviewer confirmou que os quatro critérios C1–C4 estão sustentados pelo conjunto de evidências definido para o cenário.
+Consensus Core has reached agreement, or an exceptional human adjudication has resolved a conflict with sufficient evidence.
 
-### Regra de transição
+Human adjudication never replaces the evidence or verification history; it resolves an explicit conflict.
 
-A IA pode sugerir uma transição, mas não executa sozinha a transição para DEMONSTRATED.
-A transição para DEMONSTRATED exige decisão explícita do reviewer e referência às evidências utilizadas.
+## 7. Canonical synthetic demonstration
 
-## 7. Cenário canônico de demonstração
+**Participant:** Ana — synthetic professional developing applied-AI competency.
+**Program:** Applied AI for Business Problems.
+**Problem:** understand factors associated with increased service time in a fictional operation using AI as analysis support.
 
-Usar um participante sintético:
+### Synthetic evidence
 
-**Participante:** Ana — Profissional em desenvolvimento de competência em IA Aplicada
-**Programa:** Trilha de IA Aplicada a Problemas de Negócio
-**Problema:** entender quais fatores estão associados ao aumento de tempo de atendimento em uma operação fictícia, usando IA como apoio à análise.
+1. analytical briefing;
+2. preparation/exploration notebook;
+3. reproducible analysis and results;
+4. synthesis with conclusion and limitations.
 
-### Evidências sintéticas
-1. briefing com a pergunta analítica;
-2. notebook com preparação/exploração;
-3. análise reproduzível com resultados;
-4. síntese com conclusão e limitações;
-5. revisão humana simulada.
+### Normal flow
 
-### Fluxo esperado
+    ORGANIZATION
+     → COMPETENCY
+     → TRAIL
+     → PERSON
+     → ACTIVITIES
+     → EVIDENCE
+     → INTERPRETATION
+     → VERIFICATION
+     → CONSENSUS
+     → DEMONSTRATED
+     → ATTESTATION
+     → VERIFICATION
 
-ORGANIZAÇÃO → COMPETÊNCIA → TRILHA → PESSOA → ATIVIDADES → EVIDÊNCIAS → IA → REVISÃO → DEMONSTRATED → ATTESTATION → SOLANA → VERIFICATION
+### Exceptional flow
 
-O cenário é sintético e não deve ser apresentado como usuário real, piloto ou tração.
+    CONSENSUS
+       ↓
+    CONFLICT
+       ↓
+    HUMAN ADJUDICATION
+       ↓
+    DEMONSTRATED or IN_DEVELOPMENT
 
-## 8. O que o MVP demonstra
+The scenario is synthetic and must not be presented as a real user, pilot, traction, or market-validation evidence.
 
-O MVP demonstra tecnicamente:
+## 8. What the MVP demonstrates
 
-> uma organização pode definir uma competência operacional, associá-la a uma trilha curta, reunir evidências produzidas durante essa trilha, obter uma interpretação assistida por IA, submetê-la a revisão humana e registrar um estado de desenvolvimento que pode ser atestado e posteriormente verificado.
+The MVP demonstrates technically that an organization can define a bounded competency, collect evidence from a short trail, interpret that evidence with AI assistance, apply independent verification mechanisms, reach a consensus outcome, preserve provenance, and produce a bounded competency state.
 
-## 9. O que o MVP NÃO demonstra
+## 9. What the MVP does not demonstrate
 
-O MVP não demonstra, por si só:
-- que todas as empresas possuem esse problema;
-- que L&D pagará pelo produto;
-- que a metodologia mede competência de forma universal;
-- que o estado DEMONSTRATED equivale a domínio profissional;
-- que a attestation garante a qualidade da evidência;
-- que existe tração;
-- que o produto é superior às alternativas existentes.
+It does not demonstrate:
+- that all companies have this problem;
+- willingness to pay;
+- universal competency measurement;
+- that `DEMONSTRATED` equals professional mastery;
+- that attestation guarantees evidence quality;
+- traction;
+- superiority over existing alternatives.
 
-Essas questões pertencem à validação externa e às próximas fases.
+## 10. M1 decisions
 
-## 10. Decisões do M1
-
-| Item | Decisão |
+| Item | Decision |
 | --- | --- |
-| Contexto | programa corporativo de desenvolvimento de competências em IA Aplicada a problemas de negócio |
-| Problem owner | L&D / Desenvolvimento de Pessoas |
-| Learner | colaborador participante |
-| Reviewer | gestor/instrutor/avaliador responsável |
-| Verifier | pessoa autorizada |
-| Competência | Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências. |
-| Trilha | A1–A4 |
-| Evidências | briefing, artefato de análise, resultado, comunicação |
-| Estados | NOT_STARTED, IN_DEVELOPMENT, UNDER_REVIEW, DEMONSTRATED |
-| Cenário | participante sintético + dados/caso sintéticos |
-| Attestation | estado DEMONSTRATED + contexto/referências |
-| Sensível on-chain | proibido |
-| Validação externa | permanece em M4 |
+| Context | corporate applied-AI competency development |
+| Problem owner | L&D / People Development |
+| Learner | employee participant |
+| Adjudicator | authorized human, exception path only |
+| Verifier | authorized person/system |
+| Competency | applied AI-supported reproducible data analysis |
+| Trail | A1–A4 |
+| Evidence | briefing, analysis artifact, analysis result, communication |
+| States | NOT_STARTED, IN_DEVELOPMENT, UNDER_REVIEW, DEMONSTRATED |
+| Consensus | AGREEMENT, INSUFFICIENT_EVIDENCE, CONFLICT, HUMAN_ADJUDICATION |
+| Synthetic scenario | participant + synthetic case/data |
+| Attestation | DEMONSTRATED state + context/references |
+| Sensitive on-chain | prohibited |
+| External validation | remains M4 |
 
 ## 11. Status
 
-**M1 fechado como especificação operacional v0.1.**
+**M1 operational contract aligned with the current Consensus Core.**
 
-M1 permanece fechado como contrato de referência para M2/M3. Qualquer alteração na competência, trilha, evidências ou estados deve ser tratada como mudança explícita do contrato do MVP.
+Changes to the competency, trail, evidence contract or states require an explicit MVP contract change.
