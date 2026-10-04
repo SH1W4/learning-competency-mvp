@@ -1,81 +1,118 @@
 # Research Agenda
 
-> Agenda de investigação. Não constitui roadmap comprometido.
+> **Status:** Active research agenda. Not a committed product roadmap.
 
-## RQ1 — Trabalho → competência
+## RQ1 — Work → competency
 
-Como decompor uma função em responsabilidades, tarefas e competências sem reduzir competência a palavras-chave de uma descrição de vaga?
+How can a role be decomposed into responsibilities, tasks, and competency requirements without reducing capability to keywords from a job description?
 
-**Investigar:**
-- granularidade;
-- dependências entre competências;
-- competências técnicas vs. humanas;
-- critérios observáveis;
-- participação de especialistas.
+Investigate:
 
-## RQ2 — Competência → aprendizagem
+- granularity;
+- dependencies between competencies;
+- technical vs. human competencies;
+- observable criteria;
+- expert participation;
+- provenance and uncertainty.
 
-Como transformar uma competência em experiências de aprendizagem que realmente permitam praticá-la?
+## RQ2 — Competency → development
 
-**Investigar:**
-- tipos de atividade;
-- progressão de dificuldade;
+How can a competency be translated into activities that allow a person to practice it and produce useful evidence?
+
+Investigate:
+
+- activity types;
+- progression;
 - feedback;
-- contexto de trabalho;
-- produção de evidências.
+- work context;
+- evidence production.
 
-## RQ3 — Aprendizagem → evidência
+## RQ3 — Development → evidence
 
-Quais atividades geram evidências suficientemente observáveis para apoiar uma revisão humana?
+Which activities produce evidence strong enough to enter the existing LASTRO verification pipeline?
 
-Esta pergunta conecta diretamente a camada Research / Product ao núcleo M2.
+This question connects future product research to the current core.
 
-## RQ4 — IA → engenharia de competências
+## RQ4 — AI → competency engineering
 
-Em quais etapas a IA agrega valor sem substituir julgamento humano?
+Where can AI add value without becoming the authority that determines competency?
 
-**Hipótese inicial:**
-- estruturação;
-- decomposição;
-- geração de alternativas;
-- adaptação;
-- síntese;
-- detecção de inconsistências.
+Initial hypotheses:
 
-## RQ5 — Funções emergentes
+- structuring;
+- decomposition;
+- alternative generation;
+- adaptation;
+- synthesis;
+- inconsistency detection;
+- candidate mapping.
 
-Como modelar uma profissão que ainda não possui uma taxonomia consolidada?
+## RQ5 — Emerging roles
 
-Investigar como representar:
-- hipóteses;
-- incerteza;
-- versões do modelo;
-- validação por especialistas;
-- evidências de trabalho;
-- evolução temporal.
+How can a role that does not yet have a stable taxonomy be represented?
 
-## RQ6 — Estado → capacidade organizacional
+Investigate:
 
-Como agregar estados individuais sem transformar uma representação de competência em uma métrica simplista de pessoas?
+- hypotheses;
+- uncertainty;
+- model versions;
+- expert validation;
+- observed work evidence;
+- temporal evolution.
 
-Investigar:
-- agregação por equipe;
-- lacunas organizacionais;
-- capacidade requerida vs. disponível;
-- privacidade;
-- governança;
-- uso responsável.
+## RQ6 — Competency state → organizational capability
 
-## Critério de passagem para produto
+How can individual verified states be aggregated without turning capability infrastructure into an opaque people-scoring system?
 
-Uma hipótese desta camada só deve virar requisito de produto quando houver evidência suficiente em pelo menos três dimensões:
+Investigate:
 
-1. **Problema** — existe uma necessidade real e recorrente;
-2. **Utilidade** — a solução melhora uma decisão ou processo;
-3. **Confiabilidade** — o resultado pode ser revisado, explicado e governado.
+- team-level aggregation;
+- required vs. available capability;
+- privacy;
+- governance;
+- uncertainty;
+- responsible use.
 
-Até lá, permanece como pesquisa.
+## RQ7 — Verification economics
 
-## Princípio
+What are the operational costs and latency of running independent verification at useful organizational scale?
 
-> **Não transformar uma boa arquitetura em uma lista de features antes de validar o problema que cada feature resolve.**
+Investigate:
+
+- evidence storage and processing;
+- AI inference;
+- deterministic verification;
+- human adjudication as an exception;
+- attestation;
+- observability;
+- external verification infrastructure.
+
+## RQ8 — Commercial wedge
+
+Which recurring organizational decision is painful enough to justify adoption?
+
+Investigate:
+
+- primary buyer;
+- decision owner;
+- frequency;
+- current workaround;
+- economic consequence;
+- pilot behavior;
+- willingness to pay.
+
+This is explicitly separate from technical proof.
+
+## Promotion criteria
+
+A research hypothesis should only become a product requirement when evidence is sufficient across at least:
+
+1. **Problem** — a real and recurring need is confirmed.
+2. **Utility** — the proposed mechanism improves a meaningful decision or workflow.
+3. **Reliability** — the result can be reviewed, explained, governed, and reproduced.
+
+Until then, it remains research.
+
+## Principle
+
+> **Do not turn a good architecture into a feature list before validating the problem each feature is meant to solve.**
