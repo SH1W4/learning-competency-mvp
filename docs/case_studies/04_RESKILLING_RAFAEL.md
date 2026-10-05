@@ -1,82 +1,84 @@
-# 04 — Reskilling & Social Impact: Rafael — RAG Agent Development
+# 04 — Reskilling & Social Impact: Evidence-Backed AI Skills
 
-> **Public status:** Funding / social-impact blueprint.  
-> **Evidence status:** Scenario design from the case-study source; not presented as an independently validated deployment.
+> **Project:** Learning Competency MVP (LASTRO)  
+> **Vertical:** Technical Education / Social Impact / Funding Programs  
+> **Scenario:** Instituto Futuro Tech / Rafael, AI Developer Trainee  
+> **Technical status:** **Funding and employability blueprint**  
+> **Reviewer role in scenario:** Senior mentor / software engineer
 
-## Case metadata
-
-| Field | Value |
-|---|---|
-| Vertical | Technology education / third sector / innovation grants |
-| Scenario organization | Instituto Futuro Tech |
-| Persona | Rafael — scholarship recipient / developer in training |
-| Reviewer | Senior mentor / software engineer |
-| Status in source | Funding and impact scenario |
-
-The source frames the case around employability and auditable evidence of technical competency. 
+> **Strategic note:** This case is a proposed application model. It is not evidence of an actual employment outcome, grant audit, or deployment by the named scenario organization.
 
 ## 1. Context & problem
 
-The scenario describes an organization funding intensive programming and AI training and facing difficulty demonstrating that graduates acquired market-relevant technical capabilities. 
+The scenario addresses the gap between course completion and demonstrable technical capability. It proposes replacing a generic completion signal with inspectable project evidence evaluated against explicit competency criteria.
+
+The scenario also frames a funding perspective: program sponsors may need evidence of technical outcomes beyond enrollment or attendance.
 
 ## 2. Audited competency matrix
 
-| Criterion | Observable capability |
-|---|---|
-| C1 | Knowledge-base ingestion and vector retrieval |
-| C2 | Chunking and retrieval techniques |
-| C3 | RAGAS-based response evaluation |
-| C4 | Deployment of a functional authenticated API |
+| Criterion | Technical description | Evidence expected |
+|---|---|---|
+| C1 | Connect and ingest knowledge sources into a vector database | RAG ingestion pipeline |
+| C2 | Apply semantic chunking and retrieval strategies | Retrieval implementation |
+| C3 | Evaluate answer relevance, faithfulness and precision | RAG evaluation metrics |
+| C4 | Deploy a functional authenticated API | OpenAPI specification / deployed endpoint |
 
- 
+## 3. Proposed evidence package
 
-## 3. Evidence contract
+The source case specifies:
 
-The scenario defines:
+1. `pipeline_rag_cooperativa.py` — ingestion and retrieval pipeline.
+2. `benchmark_precisao_ragas.json` — evaluation metrics.
+3. `openapi_spec.json` — API contract.
+4. `video_demonstracao_execucao.md` — execution logs and stakeholder testimony.
 
-1. `pipeline_rag_cooperativa.py`
-2. `benchmark_precisao_ragas.json`
-3. `openapi_spec.json`
-4. `video_demonstracao_execucao.md`
+These are **scenario artifacts**, not current public MVP fixtures.
 
+## 4. Evaluation model
 
-
-## 4. Verification model
-
-The source describes:
+The proposed flow is:
 
 ```
-Project artifacts
-      ↓
-Evidence engine
-      ↓
-Mentor review
-      ↓
-Attestation
+Practical Project Evidence
+          ↓
+Evidence Integrity / Provenance
+          ↓
+AI Analysis
+          ↓
+Qualified Mentor Review
+          ↓
+Attestation / Verification Record
 ```
 
-The human mentor remains the decision authority. 
+The important product principle is that the attestation should point back to the evidence and evaluation state rather than functioning as a standalone badge.
 
-## 5. Impact hypothesis
+## 5. Broader workforce context
 
-The source proposes employment and grant-accountability outcomes associated with verified evidence. 
+The World Economic Forum's *Future of Jobs Report 2025* describes substantial labour-market transformation driven by technological and other macrotrends; it estimates that job creation and displacement associated with these trends could represent 22% of today's formal employment by 2030. That context supports investigation into how organizations assess changing capabilities, but it does not validate this specific scenario or LASTRO's commercial model. [WEF — Future of Jobs 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/2-jobs-outlook/)
 
-For the public repository, these should be treated as **scenario outcomes / hypotheses**, not independently verified impact metrics.
+For trustworthy AI evaluation and governance, the [NIST AI RMF](https://www.nist.gov/itl/ai-risk-management-framework) provides a relevant external framework.
 
-## 6. Why this matters to LASTRO
+## 6. What remains unproven
 
-The case illustrates a potential bridge between:
+This case does not establish:
 
-```
-TRAINING
-   ↓
-REAL PROJECT
-   ↓
-OBSERVABLE EVIDENCE
-   ↓
-COMPETENCY STATE
-   ↓
-EMPLOYABILITY / ACCOUNTABILITY
-```
+- a real 15-day hiring outcome;
+- that 100% of a program's graduates could be proven competent;
+- grant-compliance outcomes;
+- employer willingness to accept LASTRO credentials;
+- a causal relationship between blockchain attestation and hiring.
 
-The MVP proves the evidence-verification mechanism; this case explores one possible application of that mechanism to funded learning and workforce transition.
+Those are future empirical questions.
+
+## Evidence & status boundary
+
+This document is a **case-study artifact**, not evidence of a completed customer deployment unless explicitly stated otherwise.
+
+The case studies distinguish:
+
+- **Implemented / reproducible** — supported by the public MVP code and fixtures.
+- **Scenario / blueprint** — a structured application hypothesis derived from the research and product model.
+- **External evidence** — claims supported by an identified external source.
+- **Illustrative claim** — content supplied by the case-study scenario that still requires external validation.
+
+The existence of a case study does not imply customer validation, production deployment, regulatory approval, hiring outcomes, or ROI.
