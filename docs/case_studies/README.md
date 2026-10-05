@@ -17,6 +17,7 @@ It is the only case in this portfolio currently tied directly to the public MVP 
 | [02 — HealthTech / Gabriel](./02_HEALTHTECH_GABRIEL.md) | Healthcare / AI governance | **B2B blueprint** | Test regulated-sector applicability |
 | [03 — DevSecOps / Mariana](./03_DEVSECOPS_MARIANA.md) | Software security | **B2B blueprint** | Test engineering-security applicability |
 | [04 — Reskilling / Rafael](./04_RESKILLING_RAFAEL.md) | Education / impact | **Funding blueprint** | Test evidence-backed skills model |
+| [05 — Corporate Trails / B2B](./05_TRILHAS_CORPORATIVAS_B2B.md) | Enterprise / HR / Talent | **Commercialization blueprint** | Test the B2B operating and monetization hypothesis |
 
 ## Shared decision architecture
 
