@@ -417,6 +417,23 @@ The blockchain does **not** prove that a person is universally competent, truthf
 - The resulting state can be anchored through the current Solana Devnet attestation path.
 - The integrity relationship can be independently verified.
 
+## Case Studies & B2B Strategy
+
+The LASTRO architecture is designed to be evaluated across domains, while the current public MVP remains intentionally narrow: **Case 01 — FinTech / Ana** is the implemented synthetic and reproducible anchor scenario.
+
+**[View the complete Case Studies Portfolio](docs/case_studies/README.md)**  
+**[View the Investor & Client Pitch Strategy](docs/go-to-market/01_PITCH_STRATEGY.md)**
+
+| Domain | Case | Status |
+|---|---|---|
+| **Financial AI / FinTech** | [Ana](docs/case_studies/01_FINTECH_ANA.md) | **Implemented synthetic scenario** |
+| **Healthcare / AI governance** | [Gabriel](docs/case_studies/02_HEALTHTECH_GABRIEL.md) | **B2B blueprint** |
+| **Software security / DevSecOps** | [Mariana](docs/case_studies/03_DEVSECOPS_MARIANA.md) | **B2B blueprint** |
+| **Education / impact** | [Rafael](docs/case_studies/04_RESKILLING_RAFAEL.md) | **Funding blueprint** |
+| **Enterprise / HR / Talent** | [Corporate Competency Trails](docs/case_studies/05_TRILHAS_CORPORATIVAS_B2B.md) | **Commercialization blueprint** |
+
+The portfolio is intentionally explicit about epistemic status. Case studies beyond Ana are **application hypotheses or commercialization blueprints**, not customer deployments, validated ROI, regulatory approvals, or production implementations.
+
 ## 11. What the MVP Does NOT Claim
 
 - Universal competency assessment.
