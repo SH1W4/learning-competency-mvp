@@ -13,11 +13,11 @@
 | Reviewer | Senior mentor / software engineer |
 | Status in source | Funding and impact scenario |
 
-The source frames the case around employability and auditable evidence of technical competency. fileciteturn0file4L6-L12
+The source frames the case around employability and auditable evidence of technical competency. 
 
 ## 1. Context & problem
 
-The scenario describes an organization funding intensive programming and AI training and facing difficulty demonstrating that graduates acquired market-relevant technical capabilities. fileciteturn0file4L13-L24
+The scenario describes an organization funding intensive programming and AI training and facing difficulty demonstrating that graduates acquired market-relevant technical capabilities. 
 
 ## 2. Audited competency matrix
 
@@ -28,7 +28,7 @@ The scenario describes an organization funding intensive programming and AI trai
 | C3 | RAGAS-based response evaluation |
 | C4 | Deployment of a functional authenticated API |
 
-fileciteturn0file4L25-L29 fileciteturn0file4L33-L38
+ 
 
 ## 3. Evidence contract
 
@@ -39,7 +39,7 @@ The scenario defines:
 3. `openapi_spec.json`
 4. `video_demonstracao_execucao.md`
 
-fileciteturn0file4L39-L48
+
 
 ## 4. Verification model
 
@@ -55,11 +55,11 @@ Mentor review
 Attestation
 ```
 
-The human mentor remains the decision authority. fileciteturn0file4L49-L56
+The human mentor remains the decision authority. 
 
 ## 5. Impact hypothesis
 
-The source proposes employment and grant-accountability outcomes associated with verified evidence. fileciteturn0file4L57-L64
+The source proposes employment and grant-accountability outcomes associated with verified evidence. 
 
 For the public repository, these should be treated as **scenario outcomes / hypotheses**, not independently verified impact metrics.
 
