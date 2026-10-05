@@ -38,22 +38,27 @@ These are **scenario artifacts**, not currently published LASTRO fixtures.
 
 ## 4. Evaluation model
 
-The blueprint follows the same public MVP principle:
+The blueprint should inherit the current LASTRO decision architecture:
 
 ```
 Evidence Artifacts
       ↓
-Deterministic Hashing
+┌────────────────────────────────────┐
+│ Independent Verification           │
+│ • Evidence / Integrity             │
+│ • Deterministic Criteria           │
+│ • AI Interpretation                │
+└────────────────────────────────────┘
       ↓
-AI Technical Recommendation
-      ↓
-DPO / Qualified Human Review
-      ↓
-Attested Decision Record
+Consensus Core
+   ├─ AGREEMENT → state update
+   ├─ INSUFFICIENT_EVIDENCE → request / hold
+   └─ CONFLICT → Human Adjudication
 ```
 
-The human reviewer remains responsible for the final decision. The case therefore uses the LASTRO architecture as a governance pattern rather than claiming that an AI model can independently authorize regulated processing.
+For this HealthTech scenario, the DPO is therefore **not a routine fourth verifier or an automatic approval authority**. The DPO becomes the human adjudicator when a material conflict cannot be resolved by the defined verification rules, or when contextual/legal interpretation is explicitly required by governance.
 
+The adjudication record should preserve the conflicting signals, evidence references, criterion-level decisions, rationale, reviewer identity, timestamp and rule version. A regulated-context decision must remain attributable to the qualified human; the attestation records the decision state and provenance rather than transferring legal responsibility to LASTRO.
 ## 5. Regulatory references
 
 The ANPD describes the RIPD as documentation for processing operations that may create high risk to data-protection principles and rights, and identifies the controller as responsible for preparing it. This makes the RIPD a useful reference point for the scenario, but does **not** mean that a LASTRO attestation itself constitutes regulatory compliance. [ANPD — RIPD](https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd)
