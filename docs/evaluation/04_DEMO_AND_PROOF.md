@@ -108,6 +108,10 @@ The repository maintains automated coverage for the core flow, including:
 
 Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
 
+### Current automated verification snapshot
+
+As of the current `main` snapshot, the repository contains **11 test files and 77 declared test cases**. The latest CI run on 2026-10-05 completed successfully for test, typecheck, and dependency-audit steps. This is a point-in-time verification snapshot; the count must be regenerated if the suite changes.
+
 ## Current public-proof status
 
 The repository contains the attestation and verification path. The current `m3.attestation.v2` Devnet transaction remains an M4 closing artifact; no historical transaction should be presented as the current proof.
