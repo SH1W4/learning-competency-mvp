@@ -1,26 +1,56 @@
 # File-Level Publication Classification Matrix
 
 **Status:** operational baseline — file-level triage
-**Review pass:** 2026-10-04 — content-level reconciliation of public candidates
-**Date:** 2026-10-04
+**Review pass:** 2026-10-05 — publication class + public-surface role reconciliation
+**Date:** 2026-10-05
 
 This is the authoritative file-level classification for the current LASTRO repository. It marks every file currently tracked in the public repository; migrated files are recorded in the private Vault manifest.
+
+The matrix now separates two questions that were previously conflated:
+
+1. **Publication Class** — how the file should be treated from a publication/exposure perspective.
+2. **Public Surface Role** — what function the file serves, if any, in the current public surface.
+
+This prevents `PUBLIC-WITH-REVIEW` from meaning “this must remain part of the canonical public surface.” A file may be publicly accessible today while still being optional, future-facing, or awaiting curation.
 
 ## Classes
 
 | Class | Meaning | Action now |
 |---|---|---|
-| `PUBLIC` | Intentionally public and useful for reproducibility, evaluation, auditability, or understanding | Keep public |
-| `PUBLIC-WITH-REVIEW` | Public candidate, but review/redaction should precede a future curated Vault release | Keep for now; review later |
+| `PUBLIC` | Intentionally public and part of the current public surface; useful for reproducibility, evaluation, auditability, or understanding | Keep public and treat as current canonical public material |
+| `PUBLIC-WITH-REVIEW` | Publicly accessible today, but not necessarily part of the canonical public surface; future-facing, optional, or awaiting curation | Keep public for now; do not treat as required current-state material; review at the next curation pass |
 | `REVIEW` | Potentially sensitive or historically internal; requires explicit decision before being treated as public canonical knowledge | Do not promote; assess |
 | `RESTRICTED-LATER` | Intended for the future controlled Vault/workspace | Do not copy into a future public Vault without review |
 | `SECRET STORE` | Secrets/credentials/signing material | Never commit |
 
-> **Important:** Because this GitHub repository is already public, `RESTRICTED-LATER` does not make a file private today. It marks the intended future classification. Physical separation happens only when the Vault is created.
+> **Important:** Because this GitHub repository is already public, `REVIEW` and `RESTRICTED-LATER` do not make a file private today. They describe intended handling. Physical separation happens through migration to the private Vault or another controlled store.
+
+## Public Surface Roles
+
+The role column answers: **“What function does this file have in the current public surface?”**
+
+| Role | Meaning |
+|---|---|
+| `CORE` | Current product, architecture, implementation, tests, reproducible fixtures, or governance required to understand/reproduce/audit the MVP |
+| `EVIDENCE` | External evidence, related work, benchmarks, or methodological material supporting evaluation of the current thesis |
+| `NAVIGATION` | Indexes, maps, READMEs, and orientation documents that help a reviewer traverse the public repository |
+| `RESEARCH-ARTICLE` | Curated article research intentionally exposed as part of the public evidence/methodological boundary |
+| `PRODUCT-THESIS` | Product thesis or bounded strategic framing that contextualizes the current public MVP |
+| `FUTURE-RESEARCH` | Research or hypotheses beyond the closed MVP contract; public today only as optional/future-facing material |
+| `RESEARCH-PLANNING` | Research agenda, open questions, or planning material for work beyond the current MVP |
+| `PACKAGE` | Dependency/package metadata required by the public implementation |
+
+### Interpretation rule
+
+**Publication Class controls exposure. Public Surface Role controls necessity.**
+
+Therefore, `PUBLIC-WITH-REVIEW + FUTURE-RESEARCH/RESEARCH-PLANNING` means publicly accessible but not part of the canonical current-state narrative. A future curation pass may promote, consolidate, archive, or migrate such a file without changing the historical record.
+
+No role implies implementation authority. Research and thesis documents do not alter the MVP contract unless explicitly promoted through the normal product/architecture process.
 
 ## File inventory
 
-| Path | Class |
+| Path | Publication Class | Public Surface Role |
 |---|---|
 | `.env.example` | `PUBLIC` |
 | `.gitattributes` | `PUBLIC` |
@@ -90,18 +120,23 @@ This is the authoritative file-level classification for the current LASTRO repos
 | `fixtures/synthetic/ana/adjudication_demonstrated.json` | `PUBLIC` |
 | `package-lock.json` | `PUBLIC-WITH-REVIEW` |
 | `package.json` | `PUBLIC` |
-| `research/01_DYNAMIC_ROLE_ARCHITECTURE.md` | `PUBLIC-WITH-REVIEW` |
-| `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` |
-| `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` |
-| `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` |
-| `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` |
-| `research/README.md` | `PUBLIC-WITH-REVIEW` |
-| `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC` |
-| `research/RESEARCH_MAP.md` | `PUBLIC` |
-| `research/product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | `PUBLIC-WITH-REVIEW` |
-| `research/product/PRODUCT_THESIS.md` | `PUBLIC` |
-| `research/product/README.md` | `PUBLIC-WITH-REVIEW` |
-| `research/product/RESEARCH_AGENDA.md` | `PUBLIC-WITH-REVIEW` |
+| `research/01_DYNAMIC_ROLE_ARCHITECTURE.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
+| `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
+| `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
+| `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` | `EVIDENCE` |
+| `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` | `EVIDENCE` |
+| `research/README.md` | `PUBLIC-WITH-REVIEW` | `NAVIGATION` |
+| `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC` | `EVIDENCE` |
+| `research/RESEARCH_MAP.md` | `PUBLIC` | `NAVIGATION` |
+| `research/article/README.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
+| `research/article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
+| `research/article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
+| `research/article/RELATED_WORK_MATRIX.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
+| `research/article/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
+| `research/product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
+| `research/product/PRODUCT_THESIS.md` | `PUBLIC` | `PRODUCT-THESIS` |
+| `research/product/README.md` | `PUBLIC-WITH-REVIEW` | `NAVIGATION` |
+| `research/product/RESEARCH_AGENDA.md` | `PUBLIC-WITH-REVIEW` | `RESEARCH-PLANNING` |
 | `src/.gitkeep` | `PUBLIC` |
 | `src/README.md` | `PUBLIC` |
 | `src/adjudication/adjudication.ts` | `PUBLIC` |
@@ -144,10 +179,12 @@ This is the authoritative file-level classification for the current LASTRO repos
 
 1. `src/`, `tests/`, synthetic fixtures, canonical architecture and bounded research remain public when they are part of the reproducible proof.
 2. Strategic execution, private operating intelligence, internal agent skills and task planning are candidates for the future restricted layer.
-3. Research is **not** public by default. It is classified by content and maturity. Article working material may be kept in the private Vault until literature closure and explicit promotion.
-4. A file may move from `PUBLIC-WITH-REVIEW` or `REVIEW` to `PUBLIC` after evidence/claim review and removal of confidential material.
-5. A file may move to `RESTRICTED-LATER` when publication would expose non-public strategy, partner information, sensitive competitive intelligence, private deliberation, or other controlled information.
-6. Credentials, private keys, tokens and signing material are never solved by classification; they must not enter the repository.
+3. Research is **not** public by default. It is classified by content, maturity, and current public-surface role.
+4. `PUBLIC-WITH-REVIEW` means **publicly accessible but not necessarily canonical current-state material**. It must not be interpreted as “required to understand the current MVP.”
+5. A `PUBLIC-WITH-REVIEW` file may later be promoted to `PUBLIC`, consolidated with another document, archived, or migrated to the private Vault after an explicit curation decision.
+6. A file may move to `REVIEW` or `RESTRICTED-LATER` when publication would expose non-public strategy, partner information, sensitive competitive intelligence, private deliberation, or other controlled information.
+7. Credentials, private keys, tokens and signing material are never solved by classification; they must not enter the repository.
+8. **Current MVP closure takes precedence over future research surface area.** Future-facing material should remain visibly subordinate to the closed MVP contract.
 
 ## Article research track
 
@@ -162,11 +199,17 @@ The curated article-research artifacts are intentionally public because they pro
 
 ## Current interpretation
 
-The repository is already public. This matrix is the **file-level publication authority for the current public repository**. Files migrated to the private Vault are no longer tracked here; their migration is recorded in `MIGRATION_MANIFEST_2026-10-04.md` in `SH1W4/lastro-vault-1`.
+The repository is already public. This matrix is the **file-level publication authority for the current public repository**.
+
+The public surface should be read in this order:
+
+`CORE → EVIDENCE → NAVIGATION → RESEARCH-ARTICLE / PRODUCT-THESIS → FUTURE-RESEARCH / RESEARCH-PLANNING`
+
+Files migrated to the private Vault are no longer tracked here; their migration is recorded in `MIGRATION_MANIFEST_2026-10-04.md` in `SH1W4/lastro-vault-1`.
 
 The authoritative principle is:
 
-> If a file is necessary to understand, reproduce, audit, challenge, or contextualize a public LASTRO claim, default to public. If publication exposes confidential, strategic, private, or security-sensitive information, keep it outside the future public layer.
+> **Publication class tells us what may be public. Surface role tells us why it is public. Neither makes future research part of the current MVP.**
 
 ## Reclassification
 
