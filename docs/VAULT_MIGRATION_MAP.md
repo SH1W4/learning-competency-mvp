@@ -168,7 +168,7 @@ Public derivative should explain the demo objective, canonical journey, what eac
 - `research/02_ROLE_DELTA_MODEL.md` → 🟡
 - `research/03_DATA_STATISTICAL_ROBUSTNESS.md` → 🟡
 - `research/04_MARKET_VALIDATION_EVIDENCE.md` → 🟢
-- `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` → 🟡
+- `research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` → 🟡
 - `research/06_DECISIONS.md` → 🟡
 - `research/07_VERIFICATION_INFRASTRUCTURE_BENCHMARK.md` → 🔴 initially; future public derivative only by explicit decision.
 - Article research track (`research/article/`) → 🟢 public curated research. It must remain labeled as scoped review / research hypothesis. Private drafts or sensitive article working material may remain in the Vault.
