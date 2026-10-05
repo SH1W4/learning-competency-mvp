@@ -16,6 +16,7 @@ The four cases below test the same conceptual chain across different domains. On
 | 02 | HealthTech / AI governance | Gabriel — Data & AI Governance | De-identification, re-identification risk, prompt traffic controls, regulatory documentation | **B2B expansion blueprint** |
 | 03 | DevSecOps | Mariana — Backend Engineer | AI-generated code security, prompt-injection defenses, security testing, secrets management | **B2B expansion blueprint** |
 | 04 | Reskilling / Social Impact | Rafael — AI developer trainee | RAG ingestion, retrieval, evaluation, API deployment | **Funding / employability blueprint** |
+| 05 | Enterprise B2B | CHROs / CTOs / L&D / Talent Acquisition | Corporate competency trails, reskilling & evidence-based hiring | **Commercialization blueprint — hypothesis** |
 
 ## Common architectural pattern
 
