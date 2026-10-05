@@ -18,22 +18,34 @@ It is the only case in this portfolio currently tied directly to the public MVP 
 | [03 — DevSecOps / Mariana](./03_DEVSECOPS_MARIANA.md) | Software security | **B2B blueprint** | Test engineering-security applicability |
 | [04 — Reskilling / Rafael](./04_RESKILLING_RAFAEL.md) | Education / impact | **Funding blueprint** | Test evidence-backed skills model |
 
-## Shared pattern
+## Shared decision architecture
+
+All case studies should use the **current LASTRO Consensus Core**, not a simplified “AI recommendation → human review” model.
 
 ```
-Work Artifacts
-      ↓
-Deterministic Evidence Processing
-      ↓
-AI Recommendation
-      ↓
-Human Review / Adjudication
-      ↓
-Attestation / Verification
+EVIDENCE
+   ↓
+Independent Verification
+   ├─ Evidence / Integrity
+   ├─ Deterministic Criteria
+   └─ AI Interpretation
+   ↓
+CONSENSUS CORE
+   ├─ AGREEMENT → automatic state update
+   ├─ INSUFFICIENT_EVIDENCE → request / hold
+   └─ CONFLICT → HUMAN ADJUDICATION
+                         ↓
+                  DEMONSTRATED
+                  or IN_DEVELOPMENT
+   ↓
+ATTESTATION
+   ↓
+VERIFICATION
 ```
 
-This pattern should not be interpreted as “blockchain proves competency.” The attestation layer protects the integrity and verifiability of a record; the competency claim depends on the evidence, criteria, interpretation, review and decision state.
+Human adjudication is an **exception path**. It is not a fourth verifier and is not invoked merely because a case is high-stakes. The adjudicator resolves a material conflict with a criterion-level record of evidence, action, rationale, identity, timestamp and rule/version context. Previous verification results remain preserved.
 
+The canonical implementation is documented in [Consensus Core](../architecture/CONSENSUS_CORE.md) and [Human Adjudication tests](https://github.com/SH1W4/learning-competency-mvp/blob/main/tests/adjudication.test.ts).
 ## Evidence hierarchy
 
 The case-study layer deliberately distinguishes:
