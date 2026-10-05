@@ -1,83 +1,86 @@
-# 02 — HealthTech: Gabriel — LLM Governance & De-identification
+# 02 — HealthTech: LLM Governance & Medical-Record De-identification
 
-> **Public status:** B2B expansion blueprint.  
-> **Evidence status:** Scenario design from the case-study source; not presented as a deployed customer implementation.  
-> **Regulatory note:** The source discusses LGPD/HIPAA; this document does not constitute legal advice or regulatory certification.
+> **Project:** Learning Competency MVP (LASTRO)  
+> **Vertical:** Healthcare / Diagnostic Medicine  
+> **Scenario:** MedVanguarda / Gabriel, Data & Health Systems Governance Analyst  
+> **Technical status:** **B2B expansion blueprint**  
+> **Reviewer role in scenario:** DPO / Data Protection Officer
 
-## Case metadata
+> **Strategic note:** This is an application blueprint. It is not evidence of a real hospital deployment, real patient-data processing, regulatory approval, or a production DPO decision.
 
-| Field | Value |
-|---|---|
-| Vertical | Health / diagnostic medicine / hospitals |
-| Scenario organization | MedVanguarda |
-| Persona | Gabriel — Data & Health Systems Governance Analyst |
-| Reviewer role | DPO |
-| Status in source | B2B expansion for high-regulatory-risk verticals |
+## 1. Context & risk
 
-The source frames this as an expansion scenario rather than the current MVP. 
+The scenario explores a healthcare organization adopting AI assistants for clinical-history summarization while needing to control exposure of sensitive personal data.
 
-## 1. Context & problem
+The source case frames the competency requirement around practical ability to de-identify and protect data before interaction with external model providers.
 
-The scenario concerns the use of LLM assistants to summarize clinical histories and electronic records while dealing with highly sensitive health data. The central competency problem is whether a professional can demonstrate safe handling and governance practices rather than merely claim knowledge of the relevant rules. 
+**Scenario pain point:** a generic “AI + LGPD” credential does not establish that a practitioner can implement and document effective privacy controls.
 
 ## 2. Audited competency matrix
 
-| Criterion | Observable capability |
-|---|---|
-| C1 | Automated removal of identifying information using Regex / NLP |
-| C2 | Prevention of re-identification through contextual clues |
-| C3 | Prompt-traffic auditing and local controls |
-| C4 | Documentation and regulatory compliance reporting |
+| Criterion | Technical description | Evidence expected |
+|---|---|---|
+| C1 | Build automated de-identification pipelines for names, identifiers, dates and addresses | Python/NLP pipeline |
+| C2 | Reduce re-identification risk from contextual combinations | Redaction rules / tests |
+| C3 | Configure prompt-traffic controls and audit logs | Security configuration / logs |
+| C4 | Produce a privacy-impact assessment aligned with applicable requirements | RIPD / compliance report |
 
+## 3. Proposed evidence package
 
+The source case specifies four artifacts:
 
-## 3. Evidence contract
+1. `pipeline_desidentificacao.py` — biomedical NER / sanitization pipeline.
+2. `log_validacao_sanitizacao.csv` — validation report over synthetic records.
+3. `arquitetura_seguranca_llm.md` — architecture and retention controls.
+4. `relatorio_impacto_anpd.pdf` — proposed technical report for governance review.
 
-The source scenario specifies four artifacts:
+These are **scenario artifacts**, not currently published LASTRO fixtures.
 
-1. `pipeline_desidentificacao.py`
-2. `log_validacao_sanitizacao.csv`
-3. `arquitetura_seguranca_llm.md`
-4. `relatorio_impacto_anpd.pdf`
+## 4. Evaluation model
 
-
-
-These should be understood as **scenario-defined evidence types** until actual external pilot evidence exists.
-
-## 4. Verification model
-
-The case proposes:
+The blueprint follows the same public MVP principle:
 
 ```
-Engineering artifacts
+Evidence Artifacts
       ↓
-SHA-256 integrity
+Deterministic Hashing
       ↓
-AI analysis
+AI Technical Recommendation
       ↓
-DPO / human arbitration
+DPO / Qualified Human Review
       ↓
-Reviewed state
-      ↓
-Attestation
+Attested Decision Record
 ```
 
-The source explicitly places the final responsibility with the human DPO rather than the AI. 
+The human reviewer remains responsible for the final decision. The case therefore uses the LASTRO architecture as a governance pattern rather than claiming that an AI model can independently authorize regulated processing.
 
-## 5. Attestation boundary
+## 5. Regulatory references
 
-The source proposes a Solana Devnet record linked to the evaluated credential and reviewer identity. 
+The ANPD describes the RIPD as documentation for processing operations that may create high risk to data-protection principles and rights, and identifies the controller as responsible for preparing it. This makes the RIPD a useful reference point for the scenario, but does **not** mean that a LASTRO attestation itself constitutes regulatory compliance. [ANPD — RIPD](https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd)
 
-For the public MVP, this should be treated as an **architecture extension**, not as proof of regulatory compliance or legal exoneration.
+For AI risk governance, the scenario can also be mapped to the [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework).
 
-## 6. What this case is for
+## 6. What remains unproven
 
-This case demonstrates how the LASTRO pattern could be adapted to a high-risk environment where:
+This case does not establish:
 
-- evidence must be specific;
-- automated interpretation cannot be the final authority;
-- human governance is explicit;
-- provenance and integrity matter.
+- compliance with LGPD or HIPAA;
+- zero PII leakage;
+- legal responsibility transfer;
+- immunity from regulatory sanctions;
+- production suitability of the proposed controls.
 
-It is **not evidence that LASTRO is already deployed in healthcare**.
+Those claims require actual organizational evidence, technical testing, legal analysis and qualified review.
 
+## Evidence & status boundary
+
+This document is a **case-study artifact**, not evidence of a completed customer deployment unless explicitly stated otherwise.
+
+The case studies distinguish:
+
+- **Implemented / reproducible** — supported by the public MVP code and fixtures.
+- **Scenario / blueprint** — a structured application hypothesis derived from the research and product model.
+- **External evidence** — claims supported by an identified external source.
+- **Illustrative claim** — content supplied by the case-study scenario that still requires external validation.
+
+The existence of a case study does not imply customer validation, production deployment, regulatory approval, hiring outcomes, or ROI.
