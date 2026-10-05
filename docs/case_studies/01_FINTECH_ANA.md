@@ -17,11 +17,11 @@
 | Implementation | `fixtures/synthetic/ana/` |
 | Validation | 44 Vitest tests, according to the source case study |
 
-The source document explicitly identifies this as the official MVP scenario and says it is implemented in synthetic fixtures. fileciteturn0file3L9-L13
+The source document explicitly identifies this as the official MVP scenario and says it is implemented in synthetic fixtures. 
 
 ## 1. Context & problem
 
-The scenario describes a financial organization using LLMs for credit-risk analysis and quarterly financial-statement summarization. The narrative contrasts course completion with demonstrated ability to produce evidence-supported financial analysis. fileciteturn0file3L14-L22
+The scenario describes a financial organization using LLMs for credit-risk analysis and quarterly financial-statement summarization. The narrative contrasts course completion with demonstrated ability to produce evidence-supported financial analysis. 
 
 The problem is therefore framed as:
 
@@ -36,7 +36,7 @@ The problem is therefore framed as:
 | C3 | Iterative query optimization to improve precision and reduce token cost |
 | C4 | Traceability and documentation of source data versus inference |
 
-These four criteria are specified in the source case. fileciteturn0file3L23-L30 fileciteturn0file3L34-L37
+These four criteria are specified in the source case.  
 
 ## 3. Evidence artifacts
 
@@ -47,7 +47,7 @@ The source identifies four synthetic project artifacts:
 3. `a3_analise.ipynb` — chained analysis and validation.
 4. `a4_sintese.md` — executive synthesis with traceable conclusions.
 
-fileciteturn0file3L38-L47
+
 
 For the current repository, the canonical fixture content describes a synthetic operations-analysis scenario and should be treated as the implementation source of truth. Do not infer that the PDF's fictional financial narrative is itself the runtime fixture.
 
@@ -69,13 +69,13 @@ Reviewed competency state
 Solana Devnet attestation
 ```
 
-The source specifically describes the AI as identifying demonstrated criteria and a gap, followed by human review and a final reviewed state. fileciteturn0file3L48-L59
+The source specifically describes the AI as identifying demonstrated criteria and a gap, followed by human review and a final reviewed state. 
 
 The broader LASTRO MVP documentation remains authoritative for the exact implementation semantics.
 
 ## 5. Attestation
 
-The source describes anchoring the deterministic payload on Solana Devnet via the Memo Program and exposing a transaction that can be independently inspected. fileciteturn0file3L60-L67
+The source describes anchoring the deterministic payload on Solana Devnet via the Memo Program and exposing a transaction that can be independently inspected. 
 
 For the actual reproducible command path, use:
 
