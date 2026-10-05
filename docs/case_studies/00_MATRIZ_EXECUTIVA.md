@@ -1,62 +1,74 @@
-# LASTRO — Case Study Portfolio
+# 00 — Case Study Portfolio Matrix
 
-> **Source:** Executive Case Study Matrix, dated 2026-10-01.  
-> **Classification:** Public product / market narrative artifact.  
-> **Important:** The portfolio distinguishes the implemented MVP anchor from expansion blueprints. It is not evidence of customer validation by itself.
+> **Project:** Learning Competency MVP (LASTRO)  
+> **Source:** Case-study portfolio supplied in the project dataroom, dated 1 October 2026  
+> **Purpose:** Show how the same evidence-to-competency pattern can be instantiated across distinct operating environments without presenting future scenarios as current product capability.
 
-## Purpose
+## Portfolio thesis
 
-The case-study portfolio translates the LASTRO verification pattern into concrete organizational scenarios.
+The portfolio explores a common problem across enterprise work and talent-development contexts: **completion signals and generic credentials are weaker evidence of practical capability than inspectable work artifacts**.
 
-The source matrix identifies four case studies and a separate strategic B2B track covering reskilling and hiring.  
+The four cases below test the same conceptual chain across different domains. Only Case 01 is tied to the current public MVP fixture set. Cases 02–04 are expansion blueprints and should be read as **application hypotheses**, not deployed customer evidence.
 
-## Portfolio
-
-| # | Vertical | Persona | Competency audited | Status |
+| # | Vertical | Persona | Competency focus | Public status |
 |---|---|---|---|---|
-| 01 | FinTech & AI | Ana — Junior Data Scientist | Financial prompt engineering & hallucination prevention | **MVP anchor — implemented in synthetic fixtures** |
-| 02 | HealthTech & Regulation | Gabriel — Data Governance Analyst | Medical-data anonymization & LGPD/HIPAA-oriented LLM governance | **B2B expansion blueprint** |
-| 03 | DevSecOps & Software | Mariana — Backend Engineer | Security review of AI-generated code & injection prevention | **Engineering expansion blueprint** |
-| 04 | Reskilling & Social Impact | Rafael — Bootcamp fellow | RAG agent development & evidenced employability | **Funding / impact blueprint** |
-| 05 | B2B Reskilling & Hiring | CHROs, CTOs & recruiters | Evidence-based reskilling and hiring workflows | **Strategic monetization track — not a case study** |
+| 01 | FinTech / AI Finance | Ana — Data Scientist | Prompt engineering, hallucination mitigation, traceability | **MVP anchor — synthetic, reproducible** |
+| 02 | HealthTech / AI governance | Gabriel — Data & AI Governance | De-identification, re-identification risk, prompt traffic controls, regulatory documentation | **B2B expansion blueprint** |
+| 03 | DevSecOps | Mariana — Backend Engineer | AI-generated code security, prompt-injection defenses, security testing, secrets management | **B2B expansion blueprint** |
+| 04 | Reskilling / Social Impact | Rafael — AI developer trainee | RAG ingestion, retrieval, evaluation, API deployment | **Funding / employability blueprint** |
 
-## Shared architectural pattern
+## Common architectural pattern
 
-The source matrix describes the common custody chain as:
+The source portfolio describes a common chain:
 
 ```
 Work Artifacts
     ↓
-SHA-256
+Deterministic Hashing
     ↓
-AI Suggestion — non-binding
+AI Analysis / Recommendation
     ↓
-Human Arbitration
+Human Review / Adjudication
     ↓
-Solana Devnet Attestation
+Attestation / Verification Record
 ```
 
-This is the portfolio's **scenario-level narrative**. The canonical MVP architecture and implementation documentation remain authoritative for what is actually implemented. 
+For LASTRO, the important product boundary is that **cryptographic integrity does not establish competency by itself**. The evidence must still be interpreted against explicit competency criteria, reviewed under the project's decision model, and represented with its uncertainty and provenance.
 
-## Evidence boundary
+## How evaluators should read this portfolio
 
-### Case 01
+1. Start with [Case 01 — FinTech / Ana](./01_FINTECH_ANA.md).
+2. Reproduce the scenario using [`fixtures/synthetic/ana/`](../../fixtures/synthetic/ana/).
+3. Inspect the public evaluation pipeline and attestation implementation.
+4. Treat Cases 02–04 as verticalization hypotheses rather than customer proof.
+5. Use the research track to inspect the external foundations and limitations behind the thesis.
 
-Case 01 is the canonical MVP scenario. The source identifies it as 100% implemented in `fixtures/synthetic/ana/` and validated by 44 Vitest tests. 
+## Related public evidence
 
-### Cases 02–04
+- [Article Research Track](../../research/article/README.md)
+- [Research Map](../../research/RESEARCH_MAP.md)
+- [Reproducible Demo Contract](../demo/REPRODUCIBLE_DEMO_CONTRACT.md)
+- [Project Status](../PROJECT_STATUS.md)
+- [Technical Architecture](../architecture/TECHNICAL_ARCHITECTURE.md)
+- [Consensus Core](../architecture/CONSENSUS_CORE.md)
 
-These documents describe expansion scenarios. They should be read as **application blueprints**, not as evidence that LASTRO has already deployed these workflows with the named organizations or people.
+## External frameworks referenced by the portfolio
 
-### Strategic track
+- [W3C Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [ANPD — RIPD guidance](https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd)
+- [WEF — Future of Jobs 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/2-jobs-outlook/)
 
-The B2B reskilling/hiring row is a commercial direction rather than a fifth implementation case. 
+## Evidence & status boundary
 
-## Recommended reading order
+This document is a **case-study artifact**, not evidence of a completed customer deployment unless explicitly stated otherwise.
 
-1. [Case 01 — FinTech / Ana](./01_FINTECH_ANA.md)
-2. [Case 02 — HealthTech / Gabriel](./02_HEALTHTECH_GABRIEL.md)
-3. [Case 03 — DevSecOps / Mariana](./03_DEVSECOPS_MARIANA.md)
-4. [Case 04 — Reskilling / Rafael](./04_RESKILLING_RAFAEL.md)
+The case studies distinguish:
 
-For implementation truth, return to the main README, the canonical MVP documentation, source code, tests and reproducible demo.
+- **Implemented / reproducible** — supported by the public MVP code and fixtures.
+- **Scenario / blueprint** — a structured application hypothesis derived from the research and product model.
+- **External evidence** — claims supported by an identified external source.
+- **Illustrative claim** — content supplied by the case-study scenario that still requires external validation.
+
+The existence of a case study does not imply customer validation, production deployment, regulatory approval, hiring outcomes, or ROI.
