@@ -1,72 +1,87 @@
-# 03 — DevSecOps: Mariana — Security Review of AI-Generated Code
+# 03 — DevSecOps: Security Review of AI-Generated Code
 
-> **Public status:** Engineering expansion blueprint.  
-> **Evidence status:** Scenario design from the case-study source; not presented as a deployed customer implementation.
+> **Project:** Learning Competency MVP (LASTRO)  
+> **Vertical:** Software Engineering / Application Security  
+> **Scenario:** CloudScale Technologies / Mariana, Mid-level Backend Engineer  
+> **Technical status:** **B2B expansion blueprint**  
+> **Reviewer role in scenario:** AppSec Lead
 
-## Case metadata
-
-| Field | Value |
-|---|---|
-| Vertical | Software engineering / cybersecurity |
-| Scenario organization | CloudScale Technologies |
-| Persona | Mariana — Mid-level Backend Engineer |
-| Reviewer | AppSec Lead / Principal Engineer |
-| Status in source | Expansion into software engineering and information security |
-
-The source identifies this as an expansion scenario. 
+> **Strategic note:** This case is a verticalization blueprint. It is not evidence of a real CloudScale deployment, a verified vulnerability-remediation program, or a completed SOC 2 / ISO 27001 audit.
 
 ## 1. Context & problem
 
-The scenario focuses on the increasing use of AI coding assistants and the resulting need to verify whether developers can identify and remediate vulnerabilities in AI-generated code. The case explicitly names injection, authorization and prompt-injection risks. 
+The scenario addresses a practical consequence of AI-assisted software development: faster code production increases the importance of demonstrating that developers can inspect, test and secure machine-generated code.
+
+The source case focuses on injection, authorization, prompt-injection and secret-management risks.
 
 ## 2. Audited competency matrix
 
-| Criterion | Observable capability |
-|---|---|
-| C1 | Detection of security flaws in AI-generated code |
-| C2 | Sanitization and protection against prompt-injection / jailbreak paths |
-| C3 | Automated security testing |
-| C4 | Secure management of secrets |
+| Criterion | Technical description | Evidence expected |
+|---|---|---|
+| C1 | Detect security flaws in AI-generated code | Reviewed code diff |
+| C2 | Apply prompt / agent guardrails against injection | Guardrail implementation |
+| C3 | Write automated security tests that exercise vulnerabilities | Security test suite |
+| C4 | Prevent secrets from entering model context or final code | Secret-management evidence |
 
+## 3. Proposed evidence package
 
+The source case specifies:
 
-## 3. Evidence contract
+1. `pull_request_diff.patch` — security-focused code change.
+2. `test_security_exploit.ts` — exploit regression tests.
+3. `prompt_security_guardrails.py` — agent-input protection.
+4. `analise_post_mortem_vulnerabilidade.md` — explanation of the original weakness and mitigation.
 
-The source defines four artifacts:
+These artifacts are **not currently published as LASTRO fixtures**.
 
-1. `pull_request_diff.patch`
-2. `test_security_exploit.ts`
-3. `prompt_security_guardrails.py`
-4. `analise_post_mortem_vulnerabilidade.md`
+## 4. Evaluation model
 
-
-
-## 4. Verification model
-
-The proposed pipeline is:
+The blueprint applies:
 
 ```
-Code / tests / analysis
-      ↓
-Deterministic hashing
-      ↓
-AI pre-analysis
-      ↓
-AppSec review
-      ↓
-Attested decision
+Code / Tests / Security Evidence
+          ↓
+Deterministic Hashing & Provenance
+          ↓
+AI Pre-analysis
+          ↓
+AppSec Human Review
+          ↓
+Attestation
 ```
 
-The source describes human AppSec review as the final decision layer. 
+The architecture is deliberately compatible with established application-security practice rather than replacing it.
 
-## 5. Attestation and organizational value
+## 5. External security foundations
 
-The source proposes a verifiable credential anchored on Solana Devnet and describes potential use in security/compliance contexts. 
+OWASP Top 10:2021 identifies broken access control and injection among the major classes of web-application risk. OWASP also recommends source-code review and automated testing as part of detecting and preventing injection vulnerabilities. These references support the **competency criteria**, not the claim that the scenario has already occurred in production.
 
-Those are **future application claims**, not current evidence of SOC 2 / ISO 27001 outcomes.
+- [OWASP Top 10:2021](https://owasp.org/www-project-top-ten/)
+- [OWASP A01 — Broken Access Control](https://top10.owasp.org/2021/A01_2021-Broken_Access_Control/)
+- [OWASP A03 — Injection](https://top10.owasp.org/2021/A03_2021-Injection/)
+- [OWASP A09 — Security Logging and Monitoring](https://owasp.org/Top10/en/A09_2021-Security_Logging_and_Monitoring_Failures/)
 
-## 6. Why this matters to LASTRO
+## 6. What remains unproven
 
-The case tests whether the same evidence-to-state architecture can operate where the competency criteria are technical, adversarial and testable.
+The case does not establish:
 
-It therefore serves as a useful **vertical expansion hypothesis**, while the current MVP remains bounded to its canonical scenario.
+- a measured 40% productivity gain;
+- a verified production vulnerability rate;
+- SOC 2 or ISO 27001 compliance;
+- that a LASTRO attestation replaces AppSec review;
+- that a credential is an “incontestable” proof of professional proficiency.
+
+Those require empirical evidence beyond this blueprint.
+
+## Evidence & status boundary
+
+This document is a **case-study artifact**, not evidence of a completed customer deployment unless explicitly stated otherwise.
+
+The case studies distinguish:
+
+- **Implemented / reproducible** — supported by the public MVP code and fixtures.
+- **Scenario / blueprint** — a structured application hypothesis derived from the research and product model.
+- **External evidence** — claims supported by an identified external source.
+- **Illustrative claim** — content supplied by the case-study scenario that still requires external validation.
+
+The existence of a case study does not imply customer validation, production deployment, regulatory approval, hiring outcomes, or ROI.
