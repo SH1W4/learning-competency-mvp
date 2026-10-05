@@ -338,7 +338,7 @@ The **MVP is the proof**. The broader product narrative is the **hypothesis to v
 
 ---
 
-## 8. Real-World Case Studies
+## Real-World Case Studies
 
 The MVP is intentionally narrow, but the same evidence-to-capability pattern can be evaluated across different organizational contexts.
 
