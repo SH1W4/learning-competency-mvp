@@ -36,22 +36,30 @@ These are **scenario artifacts**, not current public MVP fixtures.
 
 ## 4. Evaluation model
 
-The proposed flow is:
+The proposed application should use the same decision architecture already implemented in the MVP:
 
 ```
 Practical Project Evidence
           ↓
-Evidence Integrity / Provenance
+┌────────────────────────────────────┐
+│ Independent Verification           │
+│ • Evidence / Integrity             │
+│ • Deterministic Criteria           │
+│ • AI Interpretation                │
+└────────────────────────────────────┘
           ↓
-AI Analysis
-          ↓
-Qualified Mentor Review
-          ↓
-Attestation / Verification Record
+Consensus Core
+   ├─ AGREEMENT → state update
+   ├─ INSUFFICIENT_EVIDENCE → request / hold
+   └─ CONFLICT → Mentor Human Adjudication
+                         ↓
+                 DEMONSTRATED
+                 or IN_DEVELOPMENT
 ```
 
-The important product principle is that the attestation should point back to the evidence and evaluation state rather than functioning as a standalone badge.
+The mentor is **not a routine fourth verifier**. Human adjudication is activated when the independent mechanisms conflict or when the defined rules cannot resolve a material contextual question.
 
+The adjudicator must resolve the conflicting signals per criterion, preserve the evidence references and rationale, and may request additional evidence. A positive competency state requires all required criteria to remain supported after adjudication; otherwise the result remains IN_DEVELOPMENT.
 ## 5. Broader workforce context
 
 The World Economic Forum's *Future of Jobs Report 2025* describes substantial labour-market transformation driven by technological and other macrotrends; it estimates that job creation and displacement associated with these trends could represent 22% of today's formal employment by 2030. That context supports investigation into how organizations assess changing capabilities, but it does not validate this specific scenario or LASTRO's commercial model. [WEF — Future of Jobs 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/2-jobs-outlook/)
