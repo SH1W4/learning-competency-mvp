@@ -43,12 +43,12 @@ For a first pass, use:
 
 | Artifact | Primary question | Current conclusion | Status | Promotion target |
 |---|---|---|---|---|
-| `05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | What adjacent solutions already exist? | Adjacent solutions exist; complete workflow differentiation remains a hypothesis | **OBSERVED / INFERRED** | Positioning |
+| `01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | What adjacent solutions already exist? | Adjacent solutions exist; complete workflow differentiation remains a hypothesis | **OBSERVED / INFERRED** | Positioning |
 | `RELATED_WORK_AND_EVIDENCE.md` | What prior standards, research and adjacent systems support or bound LASTRO's argument? | Foundational work and adjacent systems support parts of the thesis; the full composition remains a bounded research hypothesis | **FOUNDATION / SUPPORT / ADJACENT** | Argument / positioning |
-| `ETHICAL_COMPLIANCE_LAYER.md` | Can competency rules receive explicit governance constraints? | Interesting future mechanism; cannot claim universal fairness | **HYPOTHESIS / DEFERRED** | Future governance |
+| `02_ETHICAL_COMPLIANCE_LAYER.md` | Can competency rules receive explicit governance constraints? | Interesting future mechanism; cannot claim universal fairness | **HYPOTHESIS / DEFERRED** | Future governance |
 | `product/PRODUCT_THESIS.md` | What broader product thesis follows from the evidence and MVP? | Evidence-backed capability verification is the current strategic thesis | **THESIS** | Product narrative |
-| `article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | What does the literature establish about work evidence → competency inference? | Strong academic foundation; full LASTRO composition remains unestablished | **PUBLIC SCOPED REVIEW** | Research / article |
-| `article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | How should validity, verification, consensus, provenance and attestation be separated? | The layers are non-equivalent; composition remains a research hypothesis | **PUBLIC SCOPED REVIEW** | Research / article |
+| `article/01_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | What does the literature establish about work evidence → competency inference? | Strong academic foundation; full LASTRO composition remains unestablished | **PUBLIC SCOPED REVIEW** | Research / article |
+| `article/02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | How should validity, verification, consensus, provenance and attestation be separated? | The layers are non-equivalent; composition remains a research hypothesis | **PUBLIC SCOPED REVIEW** | Research / article |
 | `article/RELATED_WORK_MATRIX.md` | What prior art and counterexamples constrain the LASTRO composition claim? | Individual components have substantial prior art; the complete composition remains unresolved | **PUBLIC SCOPED MATRIX** | Research / article |
 | `article/LITERATURE_CLOSURE_PROTOCOL.md` | How should the literature review be expanded and challenged before article-level claims? | Protocol frozen; external database closure remains open | **PUBLIC METHODOLOGICAL PROTOCOL** | Research / article |
 
