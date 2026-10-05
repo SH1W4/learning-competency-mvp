@@ -25,8 +25,8 @@ The current research question is:
 
 ## Public artifacts
 
-- [09 — Work Evidence → Competency Inference](./09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md) — academic foundation and bounded research gap.
-- [10 — Verification, Consensus, Provenance & Attestation](./10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md) — separation of epistemic validity from record integrity.
+- [09 — Work Evidence → Competency Inference](./01_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md) — academic foundation and bounded research gap.
+- [10 — Verification, Consensus, Provenance & Attestation](./02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md) — separation of epistemic validity from record integrity.
 - [Related Work Matrix](./RELATED_WORK_MATRIX.md) — prior-art comparison and counterexample analysis.
 - [Literature Closure Protocol](./LITERATURE_CLOSURE_PROTOCOL.md) — reproducible protocol for expanding and challenging the current review.
 
