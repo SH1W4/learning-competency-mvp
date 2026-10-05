@@ -8,7 +8,7 @@
 
 The case-study portfolio translates the LASTRO verification pattern into concrete organizational scenarios.
 
-The source matrix identifies four case studies and a separate strategic B2B track covering reskilling and hiring. fileciteturn0file2L11-L17 fileciteturn0file2L77-L89
+The source matrix identifies four case studies and a separate strategic B2B track covering reskilling and hiring.  
 
 ## Portfolio
 
@@ -36,13 +36,13 @@ Human Arbitration
 Solana Devnet Attestation
 ```
 
-This is the portfolio's **scenario-level narrative**. The canonical MVP architecture and implementation documentation remain authoritative for what is actually implemented. fileciteturn0file2L93-L99
+This is the portfolio's **scenario-level narrative**. The canonical MVP architecture and implementation documentation remain authoritative for what is actually implemented. 
 
 ## Evidence boundary
 
 ### Case 01
 
-Case 01 is the canonical MVP scenario. The source identifies it as 100% implemented in `fixtures/synthetic/ana/` and validated by 44 Vitest tests. fileciteturn0file3L9-L13
+Case 01 is the canonical MVP scenario. The source identifies it as 100% implemented in `fixtures/synthetic/ana/` and validated by 44 Vitest tests. 
 
 ### Cases 02–04
 
@@ -50,7 +50,7 @@ These documents describe expansion scenarios. They should be read as **applicati
 
 ### Strategic track
 
-The B2B reskilling/hiring row is a commercial direction rather than a fifth implementation case. fileciteturn0file2L77-L89
+The B2B reskilling/hiring row is a commercial direction rather than a fifth implementation case. 
 
 ## Recommended reading order
 
