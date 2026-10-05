@@ -354,7 +354,7 @@ The MVP is intentionally narrow, but the same evidence-to-capability pattern can
 
 → **[Explore the complete Case Study Portfolio](docs/case_studies/README.md)**
 
-The [Executive Matrix](docs/case_studies/00_MATRIZ_EXECUTIVA.md) also records a separate B2B reskilling/hiring strategic track; it is not presented as a fifth implemented case.
+The [Executive Matrix](docs/case_studies/00_MATRIZ_EXECUTIVA.md) also records a separate [B2B commercialization blueprint](docs/case_studies/05_TRILHAS_CORPORATIVAS_B2B.md) for reskilling and evidence-based hiring. It is a commercial hypothesis, not a fifth implemented case.
 
 ### Narrative boundary
 
