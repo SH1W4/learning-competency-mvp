@@ -153,7 +153,7 @@ O benchmark público atual do ecossistema Colosseum identificou diversos projeto
 
 Esta é uma **hipótese de diferenciação apoiada por pesquisa, não uma afirmação de unicidade de mercado**.
 
-Veja o [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) para metodologia, matriz comparativa, evidências por projeto e limitações da pesquisa.
+Veja o [Colosseum Ecosystem Benchmark](research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) para metodologia, matriz comparativa, evidências por projeto e limitações da pesquisa.
 
 ## 5. O Insight Central
 
