@@ -102,14 +102,15 @@ Detalhes estratégicos de mercado, entrevistas e operação comercial são manti
 - [ ] Finalizar o roteiro de demo.
 
 ### P1 — COMMUNICATE: pitch e diferenciação
-- [ ] Problema concreto.
-- [ ] One-line product mechanism.
-- [ ] Aha moment.
-- [ ] Diferencial técnico/ecossistema sem claim de mercado vazio.
-- [ ] Explicação objetiva da relevância da blockchain.
-- [ ] Founder + Market Fit.
-- [ ] Mercado e hipótese de validação.
-- [ ] Limitações e próximos passos.
+- [x] Problema concreto.
+- [x] One-line product mechanism.
+- [x] Aha moment.
+- [x] Diferencial técnico/ecossistema sem claim de mercado vazio.
+- [x] Explicação objetiva da relevância da blockchain.
+- [x] Founder + Market Fit.
+- [x] Mercado e hipótese de validação.
+- [x] Limitações e próximos passos.
+- [x] Estratégia de pitch registrada em `docs/go-to-market/01_PITCH_STRATEGY.md`.
 
 ### P1 — VALIDATE: buyer, wedge e demand
 - [ ] Identificar primeiro buyer e decisão recorrente.
@@ -125,6 +126,17 @@ Detalhes estratégicos de mercado, entrevistas e operação comercial são manti
 - [ ] Confirmar que nenhuma hipótese está apresentada como fato.
 - [ ] Confirmar que nenhum artefato histórico é apresentado como prova atual.
 
+## Current verification snapshot
+
+The latest `main` CI run on 2026-10-05 completed successfully and included:
+
+- automated test suite;
+- TypeScript typecheck;
+- dependency audit.
+
+The current source tree contains **11 test files and 77 declared test cases**. This is a repository snapshot, not a permanent product metric; if tests change, the count must be regenerated from the source/CI result before publication.
+
+The successful CI run is evidence that the current `main` commit passed the repository's automated checks. It does **not** by itself close the live Devnet proof or frontend demonstration requirements.
 
 ## Documentation Freeze — 2026-10-04
 
@@ -136,13 +148,15 @@ The minimum enabling contracts for the next implementation step are now defined:
 
 These documents formalize the current implementation; they do not introduce new MVP capabilities.
 
-**Documentation freeze:** active.
+**Documentation freeze:** active, with the M4 communication artifact recorded as an explicit closure task rather than an architecture expansion.
 
 No new architecture/documentation expansion should be introduced before the following closure checks:
 
 1. `npm run typecheck` green;
 2. `npm test` green;
 3. current `m3.attestation.v2` generated and verified on Solana Devnet;
-4. PR #12 frontend rendered against the frozen domain/interface contract.
+4. frontend implementation rendered against the frozen domain/interface contract.
+
+**Important correction:** PR #12 is the LASTRO v0.2 brand/documentation handoff. It is not, by itself, evidence that the frontend has been rendered or that the end-to-end interface requirement is complete.
 
 Any exception must be justified by a concrete implementation blocker or contradiction in the current system.
