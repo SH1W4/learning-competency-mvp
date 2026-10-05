@@ -59,7 +59,6 @@ These questions remain intentionally separated until sufficient evidence exists 
 
 - [Product Thesis](./PRODUCT_THESIS.md)
 - [Applied AI — Workforce Capability](./APPLIED_AI_WORKFORCE_CAPABILITY.md)
-- [Future Platform Vision](./FUTURE_PLATFORM_VISION.md)
 - [Research Agenda](./RESEARCH_AGENDA.md)
 
 **Status:** Research / future product hypothesis. Outside the current MVP contract.
