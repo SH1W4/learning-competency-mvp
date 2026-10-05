@@ -61,8 +61,8 @@ Research material must preserve the distinction between:
 The article research track is intentionally public because its literature foundations, counterexamples, methodological limits, and unresolved research questions are relevant to understanding and challenging LASTRO's public thesis.
 
 - [Article Research Track](./article/README.md)
-- [09 — Work Evidence → Competency Inference](./article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md)
-- [10 — Verification, Consensus, Provenance & Attestation](./article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md)
+- [09 — Work Evidence → Competency Inference](./article/01_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md)
+- [10 — Verification, Consensus, Provenance & Attestation](./article/02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md)
 - [Related Work Matrix](./article/RELATED_WORK_MATRIX.md)
 - [Literature Closure Protocol](./article/LITERATURE_CLOSURE_PROTOCOL.md)
 
@@ -79,7 +79,7 @@ Broader workforce-capability research, future product hypotheses, and research p
 ### Market, related work & ecosystem evidence
 
 - [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
-- [Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
+- [Colosseum Ecosystem Benchmark](./01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
 
 Some historical or internal market/strategy research is retained in the private Vault and is not linked from the public index.
 
@@ -87,7 +87,7 @@ Some historical or internal market/strategy research is retained in the private 
 
 Public research is limited to evidence and bounded mechanisms that help reviewers understand the current thesis.
 
-- [Ethical Compliance Layer](./ETHICAL_COMPLIANCE_LAYER.md)
+- [Ethical Compliance Layer](./02_ETHICAL_COMPLIANCE_LAYER.md)
 
 The broader Data & Statistical Robustness research remains in the private Vault as future architecture research.
 
