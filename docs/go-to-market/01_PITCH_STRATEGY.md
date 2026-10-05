@@ -412,7 +412,7 @@ The current repository demonstrates:
 - independent verification path;
 - automated test and typecheck CI.
 
-The current `main` snapshot contains **11 test files and 77 declared test cases**, and the latest CI run on 2026-10-05 completed successfully.
+The current `main` snapshot contains **11 test files and 76 active test cases**, and the latest CI run on 2026-10-05 completed successfully.
 
 This number is a repository snapshot and should be regenerated whenever the test suite changes.
 
