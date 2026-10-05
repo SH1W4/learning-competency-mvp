@@ -153,7 +153,7 @@ The current public Colosseum ecosystem benchmark identified several adjacent pro
 
 This is a **research-backed differentiation hypothesis, not a claim of market uniqueness**.
 
-See the full [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) for the methodology, comparison matrix, project-level evidence and research limitations.
+See the full [Colosseum Ecosystem Benchmark](research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) for the methodology, comparison matrix, project-level evidence and research limitations.
 
 ### Research, related work & prior art
 
@@ -180,7 +180,7 @@ REPRODUCIBLE DEMO
 - [Article Research Track](research/article/README.md) — scoped literature review, counterexamples, verification/consensus/provenance research, and open questions.
 - [Product Research](research/product/PRODUCT_THESIS.md) — broader product thesis and future hypotheses; not the MVP contract.
 - [Research Map](research/RESEARCH_MAP.md) — epistemic status and promotion boundary for all public research.
-- [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) — adjacent ecosystem prior art.
+- [Colosseum Ecosystem Benchmark](research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) — adjacent ecosystem prior art.
 
 > **Prior art explains the landscape. It does not by itself prove LASTRO's uniqueness, commercial value, or legal novelty.**
 
