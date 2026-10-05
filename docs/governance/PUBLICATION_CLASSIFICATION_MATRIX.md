@@ -1,7 +1,7 @@
 # File-Level Publication Classification Matrix
 
 **Status:** operational baseline — file-level triage
-**Review pass:** 2026-10-05 — publication class + public-surface role reconciliation
+**Review pass:** 2026-10-05 — publication class + public-surface role reconciliation + future-research migration
 **Date:** 2026-10-05
 
 This is the authoritative file-level classification for the current LASTRO repository. It marks every file currently tracked in the public repository; migrated files are recorded in the private Vault manifest.
@@ -120,9 +120,6 @@ No role implies implementation authority. Research and thesis documents do not a
 | `fixtures/synthetic/ana/adjudication_demonstrated.json` | `PUBLIC` | `CORE` |
 | `package-lock.json` | `PUBLIC-WITH-REVIEW` | `PACKAGE` |
 | `package.json` | `PUBLIC` | `PACKAGE` |
-| `research/01_DYNAMIC_ROLE_ARCHITECTURE.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
-| `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
-| `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
 | `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` | `EVIDENCE` |
 | `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` | `EVIDENCE` |
 | `research/README.md` | `PUBLIC-WITH-REVIEW` | `NAVIGATION` |
@@ -133,10 +130,7 @@ No role implies implementation authority. Research and thesis documents do not a
 | `research/article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
 | `research/article/RELATED_WORK_MATRIX.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
 | `research/article/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
-| `research/product/APPLIED_AI_WORKFORCE_CAPABILITY.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
 | `research/product/PRODUCT_THESIS.md` | `PUBLIC` | `PRODUCT-THESIS` |
-| `research/product/README.md` | `PUBLIC-WITH-REVIEW` | `NAVIGATION` |
-| `research/product/RESEARCH_AGENDA.md` | `PUBLIC-WITH-REVIEW` | `RESEARCH-PLANNING` |
 | `src/.gitkeep` | `PUBLIC` | `CORE` |
 | `src/README.md` | `PUBLIC` | `NAVIGATION` |
 | `src/adjudication/adjudication.ts` | `PUBLIC` | `CORE` |
@@ -179,7 +173,7 @@ No role implies implementation authority. Research and thesis documents do not a
 
 1. `src/`, `tests/`, synthetic fixtures, canonical architecture and bounded research remain public when they are part of the reproducible proof.
 2. Strategic execution, private operating intelligence, internal agent skills and task planning are candidates for the future restricted layer.
-3. Research is **not** public by default. It is classified by content, maturity, and current public-surface role.
+3. Research is **not** public by default. It is classified by content, maturity, and current public-surface role. Future research that is not needed to understand the closed MVP may be migrated to the private Vault.
 4. `PUBLIC-WITH-REVIEW` means **publicly accessible but not necessarily canonical current-state material**. It must not be interpreted as “required to understand the current MVP.”
 5. A `PUBLIC-WITH-REVIEW` file may later be promoted to `PUBLIC`, consolidated with another document, archived, or migrated to the private Vault after an explicit curation decision.
 6. A file may move to `REVIEW` or `RESTRICTED-LATER` when publication would expose non-public strategy, partner information, sensitive competitive intelligence, private deliberation, or other controlled information.
@@ -217,4 +211,8 @@ Any classification change should be made through a reviewable commit and, where 
 
 ## Completed Vault migration
 
-On 2026-10-04, the files classified as `REVIEW` or `RESTRICTED-LATER` in the migration pass were copied to the private Vault and then removed from this public repository. The initial controlled migration remains **29 files: 9 `RESTRICTED-LATER` + 20 `REVIEW`**. Four article-research artifacts were subsequently curated back into a public `research/article/` track because their evidence and methodological boundaries materially support public auditability. Private Vault copies may be retained for lineage, but the public versions are canonical for the public research layer.
+On 2026-10-04, the initial controlled migration moved **29 files: 9 `RESTRICTED-LATER` + 20 `REVIEW`** into the private Vault. Four article-research artifacts were subsequently curated back into a public `research/article/` track because their evidence and methodological boundaries materially support public auditability.
+
+On 2026-10-05, a second curation pass migrated six `PUBLIC-WITH-REVIEW` future-research artifacts into the private Vault: Dynamic Role Architecture, Role Delta Model, Data & Statistical Robustness, Applied AI — Workforce Capability, Research Agenda, and the Product Research index. These materials remain preserved in the Vault and are no longer part of the current public research surface.
+
+The public repository therefore contains the current canonical research surface; the private Vault preserves future research, operational context, and lineage.
