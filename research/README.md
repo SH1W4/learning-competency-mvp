@@ -14,7 +14,7 @@ If you are new to LASTRO, follow this path:
 2. **[Research Map](./RESEARCH_MAP.md)** — see every public research track, question, status, and promotion target.
 3. **[Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)** — trace the main public arguments to external sources and adjacent systems.
 4. **[Article Research Track](./article/README.md)** — inspect the focused literature/research line behind the evidence → competency verification thesis.
-5. **Product research** — understand the broader product thesis and future questions without confusing them with the MVP contract.
+5. **Product thesis** — understand the bounded strategic thesis that contextualizes the current MVP.
 6. **Canonical implementation** — move from research to the current product/architecture and executable proof in `docs/`, `src/`, `tests/`, and `fixtures/`.
 
 ### The public evidence chain
@@ -68,15 +68,13 @@ The article research track is intentionally public because its literature founda
 
 **Status:** scoped review / research hypothesis. These documents are not a systematic review, legal novelty analysis, or proof of academic novelty.
 
-### Product thesis & future platform
+### Product thesis
 
-Research on the broader product opportunity beyond the current MVP.
+The public product-research surface is intentionally limited to the bounded thesis that contextualizes the current MVP.
 
 - [Product Thesis](./product/PRODUCT_THESIS.md)
-- [Applied AI Workforce Capability](./product/APPLIED_AI_WORKFORCE_CAPABILITY.md)
-- [Research Agenda](./product/RESEARCH_AGENDA.md)
 
-Future-platform material may exist in the private Vault and is not assumed to be a public capability.
+Broader workforce-capability research, future product hypotheses, and research planning are maintained in the private LASTRO Operational Brain. They are not part of the current public research surface.
 
 ### Market, related work & ecosystem evidence
 
@@ -87,21 +85,19 @@ Some historical or internal market/strategy research is retained in the private 
 
 ### Architecture & verification infrastructure
 
-Research into methodological robustness, verification substrates, and future governance mechanisms.
+Public research is limited to evidence and bounded mechanisms that help reviewers understand the current thesis.
 
-- [Data & Statistical Robustness](./03_DATA_STATISTICAL_ROBUSTNESS.md)
 - [Ethical Compliance Layer](./ETHICAL_COMPLIANCE_LAYER.md)
+
+The broader Data & Statistical Robustness research remains in the private Vault as future architecture research.
 
 Verification-infrastructure benchmark material is maintained in the private Vault unless a public derivative is explicitly promoted.
 
-### Dynamic Role Architecture
+### Future research boundary
 
-Future research on deriving role and competency changes from observable changes in work.
+Dynamic Role Architecture, Role Delta, broader workforce-capability research, and research-planning material are maintained in the private Vault.
 
-- [Dynamic Role Architecture](./01_DYNAMIC_ROLE_ARCHITECTURE.md)
-- [Role Delta Model](./02_ROLE_DELTA_MODEL.md)
-
-The current project does **not** claim Dynamic Role Architecture as an implemented or commercially validated capability.
+They remain part of LASTRO's research lineage, but are intentionally excluded from the current public surface because they sit beyond the closed MVP contract.
 
 ## Research → evidence → decision → implementation
 
@@ -129,7 +125,7 @@ The current research library supports several bounded conclusions:
 4. **Provenance and verifiable-credential standards provide traceability, integrity and machine verification, while distinguishing verification from truth.**
 5. **LASTRO's evidence → independent verification → consensus → competency state → attestation composition remains a research hypothesis.**
 6. **The MVP should remain narrow and verifiable.**
-7. **Dynamic Role Architecture and broader future-platform concepts remain research.**
+7. **Dynamic Role Architecture and broader future-platform concepts remain private future research, not current public capability.**
 
 These are bounded conclusions, not universal claims.
 
