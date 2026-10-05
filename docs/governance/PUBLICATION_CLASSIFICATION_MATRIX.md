@@ -120,14 +120,14 @@ No role implies implementation authority. Research and thesis documents do not a
 | `fixtures/synthetic/ana/adjudication_demonstrated.json` | `PUBLIC` | `CORE` |
 | `package-lock.json` | `PUBLIC` | `PACKAGE` |
 | `package.json` | `PUBLIC` | `PACKAGE` |
-| `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` | `EVIDENCE` |
-| `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` | `EVIDENCE` |
+| `research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` | `EVIDENCE` |
+| `research/02_ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` | `EVIDENCE` |
 | `research/README.md` | `PUBLIC` | `NAVIGATION` |
 | `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC` | `EVIDENCE` |
 | `research/RESEARCH_MAP.md` | `PUBLIC` | `NAVIGATION` |
 | `research/article/README.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
-| `research/article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
-| `research/article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
+| `research/article/01_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
+| `research/article/02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
 | `research/article/RELATED_WORK_MATRIX.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
 | `research/article/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
 | `research/product/PRODUCT_THESIS.md` | `PUBLIC` | `PRODUCT-THESIS` |
@@ -186,8 +186,8 @@ The curated article-research artifacts are intentionally public because they pro
 
 
 | `research/article/README.md` | `PUBLIC` |
-| `research/article/09_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` |
-| `research/article/10_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` |
+| `research/article/01_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | `PUBLIC` |
+| `research/article/02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | `PUBLIC` |
 | `research/article/RELATED_WORK_MATRIX.md` | `PUBLIC` |
 | `research/article/LITERATURE_CLOSURE_PROTOCOL.md` | `PUBLIC` |
 
