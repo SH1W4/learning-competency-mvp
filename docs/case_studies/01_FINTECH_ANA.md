@@ -39,20 +39,46 @@ The fixture directory also contains `a3_resultados.md` and `adjudication_demonst
 
 ## 4. Evaluation pipeline
 
-### 4.1 Deterministic evidence ingestion
+The public MVP does **not** use a simple “AI recommendation → human review” pipeline. It uses three independent verification mechanisms before any human intervention.
 
-The MVP computes deterministic hashes over the submitted evidence so that the evaluated artifact set can be identified and compared later.
+### 4.1 Evidence / Integrity Check
 
-### 4.2 AI analysis
+The system verifies that eligible evidence exists, is associated with the expected subject/activity, and passes its cryptographic integrity check.
 
-The case scenario records an AI recommendation that C1, C2 and C4 are demonstrated while C3 has a remaining evidence gap.
+### 4.2 Deterministic Criteria Check
 
-### 4.3 Human adjudication
+The system applies explicit competency-contract rules directly to the evidence structure. This check is deliberately independent from AI signals, confidence or classification.
 
-The scenario then applies human review to the machine recommendation. This distinction is important: **the AI recommendation is not itself the competency decision**.
+### 4.3 AI Interpretation
 
-The public fixture includes an adjudication state that can be used to reproduce this path.
+The AI interprets the semantic content of evidence and produces an interpretive signal. It is **not an authority over competency state**.
 
+### 4.4 Consensus Core
+
+The three results are evaluated together:
+
+- **AGREEMENT** → the competency state may advance automatically.
+- **INSUFFICIENT_EVIDENCE** → the state does not advance; the case remains unresolved until the evidence contract is satisfied.
+- **CONFLICT** → the case enters the exceptional human-adjudication path.
+
+This is the critical architectural distinction: **human adjudication is not the default decision-maker. It is the resolution mechanism for unresolved conflict.**
+
+### 4.5 Human Adjudication — exception path
+
+When CONFLICT occurs, the adjudicator does not simply “approve or reject the AI recommendation”. The adjudication record resolves the conflicting signals **per criterion**.
+
+For each relevant signal, the adjudicator may:
+
+- accept the signal;
+- correct the interpretation, with an explicit corrected assessment and rationale;
+- reject the signal, with rationale;
+- request_more_evidence.
+
+A DEMONSTRATED transition requires all competency criteria to be supported by evidence after adjudication. Otherwise the outcome resolves to IN_DEVELOPMENT, with any open evidence requests preserved.
+
+The adjudication is linked to the previous interpretation and CONFLICT result; it does not overwrite or erase the prior verification history.
+
+The public fixture `adjudication_demonstrated.json` exists specifically to exercise this exceptional path.
 ## 5. Attestation layer
 
 The repository contains a Solana attestation implementation and verification path:
