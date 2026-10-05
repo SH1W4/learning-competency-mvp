@@ -24,8 +24,8 @@ jobs:
           OPENAI_MODEL: ${{ vars.OPENAI_README_MODEL || 'gpt-6-luna' }}
         run: |
           if [ -z "${OPENAI_API_KEY}" ]; then
-            echo "::error::Missing repository secret OPENAI_API_KEY."
-            exit 1
+            echo "::warning::OPENAI_API_KEY is not configured; skipping Portuguese README synchronization."
+            exit 0
           fi
 
           python - <<'PY'
