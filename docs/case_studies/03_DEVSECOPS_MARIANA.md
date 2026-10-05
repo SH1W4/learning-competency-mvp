@@ -36,22 +36,27 @@ These artifacts are **not currently published as LASTRO fixtures**.
 
 ## 4. Evaluation model
 
-The blueprint applies:
+The blueprint inherits the current Consensus Core rather than inserting an AppSec reviewer into the normal pipeline:
 
 ```
 Code / Tests / Security Evidence
           ↓
-Deterministic Hashing & Provenance
+┌────────────────────────────────────┐
+│ Independent Verification           │
+│ • Evidence / Integrity             │
+│ • Deterministic Criteria           │
+│ • AI Interpretation                │
+└────────────────────────────────────┘
           ↓
-AI Pre-analysis
-          ↓
-AppSec Human Review
-          ↓
-Attestation
+Consensus Core
+   ├─ AGREEMENT → state update
+   ├─ INSUFFICIENT_EVIDENCE → request / hold
+   └─ CONFLICT → AppSec Human Adjudication
 ```
 
-The architecture is deliberately compatible with established application-security practice rather than replacing it.
+The AppSec Lead is therefore an **exception-path adjudicator**, not a fourth vote. When CONFLICT occurs, the adjudicator resolves the relevant signals per criterion and must preserve the evidence, rationale, identity, timestamp and rule/version context.
 
+A DEMONSTRATED outcome requires the criteria to be supported after adjudication. If the evidence remains insufficient, the competency remains IN_DEVELOPMENT; the system does not manufacture a positive result simply because a human reviewer was involved.
 ## 5. External security foundations
 
 OWASP Top 10:2021 identifies broken access control and injection among the major classes of web-application risk. OWASP also recommends source-code review and automated testing as part of detecting and preventing injection vulnerabilities. These references support the **competency criteria**, not the claim that the scenario has already occurred in production.
