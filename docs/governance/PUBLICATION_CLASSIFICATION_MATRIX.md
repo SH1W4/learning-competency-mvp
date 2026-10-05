@@ -52,74 +52,74 @@ No role implies implementation authority. Research and thesis documents do not a
 
 | Path | Publication Class | Public Surface Role |
 |---|---|
-| `.env.example` | `PUBLIC` |
-| `.gitattributes` | `PUBLIC` |
-| `.github/workflows/ci.yml` | `PUBLIC` |
-| `.github/workflows/solana-devnet.yml` | `PUBLIC` |
-| `.gitignore` | `PUBLIC` |
-| `CONTRIBUTING.md` | `PUBLIC` |
-| `README.md` | `PUBLIC` |
-| `README.pt.md` | `PUBLIC` |
-| `docs/ALIGNMENT_AUDIT.md` | `PUBLIC` |
-| `docs/PROJECT_HANDOFF.md` | `PUBLIC` |
-| `docs/PROJECT_STATUS.md` | `PUBLIC` |
-| `docs/REPOSITORY_INFORMATION_BOUNDARY.md` | `PUBLIC` |
-| `docs/VAULT_MIGRATION_MAP.md` | `PUBLIC` |
-| `docs/architecture/API_CONTRACT.md` | `PUBLIC` |
-| `docs/architecture/ATTESTATION_MODEL.md` | `PUBLIC` |
-| `docs/architecture/CANONICALIZATION.md` | `PUBLIC` |
-| `docs/architecture/CONSENSUS_CORE.md` | `PUBLIC` |
-| `docs/architecture/DOMAIN_MODEL.md` | `PUBLIC` |
-| `docs/architecture/EVIDENCE_PIPELINE.md` | `PUBLIC` |
-| `docs/architecture/GOVERNANCE_COMPLIANCE_LAYER.md` | `PUBLIC` |
-| `docs/architecture/M2_IMPLEMENTATION.md` | `PUBLIC` |
-| `docs/architecture/README.md` | `PUBLIC` |
-| `docs/architecture/TECHNICAL_ARCHITECTURE.md` | `PUBLIC` |
-| `docs/architecture/VERIFICATION_ADAPTER_BOUNDARY.md` | `PUBLIC` |
-| `docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png` | `PUBLIC` |
-| `docs/brand/BRANDBOOK_DRAFT.md` | `PUBLIC` |
-| `docs/brand/DESIGN_BRIEF_JP_FERNANDES.md` | `PUBLIC` |
-| `docs/brand/LASTRO_IDENTIDADE_v0.2.html` | `PUBLIC` |
-| `docs/brand/NAMING_EXPLORATION.md` | `PUBLIC` |
-| `docs/brand/README.md` | `PUBLIC` |
-| `docs/brand/VISUAL_SYSTEM_SPEC.md` | `PUBLIC` |
-| `docs/brand/assets/learning-competency-symbol-reference-3d.png` | `PUBLIC` |
-| `docs/brand/assets/learning-competency-symbol-reference-flat.png` | `PUBLIC` |
-| `docs/brand/assets/learning-competency-symbol-v0.svg` | `PUBLIC` |
-| `docs/decisions/0001-repository-operating-model.md` | `PUBLIC` |
-| `docs/decisions/README.md` | `PUBLIC` |
-| `docs/demo/DEMO_SCRIPT.md` | `PUBLIC` |
-| `docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md` | `PUBLIC` |
-| `docs/evaluation/01_PRODUCT.md` | `PUBLIC` |
-| `docs/evaluation/02_ARCHITECTURE.md` | `PUBLIC` |
-| `docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md` | `PUBLIC` |
-| `docs/evaluation/04_DEMO_AND_PROOF.md` | `PUBLIC` |
-| `docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md` | `PUBLIC` |
-| `docs/evaluation/README.md` | `PUBLIC` |
-| `docs/go-to-market/GTM.md` | `PUBLIC` |
-| `docs/governance/PROJECT_AUDIT_2026-10-04.md` | `PUBLIC` |
-| `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md` | `PUBLIC` |
-| `docs/governance/SECURITY_THREAT_MODEL.md` | `PUBLIC` |
-| `docs/governance/SOURCE_OF_TRUTH.md` | `PUBLIC` |
-| `docs/governance/TEAM_ROLES.md` | `PUBLIC` |
-| `docs/governance/VAULT_BOUNDARY.md` | `PUBLIC` |
-| `docs/market/COMPETITIVE_LANDSCAPE.md` | `PUBLIC` |
-| `docs/product/FRONTEND_PRODUCT_SPEC.md` | `PUBLIC` |
-| `docs/product/MVP_CONTRACT.md` | `PUBLIC` |
-| `docs/product/PITCH_ARCHITECTURE.md` | `PUBLIC` |
-| `docs/product/README.md` | `PUBLIC` |
-| `docs/product/USER_JOURNEYS.md` | `PUBLIC` |
-| `docs/product/USE_CASE.md` | `PUBLIC` |
-| `docs/validation/DEMAND_VALIDATION.md` | `PUBLIC` |
-| `fixtures/synthetic/ana/README.md` | `PUBLIC` |
-| `fixtures/synthetic/ana/a1_briefing.md` | `PUBLIC` |
-| `fixtures/synthetic/ana/a2_preparacao.ipynb` | `PUBLIC` |
-| `fixtures/synthetic/ana/a3_analise.ipynb` | `PUBLIC` |
-| `fixtures/synthetic/ana/a3_resultados.md` | `PUBLIC` |
-| `fixtures/synthetic/ana/a4_sintese.md` | `PUBLIC` |
-| `fixtures/synthetic/ana/adjudication_demonstrated.json` | `PUBLIC` |
-| `package-lock.json` | `PUBLIC-WITH-REVIEW` |
-| `package.json` | `PUBLIC` |
+| `.env.example` | `PUBLIC` | `CORE` |
+| `.gitattributes` | `PUBLIC` | `CORE` |
+| `.github/workflows/ci.yml` | `PUBLIC` | `CORE` |
+| `.github/workflows/solana-devnet.yml` | `PUBLIC` | `CORE` |
+| `.gitignore` | `PUBLIC` | `CORE` |
+| `CONTRIBUTING.md` | `PUBLIC` | `NAVIGATION` |
+| `README.md` | `PUBLIC` | `NAVIGATION` |
+| `README.pt.md` | `PUBLIC` | `NAVIGATION` |
+| `docs/ALIGNMENT_AUDIT.md` | `PUBLIC` | `CORE` |
+| `docs/PROJECT_HANDOFF.md` | `PUBLIC` | `CORE` |
+| `docs/PROJECT_STATUS.md` | `PUBLIC` | `CORE` |
+| `docs/REPOSITORY_INFORMATION_BOUNDARY.md` | `PUBLIC` | `CORE` |
+| `docs/VAULT_MIGRATION_MAP.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/API_CONTRACT.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/ATTESTATION_MODEL.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/CANONICALIZATION.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/CONSENSUS_CORE.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/DOMAIN_MODEL.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/EVIDENCE_PIPELINE.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/GOVERNANCE_COMPLIANCE_LAYER.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/M2_IMPLEMENTATION.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/README.md` | `PUBLIC` | `NAVIGATION` |
+| `docs/architecture/TECHNICAL_ARCHITECTURE.md` | `PUBLIC` | `CORE` |
+| `docs/architecture/VERIFICATION_ADAPTER_BOUNDARY.md` | `PUBLIC` | `CORE` |
+| `docs/assets/7A10DC72-A671-4078-B967-0AEC89CD7E95.png` | `PUBLIC` | `CORE` |
+| `docs/brand/BRANDBOOK_DRAFT.md` | `PUBLIC` | `CORE` |
+| `docs/brand/DESIGN_BRIEF_JP_FERNANDES.md` | `PUBLIC` | `CORE` |
+| `docs/brand/LASTRO_IDENTIDADE_v0.2.html` | `PUBLIC` | `CORE` |
+| `docs/brand/NAMING_EXPLORATION.md` | `PUBLIC` | `CORE` |
+| `docs/brand/README.md` | `PUBLIC` | `NAVIGATION` |
+| `docs/brand/VISUAL_SYSTEM_SPEC.md` | `PUBLIC` | `CORE` |
+| `docs/brand/assets/learning-competency-symbol-reference-3d.png` | `PUBLIC` | `CORE` |
+| `docs/brand/assets/learning-competency-symbol-reference-flat.png` | `PUBLIC` | `CORE` |
+| `docs/brand/assets/learning-competency-symbol-v0.svg` | `PUBLIC` | `CORE` |
+| `docs/decisions/0001-repository-operating-model.md` | `PUBLIC` | `CORE` |
+| `docs/decisions/README.md` | `PUBLIC` | `NAVIGATION` |
+| `docs/demo/DEMO_SCRIPT.md` | `PUBLIC` | `CORE` |
+| `docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md` | `PUBLIC` | `CORE` |
+| `docs/evaluation/01_PRODUCT.md` | `PUBLIC` | `CORE` |
+| `docs/evaluation/02_ARCHITECTURE.md` | `PUBLIC` | `CORE` |
+| `docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md` | `PUBLIC` | `CORE` |
+| `docs/evaluation/04_DEMO_AND_PROOF.md` | `PUBLIC` | `CORE` |
+| `docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md` | `PUBLIC` | `CORE` |
+| `docs/evaluation/README.md` | `PUBLIC` | `NAVIGATION` |
+| `docs/go-to-market/GTM.md` | `PUBLIC` | `PRODUCT-THESIS` |
+| `docs/governance/PROJECT_AUDIT_2026-10-04.md` | `PUBLIC` | `CORE` |
+| `docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md` | `PUBLIC` | `CORE` |
+| `docs/governance/SECURITY_THREAT_MODEL.md` | `PUBLIC` | `CORE` |
+| `docs/governance/SOURCE_OF_TRUTH.md` | `PUBLIC` | `CORE` |
+| `docs/governance/TEAM_ROLES.md` | `PUBLIC` | `CORE` |
+| `docs/governance/VAULT_BOUNDARY.md` | `PUBLIC` | `CORE` |
+| `docs/market/COMPETITIVE_LANDSCAPE.md` | `PUBLIC` | `EVIDENCE` |
+| `docs/product/FRONTEND_PRODUCT_SPEC.md` | `PUBLIC` | `CORE` |
+| `docs/product/MVP_CONTRACT.md` | `PUBLIC` | `CORE` |
+| `docs/product/PITCH_ARCHITECTURE.md` | `PUBLIC` | `PRODUCT-THESIS` |
+| `docs/product/README.md` | `PUBLIC` | `NAVIGATION` |
+| `docs/product/USER_JOURNEYS.md` | `PUBLIC` | `CORE` |
+| `docs/product/USE_CASE.md` | `PUBLIC` | `CORE` |
+| `docs/validation/DEMAND_VALIDATION.md` | `PUBLIC` | `EVIDENCE` |
+| `fixtures/synthetic/ana/README.md` | `PUBLIC` | `NAVIGATION` |
+| `fixtures/synthetic/ana/a1_briefing.md` | `PUBLIC` | `CORE` |
+| `fixtures/synthetic/ana/a2_preparacao.ipynb` | `PUBLIC` | `CORE` |
+| `fixtures/synthetic/ana/a3_analise.ipynb` | `PUBLIC` | `CORE` |
+| `fixtures/synthetic/ana/a3_resultados.md` | `PUBLIC` | `CORE` |
+| `fixtures/synthetic/ana/a4_sintese.md` | `PUBLIC` | `CORE` |
+| `fixtures/synthetic/ana/adjudication_demonstrated.json` | `PUBLIC` | `CORE` |
+| `package-lock.json` | `PUBLIC-WITH-REVIEW` | `PACKAGE` |
+| `package.json` | `PUBLIC` | `PACKAGE` |
 | `research/01_DYNAMIC_ROLE_ARCHITECTURE.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
 | `research/02_ROLE_DELTA_MODEL.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
 | `research/03_DATA_STATISTICAL_ROBUSTNESS.md` | `PUBLIC-WITH-REVIEW` | `FUTURE-RESEARCH` |
@@ -137,43 +137,43 @@ No role implies implementation authority. Research and thesis documents do not a
 | `research/product/PRODUCT_THESIS.md` | `PUBLIC` | `PRODUCT-THESIS` |
 | `research/product/README.md` | `PUBLIC-WITH-REVIEW` | `NAVIGATION` |
 | `research/product/RESEARCH_AGENDA.md` | `PUBLIC-WITH-REVIEW` | `RESEARCH-PLANNING` |
-| `src/.gitkeep` | `PUBLIC` |
-| `src/README.md` | `PUBLIC` |
-| `src/adjudication/adjudication.ts` | `PUBLIC` |
-| `src/ai/contract.ts` | `PUBLIC` |
-| `src/ai/provider.ts` | `PUBLIC` |
-| `src/cli/demo.ts` | `PUBLIC` |
-| `src/consensus/consensus.ts` | `PUBLIC` |
-| `src/domain/types.ts` | `PUBLIC` |
-| `src/domain/useCase.ts` | `PUBLIC` |
-| `src/evidence/extract.ts` | `PUBLIC` |
-| `src/evidence/ingest.ts` | `PUBLIC` |
-| `src/evidence/normalize.ts` | `PUBLIC` |
-| `src/pipeline.ts` | `PUBLIC` |
-| `src/provenance/claim.ts` | `PUBLIC` |
-| `src/provenance/trace.ts` | `PUBLIC` |
-| `src/relation/relate.ts` | `PUBLIC` |
-| `src/scenario.ts` | `PUBLIC` |
-| `src/solana/attest.ts` | `PUBLIC` |
-| `src/solana/demo.ts` | `PUBLIC` |
-| `src/solana/integration.ts` | `PUBLIC` |
-| `src/solana/verify.ts` | `PUBLIC` |
-| `src/state/state.ts` | `PUBLIC` |
-| `src/util.ts` | `PUBLIC` |
-| `tests/.gitkeep` | `PUBLIC` |
-| `tests/adjudication.test.ts` | `PUBLIC` |
-| `tests/ai-contract.test.ts` | `PUBLIC` |
-| `tests/canonicalization.test.ts` | `PUBLIC` |
-| `tests/claim.test.ts` | `PUBLIC` |
-| `tests/consensus.test.ts` | `PUBLIC` |
-| `tests/extract.test.ts` | `PUBLIC` |
-| `tests/helpers.ts` | `PUBLIC` |
-| `tests/ingest.test.ts` | `PUBLIC` |
-| `tests/m3.test.ts` | `PUBLIC` |
-| `tests/pipeline.test.ts` | `PUBLIC` |
-| `tests/provenance.test.ts` | `PUBLIC` |
-| `tests/relate.test.ts` | `PUBLIC` |
-| `tsconfig.json` | `PUBLIC` |
+| `src/.gitkeep` | `PUBLIC` | `CORE` |
+| `src/README.md` | `PUBLIC` | `NAVIGATION` |
+| `src/adjudication/adjudication.ts` | `PUBLIC` | `CORE` |
+| `src/ai/contract.ts` | `PUBLIC` | `CORE` |
+| `src/ai/provider.ts` | `PUBLIC` | `CORE` |
+| `src/cli/demo.ts` | `PUBLIC` | `CORE` |
+| `src/consensus/consensus.ts` | `PUBLIC` | `CORE` |
+| `src/domain/types.ts` | `PUBLIC` | `CORE` |
+| `src/domain/useCase.ts` | `PUBLIC` | `CORE` |
+| `src/evidence/extract.ts` | `PUBLIC` | `CORE` |
+| `src/evidence/ingest.ts` | `PUBLIC` | `CORE` |
+| `src/evidence/normalize.ts` | `PUBLIC` | `CORE` |
+| `src/pipeline.ts` | `PUBLIC` | `CORE` |
+| `src/provenance/claim.ts` | `PUBLIC` | `CORE` |
+| `src/provenance/trace.ts` | `PUBLIC` | `CORE` |
+| `src/relation/relate.ts` | `PUBLIC` | `CORE` |
+| `src/scenario.ts` | `PUBLIC` | `CORE` |
+| `src/solana/attest.ts` | `PUBLIC` | `CORE` |
+| `src/solana/demo.ts` | `PUBLIC` | `CORE` |
+| `src/solana/integration.ts` | `PUBLIC` | `CORE` |
+| `src/solana/verify.ts` | `PUBLIC` | `CORE` |
+| `src/state/state.ts` | `PUBLIC` | `CORE` |
+| `src/util.ts` | `PUBLIC` | `CORE` |
+| `tests/.gitkeep` | `PUBLIC` | `CORE` |
+| `tests/adjudication.test.ts` | `PUBLIC` | `CORE` |
+| `tests/ai-contract.test.ts` | `PUBLIC` | `CORE` |
+| `tests/canonicalization.test.ts` | `PUBLIC` | `CORE` |
+| `tests/claim.test.ts` | `PUBLIC` | `CORE` |
+| `tests/consensus.test.ts` | `PUBLIC` | `CORE` |
+| `tests/extract.test.ts` | `PUBLIC` | `CORE` |
+| `tests/helpers.ts` | `PUBLIC` | `CORE` |
+| `tests/ingest.test.ts` | `PUBLIC` | `CORE` |
+| `tests/m3.test.ts` | `PUBLIC` | `CORE` |
+| `tests/pipeline.test.ts` | `PUBLIC` | `CORE` |
+| `tests/provenance.test.ts` | `PUBLIC` | `CORE` |
+| `tests/relate.test.ts` | `PUBLIC` | `CORE` |
+| `tsconfig.json` | `PUBLIC` | `CORE` |
 
 ## Classification rules
 
