@@ -186,6 +186,8 @@ REPRODUCIBLE DEMO
 
 The research directory is public where its contents are necessary to understand, audit, challenge, or contextualize public claims. Private working material remains outside the public repository under the project's information boundary.
 
+For investor/client communication, see [Pitch Strategy](docs/go-to-market/01_PITCH_STRATEGY.md), which translates the technical thesis into a disciplined narrative without promoting commercial hypotheses to validated facts.
+
 
 ## 5. The Core Insight
 
@@ -447,6 +449,8 @@ If you are evaluating LASTRO for the first time, use this path:
 **If you want to audit the thesis:** [Research Map](research/RESEARCH_MAP.md) → [Related Work & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md) → [Article Research Track](research/article/README.md) → [Architecture](docs/architecture/TECHNICAL_ARCHITECTURE.md) → [Implementation](src/) → [Demo](docs/evaluation/04_DEMO_AND_PROOF.md).
 
 The repository contains additional research, governance, product, brand, and execution documents for deeper review.
+
+**Current verification snapshot:** the latest `main` CI run on 2026-10-05 completed successfully. The current source snapshot contains **11 test files and 77 declared test cases**. This count is a snapshot and must be regenerated when the suite changes.
 
 ## 13. Current Status & Execution Roadmap
 
