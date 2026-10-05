@@ -338,6 +338,31 @@ The **MVP is the proof**. The broader product narrative is the **hypothesis to v
 
 ---
 
+## 8. Real-World Case Studies
+
+The MVP is intentionally narrow, but the same evidence-to-capability pattern can be evaluated across different organizational contexts.
+
+**Start with Case 01** for the implemented synthetic scenario. Cases 02–04 are expansion blueprints and should not be read as deployed customer implementations.
+
+| Vertical | Case | Status |
+|---|---|---|
+| **FinTech / AI** | [Ana — Financial AI Analysis](docs/case_studies/01_FINTECH_ANA.md) | **MVP anchor — synthetic/reproducible** |
+| **HealthTech / Regulation** | [Gabriel — LLM Governance](docs/case_studies/02_HEALTHTECH_GABRIEL.md) | **B2B expansion blueprint** |
+| **DevSecOps / Software** | [Mariana — AI Code Security](docs/case_studies/03_DEVSECOPS_MARIANA.md) | **Engineering expansion blueprint** |
+| **Reskilling / Social Impact** | [Rafael — RAG Development](docs/case_studies/04_RESKILLING_RAFAEL.md) | **Funding & impact blueprint** |
+
+→ **[Explore the complete Case Study Portfolio](docs/case_studies/README.md)**
+
+The [Executive Matrix](docs/case_studies/00_MATRIZ_EXECUTIVA.md) also records a separate B2B reskilling/hiring strategic track; it is not presented as a fifth implemented case.
+
+### Narrative boundary
+
+The case-study portfolio demonstrates **applicability of the verification pattern**. It does not establish customer adoption, product-market fit, ROI, regulatory certification, or commercial validation.
+
+For the current implementation, always return to the MVP documentation, source code, tests and reproducible demo.
+
+---
+
 ## 8. Why This Matters
 
 The long-term value of LASTRO is not another place to store credentials.
