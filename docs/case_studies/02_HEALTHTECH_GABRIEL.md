@@ -14,11 +14,11 @@
 | Reviewer role | DPO |
 | Status in source | B2B expansion for high-regulatory-risk verticals |
 
-The source frames this as an expansion scenario rather than the current MVP. fileciteturn0file0L5-L11
+The source frames this as an expansion scenario rather than the current MVP. 
 
 ## 1. Context & problem
 
-The scenario concerns the use of LLM assistants to summarize clinical histories and electronic records while dealing with highly sensitive health data. The central competency problem is whether a professional can demonstrate safe handling and governance practices rather than merely claim knowledge of the relevant rules. fileciteturn0file0L12-L21
+The scenario concerns the use of LLM assistants to summarize clinical histories and electronic records while dealing with highly sensitive health data. The central competency problem is whether a professional can demonstrate safe handling and governance practices rather than merely claim knowledge of the relevant rules. 
 
 ## 2. Audited competency matrix
 
@@ -29,7 +29,7 @@ The scenario concerns the use of LLM assistants to summarize clinical histories 
 | C3 | Prompt-traffic auditing and local controls |
 | C4 | Documentation and regulatory compliance reporting |
 
-fileciteturn0file0L22-L31
+
 
 ## 3. Evidence contract
 
@@ -40,7 +40,7 @@ The source scenario specifies four artifacts:
 3. `arquitetura_seguranca_llm.md`
 4. `relatorio_impacto_anpd.pdf`
 
-fileciteturn0file0L35-L44
+
 
 These should be understood as **scenario-defined evidence types** until actual external pilot evidence exists.
 
@@ -62,11 +62,11 @@ Reviewed state
 Attestation
 ```
 
-The source explicitly places the final responsibility with the human DPO rather than the AI. fileciteturn0file0L45-L55
+The source explicitly places the final responsibility with the human DPO rather than the AI. 
 
 ## 5. Attestation boundary
 
-The source proposes a Solana Devnet record linked to the evaluated credential and reviewer identity. fileciteturn0file0L56-L62
+The source proposes a Solana Devnet record linked to the evaluated credential and reviewer identity. 
 
 For the public MVP, this should be treated as an **architecture extension**, not as proof of regulatory compliance or legal exoneration.
 
