@@ -87,7 +87,7 @@ Publicly verifiable proof
 
 These sources validate the **existence and urgency of the broader pain**, not customer demand for LASTRO, willingness to pay, product-market fit, or ROI.
 
-Research sources are linked inline above.
+Research sources are linked inline above. For the complete source-to-argument map, see [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md).
 
 ---
 
@@ -179,6 +179,7 @@ REPRODUCIBLE DEMO
 - [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md) — external sources, standards, prior art, and argument-to-source mapping.
 - [Article Research Track](research/article/README.md) — scoped literature review, counterexamples, verification/consensus/provenance research, and open questions.
 - [Product Research](research/product/PRODUCT_THESIS.md) — broader product thesis and future hypotheses; not the MVP contract.
+- [Research Map](research/RESEARCH_MAP.md) — epistemic status and promotion boundary for all public research.
 - [Colosseum Ecosystem Benchmark](research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) — adjacent ecosystem prior art.
 
 > **Prior art explains the landscape. It does not by itself prove LASTRO's uniqueness, commercial value, or legal novelty.**
@@ -441,7 +442,9 @@ If you are evaluating LASTRO for the first time, use this path:
 | 6 | [Claims & limitations](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md) | See exactly what the MVP proves and does not prove. |
 | 7 | [Source code & tests](src/README.md) / [tests](tests/) | Inspect the implementation and automated evidence. |
 
-**If you only have 5 minutes:** README → [Demo & technical proof](docs/evaluation/04_DEMO_AND_PROOF.md) → [Claims & limitations](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md).
+**If you only have 5 minutes:** README → [External Evidence](#2-external-evidence-of-the-pain) → [MVP](#7-the-mvp--what-we-actually-built) → [Demo & technical proof](docs/evaluation/04_DEMO_AND_PROOF.md) → [Claims & limitations](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md).
+
+**If you want to audit the thesis:** [Research Map](research/RESEARCH_MAP.md) → [Related Work & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md) → [Article Research Track](research/article/README.md) → [Architecture](docs/architecture/TECHNICAL_ARCHITECTURE.md) → [Implementation](src/) → [Demo](docs/evaluation/04_DEMO_AND_PROOF.md).
 
 The repository contains additional research, governance, product, brand, and execution documents for deeper review.
 
@@ -455,10 +458,9 @@ Canonical execution order:
 PROVE → DEMONSTRATE → VALIDATE → COMMUNICATE → FINAL SUBMISSION
 ```
 
-For the authoritative project status and execution roadmap, see:
-- `docs/PROJECT_STATUS.md`
-- `docs/product/VICTORY_EXECUTION.md`
-- `tasks/CURRENT_EXECUTION_001.md`
+For the authoritative current status, see [Project Status](docs/PROJECT_STATUS.md).
+
+Operational execution notes are maintained separately and are not part of the public evaluator path.
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
 
@@ -485,7 +487,7 @@ If a live Devnet write is unavailable, the presentation can use the previously v
 - `src/` — Core implementation and hardened pipelines.
 - `tests/` — Automated coverage, including adversarial integrity tests.
 - `docs/` — Product, architecture, evaluation, governance and operational documentation.
-- `research/` — Future hypotheses and research extensions.
+- `research/` — Publicly curated research, prior art, evidence, methodological protocols, and bounded future hypotheses. Research artifacts are explicitly classified by epistemic status.
 
 ## 16. Team
 
