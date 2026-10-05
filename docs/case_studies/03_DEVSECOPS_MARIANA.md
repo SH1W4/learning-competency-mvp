@@ -13,11 +13,11 @@
 | Reviewer | AppSec Lead / Principal Engineer |
 | Status in source | Expansion into software engineering and information security |
 
-The source identifies this as an expansion scenario. fileciteturn0file1L3-L12
+The source identifies this as an expansion scenario. 
 
 ## 1. Context & problem
 
-The scenario focuses on the increasing use of AI coding assistants and the resulting need to verify whether developers can identify and remediate vulnerabilities in AI-generated code. The case explicitly names injection, authorization and prompt-injection risks. fileciteturn0file1L13-L22
+The scenario focuses on the increasing use of AI coding assistants and the resulting need to verify whether developers can identify and remediate vulnerabilities in AI-generated code. The case explicitly names injection, authorization and prompt-injection risks. 
 
 ## 2. Audited competency matrix
 
@@ -28,7 +28,7 @@ The scenario focuses on the increasing use of AI coding assistants and the resul
 | C3 | Automated security testing |
 | C4 | Secure management of secrets |
 
-fileciteturn0file1L23-L36
+
 
 ## 3. Evidence contract
 
@@ -39,7 +39,7 @@ The source defines four artifacts:
 3. `prompt_security_guardrails.py`
 4. `analise_post_mortem_vulnerabilidade.md`
 
-fileciteturn0file1L37-L45
+
 
 ## 4. Verification model
 
@@ -57,11 +57,11 @@ AppSec review
 Attested decision
 ```
 
-The source describes human AppSec review as the final decision layer. fileciteturn0file1L46-L53
+The source describes human AppSec review as the final decision layer. 
 
 ## 5. Attestation and organizational value
 
-The source proposes a verifiable credential anchored on Solana Devnet and describes potential use in security/compliance contexts. fileciteturn0file1L54-L59
+The source proposes a verifiable credential anchored on Solana Devnet and describes potential use in security/compliance contexts. 
 
 Those are **future application claims**, not current evidence of SOC 2 / ISO 27001 outcomes.
 
