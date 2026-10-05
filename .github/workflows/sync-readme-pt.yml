@@ -1,10 +1,9 @@
 name: Sync Portuguese README
 
+# Manual-only until the repository has a configured OPENAI_API_KEY secret.
+# README.md remains the canonical editorial source.
+
 on:
-  push:
-    branches: [main]
-    paths:
-      - README.md
   workflow_dispatch:
 
 permissions:
