@@ -19,47 +19,37 @@ The four cases below test the same conceptual chain across different domains. On
 
 ## Common architectural pattern
 
-The source portfolio describes a common chain:
+The case-study portfolio must follow the current Consensus Core rather than a simplified “AI recommends → human decides” model:
 
 ```
-Work Artifacts
-    ↓
-Deterministic Hashing
-    ↓
-AI Analysis / Recommendation
-    ↓
-Human Review / Adjudication
-    ↓
-Attestation / Verification Record
+EVIDENCE
+   ↓
+┌─────────────────────────────────────────────┐
+│ Independent Verification Mechanisms         │
+│                                             │
+│ • Evidence / Integrity Check                │
+│ • Deterministic Criteria Check              │
+│ • AI Interpretation                         │
+└─────────────────────────────────────────────┘
+   ↓
+CONSENSUS CORE
+   ├── AGREEMENT → automatic state update
+   ├── INSUFFICIENT_EVIDENCE → request / hold
+   └── CONFLICT → HUMAN ADJUDICATION
+                         ↓
+                  DEMONSTRATED
+                  or IN_DEVELOPMENT
+   ↓
+ATTESTATION
+   ↓
+VERIFICATION
 ```
 
-For LASTRO, the important product boundary is that **cryptographic integrity does not establish competency by itself**. The evidence must still be interpreted against explicit competency criteria, reviewed under the project's decision model, and represented with its uncertainty and provenance.
+Consensus is not a vote count. It is convergence between independent mechanisms observing different properties of the same evidence.
 
-## How evaluators should read this portfolio
+Human adjudication is therefore an **exception path**, not a normal review stage. It is entered only when the Consensus Core returns CONFLICT (or when a contextual decision cannot be resolved by the defined rules). INSUFFICIENT_EVIDENCE does not become a human “override”; it remains unresolved until additional evidence or an appropriate next action is supplied.
 
-1. Start with [Case 01 — FinTech / Ana](./01_FINTECH_ANA.md).
-2. Reproduce the scenario using [`fixtures/synthetic/ana/`](../../fixtures/synthetic/ana/).
-3. Inspect the public evaluation pipeline and attestation implementation.
-4. Treat Cases 02–04 as verticalization hypotheses rather than customer proof.
-5. Use the research track to inspect the external foundations and limitations behind the thesis.
-
-## Related public evidence
-
-- [Article Research Track](../../research/article/README.md)
-- [Research Map](../../research/RESEARCH_MAP.md)
-- [Reproducible Demo Contract](../demo/REPRODUCIBLE_DEMO_CONTRACT.md)
-- [Project Status](../PROJECT_STATUS.md)
-- [Technical Architecture](../architecture/TECHNICAL_ARCHITECTURE.md)
-- [Consensus Core](../architecture/CONSENSUS_CORE.md)
-
-## External frameworks referenced by the portfolio
-
-- [W3C Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model/)
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [ANPD — RIPD guidance](https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd)
-- [WEF — Future of Jobs 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/2-jobs-outlook/)
-
+For the MVP, the human adjudication record must preserve the adjudicator, evidence considered, criteria, decisions, rationale, timestamp, rule/version context, and references to the preceding interpretation and consensus state. Prior verification results are never erased.
 ## Evidence & status boundary
 
 This document is a **case-study artifact**, not evidence of a completed customer deployment unless explicitly stated otherwise.
