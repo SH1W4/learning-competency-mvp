@@ -118,11 +118,11 @@ No role implies implementation authority. Research and thesis documents do not a
 | `fixtures/synthetic/ana/a3_resultados.md` | `PUBLIC` | `CORE` |
 | `fixtures/synthetic/ana/a4_sintese.md` | `PUBLIC` | `CORE` |
 | `fixtures/synthetic/ana/adjudication_demonstrated.json` | `PUBLIC` | `CORE` |
-| `package-lock.json` | `PUBLIC-WITH-REVIEW` | `PACKAGE` |
+| `package-lock.json` | `PUBLIC` | `PACKAGE` |
 | `package.json` | `PUBLIC` | `PACKAGE` |
 | `research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | `PUBLIC` | `EVIDENCE` |
 | `research/ETHICAL_COMPLIANCE_LAYER.md` | `PUBLIC` | `EVIDENCE` |
-| `research/README.md` | `PUBLIC-WITH-REVIEW` | `NAVIGATION` |
+| `research/README.md` | `PUBLIC` | `NAVIGATION` |
 | `research/RELATED_WORK_AND_EVIDENCE.md` | `PUBLIC` | `EVIDENCE` |
 | `research/RESEARCH_MAP.md` | `PUBLIC` | `NAVIGATION` |
 | `research/article/README.md` | `PUBLIC` | `RESEARCH-ARTICLE` |
