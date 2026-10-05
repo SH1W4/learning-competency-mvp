@@ -1,70 +1,70 @@
 # LASTRO — Case Studies
 
-This directory contains curated case studies showing how the LASTRO evidence-to-capability pattern can be applied across organizational contexts.
+This directory contains a **curated case-study layer** showing how the LASTRO evidence-to-competency pattern can be applied across domains.
+
+## Start here
+
+**For evaluators:** start with **[Case 01 — FinTech / Ana](./01_FINTECH_ANA.md)**.
+
+It is the only case in this portfolio currently tied directly to the public MVP fixture set. The repository labels those fixtures as synthetic, so the case is presented as a reproducible anchor scenario rather than a customer pilot.
 
 ## Portfolio
 
-| # | Case | Vertical | Status |
+| Case | Domain | Status | What it is for |
 |---|---|---|---|
-| 01 | [FinTech — Ana](./01_FINTECH_ANA.md) | Financial AI | **MVP anchor — synthetic/reproducible** |
-| 02 | [HealthTech — Gabriel](./02_HEALTHTECH_GABRIEL.md) | Health / regulated AI | **B2B expansion blueprint** |
-| 03 | [DevSecOps — Mariana](./03_DEVSECOPS_MARIANA.md) | Software / security | **Engineering expansion blueprint** |
-| 04 | [Reskilling — Rafael](./04_RESKILLING_RAFAEL.md) | Education / social impact | **Funding & impact blueprint** |
+| [00 — Executive Matrix](./00_MATRIZ_EXECUTIVA.md) | Cross-vertical | Public portfolio map | Understand the portfolio |
+| [01 — FinTech / Ana](./01_FINTECH_ANA.md) | Financial AI | **Implemented synthetic scenario** | Reproduce the MVP |
+| [02 — HealthTech / Gabriel](./02_HEALTHTECH_GABRIEL.md) | Healthcare / AI governance | **B2B blueprint** | Test regulated-sector applicability |
+| [03 — DevSecOps / Mariana](./03_DEVSECOPS_MARIANA.md) | Software security | **B2B blueprint** | Test engineering-security applicability |
+| [04 — Reskilling / Rafael](./04_RESKILLING_RAFAEL.md) | Education / impact | **Funding blueprint** | Test evidence-backed skills model |
 
-See the [Executive Matrix](./00_MATRIZ_EXECUTIVA.md) for the complete portfolio and the separate B2B reskilling/hiring strategic track.
+## Shared pattern
 
-## How to read these cases
-
-### Implemented MVP
-
-**Case 01** is the canonical demonstration scenario. The repository's actual synthetic fixtures, tests, CLI and attestation path are the source of truth for implementation.
-
-### Expansion blueprints
-
-**Cases 02–04** demonstrate how the same architectural pattern could be adapted to regulated healthcare, software security, and funded reskilling.
-
-They are **not presented as deployed customer implementations or independent market validation**.
-
-## Common pattern
-
-```text
-OBSERVABLE WORK
+```
+Work Artifacts
       ↓
-EVIDENCE
+Deterministic Evidence Processing
       ↓
-INTEGRITY / PROVENANCE
+AI Recommendation
       ↓
-AI INTERPRETATION
-      +
-INDEPENDENT VERIFICATION
+Human Review / Adjudication
       ↓
-CONSENSUS / HUMAN ADJUDICATION
-      ↓
-BOUNDED COMPETENCY STATE
-      ↓
-ATTESTATION
-      ↓
-PUBLIC VERIFICATION
+Attestation / Verification
 ```
 
-The canonical MVP documentation defines the exact semantics and implementation boundaries.
+This pattern should not be interpreted as “blockchain proves competency.” The attestation layer protects the integrity and verifiability of a record; the competency claim depends on the evidence, criteria, interpretation, review and decision state.
 
-## Evaluator path
+## Evidence hierarchy
 
-1. Read [Case 01](./01_FINTECH_ANA.md).
-2. Inspect the [synthetic fixtures](../../fixtures/synthetic/ana/).
-3. Run `npm run demo`.
-4. Read [Demo & Technical Proof](../evaluation/04_DEMO_AND_PROOF.md).
-5. Read [Claims & Limitations](../evaluation/05_LIMITATIONS_AND_CLAIMS.md).
-6. Use Cases 02–04 to understand potential vertical expansion.
+The case-study layer deliberately distinguishes:
 
-## Evidence discipline
+**Implemented**
+→ public code + fixtures + tests.
 
-A case study is not automatically evidence of customer validation.
+**Scenario**
+→ structured hypothesis about how the architecture could be applied.
 
-The repository distinguishes:
+**External evidence**
+→ standards, academic literature or market evidence linked to its original source.
 
-- **implementation evidence** — executable code, fixtures and tests;
-- **research evidence** — external sources and prior art;
-- **scenario evidence** — designed case-study workflows;
-- **market validation** — external customer/pilot evidence, which remains a separate claim.
+**Unproven**
+→ claims that require pilots, experiments, legal review, customer validation or additional research.
+
+## Navigation
+
+- [Research Map](../../research/RESEARCH_MAP.md)
+- [Article Research Track](../../research/article/README.md)
+- [Reproducible Demo Contract](../demo/REPRODUCIBLE_DEMO_CONTRACT.md)
+- [Evaluator Walkthrough](../evaluation/EVALUATOR_WALKTHROUGH.md)
+- [Project Status](../PROJECT_STATUS.md)
+- [Technical Architecture](../architecture/TECHNICAL_ARCHITECTURE.md)
+- [Consensus Core](../architecture/CONSENSUS_CORE.md)
+- [Publication Classification Matrix](../governance/PUBLICATION_CLASSIFICATION_MATRIX.md)
+
+## External references
+
+- [W3C Verifiable Credentials Data Model v2.0](https://www.w3.org/TR/vc-data-model/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [ANPD — RIPD](https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd)
+- [WEF — Future of Jobs 2025](https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/2-jobs-outlook/)
