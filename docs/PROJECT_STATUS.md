@@ -134,7 +134,7 @@ The latest `main` CI run on 2026-10-05 completed successfully and included:
 - TypeScript typecheck;
 - dependency audit.
 
-The current source tree contains **11 test files and 77 declared test cases**. This is a repository snapshot, not a permanent product metric; if tests change, the count must be regenerated from the source/CI result before publication.
+The current source tree contains **11 test files and 76 active test cases**. This is a repository snapshot, not a permanent product metric; if tests change, the count must be regenerated from the source/CI result before publication.
 
 The successful CI run is evidence that the current `main` commit passed the repository's automated checks. It does **not** by itself close the live Devnet proof or frontend demonstration requirements.
 
