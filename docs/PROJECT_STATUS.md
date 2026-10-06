@@ -124,7 +124,7 @@ Documento principal:
 
 ### Interface — UX/UI do vertical slice
 
-**Status: OWNERSHIP DEFINED**
+**Status: READY FOR IMPLEMENTATION**
 
 Owner:
 
@@ -135,6 +135,8 @@ Resultado esperado:
 `fluxo técnico definido → telas → navegação → evidência → revisão → estado → attestation → verificação`
 
 A interface deve materializar o fluxo do produto e da arquitetura, sem criar lógica paralela.
+
+**Handoff disponível:** `docs/handoff/M3_TO_INTERFACE.md`
 
 ### M4 — Validação, demonstração e submissão
 
