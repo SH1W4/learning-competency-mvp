@@ -1,0 +1,43 @@
+{
+  "fixture_version": "1.0",
+  "fixture_type": "solana-devnet-attestation-fallback",
+  "description": "Pre-validated Solana Devnet attestation for synthetic Ana scenario (competency: data-analysis-reproducible). This fixture serves as operational resilience fallback for live demo presentation.",
+  "generated_at": "2026-10-06T22:58:26.088Z",
+  "validated_at": "2026-10-06T22:58:26.088Z",
+  "network": "devnet",
+  "attestation": {
+    "tx_signature": "4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE",
+    "explorer_url": "https://explorer.solana.com/tx/4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE?cluster=devnet",
+    "record_hash": "4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6",
+    "attester_pubkey": "67QmMGjZbCrrmWibYx8JCqK7TVH7qC7WiSaEqNRifwEi",
+    "payload_version": "m3.attestation.v2",
+    "competency_id": "comp:data-analysis-reproducible",
+    "state": "DEMONSTRATED",
+    "subject_ref": "f7fed3b2486a87e5d79d572fddf00f62ee9b2134bb3ad5d16be63198e7b9d735"
+  },
+  "verification": {
+    "verified": true,
+    "verified_at": "2026-10-06T23:00:00.000Z",
+    "checks": {
+      "hash_on_chain": true,
+      "record_integrity": true,
+      "subject_ref": true,
+      "payload_binding": true,
+      "signer": true
+    },
+    "verification_command": "npm run m3:verify 4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE 4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6"
+  },
+  "usage": {
+    "purpose": "Fallback for live demo presentation when fresh Devnet write is unavailable",
+    "when_to_use": "If npm run m3:attest fails due to Devnet availability or rate limits",
+    "fallback_command": "npm run m3:verify 4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE 4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6",
+    "important_note": "This is a pre-validated transaction. Do not replace with unverified placeholder or historical transaction."
+  },
+  "scenario": {
+    "subject": "person:ana-synthetic",
+    "scenario_name": "Synthetic Ana - Junior Data Analyst",
+    "competency_name": "Data Analysis - Reproducible",
+    "activities": ["A1", "A2", "A3", "A4"],
+    "criteria": ["C1", "C2", "C3", "C4"]
+  }
+}

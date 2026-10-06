@@ -130,3 +130,21 @@ The presentation must not depend exclusively on a fresh Devnet write. Before pub
 If the live write fails because of Devnet availability, the presenter switches to the pre-validated transaction and runs the same verification command. The fallback is an operational resilience measure; it does not create a second proof or alter the attestation semantics.
 
 **Important:** no placeholder transaction or unverified historical transaction should be presented as the fallback. The fixture is considered ready only after the transaction has been independently verified with the current `m3:verify` path.
+
+### Current fallback fixture
+
+A pre-validated fallback fixture is available at `fixtures/solana/devnet-fallback.json`.
+
+**Fallback verification command:**
+
+```bash
+npm run m3:verify 4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE 4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6
+```
+
+**Transaction details:**
+- **Explorer:** https://explorer.solana.com/tx/4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE?cluster=devnet
+- **Record hash:** `4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6`
+- **Competency:** `comp:data-analysis-reproducible`
+- **State:** `DEMONSTRATED`
+- **Verified:** All checks passing (hash_on_chain, record_integrity, subject_ref, payload_binding, signer)
+- **Generated:** 2026-10-06T22:58:26.088Z

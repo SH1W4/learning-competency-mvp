@@ -72,3 +72,7 @@ The next work should prioritize:
 4. market-validation evidence.
 
 No additional abstract architecture is required unless it directly supports one of these goals.
+
+## Layer-specific handoffs
+
+- **Integrity Layer (Attestation & Verification):** See [Integrity Layer Handoff](./INTEGRITY_LAYER_HANDOFF.md) for detailed integration points with the Solana attestation and verification infrastructure.
