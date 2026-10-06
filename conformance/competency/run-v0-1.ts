@@ -16,7 +16,7 @@ function provider(mode) {
       signals: ["C1","C2","C3","C4"].map((criterion_id, i) => ({
         signal_id: "sig-" + mode + "-" + criterion_id, criterion_id, support,
         rationale: mode === "supports" ? "evidence supports criterion" : "fixture forces interpretive disagreement",
-        evidence_refs: [{ evidence_id: ctx.evidences[i % ctx.evidences.length].evidence_id }], confidence: 0.98
+        evidence_refs: [{ evidence_id: ctx.evidences[[0,1,3,4][i]].evidence_id }], confidence: 0.98
       })),
       gaps: [], uncertainty: [], overall_confidence: 0.98, proposed_state: "UNDER_REVIEW", requires_consensus: true
     };
