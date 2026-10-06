@@ -9,7 +9,7 @@ function provider(mode) {
     const support = mode === "supports" ? "supports" : "does_not_support";
     return {
       contract_version: "m2.ai-output.v1", interpretation_id: "int-" + mode,
-      subject: ctx.subject, competency_id: ctx.competency_id, generated_at: "2026-10-05T00:00:00.000Z",
+      subject: ctx.subject, competency_id: "comp:data-analysis-reproducible", generated_at: "2026-10-05T00:00:00.000Z",
       model: { provider: "conformance-fixture", name: "deterministic-test-model" },
       extraction_refs: ctx.extractions.map(x => x.evidence_id),
       interpretations: ctx.extractions.map(x => ({ evidence_id: x.evidence_id, statement: "fixture interpretation", kind: "inference" })),
