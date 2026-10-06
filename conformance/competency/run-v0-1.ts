@@ -1,6 +1,7 @@
 import { CompetencySession } from "../../src/pipeline.js";
 import { parseAIOutput } from "../../src/ai/contract.js";
 import { buildAttestationPayload } from "../../src/solana/attest.js";
+import { buildCompetencyCanonicalObservation } from "./canonical-observation.js";
 
 const RESULTS = [];
 
@@ -69,9 +70,16 @@ async function main() {
   add("CF-C-005", "NOT_EVALUATED", "MVP has no explicit contractual freshness semantics.");
   add("CF-C-006", "NOT_EVALUATED", "MVP has no explicit WITHHELD/NOT_DISCLOSED semantics.");
 
-  const state = valid.session.state;
-  const bounded = ["subject","competency_id","history","target_ref","contract_ref","ground_refs"].every(k => Object.prototype.hasOwnProperty.call(state,k));
-  add("CF-C-007", bounded ? "PASS" : "BLOCKED", bounded ? "all profile bounding fields exposed." : "MVP state lacks target, contract, resolution-ground and profile fields required by the profile.");
+  const observation = buildCompetencyCanonicalObservation(valid.session);
+  const observedState = observation.states[0];
+  const bounded = !!observedState &&
+    observedState.subject_ref === valid.session.subject &&
+    typeof observedState.target_ref === "string" &&
+    typeof observedState.contract_ref === "string" &&
+    typeof observedState.profile_ref === "string" &&
+    Array.isArray(observedState.grounds) && observedState.grounds.length > 0 &&
+    observation.resolutions.some(r => r.ref === "resolution:consensus:" + valid.consensus.status);
+  add("CF-C-007", bounded ? "PASS" : "BLOCKED", bounded ? "canonical observation reconstructs bounded state from explicit resolution and verifier grounds." : "canonical observation remains insufficient to reconstruct bounded state.");
 
   const handoff = valid.session.handoff();
   const payload = buildAttestationPayload(handoff, "conformance-attester");
