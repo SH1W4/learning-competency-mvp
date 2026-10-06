@@ -1,0 +1,29 @@
+name: LASTRO Competency Profile Conformance
+
+on:
+  push:
+    branches:
+      - main
+      - "conformance/**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  competency-profile-conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout MVP
+        uses: actions/checkout@v6
+      - name: Use Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit tests
+        run: npm test
+      - name: Runtime competency conformance
+        run: npm run conformance:competency
