@@ -9,7 +9,7 @@ Protocol: LASTRO Protocol v0.1
 
 Runtime adapter executed against the actual MVP code path.
 
-**4 PASS / 1 BLOCKED / 3 NOT_EVALUATED / 0 FAIL.**
+**5 PASS / 0 BLOCKED / 3 NOT_EVALUATED / 0 FAIL.**
 
 | Fixture | Result | Evidence |
 |---|---|---|
@@ -19,14 +19,14 @@ Runtime adapter executed against the actual MVP code path.
 | CF-C-004 | PASS | Consensus Core produces CONFLICT while preserving individual verifier results. |
 | CF-C-005 | NOT_EVALUATED | No explicit freshness contract. |
 | CF-C-006 | NOT_EVALUATED | No explicit withholding semantics. |
-| CF-C-007 | BLOCKED | MVP state lacks target/contract/resolution-ground/profile fields required by the profile observation surface. |
+| CF-C-007 | PASS | Canonical observation adapter reconstructs bounded state from explicit target, contract, resolution and verifier grounds. |
 | CF-C-008 | PASS | Attestation payload is built only from a DEMONSTRATED reviewed state with a valid record hash. |
 
 ## Interpretation
 
 This is runtime evidence of bounded compatibility, not a statement that the MVP conforms to the complete competency profile.
 
-The key finding is CF-C-007: the MVP state machine is operationally strong, but its canonical state object is not sufficient to reconstruct the profile's bounded semantic state without adapter-invented fields.
+CF-C-007 is now PASS through an explicit semantic adapter. The adapter does not alter the MVP state model; it reconstructs the profile observation surface from existing target, contract, consensus, verifier-result and history objects.
 
 ## Reproduction
 
@@ -36,13 +36,13 @@ Normative fixture source: SH1W4/lastro-protocol@main, conformance/profiles/compe
 ## Executed evidence
 
 - Branch: conformance/competency-profile-v0-1
-- Head commit: b07b1471d28c149eb79bb91a84b000ee8b0366da
+- Head commit: a26099129d2a980ce421c65eb9a87c7289a58ba4
 - GitHub Actions workflow: LASTRO Competency Profile Conformance
-- Run: 37397419093
-- Job: 112056591234
+- Run: 37398262079
+- Job: 112059316641
 - Result: success
 - Typecheck: PASS
 - Unit tests: 76 passed across 11 test files
 - Runtime conformance: PASS (runner execution)
 
-The runner's semantic result remains 4 PASS / 1 BLOCKED / 3 NOT_EVALUATED / 0 FAIL; therefore complete profile conformance remains NOT AUTHORIZED.
+The runner's semantic result is now 5 PASS / 0 BLOCKED / 3 NOT_EVALUATED / 0 FAIL; complete profile conformance remains NOT AUTHORIZED because three profile semantics are still outside the MVP observation scope.
