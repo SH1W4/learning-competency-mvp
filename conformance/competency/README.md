@@ -21,14 +21,14 @@ The adapter is intentionally conservative: missing semantics remain NOT_EVALUATE
 | CF-C-007 | BLOCKED |
 | CF-C-008 | PASS |
 
-**4 PASS / 1 BLOCKED / 3 NOT_EVALUATED / 0 FAIL.**
+**5 PASS / 0 BLOCKED / 3 NOT_EVALUATED / 0 FAIL.**
 
 This is runtime evidence, not conformance certification.
 
 ## Next gaps
 
-1. expose a canonical observation surface;
-2. expose target/contract/resolution-ground/profile fields;
+1. expose the canonical observation surface in the adapter (now implemented);
+2. validate target/contract/resolution-ground/profile fields through the adapter (now evaluated);
 3. define freshness semantics;
 4. define withholding semantics;
 5. decide credential evidence scope;
