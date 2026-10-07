@@ -1,17 +1,36 @@
 # src/
 
-Implementação do vertical slice. Nesta versão: M2 (evidência → IA → revisão humana).
+Implementação do vertical slice atual do LASTRO.
+
+O código desta pasta materializa o fluxo:
 
 ```
-domain/      tipos e caso de uso canônico (USE_CASE.md)
-evidence/    M2.1 ingestão · M2.2 normalização e extração
-ai/          M2.3 contrato de saída da IA + provedores (heurístico e LLM opcional)
-relation/    M2.4 relação evidência → critério C1–C4
-review/      M2.5 revisão humana
-state/       estados mínimos usados pelo M2 (modelo final: M3.1)
-provenance/  M2.6 trace de proveniência + handoff para o M3
+Evidence
+   ↓
+AI Interpretation
+   +
+Independent Verification
+   ↓
+Consensus Core
+   ↓
+Competency State
+   ↓
+Attestation / Verification
+```
+
+domain/      tipos e caso de uso canônico
+evidence/    ingestão, normalização e extração de evidências
+ai/          contrato de saída da IA + provedores (heurístico e LLM opcional)
+relation/    relação evidência → critério
+consensus/   convergência dos mecanismos independentes
+state/       estados de competência e transições
+provenance/  trace de proveniência + handoff para o Integrity Layer
+solana/      atestação e verificação on-chain
 pipeline.ts  orquestra as etapas (CompetencySession)
 cli/demo.ts  roda o cenário sintético Ana
-```
 
-Detalhes: `docs/architecture/M2_IMPLEMENTATION.md`.
+## Limite semântico
+
+A IA interpreta evidências, mas não determina o estado final. Verificação determinística opera independentemente dos sinais da IA. O Consensus Core produz o resultado; conflito pode entrar em adjudicação humana excepcional.
+
+Para a implementação atual, consulte `docs/architecture/DOMAIN_MODEL.md`, `docs/architecture/CONSENSUS_CORE.md`, `docs/architecture/EVIDENCE_PIPELINE.md` e `docs/evaluation/04_DEMO_AND_PROOF.md`.
