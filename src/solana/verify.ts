@@ -6,7 +6,7 @@ import { subjectRef } from './attest.js';
  * M3 — Verificação: dado um record_hash e uma tx_signature,
  * confirma que o hash foi registrado on-chain via Memo Program.
  *
- * Hardening M2 → M3 (opcional, recomendado):
+ * Integrity Layer hardening (optional, recommended):
  *  - `record`: recalcula o hash do reviewed-state.json (verifyHandoff) e exige que bata com o hash ancorado;
  *  - `expectedSigner`: exige que a transação tenha sido assinada pela carteira emissora esperada.
  *
