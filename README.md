@@ -467,7 +467,7 @@ If you are evaluating LASTRO for the first time, use this path:
 
 The repository contains additional research, governance, product, brand, and execution documents for deeper review.
 
-**Current verification snapshot:** the latest `main` CI run on 2026-10-05 completed successfully. The current source snapshot contains **11 test files and 76 active test cases**. This count is a snapshot and must be regenerated when the suite changes.
+**Verification snapshot:** an earlier `main` CI run on 2026-10-05 completed successfully; CI should be rerun against the current `main` commit after subsequent changes. The current source snapshot contains **11 test files and 76 active test cases**. This count is a snapshot and must be regenerated when the suite changes.
 
 ## 13. Current Status & Execution Roadmap
 
