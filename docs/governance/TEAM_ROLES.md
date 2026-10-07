@@ -4,27 +4,31 @@
 
 ## João / JX — Architecture, AI & Systems
 
-Responsável pela coerência da arquitetura, IA/evidências, integração, atestação e verificação, além das decisões técnicas críticas do MVP.
+Responsável pela coerência da arquitetura, IA/evidências, integração, atestação e verificação, além das decisões técnicas críticas do MVP. Ownership técnico de M3 e da fronteira de integridade/atestação.
 
-## Erick — Research, Operations & Validation
+## JP Carvalho — Technical Implementation & M4 Integration
 
-Responsável por pesquisa, documentação, organização operacional e frente de validação externa.
+Responsável pela implementação técnica atribuída ao backlog, especialmente ingestão e normalização de evidências, contrato de IA, relação com competências, revisão, proveniência, testes e pull requests. No fechamento atual, participa da integração de produto e da execução de M4.
 
-## JP Carvalho — Technical Implementation
+## Erick — Research, Validation & M4 Closing
 
-Responsável pela implementação técnica atribuída ao backlog, especialmente ingestão e normalização de evidências, contrato de IA, relação com competências, revisão, proveniência, testes e pull requests.
+Responsável por pesquisa, documentação, organização operacional, validação externa e, no fechamento atual, pela frente de comunicação/validação de M4.
 
-Pode apoiar a execução de M3 quando solicitado; o ownership de M3 permanece com JX.
+## JP Fernandes — UX/UI & Interface
 
-## JP Fernandes — UX/UI, Interface & Product Presentation
+Responsável por UX/UI, navegação, apresentação das evidências, estados, atestação e verificação na interface, além da implementação visual quando atribuída. A interface materializa a arquitetura existente e não cria lógica semântica paralela.
 
-Responsável por UX/UI, navegação, apresentação das evidências, revisão, estado, atestação e verificação, além da implementação de interface quando atribuída.
+## Ownership de milestones
+
+- **M1:** JX + equipe
+- **M2:** JP Carvalho
+- **M3:** JX
+- **M4 — integração, validação e fechamento:** JP Carvalho + Erick
+- **UX/UI/interface:** JP Fernandes
 
 ## Regra de decisão
 
-Uma contribuição pode ser proposta por qualquer integrante.
-
-Ela se torna requisito do projeto somente depois da decisão apropriada ser registrada.
+Uma contribuição pode ser proposta por qualquer integrante. Ela se torna requisito do projeto somente depois da decisão apropriada ser registrada.
 
 ## Princípios
 
