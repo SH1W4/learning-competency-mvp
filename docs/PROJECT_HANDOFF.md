@@ -39,13 +39,13 @@ Before demo/submission, validate from a clean environment:
 npm ci
 npm test
 npm run typecheck
-npm audit --audit-level=high
+npm audit --omit=dev --audit-level=high
 npm run demo
 ```
 
-The dependency audit is currently treated as a controlled security follow-up because the remaining findings are transitive dependency issues; breaking dependency upgrades are not part of the stabilization step.
+The dependency audit is a controlled security follow-up when remaining findings are transitive dependency issues; breaking dependency upgrades are not part of stabilization unless required by the audit policy.
 
-For the current public Devnet proof, configure `SOLANA_PRIVATE_KEY` as a GitHub Actions secret and run the manual `solana-devnet.yml` workflow. Register the resulting `m3.attestation.v2` transaction in the evaluator documentation only after verification.
+For a new public Devnet proof, configure `SOLANA_PRIVATE_KEY` as a GitHub Actions secret and run the manual `solana-devnet.yml` workflow. Register the resulting `m3.attestation.v2` transaction in evaluator documentation only after verification.
 
 ## Verification infrastructure boundary
 
@@ -75,4 +75,4 @@ No additional abstract architecture is required unless it directly supports one 
 
 ## Layer-specific handoffs
 
-- **Integrity Layer (Attestation & Verification):** See [Integrity Layer Handoff](./INTEGRITY_LAYER_HANDOFF.md) for detailed integration points with the Solana attestation and verification infrastructure.
+The detailed Integrity Layer handoff is maintained privately. The public integration contract is defined by the current Integrity Layer implementation, `docs/evaluation/04_DEMO_AND_PROOF.md`, and the architecture documents referenced from the public evaluator path.
