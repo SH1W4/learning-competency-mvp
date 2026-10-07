@@ -110,7 +110,7 @@ Dependency security audit remains a separate follow-up item and is not treated a
 
 ### Current automated verification snapshot
 
-As of the current `main` snapshot, the repository contains **11 test files and 76 active test cases**. The latest CI run on 2026-10-05 completed successfully for test, typecheck, and dependency-audit steps. This is a point-in-time verification snapshot; the count must be regenerated if the suite changes.
+An earlier `main` CI run on 2026-10-05 completed successfully for test, typecheck, and dependency-audit steps. The repository currently contains **11 test files and 76 active test cases** according to the documented snapshot; this count must be regenerated if the suite changes. This earlier CI run should not be presented as verification of the current HEAD.
 
 ## Current public-proof status
 
