@@ -4,9 +4,9 @@
 
 **Hardening:** M1→M3 coerente, verifier com payload binding completo, contrato de IA contextualizado, canonicalização v1 documentada e CI com audit de alta severidade bloqueante. Integração real de Devnet disponível via workflow manual (`Solana Devnet Integration`).
 
-**Fase:** MVP tecnicamente fechado — vertical slice concluído e feature freeze ativo.
+**Fase:** núcleo técnico do MVP fechado — integração de produto, demonstração e validação externa seguem em M4.
 
-O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A capacidade de atestação está implementada; a prova pública Devnet corrente permanece como artefato de fechamento do M4. A interface e a validação externa permanecem como frentes de trabalho.
+O núcleo M1 → M2 → M3 está implementado, testável e demonstrável. A capacidade de atestação está implementada; a prova pública Devnet corrente permanece como artefato de fechamento do M4. A integração frontend/E2E, a demonstração final e a validação externa permanecem como frentes de trabalho.
 
 **Instrumento de fechamento competitivo:** `docs/product/VICTORY_EXECUTION.md`.
 
