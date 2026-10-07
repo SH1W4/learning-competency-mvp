@@ -128,7 +128,7 @@ Detalhes estratégicos de mercado, entrevistas e operação comercial são manti
 
 ## Current verification snapshot
 
-The latest `main` CI run on 2026-10-05 completed successfully and included:
+An earlier `main` CI run on 2026-10-05 completed successfully and included:
 
 - automated test suite;
 - TypeScript typecheck;
