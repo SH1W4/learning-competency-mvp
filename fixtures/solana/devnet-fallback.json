@@ -2,22 +2,22 @@
   "fixture_version": "1.1",
   "fixture_type": "solana-devnet-attestation-fallback",
   "description": "Pre-validated Solana Devnet attestation for synthetic Ana scenario (competency: data-analysis-reproducible). This fixture serves as operational resilience fallback for live demo presentation.",
-  "generated_at": "2026-10-08T13:11:46.986Z",
-  "validated_at": "2026-10-08T13:12:00.000Z",
+  "generated_at": "2026-10-09T17:09:30.992Z",
+  "validated_at": "2026-10-09T17:10:00.000Z",
   "network": "devnet",
   "attestation": {
-    "tx_signature": "2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK",
-    "explorer_url": "https://explorer.solana.com/tx/2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK?cluster=devnet",
-    "record_hash": "7fccd028f193e63d7c4fcd9010cb8fd74c4a2d7d9ebbda32004ec57151f310d9",
+    "tx_signature": "2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi",
+    "explorer_url": "https://explorer.solana.com/tx/2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi?cluster=devnet",
+    "record_hash": "8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86",
     "attester_pubkey": "67QmMGjZbCrrmWibYx8JCqK7TVH7qC7WiSaEqNRifwEi",
     "payload_version": "m3.attestation.v2",
     "competency_id": "comp:data-analysis-reproducible",
     "state": "DEMONSTRATED",
-    "subject_ref": "fd508a4e107905b8f04383845237b4f039c988c7b7db8ea9ab7a0bfad91bc3c4"
+    "subject_ref": "04917a92939b5b391025f25759658c8cd1dd0661a3347cf18edfd5f0ea953b36"
   },
   "verification": {
     "verified": true,
-    "verified_at": "2026-10-08T13:12:00.000Z",
+    "verified_at": "2026-10-09T17:10:00.000Z",
     "checks": {
       "hash_on_chain": true,
       "record_integrity": true,
@@ -25,12 +25,12 @@
       "payload_binding": true,
       "signer": true
     },
-    "verification_command": "npm run m3:verify 2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK 7fccd028f193e63d7c4fcd9010cb8fd74c4a2d7d9ebbda32004ec57151f310d9"
+    "verification_command": "npm run m3:verify 2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi 8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86"
   },
   "usage": {
     "purpose": "Fallback for live demo presentation when fresh Devnet write is unavailable",
     "when_to_use": "If npm run m3:attest fails due to Devnet availability or rate limits",
-    "fallback_command": "npm run m3:verify 2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK 7fccd028f193e63d7c4fcd9010cb8fd74c4a2d7d9ebbda32004ec57151f310d9",
+    "fallback_command": "npm run m3:verify 2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi 8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86",
     "important_note": "This is a pre-validated transaction. Do not replace with unverified placeholder or historical transaction."
   },
   "scenario": {

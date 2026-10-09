@@ -114,7 +114,7 @@ An earlier `main` CI run on 2026-10-05 completed successfully for test, typechec
 
 ## Current public-proof status
 
-The repository contains the attestation and verification path. The current `m3.attestation.v2` Devnet transaction remains an M4 closing artifact; no historical transaction should be presented as the current proof.
+The repository contains the attestation and verification path. A fresh `m3.attestation.v2` attestation was generated and verified on Solana Devnet on 2026-10-09 via the M4 API. The recorded execution evidence is in [PR #26](https://github.com/SH1W4/learning-competency-mvp/pull/26); the current fallback fixture and transaction details are documented below. This closes the fresh Devnet proof step, not the remaining visual frontend/E2E product integration.
 
 ## Demo resilience protocol
 
@@ -138,13 +138,17 @@ A pre-validated fallback fixture is available at `fixtures/solana/devnet-fallbac
 **Fallback verification command:**
 
 ```bash
-npm run m3:verify 4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE 4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6
+npm run m3:verify 2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi 8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86
 ```
 
 **Transaction details:**
-- **Explorer:** https://explorer.solana.com/tx/4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE?cluster=devnet
-- **Record hash:** `4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6`
+- **Explorer:** https://explorer.solana.com/tx/2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi?cluster=devnet
+- **Record hash:** `8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86`
 - **Competency:** `comp:data-analysis-reproducible`
 - **State:** `DEMONSTRATED`
 - **Verified:** All checks passing (hash_on_chain, record_integrity, subject_ref, payload_binding, signer)
-- **Generated:** 2026-10-06T22:58:26.088Z
+- **Generated:** 2026-10-09T17:09:30.992Z
+- **Payload:** `m3.attestation.v2`
+- **Commit:** `PR #26`
+- **Verification evidence:** `verified=true`; `hash_on_chain=true`; `record_integrity=true`; `subject_ref=true`; `payload_binding=true`; `signer=true`.
+- **Recorded execution:** PR #26 reports `npm run m4:e2e:devnet` successful with a fresh Devnet attestation verified across all five checks on 2026-10-09.
