@@ -1,9 +1,8 @@
 import { createServer } from "node:http";
 import { buildM4SyntheticProjection } from "./m4.js";
 
-const port = Number(process.env.PORT ?? 8787);
-
-const server = createServer(async (req, res) => {
+export function createM4Server() {
+  return createServer(async (req, res) => {
   res.setHeader("content-type", "application/json; charset=utf-8");
   res.setHeader("access-control-allow-origin", "*");
 
@@ -21,8 +20,13 @@ const server = createServer(async (req, res) => {
     res.statusCode = 500;
     res.end(JSON.stringify({ error: error instanceof Error ? error.message : String(error) }));
   }
-});
+  });
+}
 
-server.listen(port, () => {
-  console.log(`M4 read-only adapter listening on http://localhost:${port}`);
-});
+if (process.argv[1]?.endsWith("server.ts")) {
+  const port = Number(process.env.PORT ?? 8787);
+  createM4Server().listen(port, () => {
+    console.log(`M4 read-only adapter listening on http://localhost:${port}`);
+  });
+}
+
