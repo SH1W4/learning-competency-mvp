@@ -411,8 +411,8 @@ The blockchain does **not** prove that a person is universally competent, truthf
 The latest recorded `m3.attestation.v2` proof is a synthetic Ana scenario on Solana Devnet, generated and verified via the M4 API on 2026-10-09.
 
 - **State:** `DEMONSTRATED`
-- **Transaction:** [Inspect on Solana Explorer](https://explorer.solana.com/tx/2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi?cluster=devnet)
-- **Record hash:** `8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86`
+- **Transaction:** [Inspect on Solana Explorer](https://explorer.solana.com/tx/22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX?cluster=devnet)
+- **Record hash:** `d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065`
 - **Verification:** `verified=true`; `hash_on_chain`, `record_integrity`, `subject_ref`, `payload_binding` and `signer` all `true`.
 - **Reproducibility record:** [PR #26 — execution evidence](https://github.com/SH1W4/learning-competency-mvp/pull/26).
 - **Fixture:** [devnet-fallback.json](fixtures/solana/devnet-fallback.json).
