@@ -138,16 +138,16 @@ A pre-validated fallback fixture is available at `fixtures/solana/devnet-fallbac
 **Fallback verification command:**
 
 ```bash
-npm run m3:verify 2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi 8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86
+npm run m3:verify 22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065
 ```
 
 **Transaction details:**
-- **Explorer:** https://explorer.solana.com/tx/2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi?cluster=devnet
-- **Record hash:** `8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86`
+- **Explorer:** https://explorer.solana.com/tx/22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX?cluster=devnet
+- **Record hash:** `d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065`
 - **Competency:** `comp:data-analysis-reproducible`
 - **State:** `DEMONSTRATED`
 - **Verified:** All checks passing (hash_on_chain, record_integrity, subject_ref, payload_binding, signer)
-- **Generated:** 2026-10-09T17:09:30.992Z
+- **Generated:** 2026-10-09T18:28:13.681Z
 - **Payload:** `m3.attestation.v2`
 - **Commit:** `PR #26`
 - **Verification evidence:** `verified=true`; `hash_on_chain=true`; `record_integrity=true`; `subject_ref=true`; `payload_binding=true`; `signer=true`.
