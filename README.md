@@ -408,13 +408,13 @@ The blockchain does **not** prove that a person is universally competent, truthf
 
 ## Current public Devnet proof
 
-The latest recorded `m3.attestation.v2` proof is a synthetic Ana scenario on Solana Devnet, generated and verified on 2026-10-08.
+The latest recorded `m3.attestation.v2` proof is a synthetic Ana scenario on Solana Devnet, generated and verified via the M4 API on 2026-10-09.
 
 - **State:** `DEMONSTRATED`
-- **Transaction:** [Inspect on Solana Explorer](https://explorer.solana.com/tx/2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK?cluster=devnet)
-- **Record hash:** `7fccd028f193e63d7c4fcd9010cb8fd74c4a2d7d9ebbda32004ec57151f310d9`
+- **Transaction:** [Inspect on Solana Explorer](https://explorer.solana.com/tx/2qMjMJ47Lv7vigsQ8HCy3Gj3H4TxaxvkMzkxV33LDE5LJeDR6PCmUpUtbP8VnpCzmKb8TPn1ZVWr5f4FYKQxkabi?cluster=devnet)
+- **Record hash:** `8535a1bf6a4f424a74b3862c30e53c8a06bff0f8238101da28241e4fc0e15d86`
 - **Verification:** `verified=true`; `hash_on_chain`, `record_integrity`, `subject_ref`, `payload_binding` and `signer` all `true`.
-- **Reproducibility record:** [Issue #21 — execution evidence](https://github.com/SH1W4/learning-competency-mvp/issues/21).
+- **Reproducibility record:** [PR #26 — execution evidence](https://github.com/SH1W4/learning-competency-mvp/pull/26).
 - **Fixture:** [devnet-fallback.json](fixtures/solana/devnet-fallback.json).
 
 This proves the integrity/attestation path for a bounded synthetic state. It does not establish universal competency, customer adoption, market demand, or completion of the visual frontend flow. The recorded CLI demo and Devnet proof must not be represented as a completed frontend E2E demonstration.
