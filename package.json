@@ -15,7 +15,8 @@
     "demo:adjudication": "tsx src/cli/demo.ts --adjudicate fixtures/synthetic/ana/adjudication_demonstrated.json",
     "m3:attest": "tsx src/solana/demo.ts",
     "m3:verify": "tsx src/solana/verify.ts",
-    "test:solana:devnet": "tsx src/solana/integration.ts"
+    "test:solana:devnet": "tsx src/solana/integration.ts",
+    "api:m4": "tsx src/http/server.ts"
   },
   "dependencies": {
     "@solana/web3.js": "^1.99.0",
