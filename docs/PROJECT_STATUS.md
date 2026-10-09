@@ -89,16 +89,19 @@ Detalhes estratégicos de mercado, entrevistas e operação comercial são manti
 ## Roadmap de fechamento — M4
 
 ### P0 — PROVE: prova técnica atualizada
-- [ ] Gerar nova attestation `m3.attestation.v2` em Solana Devnet.
-- [ ] Executar a verificação correspondente.
-- [ ] Registrar a transação atual em `docs/evaluation/04_DEMO_AND_PROOF.md`.
-- [ ] Atualizar o README com a prova pública atual.
+- [x] Gerar nova attestation `m3.attestation.v2` em Solana Devnet (2026-10-08; commit `015e6878cfd163c69ce7f295c2117c743e0652df`).
+- [x] Executar a verificação correspondente: `verified=true` e as cinco verificações positivas.
+- [x] Registrar a transação atual em `docs/evaluation/04_DEMO_AND_PROOF.md`.
+- [x] Atualizar o README com a prova pública atual.
+
+Referência: Issue #21 e fixture `fixtures/solana/devnet-fallback.json`. A prova técnica Devnet está fechada; isso não equivale à conclusão da integração visual do frontend.
 
 ### P0 — DEMONSTRATE: produto e demo
 - [ ] Implementar o frontend conforme `docs/product/PITCH_ARCHITECTURE.md` e `docs/product/FRONTEND_PRODUCT_SPEC.md`.
 - [ ] Demonstrar o fluxo ponta a ponta sem criar lógica paralela.
-- [ ] Executar o cenário canônico.
-- [ ] Capturar a evidência técnica necessária para os jurados.
+- [x] Executar o cenário canônico via `npm run demo` (execução registrada na Issue #21 em 2026-10-08).
+- [x] Registrar a evidência técnica de teste e atestação necessária para revisão (Issue #21 e fixture público).
+- [ ] Demonstrar o fluxo integrado na interface frontend; a execução CLI não substitui a demonstração visual ponta a ponta.
 - [ ] Finalizar o roteiro de demo.
 
 ### P1 — COMMUNICATE: pitch e diferenciação
@@ -136,7 +139,7 @@ An earlier `main` CI run on 2026-10-05 completed successfully and included:
 
 The current source tree contains **11 test files and 76 active test cases**. This is a repository snapshot, not a permanent product metric; if tests change, the count must be regenerated from the source/CI result before publication.
 
-The successful CI run is evidence that the current `main` commit passed the repository's automated checks. It does **not** by itself close the live Devnet proof or frontend demonstration requirements.
+The successful CI run is historical and is not evidence about the current HEAD. Separately, the Issue #21 execution record from 2026-10-08 reports `npm test` 76/76, `npm run typecheck` without errors, `npm run demo` successful, and a fresh Devnet attestation verified across all five checks. These recorded results close the fresh-proof step, but do **not** by themselves close the frontend integration or visual end-to-end demonstration.
 
 ## Documentation Freeze — 2026-10-04
 
