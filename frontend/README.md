@@ -10,7 +10,7 @@ The browser does not create evidence, interpret it as authority, calculate verif
 
 ## Local development
 
-Requirements: Node.js 22 and pnpm 12.3.4.
+Requirements: Node.js 22 and pnpm 10.12.1.
 
 1. From this directory, install dependencies with `pnpm install --frozen-lockfile`.
 2. Start the canonical runtime from the repository root in another terminal: `npm run api:m4`.
