@@ -69,6 +69,8 @@ export interface M4Projection {
     state: string;
     decision_mode: string;
   };
+  /** Complete, hash-verifiable M2→M3 record for operator-side attestation. */
+  reviewed_state_record: ReturnType<CompetencySession["handoff"]>;
   attestation: null;
   public_verification: null;
 }
@@ -150,6 +152,7 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
       state: handoff.state,
       decision_mode: handoff.decision.mode,
     },
+    reviewed_state_record: handoff,
     attestation: null,
     public_verification: null,
   };

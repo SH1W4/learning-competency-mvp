@@ -485,6 +485,12 @@ Operational execution notes are maintained separately and are not part of the pu
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
 
+## M4 — Local Devnet Proof
+
+For the exact operator procedure to run the canonical M4 API, create a fresh Solana Devnet attestation from the exact runtime record, and independently verify the transaction, follow the [M4 Local Devnet Proof Runbook](docs/evaluation/M4_LOCAL_DEVNET_PROOF.md). The signing key remains local and is never exposed to the frontend.
+
+---
+
 ## 14. Quick Start & Resilient Demo
 
 ```bash
