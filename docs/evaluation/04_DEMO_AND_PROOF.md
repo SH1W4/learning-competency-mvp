@@ -114,7 +114,7 @@ An earlier `main` CI run on 2026-10-05 completed successfully for test, typechec
 
 ## Current public-proof status
 
-The repository contains the attestation and verification path. The current `m3.attestation.v2` Devnet transaction remains an M4 closing artifact; no historical transaction should be presented as the current proof.
+The repository contains the attestation and verification path. A fresh `m3.attestation.v2` attestation was generated and verified on Solana Devnet on 2026-10-08. The recorded execution evidence is in [Issue #21](https://github.com/SH1W4/learning-competency-mvp/issues/21); the current fallback fixture and transaction details are documented below. This closes the fresh Devnet proof step, not the remaining visual frontend/E2E product integration.
 
 ## Demo resilience protocol
 
@@ -138,13 +138,17 @@ A pre-validated fallback fixture is available at `fixtures/solana/devnet-fallbac
 **Fallback verification command:**
 
 ```bash
-npm run m3:verify 4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE 4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6
+npm run m3:verify 2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK 7fccd028f193e63d7c4fcd9010cb8fd74c4a2d7d9ebbda32004ec57151f310d9
 ```
 
 **Transaction details:**
-- **Explorer:** https://explorer.solana.com/tx/4yPQymfS4phDp3fWx7rrVCmajXotwZXcE2gCLkDas5K5bdv65roJT7TKRzgcbKSGTd3qK3GiEq5zGxdbRrf3MowE?cluster=devnet
-- **Record hash:** `4fff6db8838e1c40528cabbc47deeef6a34a0c60085a0f4542282996c98f27d6`
+- **Explorer:** https://explorer.solana.com/tx/2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK?cluster=devnet
+- **Record hash:** `7fccd028f193e63d7c4fcd9010cb8fd74c4a2d7d9ebbda32004ec57151f310d9`
 - **Competency:** `comp:data-analysis-reproducible`
 - **State:** `DEMONSTRATED`
 - **Verified:** All checks passing (hash_on_chain, record_integrity, subject_ref, payload_binding, signer)
-- **Generated:** 2026-10-06T22:58:26.088Z
+- **Generated:** 2026-10-08T13:11:46.986Z
+- **Payload:** `m3.attestation.v2`
+- **Commit:** `015e6878cfd163c69ce7f295c2117c743e0652df`
+- **Verification evidence:** `verified=true`; `hash_on_chain=true`; `record_integrity=true`; `subject_ref=true`; `payload_binding=true`; `signer=true`.
+- **Recorded execution:** Issue #21 reports `npm test` 76/76, `npm run typecheck` without errors, and `npm run demo` generating `DEMONSTRATED` state on 2026-10-08.
