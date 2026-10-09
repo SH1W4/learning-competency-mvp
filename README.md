@@ -406,6 +406,19 @@ PUBLIC VERIFICATION
 
 The blockchain does **not** prove that a person is universally competent, truthful, or professionally qualified. It anchors the integrity of a defined state produced by the system.
 
+## Current public Devnet proof
+
+The latest recorded `m3.attestation.v2` proof is a synthetic Ana scenario on Solana Devnet, generated and verified on 2026-10-08.
+
+- **State:** `DEMONSTRATED`
+- **Transaction:** [Inspect on Solana Explorer](https://explorer.solana.com/tx/2cgWUT2MH8i67m4B5xeRRHHPEkXrCYAH28yP1Erg1JReLXbwdEE6bFzMZnAMS51cWnmfibEiTxTNKFE8K8cpoSDK?cluster=devnet)
+- **Record hash:** `7fccd028f193e63d7c4fcd9010cb8fd74c4a2d7d9ebbda32004ec57151f310d9`
+- **Verification:** `verified=true`; `hash_on_chain`, `record_integrity`, `subject_ref`, `payload_binding` and `signer` all `true`.
+- **Reproducibility record:** [Issue #21 — execution evidence](https://github.com/SH1W4/learning-competency-mvp/issues/21).
+- **Fixture:** [devnet-fallback.json](fixtures/solana/devnet-fallback.json).
+
+This proves the integrity/attestation path for a bounded synthetic state. It does not establish universal competency, customer adoption, market demand, or completion of the visual frontend flow. The recorded CLI demo and Devnet proof must not be represented as a completed frontend E2E demonstration.
+
 ## 10. What the MVP Proves
 
 - Evidence can be structured and linked to activities and competency criteria.
