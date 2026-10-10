@@ -50,7 +50,7 @@ Browser
 ## Acceptance gates
 
 ### Verified on the PR head
-- [x] Frozen-lockfile install, TypeScript typecheck, and Next.js production build pass in the recorded GitHub Actions runs for the PR head.
+- [x] Frozen-lockfile install, TypeScript typecheck, and Next.js production build pass in the recorded GitHub Actions runs for the previously inspected PR head.
 
 ### Not yet evidenced as executed
 - [ ] Invalid scenario returns HTTP 400 with `unsupported_scenario`.
@@ -63,6 +63,21 @@ Browser
 - [ ] Integrated browser E2E and any on-chain evidence are reported separately and only after actual execution.
 
 **Observed deployment evidence:** the screenshot provided for `https://lastro-learn.vercel.app` shows the M4 interface loading but reporting HTTP 503, “Runtime not connected.” Therefore the deployment is not evidence of a successful runtime integration. Confirm that this Vercel project/domain is intended to serve the M4 frontend; it is not the Erick Learn workflow shown in his prototype description.
+
+## Deploying the canonical M4 runtime
+
+The repository now includes a Render Blueprint at `render.yaml` and a `/health` endpoint in `src/http/server.ts`.
+
+1. In Render, create a new Blueprint/Web Service from this repository and select the branch containing these runtime changes.
+2. Use the repository root as the service root (do not set `frontend/` as the root). Render should read `render.yaml`.
+3. Confirm the service build command is `npm install --include=dev` and start command is `npm run api:m4`.
+4. Wait for the deploy to become healthy. Verify `https://<render-service-host>/health` returns HTTP 200 and JSON with `status: "ok"`.
+5. Verify `https://<render-service-host>/api/m4/competency?scenario=synthetic-ana` returns HTTP 200 JSON and `synthetic: true`. Attestation and public verification are expected to be null in this synthetic projection; do not claim an on-chain proof.
+6. In the Vercel project serving the M4 frontend, configure the server-side environment variable `LASTRO_M4_RUNTIME_URL` to the full HTTPS URL in step 5, including the path and query string. Do not use localhost and do not expose secrets in `NEXT_PUBLIC_*` variables.
+7. Redeploy the Vercel frontend after setting the variable.
+8. Verify `https://lastro-learn.vercel.app/api/m4/competency?scenario=synthetic-ana` returns HTTP 200, then open the UI and confirm the synthetic Ana projection renders. If the Vercel project is intended for Erick's Learn workflow instead, stop here and correct the Vercel project/domain association rather than wiring the M4 runtime into the wrong app.
+
+**Hosting caveat:** the Blueprint currently selects Render's free plan for initial integration testing. Free services can sleep and cold-start, so this is not a reliability guarantee for a live demo; a cold start may exceed the frontend proxy's 5-second timeout. For a time-critical public demo, use an always-on runtime plan or adjust and test timeout budgets end-to-end before claiming reliability. Do not incur paid hosting without explicit approval.
 
 ## Reproducible local integration check
 
