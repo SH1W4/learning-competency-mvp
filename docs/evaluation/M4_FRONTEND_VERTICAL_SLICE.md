@@ -1,6 +1,6 @@
 # M4 Frontend Vertical Slice — Public Integration Record
 
-**Status:** draft implementation; validation and visual acceptance pending  
+**Status:** implementation slice; integration and visual acceptance pending  
 **Canonical implementation:** `frontend/` in this repository  
 **Product/runtime authority:** this repository
 
@@ -43,23 +43,26 @@ Browser
 - Complete implementation of every planned V0 screen (landing, full dashboard, queue, audit-log experience, architecture tour, and dedicated adjudication workflow);
 - browser-based E2E acceptance or screenshot-based visual sign-off;
 - accessibility certification or measured contrast acceptance;
-- deployed canonical runtime, Vercel Preview, or Production;
+- a verified deployed canonical runtime integration;
 - new Solana transaction or on-chain proof;
 - commercial validation, adoption, or product-market fit.
 
-## Required acceptance gates
+## Acceptance gates
 
-- [x] Frozen-lockfile install passes from `frontend/`.
-- [x] TypeScript typecheck passes on the exact PR head.
-- [x] Next.js production build passes on the exact PR head.
-- [x] Invalid scenario is rejected with HTTP 400.
-- [x] Runtime unavailable state returns HTTP 503 and does not substitute fixture data.
-- [x] Runtime available state is checked against the canonical M4 response.
+### Verified on the PR head
+- [x] Frozen-lockfile install, TypeScript typecheck, and Next.js production build pass in the recorded GitHub Actions runs for the PR head.
+
+### Not yet evidenced as executed
+- [ ] Invalid scenario returns HTTP 400 with `unsupported_scenario`.
+- [ ] Runtime unavailable state returns HTTP 503 without fixture substitution.
+- [ ] Runtime available response is compared with the direct canonical M4 response.
 - [ ] Browser walkthrough at mobile (<768 px), tablet (768–1199 px), and desktop (≥1200 px).
 - [ ] Keyboard navigation, visible focus, zoom, reduced-motion behavior, and text contrast reviewed.
 - [ ] Conflict and Human Adjudication states reviewed for semantic correctness.
-- [x] Production/Preview environment uses an approved reachable HTTPS runtime endpoint.
+- [ ] Production/Preview environment is configured with an approved, reachable HTTPS runtime endpoint and a successful response verified.
 - [ ] Integrated browser E2E and any on-chain evidence are reported separately and only after actual execution.
+
+**Observed deployment evidence:** the screenshot provided for `https://lastro-learn.vercel.app` shows the M4 interface loading but reporting HTTP 503, “Runtime not connected.” Therefore the deployment is not evidence of a successful runtime integration. Confirm that this Vercel project/domain is intended to serve the M4 frontend; it is not the Erick Learn workflow shown in his prototype description.
 
 ## Reproducible local integration check
 
@@ -68,6 +71,7 @@ Run from the repository root. This requires the repository's canonical runtime d
 Terminal 1 — start the canonical M4 runtime:
 
 ```sh
+npm install
 npm run api:m4
 ```
 
@@ -100,4 +104,4 @@ To verify fail-closed behavior, stop the runtime process and repeat the supporte
 
 The local HTTP endpoint is for development only. Production must use a reachable HTTPS endpoint in `LASTRO_M4_RUNTIME_URL`. A localhost endpoint on a developer machine is not reachable by a deployed Vercel function.
 
-This procedure is a reproducible test plan, not evidence that the checks have already been executed. Leave each gate unchecked until the corresponding command/browser check has actually passed and its result is recorded.
+This procedure is a reproducible test plan, not evidence that the checks have already been executed. Mark a gate complete only after the corresponding command/browser check has actually passed and its result is recorded.
