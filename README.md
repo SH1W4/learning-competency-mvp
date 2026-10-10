@@ -1,7 +1,7 @@
 # LASTRO — Capability Evidence & Verification Infrastructure
 
 > **From work evidence to verifiable capability.**
-> **Live MVP Demo:** [https://lastro-mvp.vercel.app](https://lastro-mvp.vercel.app)
+> **Live MVP Demo:** [https://lastro-learn.vercel.app](https://lastro-learn.vercel.app)
 
 LASTRO is infrastructure for organizations that need better evidence for capability decisions. It connects observable work to explicit competency criteria, applies independent verification mechanisms, and produces a bounded competency state with an auditable integrity and attestation layer.
 

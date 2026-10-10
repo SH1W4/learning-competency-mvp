@@ -96,7 +96,7 @@ Detalhes estratégicos de mercado, entrevistas e operação comercial são manti
 
 ### P0 — DEMONSTRATE: produto e demo
 - [x] Implementar o frontend conforme `docs/product/PITCH_ARCHITECTURE.md` e `docs/product/FRONTEND_PRODUCT_SPEC.md`.
-- [x] Demonstrar o fluxo ponta a ponta sem criar lógica paralela (Deploy Vercel: [lastro-mvp.vercel.app](https://lastro-mvp.vercel.app)).
+- [x] Demonstrar o fluxo ponta a ponta sem criar lógica paralela (Deploy Vercel: [lastro-learn.vercel.app](https://lastro-learn.vercel.app)).
 - [ ] Executar o cenário canônico.
 - [ ] Capturar a evidência técnica necessária para os jurados.
 - [ ] Finalizar o roteiro de demo.
