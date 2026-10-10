@@ -3,9 +3,9 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'LASTRO — Do aprendizado à prova',
+  title: 'LASTRO — From evidence to proof',
   description:
-    'Infraestrutura para transformar experiências de aprendizagem em evidências de competência, revisadas por pessoas e verificáveis.',
+    'Infrastructure to transform learning experiences into verifiable evidence of competency, independently reviewed and anchored on-chain.',
   }
 
 export const viewport: Viewport = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" data-theme="dark">
+    <html lang="en" data-theme="dark">
       <body className="antialiased">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
