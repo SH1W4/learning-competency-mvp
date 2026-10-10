@@ -42,6 +42,24 @@ const stateLabels: Record<M4Projection['state']['value'], string> = {
   DEMONSTRATED: 'Demonstrated',
 }
 
+class RuntimeRequestError extends Error {
+  status: number
+  code: string | null
+  constructor(status: number, code: string | null) {
+    super(`Runtime unavailable (HTTP ${status}).`)
+    this.status = status
+    this.code = code
+  }
+}
+
+const runtimeErrorHints: Record<string, string> = {
+  canonical_runtime_not_configured: 'The server has no canonical runtime endpoint configured yet.',
+  canonical_runtime_unavailable: 'The canonical runtime could not be reached. It may still be starting up; wait about 30 seconds and try again.',
+  insecure_runtime_url: 'The configured runtime endpoint is not HTTPS, which production requires.',
+  invalid_runtime_url: 'The configured runtime endpoint is not a valid URL.',
+  unsupported_scenario: 'The requested scenario is not supported by this interface.',
+}
+
 function explorerUrl(network: string | undefined, signature: string | undefined) {
   if (!network || !signature) return null
   const clusters: Record<string, string> = {
@@ -56,29 +74,46 @@ function explorerUrl(network: string | undefined, signature: string | undefined)
 
 export default function Page() {
   const [data, setData] = useState<M4Projection | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<{ message: string; hint: string | null } | null>(null)
   const [loading, setLoading] = useState(true)
+  const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
     const controller = new AbortController()
+    setLoading(true)
+    setError(null)
     fetch('/api/m4/competency?scenario=synthetic-ana', { cache: 'no-store', signal: controller.signal })
       .then(async (response) => {
-        if (!response.ok) throw new Error(`Runtime unavailable (HTTP ${response.status}).`)
+        if (!response.ok) {
+          let code: string | null = null
+          try {
+            const body = (await response.json()) as { error?: unknown }
+            if (typeof body.error === 'string') code = body.error
+          } catch {
+            // The body is not JSON; the HTTP status alone is reported.
+          }
+          throw new RuntimeRequestError(response.status, code)
+        }
         return response.json() as Promise<M4Projection>
       })
       .then((projection) => setData(projection))
       .catch((cause: unknown) => {
         if (cause instanceof Error && cause.name === 'AbortError') return
-        setError(cause instanceof Error ? cause.message : 'Failed to fetch the canonical runtime.')
+        if (cause instanceof RuntimeRequestError) {
+          setError({ message: cause.message, hint: cause.code ? (runtimeErrorHints[cause.code] ?? null) : null })
+          return
+        }
+        setError({ message: 'Failed to fetch the canonical runtime.', hint: null })
       })
       .finally(() => setLoading(false))
     return () => controller.abort()
-  }, [])
+  }, [attempt])
 
   const txUrl = explorerUrl(data?.attestation?.network, data?.attestation?.tx_signature)
 
   return (
-    <main className="app-shell">
+    <div className="app-shell">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <aside className="sidebar" aria-label="Main Navigation">
         <a className="brand" href="#runtime" aria-label="LASTRO — Home">
           <strong className="brand-name">LASTRO</strong>
@@ -93,7 +128,7 @@ export default function Page() {
         </div>
       </aside>
 
-      <div className="main-area">
+      <main className="main-area" id="main-content">
         <div className="page-content" id="runtime">
           <header className="page-heading runtime-heading">
             <div>
@@ -105,7 +140,7 @@ export default function Page() {
           </header>
 
           {loading && <section className="panel runtime-panel" role="status" aria-live="polite"><span className="eyebrow">CONNECTION</span><h2>Querying runtime…</h2><p>Waiting for canonical projection.</p></section>}
-          {error && <section className="panel runtime-panel runtime-error" role="alert"><span className="eyebrow">CONNECTION</span><h2>Runtime not connected</h2><p>{error}</p><p>Start the M4 MVP service and configure <code>LASTRO_M4_RUNTIME_URL</code> on the Next.js server. No local data will be used as fallback.</p></section>}
+          {error && <section className="panel runtime-panel runtime-error" role="alert"><span className="eyebrow">CONNECTION</span><h2>Runtime not connected</h2><p>{error.message}</p>{error.hint ? <p>{error.hint}</p> : null}<p>No local data is used as a fallback.</p><button type="button" className="retry-button" onClick={() => setAttempt((n) => n + 1)}>Try again</button></section>}
 
           {data && <>
             <div className="data-notice" role="note">
@@ -241,7 +276,7 @@ export default function Page() {
             </section>
           </>}
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }
