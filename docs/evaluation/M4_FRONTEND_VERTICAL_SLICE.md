@@ -49,12 +49,12 @@ Browser
 
 ## Required acceptance gates
 
-- [ ] Frozen-lockfile install passes from `frontend/`.
-- [ ] TypeScript typecheck passes on the exact PR head.
-- [ ] Next.js production build passes on the exact PR head.
-- [ ] Invalid scenario is rejected with HTTP 400.
-- [ ] Runtime unavailable state returns HTTP 503 and does not substitute fixture data.
-- [ ] Runtime available state is checked against the canonical M4 response.
+- [x] Frozen-lockfile install passes from `frontend/`.
+- [x] TypeScript typecheck passes on the exact PR head.
+- [x] Next.js production build passes on the exact PR head.
+- [x] Invalid scenario is rejected with HTTP 400.
+- [x] Runtime unavailable state returns HTTP 503 and does not substitute fixture data.
+- [x] Runtime available state is checked against the canonical M4 response.
 - [ ] Browser walkthrough at mobile (<768 px), tablet (768–1199 px), and desktop (≥1200 px).
 - [ ] Keyboard navigation, visible focus, zoom, reduced-motion behavior, and text contrast reviewed.
 - [ ] Conflict and Human Adjudication states reviewed for semantic correctness.
