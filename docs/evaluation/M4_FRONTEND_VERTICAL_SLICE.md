@@ -2,7 +2,7 @@
 
 **Status:** draft implementation; validation and visual acceptance pending  
 **Canonical implementation:** `frontend/` in this repository  
-**Product/runtime authority:** this repository, not the private Vault or the frontend
+**Product/runtime authority:** this repository
 
 ## Purpose
 
@@ -52,7 +52,8 @@ Browser
 - [ ] Frozen-lockfile install passes from `frontend/`.
 - [ ] TypeScript typecheck passes on the exact PR head.
 - [ ] Next.js production build passes on the exact PR head.
-- [ ] Runtime unavailable state is visibly fail-closed; no fixture fallback.
+- [ ] Invalid scenario is rejected with HTTP 400.
+- [ ] Runtime unavailable state returns HTTP 503 and does not substitute fixture data.
 - [ ] Runtime available state is checked against the canonical M4 response.
 - [ ] Browser walkthrough at mobile (<768 px), tablet (768–1199 px), and desktop (≥1200 px).
 - [ ] Keyboard navigation, visible focus, zoom, reduced-motion behavior, and text contrast reviewed.
@@ -60,16 +61,43 @@ Browser
 - [ ] Production/Preview environment uses an approved reachable HTTPS runtime endpoint.
 - [ ] Integrated browser E2E and any on-chain evidence are reported separately and only after actual execution.
 
-## Local check
+## Reproducible local integration check
 
-From the repository root, start the API with `npm run api:m4`. In another terminal:
+Run from the repository root. This requires the repository's canonical runtime dependencies to be installed.
+
+Terminal 1 — start the canonical M4 runtime:
+
+```sh
+npm run api:m4
+```
+
+Confirm the runtime responds before testing the frontend:
+
+```sh
+curl -i 'http://127.0.0.1:8787/api/m4/competency?scenario=synthetic-ana'
+```
+
+Terminal 2 — install and start the frontend with the local runtime explicitly configured:
 
 ```sh
 cd frontend
 pnpm install --frozen-lockfile
 pnpm typecheck
 pnpm build
-pnpm dev
+LASTRO_M4_RUNTIME_URL='http://127.0.0.1:8787/api/m4/competency?scenario=synthetic-ana' pnpm dev
 ```
 
-This document is an acceptance record and does not mark any unchecked gate as passed.
+Terminal 3 — verify the same-origin proxy and the invalid-scenario guard:
+
+```sh
+curl -i 'http://localhost:3000/api/m4/competency?scenario=synthetic-ana'
+curl -i 'http://localhost:3000/api/m4/competency?scenario=unsupported'
+```
+
+Expected: the supported scenario returns the canonical runtime's status/body; the unsupported scenario returns HTTP 400 with `unsupported_scenario`. Compare the proxy JSON with the direct runtime JSON; do not treat HTTP 200 alone as proof of semantic correctness.
+
+To verify fail-closed behavior, stop the runtime process and repeat the supported-scenario request. Expected: HTTP 503 with `canonical_runtime_unavailable`, with no fixture substitution. Restart the runtime after the check.
+
+The local HTTP endpoint is for development only. Production must use a reachable HTTPS endpoint in `LASTRO_M4_RUNTIME_URL`. A localhost endpoint on a developer machine is not reachable by a deployed Vercel function.
+
+This procedure is a reproducible test plan, not evidence that the checks have already been executed. Leave each gate unchecked until the corresponding command/browser check has actually passed and its result is recorded.
