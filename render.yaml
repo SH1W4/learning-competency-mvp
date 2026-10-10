@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: lastro-m4-runtime
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev
+    startCommand: npm run api:m4
+    healthCheckPath: /health
+    autoDeploy: false
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AI_PROVIDER
+        value: heuristic
