@@ -58,7 +58,7 @@ Browser
 - [ ] Browser walkthrough at mobile (<768 px), tablet (768–1199 px), and desktop (≥1200 px).
 - [ ] Keyboard navigation, visible focus, zoom, reduced-motion behavior, and text contrast reviewed.
 - [ ] Conflict and Human Adjudication states reviewed for semantic correctness.
-- [ ] Production/Preview environment uses an approved reachable HTTPS runtime endpoint.
+- [x] Production/Preview environment uses an approved reachable HTTPS runtime endpoint.
 - [ ] Integrated browser E2E and any on-chain evidence are reported separately and only after actual execution.
 
 ## Reproducible local integration check
