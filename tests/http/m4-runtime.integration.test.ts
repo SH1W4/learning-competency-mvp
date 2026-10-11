@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { createServer, type Server } from "node:http";
+import type { Server } from "node:http";
 import { AddressInfo } from "node:net";
 import { createM4Server } from "../../src/http/server.js";
 
