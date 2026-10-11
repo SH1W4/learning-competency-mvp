@@ -52,7 +52,7 @@ describe("M3 — Attestation e Verification", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockGetParsedTransaction = vi.fn();
-    (Connection as any).mockImplementation(() => ({ getParsedTransaction: mockGetParsedTransaction }));
+    (Connection as any).mockImplementation(function MockConnection() { return { getParsedTransaction: mockGetParsedTransaction }; });
   });
 
   it("3.1: Attestation payload usa o record_hash real e NÃO publica o subject em claro", async () => {
@@ -154,7 +154,7 @@ describe("Hardening do handoff M2 → M3", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockGetParsedTransaction = vi.fn();
-    (Connection as any).mockImplementation(() => ({ getParsedTransaction: mockGetParsedTransaction }));
+    (Connection as any).mockImplementation(function MockConnection() { return { getParsedTransaction: mockGetParsedTransaction }; });
   });
 
   async function anchored(record: ReviewedStateRecord, signers = [ATTESTER]) {
