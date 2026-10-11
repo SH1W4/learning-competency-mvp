@@ -3,7 +3,7 @@ import {
   adaptCompetencyState,
   COMPETENCY_ADAPTER_VERSION,
   type SemanticAdapterInput,
-} from "../src/semantics/competency-adapter.js";
+} from "../../src/semantics/competency-adapter.js";
 
 const agreement: SemanticAdapterInput = {
   productState: "DEMONSTRATED",
