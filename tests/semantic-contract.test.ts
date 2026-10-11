@@ -131,11 +131,21 @@ describe("LASTRO Protocol v0.1 semantic adapter", () => {
   it("accepts attributable adjudication only when its basis and history are preserved", () => {
     expect(projectCanonicalCompetencyState(base({
       productState: "UNDER_REVIEW",
-      consensus: null,
+      consensus: "CONFLICT",
       resolution: "NOT_ESTABLISHED",
       resolutionMechanism: "HUMAN_ADJUDICATION",
       adjudication: completeAdjudication,
     }))).toEqual({ kind: "BOUNDED_STATE", state: "NOT_ESTABLISHED" });
+  });
+
+  it("rejects human adjudication without a prior CONFLICT consensus", () => {
+    expectContractError(base({
+      productState: "UNDER_REVIEW",
+      consensus: null,
+      resolution: "NOT_ESTABLISHED",
+      resolutionMechanism: "HUMAN_ADJUDICATION",
+      adjudication: completeAdjudication,
+    }), "ADJUDICATION_WITHOUT_CONFLICT");
   });
 
   it("rejects an explicit resolution without a declared mechanism", () => {
