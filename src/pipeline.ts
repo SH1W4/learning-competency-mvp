@@ -24,6 +24,18 @@ import { initialState, transition, TransitionError } from "./state/state.js";
 import { buildHandoff, buildTrace, type ProvenanceTrace, type ReviewedStateRecord } from "./provenance/trace.js";
 import { defaultEnv, type Env } from "./util.js";
 
+export interface ConsensusResolution {
+  outcome: "ESTABLISHED" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
+  mechanism: "AUTOMATED";
+  consensus_status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
+  decided_at: string;
+  verifier_results: Array<{
+    criterion_id: string;
+    mechanism: string;
+    status: "PASS" | "FAIL";
+  }>;
+}
+
 export class InterpretationRejected extends Error {
   constructor(public readonly errors: string[]) {
     super(`Saída da IA rejeitada pelo contrato: ${errors.join("; ")}`);
@@ -37,6 +49,7 @@ export class CompetencySession {
   interpretation?: AIInterpretation;
   relation?: RelationResult;
   consensus?: ConsensusResult;
+  resolution?: ConsensusResolution;
   adjudication?: AdjudicationOutcome;
   state: CompetencyState;
 
@@ -139,7 +152,7 @@ export class CompetencySession {
     return this.state;
   }
 
-  /** Consensus Core is the normal decision path. */
+  /** Consensus Core computes verifier convergence only; it does not resolve or mutate state. */
   consensusAdvance(): ConsensusResult {
     if (this.state.value !== "UNDER_REVIEW") {
       throw new TransitionError(
@@ -153,29 +166,70 @@ export class CompetencySession {
 
     const result = evaluateConsensus(this.evidences, this.relation);
     this.consensus = result;
+    this.resolution = undefined;
     this.adjudication = undefined;
+    return result;
+  }
 
-    if (result.status === "AGREEMENT") {
+  /** Records an explicit resolution grounded in the previously computed consensus. */
+  resolveConsensus(): ConsensusResolution {
+    if (!this.consensus) throw new TransitionError("execute o Consensus Core antes da resolução");
+    if (this.state.value !== "UNDER_REVIEW") {
+      throw new TransitionError("a resolução automatizada exige estado UNDER_REVIEW");
+    }
+
+    const outcome: ConsensusResolution["outcome"] =
+      this.consensus.status === "AGREEMENT"
+        ? "ESTABLISHED"
+        : this.consensus.status === "INSUFFICIENT_EVIDENCE"
+          ? "INSUFFICIENT_EVIDENCE"
+          : "CONFLICT";
+
+    const resolution: ConsensusResolution = {
+      outcome,
+      mechanism: "AUTOMATED",
+      consensus_status: this.consensus.status,
+      decided_at: this.env.now(),
+      verifier_results: this.consensus.criteria.flatMap((criterion) =>
+        criterion.verifications.map((result) => ({
+          criterion_id: result.criterion_id,
+          mechanism: result.mechanism,
+          status: result.status,
+        })),
+      ),
+    };
+    this.resolution = resolution;
+    return resolution;
+  }
+
+  /** Applies a recorded resolution to product state in a separate explicit step. */
+  applyResolution(): CompetencyState {
+    if (!this.resolution) throw new TransitionError("resolução explícita necessária antes da transição de estado");
+    if (this.state.value !== "UNDER_REVIEW") {
+      if (this.resolution.outcome === "CONFLICT") return this.state;
+      throw new TransitionError("a resolução já não pode ser aplicada ao estado atual");
+    }
+
+    if (this.resolution.outcome === "ESTABLISHED") {
       this.state = transition(
         this.state,
         "DEMONSTRATED",
         "consensus",
-        "consensus-core",
-        "verificações independentes convergiram para todos os critérios",
-        this.env.now(),
+        "resolution-core",
+        "resolução explícita ESTABLISHED após AGREEMENT",
+        this.resolution.decided_at,
       );
-    } else if (result.status === "INSUFFICIENT_EVIDENCE") {
+    } else if (this.resolution.outcome === "INSUFFICIENT_EVIDENCE") {
       this.state = transition(
         this.state,
         "IN_DEVELOPMENT",
         "consensus",
-        "consensus-core",
-        "evidência insuficiente; novas evidências são necessárias antes de nova verificação",
-        this.env.now(),
+        "resolution-core",
+        "resolução explícita de insuficiência; novas evidências são necessárias",
+        this.resolution.decided_at,
       );
     }
-
-    return result;
+    return this.state;
   }
 
   /** Exceptional path: only a Consensus Core CONFLICT can trigger human adjudication. */
