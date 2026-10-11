@@ -1,0 +1,17 @@
+// LASTRO Protocol v0.1 adapter contract. Product workflow labels are not competency states.
+export type ProductWorkflowState = "NOT_STARTED" | "IN_DEVELOPMENT" | "UNDER_REVIEW" | "DEMONSTRATED";
+export type CompetencyState = "ESTABLISHED" | "NOT_ESTABLISHED" | "INSUFFICIENT_EVIDENCE" | "CONFLICT" | "REQUIRES_VERIFICATION";
+export type ConsensusOutcome = "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
+export interface EstablishmentGrounds { claimOrContractBound: boolean; canonicalEvidencePresent: boolean; attributableVerificationPresent: boolean; explicitResolutionPresent: boolean; unresolvedConflict: boolean; evidenceInsufficient: boolean; }
+export type Projection = { kind: "MAPPED"; workflowState: "DEMONSTRATED"; competencyState: CompetencyState; protocolVersion: "0.1.0"; reason: string } | { kind: "WORKFLOW_ONLY"; workflowState: Exclude<ProductWorkflowState, "DEMONSTRATED">; competencyState: null; protocolVersion: "0.1.0"; reason: string };
+export function projectProductState(workflowState: ProductWorkflowState, grounds: EstablishmentGrounds): Projection {
+ if (workflowState !== "DEMONSTRATED") return { kind: "WORKFLOW_ONLY", workflowState, competencyState: null, protocolVersion: "0.1.0", reason: "Workflow status is not a canonical competency state." };
+ if (grounds.unresolvedConflict) return { kind: "MAPPED", workflowState, competencyState: "CONFLICT", protocolVersion: "0.1.0", reason: "Unresolved material conflict blocks establishment." };
+ if (grounds.evidenceInsufficient || !grounds.canonicalEvidencePresent) return { kind: "MAPPED", workflowState, competencyState: "INSUFFICIENT_EVIDENCE", protocolVersion: "0.1.0", reason: "Available evidence does not satisfy the contract." };
+ if (!grounds.claimOrContractBound || !grounds.attributableVerificationPresent || !grounds.explicitResolutionPresent) return { kind: "MAPPED", workflowState, competencyState: "REQUIRES_VERIFICATION", protocolVersion: "0.1.0", reason: "Required claim, verification, or explicit resolution grounds are missing." };
+ return { kind: "MAPPED", workflowState, competencyState: "ESTABLISHED", protocolVersion: "0.1.0", reason: "All bounded-state grounds are present and no unresolved conflict remains." };
+}
+export type ResolutionRecord = { mechanism: "AUTOMATED_RULE" | "DESIGNATED_REVIEW"; outcome: CompetencyState; actorId?: string; basis: string; evidenceRefs: string[]; verifierResultRefs: string[]; ruleVersion: string } | { mechanism: "HUMAN_ADJUDICATION"; outcome: CompetencyState; actorId: string; basis: string; evidenceRefs: string[]; verifierResultRefs: string[]; ruleVersion: string };
+export function validateResolutionRecord(record: ResolutionRecord): string[] { const errors: string[] = []; if (!record.basis.trim()) errors.push("resolution basis is required"); if (!record.ruleVersion.trim()) errors.push("applicable rule version is required"); if (!record.evidenceRefs.length) errors.push("evidence references must be preserved"); if (!record.verifierResultRefs.length) errors.push("prior verifier result references must be preserved"); if (record.mechanism === "HUMAN_ADJUDICATION" && !record.actorId.trim()) errors.push("human adjudication requires attributable actorId"); return errors; }
+export function isConsensusOutcome(value: string): value is ConsensusOutcome { return value === "AGREEMENT" || value === "INSUFFICIENT_EVIDENCE" || value === "CONFLICT"; }
+export function isResolutionMechanism(value: string): boolean { return value === "AUTOMATED_RULE" || value === "HUMAN_ADJUDICATION" || value === "DESIGNATED_REVIEW"; }
