@@ -26,6 +26,9 @@ async function realHandoff(): Promise<ReviewedStateRecord> {
   const { s } = await underVerification();
   const result = s.consensusAdvance();
   if (result.status !== "AGREEMENT") throw new Error(`expected AGREEMENT, got ${result.status}`);
+  const resolution = s.resolveConsensus();
+  if (resolution.outcome !== "ESTABLISHED") throw new Error(`expected ESTABLISHED, got ${resolution.outcome}`);
+  s.applyResolution();
   return s.handoff();
 }
 
