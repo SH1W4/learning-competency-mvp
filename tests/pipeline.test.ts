@@ -22,6 +22,10 @@ describe("canonical MVP decision flow", () => {
     const result = s.consensusAdvance();
 
     expect(result.status).toBe("AGREEMENT");
+    expect(s.state.value).toBe("UNDER_REVIEW");
+    expect(s.state.history.map((h) => h.to)).toEqual(["IN_DEVELOPMENT", "UNDER_REVIEW"]);
+    expect(s.resolveConsensus()).toMatchObject({ outcome: "ESTABLISHED", mechanism: "AUTOMATED" });
+    s.applyResolution();
     expect(s.state.value).toBe("DEMONSTRATED");
     expect(s.state.history.map((h) => h.to)).toEqual([
       "IN_DEVELOPMENT",
@@ -117,6 +121,8 @@ describe("canonical MVP decision flow", () => {
     expect(s.evidences.map(({ content, activity_id, type }) => ({ content, activity_id, type }))).toEqual(original);
     s.submitForVerification();
     expect(s.consensusAdvance().status).toBe("AGREEMENT");
+    s.resolveConsensus();
+    s.applyResolution();
   });
 
   it("rejects evidence tampering before consensus", async () => {
