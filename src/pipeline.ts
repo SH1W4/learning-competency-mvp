@@ -25,15 +25,22 @@ import { buildHandoff, buildTrace, type ProvenanceTrace, type ReviewedStateRecor
 import { defaultEnv, type Env } from "./util.js";
 
 export interface ConsensusResolution {
-  outcome: "ESTABLISHED" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
-  mechanism: "AUTOMATED";
-  consensus_status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
+  outcome: "ESTABLISHED" | "NOT_ESTABLISHED" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
+  mechanism: "AUTOMATED" | "HUMAN_ADJUDICATION";
+  consensus_status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT" | "HUMAN_ADJUDICATION";
   decided_at: string;
   verifier_results: Array<{
     criterion_id: string;
     mechanism: string;
     status: "PASS" | "FAIL";
   }>;
+  adjudication?: {
+    actor_id: string;
+    basis: string;
+    evidence_refs: string[];
+    prior_verifier_results: string[];
+    adjudication_id: string;
+  };
 }
 
 export class InterpretationRejected extends Error {
@@ -83,6 +90,7 @@ export class CompetencySession {
     this.interpretation = undefined;
     this.relation = undefined;
     this.consensus = undefined;
+    this.resolution = undefined;
     this.adjudication = undefined;
     return ev;
   }
@@ -235,6 +243,9 @@ export class CompetencySession {
   /** Exceptional path: only a Consensus Core CONFLICT can trigger human adjudication. */
   adjudicate(record: AdjudicationRecord): AdjudicationOutcome {
     if (!this.consensus) throw new TransitionError("execute o Consensus Core antes da adjudicação");
+    if (!this.resolution || this.resolution.outcome !== "CONFLICT") {
+      throw new TransitionError("registre a resolução explícita de CONFLICT antes da adjudicação");
+    }
     if (this.consensus.status !== "CONFLICT") {
       throw new TransitionError(
         `adjudicação humana só é permitida após CONFLICT (estado atual: ${this.consensus.status})`,
@@ -243,6 +254,24 @@ export class CompetencySession {
     if (!this.relation) throw new TransitionError("não há interpretação para adjudicação");
 
     this.adjudication = applyAdjudication(this.state, this.relation, this.consensus, record);
+    const priorVerifierResults = this.resolution.verifier_results.map(
+      (result) => `${result.criterion_id}:${result.mechanism}=${result.status}`,
+    );
+    this.resolution = {
+      ...this.resolution,
+      outcome: record.confirm_demonstrated ? "ESTABLISHED" : "NOT_ESTABLISHED",
+      mechanism: "HUMAN_ADJUDICATION",
+      consensus_status: "HUMAN_ADJUDICATION",
+      adjudication: {
+        actor_id: record.adjudicator.id,
+        basis: record.summary_note?.trim() || "Recorded criterion-level adjudication decisions.",
+        evidence_refs: this.adjudication.criteria.flatMap((criterion) =>
+          criterion.evidence_refs.map((reference) => reference.evidence_id),
+        ),
+        prior_verifier_results: priorVerifierResults,
+        adjudication_id: record.adjudication_id,
+      },
+    };
     this.consensus = { ...this.consensus, status: "HUMAN_ADJUDICATION" };
     this.state = this.adjudication.state;
     return this.adjudication;
