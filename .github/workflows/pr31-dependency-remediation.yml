@@ -1,0 +1,79 @@
+name: PR31 dependency remediation
+
+on:
+  push:
+    branches: ["fix/pr31-dependency-remediation-2026-10-11"]
+
+permissions:
+  contents: write
+
+jobs:
+  remediate-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout remediation branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Regenerate lockfile from reviewed package constraints
+        run: npm install --package-lock-only --ignore-scripts
+
+      - name: Commit regenerated lockfile
+        shell: bash
+        run: |
+          if ! git diff --quiet -- package-lock.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "chore(deps): regenerate lockfile for PR31 security remediation"
+            git push
+          else
+            echo "Lockfile already matches package.json."
+          fi
+
+      - name: Clean install
+        run: npm ci
+
+      - name: Vitest
+        run: npm test
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Full dependency audit (fail on moderate or worse)
+        run: npm audit --audit-level=moderate
+
+      - name: Production dependency audit (fail on high or critical)
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Setup pnpm for frontend gates
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.1
+          run_install: false
+
+      - name: Setup Node.js for frontend
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: pnpm install --frozen-lockfile
+
+      - name: Frontend typecheck
+        working-directory: frontend
+        run: pnpm typecheck
+
+      - name: Frontend production build
+        working-directory: frontend
+        run: pnpm build
