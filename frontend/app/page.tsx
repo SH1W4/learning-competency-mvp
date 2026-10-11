@@ -15,6 +15,13 @@ type M4Projection = {
   evidence: Array<{ evidence_id: string; type: string; activity_id: string; source_ref: string; content_ref: string; trust_level: string; synthetic: boolean }>
   interpretation: { id: string; model: string; signals: Array<{ signal_id: string; criterion_id: string; support: string; confidence: number; evidence_refs: string[] }> }
   verification: { mechanisms: Verification[] }
+  resolution: {
+    outcome: 'ESTABLISHED' | 'NOT_ESTABLISHED' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'REQUIRES_VERIFICATION'
+    mechanism: 'AUTOMATED'
+    decided_at: string
+    verifier_results: Array<{ criterion_id: string; mechanism: string; status: 'PASS' | 'FAIL' }>
+    projection: 'BOUNDED_STATE' | 'NO_STATE' | 'SOURCE_UNAVAILABLE'
+  }
   consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION'; can_auto_advance: boolean; requires_adjudication: boolean }
   state: { value: 'NOT_STARTED' | 'IN_DEVELOPMENT' | 'UNDER_REVIEW' | 'DEMONSTRATED'; history: unknown[] }
   handoff: { record_version: string; record_hash: string; competency_id: string; state: string; decision_mode: string }
@@ -167,6 +174,17 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+              <section className="runtime-subsection" aria-labelledby="resolution-title">
+                <span className="eyebrow">STEP 05 · EXPLICIT RESOLUTION</span>
+                <h3 id="resolution-title">{data.resolution.outcome}</h3>
+                <p>The resolution is a distinct runtime record, not a synonym for consensus and not a decision computed by this interface.</p>
+                <dl className="runtime-metadata">
+                  <div><dt>Resolution mechanism</dt><dd>{data.resolution.mechanism}</dd></div>
+                  <div><dt>Semantic projection</dt><dd>{data.resolution.projection}</dd></div>
+                  <div><dt>Recorded at</dt><dd>{data.resolution.decided_at}</dd></div>
+                  <div><dt>Verifier results retained</dt><dd>{data.resolution.verifier_results.length}</dd></div>
+                </dl>
+              </section>
               {data.consensus.status === 'CONFLICT' || data.consensus.requires_adjudication ? (
                 <aside className="runtime-exception" role="note">
                   <strong>Exceptional Human Review</strong>
