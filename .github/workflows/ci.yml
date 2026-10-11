@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "feat/m4-semantic-contract-tests-2026-10-11"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "feat/public-m4-frontend-v0"]
 
 permissions:
   contents: read
@@ -13,8 +13,21 @@ jobs:
   test-and-typecheck:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout exact candidate SHA
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Assert exact candidate SHA
+        shell: bash
+        env:
+          EXPECTED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          actual="$(git rev-parse HEAD)"
+          echo "Expected SHA: $EXPECTED_SHA"
+          echo "Actual SHA:   $actual"
+          test "$actual" = "$EXPECTED_SHA"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
