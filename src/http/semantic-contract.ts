@@ -123,7 +123,12 @@ export function projectCanonicalCompetencyState(
     );
   }
 
-  if (consensus === "CONFLICT" && resolution !== null && resolution !== "CONFLICT") {
+  if (
+    consensus === "CONFLICT" &&
+    resolution !== null &&
+    resolution !== "CONFLICT" &&
+    resolutionMechanism !== "HUMAN_ADJUDICATION"
+  ) {
     throw new SemanticContractError(
       "CONFLICT_COLLAPSED",
       "A conflict cannot be silently resolved into a non-conflict state by the adapter.",
