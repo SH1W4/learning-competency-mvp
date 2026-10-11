@@ -7,6 +7,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -23,6 +25,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -34,6 +38,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -47,6 +53,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -60,6 +68,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -74,6 +84,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -87,6 +99,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -99,6 +113,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
     const claim = buildVerifiableClaim(record);
@@ -111,6 +127,8 @@ describe("verifiable claim layer — additive to M2/M3 handoff", () => {
     const { s } = await underVerification();
     const result = s.consensusAdvance();
     expect(result.status).toBe("AGREEMENT");
+    expect(s.resolveConsensus().outcome).toBe("ESTABLISHED");
+    s.applyResolution();
 
     const record = s.handoff();
 
