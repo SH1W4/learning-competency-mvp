@@ -11,6 +11,8 @@ The Portuguese documentation remains the team's primary working documentation. T
 3. [Consensus, Governance & Attestation](03_VERIFICATION_AND_GOVERNANCE.md)
 4. [Demo & Technical Proof](04_DEMO_AND_PROOF.md)
 5. [Limitations & Claims](05_LIMITATIONS_AND_CLAIMS.md)
+6. [M4 Frontend Vertical Slice](M4_FRONTEND_VERTICAL_SLICE.md)
+7. [M4 Local Devnet Proof Runbook](M4_LOCAL_DEVNET_PROOF.md)
 
 ## One-line thesis
 
@@ -40,20 +42,22 @@ Public verification
 
 ## Current implementation status
 
-The repository contains a working M1→M3 vertical slice covering:
+The repository contains a working M1→M4 vertical slice covering:
 
 - structured evidence ingestion;
 - evidence extraction and provenance;
 - AI-assisted interpretation;
 - deterministic criteria checks independent from AI signals;
-- human review;
+- human adjudication exception for non-convergent cases;
 - Consensus Core for covered convergent cases;
 - competency state transitions;
+- canonical M4 HTTP runtime API (`/api/m4/competency`);
+- public read-only Next.js projection at `https://lastro-learn.vercel.app`;
 - attestation capability on Solana Devnet;
 - integrity and payload-binding verification;
-- automated tests and type checking.
+- automated tests and type checking (13 test files, 80 tests passing).
 
-The attestation implementation is complete, while the current `m3.attestation.v2` public Devnet proof is a remaining M4 validation artifact. Market validation, pricing, recurring commercial adoption, and the broader Dynamic Role Architecture remain hypotheses under validation.
+The attestation implementation is complete, and the public `m3.attestation.v2` Devnet proof is executed and verified on-chain (`tx: 22wJ3t6...`). Market validation, pricing, recurring commercial adoption, and the broader Dynamic Role Architecture remain hypotheses under validation.
 
 ## Important distinction
 

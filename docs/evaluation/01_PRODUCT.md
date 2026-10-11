@@ -99,8 +99,10 @@ Implemented:
 - Consensus Core for agreement, insufficient evidence and conflict;
 - human adjudication as an explicit conflict exception;
 - competency state transition;
+- canonical M4 HTTP runtime API (`/api/m4/competency`);
+- public read-only Next.js web application (`https://lastro-learn.vercel.app`);
 - Solana Devnet attestation capability;
-- verification of an anchored record when a current Devnet transaction is available.
+- verified anchored record on Solana Devnet (`tx: 22wJ3t6...`) for synthetic Ana.
 
 Not yet validated:
 

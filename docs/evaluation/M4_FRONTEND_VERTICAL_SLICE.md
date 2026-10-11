@@ -1,6 +1,6 @@
 # M4 Frontend Vertical Slice — Public Integration Record
 
-**Status:** implementation slice; integration and visual acceptance pending  
+**Status:** implemented and deployed to production; public read-only projection active  
 **Canonical implementation:** `frontend/` in this repository  
 **Product/runtime authority:** this repository
 
@@ -41,28 +41,27 @@ Browser
 ## Not claimed by this change
 
 - Complete implementation of every planned V0 screen (landing, full dashboard, queue, audit-log experience, architecture tour, and dedicated adjudication workflow);
-- browser-based E2E acceptance or screenshot-based visual sign-off;
+- browser-based E2E acceptance or screenshot-based visual sign-off across all viewports;
 - accessibility certification or measured contrast acceptance;
-- a verified deployed canonical runtime integration;
-- new Solana transaction or on-chain proof;
 - commercial validation, adoption, or product-market fit.
 
 ## Acceptance gates
 
-### Verified on the PR head
-- [x] Frozen-lockfile install, TypeScript typecheck, and Next.js production build pass in the recorded GitHub Actions runs for the previously inspected PR head.
+### Verified in production / PR head
+- [x] Frozen-lockfile install, TypeScript typecheck, and Next.js production build pass in GitHub Actions runs for PR #27.
+- [x] Production environment configured with approved HTTPS runtime endpoint (`https://lastro-m4-runtime.onrender.com/api/m4/competency?scenario=synthetic-ana`).
+- [x] Production proxy at `https://lastro-learn.vercel.app/api/m4/competency?scenario=synthetic-ana` verified returning HTTP 200 with canonical consensus and competency state.
+- [x] Runtime available response compared with direct canonical M4 response (payload parity confirmed).
+- [x] Public read-only web projection rendered live at `https://lastro-learn.vercel.app`.
 
-### Not yet evidenced as executed
-- [ ] Invalid scenario returns HTTP 400 with `unsupported_scenario`.
+### Follow-up quality reviews
+- [ ] Invalid scenario proxy returns HTTP 400 with `unsupported_scenario` in automated test suite.
 - [ ] Runtime unavailable state returns HTTP 503 without fixture substitution.
-- [ ] Runtime available response is compared with the direct canonical M4 response.
 - [ ] Browser walkthrough at mobile (<768 px), tablet (768–1199 px), and desktop (≥1200 px).
 - [ ] Keyboard navigation, visible focus, zoom, reduced-motion behavior, and text contrast reviewed.
 - [ ] Conflict and Human Adjudication states reviewed for semantic correctness.
-- [ ] Production/Preview environment is configured with an approved, reachable HTTPS runtime endpoint and a successful response verified.
-- [ ] Integrated browser E2E and any on-chain evidence are reported separately and only after actual execution.
 
-**Observed deployment evidence:** the screenshot provided for `https://lastro-learn.vercel.app` shows the M4 interface loading but reporting HTTP 503, “Runtime not connected.” Therefore the deployment is not evidence of a successful runtime integration. Confirm that this Vercel project/domain is intended to serve the M4 frontend; it is not the Erick Learn workflow shown in his prototype description.
+**Observed deployment evidence:** on 2026-10-11, the Render web service `lastro-m4-runtime.onrender.com` was deployed and verified via `/health` (HTTP 200). The Vercel frontend at `https://lastro-learn.vercel.app` was connected via server-side `LASTRO_M4_RUNTIME_URL` and verified live, resolving the earlier HTTP 503 ("Runtime not connected") state.
 
 ## Deploying the canonical M4 runtime
 

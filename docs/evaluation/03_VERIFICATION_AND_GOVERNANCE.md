@@ -114,4 +114,9 @@ It anchors the representation defined by the system so that the recorded state c
 
 ## Current proof status
 
-The attestation implementation is part of the completed M3 vertical slice. The current `m3.attestation.v2` Devnet transaction is an M4 closing artifact and must be generated and registered before it is presented as the project's current public proof.
+The attestation implementation is complete and verified on Solana Devnet. An active `m3.attestation.v2` Devnet proof was generated and verified on 2026-10-09:
+
+- **Transaction signature:** `22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX`
+- **Record hash:** `d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065`
+- **Explorer:** [Solana Explorer (Devnet)](https://explorer.solana.com/tx/22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX?cluster=devnet)
+- **Verification outcome:** 5/5 checks passed (`hash_on_chain`, `record_integrity`, `subject_ref`, `payload_binding`, `signer`).
