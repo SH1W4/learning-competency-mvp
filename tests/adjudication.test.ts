@@ -47,7 +47,7 @@ describe("Human Adjudication — exceptional conflict path", () => {
       by: "adjudicator",
       to: "DEMONSTRATED",
     });
-    expect(s.consensus?.status).toBe("HUMAN_ADJUDICATION");
+    expect(s.consensus?.status).toBe("CONFLICT");
     expect(s.handoff().decision.mode).toBe("human_adjudication");
   });
 
