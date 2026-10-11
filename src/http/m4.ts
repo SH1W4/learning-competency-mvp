@@ -1,6 +1,7 @@
 import { CompetencySession } from "../pipeline.js";
 import { providerFromEnv } from "../ai/provider.js";
 import { ANA, SUBJECT } from "../scenario.js";
+import { projectCanonicalCompetencyState, type CanonicalResolution } from "./semantic-contract.js";
 
 export interface M4Verification {
   mechanism: "evidence_integrity" | "deterministic_criteria" | "ai_interpretation";
@@ -48,6 +49,13 @@ export interface M4Projection {
     }>;
   };
   verification: { mechanisms: M4Verification[] };
+  resolution: {
+    outcome: CanonicalResolution;
+    mechanism: "AUTOMATED";
+    decided_at: string;
+    verifier_results: Array<{ criterion_id: string; mechanism: string; status: "PASS" | "FAIL" }>;
+    projection: "BOUNDED_STATE" | "NO_STATE" | "SOURCE_UNAVAILABLE";
+  };
   consensus: {
     status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT" | "HUMAN_ADJUDICATION";
     criteria: Array<{
@@ -86,6 +94,24 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
   await session.interpret(providerFromEnv());
   session.submitForVerification();
   const consensus = session.consensusAdvance();
+  const resolution = session.resolveConsensus();
+  const candidateState =
+    resolution.outcome === "ESTABLISHED"
+      ? "DEMONSTRATED"
+      : resolution.outcome === "INSUFFICIENT_EVIDENCE"
+        ? "IN_DEVELOPMENT"
+        : "UNDER_REVIEW";
+  const semanticProjection = projectCanonicalCompetencyState({
+    productState: candidateState,
+    sourceStatus: "AVAILABLE",
+    consensus: consensus.status,
+    resolution: resolution.outcome,
+    resolutionMechanism: resolution.mechanism,
+  });
+  if (semanticProjection.kind !== "BOUNDED_STATE" || semanticProjection.state !== resolution.outcome) {
+    throw new Error("M4 semantic adapter did not produce the explicit canonical resolution.");
+  }
+  session.applyResolution();
   const handoff = session.handoff();
 
   if (session.state.value !== "DEMONSTRATED") {
@@ -138,6 +164,13 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
       })),
     },
     verification: { mechanisms: [...uniqueMechanisms.values()] },
+    resolution: {
+      outcome: resolution.outcome,
+      mechanism: resolution.mechanism,
+      decided_at: resolution.decided_at,
+      verifier_results: resolution.verifier_results,
+      projection: semanticProjection.kind,
+    },
     consensus: {
       status: consensus.status,
       criteria: consensus.criteria,
