@@ -17,3 +17,12 @@ docs/pitch/
 docs/private/
 docs/hackathon/
 docs/diario-de-bordo/*dataroom*
+
+# Frontend & Next.js build artifacts
+.next/
+frontend/.next/
+*.tsbuildinfo
+next-env.d.ts
+frontend/next-env.d.ts
+frontend/AGENTS.md
+frontend/CLAUDE.md
