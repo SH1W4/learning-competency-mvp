@@ -95,7 +95,7 @@ describe("LASTRO competency semantic adapter v0.1", () => {
     expect(adaptCompetencyState({
       ...agreement,
       resolution: { status: "RESOLVED", mechanism: "consensus", outcome: "REQUIRES_VERIFICATION" },
-    })).toMatchObject({ competencyState: null, mappingStatus: "INCONSISTENT", reason: "product_state_mismatch" });
+    })).toMatchObject({ competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" });
   });
 
   it("does not turn NOT_STARTED into NOT_ESTABLISHED", () => {
