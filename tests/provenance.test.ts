@@ -16,6 +16,7 @@ async function conflictingSession() {
     })),
   };
   expect(s.consensusAdvance().status).toBe("CONFLICT");
+  expect(s.resolveConsensus().outcome).toBe("CONFLICT");
   return { s, env };
 }
 
@@ -47,6 +48,8 @@ describe("Provenance and M2 → M3 handoff", () => {
     const { s } = await underVerification(env);
     await s.interpret(new HeuristicProvider(env));
     expect(s.consensusAdvance().status).toBe("AGREEMENT");
+    s.resolveConsensus();
+    s.applyResolution();
 
     const trace = s.trace();
     for (const c of trace.criteria) {
@@ -60,6 +63,8 @@ describe("Provenance and M2 → M3 handoff", () => {
     const { s } = await underVerification(env);
     await s.interpret(new HeuristicProvider(env));
     s.consensusAdvance();
+    s.resolveConsensus();
+    s.applyResolution();
 
     const h = s.handoff();
     expect(h.state).toBe("DEMONSTRATED");
@@ -79,10 +84,14 @@ describe("Provenance and M2 → M3 handoff", () => {
     const a = await underVerification();
     await a.s.interpret(new HeuristicProvider(a.env));
     a.s.consensusAdvance();
+    a.s.resolveConsensus();
+    a.s.applyResolution();
 
     const b = await underVerification();
     await b.s.interpret(new HeuristicProvider(b.env));
     b.s.consensusAdvance();
+    b.s.resolveConsensus();
+    b.s.applyResolution();
 
     expect(a.s.handoff().record_hash).toBe(b.s.handoff().record_hash);
   });
@@ -92,6 +101,8 @@ describe("Provenance and M2 → M3 handoff", () => {
     const { s } = await underVerification(env);
     await s.interpret(new HeuristicProvider(env));
     s.consensusAdvance();
+    s.resolveConsensus();
+    s.applyResolution();
 
     expect(s.consensus).toBeDefined();
     expect(() => s.submit(ANA.synthesis())).toThrow(/DEMONSTRATED/);
