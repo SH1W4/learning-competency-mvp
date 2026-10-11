@@ -4,6 +4,36 @@
 
 This index is intentionally lightweight. It does not define new product behavior or architecture. It points to the canonical sources already maintained in the repository.
 
+## Contexto completo para Erick e assistentes de IA
+
+> **Ponto de entrada recomendado:** leia este handoff inteiro primeiro. Em seguida, use os documentos canônicos abaixo. Os links públicos dão contexto verificável a qualquer pessoa ou assistente de IA com acesso ao GitHub; eles não concedem acesso automático ao repositório privado Vault, a contas externas, segredos ou conversas que não estejam publicadas.
+
+### Estado atual e trabalho em andamento
+- [Esta PR #16 — handoff editorial e mapa de contexto](https://github.com/SH1W4/learning-competency-mvp/pull/16) — objetivo e discussão desta entrega.
+- [PR #27 — frontend M4 e proxy same-origin](https://github.com/SH1W4/learning-competency-mvp/pull/27) — integração de frontend; aberta, não presumir merge ou E2E concluído.
+- [PR #26 — prova/attestation Solana Devnet](https://github.com/SH1W4/learning-competency-mvp/pull/26) — evidência da atestação registrada em 2026-10-09.
+- [Issue #3 — validação de mercado](https://github.com/SH1W4/learning-competency-mvp/issues/3) — demanda, buyer, wedge e hipótese de piloto ainda precisam de evidência externa.
+- [PR #18 — extração do kernel do protocolo](https://github.com/SH1W4/learning-competency-mvp/pull/18) — auditoria de candidatos a elementos do protocolo; não equivale a um protocolo final.
+- [PR #17 — restauração de CI](https://github.com/SH1W4/learning-competency-mvp/pull/17) e [PR #15 — hardening da fronteira de evidência](https://github.com/SH1W4/learning-competency-mvp/pull/15) — histórico técnico relevante.
+- [PR #12 — baseline de marca/interface](https://github.com/SH1W4/learning-competency-mvp/pull/12) — referência visual anterior.
+
+### Fontes canônicas para orientar uma pessoa ou IA
+1. [Project Handoff](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/PROJECT_HANDOFF.md) — orientação geral.
+2. [Project Status](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/PROJECT_STATUS.md) — estado atual e pendências.
+3. [Source of Truth](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/governance/SOURCE_OF_TRUTH.md) — precedência entre fontes.
+4. [Publication Classification Matrix](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/governance/PUBLICATION_CLASSIFICATION_MATRIX.md) e [Vault Boundary](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/governance/VAULT_BOUNDARY.md) — o que pode ser publicado e o que permanece restrito.
+5. [Product Thesis](https://github.com/SH1W4/learning-competency-mvp/blob/main/research/product/PRODUCT_THESIS.md), [Research Map](https://github.com/SH1W4/learning-competency-mvp/blob/main/research/RESEARCH_MAP.md) e [Related Work & Evidence](https://github.com/SH1W4/learning-competency-mvp/blob/main/research/RELATED_WORK_AND_EVIDENCE.md) — tese, fundamentos e perguntas abertas.
+6. [Demo & Proof](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/evaluation/04_DEMO_AND_PROOF.md), [Limitations & Claims](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md) e [Reproducible Demo Contract](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md) — prova disponível e limites das afirmações.
+7. [Technical Architecture](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/architecture/TECHNICAL_ARCHITECTURE.md), [Evidence Pipeline](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/architecture/EVIDENCE_PIPELINE.md), [Consensus Core](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/architecture/CONSENSUS_CORE.md), [Attestation Model](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/architecture/ATTESTATION_MODEL.md) e [API Contract](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/architecture/API_CONTRACT.md) — contratos e implementação.
+8. [Case Studies](https://github.com/SH1W4/learning-competency-mvp/tree/main/docs/case_studies), [Competitive Landscape](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/market/COMPETITIVE_LANDSCAPE.md), [GTM](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/go-to-market/GTM.md) e [Pitch Strategy](https://github.com/SH1W4/learning-competency-mvp/blob/main/docs/go-to-market/01_PITCH_STRATEGY.md) — aplicações e narrativa comercial, sem confundir hipótese com validação.
+9. [Repositório público canônico](https://github.com/SH1W4/learning-competency-mvp) — código, testes, histórico e documentos.
+10. [Repositório privado Vault](https://github.com/SH1W4/lastro-vault-1) — workspace restrito de pesquisa/auditoria. O link não torna o conteúdo público nem concede acesso; não copiar para esta PR material classificado como privado.
+
+### Instrução de uso para assistentes de IA
+Use primeiro **Source of Truth**, **Project Status**, **Product Thesis**, **Demo & Proof** e **Limitations & Claims**. Depois consulte as PRs e os contratos técnicos relevantes para a tarefa. Separe explicitamente: (a) implementado e comprovado; (b) em integração; (c) hipótese; (d) pendência. Não trate comentário como prova independente, não declare deployment/E2E concluído sem confirmação verificável, não invente métricas, clientes, atestações ou resultados, e preserve os limites de publicação do Vault.
+
+---
+
 ## Como ler este documento se você não é técnico
 
 Você **não precisa entender programação para entender o LASTRO**.
