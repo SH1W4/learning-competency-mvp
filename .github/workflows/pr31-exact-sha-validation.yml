@@ -14,17 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout exact audited PR #31 head
+      - name: Checkout exact current PR #31 head
         uses: actions/checkout@v4
         with:
-          ref: dbddeb3051826f95221d180a0fe967dabc7bb7f1
+          ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
 
       - name: Assert checked-out SHA
         shell: bash
         run: |
           actual="$(git rev-parse HEAD)"
-          expected="dbddeb3051826f95221d180a0fe967dabc7bb7f1"
+          expected="${{ github.event.pull_request.head.sha }}"
           echo "Expected SHA: $expected"
           echo "Actual SHA:   $actual"
           test "$actual" = "$expected"
@@ -43,3 +43,7 @@ jobs:
 
       - name: Run TypeScript typecheck
         run: npm run typecheck
+
+      - name: Audit production dependencies
+        if: always()
+        run: npm audit --omit=dev --audit-level=high
