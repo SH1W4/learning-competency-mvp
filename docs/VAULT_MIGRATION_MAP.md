@@ -27,6 +27,7 @@ The separation must preserve:
 | `.github/` | 🔵 MVP | Keep CI/workflows |
 | root config | 🔵 MVP | Keep |
 | `docs/evaluation/` | 🟢 + 🔵 | Strong public source; retain technical source |
+| `docs/audits/` | 🟢 + 🔵 | Milestone closure audits and static verification reports |
 | `docs/architecture/` | 🟡 + 🔵 | Publish curated architecture; retain implementation detail |
 | `docs/product/` | 🟡 + 🔵 | Curate canonical product material |
 | `docs/brand/` | 🟢 | Curate consolidated identity |
