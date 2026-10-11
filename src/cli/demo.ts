@@ -68,7 +68,12 @@ async function main() {
 
   log("\n4) CONSENSUS CORE");
   const consensus = s.consensusAdvance();
+  const resolution = s.resolveConsensus();
   log(`   resultado: ${consensus.status}`);
+  log(`   resolução explícita: ${resolution.outcome} (${resolution.mechanism})`);
+  if (resolution.outcome !== "CONFLICT" || !adjudicationPath) {
+    s.applyResolution();
+  }
   log(`   adjudicação necessária: ${consensus.requires_adjudication ? "SIM" : "NÃO"}`);
   for (const criterion of consensus.criteria) {
     log(
