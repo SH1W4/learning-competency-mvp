@@ -1,45 +1,38 @@
-import { z } from 'zod'
 import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 
-const runtimePayloadSchema = z.object({
-  synthetic: z.boolean(),
-  consensus: z.object({
-    status: z.enum(['AGREEMENT', 'INSUFFICIENT_EVIDENCE', 'CONFLICT']),
-    can_auto_advance: z.boolean(),
-    requires_adjudication: z.boolean(),
-    criteria: z.array(z.object({
-      criterion_id: z.string(),
-      status: z.string(),
-      verifications: z.array(z.object({
-        mechanism: z.enum(['evidence_integrity', 'deterministic_criteria', 'ai_interpretation']),
-        criterion_id: z.string(),
-        status: z.enum(['PASS', 'FAIL']),
-        rationale: z.string(),
-      }).passthrough()),
-    }).passthrough()),
-  }).passthrough(),
-  resolution: z.object({
-    status: z.enum(['NOT_REQUIRED', 'PENDING', 'RESOLVED']),
-    mechanism: z.enum(['consensus', 'human_adjudication', 'none']),
-    outcome: z.enum(['ESTABLISHED', 'NOT_ESTABLISHED', 'INSUFFICIENT_EVIDENCE', 'CONFLICT', 'REQUIRES_VERIFICATION']).nullable(),
-  }),
-  competency_state: z.object({
-    adapter_version: z.string(),
-    value: z.enum(['ESTABLISHED', 'NOT_ESTABLISHED', 'INSUFFICIENT_EVIDENCE', 'CONFLICT', 'REQUIRES_VERIFICATION']).nullable(),
-    mapping_status: z.enum(['MAPPED', 'UNMAPPED', 'INCONSISTENT']),
-    reason: z.string(),
-  }),
-  state: z.object({
-    value: z.enum(['NOT_STARTED', 'IN_DEVELOPMENT', 'UNDER_REVIEW', 'DEMONSTRATED']),
-    history: z.array(z.unknown()),
-  }).passthrough(),
-  attestation: z.null(),
-  public_verification: z.null(),
-}).passthrough()
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+function isOneOf<T extends string>(value: unknown, values: readonly T[]): value is T {
+  return typeof value === 'string' && values.includes(value as T)
+}
+
+function isValidRuntimePayload(value: unknown): boolean {
+  if (!isRecord(value) || value.synthetic !== true) return false
+  if (!isRecord(value.consensus) || !isOneOf(value.consensus.status, ['AGREEMENT', 'INSUFFICIENT_EVIDENCE', 'CONFLICT'] as const)) return false
+  if (typeof value.consensus.can_auto_advance !== 'boolean' || typeof value.consensus.requires_adjudication !== 'boolean') return false
+  if (!Array.isArray(value.consensus.criteria)) return false
+  if (!isRecord(value.resolution) ||
+      !isOneOf(value.resolution.status, ['NOT_REQUIRED', 'PENDING', 'RESOLVED'] as const) ||
+      !isOneOf(value.resolution.mechanism, ['consensus', 'human_adjudication', 'none'] as const) ||
+      !(value.resolution.outcome === null || isOneOf(value.resolution.outcome, ['ESTABLISHED', 'NOT_ESTABLISHED', 'INSUFFICIENT_EVIDENCE', 'CONFLICT', 'REQUIRES_VERIFICATION'] as const))) return false
+  if (!isRecord(value.competency_state) ||
+      typeof value.competency_state.adapter_version !== 'string' ||
+      !(value.competency_state.value === null || isOneOf(value.competency_state.value, ['ESTABLISHED', 'NOT_ESTABLISHED', 'INSUFFICIENT_EVIDENCE', 'CONFLICT', 'REQUIRES_VERIFICATION'] as const)) ||
+      !isOneOf(value.competency_state.mapping_status, ['MAPPED', 'UNMAPPED', 'INCONSISTENT'] as const) ||
+      typeof value.competency_state.reason !== 'string') return false
+  if (!isRecord(value.state) ||
+      !isOneOf(value.state.value, ['NOT_STARTED', 'IN_DEVELOPMENT', 'UNDER_REVIEW', 'DEMONSTRATED'] as const) ||
+      !Array.isArray(value.state.history)) return false
+  if (value.attestation !== null || value.public_verification !== null) return false
+  return true
+}
 
 const LOCAL_RUNTIME_URL = 'http://127.0.0.1:8787/api/m4/competency?scenario=synthetic-ana'
 
@@ -106,15 +99,14 @@ export async function GET(request: Request) {
       )
     }
 
-    const validated = runtimePayloadSchema.safeParse(payload)
-    if (!validated.success) {
+    if (!isValidRuntimePayload(payload)) {
       return NextResponse.json(
         { error: 'invalid_canonical_runtime_payload', message: 'The canonical runtime response does not match the M4 contract.' },
         { status: 502, headers: { 'cache-control': 'no-store' } },
       )
     }
 
-    return NextResponse.json(validated.data, {
+    return NextResponse.json(payload, {
       status: 200,
       headers: { 'cache-control': 'no-store' },
     })
