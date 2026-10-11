@@ -561,8 +561,9 @@ If a live Devnet write is unavailable, the presentation can use the previously v
 ## 15. Repository Structure
 
 - `src/` — Core implementation and hardened pipelines.
-- `tests/` — Automated coverage, including adversarial integrity tests.
-- `docs/` — Product, architecture, evaluation, governance and operational documentation.
+- `frontend/` — Public read-only Next.js web application (deployed to Vercel at [lastro-learn.vercel.app](https://lastro-learn.vercel.app)).
+- `tests/` — Automated coverage (13 test files, 80 tests passing), including adversarial integrity tests.
+- `docs/` — Product, architecture, evaluation, governance and operational documentation (see [Documentation Index](docs/README.md)).
 - `research/` — Publicly curated research, prior art, evidence, methodological protocols, and bounded future hypotheses. Research artifacts are explicitly classified by epistemic status.
 
 ## 16. Team

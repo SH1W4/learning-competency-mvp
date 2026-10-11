@@ -21,22 +21,31 @@ A blockchain não determina o mérito da competência. Ela permite verificar a c
 
 ## Demonstração técnica
 
-Fluxo local:
+### 1. Interface Web Pública (M4 Live)
+- **Aplicação:** [https://lastro-learn.vercel.app](https://lastro-learn.vercel.app) (Next.js read-only projection)
+- **Runtime:** [https://lastro-m4-runtime.onrender.com](https://lastro-m4-runtime.onrender.com/health) (Hosted API no Render)
 
-    npm run demo
+### 2. Fluxo Local e Testes
+```bash
+# Execução da demonstração canônica no terminal
+npm run demo
 
-Atestação:
+# Demonstração da exceção de adjudicação humana em caso de conflito
+npm run demo:adjudication
 
-    npm run m3:attest
+# Validação completa do ciclo E2E na Solana Devnet
+npm run m4:e2e:devnet
 
-Verificação:
-
-    npm run m3:verify
+# Verificação independente da atestação ancorada
+npm run m3:verify 22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065
+```
 
 ## Cenário
 
-Os dados utilizados na demonstração são sintéticos e não representam usuário, piloto, cliente ou tração reais.
+Os dados utilizados na demonstração são sintéticos (persona Ana, 4 atividades, 4 evidências) e não representam usuário, piloto, cliente ou tração reais.
 
-## Nota de publicação
+## Documentos Relacionados
 
-O roteiro completo de apresentação, falas, ordem narrativa, telas específicas e estratégia de demonstração é material interno da equipe.
+- [Roteiro Oficial do Vídeo de 3 Minutos](../../research/product/03_DEMO_VIDEO_SCRIPT.md) — Roteiro segundo a segundo com falas e telas.
+- [Demo & Technical Proof](../evaluation/04_DEMO_AND_PROOF.md) — Especificação técnica de prova, fixture de fallback e métricas de teste.
+- [Contrato de Demonstração Reprodutível](REPRODUCIBLE_DEMO_CONTRACT.md) — Contrato de execução da demo.

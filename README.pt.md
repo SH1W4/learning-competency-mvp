@@ -422,9 +422,10 @@ Se uma gravação ao vivo na Devnet estiver indisponível, a apresentação pode
 ## 15. Estrutura do Repositório
 
 - `src/` — Implementação principal e pipelines endurecidos.
-- `tests/` — Cobertura automatizada, incluindo testes adversariais de integridade.
-- `docs/` — Documentação de produto, arquitetura, avaliação, governança e operação.
-- `research/` — Hipóteses futuras e extensões de pesquisa.
+- `frontend/` — Projeção pública web em Next.js (deploy ativo na Vercel em [lastro-learn.vercel.app](https://lastro-learn.vercel.app)).
+- `tests/` — Cobertura automatizada (13 arquivos de teste, 80 testes passando 100%).
+- `docs/` — Documentação de produto, arquitetura, avaliação, governança e operação (consulte o [Índice de Documentação](docs/README.md)).
+- `research/` — Hipóteses futuras e extensões de pesquisa com status epistêmico classificado.
 
 ## 16. Equipe
 
