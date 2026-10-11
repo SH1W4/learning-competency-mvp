@@ -24,6 +24,7 @@ describe("canonical MVP decision flow", () => {
     expect(result.status).toBe("AGREEMENT");
     expect(s.state.value).toBe("UNDER_REVIEW");
     expect(s.state.history.map((h) => h.to)).toEqual(["IN_DEVELOPMENT", "UNDER_REVIEW"]);
+    expect(() => s.handoff()).toThrow(/resolução explícita/);
     expect(s.resolveConsensus()).toMatchObject({ outcome: "ESTABLISHED", mechanism: "AUTOMATED" });
     s.applyResolution();
     expect(s.state.value).toBe("DEMONSTRATED");
