@@ -279,7 +279,7 @@ export class CompetencySession {
 
   trace(): ProvenanceTrace {
     if (
-      (!this.adjudication && !this.consensus?.can_auto_advance) ||
+      (!this.adjudication && (!this.consensus?.can_auto_advance || !this.resolution)) ||
       !this.interpretation ||
       !this.relation
     ) {
@@ -299,11 +299,16 @@ export class CompetencySession {
   }
 
   handoff(): ReviewedStateRecord {
-    if (
-      !this.interpretation ||
-      (!this.consensus?.can_auto_advance && !this.adjudication)
-    ) {
-      throw new TransitionError("handoff disponível após consenso ou adjudicação humana");
+    const resolvedAutomatedDemonstration =
+      this.resolution?.mechanism === "AUTOMATED" &&
+      this.resolution.outcome === "ESTABLISHED" &&
+      this.state.value === "DEMONSTRATED";
+    const resolvedHumanAdjudication =
+      Boolean(this.adjudication) &&
+      this.resolution?.mechanism === "HUMAN_ADJUDICATION";
+
+    if (!this.interpretation || (!resolvedAutomatedDemonstration && !resolvedHumanAdjudication)) {
+      throw new TransitionError("handoff exige estado estabelecido após resolução explícita ou adjudicação humana registrada");
     }
 
     return buildHandoff(
