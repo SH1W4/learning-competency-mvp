@@ -26,8 +26,9 @@ Ao final da leitura, você deve conseguir explicar o LASTRO em uma frase:
 
 E deve conseguir distinguir três camadas:
 
-- **O que já provamos:** o MVP transforma evidência em estado de competência verificável e possui o caminho de atestação.
-- **O que estamos demonstrando agora:** interface, fluxo ponta a ponta e prova pública em Devnet.
+- **O que já foi demonstrado tecnicamente:** o núcleo M1–M3 está implementado e testável; a execução registrada em 2026-10-09 gerou uma nova atestação `m3.attestation.v2` na Solana Devnet e verificou os cinco checks positivos. Consulte `docs/evaluation/04_DEMO_AND_PROOF.md` e o registro da [PR #26](https://github.com/SH1W4/learning-competency-mvp/pull/26). Isso comprova a etapa de prova técnica, não a conclusão da experiência visual integrada.
+- **O que está em integração no M4:** a [PR #27](https://github.com/SH1W4/learning-competency-mvp/pull/27) adiciona o frontend Next.js de leitura e o proxy same-origin para o runtime canônico. A PR continua aberta e não mergeada. O runtime externo foi reportado como disponível, mas a configuração oficial da Vercel e o fluxo visual E2E integrado ainda precisam de confirmação; portanto, não anunciar a demo completa como validada.
+- **O que segue em validação:** buyer, wedge, dor recorrente, demanda e hipótese de piloto. A pesquisa externa de demanda associada ao [Issue #3](https://github.com/SH1W4/learning-competency-mvp/issues/3) não deve ser apresentada como concluída sem resultados registrados.
 - **O que estamos investigando para o futuro:** usar competências verificadas para entender gaps, apoiar requalificação, mobilidade interna e a criação de novos papéis.
 
 ### Tradução rápida dos termos
@@ -164,6 +165,32 @@ Use the [Case Studies Overview](https://github.com/SH1W4/learning-competency-mvp
 The current implementation distinguishes three Consensus Core outcomes: **AGREEMENT**, **INSUFFICIENT EVIDENCE**, and **CONFLICT**. Human Adjudication is entered only from the conflict path and is not a fourth verifier.
 
 Human Adjudication is an exceptional conflict-resolution path, not a normal pipeline stage.
+
+## M4 current-state reconciliation — 2026-10-11
+
+This section supersedes any older wording in this handoff that implies the fresh public Devnet proof is still pending or that the full frontend demonstration is already complete.
+
+### Confirmed in the public project records
+- **PROVE:** `docs/PROJECT_STATUS.md` records the fresh `m3.attestation.v2` Solana Devnet attestation generated on 2026-10-09, with `verified=true` and five positive checks. The record is documented in [PR #26](https://github.com/SH1W4/learning-competency-mvp/pull/26) and `docs/evaluation/04_DEMO_AND_PROOF.md`.
+- **DEMONSTRATE:** [PR #27](https://github.com/SH1W4/learning-competency-mvp/pull/27) adds an isolated Next.js frontend and a same-origin API proxy. Its proxy accepts only the `synthetic-ana` scenario, requires `LASTRO_M4_RUNTIME_URL` in production, requires HTTPS, and fails closed instead of falling back to fixtures.
+- **Runtime boundary:** the runtime and frontend are separate deployable components. A runtime health check or a direct API response is not equivalent to verifying the official Vercel deployment through the frontend proxy.
+
+### Still open / must not be overstated
+- PR #27 is open and not merged as of this handoff snapshot.
+- Official Vercel configuration for `LASTRO_M4_RUNTIME_URL` and successful proxy response on the canonical domain must be checked against the live deployment.
+- The integrated frontend walkthrough / visual end-to-end demonstration remains open in `docs/PROJECT_STATUS.md`. Local build checks or direct runtime responses alone do not close this gate.
+- UI accessibility review, including contrast and keyboard/focus behavior, remains a separate review gate.
+- Market validation remains open: buyer, wedge, pain, demand, economic consequence, and pilot hypothesis need external evidence. Do not convert a successful technical demo into customer validation, PMF, willingness-to-pay, ROI, or adoption claims.
+- Human adjudication remains an exceptional conflict-resolution path. The UI must not simulate or submit an adjudication decision.
+- The canonical synthetic scenario must remain explicitly synthetic. No fabricated attestation, Explorer link, inferred verification, signing key, or private key belongs in the frontend.
+
+### M4 workstreams
+1. **PROVE — recorded as complete:** fresh Devnet attestation and verification evidence.
+2. **DEMONSTRATE — in progress:** canonical frontend deployment, configured runtime proxy, and integrated visual E2E.
+3. **VALIDATE — open:** external buyer / wedge / demand evidence; see [Issue #3](https://github.com/SH1W4/learning-competency-mvp/issues/3).
+4. **COMMUNICATE — documented, final reconciliation required:** pitch and submission claims must match the current proof boundary and explicitly label hypotheses.
+
+For deployment-specific implementation details, use the [PR #27 description and checks](https://github.com/SH1W4/learning-competency-mvp/pull/27). Treat comments reporting a successful personal test deployment as reports, not as independent confirmation of the canonical production domain.
 
 ## Current verification snapshot
 
