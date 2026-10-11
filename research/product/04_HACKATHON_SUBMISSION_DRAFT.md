@@ -10,6 +10,12 @@ LASTRO
 ## Elevator Pitch
 Infrastructure to transform learning experiences into verifiable evidence of competency, independently reviewed by a multi-mechanic consensus engine and cryptographically anchored on Solana.
 
+## 🔗 Live Links
+- **Live Demo (Next.js):** https://lastro-learn.vercel.app
+- **Canonical Runtime API:** https://lastro-m4-runtime.onrender.com/api/m4/competency?scenario=synthetic-ana
+- **Solana Devnet Attestation:** https://explorer.solana.com/tx/22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX?cluster=devnet
+- **GitHub Repository:** https://github.com/SH1W4/learning-competency-mvp
+
 ## 💡 Inspiration
 The credentialing system is broken. In an era where AI can generate essays and solve tests in seconds, traditional digital certificates have lost their signal-to-noise ratio. Employers and institutions can no longer trust a generic PDF certificate. We realized that to restore trust in human capability, we needed to move away from "Trust me, they passed" to "Here is the immutable cryptographic proof of their demonstrated evidence."
 
@@ -33,7 +39,7 @@ Our biggest challenge was resolving the "AI Hallucination" problem. If we relied
 We solved this by engineering the **Consensus Engine**. The AI is demoted to just a "signal provider". Its output must align perfectly with deterministic checks (like metadata and semantic boundaries) before the Consensus Engine allows an automatic state transition. If there is a mismatch, the system safely triggers a `CONFLICT` status.
 
 ## 🏆 Accomplishments that we're proud of
-- Achieving a **79-test passing E2E suite** that validates the entire pipeline from evidence ingestion to Solana anchoring during the short timeframe of a hackathon.
+- Achieving an **80-test passing suite across 13 test files (100% pass rate)** that validates the entire pipeline from evidence ingestion to Solana anchoring during the short timeframe of a hackathon.
 - Successfully extracting a pure, read-only UI layer that fails-closed, preventing any frontend-side credential spoofing.
 - Bridging the gap between EdTech and Web3 in a way that provides immediate, real-world utility without requiring the end-user to understand cryptography.
 

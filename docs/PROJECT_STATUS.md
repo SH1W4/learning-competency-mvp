@@ -102,7 +102,7 @@ Referência: PR #26 e fixture `fixtures/solana/devnet-fallback.json`. A prova t�
 - [x] Executar o cenário canônico via `npm run m4:e2e:devnet` (execução registrada na PR #26 em 2026-10-09).
 - [x] Registrar a evidência técnica de teste e atestação necessária para revisão (PR #26 e fixture público).
 - [x] Demonstrar o fluxo integrado na interface frontend — Vercel proxy retornando HTTP 200 com dados reais do Render (validado em 2026-10-11).
-- [ ] Finalizar o roteiro de demo.
+- [x] Finalizar o roteiro de demo (`research/product/03_DEMO_VIDEO_SCRIPT.md`).
 
 ### P1 — COMMUNICATE: pitch e diferenciação
 - [x] Problema concreto.
