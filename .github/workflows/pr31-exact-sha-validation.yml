@@ -1,0 +1,45 @@
+name: PR31 exact-SHA Vitest and typecheck
+
+on:
+  pull_request:
+    branches: ["feat/public-m4-frontend-v0"]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  exact-sha-validation:
+    if: github.event.pull_request.number == 31
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact audited PR #31 head
+        uses: actions/checkout@v4
+        with:
+          ref: dbddeb3051826f95221d180a0fe967dabc7bb7f1
+          persist-credentials: false
+
+      - name: Assert checked-out SHA
+        shell: bash
+        run: |
+          actual="$(git rev-parse HEAD)"
+          expected="dbddeb3051826f95221d180a0fe967dabc7bb7f1"
+          echo "Expected SHA: $expected"
+          echo "Actual SHA:   $actual"
+          test "$actual" = "$expected"
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Run Vitest
+        run: npm test
+
+      - name: Run TypeScript typecheck
+        run: npm run typecheck
