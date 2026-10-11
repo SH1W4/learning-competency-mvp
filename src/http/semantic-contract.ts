@@ -110,6 +110,12 @@ export function projectCanonicalCompetencyState(
 
   if (resolutionMechanism === "HUMAN_ADJUDICATION") {
     requireAdjudicationRecord(adjudication);
+    if (consensus !== "CONFLICT") {
+      throw new SemanticContractError(
+        "ADJUDICATION_WITHOUT_CONFLICT",
+        "Human adjudication requires a prior canonical CONFLICT consensus; adjudication is not a consensus outcome.",
+      );
+    }
   } else if (adjudication) {
     throw new SemanticContractError(
       "UNDECLARED_ADJUDICATION",
