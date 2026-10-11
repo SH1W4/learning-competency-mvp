@@ -8,6 +8,7 @@ describe("M4 read-only projection", () => {
 
     expect(view.synthetic).toBe(true);
     expect(view.consensus.status).toBe("AGREEMENT");
+    expect(view.resolution).toMatchObject({ outcome: "ESTABLISHED", mechanism: "AUTOMATED", projection: "BOUNDED_STATE" });
     expect(view.state.value).toBe("DEMONSTRATED");
     expect(view.verification.mechanisms.map((m) => m.mechanism).sort()).toEqual([
       "ai_interpretation",
@@ -31,11 +32,13 @@ describe("M4 read-only projection", () => {
       const body = await response.json() as {
         synthetic: boolean;
         consensus: { status: string };
+        resolution: { outcome: string; mechanism: string; projection: string };
         state: { value: string };
         verification: { mechanisms: Array<{ mechanism: string }> };
       };
       expect(body.synthetic).toBe(true);
       expect(body.consensus.status).toBe("AGREEMENT");
+      expect(body.resolution).toEqual(expect.objectContaining({ outcome: "ESTABLISHED", mechanism: "AUTOMATED", projection: "BOUNDED_STATE" }));
       expect(body.state.value).toBe("DEMONSTRATED");
       expect(body.verification.mechanisms).toHaveLength(3);
     } finally {
