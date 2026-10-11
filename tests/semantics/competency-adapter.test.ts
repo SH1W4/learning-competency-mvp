@@ -84,11 +84,11 @@ describe("LASTRO competency semantic adapter v0.1", () => {
     })).toMatchObject({ competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" });
   });
 
-  it("does not infer ESTABLISHED from an agreement with an incompatible outcome", () => {
+  it("rejects a resolved outcome that contradicts the current AGREEMENT semantics", () => {
     expect(adaptCompetencyState({
       ...agreement,
       resolution: { status: "RESOLVED", mechanism: "consensus", outcome: "NOT_ESTABLISHED" },
-    })).toMatchObject({ competencyState: "NOT_ESTABLISHED", mappingStatus: "MAPPED" });
+    })).toMatchObject({ competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" });
   });
 
   it("rejects DEMONSTRATED when the resolved outcome is not ESTABLISHED", () => {
