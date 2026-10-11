@@ -45,9 +45,9 @@ describe("LASTRO competency semantic adapter v0.1", () => {
     expect(adaptCompetencyState({
       productState: "UNDER_REVIEW",
       consensusOutcome: "CONFLICT",
-      resolution: { status: "RESOLVED", mechanism: "consensus", outcome: "CONFLICT" },
+      resolution: { status: "PENDING", mechanism: "none", outcome: null },
       verificationCompleted: true,
-    })).toMatchObject({ competencyState: "CONFLICT", mappingStatus: "UNMAPPED", reason: "conflict_unresolved" });
+    })).toMatchObject({ consensusOutcome: "CONFLICT", competencyState: null, mappingStatus: "UNMAPPED", reason: "resolution_pending" });
   });
 
   it("allows an explicit human resolution after conflict without rewriting consensus", () => {
