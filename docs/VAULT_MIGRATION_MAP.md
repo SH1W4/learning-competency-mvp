@@ -21,6 +21,7 @@ The separation must preserve:
 | Area | Destination | Action |
 |---|---|---|
 | `src/` | 🔵 MVP | Keep implementation |
+| `frontend/` | 🔵 MVP | Keep public Next.js frontend vertical slice |
 | `tests/` | 🔵 MVP | Keep executable tests |
 | `fixtures/` | 🔵 MVP + 🟡 | Keep fixtures; expose only selected synthetic evidence |
 | `.github/` | 🔵 MVP | Keep CI/workflows |
@@ -242,7 +243,7 @@ Exception:
 `CONFLICT / AMBIGUITY → HUMAN ADJUDICATION`
 
 ### P0 — Current proof
-Generate and record the current `m3.attestation.v2` Devnet proof before presenting it as current public proof.
+**Completed (2026-10-09):** Generated and recorded the current `m3.attestation.v2` Devnet proof (`22wJ3t6...`), independently verified across all 5 checks, and documented in `fixtures/solana/devnet-fallback.json`, `docs/evaluation/04_DEMO_AND_PROOF.md`, and `README.md`.
 
 ### P1 — Historical specifications
 Mark superseded frontend/product specifications as historical.

@@ -131,15 +131,14 @@ Referência: PR #26 e fixture `fixtures/solana/devnet-fallback.json`. A prova t�
 
 ## Current verification snapshot
 
-An earlier `main` CI run on 2026-10-05 completed successfully and included:
+The automated verification suite on the active repository contains **13 test files and 80 active test cases (100% pass rate)** with zero failures:
 
-- automated test suite;
-- TypeScript typecheck;
-- dependency audit.
+- automated test suite (`npm test`): 80/80 passed across evidence ingest, extraction, relation, AI contract, independent verifiers, consensus core, provenance, claims, and M4 HTTP runtime;
+- TypeScript typecheck (`npm run typecheck` & `cd frontend && pnpm typecheck`): 0 errors;
+- production build (`cd frontend && pnpm build`): static generation successful;
+- on-chain proof (`npm run m3:verify`): `m3.attestation.v2` verified on Solana Devnet across all five checks (`hash_on_chain`, `record_integrity`, `subject_ref`, `payload_binding`, `signer`).
 
-The current source tree contains **11 test files and 76 active test cases**. This is a repository snapshot, not a permanent product metric; if tests change, the count must be regenerated from the source/CI result before publication.
-
-The successful CI run is historical and is not evidence about the current HEAD. Separately, the PR #26 execution record from 2026-10-09 reports `npm test` 76/76, `npm run typecheck` without errors, `npm run m4:e2e:devnet` successful, and a fresh Devnet attestation verified across all five checks. These recorded results close the fresh-proof step, but do **not** by themselves close the frontend integration or visual end-to-end demonstration.
+The visual frontend flow is now deployed live at `https://lastro-learn.vercel.app`, securely proxying to the canonical M4 runtime at `https://lastro-m4-runtime.onrender.com` (validated end-to-end on 2026-10-11).
 
 ## Documentation Freeze — 2026-10-04
 

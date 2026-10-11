@@ -561,9 +561,11 @@ No documentation correction may introduce a new backend layer or alter the curre
 
 **Priority:** P0 / M4
 
-Generate, verify and register the current m3.attestation.v2 Devnet transaction.
+**Status: CLOSED (2026-10-09).**
 
-**Acceptance:** docs/evaluation/04_DEMO_AND_PROOF.md and README reference the current verified proof only.
+Generated, verified, and registered the current `m3.attestation.v2` Devnet transaction (`22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX`).
+
+**Acceptance:** `docs/evaluation/04_DEMO_AND_PROOF.md`, `README.md`, and `fixtures/solana/devnet-fallback.json` reference the current verified proof with all 5 checks passing.
 
 ## 17. Non-actions
 
@@ -667,8 +669,10 @@ The governing principle for the next phase is:
 
 **Documentation vocabulary:** 🟢 Consolidated
 
-**Current Devnet proof:** 🟡 M4 closure required
+**Current Devnet proof:** 🟢 CLOSED (`tx 22wJ3t6...` verified on-chain across 5 checks)
+
+**Frontend vertical slice:** 🟢 LIVE & VERIFIED (`lastro-learn.vercel.app` proxying to Render runtime)
 
 **Overall alignment:** 🟢 **Structurally aligned; architectural/documentary baseline consolidated**
 
-**Next authorized action:** close A-006 on PC by generating and verifying the current m3.attestation.v2 Devnet proof, then synchronize demo/submission artifacts.
+**Next authorized action:** Finalize pitch demo script, walkthrough validation, and review final submission package against the evaluation matrix.

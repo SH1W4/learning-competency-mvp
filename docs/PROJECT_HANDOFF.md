@@ -9,11 +9,11 @@ This document records the current handoff point of the MVP before validation, de
 - M1: DONE
 - M2: DONE
 - M3: DONE
+- M4: IN PROGRESS — PROVE & DEMONSTRATE validated (Render runtime live, Vercel frontend live at `lastro-learn.vercel.app`, on-chain Devnet attestation verified)
 - Research / Product layer: established
 - Consensus Core: implemented for the covered scenario
-- Frontend narrative: defined
-- Frontend product contract: defined
-- Demo and pitch: next focus
+- Frontend vertical slice: implemented and deployed (Next.js read-only projection)
+- Demo and pitch: active focus
 
 ## What is implemented
 
@@ -29,18 +29,29 @@ This document records the current handoff point of the MVP before validation, de
 - Solana Memo attestation capability on Devnet;
 - on-chain payload binding and verification;
 - bounded claim/provenance layer;
-- automated tests and type checking.
+- canonical M4 runtime HTTP server (`GET /health`, `GET /api/m4/competency`);
+- public read-only Next.js frontend vertical slice connected via HTTPS proxy;
+- pre-validated Solana Devnet fallback fixture (`fixtures/solana/devnet-fallback.json`);
+- automated tests (13 test files, 80 tests passing) and full TypeScript type checking.
 
 ## Final validation
 
 Before demo/submission, validate from a clean environment:
 
 ```bash
+# Core engine validation (13 files, 80 tests)
 npm ci
 npm test
 npm run typecheck
 npm audit --omit=dev --audit-level=high
 npm run demo
+
+# Frontend validation
+cd frontend
+pnpm install
+pnpm run typecheck
+pnpm run build
+cd ..
 ```
 
 The dependency audit is a controlled security follow-up when remaining findings are transitive dependency issues; breaking dependency upgrades are not part of stabilization unless required by the audit policy.

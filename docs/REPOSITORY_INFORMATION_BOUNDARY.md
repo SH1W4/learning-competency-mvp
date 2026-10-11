@@ -12,7 +12,7 @@ The public repository is the canonical surface for **reproducible product, techn
 |---|---|---:|---|
 | Public — Product | `README.md`, `docs/`, canonical product docs | Public | Explain what LASTRO is, what the MVP does, its boundaries, and current claims. |
 | Public — Research | selected `research/` artifacts | Public | Preserve consolidated prior art, evidence, limitations, and research findings needed to support public claims. |
-| Public — Implementation | `src/`, `tests/`, `fixtures/`, `skills/` | Public | Make the MVP reproducible and technically auditable. |
+| Public — Implementation | `src/`, `tests/`, `fixtures/`, `frontend/` | Public | Make the MVP reproducible and technically auditable. |
 | Public — Project governance | `CONTRIBUTING.md`, selected decision records and task documentation | Public | Explain how the public project is developed and maintained. |
 | Restricted — Internal strategy | Outside the public repository | Restricted | Unreleased commercial strategy, negotiation positions, competitive intelligence, internal prioritization, and sensitive strategic hypotheses. |
 | Restricted — Partner/confidential | Outside the public repository | Restricted | NDA material, partner communications, private customer information, private datasets, credentials, and other information whose disclosure is not authorized. |
@@ -97,3 +97,12 @@ When a private decision materially changes the public architecture or product cl
 The boundary is about **information classification**, not about hiding implementation.
 
 LASTRO's public technical implementation, tests, synthetic fixtures, canonical architecture, and public research are intentionally visible because auditability and reproducibility are part of the project's proof strategy.
+
+## Deployment & Operational Key Management Boundary
+
+For the M4 demonstration infrastructure:
+
+1. **Private Keys & Operational Secrets (`SOLANA_PRIVATE_KEY`):** strictly operator-side/local or injected via GitHub Actions manual CI secrets. Never committed to git, never embedded into the frontend bundle, and never exposed via API endpoints.
+2. **Public Demonstration Endpoints:** `https://lastro-learn.vercel.app` (Next.js read-only frontend) and `https://lastro-m4-runtime.onrender.com` (canonical runtime API) are public demonstration services.
+3. **Environment Variables:** `LASTRO_M4_RUNTIME_URL` is a non-sensitive proxy configuration setting directing the frontend to the canonical backend.
+4. **Synthetic Fixtures:** `fixtures/synthetic/ana/` and `fixtures/solana/devnet-fallback.json` are public, reproducible artifacts used solely for technical demonstration.
