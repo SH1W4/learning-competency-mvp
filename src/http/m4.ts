@@ -94,7 +94,13 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
   await session.interpret(providerFromEnv());
   session.submitForVerification();
   const consensus = session.consensusAdvance();
+  if (consensus.status === "HUMAN_ADJUDICATION") {
+    throw new Error("Consensus Core cannot emit HUMAN_ADJUDICATION; adjudication is a separate exceptional path.");
+  }
   const resolution = session.resolveConsensus();
+  if (resolution.mechanism !== "AUTOMATED") {
+    throw new Error("The synthetic projection expects an explicitly automated resolution.");
+  }
   const candidateState =
     resolution.outcome === "ESTABLISHED"
       ? "DEMONSTRATED"
