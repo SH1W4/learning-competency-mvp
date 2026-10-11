@@ -138,6 +138,30 @@ describe("LASTRO Protocol v0.1 semantic adapter", () => {
     }))).toEqual({ kind: "BOUNDED_STATE", state: "NOT_ESTABLISHED" });
   });
 
+  it("rejects an explicit resolution without a declared mechanism", () => {
+    expectContractError(base({
+      productState: "IN_DEVELOPMENT",
+      consensus: "AGREEMENT",
+      resolution: "NOT_ESTABLISHED",
+      resolutionMechanism: null,
+    }), "MISSING_RESOLUTION_MECHANISM");
+  });
+
+  it("rejects malformed adjudication arrays with a stable contract error", () => {
+    expectContractError(base({
+      productState: "UNDER_REVIEW",
+      resolution: "NOT_ESTABLISHED",
+      resolutionMechanism: "HUMAN_ADJUDICATION",
+      adjudication: {
+        actorId: "reviewer:01",
+        basis: "Reviewed evidence.",
+        evidenceRefs: ["evidence:01", "  "],
+        applicableRules: ["LASTRO-PROTOCOL-v0.1:R8"],
+        priorVerifierResults: ["verifier-A:CONFLICT"],
+      },
+    }), "INCOMPLETE_ADJUDICATION");
+  });
+
   it("rejects adjudication data that is not declared as the resolution mechanism", () => {
     expectContractError(base({
       productState: "IN_DEVELOPMENT",
