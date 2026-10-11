@@ -47,3 +47,7 @@ jobs:
       - name: Dependency audit
         if: always()
         run: npm audit --omit=dev --audit-level=high
+
+      - name: Full dependency advisory inventory
+        if: always()
+        run: npm audit || true
