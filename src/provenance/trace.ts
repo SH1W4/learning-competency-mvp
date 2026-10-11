@@ -4,8 +4,13 @@
  * The trace preserves evidence, AI interpretation, independent verification /
  * consensus and, only when conflict occurs, human adjudication.
  *
- * The M2 → M3 handoff contains references and hashes only. Raw evidence never
- * enters the handoff or the future attestation payload.
+ * Compatibility handoff between the evidence/decision layer and the Integrity
+ * Layer. The record format remains `m2.reviewed-state.v1` for MVP
+ * compatibility; the decision vocabulary is now
+ * `human_adjudication | consensus`.
+ *
+ * The handoff contains references and hashes only. Raw evidence never enters
+ * the handoff or the attestation payload.
  */
 import { EVIDENCE_CONTRACT } from "../domain/useCase.js";
 import type { AdjudicationOutcome } from "../adjudication/adjudication.js";
@@ -172,9 +177,10 @@ export function buildTrace(
 }
 
 /**
- * M2 → M3 handoff. Contains only references and hashes.
- * Kept as ReviewedStateRecord for compatibility with the M3 attestation layer;
- * the decision vocabulary itself is now human_adjudication | consensus.
+ * Compatibility handoff. Contains only references and hashes.
+ * `ReviewedStateRecord` remains the handoff type used by the M3 attestation
+ * layer; its historical `record_version` is retained for MVP compatibility.
+ * The decision vocabulary itself is now `human_adjudication | consensus`.
  */
 export interface ReviewedStateRecord {
   record_version: "m2.reviewed-state.v1";

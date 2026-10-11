@@ -16,7 +16,8 @@
     "m3:attest": "tsx src/solana/demo.ts",
     "m3:verify": "tsx src/solana/verify.ts",
     "test:solana:devnet": "tsx src/solana/integration.ts",
-    "api:m4": "tsx src/http/server.ts"
+    "api:m4": "tsx src/http/server.ts",
+    "m4:e2e:devnet": "tsx src/solana/m4-e2e.ts"
   },
   "dependencies": {
     "@solana/web3.js": "^1.99.0",

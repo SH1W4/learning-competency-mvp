@@ -3,7 +3,7 @@ import bs58 from 'bs58';
 import { verifyHandoff, type ReviewedStateRecord } from '../provenance/trace.js';
 import { sha256 } from '../util.js';
 
-// Endereço do Memo Program nativo da Solana (usado para registrar dados arbitrários off-chain)
+// Endereço do Memo Program nativo da Solana (usado para registrar um payload mínimo on-chain; evidências permanecem off-chain)
 const MEMO_PROGRAM_ID = new PublicKey('MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr');
 
 export const ATTESTATION_VERSION = 'm3.attestation.v2';
@@ -16,7 +16,7 @@ export function subjectRef(subject: string, recordHash: string): string {
   return sha256(`${subject}|${recordHash}`);
 }
 
-/** Payload mínimo que vai on-chain (hardening M2 → M3: sem dados pessoais em claro). */
+/** Payload mínimo que vai on-chain (privacy hardening for the Integrity Layer: sem dados pessoais em claro). */
 export function buildAttestationPayload(record: ReviewedStateRecord, attester: string) {
   return {
     mvp: 'learning-competency',
@@ -32,7 +32,7 @@ export function buildAttestationPayload(record: ReviewedStateRecord, attester: s
 
 /**
  * M3.2: Registra a atestação de competência na Solana.
- * O payload é enxuto, priorizando o record_hash (comprovante de integridade).
+ * O payload é enxuto e registrado on-chain, priorizando o record_hash como âncora de integridade; as evidências permanecem off-chain.
  * Recusa registros cujo record_hash não confere com o conteúdo (handoff adulterado).
  */
 export async function createAttestationOnChain(

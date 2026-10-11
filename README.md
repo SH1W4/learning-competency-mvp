@@ -407,6 +407,19 @@ PUBLIC VERIFICATION
 
 The blockchain does **not** prove that a person is universally competent, truthful, or professionally qualified. It anchors the integrity of a defined state produced by the system.
 
+## Current public Devnet proof
+
+The latest recorded `m3.attestation.v2` proof is a synthetic Ana scenario on Solana Devnet, generated and verified via the M4 API on 2026-10-09.
+
+- **State:** `DEMONSTRATED`
+- **Transaction:** [Inspect on Solana Explorer](https://explorer.solana.com/tx/22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX?cluster=devnet)
+- **Record hash:** `d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065`
+- **Verification:** `verified=true`; `hash_on_chain`, `record_integrity`, `subject_ref`, `payload_binding` and `signer` all `true`.
+- **Reproducibility record:** [PR #26 — execution evidence](https://github.com/SH1W4/learning-competency-mvp/pull/26).
+- **Fixture:** [devnet-fallback.json](fixtures/solana/devnet-fallback.json).
+
+This proves the integrity/attestation path for a bounded synthetic state. It does not establish universal competency, customer adoption, market demand, or completion of the visual frontend flow. The recorded CLI demo and Devnet proof must not be represented as a completed frontend E2E demonstration.
+
 ## 10. What the MVP Proves
 
 - Evidence can be structured and linked to activities and competency criteria.
@@ -485,6 +498,12 @@ For the authoritative current status, see [Project Status](docs/PROJECT_STATUS.m
 Operational execution notes are maintained separately and are not part of the public evaluator path.
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
+
+## M4 — Local Devnet Proof
+
+For the exact operator procedure to run the canonical M4 API, create a fresh Solana Devnet attestation from the exact runtime record, and independently verify the transaction, follow the [M4 Local Devnet Proof Runbook](docs/evaluation/M4_LOCAL_DEVNET_PROOF.md). The signing key remains local and is never exposed to the frontend.
+
+---
 
 ## 14. Quick Start & Resilient Demo
 
