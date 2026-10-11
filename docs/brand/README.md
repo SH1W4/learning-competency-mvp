@@ -1,14 +1,14 @@
-# Brand — Working Draft
+# LASTRO — Brand
 
-Esta pasta registra a camada de identidade do produto.
+Esta pasta registra a camada de identidade visual e verbal do LASTRO.
 
-**Status:** exploração / hipótese.
+**Status:** identidade v0.2 definida · sistema visual operacional · produção de assets em evolução.
 
-O objetivo não é fechar a marca antes de validar o produto. É criar uma linguagem visual e verbal coerente o suficiente para apresentação, demo, README, produto e conversas com potenciais usuários.
+A marca atual é **LASTRO**. A identidade deve acompanhar a tese do produto e permanecer sincronizada com a arquitetura, o produto, a documentação e a demonstração.
 
 ## Princípio
 
-A marca deve comunicar:
+A marca comunica:
 
 **desenvolvimento de competências + evidências + interpretação + confiança + verificabilidade**
 
@@ -20,35 +20,74 @@ e não apenas:
 - carteira de credenciais;
 - IA.
 
+## Fonte de verdade
+
+A hierarquia atual é:
+
+1. **LASTRO Identity v0.2** — referência canônica de identidade;
+2. **Visual System Specification v0.2** — regras operacionais de execução;
+3. **Brandbook Draft** — direção verbal, personalidade e narrativa;
+4. **Design Brief — JP Fernandes** — orientação operacional para UX/UI;
+5. **Assets** — referências e materiais de produção.
+
+O sistema visual deve projetar a arquitetura existente, não criar uma arquitetura semântica paralela.
+
 ## Arquivos principais
 
-- [Brandbook — esboço](BRANDBOOK_DRAFT.md) — essência, personalidade, linguagem e direção visual.
-- [Especificação do sistema visual](VISUAL_SYSTEM_SPEC.md) — critérios operacionais de execução, aplicações e handoff.
-- [Brief de Identidade — JP Fernandes](DESIGN_BRIEF_JP_FERNANDES.md) — frente de execução visual.
-- [Naming — exploração](NAMING_EXPLORATION.md) — exploração separada do nome.
+- [LASTRO Identity v0.2](LASTRO_IDENTIDADE_v0.2.html) — referência canônica de identidade.
+- [Visual System Specification v0.2](VISUAL_SYSTEM_SPEC.md) — mini design system e regras de execução.
+- [Brandbook](BRANDBOOK_DRAFT.md) — essência, personalidade, linguagem e direção visual.
+- [Design Brief — JP Fernandes](DESIGN_BRIEF_JP_FERNANDES.md) — frente de execução visual.
+- [Naming Exploration](NAMING_EXPLORATION.md) — histórico da exploração de naming; não reabre a decisão atual.
+
+## Identidade atual
+
+**Marca:** LASTRO  
+**Tagline:** **Competências que deixam lastro.**  
+**Product statement:** **Evidence-backed competency.**  
+**Supporting line:** **From evidence to verifiable competency.**  
+**Technical domain:** Learning Competency  
+**Repository:** learning-competency-mvp
+
+### Gramática principal
+
+**EVIDENCE → AI INTERPRETATION → INDEPENDENT VERIFICATION → CONSENSUS → COMPETENCY STATE → ATTESTATION → PUBLIC VERIFICATION**
+
+**Human Adjudication** aparece somente como exceção para conflito, ambiguidade ou casos não cobertos. Não é uma etapa normal do pipeline.
+
+### Sistema semântico
+
+- preto `#000000`
+- branco `#FFFFFF`
+- cinza `#D9D9D9`
+- superfície `#2A2A2E`
+- proof blue `#1683FF`
+
+O azul é semântico: representa prova, attestation, verificação ou estado explicitamente verificado. Não é cor decorativa.
 
 ## Assets
 
-A pasta [assets](assets/) contém:
+A pasta [assets](assets/) contém atualmente referências de trabalho do símbolo:
 
-- símbolo vetorial v0;
-- referência plana;
-- referência volumétrica/3D.
+- `learning-competency-symbol-v0.svg`
+- `learning-competency-symbol-reference-flat.png`
+- `learning-competency-symbol-reference-3d.png`
 
-Os assets são referências de trabalho e não representam, por si só, uma identidade definitiva.
+Esses arquivos não devem ser reinterpretados como uma nova identidade. O SVG é a referência vetorial de trabalho atual; os arquivos flat/3D são referências visuais.
 
-## Regra
+Variantes finais de produção (wordmark, favicon/app icon, monochrome/inverted exports, templates e pacote final) devem ser geradas pelo responsável de design a partir do sistema v0.2 e aprovadas antes de serem tratadas como assets canônicos.
 
-Nenhum nome ou elemento desta pasta deve ser tratado como decisão definitiva sem validação do time e, posteriormente, do mercado.
+## Governança
 
-A identidade deve acompanhar a tese do produto, não conduzir a tese.
+- `NAMING_EXPLORATION.md` é histórico e não reabre a decisão de marca.
+- A identidade atual é LASTRO v0.2.
+- Alterações de produto, arquitetura ou semântica devem ser refletidas nos documentos correspondentes antes de alterar a identidade.
+- Claims visuais não podem exceder o que o sistema implementa ou demonstra.
+- Assets sintéticos ou exploratórios devem permanecer identificados como tal.
+- Não criar variantes visuais arbitrárias apenas para preencher a pasta.
 
-## Regra de integração
-
-A identidade deve ser consistente entre:
+A identidade deve permanecer consistente entre:
 
 **símbolo → apresentações → documentação → interface → demonstração**
 
 sem criar uma linguagem visual diferente para cada canal.
-
-Quando uma decisão visual tiver impacto sobre produto, arquitetura, linguagem funcional ou escopo do MVP, ela deve voltar para a frente correspondente antes de ser incorporada.

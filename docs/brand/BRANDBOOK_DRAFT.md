@@ -399,17 +399,16 @@ The identity should:
 
 ## 18. Open decisions
 
-The following remain subject to future design validation:
+The following remain subject to future production work or explicit design validation:
 
 - final wordmark refinements;
-- final spacing and grid specifications;
-- minimum sizes;
-- clear-space measurements;
-- complete iconography system;
+- production iconography system;
 - derived patterns;
 - motion rules;
 - final templates;
 - production asset library.
+
+Spacing, grid, minimum-size, clear-space and responsive rules are now operationally defined in `VISUAL_SYSTEM_SPEC.md` and should not be redefined here.
 
 These are visual production decisions, not changes to the product's semantic architecture.
 
