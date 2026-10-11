@@ -16,6 +16,7 @@ async function conflictingSession() {
   };
   const consensus = s.consensusAdvance();
   expect(consensus.status).toBe("CONFLICT");
+  expect(s.resolveConsensus()).toMatchObject({ outcome: "CONFLICT", mechanism: "AUTOMATED" });
   return { s, env };
 }
 
