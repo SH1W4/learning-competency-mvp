@@ -354,7 +354,7 @@ This is a **differentiation hypothesis supported by research**, not a legal, pat
 Reference:
 
 - [Related Work & Evidence](../../research/RELATED_WORK_AND_EVIDENCE.md)
-- [Colosseum Ecosystem Benchmark](../../research/05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
+- [Colosseum Ecosystem Benchmark](../../research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
 
 ---
 
@@ -400,7 +400,7 @@ The pitch should distinguish technical traction from market traction.
 
 The current repository demonstrates:
 
-- the M1→M3 vertical slice;
+- the M1→M4 vertical slice;
 - structured evidence;
 - AI-assisted interpretation;
 - independent verification mechanisms;
@@ -408,13 +408,14 @@ The current repository demonstrates:
 - bounded competency state;
 - human adjudication as a conflict exception;
 - deterministic records;
+- canonical M4 HTTP runtime API (`/api/m4/competency`);
+- public read-only Next.js web application (`https://lastro-learn.vercel.app`);
 - Solana Devnet attestation capability;
-- independent verification path;
+- verified Solana Devnet transaction anchor for synthetic Ana (`tx: 22wJ3t6...`);
+- independent verification path (5/5 checks passing);
 - automated test and typecheck CI.
 
-The current `main` snapshot contains **11 test files and 76 active test cases**, and the latest CI run on 2026-10-05 completed successfully.
-
-This number is a repository snapshot and should be regenerated whenever the test suite changes.
+The repository currently maintains **13 test files and 80 active test cases (100% passing)** across all modules, verified via Vitest and GitHub Actions CI on PR #27.
 
 ## Market traction
 

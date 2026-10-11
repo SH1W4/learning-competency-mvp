@@ -91,9 +91,9 @@ Um demo não é um piloto. Um piloto não é adoção recorrente. Uma intenção
 
 O MVP prova o mecanismo técnico, não o mercado:
 
-**Evidence → Independent Verification → Consensus → Competency State → Attestation**
+**Evidence → Independent Verification → Consensus → Competency State → Attestation → Public Verification**
 
-O GTM investiga se esse mecanismo resolve um workflow suficientemente valioso para justificar adoção.
+Com a entrega do Milestone M4, essa prova técnica inclui o runtime canônico HTTP hospedado no Render e uma projeção web pública read-only na Vercel ([lastro-learn.vercel.app](https://lastro-learn.vercel.app)), com ancoragem verificada na Solana Devnet para o cenário sintético da Ana. O GTM investiga se esse mecanismo resolve um workflow suficientemente valioso para justificar adoção empresarial.
 
 ## Documentos relacionados
 
