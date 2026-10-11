@@ -84,6 +84,18 @@ export function projectCanonicalCompetencyState(
     adjudication,
   } = input;
 
+  if (
+    consensus !== null &&
+    consensus !== "AGREEMENT" &&
+    consensus !== "INSUFFICIENT_EVIDENCE" &&
+    consensus !== "CONFLICT"
+  ) {
+    throw new SemanticContractError(
+      "INVALID_CONSENSUS_OUTCOME",
+      "Human adjudication and workflow statuses are not canonical consensus outcomes.",
+    );
+  }
+
   if (resolutionMechanism === "HUMAN_ADJUDICATION") {
     requireAdjudicationRecord(adjudication);
   } else if (adjudication) {
