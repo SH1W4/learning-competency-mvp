@@ -5,6 +5,12 @@ on:
     branches: [main, feat/public-m4-frontend-v0]
     paths:
       - "frontend/**"
+      - "src/http/**"
+      - "src/pipeline.ts"
+      - "tests/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/ci.yml"
       - ".github/workflows/m4-frontend.yml"
   push:
     branches: [feat/public-m4-frontend-v0, feat/m4-semantic-contract-tests-2026-10-11]
