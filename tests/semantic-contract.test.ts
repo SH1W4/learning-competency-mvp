@@ -155,6 +155,6 @@ describe("LASTRO Protocol v0.1 semantic adapter", () => {
       resolution: "CONFLICT",
       resolutionMechanism: "HUMAN_ADJUDICATION",
       adjudication: completeAdjudication,
-    }), "CONSENSUS_RESOLUTION_MISMATCH");
+    }), "INVALID_CONSENSUS_OUTCOME");
   });
 });
