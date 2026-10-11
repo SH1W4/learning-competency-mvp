@@ -57,17 +57,22 @@ export class SemanticContractError extends Error {
 }
 
 function requireAdjudicationRecord(record: AdjudicationRecord | null | undefined): void {
+  const nonEmptyString = (value: unknown): value is string =>
+    typeof value === "string" && value.trim().length > 0;
+  const nonEmptyStringArray = (value: unknown): value is string[] =>
+    Array.isArray(value) && value.length > 0 && value.every(nonEmptyString);
+
   if (
     !record ||
-    !record.actorId.trim() ||
-    !record.basis.trim() ||
-    record.evidenceRefs.length === 0 ||
-    record.applicableRules.length === 0 ||
-    record.priorVerifierResults.length === 0
+    !nonEmptyString(record.actorId) ||
+    !nonEmptyString(record.basis) ||
+    !nonEmptyStringArray(record.evidenceRefs) ||
+    !nonEmptyStringArray(record.applicableRules) ||
+    !nonEmptyStringArray(record.priorVerifierResults)
   ) {
     throw new SemanticContractError(
       "INCOMPLETE_ADJUDICATION",
-      "Human adjudication must preserve actor, basis, evidence references, applicable rules, and prior verifier results.",
+      "Human adjudication must preserve a non-empty actor, basis, evidence references, applicable rules, and prior verifier results.",
     );
   }
 }
@@ -93,6 +98,13 @@ export function projectCanonicalCompetencyState(
     throw new SemanticContractError(
       "INVALID_CONSENSUS_OUTCOME",
       "Human adjudication and workflow statuses are not canonical consensus outcomes.",
+    );
+  }
+
+  if (resolution !== null && resolutionMechanism === null) {
+    throw new SemanticContractError(
+      "MISSING_RESOLUTION_MECHANISM",
+      "Every explicit resolution must declare the mechanism that produced it.",
     );
   }
 
