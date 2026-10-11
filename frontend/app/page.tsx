@@ -15,11 +15,13 @@ type M4Projection = {
   evidence: Array<{ evidence_id: string; type: string; activity_id: string; source_ref: string; content_ref: string; trust_level: string; synthetic: boolean }>
   interpretation: { id: string; model: string; signals: Array<{ signal_id: string; criterion_id: string; support: string; confidence: number; evidence_refs: string[] }> }
   verification: { mechanisms: Verification[] }
-  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION'; can_auto_advance: boolean; requires_adjudication: boolean }
+  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT'; can_auto_advance: boolean; requires_adjudication: boolean }
+  resolution: { status: 'NOT_REQUIRED' | 'PENDING' | 'RESOLVED'; mechanism: 'consensus' | 'human_adjudication' | 'none'; outcome: 'ESTABLISHED' | 'NOT_ESTABLISHED' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'REQUIRES_VERIFICATION' | null }
+  competency_state: { adapter_version: string; value: 'ESTABLISHED' | 'NOT_ESTABLISHED' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'REQUIRES_VERIFICATION' | null; mapping_status: 'MAPPED' | 'UNMAPPED' | 'INCONSISTENT'; reason: string }
   state: { value: 'NOT_STARTED' | 'IN_DEVELOPMENT' | 'UNDER_REVIEW' | 'DEMONSTRATED'; history: unknown[] }
   handoff: { record_version: string; record_hash: string; competency_id: string; state: string; decision_mode: string }
-  attestation: null | { version: string; record_hash: string; tx_signature?: string; network?: string; verified?: boolean }
-  public_verification: null | { href: string; label: string }
+  attestation: null
+  public_verification: null
 }
 
 const mechanismNames: Record<Verification['mechanism'], string> = {
@@ -32,7 +34,6 @@ const consensusDescriptions: Record<M4Projection['consensus']['status'], string>
   AGREEMENT: 'The mechanisms reported agreement. The state is displayed separately and is not recalculated by the interface.',
   INSUFFICIENT_EVIDENCE: 'The available evidence was deemed insufficient by the runtime. Do not interpret this result as a demonstration.',
   CONFLICT: 'Conflict reported. Auto-advancement must remain blocked; this interface does not resolve the conflict.',
-  HUMAN_ADJUDICATION: 'The runtime indicates human adjudication is required. This interface does not record or simulate a human decision.',
 }
 
 const stateLabels: Record<M4Projection['state']['value'], string> = {
@@ -156,6 +157,12 @@ export default function Page() {
                   <span className="eyebrow">COMPETENCY STATE</span>
                   <strong>{stateLabels[data.state.value] ?? data.state.value}</strong>
                   <code>{data.state.value}</code>
+                </div>
+                <div className="runtime-state-card">
+                  <span className="eyebrow">CANONICAL COMPETENCY STATE</span>
+                  <strong>{data.competency_state.value ?? 'No canonical state'}</strong>
+                  <p>Adapter {data.competency_state.adapter_version} · {data.competency_state.mapping_status} · {data.competency_state.reason}</p>
+                  <span>Resolution: {data.resolution.status} / {data.resolution.mechanism} / {data.resolution.outcome ?? 'no outcome'}</span>
                 </div>
                 <div className={`runtime-state-card runtime-consensus runtime-consensus-${data.consensus.status.toLowerCase().replaceAll('_', '-')}`}>
                   <span className="eyebrow">CONSENSUS RESULT</span>
