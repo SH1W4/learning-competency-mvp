@@ -95,6 +95,10 @@ export function adaptCompetencyState(input: SemanticAdapterInput): SemanticAdapt
     return { ...base, competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" };
   }
 
+  if (input.consensusOutcome === "AGREEMENT" && input.resolution.outcome !== "ESTABLISHED") {
+    return { ...base, competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" };
+  }
+
   if (input.resolution.mechanism === "consensus" && input.consensusOutcome !== "AGREEMENT" && input.resolution.outcome === "ESTABLISHED") {
     return { ...base, competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" };
   }
