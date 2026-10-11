@@ -2,12 +2,12 @@ name: M4 frontend validation
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, feat/public-m4-frontend-v0]
     paths:
       - "frontend/**"
       - ".github/workflows/m4-frontend.yml"
   push:
-    branches: [feat/public-m4-frontend-v0]
+    branches: [feat/public-m4-frontend-v0, feat/m4-semantic-contract-tests-2026-10-11]
     paths:
       - "frontend/**"
       - ".github/workflows/m4-frontend.yml"
