@@ -110,7 +110,6 @@ export default function Page() {
     return () => controller.abort()
   }, [attempt])
 
-  const txUrl = explorerUrl(data?.attestation?.network, data?.attestation?.tx_signature)
 
   return (
     <div className="app-shell">
@@ -269,17 +268,8 @@ export default function Page() {
             <section className="panel runtime-panel" aria-labelledby="attestation-title">
               <span className="eyebrow">STEPS 08–09 · PROOF</span>
               <h2 id="attestation-title">Attestation and public verification</h2>
-              {data.attestation ? <>
-                <div className="runtime-proof-status"><span className="badge b-attest">ATTESTED · REFERENCE RECEIVED</span><span className="badge b-neutral">{data.attestation.network ?? 'NETWORK NOT DECLARED'}</span></div>
-                <dl className="runtime-metadata">
-                  <div><dt>Attestation version</dt><dd>{data.attestation.version}</dd></div>
-                  <div><dt>Record hash</dt><dd><code className="runtime-hash">{data.attestation.record_hash}</code></dd></div>
-                  <div><dt>Reported verification</dt><dd>{String(data.attestation.verified ?? false)}</dd></div>
-                  {data.attestation.tx_signature ? <div><dt>Transaction signature</dt><dd><code className="runtime-hash">{data.attestation.tx_signature}</code></dd></div> : null}
-                </dl>
-                {txUrl ? <p><a href={txUrl} target="_blank" rel="noreferrer">Open transaction in Solana Explorer ↗</a></p> : data.attestation.tx_signature ? <p role="note">The signature was received, but the network does not match a recognized Solana cluster. No Explorer link was assumed.</p> : <p>The runtime did not provide a transaction signature.</p>}
-              </> : <p>The runtime did not provide an attestation. No transaction is being inferred or copied to this screen.</p>}
-              {data.public_verification ? <p><a href={data.public_verification.href} target="_blank" rel="noreferrer">{data.public_verification.label} ↗</a></p> : <p>Independent public verification: not available in this response.</p>}
+              <p>The synthetic M4 projection does not issue an attestation. No transaction or public verification is inferred from the competency state.</p>
+              <p>Independent public verification: not available in this response.</p>
             </section>
           </>}
         </div>
