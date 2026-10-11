@@ -55,5 +55,7 @@ jobs:
         run: pnpm typecheck
       - name: Production build
         run: pnpm build
+      - name: Production UI/API smoke gates
+        run: node scripts/m4-api-smoke.mjs
       - name: Audit production frontend dependencies
         run: pnpm audit --prod --audit-level high
