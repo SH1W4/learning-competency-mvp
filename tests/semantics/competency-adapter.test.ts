@@ -110,7 +110,7 @@ describe("LASTRO competency semantic adapter v0.1", () => {
   it("keeps UNDER_REVIEW as a product workflow label while requiring explicit canonical resolution", () => {
     expect(adaptCompetencyState({
       productState: "UNDER_REVIEW",
-      consensusOutcome: "AGREEMENT",
+      consensusOutcome: null,
       resolution: { status: "RESOLVED", mechanism: "consensus", outcome: "REQUIRES_VERIFICATION" },
       verificationCompleted: true,
     })).toMatchObject({ competencyState: "REQUIRES_VERIFICATION", mappingStatus: "MAPPED" });
