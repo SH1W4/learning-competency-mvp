@@ -198,7 +198,7 @@ REPRODUCIBLE DEMO
 
 The research directory is public where its contents are necessary to understand, audit, challenge, or contextualize public claims. Private working material remains outside the public repository under the project's information boundary.
 
-For investor/client communication, see [Pitch Strategy](docs/go-to-market/01_PITCH_STRATEGY.md), which translates the technical thesis into a disciplined narrative without promoting commercial hypotheses to validated facts.
+For the public product narrative and its evidence boundaries, see [Product](docs/evaluation/01_PRODUCT.md), [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md), and [Limitations & Claims](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md).
 
 
 ## 5. The Core Insight
@@ -447,7 +447,7 @@ This proves the integrity/attestation path for a bounded synthetic state. It dem
 The LASTRO architecture is designed to be evaluated across domains, while the current public MVP remains intentionally narrow: **Case 01 — FinTech / Ana** is the implemented synthetic and reproducible anchor scenario.
 
 **[View the complete Case Studies Portfolio](docs/case_studies/README.md)**  
-**[View the Investor & Client Pitch Strategy](docs/go-to-market/01_PITCH_STRATEGY.md)**
+**[View Product](docs/evaluation/01_PRODUCT.md) · [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md) · [Limitations & Claims](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md)**
 
 | Domain | Case | Status |
 |---|---|---|

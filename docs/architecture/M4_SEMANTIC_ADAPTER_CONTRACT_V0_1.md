@@ -1,8 +1,7 @@
-# M4 Semantic Adapter Contract — LASTRO Protocol v0.1
+# M4 Semantic Adapter Contract — Public Implementation Boundary
 
-**Contract ID:** `lastro-competency-adapter-v0.1-draft1`  
-**Status:** Executable candidate; review required before merge  
-**Normative authority:** private LASTRO Protocol v0.1 and competency profile v0.1  
+**Status:** Implementation-level contract for the public MVP.  
+**Scope:** Describes this adapter's bounded runtime behavior; it is not a full protocol specification or conformance certification.  
 **Implementation:** `src/http/semantic-contract.ts`  
 **Tests:** `tests/semantic-contract.test.ts`
 
@@ -48,7 +47,7 @@ The adapter returns one of these states only when an explicit resolution is supp
 - It does not determine whether verifiers are genuinely independent.
 - It does not define source freshness, authorization, privacy, or cross-profile mappings.
 - It does not establish whether every existing `IN_DEVELOPMENT`, `UNDER_REVIEW`, or `NOT_STARTED` UI use should be a workflow field or a state field; it only prevents those labels from becoming a canonical state without an explicit resolution.
-- It does not certify that the current production runtime invokes this adapter. Integration is a separate gate.
+- It does not certify the complete product or protocol for universal conformance.
 
 ## 6. Acceptance criteria
 
