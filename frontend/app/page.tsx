@@ -1309,6 +1309,15 @@ export default function Page() {
   const [view, setView] = useState<View>('Dashboard')
   const [menuOpen, setMenuOpen] = useState(false)
 
+  useEffect(() => {
+    if (!menuOpen) return
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [menuOpen])
+
   // Gerenciamento dinâmico de trilhas e fila de atestações
   const [trails, setTrails] = useState<CustomTrail[]>([initialDefaultTrail])
   const [queueItems, setQueueItems] = useState<QueueItem[]>([])
@@ -1385,7 +1394,7 @@ export default function Page() {
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
-      <aside className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
+      <aside id="primary-navigation" className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
         <div className="sidebar-top">
           <a className="brand" href="#" aria-label="LASTRO — Home">
             <div className="brand-mark">
@@ -1474,7 +1483,7 @@ export default function Page() {
 
       <main className="main-content" id="main-content">
         <header className="topbar">
-          <button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
+          <button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu" aria-controls="primary-navigation" aria-expanded={menuOpen}>
             <Menu />
           </button>
           <div className="breadcrumb">
