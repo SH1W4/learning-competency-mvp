@@ -1,160 +1,36 @@
-# Project Status
+# Project Status — Public Snapshot
 
-## Status atual
+**Last reviewed:** 2026-10-12  
+**Status:** core MVP implemented; integration, demonstration closure, and external validation remain distinct workstreams.
 
-**Fase:** definição final do MVP → implementação técnica / vertical slice.
+This is a concise public snapshot, not a live task tracker. Current source code, tests, proof artifacts, and open pull requests determine the exact implementation state.
 
-**Estado do repositório:** fundação documental estabelecida; M1 fechado como especificação operacional; M2 e M4.1 em execução; M3 preparado para avançar conforme o contrato produzido por M2; interface/UX/UI agora possui ownership definido.
+## What the MVP is designed to demonstrate
 
-## O que já está definido como base de trabalho
+- One bounded, synthetic competency scenario with observable work and structured evidence.
+- Separation between source evidence, AI interpretation, verification results, consensus, resolution, and competency state.
+- Explicit handling of agreement, insufficient evidence, and conflict without treating them as interchangeable outcomes.
+- A defined state record with integrity metadata and a Solana Devnet attestation/verification path.
+- A read-only product projection that should display canonical runtime results rather than independently decide competency state.
 
-- tese centrada em desenvolvimento e estado de competências;
-- organização/programa como ponto de partida do fluxo;
-- trilha curta como mecanismo de desenvolvimento/produção de evidência;
-- evidência separada de interpretação;
-- IA como camada de estruturação e interpretação;
-- revisão humana explícita;
-- estado de competência como representação limitada pelo que as evidências sustentam;
-- attestation como representação de um estado/evento definido;
-- Solana como camada de integridade e verificabilidade;
-- dados sensíveis e evidências brutas mantidos fora da cadeia;
-- validação externa de demanda como frente necessária;
-- jornadas de organização, pessoa, revisor e verificador documentadas;
-- arquitetura lógica do MVP documentada;
-- caso de uso operacional definido em M1;
-- framework inicial de análise competitiva documentado;
-- modelo inicial de go-to-market documentado;
-- responsabilidades e governança de decisão documentadas;
-- ownership da frente de interface/UX/UI definido para JP Fernandes.
+See [Demo & Technical Proof](evaluation/04_DEMO_AND_PROOF.md) for the recorded proof path and its limits.
 
-## O que ainda precisa ser fechado
+## Current limitations
 
-### Produto
+- The canonical demo uses synthetic evidence; it is not customer or pilot evidence.
+- The MVP does not establish commercial demand, willingness to pay, recurring adoption, ROI, or product-market fit.
+- A successful attestation verifies properties of a defined record; it does not prove universal competence, truth, merit, or fairness.
+- Naming several verification mechanisms does not by itself prove statistical or operational independence between them.
+- Broader workforce, role-evolution, and cross-organization applications remain hypotheses unless explicitly implemented and evidenced.
 
-- refinamentos do caso de uso que surgirem durante a implementação;
-- contrato final da saída da IA;
-- modelo mínimo de revisão humana;
-- estados canônicos conforme o comportamento real do vertical slice.
+## Remaining public closure criteria
 
-### Arquitetura
+- Keep the frontend projection aligned with the canonical runtime contract.
+- Verify the supported user journey end to end against the exact candidate being presented.
+- Keep current proof links and test claims synchronized with reproducible evidence.
+- Preserve explicit limitations wherever the public narrative describes the MVP.
+- Validate the target workflow with external users before promoting commercial hypotheses to product claims.
 
-- schema/mecanismo final de attestation;
-- caminho de verificação;
-- persistência mínima necessária;
-- limites finais entre dados off-chain e registro on-chain.
+## Evidence rule
 
-### Mercado e validação
-
-- workflow atual confirmado externamente;
-- alternativas/concorrentes investigados com fontes;
-- buyer/problem owner/program owner confirmados;
-- evidência externa de demanda;
-- pricing e modelo comercial, que permanecem hipóteses.
-
-### Hackathon
-
-- vertical slice executável;
-- testes;
-- demo reproduzível;
-- pitch coerente com o que foi realmente construído;
-- disclosure de trabalho pré-existente quando aplicável.
-
-## Milestones ativos
-
-### M1 — Caso de uso concreto
-
-**Status: DONE**
-
-Resultado:
-
-`organização → competência → trilha → pessoa → atividade → evidência`
-
-Documento principal:
-
-- `tasks/M1_CONCRETE_USE_CASE.md`
-
-### M2 — Evidência, IA e revisão
-
-**Status: IN PROGRESS**
-
-Resultado esperado:
-
-`evidência → extração → interpretação → relação com competência → revisão`
-
-Owner:
-
-**JP Carvalho / Joaopedro0s**
-
-Documento principal:
-
-- `tasks/M2_EVIDENCE_AI_REVIEW.md`
-
-### M3 — Estado, atestação e Solana
-
-**Status: TODO / PREPARAÇÃO**
-
-Resultado esperado:
-
-`revisão → estado → attestation → Solana → verificação`
-
-Owner:
-
-**JX / SH1W4**
-
-Suporte técnico:
-
-**JP Carvalho / Joaopedro0s**, quando solicitado.
-
-O suporte não altera o ownership, as decisões ou a responsabilidade final de M3.
-
-Documento principal:
-
-- `tasks/M3_STATE_ATTESTATION.md`
-
-### Interface — UX/UI do vertical slice
-
-**Status: OWNERSHIP DEFINED**
-
-Owner:
-
-**JP Fernandes**
-
-Resultado esperado:
-
-`fluxo técnico definido → telas → navegação → evidência → revisão → estado → attestation → verificação`
-
-A interface deve materializar o fluxo do produto e da arquitetura, sem criar lógica paralela.
-
-### M4 — Validação, demonstração e submissão
-
-**Status: IN PROGRESS**
-
-M4.1 está em execução.
-
-Owner da validação de demanda:
-
-**Erick / erickandregarcia-ai**
-
-## Governança
-
-Responsabilidades e classes de decisão estão documentadas em:
-
-`docs/governance/TEAM_ROLES.md`
-
-A regra permanece:
-
-> Uma proposta pode vir de qualquer integrante; ela se torna requisito do projeto somente após a decisão apropriada ser registrada.
-
-## Foundation Freeze
-
-A fundação documental necessária para iniciar a implementação está estabelecida.
-
-A partir daqui, novos documentos devem existir somente quando resolverem uma decisão, especificação, evidência ou necessidade real de execução.
-
-**Próximo movimento:** executar o vertical slice, conectando M2, M3, interface e validação externa.
-
-## Regra de status
-
-Este documento não substitui decisões do time.
-
-Para decisões materiais, registrar contexto, decisão, alternativas e consequências em `docs/decisions/`.
+Publish only claims that can be traced to the current implementation, automated tests, reproducible proof, or cited external evidence. A historical success is not evidence about a later commit unless the later candidate is validated separately.
