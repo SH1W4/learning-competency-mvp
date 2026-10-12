@@ -1480,6 +1480,14 @@ export default function Page() {
           </div>
         </div>
       </aside>
+      {menuOpen && (
+        <button
+          type="button"
+          className="mobile-menu-backdrop"
+          aria-label="Fechar menu de navegação"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
 
       <main className="main-content" id="main-content">
         <header className="topbar">
