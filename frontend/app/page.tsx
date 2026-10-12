@@ -18,7 +18,7 @@ type M4Projection = {
   consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION'; can_auto_advance: boolean; requires_adjudication: boolean }
   state: { value: 'NOT_STARTED' | 'IN_DEVELOPMENT' | 'UNDER_REVIEW' | 'DEMONSTRATED'; history: unknown[] }
   handoff: { record_version: string; record_hash: string; competency_id: string; state: string; decision_mode: string }
-  attestation: null | { version: string; record_hash: string; tx_signature?: string; network?: string; verified?: boolean }
+  attestation: null | { version: string; record_hash: string; tx_signature?: string; network?: string; verified?: boolean | null }
   public_verification: null | { href: string; label: string }
 }
 
@@ -54,7 +54,7 @@ class RuntimeRequestError extends Error {
 
 const runtimeErrorHints: Record<string, string> = {
   canonical_runtime_not_configured: 'The server has no canonical runtime endpoint configured yet.',
-  canonical_runtime_unavailable: 'The canonical runtime could not be reached. It may still be starting up; wait about 30 seconds and try again.',
+  canonical_runtime_unavailable: 'The canonical runtime could not be reached. A free Render instance may be waking up; wait up to 45 seconds, then try again. No local fixture will be substituted.',
   insecure_runtime_url: 'The configured runtime endpoint is not HTTPS, which production requires.',
   invalid_runtime_url: 'The configured runtime endpoint is not a valid URL.',
   unsupported_scenario: 'The requested scenario is not supported by this interface.',
@@ -267,7 +267,7 @@ export default function Page() {
                 <dl className="runtime-metadata">
                   <div><dt>Attestation version</dt><dd>{data.attestation.version}</dd></div>
                   <div><dt>Record hash</dt><dd><code className="runtime-hash">{data.attestation.record_hash}</code></dd></div>
-                  <div><dt>Reported verification</dt><dd>{String(data.attestation.verified ?? false)}</dd></div>
+                  <div><dt>Reported verification</dt><dd>{typeof data.attestation.verified === 'boolean' ? String(data.attestation.verified) : 'Not reported by runtime'}</dd></div>
                   {data.attestation.tx_signature ? <div><dt>Transaction signature</dt><dd><code className="runtime-hash">{data.attestation.tx_signature}</code></dd></div> : null}
                 </dl>
                 {txUrl ? <p><a href={txUrl} target="_blank" rel="noreferrer">Open transaction in Solana Explorer ↗</a></p> : data.attestation.tx_signature ? <p role="note">The signature was received, but the network does not match a recognized Solana cluster. No Explorer link was assumed.</p> : <p>The runtime did not provide a transaction signature.</p>}

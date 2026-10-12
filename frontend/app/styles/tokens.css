@@ -15,7 +15,7 @@
   /* ---- ink ---- */
   --fg: #FFFFFF;
   --mut: #9a9a9a;
-  --mut-2: #6b6b70;
+  --mut-2: #8a8a90; /* secondary text: >= 4.5:1 on the dark surfaces used below */
   --gray: #d9d9d9;
   --gray-deep: #2a2a2e;
 

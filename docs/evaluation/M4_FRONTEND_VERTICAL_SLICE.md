@@ -76,7 +76,7 @@ The repository now includes a Render Blueprint at `render.yaml` and a `/health` 
 7. Redeploy the Vercel frontend after setting the variable.
 8. Verify `https://lastro-learn.vercel.app/api/m4/competency?scenario=synthetic-ana` returns HTTP 200, then open the UI and confirm the synthetic Ana projection renders. If the Vercel project is intended for Erick's Learn workflow instead, stop here and correct the Vercel project/domain association rather than wiring the M4 runtime into the wrong app.
 
-**Hosting caveat:** the Blueprint currently selects Render's free plan for initial integration testing. Free services can sleep and cold-start, so this is not a reliability guarantee for a live demo; a cold start may exceed the frontend proxy's 5-second timeout. For a time-critical public demo, use an always-on runtime plan or adjust and test timeout budgets end-to-end before claiming reliability. Do not incur paid hosting without explicit approval.
+**Hosting caveat:** the Blueprint uses Render's free plan for integration testing. This candidate adds a GitHub Actions health ping every 10 minutes to reduce cold starts after the workflow is merged to the default branch. Scheduled runs are best-effort and may be delayed, so this is not a reliability guarantee; a cold start can exceed the frontend proxy's 5-second timeout. If the runtime reports unavailable, wait up to 45 seconds and retry. Do not incur paid hosting without explicit approval.
 
 ## Reproducible local integration check
 
