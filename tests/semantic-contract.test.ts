@@ -180,6 +180,19 @@ describe("LASTRO Protocol v0.1 semantic adapter", () => {
     }), "UNDECLARED_ADJUDICATION");
   });
 
+  it.each([
+    ["resolutionMechanism", { resolutionMechanism: "BOGUS", resolution: "ESTABLISHED", productState: "DEMONSTRATED" }, "INVALID_RESOLUTION_MECHANISM"],
+    ["resolution", { resolution: "BOGUS", resolutionMechanism: "AUTOMATED", productState: "DEMONSTRATED" }, "INVALID_RESOLUTION"],
+    ["productState", { productState: "BOGUS" }, "INVALID_PRODUCT_STATE"],
+    ["sourceStatus", { sourceStatus: "BOGUS" }, "INVALID_SOURCE_STATUS"],
+  ] as const)("rejects invalid runtime enum: %s", (_field, overrides, code) => {
+    // Simulate an untyped JavaScript/JSON caller bypassing TypeScript's unions.
+    expectContractError(
+      base(overrides as unknown as Partial<SemanticAdapterInput>),
+      code,
+    );
+  });
+
   it("does not expose human adjudication as a consensus outcome", () => {
     // The type excludes HUMAN_ADJUDICATION from ConsensusOutcome. This runtime
     // guard also protects untyped JSON/JavaScript callers.
