@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Activity,
   AlertTriangle,
@@ -58,7 +58,7 @@ export function LastroSymbolReduced({ size = 20, className = '' }: { size?: numb
 type Verification = {
   mechanism: 'evidence_integrity' | 'deterministic_criteria' | 'ai_interpretation'
   criterion_id: string
-  status: 'PASS' | 'FAIL'
+  status: 'PASS' | 'FAIL' | 'NOT_RUN'
   rationale: string
 }
 
@@ -69,7 +69,7 @@ type M4Projection = {
   evidence: Array<{ evidence_id: string; type: string; activity_id: string; source_ref: string; content_ref: string; trust_level: string; synthetic: boolean }>
   interpretation: { id: string; model: string; signals: Array<{ signal_id: string; criterion_id: string; support: string; confidence: number; evidence_refs: string[] }> }
   verification: { mechanisms: Verification[] }
-  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION'; can_auto_advance: boolean; requires_adjudication: boolean }
+  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION' | 'NOT_EVALUATED'; can_auto_advance: boolean; requires_adjudication: boolean }
   state: { value: 'NOT_STARTED' | 'IN_DEVELOPMENT' | 'UNDER_REVIEW' | 'DEMONSTRATED'; history: unknown[] }
   handoff: { record_version: string; record_hash: string; competency_id: string; state: string; decision_mode: string }
   attestation: null | { version: string; record_hash: string; tx_signature?: string; network?: string; verified?: boolean | null }
@@ -117,6 +117,7 @@ const consensusDescriptions: Record<M4Projection['consensus']['status'], string>
   INSUFFICIENT_EVIDENCE: 'The available evidence was deemed insufficient by the runtime. Do not interpret this result as a demonstration.',
   CONFLICT: 'Conflict reported. Auto-advancement must remain blocked; this interface does not resolve the conflict.',
   HUMAN_ADJUDICATION: 'The runtime indicates human adjudication is required. This interface does not record or simulate a human decision.',
+  NOT_EVALUATED: 'This is a local draft. No verification mechanism or consensus was executed by the canonical runtime.',
 }
 
 const stateLabels: Record<M4Projection['state']['value'], string> = {
@@ -257,15 +258,15 @@ function AdjudicationModal({ item, onClose }: { item: QueueItem | null; onClose:
           <button className="icon-button" onClick={onClose} aria-label="Close"><X /></button>
         </div>
         <p className="modal-context">
-          The deterministic check passed all structural rules, while the AI interpretation identified a potential gap. Your decision resolves this divergence and is preserved in the audit trail.
+          This demo modal does not load a live conflict record or persist adjudication. No human decision is recorded by these controls.
         </p>
         <label htmlFor="rationale">Adjudicator Rationale <span>(Required for Provenance)</span></label>
         <textarea id="rationale" placeholder="Explain the reasoning behind your decision..." />
         <div className="modal-actions">
-          <button className="primary-button" onClick={onClose}>Record Adjudication</button>
-          <button className="secondary-button" onClick={onClose}>Reject &amp; Request Evidence</button>
+          <button className="primary-button" onClick={onClose}>Close without recording</button>
+          <button className="secondary-button" onClick={onClose}>Close</button>
         </div>
-        <small className="modal-footer">The previous verification results, evidence references, rationale and rule version are preserved in the audit history.</small>
+        <small className="modal-footer">Adjudication persistence is not implemented in this interface. Closing this dialog does not record a decision.</small>
       </div>
     </div>
   )
@@ -304,8 +305,8 @@ function DashboardView({ data, queueItems, setView }: {
       <section className="content-card overview-card">
         <div className="card-heading">
           <div>
-            <h2>Verification activity</h2>
-            <p>Current state across all competency targets.</p>
+            <h2>Scenario summary</h2>
+            <p>Counts from the synthetic scenarios bundled with this demo — not live production activity.</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button className="secondary-button" onClick={() => setView('Submeter Evidência')}>+ Nova Evidência</button>
@@ -317,9 +318,9 @@ function DashboardView({ data, queueItems, setView }: {
             <span className="activity-icon green"><Check /></span>
             <span>
               <b>{demonstratedCount} attestation(s) demonstrated</b>
-              <small>Evidence integrity confirmed in the latest cycle</small>
+              <small>Example scenario marked as demonstrated; this dashboard does not run verification.</small>
             </span>
-            <time>Today</time>
+            <span className="demo-label">DEMO SCENARIO</span>
           </div>
           {conflictCount > 0 && (
             <div>
@@ -328,7 +329,7 @@ function DashboardView({ data, queueItems, setView }: {
                 <b>{conflictCount} record(s) require adjudication</b>
                 <small>Consensus mechanisms diverge on these attestations</small>
               </span>
-              <time>Today</time>
+              <span className="demo-label">DEMO SCENARIO</span>
             </div>
           )}
           {inDevelopmentCount > 0 && (
@@ -338,7 +339,7 @@ function DashboardView({ data, queueItems, setView }: {
                 <b>{inDevelopmentCount} capability(ies) in development</b>
                 <small>Evidence collection is still in progress</small>
               </span>
-              <time>Yesterday</time>
+              <span className="demo-label">DEMO SCENARIO</span>
             </div>
           )}
         </div>
@@ -375,7 +376,7 @@ function QueueView({ items }: { items: QueueItem[]; setView: (view: View) => voi
           <div className="card-heading">
             <div>
               <h2>Pending attestations</h2>
-              <p>Each decision preserves a complete cryptographic audit trail.</p>
+              <p>Illustrative records only. This interface does not persist decisions or create canonical attestations.</p>
             </div>
             <div className="search-box">
               <Search />
@@ -399,18 +400,29 @@ function QueueView({ items }: { items: QueueItem[]; setView: (view: View) => voi
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((item) => (
+                {filtered.length === 0 ? (
+                  <tr><td colSpan={5} className="empty-state-cell">No sample records match “{query}”. Try another name or competency.</td></tr>
+                ) : filtered.map((item) => (
                   <tr
                     key={item.id}
+                    tabIndex={0}
+                    aria-label={`Select sample record for ${item.name}, ${item.target}`}
+                    aria-selected={selected?.id === item.id}
                     className={selected?.id === item.id ? 'selected-row' : ''}
                     onClick={() => setSelected(selected?.id === item.id ? null : item)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        setSelected(selected?.id === item.id ? null : item)
+                      }
+                    }}
                   >
                     <td>
                       <div className="person-cell">
                         <span className="person-avatar">{initials(item.name)}</span>
                         <span>
                           <b>{item.name}</b>
-                          <small>Submitted today</small>
+                          <small>Sample record</small>
                         </span>
                       </div>
                     </td>
@@ -583,6 +595,7 @@ assert "cpf" not in df_safe.columns
 print("Pipeline executado com integridade.")
 `)
   const [hash, setHash] = useState<string>('')
+  const [hashError, setHashError] = useState<string>('')
   const [submitted, setSubmitted] = useState(false)
 
   // Calcule o hash SHA-256 criptográfico em tempo real
@@ -592,6 +605,7 @@ print("Pipeline executado com integridade.")
         setHash('')
         return
       }
+      setHashError('')
       try {
         const encoder = new TextEncoder()
         const data = encoder.encode(content)
@@ -600,7 +614,8 @@ print("Pipeline executado com integridade.")
         const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
         setHash(hashHex)
       } catch {
-        setHash('8f4e2b01c3d8a9e4f5127b3c4d5e6f7a')
+        setHash('')
+        setHashError('Não foi possível calcular o SHA-256 neste navegador. Nenhum hash foi confirmado.')
       }
     }
     computeHash()
@@ -624,7 +639,7 @@ print("Pipeline executado com integridade.")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!content.trim()) return
+    if (!content.trim() || !hash || hashError) return
 
     const shortHash = hash.substring(0, 8) + '...' + hash.slice(-4)
 
@@ -657,7 +672,7 @@ print("Pipeline executado com integridade.")
           type: evidenceType,
           activity_id: activityId,
           source_ref: filename,
-          content_ref: `sha256:${hash || '8f4e2b01c3d8a9e4'}`,
+          content_ref: `sha256:${hash}`,
           trust_level: 'N2_EVIDENCE_PRESENTED',
           synthetic: false,
         },
@@ -680,26 +695,26 @@ print("Pipeline executado com integridade.")
           {
             mechanism: 'evidence_integrity',
             criterion_id: 'C1',
-            status: 'PASS',
-            rationale: `Integridade confirmada: o hash ${hash.substring(0, 10)}... corresponde exatamente ao conteúdo do artefato.`,
+            status: 'NOT_RUN',
+            rationale: 'O hash foi calculado no navegador; a verificação de integridade pelo runtime não foi executada.',
           },
           {
             mechanism: 'deterministic_criteria',
             criterion_id: 'C1',
-            status: 'PASS',
-            rationale: 'Os testes de assertividade e manipulação do conjunto de dados atendem aos critérios de reprodução.',
+            status: 'NOT_RUN',
+            rationale: 'A verificação determinística não foi executada pelo runtime.',
           },
           {
             mechanism: 'ai_interpretation',
             criterion_id: 'C1',
-            status: 'PASS',
-            rationale: 'A IA identificou coerência com o objetivo da trilha sem desvios de governança.',
+            status: 'NOT_RUN',
+            rationale: 'Nenhuma interpretação por IA foi executada para esta evidência.',
           },
         ],
       },
       consensus: {
-        status: 'AGREEMENT',
-        can_auto_advance: true,
+        status: 'NOT_EVALUATED',
+        can_auto_advance: false,
         requires_adjudication: false,
       },
       state: {
@@ -708,10 +723,10 @@ print("Pipeline executado com integridade.")
       },
       handoff: {
         record_version: 'v0.2',
-        record_hash: hash || '8f4e2b01c3d8a9e4f5127b3c4d5e6f7a',
+        record_hash: hash,
         competency_id: currentTrail?.id ?? 'comp:custom',
         state: 'UNDER_REVIEW',
-        decision_mode: 'consensus_agreement',
+        decision_mode: 'local_draft_not_submitted',
       },
       attestation: null,
       public_verification: null,
@@ -738,7 +753,7 @@ print("Pipeline executado com integridade.")
           <p className="eyebrow">PORTAL DO COLABORADOR · ENVIO DE PROVAS</p>
           <h1>Submeter Evidência</h1>
           <p className="page-subtitle">
-            Anexe seu trabalho observável (código, notebook ou síntese). O protocolo calcula o hash SHA-256 e aciona o pipeline de verificação.
+            Anexe seu trabalho observável (código, notebook ou síntese). O SHA-256 é calculado neste navegador. Este formulário ainda não envia a evidência ao runtime canônico.
           </p>
         </div>
       </div>
@@ -748,8 +763,8 @@ print("Pipeline executado com integridade.")
           <div>
             <CheckCircle2 />
             <div>
-              <strong>Evidência submetida com sucesso!</strong>
-              <p>O artefato foi registrado com integridade criptográfica e já aparece na Fila de Atestações.</p>
+              <strong>Rascunho local criado</strong>
+              <p>O conteúdo e o hash foram adicionados apenas à fila desta sessão. Nenhuma verificação, consenso ou atestação foi executada pelo runtime canônico.</p>
             </div>
           </div>
           <button className="primary-button" onClick={() => setView('Attestation Queue')}>
@@ -884,16 +899,17 @@ print("Pipeline executado com integridade.")
           </div>
         </div>
 
-        {hash && (
+        {hashError && <p className="runtime-error" role="alert">{hashError}</p>}
+        {hash && !hashError && (
           <div className="hash-preview-card">
             <div>
-              <span className="eyebrow ac">IMUTABILIDADE · PROVENIÊNCIA GERADA</span>
+              <span className="eyebrow ac">HASH LOCAL · AINDA NÃO VERIFICADO</span>
               <code>SHA-256 · {hash}</code>
               <small style={{ color: 'var(--mut-2)', fontSize: '11px', marginTop: '4px' }}>
-                Nível de Confiança Inicial: <b>N2_EVIDENCE_PRESENTED</b> (Evidência entregue com conteúdo verificável)
+                Identificador calculado neste navegador. Não comprova autoria, registro no runtime nem imutabilidade.
               </small>
             </div>
-            <span className="badge b-evidence">HASH CONFIRMADO</span>
+            <span className="badge b-evidence">HASH CALCULADO LOCALMENTE</span>
           </div>
         )}
 
@@ -901,7 +917,7 @@ print("Pipeline executado com integridade.")
           <button type="button" className="secondary-button" onClick={() => setView('Dashboard')}>
             Cancelar
           </button>
-          <button type="submit" className="primary-button">
+          <button type="submit" className="primary-button" disabled={!hash || Boolean(hashError) || !content.trim()}>
             <FolderUp size={16} /> Submeter para Verificação Criptográfica
           </button>
         </div>
@@ -1031,7 +1047,7 @@ function CreateTrailView({
           <p className="eyebrow">NOVA PROFISSÃO · CAPABILITY DESIGN</p>
           <h1>Criar Trilha de Competência</h1>
           <p className="page-subtitle">
-            Estruture as competências canônicas e critérios observáveis para novas profissões emergentes na sua organização.
+            Monte um rascunho local de competência e critérios observáveis. A publicação no protocolo canônico ainda não está disponível nesta interface.
           </p>
         </div>
       </div>
@@ -1056,8 +1072,8 @@ function CreateTrailView({
           <div>
             <CheckCircle2 />
             <div>
-              <strong>Trilha publicada com sucesso no protocolo!</strong>
-              <p>A trilha para &quot;{role}&quot; já está ativa e pronta para receber submissões dos seus colaboradores.</p>
+              <strong>Rascunho de trilha criado nesta sessão</strong>
+              <p>A trilha está apenas no estado local desta sessão. Ela não foi publicada nem registrada no protocolo canônico.</p>
             </div>
           </div>
           <button className="primary-button" onClick={() => setView('Submeter Evidência')}>
@@ -1292,6 +1308,60 @@ export default function Page() {
   const [attempt, setAttempt] = useState(0)
   const [view, setView] = useState<View>('Dashboard')
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null)
+  const sidebarRef = useRef<HTMLElement | null>(null)
+  const wasMenuOpen = useRef(false)
+
+  useEffect(() => {
+    if (!menuOpen) {
+      if (wasMenuOpen.current) {
+        menuButtonRef.current?.focus()
+        wasMenuOpen.current = false
+      }
+      return
+    }
+
+    wasMenuOpen.current = true
+    const sidebar = sidebarRef.current
+    const focusable = () => Array.from(
+      sidebar?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ) ?? [],
+    ).filter((element) => element.getAttribute('aria-hidden') !== 'true')
+
+    sidebar?.querySelector<HTMLElement>('.mobile-close')?.focus()
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        return
+      }
+      if (event.key !== 'Tab') return
+
+      const elements = focusable()
+      if (elements.length === 0) {
+        event.preventDefault()
+        return
+      }
+
+      const first = elements[0]
+      const last = elements[elements.length - 1]
+      const active = document.activeElement
+      if (!sidebar?.contains(active)) {
+        event.preventDefault()
+        ;(event.shiftKey ? last : first).focus()
+      } else if (event.shiftKey && active === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [menuOpen])
 
   // Gerenciamento dinâmico de trilhas e fila de atestações
   const [trails, setTrails] = useState<CustomTrail[]>([initialDefaultTrail])
@@ -1369,7 +1439,7 @@ export default function Page() {
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
-      <aside className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
+      <aside ref={sidebarRef} id="primary-navigation" className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
         <div className="sidebar-top">
           <a className="brand" href="#" aria-label="LASTRO — Home">
             <div className="brand-mark">
@@ -1441,24 +1511,32 @@ export default function Page() {
           <div className="system-status">
             <span className="live-dot" />
             <span>
-              <b>Systems operational</b>
-              <small>Last sync 2 min ago</small>
+              <b>Runtime status</b>
+              <small>Consulte Runtime Details para o estado da conexão</small>
             </span>
           </div>
           <div className="user-card">
-            <div className="user-avatar">JP</div>
+            <div className="user-avatar">LS</div>
             <div>
-              <b>João Pedro</b>
-              <small>Administrator</small>
+              <b>LASTRO</b>
+              <small>Workspace</small>
             </div>
             <UserRound />
           </div>
         </div>
       </aside>
+      {menuOpen && (
+        <button
+          type="button"
+          className="mobile-menu-backdrop"
+          aria-label="Fechar menu de navegação"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
 
-      <main className="main-content" id="main-content">
+      <main className="main-content" id="main-content" inert={menuOpen} aria-hidden={menuOpen}>
         <header className="topbar">
-          <button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
+          <button ref={menuButtonRef} className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu" aria-controls="primary-navigation" aria-expanded={menuOpen}>
             <Menu />
           </button>
           <div className="breadcrumb">
