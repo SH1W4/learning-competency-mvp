@@ -58,7 +58,7 @@ export function LastroSymbolReduced({ size = 20, className = '' }: { size?: numb
 type Verification = {
   mechanism: 'evidence_integrity' | 'deterministic_criteria' | 'ai_interpretation'
   criterion_id: string
-  status: 'PASS' | 'FAIL'
+  status: 'PASS' | 'FAIL' | 'NOT_RUN'
   rationale: string
 }
 
@@ -69,7 +69,7 @@ type M4Projection = {
   evidence: Array<{ evidence_id: string; type: string; activity_id: string; source_ref: string; content_ref: string; trust_level: string; synthetic: boolean }>
   interpretation: { id: string; model: string; signals: Array<{ signal_id: string; criterion_id: string; support: string; confidence: number; evidence_refs: string[] }> }
   verification: { mechanisms: Verification[] }
-  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION'; can_auto_advance: boolean; requires_adjudication: boolean }
+  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION' | 'NOT_EVALUATED'; can_auto_advance: boolean; requires_adjudication: boolean }
   state: { value: 'NOT_STARTED' | 'IN_DEVELOPMENT' | 'UNDER_REVIEW' | 'DEMONSTRATED'; history: unknown[] }
   handoff: { record_version: string; record_hash: string; competency_id: string; state: string; decision_mode: string }
   attestation: null | { version: string; record_hash: string; tx_signature?: string; network?: string; verified?: boolean | null }
@@ -117,6 +117,7 @@ const consensusDescriptions: Record<M4Projection['consensus']['status'], string>
   INSUFFICIENT_EVIDENCE: 'The available evidence was deemed insufficient by the runtime. Do not interpret this result as a demonstration.',
   CONFLICT: 'Conflict reported. Auto-advancement must remain blocked; this interface does not resolve the conflict.',
   HUMAN_ADJUDICATION: 'The runtime indicates human adjudication is required. This interface does not record or simulate a human decision.',
+  NOT_EVALUATED: 'This is a local draft. No verification mechanism or consensus was executed by the canonical runtime.',
 }
 
 const stateLabels: Record<M4Projection['state']['value'], string> = {
@@ -683,26 +684,26 @@ print("Pipeline executado com integridade.")
           {
             mechanism: 'evidence_integrity',
             criterion_id: 'C1',
-            status: 'PASS',
-            rationale: `Integridade confirmada: o hash ${hash.substring(0, 10)}... corresponde exatamente ao conteúdo do artefato.`,
+            status: 'NOT_RUN',
+            rationale: 'O hash foi calculado no navegador; a verificação de integridade pelo runtime não foi executada.',
           },
           {
             mechanism: 'deterministic_criteria',
             criterion_id: 'C1',
-            status: 'PASS',
-            rationale: 'Os testes de assertividade e manipulação do conjunto de dados atendem aos critérios de reprodução.',
+            status: 'NOT_RUN',
+            rationale: 'A verificação determinística não foi executada pelo runtime.',
           },
           {
             mechanism: 'ai_interpretation',
             criterion_id: 'C1',
-            status: 'PASS',
-            rationale: 'A IA identificou coerência com o objetivo da trilha sem desvios de governança.',
+            status: 'NOT_RUN',
+            rationale: 'Nenhuma interpretação por IA foi executada para esta evidência.',
           },
         ],
       },
       consensus: {
-        status: 'AGREEMENT',
-        can_auto_advance: true,
+        status: 'NOT_EVALUATED',
+        can_auto_advance: false,
         requires_adjudication: false,
       },
       state: {
@@ -714,7 +715,7 @@ print("Pipeline executado com integridade.")
         record_hash: hash,
         competency_id: currentTrail?.id ?? 'comp:custom',
         state: 'UNDER_REVIEW',
-        decision_mode: 'consensus_agreement',
+        decision_mode: 'local_draft_not_submitted',
       },
       attestation: null,
       public_verification: null,
@@ -741,7 +742,7 @@ print("Pipeline executado com integridade.")
           <p className="eyebrow">PORTAL DO COLABORADOR · ENVIO DE PROVAS</p>
           <h1>Submeter Evidência</h1>
           <p className="page-subtitle">
-            Anexe seu trabalho observável (código, notebook ou síntese). O protocolo calcula o hash SHA-256 e aciona o pipeline de verificação.
+            Anexe seu trabalho observável (código, notebook ou síntese). O SHA-256 é calculado neste navegador. Este formulário ainda não envia a evidência ao runtime canônico.
           </p>
         </div>
       </div>
@@ -751,8 +752,8 @@ print("Pipeline executado com integridade.")
           <div>
             <CheckCircle2 />
             <div>
-              <strong>Evidência submetida com sucesso!</strong>
-              <p>O artefato foi registrado com integridade criptográfica e já aparece na Fila de Atestações.</p>
+              <strong>Rascunho local criado</strong>
+              <p>O conteúdo e o hash foram adicionados apenas à fila desta sessão. Nenhuma verificação, consenso ou atestação foi executada pelo runtime canônico.</p>
             </div>
           </div>
           <button className="primary-button" onClick={() => setView('Attestation Queue')}>
@@ -1445,15 +1446,15 @@ export default function Page() {
           <div className="system-status">
             <span className="live-dot" />
             <span>
-              <b>Systems operational</b>
-              <small>Last sync 2 min ago</small>
+              <b>Runtime status</b>
+              <small>Consulte Runtime Details para o estado da conexão</small>
             </span>
           </div>
           <div className="user-card">
-            <div className="user-avatar">JP</div>
+            <div className="user-avatar">LS</div>
             <div>
-              <b>João Pedro</b>
-              <small>Administrator</small>
+              <b>LASTRO</b>
+              <small>Workspace</small>
             </div>
             <UserRound />
           </div>
