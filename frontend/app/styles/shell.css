@@ -701,3 +701,49 @@ pre, code { overflow-wrap: anywhere; word-break: break-word; }
   .metrics-grid { grid-template-columns: minmax(0, 1fr); }
   .panel, .form-card { padding: 12px; }
 }
+
+
+/* ---------------- accessibility and interaction polish ---------------- */
+/* Keyboard users must always be able to see where focus is. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ac, #1683ff);
+  outline-offset: 3px;
+}
+:where(button, input, select, textarea) {
+  font: inherit;
+}
+:where(button, a) {
+  -webkit-tap-highlight-color: transparent;
+}
+:where(button, .button, .primary-button, .secondary-button, .icon-button, .collapse-button) {
+  touch-action: manipulation;
+}
+:where(button, .button, .primary-button, .secondary-button) {
+  min-height: 40px;
+}
+.icon-button, .collapse-button {
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+:where(input, select, textarea) {
+  max-width: 100%;
+}
+:where(button, input, select, textarea):disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+::selection {
+  color: var(--fg, #fff);
+  background: color-mix(in srgb, var(--ac, #1683ff) 35%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
