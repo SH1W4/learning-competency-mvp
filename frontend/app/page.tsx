@@ -1309,6 +1309,7 @@ export default function Page() {
   const [view, setView] = useState<View>('Dashboard')
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement | null>(null)
+  const sidebarRef = useRef<HTMLElement | null>(null)
   const wasMenuOpen = useRef(false)
 
   useEffect(() => {
@@ -1321,11 +1322,45 @@ export default function Page() {
     }
 
     wasMenuOpen.current = true
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false)
+    const sidebar = sidebarRef.current
+    const focusable = () => Array.from(
+      sidebar?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ) ?? [],
+    ).filter((element) => element.getAttribute('aria-hidden') !== 'true')
+
+    sidebar?.querySelector<HTMLElement>('.mobile-close')?.focus()
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        return
+      }
+      if (event.key !== 'Tab') return
+
+      const elements = focusable()
+      if (elements.length === 0) {
+        event.preventDefault()
+        return
+      }
+
+      const first = elements[0]
+      const last = elements[elements.length - 1]
+      const active = document.activeElement
+      if (!sidebar?.contains(active)) {
+        event.preventDefault()
+        ;(event.shiftKey ? last : first).focus()
+      } else if (event.shiftKey && active === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault()
+        first.focus()
+      }
     }
-    window.addEventListener('keydown', closeOnEscape)
-    return () => window.removeEventListener('keydown', closeOnEscape)
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [menuOpen])
 
   // Gerenciamento dinâmico de trilhas e fila de atestações
@@ -1404,7 +1439,7 @@ export default function Page() {
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
-      <aside id="primary-navigation" className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
+      <aside ref={sidebarRef} id="primary-navigation" className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
         <div className="sidebar-top">
           <a className="brand" href="#" aria-label="LASTRO — Home">
             <div className="brand-mark">
