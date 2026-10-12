@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   adaptCompetencyState,
   COMPETENCY_ADAPTER_VERSION,
+  SemanticAdapterError,
   type SemanticAdapterInput,
 } from "../../src/semantics/competency-adapter.js";
 
@@ -56,6 +57,13 @@ describe("LASTRO competency semantic adapter v0.1", () => {
       consensusOutcome: "CONFLICT",
       resolution: { status: "RESOLVED", mechanism: "human_adjudication", outcome: "ESTABLISHED" },
       verificationCompleted: true,
+      adjudication: {
+        actorId: "reviewer-1",
+        basis: "reviewed source evidence",
+        evidenceRefs: ["ev-1"],
+        applicableRules: ["rule-1"],
+        priorVerifierResults: ["CONFLICT"],
+      },
     })).toMatchObject({ consensusOutcome: "CONFLICT", competencyState: "ESTABLISHED", mappingStatus: "MAPPED" });
   });
 
@@ -82,6 +90,32 @@ describe("LASTRO competency semantic adapter v0.1", () => {
       ...agreement,
       resolution: { status: "RESOLVED", mechanism: "human_adjudication", outcome: "ESTABLISHED" },
     })).toMatchObject({ competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" });
+  });
+
+  it("rejects human adjudication without a complete audit record", () => {
+    expect(() => adaptCompetencyState({
+      productState: "DEMONSTRATED",
+      consensusOutcome: "CONFLICT",
+      resolution: { status: "RESOLVED", mechanism: "human_adjudication", outcome: "ESTABLISHED" },
+      verificationCompleted: true,
+    })).toThrowError(SemanticAdapterError);
+    try {
+      adaptCompetencyState({
+        productState: "DEMONSTRATED",
+        consensusOutcome: "CONFLICT",
+        resolution: { status: "RESOLVED", mechanism: "human_adjudication", outcome: "ESTABLISHED" },
+        verificationCompleted: true,
+      });
+    } catch (error) {
+      expect(error).toMatchObject({ code: "INCOMPLETE_ADJUDICATION" });
+    }
+  });
+
+  it("rejects invalid runtime enum values instead of trusting TypeScript types", () => {
+    expect(() => adaptCompetencyState({
+      ...agreement,
+      productState: "HUMAN_ADJUDICATION" as SemanticAdapterInput["productState"],
+    })).toThrowError(SemanticAdapterError);
   });
 
   it("rejects a resolved outcome that contradicts the current AGREEMENT semantics", () => {
