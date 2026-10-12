@@ -31,6 +31,14 @@ export type ProfileCompetencyState =
 export type ResolutionMechanism = "consensus" | "human_adjudication" | "none";
 export type ResolutionStatus = "NOT_REQUIRED" | "PENDING" | "RESOLVED";
 
+export interface AdjudicationRecord {
+  actorId: string;
+  basis: string;
+  evidenceRefs: string[];
+  applicableRules: string[];
+  priorVerifierResults: string[];
+}
+
 export interface SemanticAdapterInput {
   productState: ProductState;
   consensusOutcome: ConsensusOutcome | null;
@@ -40,6 +48,83 @@ export interface SemanticAdapterInput {
     outcome: ProfileCompetencyState | null;
   };
   verificationCompleted: boolean;
+  adjudication?: AdjudicationRecord | null;
+}
+
+export class SemanticAdapterError extends Error {
+  constructor(public readonly code: string, message: string) {
+    super(message);
+    this.name = "SemanticAdapterError";
+  }
+}
+
+function nonEmptyString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function validateInput(input: SemanticAdapterInput): void {
+  const isOneOf = <T extends string>(value: unknown, allowed: readonly T[]): value is T =>
+    typeof value === "string" && allowed.includes(value as T);
+
+  if (!input || typeof input !== "object") {
+    throw new SemanticAdapterError("INVALID_INPUT", "Semantic adapter input must be an object.");
+  }
+  if (!isOneOf(input.productState, ["NOT_STARTED", "IN_DEVELOPMENT", "UNDER_REVIEW", "DEMONSTRATED"] as const)) {
+    throw new SemanticAdapterError("INVALID_PRODUCT_STATE", "Unknown product/workflow state.");
+  }
+  if (input.consensusOutcome !== null && !isOneOf(input.consensusOutcome, ["AGREEMENT", "INSUFFICIENT_EVIDENCE", "CONFLICT"] as const)) {
+    throw new SemanticAdapterError("INVALID_CONSENSUS_OUTCOME", "Unknown canonical consensus outcome.");
+  }
+  if (typeof input.verificationCompleted !== "boolean") {
+    throw new SemanticAdapterError("INVALID_VERIFICATION_STATUS", "Verification completion must be boolean.");
+  }
+  if (!input.resolution || typeof input.resolution !== "object") {
+    throw new SemanticAdapterError("INVALID_RESOLUTION", "Resolution must be an object.");
+  }
+  if (!isOneOf(input.resolution.status, ["NOT_REQUIRED", "PENDING", "RESOLVED"] as const)) {
+    throw new SemanticAdapterError("INVALID_RESOLUTION_STATUS", "Unknown resolution status.");
+  }
+  if (!isOneOf(input.resolution.mechanism, ["consensus", "human_adjudication", "none"] as const)) {
+    throw new SemanticAdapterError("INVALID_RESOLUTION_MECHANISM", "Unknown resolution mechanism.");
+  }
+  if (input.resolution.outcome !== null && !isOneOf(input.resolution.outcome, [
+    "ESTABLISHED", "NOT_ESTABLISHED", "INSUFFICIENT_EVIDENCE", "CONFLICT", "REQUIRES_VERIFICATION",
+  ] as const)) {
+    throw new SemanticAdapterError("INVALID_RESOLUTION_OUTCOME", "Unknown canonical resolution outcome.");
+  }
+
+  const { status, mechanism, outcome } = input.resolution;
+  if (status === "RESOLVED" && (mechanism === "none" || outcome === null)) {
+    throw new SemanticAdapterError("INCOMPLETE_RESOLUTION", "A resolved outcome must declare a mechanism and outcome.");
+  }
+  if (status !== "RESOLVED" && (mechanism !== "none" || outcome !== null)) {
+    throw new SemanticAdapterError("INCONSISTENT_RESOLUTION", "Pending or not-required resolution cannot carry a final mechanism or outcome.");
+  }
+
+  if (mechanism === "human_adjudication") {
+    const record = input.adjudication;
+    const nonEmptyArray = (value: unknown): value is string[] =>
+      Array.isArray(value) && value.length > 0 && value.every(nonEmptyString);
+    if (
+      input.consensusOutcome !== "CONFLICT" ||
+      !record ||
+      !nonEmptyString(record.actorId) ||
+      !nonEmptyString(record.basis) ||
+      !nonEmptyArray(record.evidenceRefs) ||
+      !nonEmptyArray(record.applicableRules) ||
+      !nonEmptyArray(record.priorVerifierResults)
+    ) {
+      throw new SemanticAdapterError(
+        "INCOMPLETE_ADJUDICATION",
+        "Human adjudication requires a prior CONFLICT and a non-empty actor, basis, evidence references, applicable rules, and prior verifier results.",
+      );
+    }
+  } else if (input.adjudication) {
+    throw new SemanticAdapterError(
+      "UNDECLARED_ADJUDICATION",
+      "An adjudication record is only valid when the resolution mechanism is human_adjudication.",
+    );
+  }
 }
 
 export interface SemanticAdapterResult {
@@ -63,6 +148,7 @@ export interface SemanticAdapterResult {
 }
 
 export function adaptCompetencyState(input: SemanticAdapterInput): SemanticAdapterResult {
+  validateInput(input);
   const base = {
     adapterVersion: COMPETENCY_ADAPTER_VERSION,
     productState: input.productState,
