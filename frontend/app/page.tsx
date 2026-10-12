@@ -258,15 +258,15 @@ function AdjudicationModal({ item, onClose }: { item: QueueItem | null; onClose:
           <button className="icon-button" onClick={onClose} aria-label="Close"><X /></button>
         </div>
         <p className="modal-context">
-          The deterministic check passed all structural rules, while the AI interpretation identified a potential gap. Your decision resolves this divergence and is preserved in the audit trail.
+          This demo modal does not load a live conflict record or persist adjudication. No human decision is recorded by these controls.
         </p>
         <label htmlFor="rationale">Adjudicator Rationale <span>(Required for Provenance)</span></label>
         <textarea id="rationale" placeholder="Explain the reasoning behind your decision..." />
         <div className="modal-actions">
-          <button className="primary-button" onClick={onClose}>Record Adjudication</button>
-          <button className="secondary-button" onClick={onClose}>Reject &amp; Request Evidence</button>
+          <button className="primary-button" onClick={onClose}>Close without recording</button>
+          <button className="secondary-button" onClick={onClose}>Close</button>
         </div>
-        <small className="modal-footer">The previous verification results, evidence references, rationale and rule version are preserved in the audit history.</small>
+        <small className="modal-footer">Adjudication persistence is not implemented in this interface. Closing this dialog does not record a decision.</small>
       </div>
     </div>
   )
@@ -1036,7 +1036,7 @@ function CreateTrailView({
           <p className="eyebrow">NOVA PROFISSÃO · CAPABILITY DESIGN</p>
           <h1>Criar Trilha de Competência</h1>
           <p className="page-subtitle">
-            Estruture as competências canônicas e critérios observáveis para novas profissões emergentes na sua organização.
+            Monte um rascunho local de competência e critérios observáveis. A publicação no protocolo canônico ainda não está disponível nesta interface.
           </p>
         </div>
       </div>
@@ -1061,8 +1061,8 @@ function CreateTrailView({
           <div>
             <CheckCircle2 />
             <div>
-              <strong>Trilha publicada com sucesso no protocolo!</strong>
-              <p>A trilha para &quot;{role}&quot; já está ativa e pronta para receber submissões dos seus colaboradores.</p>
+              <strong>Rascunho de trilha criado nesta sessão</strong>
+              <p>A trilha está apenas no estado local desta sessão. Ela não foi publicada nem registrada no protocolo canônico.</p>
             </div>
           </div>
           <button className="primary-button" onClick={() => setView('Submeter Evidência')}>
