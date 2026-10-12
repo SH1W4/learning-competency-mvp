@@ -352,8 +352,8 @@
 .button-primary { background: #fff; color: #000; border-color: #fff; }
 .button-primary:hover { background: var(--gray); border-color: var(--gray); }
 /* accent = ATTESTATION (azul), só para prova */
-.button-accent { background: var(--ac); color: #fff; border-color: var(--ac); }
-.button-accent:hover { background: #0f6fdd; border-color: #0f6fdd; }
+.button-accent { background: var(--ac); color: var(--ac-ink); border-color: var(--ac); }
+.button-accent:hover { background: var(--ac); border-color: var(--ac); }
 .button-secondary { color: var(--gray); }
 .button-wide { justify-content: center; width: 100%; }
 .text-button {

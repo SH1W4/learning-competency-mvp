@@ -120,7 +120,7 @@ export default function Page() {
           <small className="brand-caption">VERIFIABLE CAPABILITIES.</small>
         </a>
         <nav className="nav-list" aria-label="Runtime sections">
-          <a className="nav-item nav-item-active" href="#runtime" aria-current="page"><span>M4 · Runtime</span></a>
+          <a className="nav-item nav-item-active" href="#runtime" aria-current="page" aria-label="M4 · Runtime"><span>M4 · Runtime</span></a>
         </nav>
         <div className="sidebar-bottom">
           <span className="eyebrow">MODE</span>

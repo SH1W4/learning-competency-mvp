@@ -15,13 +15,13 @@
   /* ---- ink ---- */
   --fg: #FFFFFF;
   --mut: #9a9a9a;
-  --mut-2: #8a8a90; /* secondary text: >= 4.5:1 on the dark surfaces used below */
+  --mut-2: #a0a0a6; /* secondary text: >= 5.5:1 even on the deepest gray surface */
   --gray: #d9d9d9;
   --gray-deep: #2a2a2e;
 
   /* ---- prova: o único ponto de cor ---- */
   --ac: #1683ff;
-  --ac-ink: #ffffff;
+  --ac-ink: #000000;
 
   /* ---- geometry ---- */
   --radius: 12px;
@@ -146,7 +146,7 @@ code {
 /* ESTADO — sólido branco, não é certificado */
 .g-state { background: #fff; color: #000; }
 /* ATTESTATION — azul, prova registrada */
-.g-attest { background: var(--ac); color: #fff; }
+.g-attest { background: var(--ac); color: var(--ac-ink); }
 /* VERIFICAÇÃO ✓ — azul sobre preto, checada */
 .g-verify { background: #000; color: var(--ac); border: 1.5px solid var(--ac); }
 
@@ -171,7 +171,7 @@ code {
 .b-evidence { background: var(--gray-deep); color: var(--gray); }
 .b-ai { border: 1.5px dashed var(--mut); color: var(--gray); }
 .b-review { border: 1.5px solid #fff; color: #fff; }
-.b-attest { background: var(--ac); color: #fff; }
+.b-attest { background: var(--ac); color: var(--ac-ink); }
 .b-verify { background: #000; color: var(--ac); border: 1.5px solid var(--ac); }
 .b-neutral { border-color: var(--line-strong); color: var(--mut); }
 

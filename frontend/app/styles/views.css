@@ -81,7 +81,7 @@
 
 .card-meta { display: flex; gap: 18px; color: var(--mut-2); margin-top: 14px; font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.08em; flex-wrap: wrap; }
 .card-meta b { color: var(--mut); font-weight: 500; margin-left: 5px; }
-.verification-evidence .card-meta, .verification-evidence .card-meta b { color: #8f8f95; }
+.verification-evidence .card-meta, .verification-evidence .card-meta b { color: #a0a0a6; }
 
 /* consensus outcome */
 .consensus-result {
