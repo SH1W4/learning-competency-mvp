@@ -1,22 +1,10 @@
 # LASTRO — Capability Evidence & Verification Infrastructure
 
 > **From work evidence to verifiable capability.**
-> **Live MVP Demo:** [https://lastro-learn.vercel.app](https://lastro-learn.vercel.app)
 
 LASTRO is infrastructure for organizations that need better evidence for capability decisions. It connects observable work to explicit competency criteria, applies independent verification mechanisms, and produces a bounded competency state with an auditable integrity and attestation layer.
 
 **LASTRO is not another credentialing platform.** It is an evidence and verification layer for demonstrated capability.
-
----
-
-### ⚡ Evaluator Quick Access
-
-| Deliverable | Link / Command | Description |
-|---|---|---|
-| **Live Web Application** | [lastro-learn.vercel.app](https://lastro-learn.vercel.app) | Production Next.js frontend (Vercel) connected live to the canonical runtime |
-| **Canonical Runtime API** | [`/api/m4/competency?scenario=synthetic-ana`](https://lastro-m4-runtime.onrender.com/api/m4/competency?scenario=synthetic-ana) · [`/health`](https://lastro-m4-runtime.onrender.com/health) | Hosted M4 backend (Render) serving verified evidence, consensus & handoff payload |
-| **Solana Devnet Attestation** | [Inspect on Solana Explorer](https://explorer.solana.com/tx/22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX?cluster=devnet) | Immutable on-chain anchor (`m3.attestation.v2`) |
-| **Automated Test Suite** | `npm test` → **13 files, 80/80 passing** | Independent verification, consensus core, AI contract, pipeline and Solana checks |
 
 ---
 
@@ -429,7 +417,7 @@ The latest recorded `m3.attestation.v2` proof is a synthetic Ana scenario on Sol
 - **Reproducibility record:** [PR #26 — execution evidence](https://github.com/SH1W4/learning-competency-mvp/pull/26).
 - **Fixture:** [devnet-fallback.json](fixtures/solana/devnet-fallback.json).
 
-This proves the integrity/attestation path for a bounded synthetic state. It demonstrates that a consensus-validated capability state can be anchored immutably and verified independently. The web interface at [lastro-learn.vercel.app](https://lastro-learn.vercel.app) serves as the public read-only projection of this exact canonical runtime.
+This proves the integrity/attestation path for a bounded synthetic state. It does not establish universal competency, customer adoption, market demand, or completion of the visual frontend flow. The recorded CLI demo and Devnet proof must not be represented as a completed frontend E2E demonstration.
 
 ## 10. What the MVP Proves
 
@@ -492,7 +480,7 @@ If you are evaluating LASTRO for the first time, use this path:
 
 The repository contains additional research, governance, product, brand, and execution documents for deeper review.
 
-**Verification snapshot:** Current repository test suite contains **13 test files and 80 active test cases (100% pass rate)** with TypeScript typecheck passing across both the root engine and the Next.js frontend (`frontend/`).
+**Verification snapshot:** an earlier `main` CI run on 2026-10-05 completed successfully; CI should be rerun against the current `main` commit after subsequent changes. The current source snapshot contains **11 test files and 76 active test cases**. This count is a snapshot and must be regenerated when the suite changes.
 
 ## 13. Current Status & Execution Roadmap
 
@@ -518,42 +506,18 @@ For the exact operator procedure to run the canonical M4 API, create a fresh Sol
 
 ## 14. Quick Start & Resilient Demo
 
-### Core Engine & Canonical Demo
-
 ```bash
-# Install root dependencies
 npm install
-
-# Run automated verification suite (13 files, 80 tests)
-npm test
-
-# Typecheck
 npm run typecheck
-
-# Run reproducible canonical pipeline demo (Ana scenario)
+npm test
 npm run demo
-
-# Run exceptional conflict & human adjudication demo
-npm run demo:adjudication
 ```
 
-### Public Frontend (Next.js)
+**Attestation & Verification:**
 
 ```bash
-cd frontend
-pnpm install
-pnpm run typecheck
-pnpm run build
-```
-
-### Attestation & Solana Verification
-
-```bash
-# Create fresh on-chain attestation (requires local Devnet key)
 npm run m3:attest
-
-# Verify pre-validated fallback attestation on Solana Devnet
-npm run m3:verify 22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065
+npm run m3:verify <tx_signature> [record_hash]
 ```
 
 If a live Devnet write is unavailable, the presentation can use the previously validated synthetic fallback fixture described in [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md).
@@ -561,9 +525,8 @@ If a live Devnet write is unavailable, the presentation can use the previously v
 ## 15. Repository Structure
 
 - `src/` — Core implementation and hardened pipelines.
-- `frontend/` — Public read-only Next.js web application (deployed to Vercel at [lastro-learn.vercel.app](https://lastro-learn.vercel.app)).
-- `tests/` — Automated coverage (13 test files, 80 tests passing), including adversarial integrity tests.
-- `docs/` — Product, architecture, evaluation, governance and operational documentation (see [Documentation Index](docs/README.md)).
+- `tests/` — Automated coverage, including adversarial integrity tests.
+- `docs/` — Product, architecture, evaluation, governance and operational documentation.
 - `research/` — Publicly curated research, prior art, evidence, methodological protocols, and bounded future hypotheses. Research artifacts are explicitly classified by epistemic status.
 
 ## 16. Team
