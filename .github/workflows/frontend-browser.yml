@@ -33,6 +33,23 @@ jobs:
       - name: Install frontend and browser-test dependencies
         run: npm install --no-save --package-lock=false @playwright/test@1.56.1
 
+      - name: Audit locked frontend dependencies
+        id: dependency-audit
+        continue-on-error: true
+        run: |
+          corepack pnpm audit --json > /tmp/lastro-pnpm-audit.json || audit_status=$?
+          node -e "const fs=require('fs');const p='/tmp/lastro-pnpm-audit.json';try{const a=JSON.parse(fs.readFileSync(p,'utf8'));const advisories=a.advisories||a.metadata?.vulnerabilities||{};console.log(JSON.stringify({auditExitCode:Number(process.env.AUDIT_STATUS||0),metadata:a.metadata||null,advisoryCount:Array.isArray(advisories)?advisories.length:Object.keys(advisories).length,advisories},null,2))}catch(e){console.log(fs.readFileSync(p,'utf8'));process.exitCode=1}"
+        env:
+          AUDIT_STATUS: ${audit_status:-0}
+
+      - name: Upload dependency audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dependency-audit
+          path: /tmp/lastro-pnpm-audit.json
+          if-no-files-found: warn
+
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
