@@ -31,6 +31,15 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Preserve shadcn stylesheet without its vulnerable CLI dependency
+        run: |
+          npm pack shadcn@4.19.0 --pack-destination /tmp
+          mkdir -p /tmp/shadcn-package
+          tar -xzf /tmp/shadcn-4.19.0.tgz -C /tmp/shadcn-package
+          test -s /tmp/shadcn-package/package/tailwind.css
+          cp /tmp/shadcn-package/package/tailwind.css app/styles/shadcn-tailwind.css
+          sed -i "s|@import 'shadcn/tailwind.css';|@import './styles/shadcn-tailwind.css';|" app/globals.css
+
       - name: Resolve lockfile from declared dependencies
         run: corepack pnpm install --lockfile-only --no-frozen-lockfile
 
@@ -67,7 +76,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add frontend/package.json frontend/pnpm-lock.yaml
+          git add frontend/package.json frontend/pnpm-lock.yaml frontend/app/globals.css frontend/app/styles/shadcn-tailwind.css
           if git diff --cached --quiet; then
             echo "No dependency changes to commit."
             exit 0
