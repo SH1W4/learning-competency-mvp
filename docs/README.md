@@ -29,6 +29,9 @@ This index covers the public material needed to inspect the current MVP. Source 
 
 Research and market documents provide context and hypotheses; they do not independently establish demand, product-market fit, or universal conformance.
 
+## Editorial handoff
+- [Public editorial guide](HANDOFF_EDITORIAL.md) — claim discipline and boundaries for communicating the MVP.
+
 ## Public governance
 - [Security threat model](governance/SECURITY_THREAT_MODEL.md)
 - [Publication boundary](governance/VAULT_BOUNDARY.md)
