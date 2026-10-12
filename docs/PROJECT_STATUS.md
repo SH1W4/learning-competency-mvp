@@ -1,148 +1,36 @@
-# Project Status
+# Project Status — Public Snapshot
 
-## Status atual
+**Last reviewed:** 2026-10-12  
+**Status:** core MVP implemented; integration, demonstration closure, and external validation remain distinct workstreams.
 
-**Hardening:** M1→M3 coerente, verifier com payload binding completo, contrato de IA contextualizado, canonicalização v1 documentada e CI com audit de alta severidade bloqueante. Integração real de Devnet disponível via workflow manual (`Solana Devnet Integration`).
+This is a concise public snapshot, not a live task tracker. Current source code, tests, proof artifacts, and open pull requests determine the exact implementation state.
 
-**Fase:** MVP tecnicamente fechado — vertical slice concluído e feature freeze ativo.
+## What the MVP is designed to demonstrate
 
-O fluxo M1 → M2 → M3 está implementado, testável e demonstrável. A capacidade de atestação está implementada; a prova pública Devnet corrente permanece como artefato de fechamento do M4. A interface e a validação externa permanecem como frentes de trabalho.
+- One bounded, synthetic competency scenario with observable work and structured evidence.
+- Separation between source evidence, AI interpretation, verification results, consensus, resolution, and competency state.
+- Explicit handling of agreement, insufficient evidence, and conflict without treating them as interchangeable outcomes.
+- A defined state record with integrity metadata and a Solana Devnet attestation/verification path.
+- A read-only product projection that should display canonical runtime results rather than independently decide competency state.
 
-**Instrumento de fechamento competitivo:** `docs/product/VICTORY_EXECUTION.md`.
+See [Demo & Technical Proof](evaluation/04_DEMO_AND_PROOF.md) for the recorded proof path and its limits.
 
-## Base definida
+## Current limitations
 
-- caso de uso concreto;
-- trilha curta;
-- evidência separada de interpretação;
-- IA como assistência;
-- adjudicação humana apenas como exceção de conflito ou ambiguidade;
-- estado de competência limitado ao que o registro suporta;
-- atestação como representação de um estado definido;
-- dados sensíveis mantidos off-chain;
-- verificação da integridade do registro;
-- validação externa de demanda como frente necessária.
+- The canonical demo uses synthetic evidence; it is not customer or pilot evidence.
+- The MVP does not establish commercial demand, willingness to pay, recurring adoption, ROI, or product-market fit.
+- A successful attestation verifies properties of a defined record; it does not prove universal competence, truth, merit, or fairness.
+- Naming several verification mechanisms does not by itself prove statistical or operational independence between them.
+- Broader workforce, role-evolution, and cross-organization applications remain hypotheses unless explicitly implemented and evidenced.
 
-## Milestones
+## Remaining public closure criteria
 
-### M1 — Caso de uso concreto
-**Status: DONE**
+- Keep the frontend projection aligned with the canonical runtime contract.
+- Verify the supported user journey end to end against the exact candidate being presented.
+- Keep current proof links and test claims synchronized with reproducible evidence.
+- Preserve explicit limitations wherever the public narrative describes the MVP.
+- Validate the target workflow with external users before promoting commercial hypotheses to product claims.
 
-Organização → competência → trilha → pessoa → atividade → evidência.
+## Evidence rule
 
-### M2 — Evidência, IA e verificação
-**Status: DONE**
-
-Evidência → extração → interpretação → relação → verificação.
-
-**Owner:** JP Carvalho.
-
-### M3 — Estado, atestação e Solana
-**Status: DONE**
-
-Estado → atestação → Solana → verificação.
-
-**Owner:** JX.
-
-### Interface — UX/UI
-**Status: OWNERSHIP DEFINED**
-
-**Owner:** JP Fernandes.
-
-A interface materializa o fluxo existente e não deve criar lógica paralela.
-
-### M4 — Validação, demonstração e submissão
-**Status: IN PROGRESS**
-
-M4 agora segue quatro frentes:
-
-1. **PROVE** — prova técnica pública atualizada;
-2. **DEMONSTRATE** — frontend e fluxo end-to-end;
-3. **VALIDATE** — buyer, wedge, pain e demand;
-4. **COMMUNICATE** — pitch, differentiation e blockchain relevance.
-
-## Limites atuais
-
-O MVP não pretende resolver, nesta fase:
-
-- LMS completo;
-- framework universal de competências;
-- marketplace ou recrutamento;
-- múltiplas organizações;
-- tokenomics;
-- dados pessoais on-chain;
-- arquitetura definitiva de atestação;
-- pricing ou modelo comercial validado.
-
-## Governança
-
-Uma proposta pode vir de qualquer integrante, mas se torna requisito somente após a decisão apropriada ser registrada.
-
-Mudanças materiais devem manter rastreabilidade no GitHub.
-
-## Feature Freeze
-
-A camada técnica central está congelada. Novos trabalhos devem priorizar interface, demonstração, validação e correções críticas.
-
-Detalhes estratégicos de mercado, entrevistas e operação comercial são mantidos separadamente pelo time.
-
-## Roadmap de fechamento — M4
-
-### P0 — PROVE: prova técnica atualizada
-- [ ] Gerar nova attestation `m3.attestation.v2` em Solana Devnet.
-- [ ] Executar a verificação correspondente.
-- [ ] Registrar a transação atual em `docs/evaluation/04_DEMO_AND_PROOF.md`.
-- [ ] Atualizar o README com a prova pública atual.
-
-### P0 — DEMONSTRATE: produto e demo
-- [ ] Implementar o frontend conforme `docs/product/PITCH_ARCHITECTURE.md` e `docs/product/FRONTEND_PRODUCT_SPEC.md`.
-- [ ] Demonstrar o fluxo ponta a ponta sem criar lógica paralela.
-- [ ] Executar o cenário canônico.
-- [ ] Capturar a evidência técnica necessária para os jurados.
-- [ ] Finalizar o roteiro de demo.
-
-### P1 — COMMUNICATE: pitch e diferenciação
-- [ ] Problema concreto.
-- [ ] One-line product mechanism.
-- [ ] Aha moment.
-- [ ] Diferencial técnico/ecossistema sem claim de mercado vazio.
-- [ ] Explicação objetiva da relevância da blockchain.
-- [ ] Founder + Market Fit.
-- [ ] Mercado e hipótese de validação.
-- [ ] Limitações e próximos passos.
-
-### P1 — VALIDATE: buyer, wedge e demand
-- [ ] Identificar primeiro buyer e decisão recorrente.
-- [ ] Validar o problema com organizações-alvo.
-- [ ] Validar o wedge.
-- [ ] Testar consequência econômica do problema.
-- [ ] Testar hipótese de piloto.
-- [ ] Registrar evidências externas sem convertê-las em claims maiores do que suportam.
-
-### P2 — FINAL SUBMISSION
-- [ ] Revisar GitHub e documentação pública.
-- [ ] Revisar demo e pitch contra a matriz de vitória.
-- [ ] Confirmar que nenhuma hipótese está apresentada como fato.
-- [ ] Confirmar que nenhum artefato histórico é apresentado como prova atual.
-
-
-## Documentation Freeze — 2026-10-04
-
-The minimum enabling contracts for the next implementation step are now defined:
-
-- `docs/architecture/DOMAIN_MODEL.md`
-- `docs/architecture/API_CONTRACT.md`
-- `docs/governance/SECURITY_THREAT_MODEL.md`
-
-These documents formalize the current implementation; they do not introduce new MVP capabilities.
-
-**Documentation freeze:** active.
-
-No new architecture/documentation expansion should be introduced before the following closure checks:
-
-1. `npm run typecheck` green;
-2. `npm test` green;
-3. current `m3.attestation.v2` generated and verified on Solana Devnet;
-4. PR #12 frontend rendered against the frozen domain/interface contract.
-
-Any exception must be justified by a concrete implementation blocker or contradiction in the current system.
+Publish only claims that can be traced to the current implementation, automated tests, reproducible proof, or cited external evidence. A historical success is not evidence about a later commit unless the later candidate is validated separately.
