@@ -10,6 +10,7 @@ describe("M4 semantic contract integration", () => {
   it("keeps consensus, explicit resolution, state, and handoff distinct but consistent", async () => {
     const projection = await buildM4SyntheticProjection();
 
+    expect(projection.scenario_scope).toBe("positive-demo-only");
     expect(projection.consensus.status).toBe("AGREEMENT");
     expect(projection.resolution).toMatchObject({
       outcome: "ESTABLISHED",
@@ -44,6 +45,7 @@ describe("M4 semantic contract integration", () => {
       expect(response.status).toBe(200);
       const body = await response.json() as Awaited<ReturnType<typeof buildM4SyntheticProjection>>;
 
+      expect(body.scenario_scope).toBe("positive-demo-only");
       expect(body.consensus.status).toBe("AGREEMENT");
       expect(body.resolution.outcome).toBe("ESTABLISHED");
       expect(body.resolution.projection).toBe("BOUNDED_STATE");
@@ -52,6 +54,13 @@ describe("M4 semantic contract integration", () => {
       expect(body.reviewed_state_record.record_hash).toBe(body.handoff.record_hash);
       expect(body.attestation).toBeNull();
       expect(body.public_verification).toBeNull();
+
+      // The API intentionally exposes one positive synthetic scenario only.
+      const unsupported = await fetch(
+        `http://127.0.0.1:${address.port}/api/m4/competency?scenario=synthetic-conflict`,
+      );
+      expect(unsupported.status).toBe(404);
+      await expect(unsupported.json()).resolves.toMatchObject({ error: "not_found" });
     } finally {
       await new Promise<void>((resolve, reject) =>
         server.close((error) => error ? reject(error) : resolve()),

@@ -128,6 +128,17 @@ export function projectCanonicalCompetencyState(
     );
   }
 
+  if (
+    resolution !== null &&
+    resolutionMechanism === "AUTOMATED" &&
+    consensus === null
+  ) {
+    throw new SemanticContractError(
+      "AUTOMATED_RESOLUTION_WITHOUT_CONSENSUS",
+      "An automated resolution requires a recorded canonical consensus outcome.",
+    );
+  }
+
   if (resolutionMechanism === "HUMAN_ADJUDICATION") {
     requireAdjudicationRecord(adjudication);
     if (consensus !== "CONFLICT") {

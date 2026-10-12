@@ -12,6 +12,8 @@ export interface M4Verification {
 
 export interface M4Projection {
   synthetic: boolean;
+  /** This endpoint is a positive-path demonstration, not a scenario matrix. */
+  scenario_scope: "positive-demo-only";
   competency: {
     id: string;
     statement: string;
@@ -101,12 +103,15 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
   if (resolution.mechanism !== "AUTOMATED") {
     throw new Error("The synthetic projection expects an explicitly automated resolution.");
   }
-  const candidateState =
-    resolution.outcome === "ESTABLISHED"
-      ? "DEMONSTRATED"
-      : resolution.outcome === "INSUFFICIENT_EVIDENCE"
-        ? "IN_DEVELOPMENT"
-        : "UNDER_REVIEW";
+  // This named endpoint demonstrates only the positive synthetic path. It must
+  // not imply that insufficiency/conflict are supported API scenarios: those
+  // outcomes need their own fixtures and contract tests before being exposed.
+  if (consensus.status !== "AGREEMENT" || resolution.outcome !== "ESTABLISHED") {
+    throw new Error(
+      "The synthetic-ana endpoint is positive-path-only; expected AGREEMENT and ESTABLISHED.",
+    );
+  }
+  const candidateState = "DEMONSTRATED" as const;
   const semanticProjection = projectCanonicalCompetencyState({
     productState: candidateState,
     sourceStatus: "AVAILABLE",
@@ -129,6 +134,7 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
 
   return {
     synthetic: true,
+    scenario_scope: "positive-demo-only",
     competency: {
       id: "comp:data-analysis-reproducible",
       statement: "Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.",

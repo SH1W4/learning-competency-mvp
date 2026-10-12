@@ -63,6 +63,15 @@ describe("LASTRO Protocol v0.1 semantic adapter", () => {
     }))).toEqual({ kind: "BOUNDED_STATE", state: "INSUFFICIENT_EVIDENCE" });
   });
 
+  it("rejects automated resolution when no prior consensus is supplied", () => {
+    expectContractError(base({
+      productState: "DEMONSTRATED",
+      consensus: null,
+      resolution: "ESTABLISHED",
+      resolutionMechanism: "AUTOMATED",
+    }), "AUTOMATED_RESOLUTION_WITHOUT_CONSENSUS");
+  });
+
   it("does not infer a competency state from DEMONSTRATED alone", () => {
     expectContractError(base({ productState: "DEMONSTRATED" }), "DEMONSTRATED_WITHOUT_RESOLUTION");
   });
