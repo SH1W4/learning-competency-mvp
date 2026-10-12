@@ -97,7 +97,6 @@ Com a entrega do Milestone M4, essa prova técnica inclui o runtime canônico HT
 
 ## Documentos relacionados
 
-- `docs/go-to-market/01_PITCH_STRATEGY.md` — narrativa de pitch e comunicação comercial;
 - `docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md` — disciplina de claims;
 - `docs/case_studies/05_TRILHAS_CORPORATIVAS_B2B.md` — blueprint comercial B2B;
 - `docs/PROJECT_STATUS.md` — estado atual e fronteiras de validação.
