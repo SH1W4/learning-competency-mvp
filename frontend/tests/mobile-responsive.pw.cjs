@@ -8,7 +8,7 @@ test.describe('LASTRO responsive shell', () => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto('http://127.0.0.1:3000/');
       if (width < 768) {
-        await expect(page.getByRole('button', { name: 'Abrir menu' })).toBeVisible();
+        await expect(page.locator('button.mobile-menu[aria-label="Abrir menu"]')).toBeVisible();
       }
 
       const dimensions = await page.evaluate(() => ({
@@ -26,11 +26,12 @@ test.describe('LASTRO responsive shell', () => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('http://127.0.0.1:3000/');
 
-    const trigger = page.getByRole('button', { name: 'Abrir menu' });
+    const trigger = page.locator('button.mobile-menu[aria-label="Abrir menu"]');
     await trigger.click();
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
 
-    const close = page.getByRole('button', { name: 'Fechar menu' });
+    const sidebar = page.locator('aside.sidebar.mobile-open');
+    const close = sidebar.getByRole('button', { name: 'Fechar menu' });
     await expect(close).toBeFocused();
 
     await page.keyboard.press('Escape');
@@ -42,10 +43,12 @@ test.describe('LASTRO responsive shell', () => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('http://127.0.0.1:3000/');
 
-    await page.getByRole('button', { name: 'Abrir menu' }).click();
-    await page.getByRole('navigation', { name: 'Navegação operacional' })
-      .getByRole('button', { name: 'Submeter Evidência' }).click();
+    const trigger = page.locator('button.mobile-menu[aria-label="Abrir menu"]');
+    await trigger.click();
+    const sidebar = page.locator('aside.sidebar.mobile-open');
+    await sidebar.getByRole('button', { name: 'Submeter Evidência' }).click();
 
-    await expect(page.getByRole('button', { name: 'Abrir menu' })).toHaveAttribute('aria-expanded', 'false');
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.getByRole('heading', { name: 'Submeter Evidência' })).toBeVisible();
   });
 });
