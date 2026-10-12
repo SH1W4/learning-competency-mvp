@@ -38,7 +38,9 @@ Para que o site funcione corretamente na Vercel e não retorne erro 404 ou 503, 
    - **Valor:** `[URL HTTPS do seu Backend M4 Canônico / Cloudflare Worker]`
    > *Nota: O backend M4 (A API que o Next.js vai consultar) precisa estar rodando online em uma URL HTTPS. Não coloque localhost.*
 
-### Como plugar as suas novas telas
-A infraestrutura (Tailwind, Next.js App Router, Proxy API) já está 100% pronta. Para adicionar novas telas (Ex: Login, Dashboard), basta criar as pastas padrão do Next.js (ex: `app/login/page.tsx`) e injetar o seu CSS lá dentro. O domínio oficial da Vercel (`lastro-learn.vercel.app`) está sincronizado com a branch `main`.
+### Deployment boundary
+The frontend code and responsive validation are present in the public repository. A successful build and accessible interface do not by themselves prove that the production API proxy reaches the canonical M4 runtime.
 
-Never put signer secrets or `SOLANA_PRIVATE_KEY` in this frontend. It is read-only. No deployment, integrated E2E, or fresh on-chain proof is claimed by the existence of this UI.
+Before claiming end-to-end production readiness, verify that Vercel's project root is `frontend`, `LASTRO_M4_RUNTIME_URL` is configured as a reachable HTTPS endpoint, and `GET /api/m4/competency?scenario=synthetic-ana` returns the expected synthetic payload. Production must fail closed when the runtime is absent; do not add fixture fallback.
+
+Never put signer secrets or `SOLANA_PRIVATE_KEY` in this frontend. It is read-only. This interface does not independently write canonical state or create attestations.
