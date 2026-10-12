@@ -33,11 +33,10 @@ For a first pass, use:
 1. [Research README](./README.md)
 2. [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
 3. [Article Research Track](./article/README.md)
-4. [Product Thesis](./product/PRODUCT_THESIS.md)
-5. [Canonical Product Documentation](../docs/product/README.md)
-6. [Technical Architecture](../docs/architecture/README.md)
-7. [Evaluation & Proof](../docs/evaluation/README.md)
-8. [Reproducible Demo Contract](../docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md)
+4. [Canonical Product & MVP Scope](../docs/evaluation/01_PRODUCT.md)
+5. [Technical Architecture](../docs/architecture/README.md)
+6. [Evaluation & Proof](../docs/evaluation/README.md)
+7. [Reproducible Demo Contract](../docs/demo/REPRODUCIBLE_DEMO_CONTRACT.md)
 
 ## Research register
 
@@ -45,7 +44,6 @@ For a first pass, use:
 |---|---|---|---|---|
 | `RELATED_WORK_AND_EVIDENCE.md` | What prior standards, research and adjacent systems support or bound LASTRO's argument? | Foundational work and adjacent systems support parts of the thesis; the full composition remains a bounded research hypothesis | **FOUNDATION / SUPPORT / ADJACENT** | Argument / positioning |
 | `02_ETHICAL_COMPLIANCE_LAYER.md` | Can competency rules receive explicit governance constraints? | Interesting future mechanism; cannot claim universal fairness | **HYPOTHESIS / DEFERRED** | Future governance |
-| `product/PRODUCT_THESIS.md` | What broader product thesis follows from the evidence and MVP? | Evidence-backed capability verification is the current strategic thesis | **THESIS** | Product narrative |
 | `article/01_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md` | What does the literature establish about work evidence → competency inference? | Strong academic foundation; full LASTRO composition remains unestablished | **PUBLIC SCOPED REVIEW** | Research / article |
 | `article/02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md` | How should validity, verification, consensus, provenance and attestation be separated? | The layers are non-equivalent; composition remains a research hypothesis | **PUBLIC SCOPED REVIEW** | Research / article |
 | `article/RELATED_WORK_MATRIX.md` | What prior art and counterexamples constrain the LASTRO composition claim? | Individual components have substantial prior art; the complete composition remains unresolved | **PUBLIC SCOPED MATRIX** | Research / article |
