@@ -46,9 +46,9 @@ test.describe('LASTRO responsive shell', () => {
     const trigger = page.locator('button.mobile-menu[aria-label="Abrir menu"]');
     await trigger.click();
     const sidebar = page.locator('aside.sidebar.mobile-open');
-    await sidebar.getByRole('button', { name: 'Submeter Evidência' }).click();
+    await sidebar.locator('button.nav-item').filter({ hasText: 'Submeter Evidência' }).click();
 
     await expect(trigger).toHaveAttribute('aria-expanded', 'false');
-    await expect(page.getByRole('heading', { name: 'Submeter Evidência' })).toBeVisible();
+    await expect(page.locator('.breadcrumb strong')).toHaveText('Submeter Evidência');
   });
 });
