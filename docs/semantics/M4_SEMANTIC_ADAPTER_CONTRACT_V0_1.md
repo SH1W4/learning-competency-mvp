@@ -1,4 +1,4 @@
-# M4 Semantic Adapter Contract v0.1.0
+# M4 Semantic Adapter Contract — Public Implementation Boundary
 
 **Status:** Implementation contract for review; not a certification of LASTRO Protocol conformance.  
 **Adapter:** `lastro-competency-adapter/0.1.0`  
