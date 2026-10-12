@@ -105,8 +105,13 @@ function validateInput(input: SemanticAdapterInput): void {
     const record = input.adjudication;
     const nonEmptyArray = (value: unknown): value is string[] =>
       Array.isArray(value) && value.length > 0 && value.every(nonEmptyString);
+    if (input.consensusOutcome !== "CONFLICT") {
+      throw new SemanticAdapterError(
+        "ADJUDICATION_WITHOUT_CONFLICT",
+        "Human adjudication is permitted only after a canonical CONFLICT outcome.",
+      );
+    }
     if (
-      input.consensusOutcome !== "CONFLICT" ||
       !record ||
       !nonEmptyString(record.actorId) ||
       !nonEmptyString(record.basis) ||
@@ -116,7 +121,7 @@ function validateInput(input: SemanticAdapterInput): void {
     ) {
       throw new SemanticAdapterError(
         "INCOMPLETE_ADJUDICATION",
-        "Human adjudication requires a prior CONFLICT and a non-empty actor, basis, evidence references, applicable rules, and prior verifier results.",
+        "Human adjudication requires a non-empty actor, basis, evidence references, applicable rules, and prior verifier results.",
       );
     }
   } else if (input.adjudication) {
