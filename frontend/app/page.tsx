@@ -1,7 +1,35 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Activity, AlertTriangle, Check, ChevronDown, ClipboardCheck, FileCode2, FileText, Hexagon, LayoutDashboard, LockKeyhole, Menu, Search, ShieldCheck, X, UserRound } from 'lucide-react'
+import { Activity, AlertTriangle, Check, ChevronDown, ClipboardCheck, FileCode2, FileText, LayoutDashboard, LockKeyhole, Menu, Search, ShieldCheck, X, UserRound } from 'lucide-react'
+
+// ─── LASTRO Official Vector Symbol (Identidade v0.1) ─────────────────────────
+export function LastroSymbol({ size = 28, className = '' }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 120 120" fill="none" className={className} aria-hidden="true">
+      <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="4" />
+      <g transform="translate(0 5)">
+        <polygon points="60,26 82,38 60,50 38,38" fill="var(--ac, #1683FF)" />
+        <g fill="none" stroke="currentColor" strokeWidth="5" strokeLinejoin="miter">
+          <polyline points="34,52 60,66 86,52" />
+          <polyline points="34,68 60,82 86,68" />
+        </g>
+      </g>
+    </svg>
+  )
+}
+
+export function LastroSymbolReduced({ size = 20, className = '' }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 120 120" fill="none" className={className} aria-hidden="true">
+      <polygon points="60,12 94,31 60,50 26,31" fill="var(--ac, #1683FF)" />
+      <g fill="none" stroke="currentColor" strokeWidth="10" strokeLinejoin="miter">
+        <polyline points="24,56 60,77 96,56" />
+        <polyline points="24,82 60,103 96,82" />
+      </g>
+    </svg>
+  )
+}
 
 type Verification = {
   mechanism: 'evidence_integrity' | 'deterministic_criteria' | 'ai_interpretation'
@@ -132,7 +160,7 @@ function EvidencePanel({ item, data, onClose, onResolve }: {
 
         <div className="consensus-core">
           <p className="eyebrow">THE CONSENSUS CORE</p>
-          <div className={`check-card ${integrityCheck?.status === 'PASS' ? 'pass' : 'warning'}`}>
+          <div className={`check-card evidence ${integrityCheck?.status === 'PASS' ? 'pass' : 'warning'}`}>
             <span><ShieldCheck /></span>
             <div>
               <b>Evidence Integrity Check</b>
@@ -140,7 +168,7 @@ function EvidencePanel({ item, data, onClose, onResolve }: {
               <p>{integrityCheck?.rationale ?? 'No integrity result provided by the runtime.'}</p>
             </div>
           </div>
-          <div className={`check-card ${deterministicCheck?.status === 'PASS' ? 'pass' : deterministicCheck ? 'warning' : 'pass'}`}>
+          <div className={`check-card deterministic ${deterministicCheck?.status === 'PASS' ? 'pass' : deterministicCheck ? 'warning' : 'pass'}`}>
             <span><Check /></span>
             <div>
               <b>Deterministic Criteria Check</b>
@@ -148,7 +176,7 @@ function EvidencePanel({ item, data, onClose, onResolve }: {
               <p>{deterministicCheck?.rationale ?? 'No deterministic result provided by the runtime.'}</p>
             </div>
           </div>
-          <div className={`check-card ${aiCheck?.status === 'PASS' ? 'pass' : aiCheck ? 'warning' : 'pass'}`}>
+          <div className={`check-card ai-interpretation ${aiCheck?.status === 'PASS' ? 'pass' : aiCheck ? 'warning' : 'pass'}`}>
             <span><AlertTriangle /></span>
             <div>
               <b>AI Semantic Interpretation</b>
@@ -162,8 +190,8 @@ function EvidencePanel({ item, data, onClose, onResolve }: {
       {hasConflict && (
         <div className="conflict-banner">
           <div>
-            <b>CONSENSUS CONFLICT</b>
-            <span>Mechanisms diverge. Awaiting Human Adjudication.</span>
+            <b>CONSENSUS CONFLICT · HUMAN ADJUDICATION REQUIRED</b>
+            <span>Mechanisms diverge. No automated advance authorized without human rationale.</span>
           </div>
           <button className="primary-button" onClick={onResolve}>Resolve Conflict</button>
         </div>
@@ -210,9 +238,9 @@ function DashboardView({ data, setView }: { data: M4Projection | null; setView: 
     <div className="view-stack">
       <div className="page-heading">
         <div>
-          <p className="eyebrow">WORKSPACE OVERVIEW</p>
+          <p className="eyebrow">WORKSPACE OVERVIEW · DO APRENDIZADO À PROVA</p>
           <h1>Dashboard</h1>
-          <p className="page-subtitle">A bounded view of competency verification across the system.</p>
+          <p className="page-subtitle">Infraestrutura para transformar experiências de aprendizagem em evidências de competência, revisadas por pessoas e verificáveis.</p>
         </div>
         <div className="queue-summary">
           <strong>{conflictCount}</strong>
@@ -344,7 +372,7 @@ function QueueView({ data }: { data: M4Projection | null; setView: (view: View) 
                   >
                     <td>
                       <div className="person-cell">
-                        <span className="person-avatar blue">{initials(item.name)}</span>
+                        <span className="person-avatar">{initials(item.name)}</span>
                         <span>
                           <b>{item.name}</b>
                           <small>Submitted today</small>
@@ -410,7 +438,7 @@ function AdjudicationView({ data }: { data: M4Projection | null; setView: (view:
           </div>
           {conflictCount > 0 ? (
             <button className="review-row" onClick={() => setModal(true)}>
-              <span className="person-avatar blue">AS</span>
+              <span className="person-avatar">AS</span>
               <span>
                 <b>Ana Synthetic</b>
                 <small>{data?.competency.statement}</small>
@@ -540,20 +568,22 @@ export default function Page() {
         <div className="sidebar-top">
           <a className="brand" href="#" aria-label="LASTRO — Home">
             <div className="brand-mark">
-              <Hexagon className="brand-ring" />
-              <span className="brand-diamond" />
-              <span className="brand-layer brand-layer-one" />
-              <span className="brand-layer brand-layer-two" />
+              <LastroSymbol size={32} />
             </div>
-            <span className="brand-name">LASTRO</span>
+            <div className="brand-text">
+              <span className="brand-name">LASTRO</span>
+              <small className="brand-caption">DO APRENDIZADO À PROVA</small>
+            </div>
           </a>
           <button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><X /></button>
         </div>
         <div className="workspace-switcher">
-          <span className="workspace-avatar">LC</span>
+          <span className="workspace-avatar">
+            <LastroSymbolReduced size={18} />
+          </span>
           <span className="workspace-copy">
             <b>LASTRO</b>
-            <small>MVP</small>
+            <small>MVP Protocol</small>
           </span>
           <ChevronDown size={14} />
         </div>
@@ -600,7 +630,7 @@ export default function Page() {
             <strong>{view}</strong>
           </div>
           <div className="org-switcher">
-            <span className="avatar-mini">LA</span> LASTRO (Protocol) <ChevronDown size={14} />
+            <span className="avatar-mini"><LastroSymbolReduced size={16} /></span> LASTRO (Protocol) <ChevronDown size={14} />
           </div>
         </header>
 

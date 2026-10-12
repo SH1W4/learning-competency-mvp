@@ -3,35 +3,20 @@
    Integration from prototipagem-visual-lastro
    ============================================================ */
 
-/* Brand styles from prototype */
+/* Brand mark hosting official vector symbol */
 .brand-mark {
   position: relative;
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
 }
-.brand-ring {
-  position: absolute;
-  inset: 1px;
+.brand-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
-.brand-diamond {
-  position: absolute;
-  top: 5px;
-  width: 8px;
-  height: 8px;
-  background: var(--ac);
-  transform: rotate(45deg);
-}
-.brand-layer {
-  position: absolute;
-  width: 17px;
-  height: 8px;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(30deg);
-}
-.brand-layer-one { top: 12px; }
-.brand-layer-two { top: 17px; }
 
 /* Workspace switcher */
 .workspace-switcher {
@@ -318,9 +303,23 @@
   color: var(--mut);
 }
 
-/* Person avatar (blue) */
+/* Person avatar (Superfície #2A2A2E - conforme Identidade v0.1) */
+.person-avatar {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: #2a2a2e;
+  border: 1px solid var(--line-strong);
+  color: #d9d9d9;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
 .person-avatar.blue {
-  background: #4289d5;
+  background: #2a2a2e;
+  color: #d9d9d9;
 }
 
 /* Review card */

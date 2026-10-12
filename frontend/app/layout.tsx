@@ -3,9 +3,9 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'LASTRO — From evidence to proof',
+  title: 'LASTRO — Do aprendizado à prova',
   description:
-    'Infrastructure to transform learning experiences into verifiable evidence of competency, independently reviewed and anchored on-chain.',
+    'Infraestrutura para transformar experiências de aprendizagem em evidências de competência, revisadas por pessoas e verificáveis.',
   icons: {
     icon: [
       {
