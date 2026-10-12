@@ -89,6 +89,26 @@ export function projectCanonicalCompetencyState(
     adjudication,
   } = input;
 
+  // TypeScript unions are erased at runtime. Treat this adapter as a boundary
+  // and reject malformed values from JavaScript, JSON, or other untyped callers.
+  const isOneOf = <T extends string>(value: unknown, allowed: readonly T[]): value is T =>
+    typeof value === "string" && allowed.includes(value as T);
+
+  if (!isOneOf(productState, ["NOT_STARTED", "IN_DEVELOPMENT", "UNDER_REVIEW", "DEMONSTRATED"] as const)) {
+    throw new SemanticContractError("INVALID_PRODUCT_STATE", "Unknown product/workflow state.");
+  }
+  if (!isOneOf(sourceStatus, ["AVAILABLE", "UNAVAILABLE"] as const)) {
+    throw new SemanticContractError("INVALID_SOURCE_STATUS", "Unknown source availability status.");
+  }
+  if (resolution !== null && !isOneOf(resolution, [
+    "ESTABLISHED", "NOT_ESTABLISHED", "INSUFFICIENT_EVIDENCE", "CONFLICT", "REQUIRES_VERIFICATION",
+  ] as const)) {
+    throw new SemanticContractError("INVALID_RESOLUTION", "Unknown canonical resolution outcome.");
+  }
+  if (resolutionMechanism !== null && !isOneOf(resolutionMechanism, ["AUTOMATED", "HUMAN_ADJUDICATION"] as const)) {
+    throw new SemanticContractError("INVALID_RESOLUTION_MECHANISM", "Unknown resolution mechanism.");
+  }
+
   if (
     consensus !== null &&
     consensus !== "AGREEMENT" &&
