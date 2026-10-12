@@ -21,7 +21,7 @@ describe("M4 read-only projection", () => {
 
   it("serves the same canonical projection over HTTP", async () => {
     const server = createM4Server();
-    await new Promise<void>((resolve) => server.listen(0, resolve));
+    await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
     const address = server.address();
     if (!address || typeof address === "string") throw new Error("server address unavailable");
 
@@ -43,9 +43,27 @@ describe("M4 read-only projection", () => {
     }
   });
 
+  it("serves a lightweight health endpoint for deployment probes", async () => {
+    const server = createM4Server();
+    await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+    const address = server.address();
+    if (!address || typeof address === "string") throw new Error("server address unavailable");
+
+    try {
+      const response = await fetch(`http://127.0.0.1:${address.port}/health`);
+      expect(response.status).toBe(200);
+      expect(await response.json()).toEqual({
+        status: "ok",
+        service: "lastro-m4-runtime",
+      });
+    } finally {
+      await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+    }
+  });
+
   it("rejects unsupported routes", async () => {
     const server = createM4Server();
-    await new Promise<void>((resolve) => server.listen(0, resolve));
+    await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
     const address = server.address();
     if (!address || typeof address === "string") throw new Error("server address unavailable");
 
