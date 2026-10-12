@@ -1,0 +1,20 @@
+name: Render runtime keepalive
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  keepalive:
+    name: Wake and check canonical M4 runtime
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Request Render health endpoint
+        env:
+          RUNTIME_HEALTH_URL: https://lastro-m4-runtime.onrender.com/health
+        run: curl --fail --silent --show-error --location --max-time 55 "$RUNTIME_HEALTH_URL"

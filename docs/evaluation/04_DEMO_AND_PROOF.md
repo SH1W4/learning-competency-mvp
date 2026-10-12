@@ -106,15 +106,15 @@ The repository maintains automated coverage for the core flow, including:
 - invalidation of prior interpretation when new evidence arrives;
 - provenance and consensus handoff.
 
-Dependency security audit remains a separate follow-up item and is not treated as a functional correctness claim.
+The frontend dependency audit artifact from the validated candidate run on 2026-10-12 was inspected: 117 dependencies and zero info, low, moderate, high, or critical findings. This is evidence for that audited frontend lockfile/candidate only; it is not a blanket security certification or a substitute for future audits.
 
 ### Current automated verification snapshot
 
-An earlier `main` CI run on 2026-10-05 completed successfully for test, typecheck, and dependency-audit steps. The repository currently contains **11 test files and 76 active test cases** according to the documented snapshot; this count must be regenerated if the suite changes. This earlier CI run should not be presented as verification of the current HEAD.
+An earlier `main` CI run on 2026-10-05 completed successfully for test, typecheck, and dependency-audit steps. The historical report recorded **11 test files and 76 active test cases**. This count belongs to the 2026-10-05 snapshot and must not be presented as current coverage. The current candidate's CI results should be cited by exact run/SHA instead.
 
 ## Current public-proof status
 
-The repository contains the attestation and verification path. A fresh `m3.attestation.v2` attestation was generated and verified on Solana Devnet on 2026-10-09 via the M4 API. The recorded execution evidence is in [PR #26](https://github.com/SH1W4/learning-competency-mvp/pull/26); the current fallback fixture and transaction details are documented below. This closes the fresh Devnet proof step, not the remaining visual frontend/E2E product integration.
+The repository contains the attestation and verification path. A fresh `m3.attestation.v2` attestation was generated and verified on Solana Devnet on 2026-10-09 via the M4 API. The recorded execution evidence is in [PR #26](https://github.com/SH1W4/learning-competency-mvp/pull/26); the current fallback fixture and transaction details are documented below. This closes the recorded fresh Devnet proof step. It does not independently establish that the currently published frontend is connected to the runtime or that the full live browser-to-runtime journey is passing.
 
 ## Demo resilience protocol
 
