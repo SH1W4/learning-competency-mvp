@@ -40,7 +40,6 @@ Research and market documents provide context and hypotheses; they do not indepe
 - [Brand overview](brand/README.md)
 - [Visual system](brand/VISUAL_SYSTEM_SPEC.md)
 - [Security threat model](governance/SECURITY_THREAT_MODEL.md)
-- [Repository information boundary](REPOSITORY_INFORMATION_BOUNDARY.md)
 - [Publication boundary](governance/VAULT_BOUNDARY.md)
 - [Public source-of-truth map](governance/SOURCE_OF_TRUTH.md)
 
