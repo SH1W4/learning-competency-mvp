@@ -18,7 +18,9 @@ The browser workflow previously installed `@playwright/test` without an exact ve
 
 Change recorded on 2026-10-12: pin the workflow's temporary Playwright test dependency to `@playwright/test@1.56.1` to avoid floating to an arbitrary latest version.
 
-**Open follow-up:** inspect a fresh, machine-readable dependency audit and determine the exact affected packages and dependency paths before applying upgrades. Do not use `npm audit fix --force` without reviewing breaking changes. The prior count is an observed install-time warning, not a claim that the vulnerabilities have been remediated.
+The browser workflow now runs `corepack pnpm audit --json` against the committed `frontend/pnpm-lock.yaml` and uploads the raw report as the `frontend-dependency-audit` artifact. The audit is non-blocking so it does not conceal the separate browser/typecheck result; its findings must be reviewed before merge.
+
+**Open follow-up:** inspect the fresh report artifact, determine the exact affected packages and dependency paths, and apply reviewed upgrades if needed. Do not use `npm audit fix --force` without reviewing breaking changes. Do not use `npm audit fix --force` without reviewing breaking changes. The prior count is an observed install-time warning, not a claim that the vulnerabilities have been remediated.
 
 ## Product-integrity constraints
 - Local drafts are not canonical runtime writes.
