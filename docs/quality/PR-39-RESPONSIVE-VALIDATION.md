@@ -2,27 +2,33 @@
 
 Date: 2026-10-12
 
-## Scope
-PR: https://github.com/SH1W4/learning-competency-mvp/pull/39
-Branch: `fix/mobile-responsive-layout`
+## Scope and integration
 
-## Verified on commit `dcc820e07619525a003f57a7a661ee57bb964cd7`
+PR: https://github.com/SH1W4/learning-competency-mvp/pull/39  
+Branch: `fix/mobile-responsive-layout`  
+Status: **merged**. Merge commit recorded by GitHub: `3190ca2ca143a92a2346168f4b63cd3e0bce1752`.
+
+## Validated candidate
+
+Candidate SHA: `ac4f8978b1f44d94f851316ba6d8e2d9940dc971`
+
 - `test-and-typecheck`: passed.
 - `responsive-browser-smoke`: passed.
+- Production build: passed.
 - Browser smoke covers horizontal overflow at 320, 375, 390, 430, and 1280 CSS pixels; mobile drawer focus/Escape behavior; and selecting a navigation destination.
 - The mobile drawer stacking context is isolated at the mobile breakpoint; drawer is above the backdrop.
-- No merge or deployment was performed.
+- Dependency audit artifact from run [38296205107](https://github.com/SH1W4/learning-competency-mvp/actions/runs/38296205107) was inspected: 117 dependencies and zero info, low, moderate, high, or critical findings.
+- Independent dependency refresh/audit/typecheck/build evidence: [run 38296079316](https://github.com/SH1W4/learning-competency-mvp/actions/runs/38296079316).
 
-## Dependency reproducibility and security follow-up
-The browser workflow previously installed `@playwright/test` without an exact version. The install log reported 8 audit findings (7 high, 1 critical), but that output alone does not identify which dependency paths are vulnerable or establish whether the findings are introduced by this PR.
+## Deployment and runtime boundary
 
-Change recorded on 2026-10-12: pin the workflow's temporary Playwright test dependency to `@playwright/test@1.56.1` to avoid floating to an arbitrary latest version.
+GitHub/Vercel reported a successful status for the current main commit, and the project owner has confirmed that the public interface is accessible. These facts do not, by themselves, prove the live API's upstream runtime configuration or the complete browser-to-runtime E2E path.
 
-The browser workflow now runs `corepack pnpm audit --json` against the committed `frontend/pnpm-lock.yaml` and uploads the raw report as the `frontend-dependency-audit` artifact. The audit is non-blocking so it does not conceal the separate browser/typecheck result; its findings must be reviewed before merge.
-
-**Open follow-up:** inspect the fresh report artifact, determine the exact affected packages and dependency paths, and apply reviewed upgrades if needed. Do not use `npm audit fix --force` without reviewing breaking changes. Do not use `npm audit fix --force` without reviewing breaking changes. The prior count is an observed install-time warning, not a claim that the vulnerabilities have been remediated.
+The responsive browser suite does not verify canonical runtime integration, persisted adjudication, or on-chain attestation. The production API must be separately checked for an HTTP success response and the expected synthetic scenario payload.
 
 ## Product-integrity constraints
+
 - Local drafts are not canonical runtime writes.
 - A browser-computed SHA-256 is not proof of authorship, runtime registration, or immutability.
-- The responsive browser suite does not verify canonical runtime integration or on-chain attestation.
+- A successful frontend build is not evidence of production runtime availability.
+- The frontend remains read-only and must fail closed when the canonical runtime is unavailable.
