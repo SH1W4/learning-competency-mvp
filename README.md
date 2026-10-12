@@ -153,7 +153,6 @@ The current public Colosseum ecosystem benchmark identified several adjacent pro
 
 This is a **research-backed differentiation hypothesis, not a claim of market uniqueness**.
 
-See the full [Colosseum Ecosystem Benchmark](research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) for the methodology, comparison matrix, project-level evidence and research limitations.
 
 ### Research, related work & prior art
 
@@ -178,15 +177,14 @@ REPRODUCIBLE DEMO
 - [Research Map](research/RESEARCH_MAP.md) — public research index, epistemic status, and promotion path.
 - [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md) — external sources, standards, prior art, and argument-to-source mapping.
 - [Article Research Track](research/article/README.md) — scoped literature review, counterexamples, verification/consensus/provenance research, and open questions.
-- [Product Research](research/product/PRODUCT_THESIS.md) — broader product thesis and future hypotheses; not the MVP contract.
+- [Product overview](docs/evaluation/01_PRODUCT.md) — current MVP scope and evidence boundaries.
 - [Research Map](research/RESEARCH_MAP.md) — epistemic status and promotion boundary for all public research.
-- [Colosseum Ecosystem Benchmark](research/01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md) — adjacent ecosystem prior art.
 
 > **Prior art explains the landscape. It does not by itself prove LASTRO's uniqueness, commercial value, or legal novelty.**
 
 The research directory is public where its contents are necessary to understand, audit, challenge, or contextualize public claims. Private working material remains outside the public repository under the project's information boundary.
 
-For investor/client communication, see [Pitch Strategy](docs/go-to-market/01_PITCH_STRATEGY.md), which translates the technical thesis into a disciplined narrative without promoting commercial hypotheses to validated facts.
+For the public product narrative and its evidence boundaries, see [Product](docs/evaluation/01_PRODUCT.md), [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md), and [Limitations & Claims](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md).
 
 
 ## 5. The Core Insight
@@ -406,6 +404,19 @@ PUBLIC VERIFICATION
 
 The blockchain does **not** prove that a person is universally competent, truthful, or professionally qualified. It anchors the integrity of a defined state produced by the system.
 
+## Current public Devnet proof
+
+The latest recorded `m3.attestation.v2` proof is a synthetic Ana scenario on Solana Devnet, generated and verified via the M4 API on 2026-10-09.
+
+- **State:** `DEMONSTRATED`
+- **Transaction:** [Inspect on Solana Explorer](https://explorer.solana.com/tx/22wJ3t6LDdFMWK3rs4yK1S6GR6e7GEmLPeSjagBUwZCUXYKiuG5LS6gDP9ZSr6TkPCkn5hf3fyNVKH3xA7amDZdX?cluster=devnet)
+- **Record hash:** `d695f62bd0c26d97cd323142e7cb9c2fffa8c4a54782e650003d3c91bdbb4065`
+- **Verification:** `verified=true`; `hash_on_chain`, `record_integrity`, `subject_ref`, `payload_binding` and `signer` all `true`.
+- **Reproducibility record:** [PR #26 — execution evidence](https://github.com/SH1W4/learning-competency-mvp/pull/26).
+- **Fixture:** [devnet-fallback.json](fixtures/solana/devnet-fallback.json).
+
+This proves the integrity/attestation path for a bounded synthetic state. It does not establish universal competency, customer adoption, market demand, or completion of the visual frontend flow. The recorded CLI demo and Devnet proof must not be represented as a completed frontend E2E demonstration.
+
 ## 10. What the MVP Proves
 
 - Evidence can be structured and linked to activities and competency criteria.
@@ -422,7 +433,7 @@ The blockchain does **not** prove that a person is universally competent, truthf
 The LASTRO architecture is designed to be evaluated across domains, while the current public MVP remains intentionally narrow: **Case 01 — FinTech / Ana** is the implemented synthetic and reproducible anchor scenario.
 
 **[View the complete Case Studies Portfolio](docs/case_studies/README.md)**  
-**[View the Investor & Client Pitch Strategy](docs/go-to-market/01_PITCH_STRATEGY.md)**
+**[View Product](docs/evaluation/01_PRODUCT.md) · [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md) · [Limitations & Claims](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md)**
 
 | Domain | Case | Status |
 |---|---|---|
@@ -484,6 +495,12 @@ For the authoritative current status, see [Project Status](docs/PROJECT_STATUS.m
 Operational execution notes are maintained separately and are not part of the public evaluator path.
 
 The repository is under **Feature Freeze** and **Documentation Freeze** except for explicit proof, validation, interface, or submission work.
+
+## M4 — Local Devnet Proof
+
+For the exact operator procedure to run the canonical M4 API, create a fresh Solana Devnet attestation from the exact runtime record, and independently verify the transaction, follow the [M4 Local Devnet Proof Runbook](docs/evaluation/M4_LOCAL_DEVNET_PROOF.md). The signing key remains local and is never exposed to the frontend.
+
+---
 
 ## 14. Quick Start & Resilient Demo
 
