@@ -46,7 +46,10 @@ test.describe('LASTRO responsive shell', () => {
     const trigger = page.locator('button.mobile-menu[aria-label="Abrir menu"]');
     await trigger.click();
     const sidebar = page.locator('aside.sidebar.mobile-open');
-    await sidebar.locator('nav[aria-label="Navegação operacional"] button.nav-item').first().click();
+    const destination = sidebar.locator('nav[aria-label="Navegação operacional"] button.nav-item').first();
+    await destination.scrollIntoViewIfNeeded();
+    await expect(destination).toBeVisible();
+    await destination.click({ timeout: 5000 });
 
     await expect(trigger).toHaveAttribute('aria-expanded', 'false');
     await expect(page.locator('.breadcrumb strong')).toHaveText('Submeter Evidência');
