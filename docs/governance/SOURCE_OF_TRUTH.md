@@ -1,46 +1,32 @@
-# Source of Truth Map
+# Public Source of Truth
 
-**Status:** preparation baseline for the future Public Vault.
+## Purpose
 
-## Current canonical layers
+This page identifies which public artifacts govern the current LASTRO MVP. It is an evaluator-facing map, not an internal repository inventory or operational planning document.
 
-| Layer | Canonical location | Purpose | Future vault |
-| --- | --- | --- | --- |
-| Project entry point | README.md | public product narrative | PUBLIC |
-| Product contract | docs/product/USE_CASE.md | canonical MVP use case | PUBLIC |
-| Architecture | docs/evaluation/02_ARCHITECTURE.md | evidence/verification architecture | PUBLIC |
-| Consensus | docs/architecture/CONSENSUS_CORE.md | decision authority | PUBLIC |
-| Governance | docs/evaluation/03_VERIFICATION_AND_GOVERNANCE.md | consensus, adjudication, attestation boundary | PUBLIC |
-| Demo / proof | docs/evaluation/04_DEMO_AND_PROOF.md | reproducible proof path | PUBLIC |
-| Claims | docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md | claim discipline | PUBLIC |
-| Brand | docs/brand/ | identity and interface handoff | PUBLIC |
-| Research | docs/research/ or equivalent research documents | external evidence and benchmarks | PUBLIC-WITH-REVIEW |
-| Commercial | docs/business/ | buyer, GTM, pricing and commercial intelligence | PRIVATE |
-| Pitch working material | docs/pitch/ | internal positioning | PRIVATE |
-| Hackathon internal material | docs/hackathon/ | competition-sensitive planning | PRIVATE |
-| Restricted notes | docs/private/ | sensitive internal material | PRIVATE |
+## Authority order
 
-## Canonical-state rule
+When public artifacts disagree, use this order:
 
-When sources disagree:
+1. **Executable behavior:** current source code and tests define what the implementation actually does.
+2. **Product contract:** the public use case and MVP contract define the bounded behavior intended for this release.
+3. **Architecture:** canonical architecture and Consensus Core documentation explain the system boundaries and decision semantics.
+4. **Proof and claims:** demo, attestation, verification, limitations, and claims documents define what has been demonstrated and what remains unproven.
+5. **Research:** external evidence and research documents support context and hypotheses; they do not silently change the implemented product contract.
+6. **History:** older records preserve context but do not override current code, tests, or explicitly current public contracts.
 
-1. current implementation and tests define executable behavior;
-2. canonical product and architecture documents define intended behavior;
-3. research documents define evidence and hypotheses;
-4. historical archives preserve prior states but do not override current state.
+## Public review principle
 
-## Public Vault rule
+A public claim must be traceable to implementation, tests, a reproducible artifact, or an identified external source. If the available evidence does not support a claim, qualify it or remove it.
 
-The future Public Vault should contain only material that can be safely used to understand, evaluate or reproduce the public project.
+Synthetic examples must be identified as synthetic. A successful demo does not establish customer adoption, willingness to pay, ROI, product-market fit, universal competency assessment, or independence of verification mechanisms without separate evidence.
 
-## Private Vault rule
+## Public references
 
-The Private Vault is the workspace for strategy, confidential context and unpublished material. It must not become an undocumented second source of truth for the public MVP.
-
-## Historical archive
-
-Google Drive and other historical archives can preserve previous documents, meeting records and research snapshots. Historical material may be stale relative to the current GitHub state.
-
-## Migration rule
-
-The vault split must be executed only after a file-by-file inventory and review. No path should be moved solely because its directory name sounds public or private.
+- [Product and MVP scope](../evaluation/01_PRODUCT.md)
+- [Architecture](../evaluation/02_ARCHITECTURE.md)
+- [Verification and governance](../evaluation/03_VERIFICATION_AND_GOVERNANCE.md)
+- [Demo and technical proof](../evaluation/04_DEMO_AND_PROOF.md)
+- [Limitations and claims](../evaluation/05_LIMITATIONS_AND_CLAIMS.md)
+- [Source implementation](../../src/)
+- [Automated tests](../../tests/)

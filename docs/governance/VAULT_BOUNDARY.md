@@ -1,99 +1,44 @@
-# Vault Boundary & Publication Policy
-
-**Status:** preparation baseline — no vault migration performed yet.
+# Publication Boundary
 
 ## Purpose
 
-Define the boundary between the future Public Vault and Private Vault before any migration.
+This document defines what belongs in the public LASTRO MVP repository. The repository is the canonical public surface for the released product, its reproducible behavior, and claims that can be inspected against implementation and tests.
 
-### Public Vault
+## Public by design
 
-Canonical public state, reproducible technical proof, research supporting the thesis, public product and brand documentation.
+Keep implementation, tests, synthetic fixtures, API contracts, and concise architecture/evaluation documentation public when they are needed to reproduce, inspect, or challenge a stated product claim.
 
-### Private Vault
+Public technical transparency is intentional. It does not require publishing every research draft, internal decision log, working note, or future component.
 
-Commercial strategy, sensitive team material, unpublished research, private deliberation and restricted operational information.
+## Do not publish
 
-### Secrets
+Keep the following out of this repository unless disclosure is explicitly approved and appropriately redacted:
 
-Credentials, API keys, private keys, tokens and passwords never belong in either vault. They belong in a secret manager.
+- credentials, private keys, signing material, access tokens, or passwords;
+- personal, customer, partner, or confidential third-party data;
+- material covered by NDA or other contractual restrictions;
+- internal deliberations, negotiation positions, and unreleased commercial or competitive strategy;
+- operational runbooks or working artifacts that are not necessary for public reproduction or evaluation.
 
-## Current repository status
+Secrets must be stored in an appropriate secret manager, never in a repository or documentation vault.
 
-This repository is currently a **pre-vault mixed state**.
+## Release review
 
-Important: .gitignore does not make an already tracked file private. A later migration must classify tracked content explicitly.
+Before adding or changing public material:
 
-## Publication classes
+1. classify the file by its actual contents, not just its directory;
+2. verify that public claims match the current implementation and available evidence;
+3. label synthetic examples clearly and keep them distinct from customer evidence;
+4. inspect for sensitive identifiers, metadata, and accidental credentials;
+5. use dedicated secret scanning in addition to manual review;
+6. publish only the minimum information needed for the intended public claim.
 
-### PUBLIC
+For investor, partner, or evaluator diligence that requires restricted detail, prepare a purpose-specific package and share it through an access-controlled channel rather than placing it in the public repository.
 
-Candidate material:
-- README;
-- product and use-case specifications;
-- public architecture;
-- Consensus Core;
-- selected research and benchmarks;
-- brand system;
-- demo and proof documentation;
-- limitations and claims discipline;
-- source code, tests and synthetic fixtures.
+## Intellectual-property boundary
 
-### PUBLIC-WITH-REVIEW
+Open implementation and reproducibility are deliberate choices for the current MVP. They do not automatically determine the disclosure policy for future components. Any future proprietary prompt, heuristic, model, dataset, or other competitive implementation detail must be classified before publication; its public contract can be documented separately when appropriate.
 
-Material that is useful publicly but needs a release review:
-- detailed competitive analysis;
-- unpublished benchmark conclusions;
-- future roadmap research;
-- internal decision records;
-- research containing non-public collaborator context.
+## Governing principle
 
-### PRIVATE
-
-Keep in the Private Vault:
-- commercial strategy;
-- pricing and buyer experiments;
-- private interviews;
-- private meeting notes;
-- negotiation or partnership material;
-- internal deliberation;
-- unpublished security findings.
-
-## Current classification baseline
-
-| Area | Default | Reason |
-| --- | --- | --- |
-| README | PUBLIC | project entry point |
-| Product / Use Case | PUBLIC | explains the MVP |
-| Architecture | PUBLIC | technical proof |
-| Consensus Core | PUBLIC | core differentiator |
-| Research | PUBLIC-WITH-REVIEW | valuable depth; claims require discipline |
-| Brand | PUBLIC | product identity |
-| Tests / synthetic fixtures | PUBLIC | reproducibility |
-| Demo / proof | PUBLIC | hackathon evidence |
-| Limitations / claims | PUBLIC | credibility |
-| Commercial strategy | PRIVATE | competitive sensitivity |
-| Pitch working material | PRIVATE | internal positioning |
-| Hackathon internal planning | PRIVATE | competition-sensitive |
-| Private meeting notes | PRIVATE | confidentiality |
-| Secrets | SECRET STORE | never committed |
-
-## Migration gate
-
-Do not perform the final split until:
-1. repository inventory is complete;
-2. every file has a publication class;
-3. tracked private files are identified;
-4. secret scanning is clean;
-5. public claims match implementation;
-6. research citations are preserved;
-7. synthetic examples are separated from real evidence;
-8. every private file has a destination;
-9. the Public Vault has a canonical README and source-of-truth map;
-10. migration happens through a reviewable commit/PR.
-
-## Decision
-
-**No migration is performed by this audit.**
-
-This file is the preparation contract for the later Public Vault / Private Vault operation.
+**Publish enough to reproduce and audit the claims. Keep unrelated internal strategy and restricted working knowledge outside the public surface.**
