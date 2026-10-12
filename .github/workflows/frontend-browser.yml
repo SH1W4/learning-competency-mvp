@@ -53,7 +53,7 @@ jobs:
           exit 1
 
       - name: Run responsive and keyboard smoke tests
-        run: npx playwright test --test-match='**/*.pw.cjs' tests/mobile-responsive.pw.cjs
+        run: npx playwright test tests/mobile-responsive.pw.cjs
 
       - name: Upload browser test report on failure
         if: failure()
