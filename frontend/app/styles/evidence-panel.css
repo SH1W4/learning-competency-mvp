@@ -454,3 +454,27 @@ tbody tr.selected-row { background: var(--surface-2); }
   color: #fff;
 }
 
+
+
+/* Mobile layout safeguards for evidence submission and trail builder */
+@media (max-width: 720px) {
+  .form-grid > *, .form-group, .form-group > *, .builder-block > * { min-width: 0; }
+  .form-group label { line-height: 1.45; }
+  .form-group label small { max-width: 100%; }
+  .form-control, .form-select, .form-textarea { min-width: 0; max-width: 100%; }
+  .form-textarea { overflow-wrap: anywhere; }
+  .hash-preview-card { align-items: flex-start; }
+  .hash-preview-card > * { min-width: 0; max-width: 100%; }
+  .hash-preview-card code { white-space: normal; word-break: break-word; }
+  .builder-block { padding: 12px; }
+  .criteria-item, .activity-builder-item { padding: 11px; }
+  .criteria-item-top, .activity-item-top { align-items: flex-start; flex-wrap: wrap; }
+  .criteria-item-top > *, .activity-item-top > * { min-width: 0; max-width: 100%; }
+  .preset-bar { align-items: stretch; }
+  .preset-pill { white-space: normal; text-align: left; }
+  .modal-backdrop { padding: 10px; align-items: end; }
+  .adjudication-modal { max-height: calc(100dvh - 20px); overflow-y: auto; padding: 18px; }
+  .modal-actions > button { flex: 1 1 100%; min-height: 44px; }
+  .primary-button, .secondary-button { white-space: normal; line-height: 1.35; }
+  .dropzone strong, .dropzone p { overflow-wrap: anywhere; }
+}
