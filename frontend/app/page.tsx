@@ -1534,7 +1534,7 @@ export default function Page() {
         />
       )}
 
-      <main className="main-content" id="main-content">
+      <main className="main-content" id="main-content" inert={menuOpen} aria-hidden={menuOpen}>
         <header className="topbar">
           <button ref={menuButtonRef} className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu" aria-controls="primary-navigation" aria-expanded={menuOpen}>
             <Menu />
