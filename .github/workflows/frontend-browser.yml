@@ -37,10 +37,8 @@ jobs:
         id: dependency-audit
         continue-on-error: true
         run: |
-          corepack pnpm audit --json > /tmp/lastro-pnpm-audit.json || audit_status=$?
-          node -e "const fs=require('fs');const p='/tmp/lastro-pnpm-audit.json';try{const a=JSON.parse(fs.readFileSync(p,'utf8'));const advisories=a.advisories||a.metadata?.vulnerabilities||{};console.log(JSON.stringify({auditExitCode:Number(process.env.AUDIT_STATUS||0),metadata:a.metadata||null,advisoryCount:Array.isArray(advisories)?advisories.length:Object.keys(advisories).length,advisories},null,2))}catch(e){console.log(fs.readFileSync(p,'utf8'));process.exitCode=1}"
-        env:
-          AUDIT_STATUS: ${audit_status:-0}
+          corepack pnpm audit --json > /tmp/lastro-pnpm-audit.json || true
+          node -e "const fs=require('fs');const p='/tmp/lastro-pnpm-audit.json';try{const a=JSON.parse(fs.readFileSync(p,'utf8'));console.log(JSON.stringify(a,null,2))}catch(e){console.log(fs.readFileSync(p,'utf8'));process.exitCode=1}"
 
       - name: Upload dependency audit report
         if: always()
