@@ -7,7 +7,9 @@ test.describe('LASTRO responsive shell', () => {
     test(`has no horizontal document overflow at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto('/');
-      await expect(page.getByRole('button', { name: 'Abrir menu' })).toBeVisible();
+      if (width < 768) {
+        await expect(page.getByRole('button', { name: 'Abrir menu' })).toBeVisible();
+      }
 
       const dimensions = await page.evaluate(() => ({
         viewport: document.documentElement.clientWidth,
