@@ -250,7 +250,7 @@ rather than:
 
 The Colosseum ecosystem is mapped separately because it answers a different question: **what adjacent products have already been built in the relevant ecosystem?**
 
-See [Colosseum Ecosystem Benchmark](./05_COLOSSEUM_ECOSYSTEM_BENCHMARK.md).
+See the [Research Map](./RESEARCH_MAP.md) for the public scope and limits of the reviewed ecosystem evidence.
 
 The benchmark covers:
 
