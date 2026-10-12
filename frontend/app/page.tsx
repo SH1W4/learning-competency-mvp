@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Activity,
   AlertTriangle,
@@ -903,10 +903,10 @@ print("Pipeline executado com integridade.")
         {hash && !hashError && (
           <div className="hash-preview-card">
             <div>
-              <span className="eyebrow ac">IMUTABILIDADE · PROVENIÊNCIA GERADA</span>
+              <span className="eyebrow ac">HASH LOCAL · AINDA NÃO VERIFICADO</span>
               <code>SHA-256 · {hash}</code>
               <small style={{ color: 'var(--mut-2)', fontSize: '11px', marginTop: '4px' }}>
-                Nível de Confiança Inicial: <b>N2_EVIDENCE_PRESENTED</b> (Evidência entregue com conteúdo verificável)
+                Identificador calculado neste navegador. Não comprova autoria, registro no runtime nem imutabilidade.
               </small>
             </div>
             <span className="badge b-evidence">HASH CALCULADO LOCALMENTE</span>
@@ -1308,9 +1308,19 @@ export default function Page() {
   const [attempt, setAttempt] = useState(0)
   const [view, setView] = useState<View>('Dashboard')
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null)
+  const wasMenuOpen = useRef(false)
 
   useEffect(() => {
-    if (!menuOpen) return
+    if (!menuOpen) {
+      if (wasMenuOpen.current) {
+        menuButtonRef.current?.focus()
+        wasMenuOpen.current = false
+      }
+      return
+    }
+
+    wasMenuOpen.current = true
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMenuOpen(false)
     }
@@ -1491,7 +1501,7 @@ export default function Page() {
 
       <main className="main-content" id="main-content">
         <header className="topbar">
-          <button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu" aria-controls="primary-navigation" aria-expanded={menuOpen}>
+          <button ref={menuButtonRef} className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu" aria-controls="primary-navigation" aria-expanded={menuOpen}>
             <Menu />
           </button>
           <div className="breadcrumb">
