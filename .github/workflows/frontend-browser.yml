@@ -31,7 +31,7 @@ jobs:
           node-version: 22
 
       - name: Install frontend and browser-test dependencies
-        run: npm install --no-save --package-lock=false @playwright/test
+        run: npm install --no-save --package-lock=false @playwright/test@1.56.1
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
