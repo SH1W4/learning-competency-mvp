@@ -17,3 +17,7 @@ docs/pitch/
 docs/private/
 docs/hackathon/
 docs/diario-de-bordo/*dataroom*
+
+# Next.js
+.next/
+*.tsbuildinfo

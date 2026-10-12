@@ -24,6 +24,16 @@ type M4Projection = {
 }
 
 type View = 'Dashboard' | 'Attestation Queue' | 'Adjudication Center' | 'Audit Logs' | 'Runtime Details'
+type QueueStatus = 'DEMONSTRATED' | 'CONFLICT' | 'IN_DEVELOPMENT'
+
+type QueueItem = {
+  name: string
+  role: string
+  target: string
+  hash: string
+  status: QueueStatus
+  data: M4Projection
+}
 
 const mechanismNames: Record<Verification['mechanism'], string> = {
   evidence_integrity: 'Evidence Integrity',
@@ -65,22 +75,136 @@ const runtimeErrorHints: Record<string, string> = {
 
 function explorerUrl(network: string | undefined, signature: string | undefined) {
   if (!network || !signature) return null
-  const clusters: Record<string, string> = {
-    devnet: 'devnet',
-    'mainnet-beta': 'mainnet-beta',
-    testnet: 'testnet',
-  }
+  const clusters: Record<string, string> = { devnet: 'devnet', 'mainnet-beta': 'mainnet-beta', testnet: 'testnet' }
   const cluster = clusters[network.toLowerCase()]
   if (!cluster) return null
   return `https://explorer.solana.com/tx/${encodeURIComponent(signature)}?cluster=${cluster}`
 }
 
-// Dashboard View Component
+function initials(name: string) {
+  return name.split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase()
+}
+
+// ─── Evidence Panel (inline below queue table) ───────────────────────────────
+function EvidencePanel({ item, data, onClose, onResolve }: {
+  item: QueueItem
+  data: M4Projection
+  onClose: () => void
+  onResolve: () => void
+}) {
+  const integrityCheck = data.verification.mechanisms.find(m => m.mechanism === 'evidence_integrity')
+  const deterministicCheck = data.verification.mechanisms.find(m => m.mechanism === 'deterministic_criteria')
+  const aiCheck = data.verification.mechanisms.find(m => m.mechanism === 'ai_interpretation')
+  const hasConflict = item.status === 'CONFLICT'
+
+  return (
+    <section className="evidence-panel">
+      <div className="evidence-header">
+        <div>
+          <p className="eyebrow">SELECTED ATTESTATION</p>
+          <h2>{item.name}</h2>
+          <p>{item.role} · {item.target}</p>
+        </div>
+        <div className="evidence-actions">
+          <span className={`status-badge ${item.status.toLowerCase()}`}><span className="status-dot" />{item.status}</span>
+          <button className="icon-button" onClick={onClose} aria-label="Close detail"><X /></button>
+        </div>
+      </div>
+
+      <div className="evidence-grid">
+        <div className="submitted-artifacts">
+          <p className="eyebrow">SUBMITTED ARTIFACTS</p>
+          {data.evidence.length > 0 ? data.evidence.map((ev) => (
+            <div className="artifact" key={ev.evidence_id}>
+              <FileCode2 />
+              <div>
+                <b>{ev.content_ref}</b>
+                <small><LockKeyhole /> SHA-256 · {data.handoff.record_hash.substring(0, 8)}...{data.handoff.record_hash.slice(-4)}</small>
+              </div>
+            </div>
+          )) : (
+            <div className="artifact">
+              <FileText />
+              <div><b>No artifacts reported by runtime</b></div>
+            </div>
+          )}
+        </div>
+
+        <div className="consensus-core">
+          <p className="eyebrow">THE CONSENSUS CORE</p>
+          <div className={`check-card ${integrityCheck?.status === 'PASS' ? 'pass' : 'warning'}`}>
+            <span><ShieldCheck /></span>
+            <div>
+              <b>Evidence Integrity Check</b>
+              <strong>{integrityCheck?.status ?? 'NOT REPORTED'}</strong>
+              <p>{integrityCheck?.rationale ?? 'No integrity result provided by the runtime.'}</p>
+            </div>
+          </div>
+          <div className={`check-card ${deterministicCheck?.status === 'PASS' ? 'pass' : deterministicCheck ? 'warning' : 'pass'}`}>
+            <span><Check /></span>
+            <div>
+              <b>Deterministic Criteria Check</b>
+              <strong>{deterministicCheck?.status ?? 'NOT REPORTED'}</strong>
+              <p>{deterministicCheck?.rationale ?? 'No deterministic result provided by the runtime.'}</p>
+            </div>
+          </div>
+          <div className={`check-card ${aiCheck?.status === 'PASS' ? 'pass' : aiCheck ? 'warning' : 'pass'}`}>
+            <span><AlertTriangle /></span>
+            <div>
+              <b>AI Semantic Interpretation</b>
+              <strong>{aiCheck?.status ?? 'NOT REPORTED'}</strong>
+              <p>{data.interpretation.signals[0]?.support ?? 'No interpretative signal provided by the runtime.'}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {hasConflict && (
+        <div className="conflict-banner">
+          <div>
+            <b>CONSENSUS CONFLICT</b>
+            <span>Mechanisms diverge. Awaiting Human Adjudication.</span>
+          </div>
+          <button className="primary-button" onClick={onResolve}>Resolve Conflict</button>
+        </div>
+      )}
+    </section>
+  )
+}
+
+// ─── Adjudication Modal ──────────────────────────────────────────────────────
+function AdjudicationModal({ item, onClose }: { item: QueueItem | null; onClose: () => void }) {
+  if (!item) return null
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="adjudication-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <div>
+            <p className="eyebrow">PROVENANCE REQUIRED</p>
+            <h2 id="modal-title">Human Adjudication</h2>
+          </div>
+          <button className="icon-button" onClick={onClose} aria-label="Close"><X /></button>
+        </div>
+        <p className="modal-context">
+          The deterministic check passed all structural rules, while the AI interpretation identified a potential gap. Your decision resolves this divergence and is preserved in the audit trail.
+        </p>
+        <label htmlFor="rationale">Adjudicator Rationale <span>(Required for Provenance)</span></label>
+        <textarea id="rationale" placeholder="Explain the reasoning behind your decision..." />
+        <div className="modal-actions">
+          <button className="primary-button" onClick={onClose}>Record Adjudication</button>
+          <button className="secondary-button" onClick={onClose}>Reject &amp; Request Evidence</button>
+        </div>
+        <small className="modal-footer">The previous verification results, evidence references, rationale and rule version are preserved in the audit history.</small>
+      </div>
+    </div>
+  )
+}
+
+// ─── Dashboard View ──────────────────────────────────────────────────────────
 function DashboardView({ data, setView }: { data: M4Projection | null; setView: (view: View) => void }) {
   const demonstratedCount = data?.state.value === 'DEMONSTRATED' ? 1 : 0
   const conflictCount = data?.consensus.status === 'CONFLICT' ? 1 : 0
   const inDevelopmentCount = data?.state.value === 'IN_DEVELOPMENT' ? 1 : 0
-  const totalCount = 1
 
   return (
     <div className="view-stack">
@@ -96,22 +220,10 @@ function DashboardView({ data, setView }: { data: M4Projection | null; setView: 
         </div>
       </div>
       <div className="metrics-grid">
-        <div className="metric-card">
-          <strong>{totalCount}</strong>
-          <span>Total attestations</span>
-        </div>
-        <div className="metric-card metric-green">
-          <strong>{demonstratedCount}</strong>
-          <span>Demonstrated</span>
-        </div>
-        <div className="metric-card metric-amber">
-          <strong>{conflictCount}</strong>
-          <span>Awaiting review</span>
-        </div>
-        <div className="metric-card">
-          <strong>{inDevelopmentCount}</strong>
-          <span>In development</span>
-        </div>
+        <div className="metric-card"><strong>1</strong><span>Total attestations</span></div>
+        <div className="metric-card metric-green"><strong>{demonstratedCount}</strong><span>Demonstrated</span></div>
+        <div className="metric-card metric-amber"><strong>{conflictCount}</strong><span>Awaiting review</span></div>
+        <div className="metric-card"><strong>{inDevelopmentCount}</strong><span>In development</span></div>
       </div>
       <section className="content-card overview-card">
         <div className="card-heading">
@@ -156,135 +268,187 @@ function DashboardView({ data, setView }: { data: M4Projection | null; setView: 
   )
 }
 
-// Attestation Queue View Component
-function QueueView({ data, setView }: { data: M4Projection | null; setView: (view: View) => void }) {
+// ─── Attestation Queue View ──────────────────────────────────────────────────
+function QueueView({ data }: { data: M4Projection | null; setView: (view: View) => void }) {
+  const [selected, setSelected] = useState<QueueItem | null>(null)
+  const [modal, setModal] = useState(false)
+  const [query, setQuery] = useState('')
+
   if (!data) return null
 
-  const items = [{
+  const status: QueueStatus =
+    data.state.value === 'DEMONSTRATED' ? 'DEMONSTRATED'
+    : data.consensus.status === 'CONFLICT' ? 'CONFLICT'
+    : 'IN_DEVELOPMENT'
+
+  const items: QueueItem[] = [{
     name: 'Ana Synthetic',
     role: 'Data Analyst',
     target: data.competency.statement,
-    hash: data.handoff.record_hash.substring(0, 8) + '...' + data.handoff.record_hash.substring(data.handoff.record_hash.length - 4),
-    status: data.state.value === 'DEMONSTRATED' ? 'DEMONSTRATED' : data.consensus.status === 'CONFLICT' ? 'CONFLICT' : 'IN_DEVELOPMENT'
+    hash: data.handoff.record_hash.substring(0, 8) + '...' + data.handoff.record_hash.slice(-4),
+    status,
+    data,
   }]
 
+  const filtered = items.filter((item) =>
+    `${item.name} ${item.role} ${item.target}`.toLowerCase().includes(query.toLowerCase())
+  )
+
   return (
-    <div className="view-stack">
-      <div className="page-heading">
-        <div>
-          <p className="eyebrow">SYNTHETIC COMPETENCY VERIFICATION</p>
-          <h1>Attestation Queue</h1>
-          <p className="page-subtitle">Review bounded capability states and their supporting verification record.</p>
-        </div>
-        <div className="queue-summary">
-          <strong>{items.filter(i => i.status === 'CONFLICT').length}</strong>
-          <span>awaiting adjudication</span>
-        </div>
-      </div>
-      <section className="content-card queue-card">
-        <div className="card-heading">
+    <>
+      <div className="view-stack">
+        <div className="page-heading">
           <div>
-            <h2>Pending attestations</h2>
-            <p>Each decision preserves a complete cryptographic audit trail.</p>
+            <p className="eyebrow">SYNTHETIC COMPETENCY VERIFICATION</p>
+            <h1>Attestation Queue</h1>
+            <p className="page-subtitle">Review bounded capability states and their supporting verification record.</p>
+          </div>
+          <div className="queue-summary">
+            <strong>{items.filter(i => i.status === 'CONFLICT').length}</strong>
+            <span>awaiting adjudication</span>
           </div>
         </div>
-        <div className="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Employee name</th>
-                <th>Role</th>
-                <th>Competency target</th>
-                <th>Artifacts hash</th>
-                <th>Consensus status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item) => (
-                <tr key={item.name} onClick={() => setView('Runtime Details')}>
-                  <td>
-                    <div className="person-cell">
-                      <span className="person-avatar blue">AS</span>
-                      <span>
-                        <b>{item.name}</b>
-                        <small>Submitted today</small>
-                      </span>
-                    </div>
-                  </td>
-                  <td>{item.role}</td>
-                  <td>{item.target}</td>
-                  <td><span className="hash-cell"><LockKeyhole />{item.hash}</span></td>
-                  <td><span className={`status-badge ${item.status.toLowerCase()}`}><span className="status-dot" />{item.status}</span></td>
+        <section className="content-card queue-card">
+          <div className="card-heading">
+            <div>
+              <h2>Pending attestations</h2>
+              <p>Each decision preserves a complete cryptographic audit trail.</p>
+            </div>
+            <div className="search-box">
+              <Search />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search employee or target"
+                aria-label="Search employee or target"
+              />
+            </div>
+          </div>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Employee name</th>
+                  <th>Role</th>
+                  <th>Competency target</th>
+                  <th>Artifacts hash</th>
+                  <th>Consensus status</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </div>
+              </thead>
+              <tbody>
+                {filtered.map((item) => (
+                  <tr
+                    key={item.name}
+                    className={selected?.name === item.name ? 'selected-row' : ''}
+                    onClick={() => setSelected(selected?.name === item.name ? null : item)}
+                  >
+                    <td>
+                      <div className="person-cell">
+                        <span className="person-avatar blue">{initials(item.name)}</span>
+                        <span>
+                          <b>{item.name}</b>
+                          <small>Submitted today</small>
+                        </span>
+                      </div>
+                    </td>
+                    <td>{item.role}</td>
+                    <td>{item.target}</td>
+                    <td><span className="hash-cell"><LockKeyhole />{item.hash}</span></td>
+                    <td><span className={`status-badge ${item.status.toLowerCase()}`}><span className="status-dot" />{item.status}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {selected && (
+          <EvidencePanel
+            item={selected}
+            data={selected.data}
+            onClose={() => setSelected(null)}
+            onResolve={() => setModal(true)}
+          />
+        )}
+      </div>
+
+      {modal && <AdjudicationModal item={selected} onClose={() => setModal(false)} />}
+    </>
   )
 }
 
-// Adjudication Center View Component
-function AdjudicationView({ data, setView }: { data: M4Projection | null; setView: (view: View) => void }) {
+// ─── Adjudication Center View ────────────────────────────────────────────────
+function AdjudicationView({ data }: { data: M4Projection | null; setView: (view: View) => void }) {
+  const [modal, setModal] = useState(false)
   const conflictCount = data?.consensus.status === 'CONFLICT' ? 1 : 0
+  const fakeItem: QueueItem | null = data ? {
+    name: 'Ana Synthetic',
+    role: 'Data Analyst',
+    target: data.competency.statement,
+    hash: data.handoff.record_hash.substring(0, 8) + '...' + data.handoff.record_hash.slice(-4),
+    status: 'CONFLICT',
+    data,
+  } : null
 
   return (
-    <div className="view-stack">
-      <div className="page-heading">
-        <div>
-          <p className="eyebrow">CONTROLLED REVIEW</p>
-          <h1>Adjudication Center</h1>
-          <p className="page-subtitle">Resolve bounded capability conflicts while preserving provenance.</p>
-        </div>
-      </div>
-      <section className="content-card review-card">
-        <div className="review-hero">
-          <div className="review-count">{conflictCount}</div>
+    <>
+      <div className="view-stack">
+        <div className="page-heading">
           <div>
-            <h2>Attestations awaiting human decision</h2>
-            <p>Each record includes deterministic checks, semantic interpretation and immutable evidence references.</p>
+            <p className="eyebrow">CONTROLLED REVIEW</p>
+            <h1>Adjudication Center</h1>
+            <p className="page-subtitle">Resolve bounded capability conflicts while preserving provenance.</p>
           </div>
         </div>
-        {conflictCount > 0 ? (
-          <button className="review-row" onClick={() => setView('Runtime Details')}>
-            <span className="person-avatar blue">AS</span>
-            <span>
-              <b>Ana Synthetic</b>
-              <small>{data?.competency.statement}</small>
-            </span>
-            <span className={`status-badge conflict`}><span className="status-dot" />CONFLICT</span>
-            <span className="review-arrow">View evidence →</span>
-          </button>
-        ) : (
+        <section className="content-card review-card">
+          <div className="review-hero">
+            <div className="review-count">{conflictCount}</div>
+            <div>
+              <h2>Attestations awaiting human decision</h2>
+              <p>Each record includes deterministic checks, semantic interpretation and immutable evidence references.</p>
+            </div>
+          </div>
+          {conflictCount > 0 ? (
+            <button className="review-row" onClick={() => setModal(true)}>
+              <span className="person-avatar blue">AS</span>
+              <span>
+                <b>Ana Synthetic</b>
+                <small>{data?.competency.statement}</small>
+              </span>
+              <span className="status-badge conflict"><span className="status-dot" />CONFLICT</span>
+              <span className="review-arrow">View evidence →</span>
+            </button>
+          ) : (
+            <div className="empty-review">
+              <ShieldCheck />
+              <span>
+                <b>No conflicts requiring adjudication</b>
+                <small>All consensus mechanisms are in agreement.</small>
+              </span>
+            </div>
+          )}
           <div className="empty-review">
             <ShieldCheck />
             <span>
-              <b>No conflicts requiring adjudication</b>
-              <small>All consensus mechanisms are in agreement.</small>
+              <b>Human adjudication is the final bounded control.</b>
+              <small>No decision is anchored without a rationale and preserved verification history.</small>
             </span>
           </div>
-        )}
-        <div className="empty-review">
-          <ShieldCheck />
-          <span>
-            <b>Human adjudication is the final bounded control.</b>
-            <small>No decision is anchored without a rationale and preserved verification history.</small>
-          </span>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+      {modal && fakeItem && <AdjudicationModal item={fakeItem} onClose={() => setModal(false)} />}
+    </>
   )
 }
 
-// Audit Logs View Component
+// ─── Audit Logs View ─────────────────────────────────────────────────────────
 function AuditView({ data }: { data: M4Projection | null }) {
   const events = data ? [
     `Verification submitted · ${data.synthetic ? 'Ana Synthetic' : 'Competency Record'}`,
     'Evidence integrity check · VERIFIED',
     'Deterministic criteria check · PASS',
     data.consensus.status === 'CONFLICT' ? 'Consensus conflict opened · Awaiting adjudication' : 'Consensus reached · AGREEMENT',
-    `Rule version ${data.handoff.record_version} recorded`
+    `Rule version ${data.handoff.record_version} recorded`,
   ] : []
 
   return (
@@ -312,7 +476,7 @@ function AuditView({ data }: { data: M4Projection | null }) {
               <b>{event}</b>
               <small>Today · {String(9 + index).padStart(2, '0')}:42</small>
             </span>
-            <code>SHA-256 · {data?.handoff.record_hash.substring(0, 8)}...{data?.handoff.record_hash.substring(data.handoff.record_hash.length - 4)}</code>
+            <code>SHA-256 · {data?.handoff.record_hash.substring(0, 8)}...{data?.handoff.record_hash.slice(-4)}</code>
           </div>
         ))}
       </section>
@@ -320,14 +484,16 @@ function AuditView({ data }: { data: M4Projection | null }) {
   )
 }
 
+// ─── Nav items ───────────────────────────────────────────────────────────────
 const navItems: [typeof LayoutDashboard, View][] = [
   [LayoutDashboard, 'Dashboard'],
   [ClipboardCheck, 'Attestation Queue'],
   [ShieldCheck, 'Adjudication Center'],
   [Activity, 'Audit Logs'],
-  [FileCode2, 'Runtime Details']
+  [FileCode2, 'Runtime Details'],
 ]
 
+// ─── Root ─────────────────────────────────────────────────────────────────────
 export default function Page() {
   const [data, setData] = useState<M4Projection | null>(null)
   const [error, setError] = useState<{ message: string; hint: string | null } | null>(null)
@@ -347,9 +513,7 @@ export default function Page() {
           try {
             const body = (await response.json()) as { error?: unknown }
             if (typeof body.error === 'string') code = body.error
-          } catch {
-            // The body is not JSON; the HTTP status alone is reported.
-          }
+          } catch { /* body is not JSON */ }
           throw new RuntimeRequestError(response.status, code)
         }
         return response.json() as Promise<M4Projection>
@@ -388,7 +552,7 @@ export default function Page() {
         <div className="workspace-switcher">
           <span className="workspace-avatar">LC</span>
           <span className="workspace-copy">
-            <b>Learning Competency</b>
+            <b>LASTRO</b>
             <small>MVP</small>
           </span>
           <ChevronDown size={14} />
@@ -436,13 +600,28 @@ export default function Page() {
             <strong>{view}</strong>
           </div>
           <div className="org-switcher">
-            <span className="avatar-mini">LC</span> Learning Competency (MVP) <ChevronDown size={14} />
+            <span className="avatar-mini">LA</span> LASTRO (Protocol) <ChevronDown size={14} />
           </div>
         </header>
 
         <div className="page-content">
-          {loading && <section className="panel runtime-panel" role="status" aria-live="polite"><span className="eyebrow">CONNECTION</span><h2>Querying runtime…</h2><p>Waiting for canonical projection.</p></section>}
-          {error && <section className="panel runtime-panel runtime-error" role="alert"><span className="eyebrow">CONNECTION</span><h2>Runtime not connected</h2><p>{error.message}</p>{error.hint ? <p>{error.hint}</p> : null}<p>No local data is used as a fallback.</p><button type="button" className="retry-button" onClick={() => setAttempt((n) => n + 1)}>Try again</button></section>}
+          {loading && (
+            <section className="panel runtime-panel" role="status" aria-live="polite">
+              <span className="eyebrow">CONNECTION</span>
+              <h2>Querying runtime…</h2>
+              <p>Waiting for canonical projection.</p>
+            </section>
+          )}
+          {error && (
+            <section className="panel runtime-panel runtime-error" role="alert">
+              <span className="eyebrow">CONNECTION</span>
+              <h2>Runtime not connected</h2>
+              <p>{error.message}</p>
+              {error.hint ? <p>{error.hint}</p> : null}
+              <p>No local data is used as a fallback.</p>
+              <button type="button" className="retry-button" onClick={() => setAttempt((n) => n + 1)}>Try again</button>
+            </section>
+          )}
 
           {data && (
             <>
@@ -485,7 +664,7 @@ export default function Page() {
                         </div>
                       </div>
                     </div>
-                    {data.consensus.status === 'CONFLICT' || data.consensus.requires_adjudication ? (
+                    {(data.consensus.status === 'CONFLICT' || data.consensus.requires_adjudication) ? (
                       <aside className="runtime-exception" role="note">
                         <strong>Exceptional Human Review</strong>
                         <p>The runtime signals a conflict or required adjudication. No decision is made in this interface and the state is not advanced by it.</p>
@@ -494,21 +673,25 @@ export default function Page() {
                     ) : null}
                     <div className="runtime-subsection">
                       <span className="eyebrow">CANONICAL CRITERIA</span>
-                      {data.competency.criteria.map((criterion) => <article className="runtime-item" key={criterion.id}>
-                        <strong>{criterion.id} · {criterion.title}</strong>
-                        <ul>{criterion.observables.map((item) => <li key={item}>{item}</li>)}</ul>
-                      </article>)}
+                      {data.competency.criteria.map((criterion) => (
+                        <article className="runtime-item" key={criterion.id}>
+                          <strong>{criterion.id} · {criterion.title}</strong>
+                          <ul>{criterion.observables.map((item) => <li key={item}>{item}</li>)}</ul>
+                        </article>
+                      ))}
                     </div>
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="trail-title">
                     <span className="eyebrow">TRAIL · {data.trail.id}</span>
                     <h2 id="trail-title">{data.trail.title}</h2>
-                    {data.trail.activities.map((activity) => <article className="runtime-item" key={activity.id}>
-                      <h3>{activity.id} · {activity.title}</h3>
-                      <p>{activity.objective}</p>
-                      <small>Expected evidence: {activity.expectedEvidence.join(', ') || 'Not reported by the runtime.'}</small>
-                    </article>)}
+                    {data.trail.activities.map((activity) => (
+                      <article className="runtime-item" key={activity.id}>
+                        <h3>{activity.id} · {activity.title}</h3>
+                        <p>{activity.objective}</p>
+                        <small>Expected evidence: {activity.expectedEvidence.join(', ') || 'Not reported by the runtime.'}</small>
+                      </article>
+                    ))}
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="evidence-title">
@@ -517,14 +700,16 @@ export default function Page() {
                       <span className="badge b-evidence">{data.evidence.length} reference(s)</span>
                     </div>
                     <p className="runtime-intro">References received from the runtime; their presence alone does not signify verified integrity or demonstrated competency.</p>
-                    {data.evidence.map((item) => <article className="runtime-evidence" key={item.evidence_id}>
-                      <div className="runtime-evidence-heading"><strong>{item.evidence_id}</strong><span className="badge b-evidence">{item.synthetic ? 'SYNTHETIC' : item.type}</span></div>
-                      <p>{item.type} · activity {item.activity_id} · source confidence: {item.trust_level}</p>
-                      <dl className="runtime-metadata">
-                        <div><dt>Source reference</dt><dd>{item.source_ref}</dd></div>
-                        <div><dt>Content reference</dt><dd>{item.content_ref}</dd></div>
-                      </dl>
-                    </article>)}
+                    {data.evidence.map((item) => (
+                      <article className="runtime-evidence" key={item.evidence_id}>
+                        <div className="runtime-evidence-heading"><strong>{item.evidence_id}</strong><span className="badge b-evidence">{item.synthetic ? 'SYNTHETIC' : item.type}</span></div>
+                        <p>{item.type} · activity {item.activity_id} · source confidence: {item.trust_level}</p>
+                        <dl className="runtime-metadata">
+                          <div><dt>Source reference</dt><dd>{item.source_ref}</dd></div>
+                          <div><dt>Content reference</dt><dd>{item.content_ref}</dd></div>
+                        </dl>
+                      </article>
+                    ))}
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="integrity-title">
@@ -533,10 +718,12 @@ export default function Page() {
                     </div>
                     <p className="runtime-intro">Results from canonical mechanisms. The interface does not re-execute or recalculate the checks.</p>
                     <div className="runtime-verification-list">
-                      {data.verification.mechanisms.filter((item) => item.mechanism !== 'ai_interpretation').map((item, index) => <article className="runtime-verification-card" key={`${item.mechanism}:${item.criterion_id}:${index}`}>
-                        <div className="runtime-verification-heading"><span className="eyebrow">{mechanismNames[item.mechanism]}</span><span className={`badge ${item.status === 'PASS' ? 'b-state' : 'b-neutral'}`}>{item.status}</span></div>
-                        <strong>Criterion {item.criterion_id}</strong><p>{item.rationale}</p>
-                      </article>)}
+                      {data.verification.mechanisms.filter((item) => item.mechanism !== 'ai_interpretation').map((item, index) => (
+                        <article className="runtime-verification-card" key={`${item.mechanism}:${item.criterion_id}:${index}`}>
+                          <div className="runtime-verification-heading"><span className="eyebrow">{mechanismNames[item.mechanism]}</span><span className={`badge ${item.status === 'PASS' ? 'b-state' : 'b-neutral'}`}>{item.status}</span></div>
+                          <strong>Criterion {item.criterion_id}</strong><p>{item.rationale}</p>
+                        </article>
+                      ))}
                       {data.verification.mechanisms.filter((item) => item.mechanism !== 'ai_interpretation').length === 0 && <p>No integrity result or deterministic criterion was provided.</p>}
                     </div>
                   </section>
@@ -548,22 +735,28 @@ export default function Page() {
                     </div>
                     <p className="runtime-intro">Interpretative signals provided by the runtime. This layer does not replace evidence, deterministic criteria, consensus, or human decision.</p>
                     <div className="runtime-interpretation-meta"><span>Interpretation: <code>{data.interpretation.id}</code></span><span>Model: <code>{data.interpretation.model}</code></span></div>
-                    {data.interpretation.signals.length ? data.interpretation.signals.map((signal) => <article className="runtime-signal" key={signal.signal_id}>
-                      <div className="runtime-evidence-heading"><strong>{signal.signal_id}</strong><span className="badge b-ai">Criterion {signal.criterion_id}</span></div>
-                      <p>{signal.support}</p>
-                      <p className="runtime-signal-confidence">Confidence reported by runtime: <strong>{signal.confidence}</strong></p>
-                      <div className="runtime-refs"><span className="eyebrow">ASSOCIATED REFERENCES</span>{signal.evidence_refs.length ? signal.evidence_refs.map((ref) => <code key={ref}>{ref}</code>) : <span>No associated reference provided.</span>}</div>
-                    </article>) : <p>No interpretative signal was provided by the runtime.</p>}
-                    {data.verification.mechanisms.filter((item) => item.mechanism === 'ai_interpretation').map((item, index) => <article className="runtime-verification-card runtime-ai-result" key={`ai:${item.criterion_id}:${index}`}>
-                      <div className="runtime-verification-heading"><span className="eyebrow">REPORTED RESULT · CRITERION {item.criterion_id}</span><span className="badge b-ai">{item.status}</span></div>
-                      <p>{item.rationale}</p>
-                    </article>)}
+                    {data.interpretation.signals.length ? data.interpretation.signals.map((signal) => (
+                      <article className="runtime-signal" key={signal.signal_id}>
+                        <div className="runtime-evidence-heading"><strong>{signal.signal_id}</strong><span className="badge b-ai">Criterion {signal.criterion_id}</span></div>
+                        <p>{signal.support}</p>
+                        <p className="runtime-signal-confidence">Confidence reported by runtime: <strong>{signal.confidence}</strong></p>
+                        <div className="runtime-refs"><span className="eyebrow">ASSOCIATED REFERENCES</span>{signal.evidence_refs.length ? signal.evidence_refs.map((ref) => <code key={ref}>{ref}</code>) : <span>No associated reference provided.</span>}</div>
+                      </article>
+                    )) : <p>No interpretative signal was provided by the runtime.</p>}
+                    {data.verification.mechanisms.filter((item) => item.mechanism === 'ai_interpretation').map((item, index) => (
+                      <article className="runtime-verification-card runtime-ai-result" key={`ai:${item.criterion_id}:${index}`}>
+                        <div className="runtime-verification-heading"><span className="eyebrow">REPORTED RESULT · CRITERION {item.criterion_id}</span><span className="badge b-ai">{item.status}</span></div>
+                        <p>{item.rationale}</p>
+                      </article>
+                    ))}
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="history-title">
                     <span className="eyebrow">STEP 06 · CANONICAL HISTORY</span>
                     <h2 id="history-title">State transitions</h2>
-                    {data.state.history.length ? <ol className="runtime-history">{data.state.history.map((entry, index) => <li key={index}><pre>{JSON.stringify(entry, null, 2)}</pre></li>)}</ol> : <p>No transition history was provided by the runtime.</p>}
+                    {data.state.history.length ? (
+                      <ol className="runtime-history">{data.state.history.map((entry, index) => <li key={index}><pre>{JSON.stringify(entry, null, 2)}</pre></li>)}</ol>
+                    ) : <p>No transition history was provided by the runtime.</p>}
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="handoff-title">
@@ -580,16 +773,18 @@ export default function Page() {
                   <section className="panel runtime-panel" aria-labelledby="attestation-title">
                     <span className="eyebrow">STEPS 08–09 · PROOF</span>
                     <h2 id="attestation-title">Attestation and public verification</h2>
-                    {data.attestation ? <>
-                      <div className="runtime-proof-status"><span className="badge b-attest">ATTESTED · REFERENCE RECEIVED</span><span className="badge b-neutral">{data.attestation.network ?? 'NETWORK NOT DECLARED'}</span></div>
-                      <dl className="runtime-metadata">
-                        <div><dt>Attestation version</dt><dd>{data.attestation.version}</dd></div>
-                        <div><dt>Record hash</dt><dd><code className="runtime-hash">{data.attestation.record_hash}</code></dd></div>
-                        <div><dt>Reported verification</dt><dd>{typeof data.attestation.verified === 'boolean' ? String(data.attestation.verified) : 'Not reported by runtime'}</dd></div>
-                        {data.attestation.tx_signature ? <div><dt>Transaction signature</dt><dd><code className="runtime-hash">{data.attestation.tx_signature}</code></dd></div> : null}
-                      </dl>
-                      {txUrl ? <p><a href={txUrl} target="_blank" rel="noreferrer">Open transaction in Solana Explorer ↗</a></p> : data.attestation.tx_signature ? <p role="note">The signature was received, but the network does not match a recognized Solana cluster. No Explorer link was assumed.</p> : <p>The runtime did not provide a transaction signature.</p>}
-                    </> : <p>The runtime did not provide an attestation. No transaction is being inferred or copied to this screen.</p>}
+                    {data.attestation ? (
+                      <>
+                        <div className="runtime-proof-status"><span className="badge b-attest">ATTESTED · REFERENCE RECEIVED</span><span className="badge b-neutral">{data.attestation.network ?? 'NETWORK NOT DECLARED'}</span></div>
+                        <dl className="runtime-metadata">
+                          <div><dt>Attestation version</dt><dd>{data.attestation.version}</dd></div>
+                          <div><dt>Record hash</dt><dd><code className="runtime-hash">{data.attestation.record_hash}</code></dd></div>
+                          <div><dt>Reported verification</dt><dd>{typeof data.attestation.verified === 'boolean' ? String(data.attestation.verified) : 'Not reported by runtime'}</dd></div>
+                          {data.attestation.tx_signature ? <div><dt>Transaction signature</dt><dd><code className="runtime-hash">{data.attestation.tx_signature}</code></dd></div> : null}
+                        </dl>
+                        {txUrl ? <p><a href={txUrl} target="_blank" rel="noreferrer">Open transaction in Solana Explorer ↗</a></p> : data.attestation.tx_signature ? <p role="note">The signature was received, but the network does not match a recognized Solana cluster. No Explorer link was assumed.</p> : <p>The runtime did not provide a transaction signature.</p>}
+                      </>
+                    ) : <p>The runtime did not provide an attestation. No transaction is being inferred or copied to this screen.</p>}
                     {data.public_verification ? <p><a href={data.public_verification.href} target="_blank" rel="noreferrer">{data.public_verification.label} ↗</a></p> : <p>Independent public verification: not available in this response.</p>}
                   </section>
                 </div>

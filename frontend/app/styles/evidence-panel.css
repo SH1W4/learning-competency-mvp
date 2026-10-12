@@ -1,0 +1,218 @@
+/* ============================================================
+   LASTRO — Evidence Panel + Modal styles
+   Ported from prototipagem-visual-lastro, adapted for dark tokens
+   ============================================================ */
+
+/* ---- Evidence panel (inline below queue table) ---- */
+.evidence-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 22px;
+}
+
+.evidence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.evidence-header h2 { margin: 6px 0 4px; font-size: 18px; }
+.evidence-header p { margin: 0; color: var(--mut); font-size: 13px; }
+
+.evidence-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 760px) {
+  .evidence-grid { grid-template-columns: 1fr; }
+  .evidence-header { flex-direction: column; align-items: flex-start; }
+}
+
+/* Artifacts column */
+.submitted-artifacts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.submitted-artifacts > .eyebrow { margin-bottom: 6px; }
+
+.artifact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  background: var(--surface-2);
+}
+.artifact svg { width: 16px; color: var(--mut-2); flex: 0 0 auto; }
+.artifact div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.artifact b { font-size: 12px; font-weight: 500; overflow-wrap: anywhere; }
+.artifact small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--mut-2);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+}
+.artifact small svg { width: 10px; }
+
+/* Consensus Core column */
+.consensus-core {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.consensus-core > .eyebrow { margin-bottom: 6px; }
+
+.check-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 13px;
+  background: var(--surface-2);
+}
+.check-card > span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line-strong);
+  color: var(--mut);
+}
+.check-card > span svg { width: 14px; }
+.check-card > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.check-card b { font-size: 12px; font-weight: 500; }
+.check-card strong { font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.06em; }
+.check-card p { margin: 0; color: var(--mut); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+
+.check-card.pass > span { border-color: #2c9860; color: #2c9860; }
+.check-card.pass strong { color: #2c9860; }
+.check-card.warning > span { border-color: #b77d00; color: #b77d00; }
+.check-card.warning strong { color: #b77d00; }
+
+/* Conflict banner */
+.conflict-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid #e36868;
+  border-radius: var(--radius-sm);
+  background: #1a0a0a;
+}
+.conflict-banner div { display: flex; flex-direction: column; gap: 4px; }
+.conflict-banner b { font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.1em; color: #e36868; }
+.conflict-banner span { font-size: 12px; color: var(--mut); }
+
+/* Primary button (overrides if not in shell) */
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 7px;
+  padding: 10px 16px;
+  background: var(--ac);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.18s;
+}
+.primary-button:hover { opacity: 0.88; }
+
+/* ---- Adjudication Modal ---- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.72);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.adjudication-modal {
+  width: 100%;
+  max-width: 540px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.modal-header h2 { margin: 6px 0 0; font-size: 20px; }
+
+.modal-context {
+  margin: 0;
+  color: var(--mut);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.adjudication-modal label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray);
+}
+.adjudication-modal label span { color: var(--mut-2); font-weight: 400; margin-left: 4px; }
+
+.adjudication-modal textarea {
+  width: 100%;
+  min-height: 110px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  resize: vertical;
+  outline: none;
+  color: var(--fg);
+  font-size: 13px;
+  transition: border-color 0.18s;
+}
+.adjudication-modal textarea:focus { border-color: var(--mut-2); }
+.adjudication-modal textarea::placeholder { color: var(--mut-2); }
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.modal-footer {
+  color: var(--mut-2);
+  font-size: 10.5px;
+  line-height: 1.6;
+}
+
+/* ---- Selected row highlight (queue table) ---- */
+tbody tr.selected-row { background: var(--surface-2); }
