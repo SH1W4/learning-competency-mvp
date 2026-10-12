@@ -320,7 +320,7 @@ function DashboardView({ data, queueItems, setView }: {
               <b>{demonstratedCount} attestation(s) demonstrated</b>
               <small>Example scenario marked as demonstrated; this dashboard does not run verification.</small>
             </span>
-            <small>DEMO SCENARIO</small>
+            <span className="demo-label">DEMO SCENARIO</span>
           </div>
           {conflictCount > 0 && (
             <div>
@@ -329,7 +329,7 @@ function DashboardView({ data, queueItems, setView }: {
                 <b>{conflictCount} record(s) require adjudication</b>
                 <small>Consensus mechanisms diverge on these attestations</small>
               </span>
-              <small>DEMO SCENARIO</small>
+              <span className="demo-label">DEMO SCENARIO</span>
             </div>
           )}
           {inDevelopmentCount > 0 && (
@@ -339,7 +339,7 @@ function DashboardView({ data, queueItems, setView }: {
                 <b>{inDevelopmentCount} capability(ies) in development</b>
                 <small>Evidence collection is still in progress</small>
               </span>
-              <small>DEMO SCENARIO</small>
+              <span className="demo-label">DEMO SCENARIO</span>
             </div>
           )}
         </div>
