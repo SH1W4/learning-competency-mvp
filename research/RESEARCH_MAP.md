@@ -43,7 +43,6 @@ For a first pass, use:
 
 | Artifact | Primary question | Current conclusion | Status | Promotion target |
 |---|---|---|---|---|
-| `01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md` | What adjacent solutions already exist? | Adjacent solutions exist; complete workflow differentiation remains a hypothesis | **OBSERVED / INFERRED** | Positioning |
 | `RELATED_WORK_AND_EVIDENCE.md` | What prior standards, research and adjacent systems support or bound LASTRO's argument? | Foundational work and adjacent systems support parts of the thesis; the full composition remains a bounded research hypothesis | **FOUNDATION / SUPPORT / ADJACENT** | Argument / positioning |
 | `02_ETHICAL_COMPLIANCE_LAYER.md` | Can competency rules receive explicit governance constraints? | Interesting future mechanism; cannot claim universal fairness | **HYPOTHESIS / DEFERRED** | Future governance |
 | `product/PRODUCT_THESIS.md` | What broader product thesis follows from the evidence and MVP? | Evidence-backed capability verification is the current strategic thesis | **THESIS** | Product narrative |

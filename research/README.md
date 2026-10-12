@@ -79,7 +79,7 @@ Broader workforce-capability research, future product hypotheses, and research p
 ### Market, related work & ecosystem evidence
 
 - [Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
-- [Colosseum Ecosystem Benchmark](./01_COLOSSEUM_ECOSYSTEM_BENCHMARK.md)
+- [Related Work and External Evidence](./RELATED_WORK_AND_EVIDENCE.md)
 
 Some historical or internal market/strategy research is retained in the private Vault and is not linked from the public index.
 
