@@ -305,8 +305,8 @@ function DashboardView({ data, queueItems, setView }: {
       <section className="content-card overview-card">
         <div className="card-heading">
           <div>
-            <h2>Verification activity</h2>
-            <p>Current state across all competency targets.</p>
+            <h2>Scenario summary</h2>
+            <p>Counts from the synthetic scenarios bundled with this demo — not live production activity.</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button className="secondary-button" onClick={() => setView('Submeter Evidência')}>+ Nova Evidência</button>
@@ -318,9 +318,9 @@ function DashboardView({ data, queueItems, setView }: {
             <span className="activity-icon green"><Check /></span>
             <span>
               <b>{demonstratedCount} attestation(s) demonstrated</b>
-              <small>Evidence integrity confirmed in the latest cycle</small>
+              <small>Example scenario marked as demonstrated; this dashboard does not run verification.</small>
             </span>
-            <time>Today</time>
+            <small>DEMO SCENARIO</small>
           </div>
           {conflictCount > 0 && (
             <div>
@@ -329,7 +329,7 @@ function DashboardView({ data, queueItems, setView }: {
                 <b>{conflictCount} record(s) require adjudication</b>
                 <small>Consensus mechanisms diverge on these attestations</small>
               </span>
-              <time>Today</time>
+              <small>DEMO SCENARIO</small>
             </div>
           )}
           {inDevelopmentCount > 0 && (
@@ -339,7 +339,7 @@ function DashboardView({ data, queueItems, setView }: {
                 <b>{inDevelopmentCount} capability(ies) in development</b>
                 <small>Evidence collection is still in progress</small>
               </span>
-              <time>Yesterday</time>
+              <small>DEMO SCENARIO</small>
             </div>
           )}
         </div>
@@ -376,7 +376,7 @@ function QueueView({ items }: { items: QueueItem[]; setView: (view: View) => voi
           <div className="card-heading">
             <div>
               <h2>Pending attestations</h2>
-              <p>Each decision preserves a complete cryptographic audit trail.</p>
+              <p>Illustrative records only. This interface does not persist decisions or create canonical attestations.</p>
             </div>
             <div className="search-box">
               <Search />
@@ -400,18 +400,29 @@ function QueueView({ items }: { items: QueueItem[]; setView: (view: View) => voi
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((item) => (
+                {filtered.length === 0 ? (
+                  <tr><td colSpan={5} className="empty-state-cell">No sample records match “{query}”. Try another name or competency.</td></tr>
+                ) : filtered.map((item) => (
                   <tr
                     key={item.id}
+                    tabIndex={0}
+                    aria-label={`Select sample record for ${item.name}, ${item.target}`}
+                    aria-selected={selected?.id === item.id}
                     className={selected?.id === item.id ? 'selected-row' : ''}
                     onClick={() => setSelected(selected?.id === item.id ? null : item)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        setSelected(selected?.id === item.id ? null : item)
+                      }
+                    }}
                   >
                     <td>
                       <div className="person-cell">
                         <span className="person-avatar">{initials(item.name)}</span>
                         <span>
                           <b>{item.name}</b>
-                          <small>Submitted today</small>
+                          <small>Sample record</small>
                         </span>
                       </div>
                     </td>
