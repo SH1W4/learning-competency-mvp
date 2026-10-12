@@ -1,0 +1,76 @@
+name: Refresh frontend dependency lockfile
+
+on:
+  push:
+    branches: ["fix/frontend-dependency-security"]
+    paths:
+      - "frontend/package.json"
+      - ".github/workflows/refresh-frontend-dependencies.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-and-validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - name: Checkout security branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/frontend-dependency-security
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Resolve lockfile from declared dependencies
+        run: corepack pnpm install --lockfile-only --no-frozen-lockfile
+
+      - name: Apply compatible security updates
+        continue-on-error: true
+        run: corepack pnpm audit --fix
+
+      - name: Install exact resolved dependency tree
+        run: corepack pnpm install --no-frozen-lockfile
+
+      - name: Record dependency audit
+        if: always()
+        continue-on-error: true
+        run: |
+          corepack pnpm audit --json > /tmp/lastro-dependency-audit.json || true
+          node -e "const fs=require('fs');const p='/tmp/lastro-dependency-audit.json';try{const a=JSON.parse(fs.readFileSync(p,'utf8'));console.log(JSON.stringify(a.metadata?.vulnerabilities ?? a, null, 2))}catch(e){console.log(fs.readFileSync(p,'utf8'));process.exitCode=1}"
+
+      - name: Upload dependency audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: refreshed-frontend-dependency-audit
+          path: /tmp/lastro-dependency-audit.json
+          if-no-files-found: warn
+
+      - name: Typecheck
+        run: corepack pnpm run typecheck
+
+      - name: Build
+        run: corepack pnpm run build
+
+      - name: Commit validated manifest and lockfile
+        working-directory: .
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/package.json frontend/pnpm-lock.yaml
+          if git diff --cached --quiet; then
+            echo "No dependency changes to commit."
+            exit 0
+          fi
+          git commit -m "fix(frontend): refresh vulnerable dependency lockfile [skip ci]"
+          git push origin HEAD:fix/frontend-dependency-security
