@@ -8,8 +8,6 @@
 
 O núcleo M1 → M2 → M3 está implementado, testável e demonstrável. A capacidade de atestação está implementada; a prova pública Devnet corrente permanece como artefato de fechamento do M4. A integração frontend/E2E, a demonstração final e a validação externa permanecem como frentes de trabalho.
 
-**Instrumento de fechamento competitivo:** `docs/product/VICTORY_EXECUTION.md`.
-
 ## Base definida
 
 - caso de uso concreto;
