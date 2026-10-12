@@ -434,3 +434,64 @@
 .skip-link:focus { top: 8px; }
 .retry-button { margin-top: 12px; min-height: 44px; padding: 10px 18px; border: 1px solid var(--line-strong); border-radius: 4px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
 .retry-button:hover { border-color: var(--ac); }
+
+
+/* LASTRO mobile navigation corrections — override legacy compact-nav rules */
+@media (max-width: 720px) {
+  .sidebar .brand {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 2px 8px 22px;
+  }
+  .sidebar .brand-name {
+    font-size: 15px;
+    letter-spacing: .18em;
+  }
+  .sidebar .brand-caption {
+    display: block;
+    font-size: 8px;
+    line-height: 1.5;
+  }
+  .sidebar .nav-item {
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 12px;
+    min-height: 44px;
+  }
+  .sidebar .nav-item span { display: inline; }
+  .sidebar-bottom { display: flex; }
+  .mobile-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--fg);
+  }
+}
+@media (min-width: 721px) {
+  .mobile-menu, .mobile-close { display: none; }
+}
+
+/* Prevent legacy grid children from forcing the viewport wider than the screen */
+@media (max-width: 720px) {
+  .runtime-state-grid,
+  .runtime-metadata,
+  .runtime-consensus-meta,
+  .evaluation-grid,
+  .evidence-grid,
+  .trail-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .runtime-heading,
+  .runtime-section-heading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .runtime-heading > *, .runtime-section-heading > * { min-width: 0; max-width: 100%; }
+}
