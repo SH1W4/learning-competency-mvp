@@ -86,10 +86,32 @@ describe("LASTRO competency semantic adapter v0.1", () => {
   });
 
   it("rejects human adjudication when there was no conflict", () => {
-    expect(adaptCompetencyState({
+    expect(() => adaptCompetencyState({
       ...agreement,
       resolution: { status: "RESOLVED", mechanism: "human_adjudication", outcome: "ESTABLISHED" },
-    })).toMatchObject({ competencyState: null, mappingStatus: "INCONSISTENT", reason: "consensus_resolution_mismatch" });
+      adjudication: {
+        actorId: "reviewer-1",
+        basis: "reviewed source evidence",
+        evidenceRefs: ["ev-1"],
+        applicableRules: ["rule-1"],
+        priorVerifierResults: ["AGREEMENT"],
+      },
+    })).toThrowError(SemanticAdapterError);
+    try {
+      adaptCompetencyState({
+        ...agreement,
+        resolution: { status: "RESOLVED", mechanism: "human_adjudication", outcome: "ESTABLISHED" },
+        adjudication: {
+          actorId: "reviewer-1",
+          basis: "reviewed source evidence",
+          evidenceRefs: ["ev-1"],
+          applicableRules: ["rule-1"],
+          priorVerifierResults: ["AGREEMENT"],
+        },
+      });
+    } catch (error) {
+      expect(error).toMatchObject({ code: "ADJUDICATION_WITHOUT_CONFLICT" });
+    }
   });
 
   it("rejects human adjudication without a complete audit record", () => {
