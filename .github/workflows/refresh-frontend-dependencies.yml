@@ -36,8 +36,8 @@ jobs:
           npm pack shadcn@4.19.0 --pack-destination /tmp
           mkdir -p /tmp/shadcn-package
           tar -xzf /tmp/shadcn-4.19.0.tgz -C /tmp/shadcn-package
-          test -s /tmp/shadcn-package/package/tailwind.css
-          cp /tmp/shadcn-package/package/tailwind.css app/styles/shadcn-tailwind.css
+          test -s /tmp/shadcn-package/package/dist/tailwind.css
+          cp /tmp/shadcn-package/package/dist/tailwind.css app/styles/shadcn-tailwind.css
           sed -i "s|@import 'shadcn/tailwind.css';|@import './styles/shadcn-tailwind.css';|" app/globals.css
 
       - name: Resolve lockfile from declared dependencies
