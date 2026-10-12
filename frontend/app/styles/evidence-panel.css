@@ -226,3 +226,231 @@
 
 /* ---- Selected row highlight (queue table) ---- */
 tbody tr.selected-row { background: var(--surface-2); }
+
+/* ============================================================
+   FORMS & BUILDER STYLES (Submeter Evidência & Criar Trilha)
+   ============================================================ */
+.form-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 760px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-group label small {
+  font-family: var(--font-mono);
+  color: var(--mut-2);
+  font-size: 9.5px;
+}
+
+.form-control, .form-select, .form-textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--fg);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.18s;
+}
+.form-control:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--mut-2);
+}
+.form-control::placeholder, .form-textarea::placeholder {
+  color: var(--mut-2);
+}
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* File dropzone */
+.dropzone {
+  border: 1.5px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+}
+.dropzone:hover {
+  border-color: var(--mut);
+  background: #202025;
+}
+.dropzone svg {
+  width: 28px;
+  height: 28px;
+  color: var(--mut);
+}
+.dropzone strong {
+  font-size: 13px;
+  color: var(--fg);
+}
+.dropzone p {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--mut);
+}
+
+.hash-preview-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #2a2a2e;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.hash-preview-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hash-preview-card code {
+  font-size: 11px;
+  color: #fff;
+  background: #19191d;
+  border-color: var(--line-strong);
+}
+
+/* Success notification banner */
+.action-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #fff;
+  background: #000;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.action-banner div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.action-banner svg {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  flex: 0 0 auto;
+}
+.action-banner strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.action-banner p {
+  margin: 2px 0 0;
+  font-size: 11.5px;
+  color: var(--mut);
+}
+
+/* Presets & Builder Cards */
+.preset-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.preset-pill {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--gray);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.16s;
+}
+.preset-pill:hover, .preset-pill.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.builder-block {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.builder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.builder-header strong {
+  font-size: 13.5px;
+}
+
+.criteria-list, .activity-builder-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.criteria-item, .activity-builder-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.criteria-item-top, .activity-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.criteria-item-top b, .activity-item-top b {
+  font-size: 12px;
+  color: #fff;
+}
+

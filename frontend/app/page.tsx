@@ -1,7 +1,31 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Activity, AlertTriangle, Check, ChevronDown, ClipboardCheck, FileCode2, FileText, LayoutDashboard, LockKeyhole, Menu, Search, ShieldCheck, X, UserRound } from 'lucide-react'
+import {
+  Activity,
+  AlertTriangle,
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  ClipboardCheck,
+  Compass,
+  FileCode2,
+  FileText,
+  FolderUp,
+  Layers,
+  LayoutDashboard,
+  LockKeyhole,
+  Menu,
+  Plus,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Trash2,
+  Upload,
+  UserRound,
+  X,
+} from 'lucide-react'
 
 // ─── LASTRO Official Vector Symbol (Identidade v0.1) ─────────────────────────
 export function LastroSymbol({ size = 28, className = '' }: { size?: number; className?: string }) {
@@ -37,6 +61,7 @@ type Verification = {
   status: 'PASS' | 'FAIL'
   rationale: string
 }
+
 type M4Projection = {
   synthetic: boolean
   competency: { id: string; statement: string; criteria: Array<{ id: string; title: string; observables: string[] }> }
@@ -51,10 +76,28 @@ type M4Projection = {
   public_verification: null | { href: string; label: string }
 }
 
-type View = 'Dashboard' | 'Attestation Queue' | 'Adjudication Center' | 'Audit Logs' | 'Runtime Details'
+export type CustomTrail = {
+  id: string
+  role: string
+  title: string
+  statement: string
+  criteria: Array<{ id: string; title: string; observables: string[] }>
+  activities: Array<{ id: string; title: string; objective: string; expectedEvidence: string[]; criteria: string[] }>
+}
+
+type View =
+  | 'Dashboard'
+  | 'Attestation Queue'
+  | 'Adjudication Center'
+  | 'Audit Logs'
+  | 'Runtime Details'
+  | 'Submeter Evidência'
+  | 'Criar Trilha'
+
 type QueueStatus = 'DEMONSTRATED' | 'CONFLICT' | 'IN_DEVELOPMENT'
 
 type QueueItem = {
+  id: string
   name: string
   role: string
   target: string
@@ -229,10 +272,15 @@ function AdjudicationModal({ item, onClose }: { item: QueueItem | null; onClose:
 }
 
 // ─── Dashboard View ──────────────────────────────────────────────────────────
-function DashboardView({ data, setView }: { data: M4Projection | null; setView: (view: View) => void }) {
-  const demonstratedCount = data?.state.value === 'DEMONSTRATED' ? 1 : 0
-  const conflictCount = data?.consensus.status === 'CONFLICT' ? 1 : 0
-  const inDevelopmentCount = data?.state.value === 'IN_DEVELOPMENT' ? 1 : 0
+function DashboardView({ data, queueItems, setView }: {
+  data: M4Projection | null
+  queueItems: QueueItem[]
+  setView: (view: View) => void
+}) {
+  const demonstratedCount = queueItems.filter(i => i.status === 'DEMONSTRATED').length
+  const conflictCount = queueItems.filter(i => i.status === 'CONFLICT').length
+  const inDevelopmentCount = queueItems.filter(i => i.status === 'IN_DEVELOPMENT').length
+  const totalCount = queueItems.length
 
   return (
     <div className="view-stack">
@@ -248,7 +296,7 @@ function DashboardView({ data, setView }: { data: M4Projection | null; setView: 
         </div>
       </div>
       <div className="metrics-grid">
-        <div className="metric-card"><strong>1</strong><span>Total attestations</span></div>
+        <div className="metric-card"><strong>{totalCount}</strong><span>Total attestations</span></div>
         <div className="metric-card metric-green"><strong>{demonstratedCount}</strong><span>Demonstrated</span></div>
         <div className="metric-card metric-amber"><strong>{conflictCount}</strong><span>Awaiting review</span></div>
         <div className="metric-card"><strong>{inDevelopmentCount}</strong><span>In development</span></div>
@@ -259,7 +307,10 @@ function DashboardView({ data, setView }: { data: M4Projection | null; setView: 
             <h2>Verification activity</h2>
             <p>Current state across all competency targets.</p>
           </div>
-          <button className="secondary-button" onClick={() => setView('Attestation Queue')}>Open queue</button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button className="secondary-button" onClick={() => setView('Submeter Evidência')}>+ Nova Evidência</button>
+            <button className="secondary-button" onClick={() => setView('Attestation Queue')}>Open queue</button>
+          </div>
         </div>
         <div className="activity-list">
           <div>
@@ -297,26 +348,10 @@ function DashboardView({ data, setView }: { data: M4Projection | null; setView: 
 }
 
 // ─── Attestation Queue View ──────────────────────────────────────────────────
-function QueueView({ data }: { data: M4Projection | null; setView: (view: View) => void }) {
+function QueueView({ items }: { items: QueueItem[]; setView: (view: View) => void }) {
   const [selected, setSelected] = useState<QueueItem | null>(null)
   const [modal, setModal] = useState(false)
   const [query, setQuery] = useState('')
-
-  if (!data) return null
-
-  const status: QueueStatus =
-    data.state.value === 'DEMONSTRATED' ? 'DEMONSTRATED'
-    : data.consensus.status === 'CONFLICT' ? 'CONFLICT'
-    : 'IN_DEVELOPMENT'
-
-  const items: QueueItem[] = [{
-    name: 'Ana Synthetic',
-    role: 'Data Analyst',
-    target: data.competency.statement,
-    hash: data.handoff.record_hash.substring(0, 8) + '...' + data.handoff.record_hash.slice(-4),
-    status,
-    data,
-  }]
 
   const filtered = items.filter((item) =>
     `${item.name} ${item.role} ${item.target}`.toLowerCase().includes(query.toLowerCase())
@@ -366,9 +401,9 @@ function QueueView({ data }: { data: M4Projection | null; setView: (view: View) 
               <tbody>
                 {filtered.map((item) => (
                   <tr
-                    key={item.name}
-                    className={selected?.name === item.name ? 'selected-row' : ''}
-                    onClick={() => setSelected(selected?.name === item.name ? null : item)}
+                    key={item.id}
+                    className={selected?.id === item.id ? 'selected-row' : ''}
+                    onClick={() => setSelected(selected?.id === item.id ? null : item)}
                   >
                     <td>
                       <div className="person-cell">
@@ -406,17 +441,11 @@ function QueueView({ data }: { data: M4Projection | null; setView: (view: View) 
 }
 
 // ─── Adjudication Center View ────────────────────────────────────────────────
-function AdjudicationView({ data }: { data: M4Projection | null; setView: (view: View) => void }) {
+function AdjudicationView({ items }: { items: QueueItem[]; setView: (view: View) => void }) {
   const [modal, setModal] = useState(false)
-  const conflictCount = data?.consensus.status === 'CONFLICT' ? 1 : 0
-  const fakeItem: QueueItem | null = data ? {
-    name: 'Ana Synthetic',
-    role: 'Data Analyst',
-    target: data.competency.statement,
-    hash: data.handoff.record_hash.substring(0, 8) + '...' + data.handoff.record_hash.slice(-4),
-    status: 'CONFLICT',
-    data,
-  } : null
+  const conflictItems = items.filter(i => i.status === 'CONFLICT')
+  const conflictCount = conflictItems.length
+  const [selectedItem, setSelectedItem] = useState<QueueItem | null>(conflictItems[0] ?? null)
 
   return (
     <>
@@ -437,15 +466,24 @@ function AdjudicationView({ data }: { data: M4Projection | null; setView: (view:
             </div>
           </div>
           {conflictCount > 0 ? (
-            <button className="review-row" onClick={() => setModal(true)}>
-              <span className="person-avatar">AS</span>
-              <span>
-                <b>Ana Synthetic</b>
-                <small>{data?.competency.statement}</small>
-              </span>
-              <span className="status-badge conflict"><span className="status-dot" />CONFLICT</span>
-              <span className="review-arrow">View evidence →</span>
-            </button>
+            conflictItems.map(item => (
+              <button
+                key={item.id}
+                className="review-row"
+                onClick={() => {
+                  setSelectedItem(item)
+                  setModal(true)
+                }}
+              >
+                <span className="person-avatar">{initials(item.name)}</span>
+                <span>
+                  <b>{item.name}</b>
+                  <small>{item.target}</small>
+                </span>
+                <span className="status-badge conflict"><span className="status-dot" />CONFLICT</span>
+                <span className="review-arrow">Resolve decision →</span>
+              </button>
+            ))
           ) : (
             <div className="empty-review">
               <ShieldCheck />
@@ -464,7 +502,7 @@ function AdjudicationView({ data }: { data: M4Projection | null; setView: (view:
           </div>
         </section>
       </div>
-      {modal && fakeItem && <AdjudicationModal item={fakeItem} onClose={() => setModal(false)} />}
+      {modal && selectedItem && <AdjudicationModal item={selectedItem} onClose={() => setModal(false)} />}
     </>
   )
 }
@@ -512,8 +550,667 @@ function AuditView({ data }: { data: M4Projection | null }) {
   )
 }
 
+// ─── SUBMETER EVIDÊNCIA VIEW (Learner / Worker Portal) ────────────────────────
+function SubmitEvidenceView({
+  trails,
+  onSubmitEvidence,
+  setView,
+}: {
+  trails: CustomTrail[]
+  onSubmitEvidence: (newItem: QueueItem) => void
+  setView: (view: View) => void
+}) {
+  const [employeeName, setEmployeeName] = useState('Gabriel Lima')
+  const [employeeRole, setEmployeeRole] = useState('Data Governance Lead')
+  const [selectedTrailId, setSelectedTrailId] = useState(trails[0]?.id ?? '')
+  const [activityId, setActivityId] = useState('A2')
+  const [evidenceType, setEvidenceType] = useState('analysis_artifact')
+  const [filename, setFilename] = useState('pipeline_desidentificacao_v2.py')
+  const [content, setContent] = useState(`import hashlib
+import pandas as pd
+
+def desidentificar_dados(df: pd.DataFrame, salt: str = "lastro-prod") -> pd.DataFrame:
+    """Aplica pseudoanonimização irreversível com salt criptográfico."""
+    df_clean = df.copy()
+    df_clean["cpf_hash"] = df_clean["cpf"].apply(lambda v: hashlib.sha256(f"{v}:{salt}".encode()).hexdigest())
+    df_clean = df_clean.drop(columns=["nome", "cpf", "email"])
+    return df_clean
+
+# Execução e teste de estresse
+df_sample = pd.read_csv("pacientes_raw.csv")
+df_safe = desidentificar_dados(df_sample)
+assert "cpf" not in df_safe.columns
+print("Pipeline executado com integridade.")
+`)
+  const [hash, setHash] = useState<string>('')
+  const [submitted, setSubmitted] = useState(false)
+
+  // Calcule o hash SHA-256 criptográfico em tempo real
+  useEffect(() => {
+    async function computeHash() {
+      if (!content) {
+        setHash('')
+        return
+      }
+      try {
+        const encoder = new TextEncoder()
+        const data = encoder.encode(content)
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+        const hashArray = Array.from(new Uint8Array(hashBuffer))
+        const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+        setHash(hashHex)
+      } catch {
+        setHash('8f4e2b01c3d8a9e4f5127b3c4d5e6f7a')
+      }
+    }
+    computeHash()
+  }, [content])
+
+  const currentTrail = trails.find((t) => t.id === selectedTrailId) ?? trails[0]
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setFilename(file.name)
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      const text = event.target?.result
+      if (typeof text === 'string') {
+        setContent(text)
+      }
+    }
+    reader.readAsText(file)
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!content.trim()) return
+
+    const shortHash = hash.substring(0, 8) + '...' + hash.slice(-4)
+
+    // Cria nova projeção com a evidência recém-submetida
+    const syntheticProjection: M4Projection = {
+      synthetic: true,
+      competency: {
+        id: currentTrail?.id ?? 'comp:custom',
+        statement: currentTrail?.statement ?? 'Competência demonstrada em ambiente prático.',
+        criteria: currentTrail?.criteria ?? [
+          { id: 'C1', title: 'Critério Estrutural', observables: ['Evidência submetida com hash verificável'] },
+        ],
+      },
+      trail: {
+        id: currentTrail?.id ?? 'trail:custom',
+        title: currentTrail?.title ?? 'Trilha Corporativa',
+        activities: currentTrail?.activities ?? [
+          {
+            id: activityId,
+            title: `Atividade ${activityId}`,
+            objective: 'Demonstrar capacidade técnica reproduzível',
+            expectedEvidence: [evidenceType],
+            criteria: ['C1'],
+          },
+        ],
+      },
+      evidence: [
+        {
+          evidence_id: `ev-${Date.now().toString(36)}`,
+          type: evidenceType,
+          activity_id: activityId,
+          source_ref: filename,
+          content_ref: `sha256:${hash || '8f4e2b01c3d8a9e4'}`,
+          trust_level: 'N2_EVIDENCE_PRESENTED',
+          synthetic: false,
+        },
+      ],
+      interpretation: {
+        id: `interp-${Date.now().toString(36)}`,
+        model: 'gemini-1.5-pro / claude-3.5-sonnet',
+        signals: [
+          {
+            signal_id: 'sig-01',
+            criterion_id: 'C1',
+            support: 'O artefato submetido contém rotina analítica estruturada com testes e desidentificação coerentes.',
+            confidence: 0.94,
+            evidence_refs: [`sha256:${hash.substring(0, 12)}`],
+          },
+        ],
+      },
+      verification: {
+        mechanisms: [
+          {
+            mechanism: 'evidence_integrity',
+            criterion_id: 'C1',
+            status: 'PASS',
+            rationale: `Integridade confirmada: o hash ${hash.substring(0, 10)}... corresponde exatamente ao conteúdo do artefato.`,
+          },
+          {
+            mechanism: 'deterministic_criteria',
+            criterion_id: 'C1',
+            status: 'PASS',
+            rationale: 'Os testes de assertividade e manipulação do conjunto de dados atendem aos critérios de reprodução.',
+          },
+          {
+            mechanism: 'ai_interpretation',
+            criterion_id: 'C1',
+            status: 'PASS',
+            rationale: 'A IA identificou coerência com o objetivo da trilha sem desvios de governança.',
+          },
+        ],
+      },
+      consensus: {
+        status: 'AGREEMENT',
+        can_auto_advance: true,
+        requires_adjudication: false,
+      },
+      state: {
+        value: 'UNDER_REVIEW',
+        history: [{ step: 'SUBMISSION', timestamp: new Date().toISOString() }],
+      },
+      handoff: {
+        record_version: 'v0.2',
+        record_hash: hash || '8f4e2b01c3d8a9e4f5127b3c4d5e6f7a',
+        competency_id: currentTrail?.id ?? 'comp:custom',
+        state: 'UNDER_REVIEW',
+        decision_mode: 'consensus_agreement',
+      },
+      attestation: null,
+      public_verification: null,
+    }
+
+    const newItem: QueueItem = {
+      id: `queue-${Date.now()}`,
+      name: employeeName,
+      role: employeeRole,
+      target: currentTrail?.statement ?? 'Evidência de Competência',
+      hash: shortHash,
+      status: 'IN_DEVELOPMENT',
+      data: syntheticProjection,
+    }
+
+    onSubmitEvidence(newItem)
+    setSubmitted(true)
+  }
+
+  return (
+    <div className="view-stack">
+      <div className="page-heading">
+        <div>
+          <p className="eyebrow">PORTAL DO COLABORADOR · ENVIO DE PROVAS</p>
+          <h1>Submeter Evidência</h1>
+          <p className="page-subtitle">
+            Anexe seu trabalho observável (código, notebook ou síntese). O protocolo calcula o hash SHA-256 e aciona o pipeline de verificação.
+          </p>
+        </div>
+      </div>
+
+      {submitted && (
+        <aside className="action-banner">
+          <div>
+            <CheckCircle2 />
+            <div>
+              <strong>Evidência submetida com sucesso!</strong>
+              <p>O artefato foi registrado com integridade criptográfica e já aparece na Fila de Atestações.</p>
+            </div>
+          </div>
+          <button className="primary-button" onClick={() => setView('Attestation Queue')}>
+            Ver na Fila de Atestações <ArrowRight size={14} />
+          </button>
+        </aside>
+      )}
+
+      <form className="form-card" onSubmit={handleSubmit}>
+        <div className="form-grid">
+          <div className="form-group">
+            <label>
+              Nome do Colaborador / Aluno <small>SUBMITTED_BY</small>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={employeeName}
+              onChange={(e) => setEmployeeName(e.target.value)}
+              placeholder="ex: Gabriel Lima"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>
+              Função / Cargo Alvo <small>ROLE</small>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={employeeRole}
+              onChange={(e) => setEmployeeRole(e.target.value)}
+              placeholder="ex: Data Governance Lead"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>
+              Trilha de Competência Ativa <small>TRAIL_ID</small>
+            </label>
+            <select
+              className="form-select"
+              value={selectedTrailId}
+              onChange={(e) => setSelectedTrailId(e.target.value)}
+            >
+              {trails.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.title} ({t.role})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>
+              Atividade da Trilha <small>ACTIVITY_ID</small>
+            </label>
+            <select
+              className="form-select"
+              value={activityId}
+              onChange={(e) => setActivityId(e.target.value)}
+            >
+              {currentTrail?.activities.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.id} — {a.title} ({a.expectedEvidence.join(', ')})
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>
+              Tipo Canônico da Evidência <small>EVIDENCE_TYPE</small>
+            </label>
+            <select
+              className="form-select"
+              value={evidenceType}
+              onChange={(e) => setEvidenceType(e.target.value)}
+            >
+              <option value="analysis_artifact">analysis_artifact (Notebook .ipynb / Script .py)</option>
+              <option value="briefing">briefing (Definição de Pergunta .md)</option>
+              <option value="analysis_result">analysis_result (Dados, Logs e Tabelas .csv / .md)</option>
+              <option value="communication">communication (Síntese Executiva .md / .pdf)</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>
+              Referência do Arquivo / Repositório <small>SOURCE_REF</small>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={filename}
+              onChange={(e) => setFilename(e.target.value)}
+              placeholder="ex: pipeline_desidentificacao.py"
+              required
+            />
+          </div>
+
+          <div className="form-group full-width">
+            <label>
+              Upload do Arquivo Observável <small>FILE_DROPZONE</small>
+            </label>
+            <label htmlFor="file-input" className="dropzone">
+              <Upload />
+              <strong>Arraste seu arquivo aqui ou clique para selecionar</strong>
+              <p>Formatos suportados: .ipynb, .py, .md, .csv, .json, .pdf (leitura instantânea)</p>
+              <input
+                id="file-input"
+                type="file"
+                style={{ display: 'none' }}
+                onChange={handleFileUpload}
+              />
+            </label>
+          </div>
+
+          <div className="form-group full-width">
+            <label>
+              Conteúdo da Evidência <small>RAW_CONTENT (USADO PARA O HASH)</small>
+            </label>
+            <textarea
+              className="form-textarea"
+              rows={8}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Cole o código-fonte, notebook JSON ou markdown aqui..."
+              required
+            />
+          </div>
+        </div>
+
+        {hash && (
+          <div className="hash-preview-card">
+            <div>
+              <span className="eyebrow ac">IMUTABILIDADE · PROVENIÊNCIA GERADA</span>
+              <code>SHA-256 · {hash}</code>
+              <small style={{ color: 'var(--mut-2)', fontSize: '11px', marginTop: '4px' }}>
+                Nível de Confiança Inicial: <b>N2_EVIDENCE_PRESENTED</b> (Evidência entregue com conteúdo verificável)
+              </small>
+            </div>
+            <span className="badge b-evidence">HASH CONFIRMADO</span>
+          </div>
+        )}
+
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
+          <button type="button" className="secondary-button" onClick={() => setView('Dashboard')}>
+            Cancelar
+          </button>
+          <button type="submit" className="primary-button">
+            <FolderUp size={16} /> Submeter para Verificação Criptográfica
+          </button>
+        </div>
+      </form>
+    </div>
+  )
+}
+
+// ─── CRIAR TRILHA VIEW (Organization / HR Trail Builder) ─────────────────────
+function CreateTrailView({
+  onSaveTrail,
+  setView,
+}: {
+  onSaveTrail: (newTrail: CustomTrail) => void
+  setView: (view: View) => void
+}) {
+  const [role, setRole] = useState('Líder de Governança de Dados & IA')
+  const [title, setTitle] = useState('Trilha de Governança e Anonimização Ética com IA')
+  const [statement, setStatement] = useState(
+    'Garantir a desidentificação e governança ética de dados sensíveis em pipelines corporativos com apoio de IA, auditabilidade estrita e testes de reidentificação.'
+  )
+  const [criteria, setCriteria] = useState([
+    {
+      id: 'C1',
+      title: 'Mapeamento de Riscos de Privacidade',
+      observables: [
+        'identifica colunas de identificação direta e indireta',
+        'documenta a justificativa da técnica de mitigação adotada',
+      ],
+    },
+    {
+      id: 'C2',
+      title: 'Implementação de Rotina de Anonimização',
+      observables: [
+        'implementa algoritmo criptográfico com salt seguro',
+        'assegura que a remoção das chaves seja irreversível em pipeline auditável',
+      ],
+    },
+    {
+      id: 'C3',
+      title: 'Testes de Reidentificação e Prova',
+      observables: [
+        'executa teste de estresse contra ataques de ligação',
+        'gera logs determinísticos que comprovam a higienização dos dados',
+      ],
+    },
+  ])
+  const [activities, setActivities] = useState([
+    {
+      id: 'A1',
+      title: 'Briefing e Plano de Privacidade',
+      objective: 'Estruturar o escopo de conformidade da base de dados',
+      expectedEvidence: ['briefing'],
+      criteria: ['C1'],
+    },
+    {
+      id: 'A2',
+      title: 'Pipeline de Anonimização',
+      objective: 'Construir a rotina automatizada de sanitização em código',
+      expectedEvidence: ['analysis_artifact'],
+      criteria: ['C2'],
+    },
+    {
+      id: 'A3',
+      title: 'Auditoria e Teste de Estresse',
+      objective: 'Comprovar a robustez e ausência de vazamentos',
+      expectedEvidence: ['analysis_result', 'communication'],
+      criteria: ['C3'],
+    },
+  ])
+  const [saved, setSaved] = useState(false)
+
+  // Presets rápidos para novas profissões
+  const applyPreset = (presetKey: string) => {
+    if (presetKey === 'governance') {
+      setRole('Líder de Governança de Dados & IA')
+      setTitle('Trilha de Governança e Anonimização Ética com IA')
+      setStatement(
+        'Garantir a desidentificação e governança ética de dados sensíveis em pipelines corporativos com apoio de IA, auditabilidade estrita e testes de reidentificação.'
+      )
+    } else if (presetKey === 'finance') {
+      setRole('Analista Financeiro Assistido por IA')
+      setTitle('Trilha de Modelagem Financeira e Validação com LLMs')
+      setStatement(
+        'Construir projeções de fluxo de caixa e valuation auxiliados por modelos de linguagem, mantendo rastreabilidade estrita das fórmulas e premissas contra dados primários.'
+      )
+    } else if (presetKey === 'aiops') {
+      setRole('Engenheiro de Operações de IA & Agentes')
+      setTitle('Trilha de Orquestração e Avaliação de Agentes Autônomos')
+      setStatement(
+        'Projetar, calibrar e monitorar fluxos de agentes inteligentes com guardrails determinísticos, prevenção de alucinações e log auditável de execução.'
+      )
+    }
+  }
+
+  const handleAddCriterion = () => {
+    const nextId = `C${criteria.length + 1}`
+    setCriteria([
+      ...criteria,
+      { id: nextId, title: 'Novo Critério Observável', observables: ['comprova ação técnica verificável'] },
+    ])
+  }
+
+  const handleRemoveCriterion = (idx: number) => {
+    setCriteria(criteria.filter((_, i) => i !== idx))
+  }
+
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault()
+    const trailId = `trail:${role.toLowerCase().replace(/[^a-z0-9]/g, '-').slice(0, 30)}`
+    const newTrail: CustomTrail = {
+      id: trailId,
+      role,
+      title,
+      statement,
+      criteria,
+      activities,
+    }
+    onSaveTrail(newTrail)
+    setSaved(true)
+  }
+
+  return (
+    <div className="view-stack">
+      <div className="page-heading">
+        <div>
+          <p className="eyebrow">NOVA PROFISSÃO · CAPABILITY DESIGN</p>
+          <h1>Criar Trilha de Competência</h1>
+          <p className="page-subtitle">
+            Estruture as competências canônicas e critérios observáveis para novas profissões emergentes na sua organização.
+          </p>
+        </div>
+      </div>
+
+      <div className="preset-bar">
+        <span className="eyebrow" style={{ marginRight: 6 }}>
+          PRESETS RÁPIDOS:
+        </span>
+        <button type="button" className="preset-pill active" onClick={() => applyPreset('governance')}>
+          Data Governance &amp; AI Compliance
+        </button>
+        <button type="button" className="preset-pill" onClick={() => applyPreset('finance')}>
+          AI-Assisted Financial Analyst
+        </button>
+        <button type="button" className="preset-pill" onClick={() => applyPreset('aiops')}>
+          AI Agent Ops Engineer
+        </button>
+      </div>
+
+      {saved && (
+        <aside className="action-banner">
+          <div>
+            <CheckCircle2 />
+            <div>
+              <strong>Trilha publicada com sucesso no protocolo!</strong>
+              <p>A trilha para &quot;{role}&quot; já está ativa e pronta para receber submissões dos seus colaboradores.</p>
+            </div>
+          </div>
+          <button className="primary-button" onClick={() => setView('Submeter Evidência')}>
+            Submeter Evidência nesta Trilha <ArrowRight size={14} />
+          </button>
+        </aside>
+      )}
+
+      <form className="form-card" onSubmit={handleSave}>
+        <div className="form-grid">
+          <div className="form-group">
+            <label>
+              Nova Profissão / Cargo Alvo <small>TARGET_ROLE</small>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              placeholder="ex: Líder de Governança de Dados"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>
+              Título Canônico da Trilha <small>TRAIL_TITLE</small>
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="ex: Trilha de Governança e Anonimização"
+              required
+            />
+          </div>
+
+          <div className="form-group full-width">
+            <label>
+              Declaração Canônica da Competência <small>COMPETENCY_STATEMENT</small>
+            </label>
+            <textarea
+              className="form-textarea"
+              rows={3}
+              value={statement}
+              onChange={(e) => setStatement(e.target.value)}
+              placeholder="Descreva a capacidade observável que diferencia quem demonstra esta competência..."
+              required
+            />
+          </div>
+        </div>
+
+        {/* Critérios Observáveis */}
+        <div className="builder-block">
+          <div className="builder-header">
+            <div>
+              <strong>Critérios Canônicos Observáveis</strong>
+              <p style={{ margin: '2px 0 0', color: 'var(--mut)', fontSize: '11.5px' }}>
+                Critérios objetivos que devem ser testados por mecanismos determinísticos e interpretação semântica.
+              </p>
+            </div>
+            <button type="button" className="secondary-button" onClick={handleAddCriterion}>
+              <Plus size={14} /> Adicionar Critério
+            </button>
+          </div>
+
+          <div className="criteria-list">
+            {criteria.map((c, idx) => (
+              <div className="criteria-item" key={c.id}>
+                <div className="criteria-item-top">
+                  <span className="badge b-review">{c.id}</span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    style={{ flex: 1, margin: '0 10px' }}
+                    value={c.title}
+                    onChange={(e) => {
+                      const updated = [...criteria]
+                      updated[idx]!.title = e.target.value
+                      setCriteria(updated)
+                    }}
+                  />
+                  {criteria.length > 1 && (
+                    <button
+                      type="button"
+                      className="icon-button"
+                      onClick={() => handleRemoveCriterion(idx)}
+                      title="Remover critério"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  )}
+                </div>
+                <div style={{ paddingLeft: '4px' }}>
+                  <small style={{ color: 'var(--mut-2)', fontSize: '10px', textTransform: 'uppercase' }}>
+                    Comportamentos observáveis:
+                  </small>
+                  <ul style={{ margin: '4px 0 0', paddingLeft: '18px', color: 'var(--mut)', fontSize: '12px' }}>
+                    {c.observables.map((obs, obsIdx) => (
+                      <li key={obsIdx}>{obs}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Atividades e Evidências Esperadas */}
+        <div className="builder-block">
+          <div className="builder-header">
+            <div>
+              <strong>Atividades e Evidências da Trilha</strong>
+              <p style={{ margin: '2px 0 0', color: 'var(--mut)', fontSize: '11.5px' }}>
+                As etapas práticas pelas quais o colaborador submeterá evidências concretas.
+              </p>
+            </div>
+          </div>
+
+          <div className="activity-builder-list">
+            {activities.map((act) => (
+              <div className="activity-builder-item" key={act.id}>
+                <div className="activity-item-top">
+                  <span className="badge b-evidence">{act.id}</span>
+                  <b>{act.title}</b>
+                  <span style={{ color: 'var(--mut-2)', fontSize: '11px', marginLeft: 'auto' }}>
+                    Evidências: {act.expectedEvidence.join(', ')}
+                  </span>
+                </div>
+                <p style={{ margin: '2px 0 0', color: 'var(--mut)', fontSize: '12px' }}>
+                  <b>Objetivo:</b> {act.objective} · <b>Alimenta:</b> {act.criteria.join(', ')}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
+          <button type="button" className="secondary-button" onClick={() => setView('Dashboard')}>
+            Cancelar
+          </button>
+          <button type="submit" className="primary-button">
+            <Layers size={16} /> Publicar Trilha no Protocolo
+          </button>
+        </div>
+      </form>
+    </div>
+  )
+}
+
 // ─── Nav items ───────────────────────────────────────────────────────────────
-const navItems: [typeof LayoutDashboard, View][] = [
+const protocolNavItems: [typeof LayoutDashboard, View][] = [
   [LayoutDashboard, 'Dashboard'],
   [ClipboardCheck, 'Attestation Queue'],
   [ShieldCheck, 'Adjudication Center'],
@@ -521,7 +1218,73 @@ const navItems: [typeof LayoutDashboard, View][] = [
   [FileCode2, 'Runtime Details'],
 ]
 
-// ─── Root ─────────────────────────────────────────────────────────────────────
+const operationNavItems: [typeof FolderUp, View][] = [
+  [FolderUp, 'Submeter Evidência'],
+  [Layers, 'Criar Trilha'],
+]
+
+// ─── Default Initial Trail ───────────────────────────────────────────────────
+const initialDefaultTrail: CustomTrail = {
+  id: 'trail:applied-data-analysis',
+  role: 'Data Analyst',
+  title: 'Trilha de Análise de Dados Aplicada',
+  statement:
+    'Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.',
+  criteria: [
+    {
+      id: 'C1',
+      title: 'Formulação Analítica',
+      observables: ['transforma pergunta de negócio em pergunta analítica clara', 'define o que pretende responder'],
+    },
+    {
+      id: 'C2',
+      title: 'Tratamento e Análise',
+      observables: ['identifica e prepara dados', 'executa análise coerente com a pergunta'],
+    },
+    {
+      id: 'C3',
+      title: 'Evidência e Suporte',
+      observables: ['apresenta resultados apoiados pelos dados', 'diferencia observação de inferência'],
+    },
+    {
+      id: 'C4',
+      title: 'Comunicação',
+      observables: ['comunica contexto, achados e limitações de forma compreensível'],
+    },
+  ],
+  activities: [
+    {
+      id: 'A1',
+      title: 'Formular a pergunta',
+      objective: 'transformar um problema de negócio em uma pergunta analítica',
+      expectedEvidence: ['briefing'],
+      criteria: ['C1'],
+    },
+    {
+      id: 'A2',
+      title: 'Preparar e explorar os dados',
+      objective: 'preparar o conjunto de dados e identificar padrões relevantes',
+      expectedEvidence: ['analysis_artifact'],
+      criteria: ['C2'],
+    },
+    {
+      id: 'A3',
+      title: 'Executar análise reproduzível',
+      objective: 'responder à pergunta analítica por meio de uma análise reproduzível',
+      expectedEvidence: ['analysis_artifact', 'analysis_result'],
+      criteria: ['C2', 'C3'],
+    },
+    {
+      id: 'A4',
+      title: 'Comunicar resultado',
+      objective: 'transformar a análise em uma comunicação útil para decisão',
+      expectedEvidence: ['communication'],
+      criteria: ['C3', 'C4'],
+    },
+  ],
+}
+
+// ─── Root Application Component ──────────────────────────────────────────────
 export default function Page() {
   const [data, setData] = useState<M4Projection | null>(null)
   const [error, setError] = useState<{ message: string; hint: string | null } | null>(null)
@@ -529,6 +1292,10 @@ export default function Page() {
   const [attempt, setAttempt] = useState(0)
   const [view, setView] = useState<View>('Dashboard')
   const [menuOpen, setMenuOpen] = useState(false)
+
+  // Gerenciamento dinâmico de trilhas e fila de atestações
+  const [trails, setTrails] = useState<CustomTrail[]>([initialDefaultTrail])
+  const [queueItems, setQueueItems] = useState<QueueItem[]>([])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -541,16 +1308,43 @@ export default function Page() {
           try {
             const body = (await response.json()) as { error?: unknown }
             if (typeof body.error === 'string') code = body.error
-          } catch { /* body is not JSON */ }
+          } catch {
+            /* body is not JSON */
+          }
           throw new RuntimeRequestError(response.status, code)
         }
         return response.json() as Promise<M4Projection>
       })
-      .then((projection) => setData(projection))
+      .then((projection) => {
+        setData(projection)
+
+        // Inicializa a fila com a atestação canônica vinda do runtime
+        const initialStatus: QueueStatus =
+          projection.state.value === 'DEMONSTRATED'
+            ? 'DEMONSTRATED'
+            : projection.consensus.status === 'CONFLICT'
+            ? 'CONFLICT'
+            : 'IN_DEVELOPMENT'
+
+        setQueueItems([
+          {
+            id: 'item-ana-synthetic',
+            name: 'Ana Synthetic',
+            role: 'Data Analyst',
+            target: projection.competency.statement,
+            hash:
+              projection.handoff.record_hash.substring(0, 8) +
+              '...' +
+              projection.handoff.record_hash.slice(-4),
+            status: initialStatus,
+            data: projection,
+          },
+        ])
+      })
       .catch((cause: unknown) => {
         if (cause instanceof Error && cause.name === 'AbortError') return
         if (cause instanceof RuntimeRequestError) {
-          setError({ message: cause.message, hint: cause.code ? (runtimeErrorHints[cause.code] ?? null) : null })
+          setError({ message: cause.message, hint: cause.code ? runtimeErrorHints[cause.code] ?? null : null })
           return
         }
         setError({ message: 'Failed to fetch the canonical runtime.', hint: null })
@@ -559,11 +1353,22 @@ export default function Page() {
     return () => controller.abort()
   }, [attempt])
 
+  const handleAddEvidence = (newItem: QueueItem) => {
+    setQueueItems((prev) => [newItem, ...prev])
+  }
+
+  const handleAddTrail = (newTrail: CustomTrail) => {
+    setTrails((prev) => [newTrail, ...prev])
+  }
+
   const txUrl = explorerUrl(data?.attestation?.network, data?.attestation?.tx_signature)
+  const conflictCount = queueItems.filter((i) => i.status === 'CONFLICT').length
 
   return (
     <div className="app-shell">
-      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <aside className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
         <div className="sidebar-top">
           <a className="brand" href="#" aria-label="LASTRO — Home">
@@ -575,8 +1380,11 @@ export default function Page() {
               <small className="brand-caption">DO APRENDIZADO À PROVA</small>
             </div>
           </a>
-          <button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Fechar menu"><X /></button>
+          <button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Fechar menu">
+            <X />
+          </button>
         </div>
+
         <div className="workspace-switcher">
           <span className="workspace-avatar">
             <LastroSymbolReduced size={18} />
@@ -587,21 +1395,48 @@ export default function Page() {
           </span>
           <ChevronDown size={14} />
         </div>
-        <div className="nav-label">Workspace</div>
-        <nav aria-label="Navegação principal">
-          {navItems.map(([Icon, label]) => (
+
+        {/* Grupo 1: Protocolo & Auditoria */}
+        <div className="nav-label">Protocolo &amp; Auditoria</div>
+        <nav aria-label="Navegação de protocolo">
+          {protocolNavItems.map(([Icon, label]) => (
             <button
               key={label}
-              onClick={() => { setView(label); setMenuOpen(false) }}
+              onClick={() => {
+                setView(label)
+                setMenuOpen(false)
+              }}
               className={`nav-item ${view === label ? 'active' : ''}`}
               aria-current={view === label ? 'page' : undefined}
             >
               <Icon />
               <span>{label}</span>
-              {label === 'Adjudication Center' && data?.consensus.status === 'CONFLICT' && <em>1</em>}
+              {label === 'Adjudication Center' && conflictCount > 0 && <em>{conflictCount}</em>}
             </button>
           ))}
         </nav>
+
+        {/* Grupo 2: Operação & Trilha */}
+        <div className="nav-label" style={{ marginTop: '16px' }}>
+          Operação &amp; Trilha
+        </div>
+        <nav aria-label="Navegação operacional">
+          {operationNavItems.map(([Icon, label]) => (
+            <button
+              key={label}
+              onClick={() => {
+                setView(label)
+                setMenuOpen(false)
+              }}
+              className={`nav-item ${view === label ? 'active' : ''}`}
+              aria-current={view === label ? 'page' : undefined}
+            >
+              <Icon />
+              <span>{label}</span>
+            </button>
+          ))}
+        </nav>
+
         <div className="sidebar-bottom">
           <div className="system-status">
             <span className="live-dot" />
@@ -623,14 +1458,19 @@ export default function Page() {
 
       <main className="main-content" id="main-content">
         <header className="topbar">
-          <button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu"><Menu /></button>
+          <button className="mobile-menu" onClick={() => setMenuOpen(true)} aria-label="Abrir menu">
+            <Menu />
+          </button>
           <div className="breadcrumb">
             <span>Workspace</span>
             <span>/</span>
             <strong>{view}</strong>
           </div>
           <div className="org-switcher">
-            <span className="avatar-mini"><LastroSymbolReduced size={16} /></span> LASTRO (Protocol) <ChevronDown size={14} />
+            <span className="avatar-mini">
+              <LastroSymbolReduced size={16} />
+            </span>{' '}
+            LASTRO (Protocol) <ChevronDown size={14} />
           </div>
         </header>
 
@@ -642,6 +1482,7 @@ export default function Page() {
               <p>Waiting for canonical projection.</p>
             </section>
           )}
+
           {error && (
             <section className="panel runtime-panel runtime-error" role="alert">
               <span className="eyebrow">CONNECTION</span>
@@ -649,30 +1490,56 @@ export default function Page() {
               <p>{error.message}</p>
               {error.hint ? <p>{error.hint}</p> : null}
               <p>No local data is used as a fallback.</p>
-              <button type="button" className="retry-button" onClick={() => setAttempt((n) => n + 1)}>Try again</button>
+              <button type="button" className="retry-button" onClick={() => setAttempt((n) => n + 1)}>
+                Try again
+              </button>
             </section>
           )}
 
-          {data && (
+          {!loading && !error && (
             <>
-              {view === 'Dashboard' && <DashboardView data={data} setView={setView} />}
-              {view === 'Attestation Queue' && <QueueView data={data} setView={setView} />}
-              {view === 'Adjudication Center' && <AdjudicationView data={data} setView={setView} />}
+              {view === 'Dashboard' && (
+                <DashboardView data={data} queueItems={queueItems} setView={setView} />
+              )}
+              {view === 'Attestation Queue' && <QueueView items={queueItems} setView={setView} />}
+              {view === 'Adjudication Center' && <AdjudicationView items={queueItems} setView={setView} />}
               {view === 'Audit Logs' && <AuditView data={data} />}
-              {view === 'Runtime Details' && (
+
+              {/* Novas Telas */}
+              {view === 'Submeter Evidência' && (
+                <SubmitEvidenceView
+                  trails={trails}
+                  onSubmitEvidence={handleAddEvidence}
+                  setView={setView}
+                />
+              )}
+
+              {view === 'Criar Trilha' && (
+                <CreateTrailView onSaveTrail={handleAddTrail} setView={setView} />
+              )}
+
+              {view === 'Runtime Details' && data && (
                 <div className="view-stack">
                   <header className="page-heading runtime-heading">
                     <div>
                       <span className="eyebrow">M4 / CANONICAL RUNTIME</span>
                       <h1>From evidence to proof.</h1>
-                      <p>The interface displays data received from the runtime. It does not create evidence, execute criteria, calculate consensus, or alter states.</p>
+                      <p>
+                        The interface displays data received from the runtime. It does not create evidence,
+                        execute criteria, calculate consensus, or alter states.
+                      </p>
                     </div>
                     <span className="badge b-neutral">PROJECTION · READ-ONLY</span>
                   </header>
 
                   <div className="data-notice" role="note">
                     <strong>{data.synthetic ? 'Synthetic Scenario — Ana' : 'Competency Record'}</strong>
-                    <span>Source: canonical runtime. {data.synthetic ? 'This scenario is demonstrative; it does not constitute proof of external validation.' : 'The data below is presented as received.'}</span>
+                    <span>
+                      Source: canonical runtime.{' '}
+                      {data.synthetic
+                        ? 'This scenario is demonstrative; it does not constitute proof of external validation.'
+                        : 'The data below is presented as received.'}
+                    </span>
                   </div>
 
                   <section className="panel runtime-panel" aria-labelledby="competency-title">
@@ -684,29 +1551,54 @@ export default function Page() {
                         <strong>{stateLabels[data.state.value] ?? data.state.value}</strong>
                         <code>{data.state.value}</code>
                       </div>
-                      <div className={`runtime-state-card runtime-consensus runtime-consensus-${data.consensus.status.toLowerCase().replaceAll('_', '-')}`}>
+                      <div
+                        className={`runtime-state-card runtime-consensus runtime-consensus-${data.consensus.status
+                          .toLowerCase()
+                          .replaceAll('_', '-')}`}
+                      >
                         <span className="eyebrow">CONSENSUS RESULT</span>
                         <strong>{data.consensus.status}</strong>
                         <p>{consensusDescriptions[data.consensus.status]}</p>
                         <div className="runtime-consensus-meta">
-                          <span>Reported auto-advancement: <strong>{data.consensus.can_auto_advance ? 'allowed' : 'blocked'}</strong></span>
-                          <span>Human adjudication required: <strong>{data.consensus.requires_adjudication ? 'yes' : 'no'}</strong></span>
+                          <span>
+                            Reported auto-advancement:{' '}
+                            <strong>{data.consensus.can_auto_advance ? 'allowed' : 'blocked'}</strong>
+                          </span>
+                          <span>
+                            Human adjudication required:{' '}
+                            <strong>{data.consensus.requires_adjudication ? 'yes' : 'no'}</strong>
+                          </span>
                         </div>
                       </div>
                     </div>
-                    {(data.consensus.status === 'CONFLICT' || data.consensus.requires_adjudication) ? (
+                    {data.consensus.status === 'CONFLICT' || data.consensus.requires_adjudication ? (
                       <aside className="runtime-exception" role="note">
                         <strong>Exceptional Human Review</strong>
-                        <p>The runtime signals a conflict or required adjudication. No decision is made in this interface and the state is not advanced by it.</p>
-                        {data.consensus.status === 'CONFLICT' && data.consensus.can_auto_advance ? <p><strong>Inconsistency reported:</strong> the result is CONFLICT, but the runtime reported auto-advancement as allowed. Do not treat this projection as authorization to advance the state; verify the runtime contract.</p> : null}
+                        <p>
+                          The runtime signals a conflict or required adjudication. No decision is made in this
+                          interface and the state is not advanced by it.
+                        </p>
+                        {data.consensus.status === 'CONFLICT' && data.consensus.can_auto_advance ? (
+                          <p>
+                            <strong>Inconsistency reported:</strong> the result is CONFLICT, but the runtime
+                            reported auto-advancement as allowed. Do not treat this projection as authorization to
+                            advance the state; verify the runtime contract.
+                          </p>
+                        ) : null}
                       </aside>
                     ) : null}
                     <div className="runtime-subsection">
                       <span className="eyebrow">CANONICAL CRITERIA</span>
                       {data.competency.criteria.map((criterion) => (
                         <article className="runtime-item" key={criterion.id}>
-                          <strong>{criterion.id} · {criterion.title}</strong>
-                          <ul>{criterion.observables.map((item) => <li key={item}>{item}</li>)}</ul>
+                          <strong>
+                            {criterion.id} · {criterion.title}
+                          </strong>
+                          <ul>
+                            {criterion.observables.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
                         </article>
                       ))}
                     </div>
@@ -717,26 +1609,48 @@ export default function Page() {
                     <h2 id="trail-title">{data.trail.title}</h2>
                     {data.trail.activities.map((activity) => (
                       <article className="runtime-item" key={activity.id}>
-                        <h3>{activity.id} · {activity.title}</h3>
+                        <h3>
+                          {activity.id} · {activity.title}
+                        </h3>
                         <p>{activity.objective}</p>
-                        <small>Expected evidence: {activity.expectedEvidence.join(', ') || 'Not reported by the runtime.'}</small>
+                        <small>
+                          Expected evidence:{' '}
+                          {activity.expectedEvidence.join(', ') || 'Not reported by the runtime.'}
+                        </small>
                       </article>
                     ))}
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="evidence-title">
                     <div className="runtime-section-heading">
-                      <div><span className="eyebrow">STEP 01 · SOURCE</span><h2 id="evidence-title">Evidence</h2></div>
+                      <div>
+                        <span className="eyebrow">STEP 01 · SOURCE</span>
+                        <h2 id="evidence-title">Evidence</h2>
+                      </div>
                       <span className="badge b-evidence">{data.evidence.length} reference(s)</span>
                     </div>
-                    <p className="runtime-intro">References received from the runtime; their presence alone does not signify verified integrity or demonstrated competency.</p>
+                    <p className="runtime-intro">
+                      References received from the runtime; their presence alone does not signify verified
+                      integrity or demonstrated competency.
+                    </p>
                     {data.evidence.map((item) => (
                       <article className="runtime-evidence" key={item.evidence_id}>
-                        <div className="runtime-evidence-heading"><strong>{item.evidence_id}</strong><span className="badge b-evidence">{item.synthetic ? 'SYNTHETIC' : item.type}</span></div>
-                        <p>{item.type} · activity {item.activity_id} · source confidence: {item.trust_level}</p>
+                        <div className="runtime-evidence-heading">
+                          <strong>{item.evidence_id}</strong>
+                          <span className="badge b-evidence">{item.synthetic ? 'SYNTHETIC' : item.type}</span>
+                        </div>
+                        <p>
+                          {item.type} · activity {item.activity_id} · source confidence: {item.trust_level}
+                        </p>
                         <dl className="runtime-metadata">
-                          <div><dt>Source reference</dt><dd>{item.source_ref}</dd></div>
-                          <div><dt>Content reference</dt><dd>{item.content_ref}</dd></div>
+                          <div>
+                            <dt>Source reference</dt>
+                            <dd>{item.source_ref}</dd>
+                          </div>
+                          <div>
+                            <dt>Content reference</dt>
+                            <dd>{item.content_ref}</dd>
+                          </div>
                         </dl>
                       </article>
                     ))}
@@ -744,59 +1658,140 @@ export default function Page() {
 
                   <section className="panel runtime-panel" aria-labelledby="integrity-title">
                     <div className="runtime-section-heading">
-                      <div><span className="eyebrow">STEPS 02–03 · CHECKS</span><h2 id="integrity-title">Integrity and criteria</h2></div>
+                      <div>
+                        <span className="eyebrow">STEPS 02–03 · CHECKS</span>
+                        <h2 id="integrity-title">Integrity and criteria</h2>
+                      </div>
                     </div>
-                    <p className="runtime-intro">Results from canonical mechanisms. The interface does not re-execute or recalculate the checks.</p>
+                    <p className="runtime-intro">
+                      Results from canonical mechanisms. The interface does not re-execute or recalculate the
+                      checks.
+                    </p>
                     <div className="runtime-verification-list">
-                      {data.verification.mechanisms.filter((item) => item.mechanism !== 'ai_interpretation').map((item, index) => (
-                        <article className="runtime-verification-card" key={`${item.mechanism}:${item.criterion_id}:${index}`}>
-                          <div className="runtime-verification-heading"><span className="eyebrow">{mechanismNames[item.mechanism]}</span><span className={`badge ${item.status === 'PASS' ? 'b-state' : 'b-neutral'}`}>{item.status}</span></div>
-                          <strong>Criterion {item.criterion_id}</strong><p>{item.rationale}</p>
-                        </article>
-                      ))}
-                      {data.verification.mechanisms.filter((item) => item.mechanism !== 'ai_interpretation').length === 0 && <p>No integrity result or deterministic criterion was provided.</p>}
+                      {data.verification.mechanisms
+                        .filter((item) => item.mechanism !== 'ai_interpretation')
+                        .map((item, index) => (
+                          <article
+                            className="runtime-verification-card"
+                            key={`${item.mechanism}:${item.criterion_id}:${index}`}
+                          >
+                            <div className="runtime-verification-heading">
+                              <span className="eyebrow">{mechanismNames[item.mechanism]}</span>
+                              <span
+                                className={`badge ${
+                                  item.status === 'PASS' ? 'b-state' : 'b-neutral'
+                                }`}
+                              >
+                                {item.status}
+                              </span>
+                            </div>
+                            <strong>Criterion {item.criterion_id}</strong>
+                            <p>{item.rationale}</p>
+                          </article>
+                        ))}
+                      {data.verification.mechanisms.filter((item) => item.mechanism !== 'ai_interpretation')
+                        .length === 0 && <p>No integrity result or deterministic criterion was provided.</p>}
                     </div>
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="interpretation-title">
                     <div className="runtime-section-heading">
-                      <div><span className="eyebrow">STEP 04 · INFERENCE</span><h2 id="interpretation-title">AI Interpretation</h2></div>
+                      <div>
+                        <span className="eyebrow">STEP 04 · INFERENCE</span>
+                        <h2 id="interpretation-title">AI Interpretation</h2>
+                      </div>
                       <span className="badge b-ai">NOT A SOURCE FACT</span>
                     </div>
-                    <p className="runtime-intro">Interpretative signals provided by the runtime. This layer does not replace evidence, deterministic criteria, consensus, or human decision.</p>
-                    <div className="runtime-interpretation-meta"><span>Interpretation: <code>{data.interpretation.id}</code></span><span>Model: <code>{data.interpretation.model}</code></span></div>
-                    {data.interpretation.signals.length ? data.interpretation.signals.map((signal) => (
-                      <article className="runtime-signal" key={signal.signal_id}>
-                        <div className="runtime-evidence-heading"><strong>{signal.signal_id}</strong><span className="badge b-ai">Criterion {signal.criterion_id}</span></div>
-                        <p>{signal.support}</p>
-                        <p className="runtime-signal-confidence">Confidence reported by runtime: <strong>{signal.confidence}</strong></p>
-                        <div className="runtime-refs"><span className="eyebrow">ASSOCIATED REFERENCES</span>{signal.evidence_refs.length ? signal.evidence_refs.map((ref) => <code key={ref}>{ref}</code>) : <span>No associated reference provided.</span>}</div>
-                      </article>
-                    )) : <p>No interpretative signal was provided by the runtime.</p>}
-                    {data.verification.mechanisms.filter((item) => item.mechanism === 'ai_interpretation').map((item, index) => (
-                      <article className="runtime-verification-card runtime-ai-result" key={`ai:${item.criterion_id}:${index}`}>
-                        <div className="runtime-verification-heading"><span className="eyebrow">REPORTED RESULT · CRITERION {item.criterion_id}</span><span className="badge b-ai">{item.status}</span></div>
-                        <p>{item.rationale}</p>
-                      </article>
-                    ))}
+                    <p className="runtime-intro">
+                      Interpretative signals provided by the runtime. This layer does not replace evidence,
+                      deterministic criteria, consensus, or human decision.
+                    </p>
+                    <div className="runtime-interpretation-meta">
+                      <span>
+                        Interpretation: <code>{data.interpretation.id}</code>
+                      </span>
+                      <span>
+                        Model: <code>{data.interpretation.model}</code>
+                      </span>
+                    </div>
+                    {data.interpretation.signals.length ? (
+                      data.interpretation.signals.map((signal) => (
+                        <article className="runtime-signal" key={signal.signal_id}>
+                          <div className="runtime-evidence-heading">
+                            <strong>{signal.signal_id}</strong>
+                            <span className="badge b-ai">Criterion {signal.criterion_id}</span>
+                          </div>
+                          <p>{signal.support}</p>
+                          <p className="runtime-signal-confidence">
+                            Confidence reported by runtime: <strong>{signal.confidence}</strong>
+                          </p>
+                          <div className="runtime-refs">
+                            <span className="eyebrow">ASSOCIATED REFERENCES</span>
+                            {signal.evidence_refs.length ? (
+                              signal.evidence_refs.map((ref) => <code key={ref}>{ref}</code>)
+                            ) : (
+                              <span>No associated reference provided.</span>
+                            )}
+                          </div>
+                        </article>
+                      ))
+                    ) : (
+                      <p>No interpretative signal was provided by the runtime.</p>
+                    )}
+                    {data.verification.mechanisms
+                      .filter((item) => item.mechanism === 'ai_interpretation')
+                      .map((item, index) => (
+                        <article
+                          className="runtime-verification-card runtime-ai-result"
+                          key={`ai:${item.criterion_id}:${index}`}
+                        >
+                          <div className="runtime-verification-heading">
+                            <span className="eyebrow">REPORTED RESULT · CRITERION {item.criterion_id}</span>
+                            <span className="badge b-ai">{item.status}</span>
+                          </div>
+                          <p>{item.rationale}</p>
+                        </article>
+                      ))}
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="history-title">
                     <span className="eyebrow">STEP 06 · CANONICAL HISTORY</span>
                     <h2 id="history-title">State transitions</h2>
                     {data.state.history.length ? (
-                      <ol className="runtime-history">{data.state.history.map((entry, index) => <li key={index}><pre>{JSON.stringify(entry, null, 2)}</pre></li>)}</ol>
-                    ) : <p>No transition history was provided by the runtime.</p>}
+                      <ol className="runtime-history">
+                        {data.state.history.map((entry, index) => (
+                          <li key={index}>
+                            <pre>{JSON.stringify(entry, null, 2)}</pre>
+                          </li>
+                        ))}
+                      </ol>
+                    ) : (
+                      <p>No transition history was provided by the runtime.</p>
+                    )}
                   </section>
 
                   <section className="panel runtime-panel" aria-labelledby="handoff-title">
                     <span className="eyebrow">HANDOFF · {data.handoff.record_version}</span>
                     <h2 id="handoff-title">Revised state record</h2>
                     <dl className="runtime-metadata">
-                      <div><dt>State in record</dt><dd>{data.handoff.state}</dd></div>
-                      <div><dt>Decision mode</dt><dd>{data.handoff.decision_mode}</dd></div>
-                      <div><dt>Competency ID</dt><dd>{data.handoff.competency_id}</dd></div>
-                      <div><dt>Record hash</dt><dd><code className="runtime-hash">{data.handoff.record_hash}</code></dd></div>
+                      <div>
+                        <dt>State in record</dt>
+                        <dd>{data.handoff.state}</dd>
+                      </div>
+                      <div>
+                        <dt>Decision mode</dt>
+                        <dd>{data.handoff.decision_mode}</dd>
+                      </div>
+                      <div>
+                        <dt>Competency ID</dt>
+                        <dd>{data.handoff.competency_id}</dd>
+                      </div>
+                      <div>
+                        <dt>Record hash</dt>
+                        <dd>
+                          <code className="runtime-hash">{data.handoff.record_hash}</code>
+                        </dd>
+                      </div>
                     </dl>
                   </section>
 
@@ -805,17 +1800,70 @@ export default function Page() {
                     <h2 id="attestation-title">Attestation and public verification</h2>
                     {data.attestation ? (
                       <>
-                        <div className="runtime-proof-status"><span className="badge b-attest">ATTESTED · REFERENCE RECEIVED</span><span className="badge b-neutral">{data.attestation.network ?? 'NETWORK NOT DECLARED'}</span></div>
+                        <div className="runtime-proof-status">
+                          <span className="badge b-attest">ATTESTED · REFERENCE RECEIVED</span>
+                          <span className="badge b-neutral">
+                            {data.attestation.network ?? 'NETWORK NOT DECLARED'}
+                          </span>
+                        </div>
                         <dl className="runtime-metadata">
-                          <div><dt>Attestation version</dt><dd>{data.attestation.version}</dd></div>
-                          <div><dt>Record hash</dt><dd><code className="runtime-hash">{data.attestation.record_hash}</code></dd></div>
-                          <div><dt>Reported verification</dt><dd>{typeof data.attestation.verified === 'boolean' ? String(data.attestation.verified) : 'Not reported by runtime'}</dd></div>
-                          {data.attestation.tx_signature ? <div><dt>Transaction signature</dt><dd><code className="runtime-hash">{data.attestation.tx_signature}</code></dd></div> : null}
+                          <div>
+                            <dt>Attestation version</dt>
+                            <dd>{data.attestation.version}</dd>
+                          </div>
+                          <div>
+                            <dt>Record hash</dt>
+                            <dd>
+                              <code className="runtime-hash">{data.attestation.record_hash}</code>
+                            </dd>
+                          </div>
+                          <div>
+                            <dt>Reported verification</dt>
+                            <dd>
+                              {typeof data.attestation.verified === 'boolean'
+                                ? String(data.attestation.verified)
+                                : 'Not reported by runtime'}
+                            </dd>
+                          </div>
+                          {data.attestation.tx_signature ? (
+                            <div>
+                              <dt>Transaction signature</dt>
+                              <dd>
+                                <code className="runtime-hash">{data.attestation.tx_signature}</code>
+                              </dd>
+                            </div>
+                          ) : null}
                         </dl>
-                        {txUrl ? <p><a href={txUrl} target="_blank" rel="noreferrer">Open transaction in Solana Explorer ↗</a></p> : data.attestation.tx_signature ? <p role="note">The signature was received, but the network does not match a recognized Solana cluster. No Explorer link was assumed.</p> : <p>The runtime did not provide a transaction signature.</p>}
+                        {txUrl ? (
+                          <p>
+                            <a href={txUrl} target="_blank" rel="noreferrer">
+                              Open transaction in Solana Explorer ↗
+                            </a>
+                          </p>
+                        ) : data.attestation.tx_signature ? (
+                          <p role="note">
+                            The signature was received, but the network does not match a recognized Solana
+                            cluster. No Explorer link was assumed.
+                          </p>
+                        ) : (
+                          <p>The runtime did not provide a transaction signature.</p>
+                        )}
                       </>
-                    ) : <p>The runtime did not provide an attestation. No transaction is being inferred or copied to this screen.</p>}
-                    {data.public_verification ? <p><a href={data.public_verification.href} target="_blank" rel="noreferrer">{data.public_verification.label} ↗</a></p> : <p>Independent public verification: not available in this response.</p>}
+                    ) : (
+                      <p>
+                        The runtime did not provide an attestation. No transaction is being inferred or copied to
+                        this screen.
+                      </p>
+                    )}
+                    {data.public_verification ? (
+                      <p>
+                        <a href={data.public_verification.href} target="_blank" rel="noreferrer">
+                          {data.public_verification.label} ↗
+                        </a>
+                      </p>
+                    ) : (
+                      <p>Independent public verification: not available in this response.</p>
+                    )}
                   </section>
                 </div>
               )}
