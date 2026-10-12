@@ -14,7 +14,7 @@ If you are new to LASTRO, follow this path:
 2. **[Research Map](./RESEARCH_MAP.md)** — see every public research track, question, status, and promotion target.
 3. **[Related Work, Prior Art & External Evidence](./RELATED_WORK_AND_EVIDENCE.md)** — trace the main public arguments to external sources and adjacent systems.
 4. **[Article Research Track](./article/README.md)** — inspect the focused literature/research line behind the evidence → competency verification thesis.
-5. **Product thesis** — understand the bounded strategic thesis that contextualizes the current MVP.
+5. **[Product & MVP Scope](../docs/evaluation/01_PRODUCT.md)** — understand the bounded public product claim and current scope.
 6. **Canonical implementation** — move from research to the current product/architecture and executable proof in `docs/`, `src/`, `tests/`, and `fixtures/`.
 
 ### The public evidence chain
@@ -68,13 +68,9 @@ The article research track is intentionally public because its literature founda
 
 **Status:** scoped review / research hypothesis. These documents are not a systematic review, legal novelty analysis, or proof of academic novelty.
 
-### Product thesis
+### Product scope and thesis boundary
 
-The public product-research surface is intentionally limited to the bounded thesis that contextualizes the current MVP.
-
-- [Product Thesis](./product/PRODUCT_THESIS.md)
-
-Broader workforce-capability research, future product hypotheses, and research planning are maintained in the private LASTRO Operational Brain. They are not part of the current public research surface.
+The public product claim and current MVP scope are documented in [Product & MVP Scope](../docs/evaluation/01_PRODUCT.md) and bounded by [Limitations & Claims](../docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md). Detailed product strategy, broader workforce-capability hypotheses, and research planning are maintained in the private Vault and are not part of the public research index.
 
 ### Market, related work & ecosystem evidence
 
