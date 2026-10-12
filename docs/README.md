@@ -30,7 +30,7 @@ This index points to the public material needed to understand, inspect, and repr
 - [Frontend product specification](product/FRONTEND_PRODUCT_SPEC.md)
 - [Research map](../research/RESEARCH_MAP.md)
 - [Related work and external evidence](../research/RELATED_WORK_AND_EVIDENCE.md)
-- [Product thesis](../research/product/PRODUCT_THESIS.md)
+- [Product overview](evaluation/01_PRODUCT.md)
 - [Competitive landscape framework](market/COMPETITIVE_LANDSCAPE.md)
 
 Research and market documents provide context and hypotheses; they do not independently establish product-market fit or change the implemented contract.
