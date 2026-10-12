@@ -583,6 +583,7 @@ assert "cpf" not in df_safe.columns
 print("Pipeline executado com integridade.")
 `)
   const [hash, setHash] = useState<string>('')
+  const [hashError, setHashError] = useState<string>('')
   const [submitted, setSubmitted] = useState(false)
 
   // Calcule o hash SHA-256 criptográfico em tempo real
@@ -592,6 +593,7 @@ print("Pipeline executado com integridade.")
         setHash('')
         return
       }
+      setHashError('')
       try {
         const encoder = new TextEncoder()
         const data = encoder.encode(content)
@@ -600,7 +602,8 @@ print("Pipeline executado com integridade.")
         const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
         setHash(hashHex)
       } catch {
-        setHash('8f4e2b01c3d8a9e4f5127b3c4d5e6f7a')
+        setHash('')
+        setHashError('Não foi possível calcular o SHA-256 neste navegador. Nenhum hash foi confirmado.')
       }
     }
     computeHash()
@@ -624,7 +627,7 @@ print("Pipeline executado com integridade.")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!content.trim()) return
+    if (!content.trim() || !hash || hashError) return
 
     const shortHash = hash.substring(0, 8) + '...' + hash.slice(-4)
 
@@ -657,7 +660,7 @@ print("Pipeline executado com integridade.")
           type: evidenceType,
           activity_id: activityId,
           source_ref: filename,
-          content_ref: `sha256:${hash || '8f4e2b01c3d8a9e4'}`,
+          content_ref: `sha256:${hash}`,
           trust_level: 'N2_EVIDENCE_PRESENTED',
           synthetic: false,
         },
@@ -708,7 +711,7 @@ print("Pipeline executado com integridade.")
       },
       handoff: {
         record_version: 'v0.2',
-        record_hash: hash || '8f4e2b01c3d8a9e4f5127b3c4d5e6f7a',
+        record_hash: hash,
         competency_id: currentTrail?.id ?? 'comp:custom',
         state: 'UNDER_REVIEW',
         decision_mode: 'consensus_agreement',
@@ -884,7 +887,8 @@ print("Pipeline executado com integridade.")
           </div>
         </div>
 
-        {hash && (
+        {hashError && <p className="runtime-error" role="alert">{hashError}</p>}
+        {hash && !hashError && (
           <div className="hash-preview-card">
             <div>
               <span className="eyebrow ac">IMUTABILIDADE · PROVENIÊNCIA GERADA</span>
@@ -893,7 +897,7 @@ print("Pipeline executado com integridade.")
                 Nível de Confiança Inicial: <b>N2_EVIDENCE_PRESENTED</b> (Evidência entregue com conteúdo verificável)
               </small>
             </div>
-            <span className="badge b-evidence">HASH CONFIRMADO</span>
+            <span className="badge b-evidence">HASH CALCULADO LOCALMENTE</span>
           </div>
         )}
 
@@ -901,7 +905,7 @@ print("Pipeline executado com integridade.")
           <button type="button" className="secondary-button" onClick={() => setView('Dashboard')}>
             Cancelar
           </button>
-          <button type="submit" className="primary-button">
+          <button type="submit" className="primary-button" disabled={!hash || Boolean(hashError) || !content.trim()}>
             <FolderUp size={16} /> Submeter para Verificação Criptográfica
           </button>
         </div>
