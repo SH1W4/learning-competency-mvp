@@ -747,3 +747,31 @@ pre, code { overflow-wrap: anywhere; word-break: break-word; }
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Clear, compact labels for non-live demo activity and empty search results. */
+.demo-label {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 7px;
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  color: var(--mut);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+.empty-state-cell {
+  padding: 28px 18px;
+  color: var(--mut);
+  text-align: center;
+  white-space: normal;
+  line-height: 1.6;
+}
+tr:focus-visible {
+  outline: 2px solid var(--ac, #1683ff);
+  outline-offset: -2px;
+}
