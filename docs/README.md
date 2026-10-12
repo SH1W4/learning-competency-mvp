@@ -11,6 +11,9 @@ This index covers the public material needed to inspect the current MVP. Source 
 - [Devnet proof runbook](evaluation/M4_LOCAL_DEVNET_PROOF.md)
 - [Public project status](PROJECT_STATUS.md)
 
+## Semantic contract
+- [M4 semantic adapter contract v0.1](semantics/M4_SEMANTIC_ADAPTER_CONTRACT_V0_1.md) — explicit boundaries between consensus, resolution, product state, canonical competency state, and attestation.
+
 ## Implementation and architecture
 - [Technical architecture](architecture/TECHNICAL_ARCHITECTURE.md)
 - [Consensus Core](architecture/CONSENSUS_CORE.md)
