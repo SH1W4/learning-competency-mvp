@@ -46,7 +46,7 @@ jobs:
         continue-on-error: true
         run: |
           corepack pnpm audit --json > /tmp/lastro-dependency-audit.json || true
-          node -e "const fs=require('fs');const p='/tmp/lastro-dependency-audit.json';try{const a=JSON.parse(fs.readFileSync(p,'utf8'));console.log(JSON.stringify(a.metadata?.vulnerabilities ?? a, null, 2))}catch(e){console.log(fs.readFileSync(p,'utf8'));process.exitCode=1}"
+          node -e "const fs=require('fs');const p='/tmp/lastro-dependency-audit.json';try{const a=JSON.parse(fs.readFileSync(p,'utf8'));console.log('SUMMARY',JSON.stringify(a.metadata?.vulnerabilities ?? a,null,2));const adv=Object.values(a.advisories||{}).filter(x=>['high','critical'].includes(String(x.severity).toLowerCase())).map(x=>({module_name:x.module_name,severity:x.severity,title:x.title,range:x.vulnerable_versions,patched:x.patched_versions,findings:x.findings?.map(f=>f.paths)}));console.log('HIGH_CRITICAL_ADVISORIES',JSON.stringify(adv,null,2));if(!a.advisories)console.log('AUDIT_TOP_LEVEL_KEYS',Object.keys(a))}catch(e){console.log(fs.readFileSync(p,'utf8'));process.exitCode=1}"
 
       - name: Upload dependency audit report
         if: always()
