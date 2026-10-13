@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
-
-
+// Allow the proxy to wait for the Render free instance to wake up.
+// This is separate from the upstream fetch timeout below.
+export const maxDuration = 60
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -35,6 +36,9 @@ function isValidRuntimePayload(value: unknown): boolean {
 }
 
 const LOCAL_RUNTIME_URL = 'http://127.0.0.1:8787/api/m4/competency?scenario=synthetic-ana'
+// Render's free instance can take ~40s to wake. Keep a small margin while
+// remaining below this route's maxDuration. A timeout still fails closed.
+const UPSTREAM_TIMEOUT_MS = 45_000
 
 export async function GET(request: Request) {
   const incoming = new URL(request.url)
@@ -76,7 +80,10 @@ export async function GET(request: Request) {
   }
 
   try {
-    const upstream = await fetch(parsedRuntimeUrl, { cache: 'no-store', signal: AbortSignal.timeout(5000) })
+    const upstream = await fetch(parsedRuntimeUrl, {
+      cache: 'no-store',
+      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
+    })
     const body = await upstream.text()
 
     if (!upstream.ok) {
@@ -112,7 +119,7 @@ export async function GET(request: Request) {
     })
   } catch {
     return NextResponse.json(
-      { error: 'canonical_runtime_unavailable', message: 'The canonical M4 runtime could not be reached. No local fixture fallback is provided.' },
+      { error: 'canonical_runtime_unavailable', message: 'The canonical M4 runtime could not be reached within the proxy timeout. No local fixture fallback is provided.' },
       { status: 503, headers: { 'cache-control': 'no-store' } },
     )
   }
