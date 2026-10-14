@@ -2016,10 +2016,11 @@ export default function Page() {
             </section>
           )}
 
-          {!loading && !error && (
+          {view === 'Workspace Settings' && <WorkspaceSettingsView />}
+
+          {!loading && !error && view !== 'Workspace Settings' && (
             <>
               {view === 'Landing' && <LandingView setView={setView} />}
-              {view === 'Workspace Settings' && <WorkspaceSettingsView />}
               {view === 'Dashboard' && (
                 <DashboardView data={data} queueItems={queueItems} setView={setView} />
               )}
