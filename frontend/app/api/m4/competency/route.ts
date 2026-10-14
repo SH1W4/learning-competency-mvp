@@ -23,48 +23,11 @@ export const runtime = 'nodejs'
 const LOCAL_RUNTIME_URL = 'http://127.0.0.1:8787/api/m4/competency?scenario=synthetic-ana'
 
 function resolveLatestAttestation() {
-  const candidatePaths = [
-    resolve(process.cwd(), 'out', 'm4-attestation-verification.json'),
-    resolve(process.cwd(), '..', 'out', 'm4-attestation-verification.json'),
-  ]
-  for (const p of candidatePaths) {
-    try {
-      if (existsSync(p)) {
-        const raw = JSON.parse(readFileSync(p, 'utf-8'))
-        if (raw.signature) {
-          return {
-            attestation: {
-              version: raw.record_version ?? 'm3.attestation.v2',
-              record_hash: raw.record_hash,
-              tx_signature: raw.signature,
-              network: raw.network ?? 'devnet',
-              verified: raw.verified ?? true,
-            },
-            public_verification: {
-              href: raw.explorer_url ?? `https://explorer.solana.com/tx/${raw.signature}?cluster=devnet`,
-              label: 'Solana Explorer (Devnet)',
-            },
-          }
-        }
-      }
-    } catch {
-      // ignore
-    }
-  }
-
-  // Canonical fallback anchored on Solana Devnet
+  // The development fixture is not an attestation source. Only the external
+  // runtime may expose a verified attestation bound to its exact record hash.
   return {
-    attestation: {
-      version: 'm3.attestation.v2',
-      record_hash: '66b7ce865dc44f0f638c99da264a627d053a02e4c7ab865eef352dfa732e8f0b',
-      tx_signature: '6mSva1n9oNLkFuFpKfM18BxpqbVF2t8PdkoEWiyzdDT8X3xYfean7n7PVQrNEKVaZBtc91xq59A8FuWAnWyf9Rn',
-      network: 'devnet',
-      verified: true,
-    },
-    public_verification: {
-      href: 'https://explorer.solana.com/tx/6mSva1n9oNLkFuFpKfM18BxpqbVF2t8PdkoEWiyzdDT8X3xYfean7n7PVQrNEKVaZBtc91xq59A8FuWAnWyf9Rn?cluster=devnet',
-      label: 'Solana Explorer (Devnet)',
-    },
+    attestation: null,
+    public_verification: null,
   }
 }
 
@@ -275,8 +238,8 @@ const BUILTIN_FIXTURE = {
     decision: { mode: 'consensus', decided_at: '2026-10-14T00:00:02.000Z', confirm_demonstrated: true },
     record_hash: '66b7ce865dc44f0f638c99da264a627d053a02e4c7ab865eef352dfa732e8f0b',
   },
-  attestation: latestAttestation.attestation,
-  public_verification: latestAttestation.public_verification,
+  attestation: null,
+  public_verification: null,
 }
 
 // ─── Route handler ─────────────────────────────────────────────────────────────
