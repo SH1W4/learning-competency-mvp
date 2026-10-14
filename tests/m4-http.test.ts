@@ -9,11 +9,13 @@ describe("M4 read-only projection", () => {
     expect(view.synthetic).toBe(true);
     expect(view.consensus.status).toBe("AGREEMENT");
     expect(view.state.value).toBe("DEMONSTRATED");
-    expect(view.verification.mechanisms.map((m) => m.mechanism).sort()).toEqual([
-      "ai_interpretation",
-      "deterministic_criteria",
-      "evidence_integrity",
-    ]);
+    expect(view.verification.mechanisms).toHaveLength(12);
+    expect(new Set(view.verification.mechanisms.map((m) => m.mechanism))).toEqual(
+      new Set(["ai_interpretation", "deterministic_criteria", "evidence_integrity"]),
+    );
+    expect(new Set(view.verification.mechanisms.map((m) => m.criterion_id))).toEqual(
+      new Set(["C1", "C2", "C3", "C4"]),
+    );
     expect(view.handoff.record_hash).toMatch(/^[a-f0-9]{64}$/);
     expect(view.attestation).toBeNull();
     expect(view.public_verification).toBeNull();
@@ -32,12 +34,15 @@ describe("M4 read-only projection", () => {
         synthetic: boolean;
         consensus: { status: string };
         state: { value: string };
-        verification: { mechanisms: Array<{ mechanism: string }> };
+        verification: { mechanisms: Array<{ mechanism: string; criterion_id: string }> };
       };
       expect(body.synthetic).toBe(true);
       expect(body.consensus.status).toBe("AGREEMENT");
       expect(body.state.value).toBe("DEMONSTRATED");
-      expect(body.verification.mechanisms).toHaveLength(3);
+      expect(body.verification.mechanisms).toHaveLength(12);
+      expect(new Set(body.verification.mechanisms.map((m) => m.criterion_id))).toEqual(
+        new Set(["C1", "C2", "C3", "C4"]),
+      );
     } finally {
       await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
     }
