@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Activity,
   AlertTriangle,
@@ -86,6 +86,7 @@ export type CustomTrail = {
 }
 
 type View =
+  | 'Landing'
   | 'Dashboard'
   | 'Attestation Queue'
   | 'Adjudication Center'
@@ -151,6 +152,81 @@ function explorerUrl(network: string | undefined, signature: string | undefined)
   const cluster = clusters[network.toLowerCase()]
   if (!cluster) return null
   return `https://explorer.solana.com/tx/${encodeURIComponent(signature)}?cluster=${cluster}`
+}
+
+// Landing View Component
+function LandingView({ setView }: { setView: (view: View) => void }) {
+  return (
+    <div className="landing-view">
+      <section className="landing-hero">
+        <div className="landing-copy">
+          <p className="eyebrow">EVIDENCE INFRASTRUCTURE FOR CAPABILITY</p>
+          <h1>Da evidência do trabalho à capacidade verificável.</h1>
+          <p className="landing-lede">
+            LASTRO conecta trabalho observável a critérios explícitos de competência, verifica evidências por múltiplos mecanismos e preserva cada decisão em um registro auditável.
+          </p>
+          <div className="landing-actions">
+            <button className="primary-button" onClick={() => setView('Dashboard')}>
+              Entrar no workspace <span aria-hidden="true">→</span>
+            </button>
+            <button
+              className="text-button"
+              onClick={() => document.getElementById('how-lastro-works')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Como funciona
+            </button>
+          </div>
+        </div>
+        <div className="landing-signal" aria-label="Resumo do modelo LASTRO">
+          <div className="signal-top">
+            <span className="live-dot" /> bounded capability state
+          </div>
+          <div className="signal-flow">
+            <div>
+              <span>01</span>
+              <b>Trabalho observável</b>
+              <small>artefatos e contexto</small>
+            </div>
+            <i>↓</i>
+            <div>
+              <span>02</span>
+              <b>Verificação independente</b>
+              <small>critérios + interpretação</small>
+            </div>
+            <i>↓</i>
+            <div className="signal-final">
+              <span>03</span>
+              <b>Capacidade verificável</b>
+              <small>estado delimitado e auditável</small>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="how-lastro-works" className="landing-principles">
+        <div>
+          <p className="eyebrow">O QUE É LASTRO</p>
+          <h2>Uma camada de evidência, não outra plataforma de credenciais.</h2>
+        </div>
+        <div className="principle-grid">
+          <article>
+            <span>01</span>
+            <h3>Evidência antes da afirmação</h3>
+            <p>Decisões começam no trabalho que pode ser observado, contextualizado e revisado.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Estados, não rótulos absolutos</h3>
+            <p>Cada competência mantém um estado delimitado: demonstrada, em desenvolvimento ou em conflito.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Humano no ponto de decisão</h3>
+            <p>Quando os mecanismos divergem, a adjudicação preserva a razão e a provenance.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  )
 }
 
 function initials(name: string) {
@@ -302,6 +378,32 @@ function DashboardView({ data, queueItems, setView }: {
         <div className="metric-card metric-amber"><strong>{conflictCount}</strong><span>Awaiting review</span></div>
         <div className="metric-card"><strong>{inDevelopmentCount}</strong><span>In development</span></div>
       </div>
+      <section className="content-card workflow-card">
+        <div className="card-heading">
+          <div>
+            <p className="eyebrow">RECOMMENDED WORKFLOW</p>
+            <h2>From evidence to decision</h2>
+            <p>Follow the workspace in this order to keep review context intact.</p>
+          </div>
+        </div>
+        <div className="workflow-steps">
+          <button onClick={() => setView('Attestation Queue')}>
+            <span>01</span>
+            <b>Review queue</b>
+            <small>Inspect submitted evidence</small>
+          </button>
+          <button onClick={() => setView('Adjudication Center')}>
+            <span>02</span>
+            <b>Resolve conflicts</b>
+            <small>Apply human judgment</small>
+          </button>
+          <button onClick={() => setView('Audit Logs')}>
+            <span>03</span>
+            <b>Audit the record</b>
+            <small>Trace the final decision</small>
+          </button>
+        </div>
+      </section>
       <section className="content-card overview-card">
         <div className="card-heading">
           <div>
@@ -1301,16 +1403,53 @@ const initialDefaultTrail: CustomTrail = {
 }
 
 // ─── Root Application Component ──────────────────────────────────────────────
+type ApiStatus = 'checking' | 'ready' | 'waking' | 'offline'
+
+async function checkApiHealth(signal: AbortSignal) {
+  const response = await fetch('/api/health', { signal, cache: 'no-store' })
+  if (!response.ok) throw new Error(`Health check failed: ${response.status}`)
+  return response
+}
+
 export default function Page() {
   const [data, setData] = useState<M4Projection | null>(null)
   const [error, setError] = useState<{ message: string; hint: string | null } | null>(null)
   const [loading, setLoading] = useState(true)
   const [attempt, setAttempt] = useState(0)
-  const [view, setView] = useState<View>('Dashboard')
+  const [view, setView] = useState<View>('Landing')
+  const [apiStatus, setApiStatus] = useState<ApiStatus>('checking')
+  const [apiRetry, setApiRetry] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement | null>(null)
   const sidebarRef = useRef<HTMLElement | null>(null)
   const wasMenuOpen = useRef(false)
+
+  const wakeApi = useCallback(async () => {
+    setApiStatus('checking')
+    for (let attempt = 0; attempt < 4; attempt += 1) {
+      const controller = new AbortController()
+      const timeout = window.setTimeout(() => controller.abort(), 12000)
+      try {
+        await checkApiHealth(controller.signal)
+        setApiStatus('ready')
+        setApiRetry(attempt)
+        window.clearTimeout(timeout)
+        return
+      } catch {
+        window.clearTimeout(timeout)
+        setApiRetry(attempt + 1)
+        if (attempt < 3) {
+          setApiStatus('waking')
+          await new Promise((resolve) => window.setTimeout(resolve, 1500 * 2 ** attempt))
+        }
+      }
+    }
+    setApiStatus('offline')
+  }, [])
+
+  useEffect(() => {
+    void wakeApi()
+  }, [wakeApi])
 
   useEffect(() => {
     if (!menuOpen) {
@@ -1441,15 +1580,17 @@ export default function Page() {
       </a>
       <aside ref={sidebarRef} id="primary-navigation" className={`sidebar ${menuOpen ? 'mobile-open' : ''}`} aria-label="Main Navigation">
         <div className="sidebar-top">
-          <a className="brand" href="#" aria-label="LASTRO — Home">
-            <div className="brand-mark">
-              <LastroSymbol size={32} />
-            </div>
-            <div className="brand-text">
-              <span className="brand-name">LASTRO</span>
-              <small className="brand-caption">DO APRENDIZADO À PROVA</small>
-            </div>
-          </a>
+          <button className="logo-button" onClick={() => setView('Landing')} aria-label="Ir para página inicial">
+            <a className="brand" href="#" aria-label="LASTRO — Home">
+              <div className="brand-mark">
+                <LastroSymbol size={32} />
+              </div>
+              <div className="brand-text">
+                <span className="brand-name">LASTRO</span>
+                <small className="brand-caption">DO APRENDIZADO À PROVA</small>
+              </div>
+            </a>
+          </button>
           <button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Fechar menu">
             <X />
           </button>
@@ -1508,12 +1649,26 @@ export default function Page() {
         </nav>
 
         <div className="sidebar-bottom">
-          <div className="system-status">
+          <div className={`system-status api-${apiStatus}`} role="status" aria-live="polite">
             <span className="live-dot" />
             <span>
-              <b>Runtime status</b>
-              <small>Consulte Runtime Details para o estado da conexão</small>
+              <b>
+                {apiStatus === 'checking' && 'Checking runtime…'}
+                {apiStatus === 'ready' && 'Systems operational'}
+                {apiStatus === 'waking' && 'Waking runtime…'}
+                {apiStatus === 'offline' && 'Runtime unavailable'}
+              </b>
+              <small>
+                {apiStatus === 'ready' && 'Health check confirmed'}
+                {apiStatus === 'offline' && 'Retry from the workspace'}
+                {apiStatus !== 'ready' && apiStatus !== 'offline' && `Attempt ${Math.max(apiRetry, 1)} of 4`}
+              </small>
             </span>
+            {apiStatus === 'offline' && (
+              <button className="retry-button" onClick={() => void wakeApi()}>
+                Retry
+              </button>
+            )}
           </div>
           <div className="user-card">
             <div className="user-avatar">LS</div>
@@ -1576,6 +1731,7 @@ export default function Page() {
 
           {!loading && !error && (
             <>
+              {view === 'Landing' && <LandingView setView={setView} />}
               {view === 'Dashboard' && (
                 <DashboardView data={data} queueItems={queueItems} setView={setView} />
               )}
