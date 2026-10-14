@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { CompetencySession } from "../pipeline.js";
 import { providerFromEnv } from "../ai/provider.js";
 import { ANA, SUBJECT } from "../scenario.js";
@@ -71,8 +73,17 @@ export interface M4Projection {
   };
   /** Complete, hash-verifiable M2→M3 record for operator-side attestation. */
   reviewed_state_record: ReturnType<CompetencySession["handoff"]>;
-  attestation: null;
-  public_verification: null;
+  attestation: null | {
+    version: string;
+    record_hash: string;
+    tx_signature?: string;
+    network?: string;
+    verified?: boolean | null;
+  };
+  public_verification: null | {
+    href: string;
+    label: string;
+  };
 }
 
 export async function buildM4SyntheticProjection(): Promise<M4Projection> {
@@ -153,7 +164,42 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
       decision_mode: handoff.decision.mode,
     },
     reviewed_state_record: handoff,
-    attestation: null,
-    public_verification: null,
+    attestation: (() => {
+      try {
+        const reportPath = join(process.cwd(), "out", "m4-attestation-verification.json");
+        if (existsSync(reportPath)) {
+          const rep = JSON.parse(readFileSync(reportPath, "utf-8"));
+          if (rep.signature) {
+            return {
+              version: rep.record_version ?? "m3.attestation.v2",
+              record_hash: rep.record_hash,
+              tx_signature: rep.signature,
+              network: rep.network ?? "devnet",
+              verified: rep.verified ?? true,
+            };
+          }
+        }
+      } catch {
+        // file missing or unparseable
+      }
+      return null;
+    })(),
+    public_verification: (() => {
+      try {
+        const reportPath = join(process.cwd(), "out", "m4-attestation-verification.json");
+        if (existsSync(reportPath)) {
+          const rep = JSON.parse(readFileSync(reportPath, "utf-8"));
+          if (rep.signature) {
+            return {
+              href: rep.explorer_url ?? `https://explorer.solana.com/tx/${rep.signature}?cluster=devnet`,
+              label: "Solana Explorer (Devnet)",
+            };
+          }
+        }
+      } catch {
+        // file missing or unparseable
+      }
+      return null;
+    })(),
   };
 }
