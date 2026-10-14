@@ -1588,6 +1588,7 @@ const defaultWorkspaceContext: WorkspaceContext = {
 function WorkspaceSettingsView() {
   const [context, setContext] = useState<WorkspaceContext>(defaultWorkspaceContext)
   const [saved, setSaved] = useState(false)
+  const [saveError, setSaveError] = useState(false)
   const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
@@ -1612,6 +1613,7 @@ function WorkspaceSettingsView() {
   const update = (field: keyof WorkspaceContext, value: string) => {
     setContext((current) => ({ ...current, [field]: value }))
     setSaved(false)
+    setSaveError(false)
   }
 
   const handleSave = (event: React.FormEvent<HTMLFormElement>) => {
@@ -1619,14 +1621,17 @@ function WorkspaceSettingsView() {
     try {
       window.localStorage.setItem('lastro.workspace-context.v1', JSON.stringify(context))
       setSaved(true)
+      setSaveError(false)
     } catch {
       setSaved(false)
+      setSaveError(true)
     }
   }
 
   const handleReset = () => {
     setContext(defaultWorkspaceContext)
     setSaved(false)
+    setSaveError(false)
     try {
       window.localStorage.removeItem('lastro.workspace-context.v1')
     } catch {
@@ -1678,6 +1683,7 @@ function WorkspaceSettingsView() {
           <button type="submit" className="primary-button" disabled={!hydrated}>Save context locally <Check size={14} /></button>
         </div>
         {saved && <p className="workspace-save-status" role="status"><CheckCircle2 size={16} /> Context saved in this browser. Runtime integration is not enabled.</p>}
+        {saveError && <p className="workspace-save-error" role="alert">Could not save to this browser. Storage may be disabled or unavailable; changes remain only in the current view.</p>}
       </form>
 
       <section className="panel workspace-next-step">
