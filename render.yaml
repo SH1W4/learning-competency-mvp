@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: lastro-m4-runtime
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run typecheck && npm test
+    startCommand: npm run api:m4
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"

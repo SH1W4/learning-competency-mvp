@@ -286,11 +286,11 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'unsupported_scenario' }, { status: 400 })
   }
 
-  // Priority 1: explicit production override
+  // Priority 1: explicit runtime URL (configured in Vercel for Preview/Production)
   const configuredUrl = process.env.LASTRO_M4_RUNTIME_URL
   const isDev = process.env.NODE_ENV !== 'production'
 
-  // Priority 2: local runtime in dev
+  // In development only, default to the local M4 runtime.
   const runtimeUrl = configuredUrl ?? (isDev ? LOCAL_RUNTIME_URL : null)
 
   if (runtimeUrl) {
@@ -299,23 +299,69 @@ export async function GET(request: Request) {
         cache: 'no-store',
         signal: AbortSignal.timeout(5000),
       })
+
       if (upstream.ok) {
         const body = await upstream.text()
         return new Response(body, {
-          status: 200,
+          status: upstream.status,
           headers: {
-            'content-type': upstream.headers.get('content-type') ?? 'application/json; charset=utf-8',
+            'content-type':
+              upstream.headers.get('content-type') ??
+              'application/json; charset=utf-8',
             'cache-control': 'no-store',
             'x-lastro-source': 'external-runtime',
           },
         })
       }
+
+      // Do not hide an upstream HTTP error behind a fixture in production.
+      if (!isDev) {
+        return NextResponse.json(
+          {
+            error: 'runtime_upstream_error',
+            upstream_status: upstream.status,
+          },
+          {
+            status: 502,
+            headers: {
+              'cache-control': 'no-store',
+              'x-lastro-source': 'external-runtime-error',
+            },
+          },
+        )
+      }
     } catch {
-      // Runtime unreachable — fall through to built-in fixture
+      // Development may fall back to the fixture; production must fail closed.
+      if (!isDev) {
+        return NextResponse.json(
+          { error: 'runtime_unavailable' },
+          {
+            status: 503,
+            headers: {
+              'cache-control': 'no-store',
+              'x-lastro-source': 'external-runtime-error',
+            },
+          },
+        )
+      }
     }
   }
 
-  // Priority 3: built-in canonical fixture (self-contained, always available)
+  // Production must never silently serve a built-in fixture.
+  if (!isDev) {
+    return NextResponse.json(
+      { error: 'runtime_not_configured' },
+      {
+        status: 503,
+        headers: {
+          'cache-control': 'no-store',
+          'x-lastro-source': 'runtime-not-configured',
+        },
+      },
+    )
+  }
+
+  // Development-only fallback.
   return NextResponse.json(BUILTIN_FIXTURE, {
     status: 200,
     headers: {
