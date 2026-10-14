@@ -104,7 +104,9 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
   }
 
   const mechanisms = consensus.criteria.flatMap((criterion) => criterion.verifications);
-  const uniqueMechanisms = new Map(mechanisms.map((item) => [item.mechanism, item]));
+  const uniqueMechanisms = new Map(
+    mechanisms.map((item) => [`${item.mechanism}:${item.criterion_id}`, item]),
+  );
 
   return {
     synthetic: true,
