@@ -343,6 +343,13 @@
   display: block;
 }
 
+/* Explicitly distinguish the demo workspace from a real organization selector. */
+.workspace-kicker {
+  color: var(--mut-2);
+  font: 500 8px/1.2 ui-monospace, monospace;
+  letter-spacing: 0.12em;
+}
+
 /* Workspace switcher */
 .workspace-switcher {
   display: flex;
