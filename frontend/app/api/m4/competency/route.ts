@@ -286,12 +286,25 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'unsupported_scenario' }, { status: 400 })
   }
 
-  // Priority 1: explicit runtime URL (configured in Vercel for Preview/Production)
+  // Priority 1: explicit runtime URL (configured in Vercel for Preview/Production).
+  // Accept either the service origin or the full competency endpoint.
   const configuredUrl = process.env.LASTRO_M4_RUNTIME_URL
   const isDev = process.env.NODE_ENV !== 'production'
 
+  let normalizedConfiguredUrl: string | null = null
+  if (configuredUrl) {
+    const endpoint = new URL(configuredUrl)
+    if (endpoint.pathname === '/' || endpoint.pathname === '') {
+      endpoint.pathname = '/api/m4/competency'
+    }
+    if (!endpoint.searchParams.has('scenario')) {
+      endpoint.searchParams.set('scenario', 'synthetic-ana')
+    }
+    normalizedConfiguredUrl = endpoint.toString()
+  }
+
   // In development only, default to the local M4 runtime.
-  const runtimeUrl = configuredUrl ?? (isDev ? LOCAL_RUNTIME_URL : null)
+  const runtimeUrl = normalizedConfiguredUrl ?? (isDev ? LOCAL_RUNTIME_URL : null)
 
   if (runtimeUrl) {
     try {
