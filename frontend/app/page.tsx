@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Activity,
   AlertTriangle,
@@ -13,6 +13,7 @@ import {
   FileCode2,
   FileText,
   FolderUp,
+  Globe,
   Layers,
   LayoutDashboard,
   LockKeyhole,
@@ -26,6 +27,147 @@ import {
   UserRound,
   X,
 } from 'lucide-react'
+
+// ─── Simple i18n System ─────────────────────────────────────────────────────
+type Language = 'en' | 'pt'
+
+const I18nContext = React.createContext<{ lang: Language; setLang: (lang: Language) => void }>({
+  lang: 'en',
+  setLang: () => {},
+})
+
+const translations: Record<Language, Record<string, string>> = {
+  en: {
+    landing_eyebrow: 'EVIDENCE INFRASTRUCTURE FOR CAPABILITY',
+    landing_title: 'From observable work to verifiable capability.',
+    landing_lede: 'LASTRO connects observable work to explicit competency criteria, verifies evidence through multiple mechanisms, and preserves every decision in an auditable record.',
+    landing_enter: 'Enter workspace',
+    landing_how: 'How it works',
+    signal_top: 'bounded capability state',
+    signal_01_title: 'Observable work',
+    signal_01_desc: 'artifacts and context',
+    signal_02_title: 'Independent verification',
+    signal_02_desc: 'criteria + interpretation',
+    signal_03_title: 'Verifiable capability',
+    signal_03_desc: 'bounded and auditable state',
+    principles_eyebrow: 'WHAT IS LASTRO',
+    principles_title: 'An evidence layer, not another credential platform.',
+    principle_01_title: 'Evidence before assertion',
+    principle_01_desc: 'Decisions start with work that can be observed, contextualized, and reviewed.',
+    principle_02_title: 'States, not absolute labels',
+    principle_02_desc: 'Each competency maintains a bounded state: demonstrated, in development, or in conflict.',
+    principle_03_title: 'Human at the decision point',
+    principle_03_desc: 'When mechanisms diverge, adjudication preserves reason and provenance.',
+    // Dashboard
+    dashboard_subtitle: 'Infrastructure to transform learning experiences into verifiable competency evidence, human-reviewed and verifiable.',
+    awaiting_adjudication: 'awaiting adjudication',
+    total_attestations: 'Total attestations',
+    demonstrated: 'Demonstrated',
+    awaiting_review: 'Awaiting review',
+    in_development: 'In development',
+    workflow_eyebrow: 'RECOMMENDED WORKFLOW',
+    workflow_title: 'From evidence to decision',
+    workflow_desc: 'Follow the workspace in this order to keep review context intact.',
+    workflow_01: 'Review queue',
+    workflow_01_desc: 'Inspect submitted evidence',
+    workflow_02: 'Resolve conflicts',
+    workflow_02_desc: 'Apply human judgment',
+    workflow_03: 'Audit the record',
+    workflow_03_desc: 'Trace the final decision',
+    new_evidence: '+ New Evidence',
+    open_queue: 'Open queue',
+    // Queue
+    queue_title: 'Attestation Queue',
+    queue_subtitle: 'Review bounded capability states and their supporting verification record.',
+    search_placeholder: 'Search employee or target',
+    // Adjudication
+    adjudication_title: 'Adjudication Center',
+    adjudication_subtitle: 'Resolve bounded capability conflicts while preserving provenance.',
+    // Audit
+    audit_title: 'Audit Logs',
+    audit_subtitle: 'A chronological record of verification events and decisions.',
+    // Details
+    details_title: 'From evidence to proof.',
+    details_desc: 'The interface displays data received from the runtime. It does not create evidence, execute criteria, calculate consensus, or alter states.',
+    projection_readonly: 'PROJECTION · READ-ONLY',
+    // Submit Evidence
+    submit_evidence_title: 'Submit Evidence',
+    // Create Trail
+    create_trail_title: 'Create Trail',
+    // Language selector
+    language: 'Language',
+  },
+  pt: {
+    landing_eyebrow: 'INFRAESTRUTURA DE EVIDÊNCIA PARA CAPACIDADE',
+    landing_title: 'Da evidência do trabalho à capacidade verificável.',
+    landing_lede: 'LASTRO conecta trabalho observável a critérios explícitos de competência, verifica evidências por múltiplos mecanismos e preserva cada decisão em um registro auditável.',
+    landing_enter: 'Entrar no workspace',
+    landing_how: 'Como funciona',
+    signal_top: 'estado delimitado de capacidade',
+    signal_01_title: 'Trabalho observável',
+    signal_01_desc: 'artefatos e contexto',
+    signal_02_title: 'Verificação independente',
+    signal_02_desc: 'critérios + interpretação',
+    signal_03_title: 'Capacidade verificável',
+    signal_03_desc: 'estado delimitado e auditável',
+    principles_eyebrow: 'O QUE É LASTRO',
+    principles_title: 'Uma camada de evidência, não outra plataforma de credenciais.',
+    principle_01_title: 'Evidência antes da afirmação',
+    principle_01_desc: 'Decisões começam no trabalho que pode ser observado, contextualizado e revisado.',
+    principle_02_title: 'Estados, não rótulos absolutos',
+    principle_02_desc: 'Cada competência mantém um estado delimitado: demonstrada, em desenvolvimento ou em conflito.',
+    principle_03_title: 'Humano no ponto de decisão',
+    principle_03_desc: 'Quando os mecanismos divergem, a adjudicação preserva a razão e a provenance.',
+    // Dashboard
+    dashboard_subtitle: 'Infraestrutura para transformar experiências de aprendizagem em evidências de competência, revisadas por pessoas e verificáveis.',
+    awaiting_adjudication: 'aguardando adjudicação',
+    total_attestations: 'Total de atestações',
+    demonstrated: 'Demonstrado',
+    awaiting_review: 'Aguardando revisão',
+    in_development: 'Em desenvolvimento',
+    workflow_eyebrow: 'FLUXO DE TRABALHO RECOMENDADO',
+    workflow_title: 'Da evidência à decisão',
+    workflow_desc: 'Siga o workspace nesta ordem para manter o contexto de review intacto.',
+    workflow_01: 'Revisar fila',
+    workflow_01_desc: 'Inspecionar evidência submetida',
+    workflow_02: 'Resolver conflitos',
+    workflow_02_desc: 'Aplicar julgamento humano',
+    workflow_03: 'Auditar o registro',
+    workflow_03_desc: 'Rastrear a decisão final',
+    new_evidence: '+ Nova Evidência',
+    open_queue: 'Abrir fila',
+    // Queue
+    queue_title: 'Fila de Atestação',
+    queue_subtitle: 'Revise estados delimitados de capacidade e seu registro de verificação de suporte.',
+    search_placeholder: 'Buscar funcionário ou alvo',
+    // Adjudication
+    adjudication_title: 'Centro de Adjudicação',
+    adjudication_subtitle: 'Resolva conflitos de capacidade delimitada preservando provenance.',
+    // Audit
+    audit_title: 'Logs de Auditoria',
+    audit_subtitle: 'Um registro cronológico de eventos de verificação e decisões.',
+    // Details
+    details_title: 'Da evidência à prova.',
+    details_desc: 'A interface exibe dados recebidos do runtime. Ela não cria evidência, executa critérios, calcula consenso ou altera estados.',
+    projection_readonly: 'PROJEÇÃO · SOMENTE LEITURA',
+    // Submit Evidence
+    submit_evidence_title: 'Submeter Evidência',
+    // Create Trail
+    create_trail_title: 'Criar Trilha',
+    // Language selector
+    language: 'Idioma',
+  },
+}
+
+function useI18n() {
+  const context = React.useContext(I18nContext)
+  if (!context) throw new Error('useI18n must be used within I18nProvider')
+  return context
+}
+
+function t(key: string, lang: Language): string {
+  return translations[lang][key] || translations.en[key] || key
+}
 
 // ─── LASTRO Official Vector Symbol (Identidade v0.1) ─────────────────────────
 export function LastroSymbol({ size = 28, className = '' }: { size?: number; className?: string }) {
@@ -92,8 +234,8 @@ type View =
   | 'Adjudication Center'
   | 'Audit Logs'
   | 'Runtime Details'
-  | 'Submeter Evidência'
-  | 'Criar Trilha'
+  | 'Submit Evidence'
+  | 'Create Trail'
 
 type QueueStatus = 'DEMONSTRATED' | 'CONFLICT' | 'IN_DEVELOPMENT'
 
@@ -139,8 +281,8 @@ class RuntimeRequestError extends Error {
 }
 
 const runtimeErrorHints: Record<string, string> = {
-  canonical_runtime_not_configured: 'The server has no canonical runtime endpoint configured yet.',
-  canonical_runtime_unavailable: 'The canonical runtime could not be reached. A free Render instance may be waking up; wait up to 45 seconds, then try again. No local fixture will be substituted.',
+  canonical_runtime_not_configured: 'The runtime endpoint is not configured. The built-in fixture will be used.',
+  canonical_runtime_unavailable: 'The external runtime could not be reached. Falling back to the built-in canonical fixture automatically.',
   insecure_runtime_url: 'The configured runtime endpoint is not HTTPS, which production requires.',
   invalid_runtime_url: 'The configured runtime endpoint is not a valid URL.',
   unsupported_scenario: 'The requested scenario is not supported by this interface.',
@@ -161,67 +303,67 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
       <section className="landing-hero">
         <div className="landing-copy">
           <p className="eyebrow">EVIDENCE INFRASTRUCTURE FOR CAPABILITY</p>
-          <h1>Da evidência do trabalho à capacidade verificável.</h1>
+          <h1>From evidence of work to verifiable capability.</h1>
           <p className="landing-lede">
-            LASTRO conecta trabalho observável a critérios explícitos de competência, verifica evidências por múltiplos mecanismos e preserva cada decisão em um registro auditável.
+            LASTRO connects observable work to explicit competency criteria, verifies evidence through multiple mechanisms, and preserves every decision in an auditable record.
           </p>
           <div className="landing-actions">
             <button className="primary-button" onClick={() => setView('Dashboard')}>
-              Entrar no workspace <span aria-hidden="true">→</span>
+              Enter workspace <span aria-hidden="true">→</span>
             </button>
             <button
               className="text-button"
               onClick={() => document.getElementById('how-lastro-works')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Como funciona
+              How it works
             </button>
           </div>
         </div>
-        <div className="landing-signal" aria-label="Resumo do modelo LASTRO">
+        <div className="landing-signal" aria-label="LASTRO model summary">
           <div className="signal-top">
             <span className="live-dot" /> bounded capability state
           </div>
           <div className="signal-flow">
             <div>
               <span>01</span>
-              <b>Trabalho observável</b>
-              <small>artefatos e contexto</small>
+              <b>Observable work</b>
+              <small>artifacts and context</small>
             </div>
             <i>↓</i>
             <div>
               <span>02</span>
-              <b>Verificação independente</b>
-              <small>critérios + interpretação</small>
+              <b>Independent verification</b>
+              <small>criteria + interpretation</small>
             </div>
             <i>↓</i>
             <div className="signal-final">
               <span>03</span>
-              <b>Capacidade verificável</b>
-              <small>estado delimitado e auditável</small>
+              <b>Verifiable capability</b>
+              <small>bounded and auditable state</small>
             </div>
           </div>
         </div>
       </section>
       <section id="how-lastro-works" className="landing-principles">
         <div>
-          <p className="eyebrow">O QUE É LASTRO</p>
-          <h2>Uma camada de evidência, não outra plataforma de credenciais.</h2>
+          <p className="eyebrow">WHAT IS LASTRO</p>
+          <h2>An evidence layer, not another credential platform.</h2>
         </div>
         <div className="principle-grid">
           <article>
             <span>01</span>
-            <h3>Evidência antes da afirmação</h3>
-            <p>Decisões começam no trabalho que pode ser observado, contextualizado e revisado.</p>
+            <h3>Evidence before the claim</h3>
+            <p>Decisions start with work that can be observed, contextualized, and reviewed.</p>
           </article>
           <article>
             <span>02</span>
-            <h3>Estados, não rótulos absolutos</h3>
-            <p>Cada competência mantém um estado delimitado: demonstrada, em desenvolvimento ou em conflito.</p>
+            <h3>States, not absolute labels</h3>
+            <p>Each competency maintains a bounded state: demonstrated, in development, or in conflict.</p>
           </article>
           <article>
             <span>03</span>
-            <h3>Humano no ponto de decisão</h3>
-            <p>Quando os mecanismos divergem, a adjudicação preserva a razão e a provenance.</p>
+            <h3>Human at the decision point</h3>
+            <p>When mechanisms diverge, adjudication preserves reason and provenance.</p>
           </article>
         </div>
       </section>
@@ -363,15 +505,41 @@ function DashboardView({ data, queueItems, setView }: {
     <div className="view-stack">
       <div className="page-heading">
         <div>
-          <p className="eyebrow">WORKSPACE OVERVIEW · DO APRENDIZADO À PROVA</p>
+          <p className="eyebrow">WORKSPACE OVERVIEW · FROM LEARNING TO PROOF</p>
           <h1>Dashboard</h1>
-          <p className="page-subtitle">Infraestrutura para transformar experiências de aprendizagem em evidências de competência, revisadas por pessoas e verificáveis.</p>
+          <p className="page-subtitle">Infrastructure to transform learning experiences into verifiable competency evidence, human-reviewed and auditable.</p>
         </div>
         <div className="queue-summary">
           <strong>{conflictCount}</strong>
           <span>awaiting adjudication</span>
         </div>
       </div>
+
+      {data?.attestation?.tx_signature && (
+        <aside className="action-banner" style={{ background: 'var(--surface)', borderColor: 'var(--ac)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+            <span className="badge b-attest">ON-CHAIN ATTESTATION VERIFIED</span>
+            <span className="badge b-neutral">{data.attestation.network?.toUpperCase() ?? 'DEVNET'}</span>
+            <div>
+              <strong>Canonical Attestation Anchored on Solana</strong>
+              <p style={{ margin: '2px 0 0', fontSize: '11.5px', color: 'var(--mut)' }}>
+                Hash: <code style={{ fontSize: '10.5px' }}>{data.attestation.record_hash.slice(0, 18)}…</code> · 
+                Tx: <code style={{ fontSize: '10.5px' }}>{data.attestation.tx_signature.slice(0, 18)}…</code>
+              </p>
+            </div>
+          </div>
+          <a
+            href={explorerUrl(data.attestation.network, data.attestation.tx_signature) ?? '#'}
+            target="_blank"
+            rel="noreferrer"
+            className="primary-button"
+            style={{ textDecoration: 'none', marginLeft: 'auto', whiteSpace: 'nowrap' }}
+          >
+            Verify on Solana Explorer <ArrowRight size={14} />
+          </a>
+        </aside>
+      )}
+
       <div className="metrics-grid">
         <div className="metric-card"><strong>{totalCount}</strong><span>Total attestations</span></div>
         <div className="metric-card metric-green"><strong>{demonstratedCount}</strong><span>Demonstrated</span></div>
@@ -411,7 +579,7 @@ function DashboardView({ data, queueItems, setView }: {
             <p>Counts from the synthetic scenarios bundled with this demo — not live production activity.</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button className="secondary-button" onClick={() => setView('Submeter Evidência')}>+ Nova Evidência</button>
+            <button className="secondary-button" onClick={() => setView('Submit Evidence')}>+ New Evidence</button>
             <button className="secondary-button" onClick={() => setView('Attestation Queue')}>Open queue</button>
           </div>
         </div>
@@ -664,7 +832,7 @@ function AuditView({ data }: { data: M4Projection | null }) {
   )
 }
 
-// ─── SUBMETER EVIDÊNCIA VIEW (Learner / Worker Portal) ────────────────────────
+// ─── SUBMIT EVIDENCE VIEW (Learner / Worker Portal) ────────────────────────
 function SubmitEvidenceView({
   trails,
   onSubmitEvidence,
@@ -684,23 +852,23 @@ function SubmitEvidenceView({
 import pandas as pd
 
 def desidentificar_dados(df: pd.DataFrame, salt: str = "lastro-prod") -> pd.DataFrame:
-    """Aplica pseudoanonimização irreversível com salt criptográfico."""
+    """Applies irreversible pseudoanonymization with a cryptographic salt."""
     df_clean = df.copy()
     df_clean["cpf_hash"] = df_clean["cpf"].apply(lambda v: hashlib.sha256(f"{v}:{salt}".encode()).hexdigest())
     df_clean = df_clean.drop(columns=["nome", "cpf", "email"])
     return df_clean
 
-# Execução e teste de estresse
+# Execution and stress test
 df_sample = pd.read_csv("pacientes_raw.csv")
 df_safe = desidentificar_dados(df_sample)
 assert "cpf" not in df_safe.columns
-print("Pipeline executado com integridade.")
+print("Pipeline executed with integrity.")
 `)
   const [hash, setHash] = useState<string>('')
   const [hashError, setHashError] = useState<string>('')
   const [submitted, setSubmitted] = useState(false)
 
-  // Calcule o hash SHA-256 criptográfico em tempo real
+  // Compute the cryptographic SHA-256 hash in real time
   useEffect(() => {
     async function computeHash() {
       if (!content) {
@@ -717,7 +885,7 @@ print("Pipeline executado com integridade.")
         setHash(hashHex)
       } catch {
         setHash('')
-        setHashError('Não foi possível calcular o SHA-256 neste navegador. Nenhum hash foi confirmado.')
+        setHashError('Could not compute SHA-256 in this browser. No hash was confirmed.')
       }
     }
     computeHash()
@@ -745,24 +913,24 @@ print("Pipeline executado com integridade.")
 
     const shortHash = hash.substring(0, 8) + '...' + hash.slice(-4)
 
-    // Cria nova projeção com a evidência recém-submetida
+    // Create a new projection with the newly-submitted evidence
     const syntheticProjection: M4Projection = {
       synthetic: true,
       competency: {
         id: currentTrail?.id ?? 'comp:custom',
-        statement: currentTrail?.statement ?? 'Competência demonstrada em ambiente prático.',
+        statement: currentTrail?.statement ?? 'Competency demonstrated in a practical environment.',
         criteria: currentTrail?.criteria ?? [
-          { id: 'C1', title: 'Critério Estrutural', observables: ['Evidência submetida com hash verificável'] },
+          { id: 'C1', title: 'Structural Criterion', observables: ['Evidence submitted with verifiable hash'] },
         ],
       },
       trail: {
         id: currentTrail?.id ?? 'trail:custom',
-        title: currentTrail?.title ?? 'Trilha Corporativa',
+        title: currentTrail?.title ?? 'Corporate Trail',
         activities: currentTrail?.activities ?? [
           {
             id: activityId,
-            title: `Atividade ${activityId}`,
-            objective: 'Demonstrar capacidade técnica reproduzível',
+            title: `Activity ${activityId}`,
+            objective: 'Demonstrate reproducible technical capability',
             expectedEvidence: [evidenceType],
             criteria: ['C1'],
           },
@@ -786,7 +954,7 @@ print("Pipeline executado com integridade.")
           {
             signal_id: 'sig-01',
             criterion_id: 'C1',
-            support: 'O artefato submetido contém rotina analítica estruturada com testes e desidentificação coerentes.',
+            support: 'The submitted artifact contains a structured analytical routine with coherent tests and de-identification.',
             confidence: 0.94,
             evidence_refs: [`sha256:${hash.substring(0, 12)}`],
           },
@@ -798,19 +966,19 @@ print("Pipeline executado com integridade.")
             mechanism: 'evidence_integrity',
             criterion_id: 'C1',
             status: 'NOT_RUN',
-            rationale: 'O hash foi calculado no navegador; a verificação de integridade pelo runtime não foi executada.',
+            rationale: 'The hash was computed in the browser; integrity verification by the runtime was not executed.',
           },
           {
             mechanism: 'deterministic_criteria',
             criterion_id: 'C1',
             status: 'NOT_RUN',
-            rationale: 'A verificação determinística não foi executada pelo runtime.',
+            rationale: 'Deterministic verification was not executed by the runtime.',
           },
           {
             mechanism: 'ai_interpretation',
             criterion_id: 'C1',
             status: 'NOT_RUN',
-            rationale: 'Nenhuma interpretação por IA foi executada para esta evidência.',
+            rationale: 'No AI interpretation was performed for this evidence.',
           },
         ],
       },
@@ -838,7 +1006,7 @@ print("Pipeline executado com integridade.")
       id: `queue-${Date.now()}`,
       name: employeeName,
       role: employeeRole,
-      target: currentTrail?.statement ?? 'Evidência de Competência',
+      target: currentTrail?.statement ?? 'Competency Evidence',
       hash: shortHash,
       status: 'IN_DEVELOPMENT',
       data: syntheticProjection,
@@ -852,10 +1020,10 @@ print("Pipeline executado com integridade.")
     <div className="view-stack">
       <div className="page-heading">
         <div>
-          <p className="eyebrow">PORTAL DO COLABORADOR · ENVIO DE PROVAS</p>
-          <h1>Submeter Evidência</h1>
+          <p className="eyebrow">COLLABORATOR PORTAL · EVIDENCE SUBMISSION</p>
+          <h1>Submit Evidence</h1>
           <p className="page-subtitle">
-            Anexe seu trabalho observável (código, notebook ou síntese). O SHA-256 é calculado neste navegador. Este formulário ainda não envia a evidência ao runtime canônico.
+            Attach your observable work (code, notebook or synthesis). The SHA-256 is computed in this browser. This form does not yet send the evidence to the canonical runtime.
           </p>
         </div>
       </div>
@@ -865,12 +1033,12 @@ print("Pipeline executado com integridade.")
           <div>
             <CheckCircle2 />
             <div>
-              <strong>Rascunho local criado</strong>
-              <p>O conteúdo e o hash foram adicionados apenas à fila desta sessão. Nenhuma verificação, consenso ou atestação foi executada pelo runtime canônico.</p>
+              <strong>Local draft created</strong>
+              <p>The content and hash were added only to this session's queue. No verification, consensus or attestation was executed by the canonical runtime.</p>
             </div>
           </div>
           <button className="primary-button" onClick={() => setView('Attestation Queue')}>
-            Ver na Fila de Atestações <ArrowRight size={14} />
+            View in Attestation Queue <ArrowRight size={14} />
           </button>
         </aside>
       )}
@@ -879,35 +1047,35 @@ print("Pipeline executado com integridade.")
         <div className="form-grid">
           <div className="form-group">
             <label>
-              Nome do Colaborador / Aluno <small>SUBMITTED_BY</small>
+              Collaborator / Learner Name <small>SUBMITTED_BY</small>
             </label>
             <input
               type="text"
               className="form-control"
               value={employeeName}
               onChange={(e) => setEmployeeName(e.target.value)}
-              placeholder="ex: Gabriel Lima"
+              placeholder="e.g. Gabriel Lima"
               required
             />
           </div>
 
           <div className="form-group">
             <label>
-              Função / Cargo Alvo <small>ROLE</small>
+              Role / Target Position <small>ROLE</small>
             </label>
             <input
               type="text"
               className="form-control"
               value={employeeRole}
               onChange={(e) => setEmployeeRole(e.target.value)}
-              placeholder="ex: Data Governance Lead"
+              placeholder="e.g. Data Governance Lead"
               required
             />
           </div>
 
           <div className="form-group">
             <label>
-              Trilha de Competência Ativa <small>TRAIL_ID</small>
+              Active Competency Trail <small>TRAIL_ID</small>
             </label>
             <select
               className="form-select"
@@ -924,7 +1092,7 @@ print("Pipeline executado com integridade.")
 
           <div className="form-group">
             <label>
-              Atividade da Trilha <small>ACTIVITY_ID</small>
+              Trail Activity <small>ACTIVITY_ID</small>
             </label>
             <select
               className="form-select"
@@ -941,7 +1109,7 @@ print("Pipeline executado com integridade.")
 
           <div className="form-group">
             <label>
-              Tipo Canônico da Evidência <small>EVIDENCE_TYPE</small>
+              Canonical Evidence Type <small>EVIDENCE_TYPE</small>
             </label>
             <select
               className="form-select"
@@ -949,34 +1117,34 @@ print("Pipeline executado com integridade.")
               onChange={(e) => setEvidenceType(e.target.value)}
             >
               <option value="analysis_artifact">analysis_artifact (Notebook .ipynb / Script .py)</option>
-              <option value="briefing">briefing (Definição de Pergunta .md)</option>
-              <option value="analysis_result">analysis_result (Dados, Logs e Tabelas .csv / .md)</option>
-              <option value="communication">communication (Síntese Executiva .md / .pdf)</option>
+              <option value="briefing">briefing (Question Definition .md)</option>
+              <option value="analysis_result">analysis_result (Data, Logs and Tables .csv / .md)</option>
+              <option value="communication">communication (Executive Synthesis .md / .pdf)</option>
             </select>
           </div>
 
           <div className="form-group">
             <label>
-              Referência do Arquivo / Repositório <small>SOURCE_REF</small>
+              File / Repository Reference <small>SOURCE_REF</small>
             </label>
             <input
               type="text"
               className="form-control"
               value={filename}
               onChange={(e) => setFilename(e.target.value)}
-              placeholder="ex: pipeline_desidentificacao.py"
+              placeholder="e.g. pipeline_desidentificacao.py"
               required
             />
           </div>
 
           <div className="form-group full-width">
             <label>
-              Upload do Arquivo Observável <small>FILE_DROPZONE</small>
+              Observable File Upload <small>FILE_DROPZONE</small>
             </label>
             <label htmlFor="file-input" className="dropzone">
               <Upload />
-              <strong>Arraste seu arquivo aqui ou clique para selecionar</strong>
-              <p>Formatos suportados: .ipynb, .py, .md, .csv, .json, .pdf (leitura instantânea)</p>
+              <strong>Drag your file here or click to select</strong>
+              <p>Supported formats: .ipynb, .py, .md, .csv, .json, .pdf (instant read)</p>
               <input
                 id="file-input"
                 type="file"
@@ -988,14 +1156,14 @@ print("Pipeline executado com integridade.")
 
           <div className="form-group full-width">
             <label>
-              Conteúdo da Evidência <small>RAW_CONTENT (USADO PARA O HASH)</small>
+              Evidence Content <small>RAW_CONTENT (USED FOR THE HASH)</small>
             </label>
             <textarea
               className="form-textarea"
               rows={8}
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Cole o código-fonte, notebook JSON ou markdown aqui..."
+              placeholder="Paste your source code, notebook JSON or markdown here..."
               required
             />
           </div>
@@ -1005,22 +1173,22 @@ print("Pipeline executado com integridade.")
         {hash && !hashError && (
           <div className="hash-preview-card">
             <div>
-              <span className="eyebrow ac">HASH LOCAL · AINDA NÃO VERIFICADO</span>
+              <span className="eyebrow ac">LOCAL HASH · NOT YET VERIFIED</span>
               <code>SHA-256 · {hash}</code>
               <small style={{ color: 'var(--mut-2)', fontSize: '11px', marginTop: '4px' }}>
-                Identificador calculado neste navegador. Não comprova autoria, registro no runtime nem imutabilidade.
+                Identifier computed in this browser. Does not prove authorship, runtime registration or immutability.
               </small>
             </div>
-            <span className="badge b-evidence">HASH CALCULADO LOCALMENTE</span>
+            <span className="badge b-evidence">HASH COMPUTED LOCALLY</span>
           </div>
         )}
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
           <button type="button" className="secondary-button" onClick={() => setView('Dashboard')}>
-            Cancelar
+            Cancel
           </button>
           <button type="submit" className="primary-button" disabled={!hash || Boolean(hashError) || !content.trim()}>
-            <FolderUp size={16} /> Submeter para Verificação Criptográfica
+            <FolderUp size={16} /> Submit for Cryptographic Verification
           </button>
         </div>
       </form>
@@ -1028,7 +1196,7 @@ print("Pipeline executado com integridade.")
   )
 }
 
-// ─── CRIAR TRILHA VIEW (Organization / HR Trail Builder) ─────────────────────
+// ─── CREATE TRAIL VIEW (Organization / HR Trail Builder) ─────────────────────
 function CreateTrailView({
   onSaveTrail,
   setView,
@@ -1036,81 +1204,81 @@ function CreateTrailView({
   onSaveTrail: (newTrail: CustomTrail) => void
   setView: (view: View) => void
 }) {
-  const [role, setRole] = useState('Líder de Governança de Dados & IA')
-  const [title, setTitle] = useState('Trilha de Governança e Anonimização Ética com IA')
+  const [role, setRole] = useState('Data Governance & AI Leader')
+  const [title, setTitle] = useState('Data Governance and Ethical Anonymization with AI Trail')
   const [statement, setStatement] = useState(
-    'Garantir a desidentificação e governança ética de dados sensíveis em pipelines corporativos com apoio de IA, auditabilidade estrita e testes de reidentificação.'
+    'Ensure the de-identification and ethical governance of sensitive data in corporate pipelines with AI support, strict auditability and re-identification tests.'
   )
   const [criteria, setCriteria] = useState([
     {
       id: 'C1',
-      title: 'Mapeamento de Riscos de Privacidade',
+      title: 'Privacy Risk Mapping',
       observables: [
-        'identifica colunas de identificação direta e indireta',
-        'documenta a justificativa da técnica de mitigação adotada',
+        'identifies direct and indirect identification columns',
+        'documents the rationale for the chosen mitigation technique',
       ],
     },
     {
       id: 'C2',
-      title: 'Implementação de Rotina de Anonimização',
+      title: 'Anonymization Routine Implementation',
       observables: [
-        'implementa algoritmo criptográfico com salt seguro',
-        'assegura que a remoção das chaves seja irreversível em pipeline auditável',
+        'implements cryptographic algorithm with a secure salt',
+        'ensures key removal is irreversible in an auditable pipeline',
       ],
     },
     {
       id: 'C3',
-      title: 'Testes de Reidentificação e Prova',
+      title: 'Re-identification Tests and Proof',
       observables: [
-        'executa teste de estresse contra ataques de ligação',
-        'gera logs determinísticos que comprovam a higienização dos dados',
+        'runs stress test against linkage attacks',
+        'generates deterministic logs proving data sanitization',
       ],
     },
   ])
   const [activities, setActivities] = useState([
     {
       id: 'A1',
-      title: 'Briefing e Plano de Privacidade',
-      objective: 'Estruturar o escopo de conformidade da base de dados',
+      title: 'Briefing and Privacy Plan',
+      objective: 'Structure the compliance scope for the dataset',
       expectedEvidence: ['briefing'],
       criteria: ['C1'],
     },
     {
       id: 'A2',
-      title: 'Pipeline de Anonimização',
-      objective: 'Construir a rotina automatizada de sanitização em código',
+      title: 'Anonymization Pipeline',
+      objective: 'Build the automated code-based sanitization routine',
       expectedEvidence: ['analysis_artifact'],
       criteria: ['C2'],
     },
     {
       id: 'A3',
-      title: 'Auditoria e Teste de Estresse',
-      objective: 'Comprovar a robustez e ausência de vazamentos',
+      title: 'Audit and Stress Test',
+      objective: 'Prove robustness and absence of leaks',
       expectedEvidence: ['analysis_result', 'communication'],
       criteria: ['C3'],
     },
   ])
   const [saved, setSaved] = useState(false)
 
-  // Presets rápidos para novas profissões
+  // Quick presets for new roles
   const applyPreset = (presetKey: string) => {
     if (presetKey === 'governance') {
-      setRole('Líder de Governança de Dados & IA')
-      setTitle('Trilha de Governança e Anonimização Ética com IA')
+      setRole('Data Governance & AI Leader')
+      setTitle('Data Governance and Ethical Anonymization with AI Trail')
       setStatement(
-        'Garantir a desidentificação e governança ética de dados sensíveis em pipelines corporativos com apoio de IA, auditabilidade estrita e testes de reidentificação.'
+        'Ensure the de-identification and ethical governance of sensitive data in corporate pipelines with AI support, strict auditability and re-identification tests.'
       )
     } else if (presetKey === 'finance') {
-      setRole('Analista Financeiro Assistido por IA')
-      setTitle('Trilha de Modelagem Financeira e Validação com LLMs')
+      setRole('AI-Assisted Financial Analyst')
+      setTitle('Financial Modelling and LLM Validation Trail')
       setStatement(
-        'Construir projeções de fluxo de caixa e valuation auxiliados por modelos de linguagem, mantendo rastreabilidade estrita das fórmulas e premissas contra dados primários.'
+        'Build cash-flow projections and valuations assisted by language models, maintaining strict traceability of formulas and assumptions against primary data.'
       )
     } else if (presetKey === 'aiops') {
-      setRole('Engenheiro de Operações de IA & Agentes')
-      setTitle('Trilha de Orquestração e Avaliação de Agentes Autônomos')
+      setRole('AI Operations & Agents Engineer')
+      setTitle('Autonomous Agent Orchestration and Evaluation Trail')
       setStatement(
-        'Projetar, calibrar e monitorar fluxos de agentes inteligentes com guardrails determinísticos, prevenção de alucinações e log auditável de execução.'
+        'Design, calibrate and monitor intelligent agent flows with deterministic guardrails, hallucination prevention and an auditable execution log.'
       )
     }
   }
@@ -1119,7 +1287,7 @@ function CreateTrailView({
     const nextId = `C${criteria.length + 1}`
     setCriteria([
       ...criteria,
-      { id: nextId, title: 'Novo Critério Observável', observables: ['comprova ação técnica verificável'] },
+      { id: nextId, title: 'New Observable Criterion', observables: ['proves verifiable technical action'] },
     ])
   }
 
@@ -1146,17 +1314,17 @@ function CreateTrailView({
     <div className="view-stack">
       <div className="page-heading">
         <div>
-          <p className="eyebrow">NOVA PROFISSÃO · CAPABILITY DESIGN</p>
-          <h1>Criar Trilha de Competência</h1>
+          <p className="eyebrow">NEW ROLE · CAPABILITY DESIGN</p>
+          <h1>Create Competency Trail</h1>
           <p className="page-subtitle">
-            Monte um rascunho local de competência e critérios observáveis. A publicação no protocolo canônico ainda não está disponível nesta interface.
+            Build a local draft of a competency and its observable criteria. Publishing to the canonical protocol is not yet available in this interface.
           </p>
         </div>
       </div>
 
       <div className="preset-bar">
         <span className="eyebrow" style={{ marginRight: 6 }}>
-          PRESETS RÁPIDOS:
+          QUICK PRESETS:
         </span>
         <button type="button" className="preset-pill active" onClick={() => applyPreset('governance')}>
           Data Governance &amp; AI Compliance
@@ -1174,12 +1342,12 @@ function CreateTrailView({
           <div>
             <CheckCircle2 />
             <div>
-              <strong>Rascunho de trilha criado nesta sessão</strong>
-              <p>A trilha está apenas no estado local desta sessão. Ela não foi publicada nem registrada no protocolo canônico.</p>
+              <strong>Trail draft created for this session</strong>
+              <p>The trail exists only in the local state of this session. It has not been published or registered in the canonical protocol.</p>
             </div>
           </div>
-          <button className="primary-button" onClick={() => setView('Submeter Evidência')}>
-            Submeter Evidência nesta Trilha <ArrowRight size={14} />
+          <button className="primary-button" onClick={() => setView('Submit Evidence')}>
+            Submit Evidence in this Trail <ArrowRight size={14} />
           </button>
         </aside>
       )}
@@ -1188,58 +1356,58 @@ function CreateTrailView({
         <div className="form-grid">
           <div className="form-group">
             <label>
-              Nova Profissão / Cargo Alvo <small>TARGET_ROLE</small>
+              New Role / Target Position <small>TARGET_ROLE</small>
             </label>
             <input
               type="text"
               className="form-control"
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              placeholder="ex: Líder de Governança de Dados"
+              placeholder="e.g. Data Governance Leader"
               required
             />
           </div>
 
           <div className="form-group">
             <label>
-              Título Canônico da Trilha <small>TRAIL_TITLE</small>
+              Canonical Trail Title <small>TRAIL_TITLE</small>
             </label>
             <input
               type="text"
               className="form-control"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="ex: Trilha de Governança e Anonimização"
+              placeholder="e.g. Governance and Anonymization Trail"
               required
             />
           </div>
 
           <div className="form-group full-width">
             <label>
-              Declaração Canônica da Competência <small>COMPETENCY_STATEMENT</small>
+              Canonical Competency Statement <small>COMPETENCY_STATEMENT</small>
             </label>
             <textarea
               className="form-textarea"
               rows={3}
               value={statement}
               onChange={(e) => setStatement(e.target.value)}
-              placeholder="Descreva a capacidade observável que diferencia quem demonstra esta competência..."
+              placeholder="Describe the observable capability that distinguishes who demonstrates this competency..."
               required
             />
           </div>
         </div>
 
-        {/* Critérios Observáveis */}
+        {/* Observable Criteria */}
         <div className="builder-block">
           <div className="builder-header">
             <div>
-              <strong>Critérios Canônicos Observáveis</strong>
+              <strong>Observable Canonical Criteria</strong>
               <p style={{ margin: '2px 0 0', color: 'var(--mut)', fontSize: '11.5px' }}>
-                Critérios objetivos que devem ser testados por mecanismos determinísticos e interpretação semântica.
+                Objective criteria that must be tested by deterministic mechanisms and semantic interpretation.
               </p>
             </div>
             <button type="button" className="secondary-button" onClick={handleAddCriterion}>
-              <Plus size={14} /> Adicionar Critério
+              <Plus size={14} /> Add Criterion
             </button>
           </div>
 
@@ -1264,7 +1432,7 @@ function CreateTrailView({
                       type="button"
                       className="icon-button"
                       onClick={() => handleRemoveCriterion(idx)}
-                      title="Remover critério"
+                      title="Remove criterion"
                     >
                       <Trash2 size={14} />
                     </button>
@@ -1272,7 +1440,7 @@ function CreateTrailView({
                 </div>
                 <div style={{ paddingLeft: '4px' }}>
                   <small style={{ color: 'var(--mut-2)', fontSize: '10px', textTransform: 'uppercase' }}>
-                    Comportamentos observáveis:
+                    Observable behaviours:
                   </small>
                   <ul style={{ margin: '4px 0 0', paddingLeft: '18px', color: 'var(--mut)', fontSize: '12px' }}>
                     {c.observables.map((obs, obsIdx) => (
@@ -1285,13 +1453,13 @@ function CreateTrailView({
           </div>
         </div>
 
-        {/* Atividades e Evidências Esperadas */}
+        {/* Expected Activities and Evidence */}
         <div className="builder-block">
           <div className="builder-header">
             <div>
-              <strong>Atividades e Evidências da Trilha</strong>
+              <strong>Trail Activities and Evidence</strong>
               <p style={{ margin: '2px 0 0', color: 'var(--mut)', fontSize: '11.5px' }}>
-                As etapas práticas pelas quais o colaborador submeterá evidências concretas.
+                The practical steps through which the collaborator will submit concrete evidence.
               </p>
             </div>
           </div>
@@ -1303,11 +1471,11 @@ function CreateTrailView({
                   <span className="badge b-evidence">{act.id}</span>
                   <b>{act.title}</b>
                   <span style={{ color: 'var(--mut-2)', fontSize: '11px', marginLeft: 'auto' }}>
-                    Evidências: {act.expectedEvidence.join(', ')}
+                    Evidence: {act.expectedEvidence.join(', ')}
                   </span>
                 </div>
                 <p style={{ margin: '2px 0 0', color: 'var(--mut)', fontSize: '12px' }}>
-                  <b>Objetivo:</b> {act.objective} · <b>Alimenta:</b> {act.criteria.join(', ')}
+                  <b>Objective:</b> {act.objective} · <b>Feeds:</b> {act.criteria.join(', ')}
                 </p>
               </div>
             ))}
@@ -1316,10 +1484,10 @@ function CreateTrailView({
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
           <button type="button" className="secondary-button" onClick={() => setView('Dashboard')}>
-            Cancelar
+            Cancel
           </button>
           <button type="submit" className="primary-button">
-            <Layers size={16} /> Publicar Trilha no Protocolo
+            <Layers size={16} /> Publish Trail to Protocol
           </button>
         </div>
       </form>
@@ -1337,65 +1505,65 @@ const protocolNavItems: [typeof LayoutDashboard, View][] = [
 ]
 
 const operationNavItems: [typeof FolderUp, View][] = [
-  [FolderUp, 'Submeter Evidência'],
-  [Layers, 'Criar Trilha'],
+  [FolderUp, 'Submit Evidence'],
+  [Layers, 'Create Trail'],
 ]
 
 // ─── Default Initial Trail ───────────────────────────────────────────────────
 const initialDefaultTrail: CustomTrail = {
   id: 'trail:applied-data-analysis',
   role: 'Data Analyst',
-  title: 'Trilha de Análise de Dados Aplicada',
+  title: 'Applied Data Analysis Trail',
   statement:
-    'Usar ferramentas de IA como apoio para transformar uma pergunta de negócio em uma análise de dados reproduzível e comunicar conclusões sustentadas por evidências.',
+    'Use AI tools to transform a business question into reproducible data analysis and communicate conclusions backed by evidence.',
   criteria: [
     {
       id: 'C1',
-      title: 'Formulação Analítica',
-      observables: ['transforma pergunta de negócio em pergunta analítica clara', 'define o que pretende responder'],
+      title: 'Analytical Formulation',
+      observables: ['transforms a business question into a clear analytical question', 'defines what it intends to answer'],
     },
     {
       id: 'C2',
-      title: 'Tratamento e Análise',
-      observables: ['identifica e prepara dados', 'executa análise coerente com a pergunta'],
+      title: 'Data Treatment and Analysis',
+      observables: ['identifies and prepares data', 'runs analysis consistent with the question'],
     },
     {
       id: 'C3',
-      title: 'Evidência e Suporte',
-      observables: ['apresenta resultados apoiados pelos dados', 'diferencia observação de inferência'],
+      title: 'Evidence and Support',
+      observables: ['presents results backed by data', 'distinguishes observation from inference'],
     },
     {
       id: 'C4',
-      title: 'Comunicação',
-      observables: ['comunica contexto, achados e limitações de forma compreensível'],
+      title: 'Communication',
+      observables: ['communicates context, findings and limitations in a comprehensible way'],
     },
   ],
   activities: [
     {
       id: 'A1',
-      title: 'Formular a pergunta',
-      objective: 'transformar um problema de negócio em uma pergunta analítica',
+      title: 'Formulate the question',
+      objective: 'transform a business problem into an analytical question',
       expectedEvidence: ['briefing'],
       criteria: ['C1'],
     },
     {
       id: 'A2',
-      title: 'Preparar e explorar os dados',
-      objective: 'preparar o conjunto de dados e identificar padrões relevantes',
+      title: 'Prepare and explore the data',
+      objective: 'prepare the dataset and identify relevant patterns',
       expectedEvidence: ['analysis_artifact'],
       criteria: ['C2'],
     },
     {
       id: 'A3',
-      title: 'Executar análise reproduzível',
-      objective: 'responder à pergunta analítica por meio de uma análise reproduzível',
+      title: 'Run reproducible analysis',
+      objective: 'answer the analytical question through a reproducible analysis',
       expectedEvidence: ['analysis_artifact', 'analysis_result'],
       criteria: ['C2', 'C3'],
     },
     {
       id: 'A4',
-      title: 'Comunicar resultado',
-      objective: 'transformar a análise em uma comunicação útil para decisão',
+      title: 'Communicate the result',
+      objective: 'turn the analysis into a useful communication for decision-making',
       expectedEvidence: ['communication'],
       criteria: ['C3', 'C4'],
     },
@@ -1607,9 +1775,33 @@ export default function Page() {
           <ChevronDown size={14} />
         </div>
 
-        {/* Grupo 1: Protocolo & Auditoria */}
-        <div className="nav-label">Protocolo &amp; Auditoria</div>
-        <nav aria-label="Navegação de protocolo">
+        {/* Grupo 1: Operação & Trilha — fluxo do colaborador (topo) */}
+        <div className="nav-label">Operation &amp; Trail</div>
+        <nav aria-label="Operation navigation">
+          {operationNavItems.map(([Icon, label]) => (
+            <button
+              key={label}
+              onClick={() => {
+                setView(label)
+                setMenuOpen(false)
+              }}
+              className={`nav-item ${view === label ? 'active' : ''}`}
+              aria-current={view === label ? 'page' : undefined}
+            >
+              <Icon />
+              <span>{label}</span>
+            </button>
+          ))}
+        </nav>
+
+        {/* Divisor visual entre os dois grupos */}
+        <div className="nav-section-divider" aria-hidden="true">
+          <span>protocol</span>
+        </div>
+
+        {/* Grupo 2: Protocolo & Auditoria — fluxo do avaliador (abaixo) */}
+        <div className="nav-label">Protocol &amp; Audit</div>
+        <nav aria-label="Protocol navigation">
           {protocolNavItems.map(([Icon, label]) => (
             <button
               key={label}
@@ -1623,27 +1815,6 @@ export default function Page() {
               <Icon />
               <span>{label}</span>
               {label === 'Adjudication Center' && conflictCount > 0 && <em>{conflictCount}</em>}
-            </button>
-          ))}
-        </nav>
-
-        {/* Grupo 2: Operação & Trilha */}
-        <div className="nav-label" style={{ marginTop: '16px' }}>
-          Operação &amp; Trilha
-        </div>
-        <nav aria-label="Navegação operacional">
-          {operationNavItems.map(([Icon, label]) => (
-            <button
-              key={label}
-              onClick={() => {
-                setView(label)
-                setMenuOpen(false)
-              }}
-              className={`nav-item ${view === label ? 'active' : ''}`}
-              aria-current={view === label ? 'page' : undefined}
-            >
-              <Icon />
-              <span>{label}</span>
             </button>
           ))}
         </nav>
@@ -1722,7 +1893,6 @@ export default function Page() {
               <h2>Runtime not connected</h2>
               <p>{error.message}</p>
               {error.hint ? <p>{error.hint}</p> : null}
-              <p>No local data is used as a fallback.</p>
               <button type="button" className="retry-button" onClick={() => setAttempt((n) => n + 1)}>
                 Try again
               </button>
@@ -1739,8 +1909,8 @@ export default function Page() {
               {view === 'Adjudication Center' && <AdjudicationView items={queueItems} setView={setView} />}
               {view === 'Audit Logs' && <AuditView data={data} />}
 
-              {/* Novas Telas */}
-              {view === 'Submeter Evidência' && (
+              {/* New Screens */}
+              {view === 'Submit Evidence' && (
                 <SubmitEvidenceView
                   trails={trails}
                   onSubmitEvidence={handleAddEvidence}
@@ -1748,7 +1918,7 @@ export default function Page() {
                 />
               )}
 
-              {view === 'Criar Trilha' && (
+              {view === 'Create Trail' && (
                 <CreateTrailView onSaveTrail={handleAddTrail} setView={setView} />
               )}
 

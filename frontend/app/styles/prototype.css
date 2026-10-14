@@ -154,25 +154,35 @@
   line-height: 1.5;
 }
 
-/* Primary button */
+/* Primary button — LASTRO signature interaction */
 .primary-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: 0;
-  border-radius: 7px;
-  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 10px 16px;
   background: var(--ac);
   color: #fff;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.18s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
 }
 
 .primary-button:hover {
-  background: #0f6ee6;
+  background: #258bff;
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(22, 131, 255, 0.45), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+  background: #0f75ea;
+  box-shadow: 0 0 8px rgba(22, 131, 255, 0.3);
 }
 
 /* Text button */
@@ -509,24 +519,36 @@
   font-size: 13px;
 }
 
-/* Secondary button */
+/* Secondary button — LASTRO border glow interaction */
 .secondary-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border: 1px solid var(--line);
-  border-radius: 7px;
-  padding: 10px 14px;
-  background: transparent;
+  border-radius: 8px;
+  padding: 10px 15px;
+  background: var(--surface);
   color: var(--fg);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 12.5px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.18s;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
 }
+
 .secondary-button:hover {
   background: var(--surface-2);
+  border-color: rgba(22, 131, 255, 0.5);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 0 14px rgba(22, 131, 255, 0.16);
+}
+
+.secondary-button:active {
+  transform: translateY(0);
+  background: var(--surface);
+  border-color: var(--ac);
 }
 
 /* Activity list */
@@ -841,5 +863,16 @@
   .audit-row code {
     width: 100%;
     padding-left: 20px;
+  }
+  .action-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .action-banner a.primary-button,
+  .action-banner button.primary-button {
+    margin-left: 0 !important;
+    width: 100%;
+    text-align: center;
   }
 }
