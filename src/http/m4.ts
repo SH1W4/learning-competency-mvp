@@ -86,6 +86,47 @@ export interface M4Projection {
   };
 }
 
+/**
+ * Expose only a verified attestation for this exact reviewed-state hash.
+ * A historical report must never be attached to a newly generated record.
+ */
+function resolveMatchingAttestation(recordHash: string): Pick<M4Projection, "attestation" | "public_verification"> {
+  try {
+    const reportPath = join(process.cwd(), "out", "m4-attestation-verification.json");
+    if (!existsSync(reportPath)) {
+      return { attestation: null, public_verification: null };
+    }
+
+    const report = JSON.parse(readFileSync(reportPath, "utf-8"));
+    if (
+      report.verified !== true ||
+      report.network !== "devnet" ||
+      report.record_hash !== recordHash ||
+      typeof report.signature !== "string" ||
+      !report.signature.trim()
+    ) {
+      return { attestation: null, public_verification: null };
+    }
+
+    const href = `https://explorer.solana.com/tx/${encodeURIComponent(report.signature)}?cluster=devnet`;
+    return {
+      attestation: {
+        version: report.record_version ?? "m3.attestation.v2",
+        record_hash: report.record_hash,
+        tx_signature: report.signature,
+        network: "devnet",
+        verified: true,
+      },
+      public_verification: {
+        href,
+        label: "Solana Explorer (Devnet)",
+      },
+    };
+  } catch {
+    return { attestation: null, public_verification: null };
+  }
+}
+
 export async function buildM4SyntheticProjection(): Promise<M4Projection> {
   const session = new CompetencySession(SUBJECT);
   const analysis = session.submit(ANA.analysis());
@@ -166,42 +207,6 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
       decision_mode: handoff.decision.mode,
     },
     reviewed_state_record: handoff,
-    attestation: (() => {
-      try {
-        const reportPath = join(process.cwd(), "out", "m4-attestation-verification.json");
-        if (existsSync(reportPath)) {
-          const rep = JSON.parse(readFileSync(reportPath, "utf-8"));
-          if (rep.signature) {
-            return {
-              version: rep.record_version ?? "m3.attestation.v2",
-              record_hash: rep.record_hash,
-              tx_signature: rep.signature,
-              network: rep.network ?? "devnet",
-              verified: rep.verified ?? true,
-            };
-          }
-        }
-      } catch {
-        // file missing or unparseable
-      }
-      return null;
-    })(),
-    public_verification: (() => {
-      try {
-        const reportPath = join(process.cwd(), "out", "m4-attestation-verification.json");
-        if (existsSync(reportPath)) {
-          const rep = JSON.parse(readFileSync(reportPath, "utf-8"));
-          if (rep.signature) {
-            return {
-              href: rep.explorer_url ?? `https://explorer.solana.com/tx/${rep.signature}?cluster=devnet`,
-              label: "Solana Explorer (Devnet)",
-            };
-          }
-        }
-      } catch {
-        // file missing or unparseable
-      }
-      return null;
-    })(),
+    ...resolveMatchingAttestation(handoff.record_hash),
   };
 }
