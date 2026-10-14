@@ -344,7 +344,7 @@
 }
 
 /* Explicitly distinguish the demo workspace from a real organization selector. */
-.workspace-kicker {
+.workspace-copy .workspace-kicker {
   color: var(--mut-2);
   font: 500 8px/1.2 ui-monospace, monospace;
   letter-spacing: 0.12em;
@@ -394,6 +394,12 @@
   margin: 0;
   color: #5ac28b;
   font-size: 12px;
+}
+.workspace-save-error {
+  margin: 0;
+  color: #e18a8a;
+  font-size: 12px;
+  line-height: 1.5;
 }
 .workspace-next-step h2 {
   margin: 10px 0 8px;
