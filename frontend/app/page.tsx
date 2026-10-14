@@ -236,6 +236,7 @@ type View =
   | 'Runtime Details'
   | 'Submit Evidence'
   | 'Create Trail'
+  | 'Workspace Settings'
 
 type QueueStatus = 'DEMONSTRATED' | 'CONFLICT' | 'IN_DEVELOPMENT'
 
@@ -1570,6 +1571,124 @@ const initialDefaultTrail: CustomTrail = {
   ],
 }
 
+type WorkspaceContext = {
+  organizationName: string
+  domain: string
+  operatingObjective: string
+  evidenceContext: string
+}
+
+const defaultWorkspaceContext: WorkspaceContext = {
+  organizationName: 'MVP Environment',
+  domain: 'Learning & Competency',
+  operatingObjective: 'Evaluate observable work against explicit competency criteria.',
+  evidenceContext: 'Use artifacts with clear source, activity, context, and reviewable criteria. Do not submit personal or sensitive data.',
+}
+
+function WorkspaceSettingsView() {
+  const [context, setContext] = useState<WorkspaceContext>(defaultWorkspaceContext)
+  const [saved, setSaved] = useState(false)
+  const [hydrated, setHydrated] = useState(false)
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem('lastro.workspace-context.v1')
+      if (stored) {
+        const parsed = JSON.parse(stored) as Partial<WorkspaceContext>
+        setContext({
+          organizationName: parsed.organizationName ?? defaultWorkspaceContext.organizationName,
+          domain: parsed.domain ?? defaultWorkspaceContext.domain,
+          operatingObjective: parsed.operatingObjective ?? defaultWorkspaceContext.operatingObjective,
+          evidenceContext: parsed.evidenceContext ?? defaultWorkspaceContext.evidenceContext,
+        })
+      }
+    } catch {
+      // Keep safe defaults when browser storage is unavailable or invalid.
+    } finally {
+      setHydrated(true)
+    }
+  }, [])
+
+  const update = (field: keyof WorkspaceContext, value: string) => {
+    setContext((current) => ({ ...current, [field]: value }))
+    setSaved(false)
+  }
+
+  const handleSave = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    try {
+      window.localStorage.setItem('lastro.workspace-context.v1', JSON.stringify(context))
+      setSaved(true)
+    } catch {
+      setSaved(false)
+    }
+  }
+
+  const handleReset = () => {
+    setContext(defaultWorkspaceContext)
+    setSaved(false)
+    try {
+      window.localStorage.removeItem('lastro.workspace-context.v1')
+    } catch {
+      // The in-memory defaults still apply for this session.
+    }
+  }
+
+  return (
+    <div className="view-stack">
+      <header className="page-heading">
+        <div>
+          <p className="eyebrow">WORKSPACE · LOCAL CONFIGURATION</p>
+          <h1>Workspace context</h1>
+          <p className="page-subtitle">Define the operating context used by your team when preparing evidence and competency trails.</p>
+        </div>
+        <span className="badge b-neutral">BROWSER-LOCAL SETTINGS</span>
+      </header>
+
+      <div className="data-notice" role="note">
+        <LockKeyhole size={16} />
+        <span><strong>Prototype boundary.</strong> These settings are stored only in this browser. They do not configure the canonical runtime, change verification rules, or create an organization account.</span>
+      </div>
+
+      <form className="form-card workspace-settings-form" onSubmit={handleSave}>
+        <div className="section-header">
+          <div><span className="eyebrow">01 / IDENTITY</span><h2>Organization and domain</h2></div>
+        </div>
+        <div className="form-grid">
+          <div className="form-group">
+            <label htmlFor="workspace-org">Workspace name</label>
+            <input id="workspace-org" className="form-control" value={context.organizationName} onChange={(event) => update('organizationName', event.target.value)} maxLength={80} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="workspace-domain">Operating domain</label>
+            <input id="workspace-domain" className="form-control" value={context.domain} onChange={(event) => update('domain', event.target.value)} maxLength={100} required />
+          </div>
+          <div className="form-group full-width">
+            <label htmlFor="workspace-objective">Operating objective</label>
+            <textarea id="workspace-objective" className="form-textarea" value={context.operatingObjective} onChange={(event) => update('operatingObjective', event.target.value)} rows={3} maxLength={1000} required />
+          </div>
+          <div className="form-group full-width">
+            <label htmlFor="workspace-evidence">Evidence intake context and constraints</label>
+            <textarea id="workspace-evidence" className="form-textarea" value={context.evidenceContext} onChange={(event) => update('evidenceContext', event.target.value)} rows={4} maxLength={2000} required />
+            <small>Describe acceptable sources, required context, and data-handling restrictions. Do not include personal data here.</small>
+          </div>
+        </div>
+        <div className="workspace-settings-actions">
+          <button type="button" className="secondary-button" onClick={handleReset}>Reset defaults</button>
+          <button type="submit" className="primary-button" disabled={!hydrated}>Save context locally <Check size={14} /></button>
+        </div>
+        {saved && <p className="workspace-save-status" role="status"><CheckCircle2 size={16} /> Context saved in this browser. Runtime integration is not enabled.</p>}
+      </form>
+
+      <section className="panel workspace-next-step">
+        <span className="eyebrow">02 / NEXT INTEGRATION STEP</span>
+        <h2>Connect context to the evidence workflow</h2>
+        <p>For this context to guide real submissions, the next implementation must define a versioned workspace contract, validate it server-side, and pass its identifier with evidence and trail requests. This screen intentionally does not simulate that integration.</p>
+      </section>
+    </div>
+  )
+}
+
 // ─── Root Application Component ──────────────────────────────────────────────
 type ApiStatus = 'checking' | 'ready' | 'waking' | 'offline'
 
@@ -1764,15 +1883,14 @@ export default function Page() {
           </button>
         </div>
 
-        <div className="workspace-switcher">
-          <span className="workspace-avatar">
-            <LastroSymbolReduced size={18} />
-          </span>
+        <button type="button" className="workspace-switcher" onClick={() => setView('Workspace Settings')} aria-label="Configure workspace context">
+          <span className="workspace-avatar"><LastroSymbolReduced size={18} /></span>
           <span className="workspace-copy">
             <small className="workspace-kicker">DEMO WORKSPACE</small>
-            <b>MVP Environment</b>
+            <b>Workspace context</b>
           </span>
-        </div>
+          <span className="workspace-config-action">Configure</span>
+        </button>
 
         {/* Grupo 1: Operação & Trilha — fluxo do colaborador (topo) */}
         <div className="nav-label">Operation &amp; Trail</div>
@@ -1901,6 +2019,7 @@ export default function Page() {
           {!loading && !error && (
             <>
               {view === 'Landing' && <LandingView setView={setView} />}
+              {view === 'Workspace Settings' && <WorkspaceSettingsView />}
               {view === 'Dashboard' && (
                 <DashboardView data={data} queueItems={queueItems} setView={setView} />
               )}
