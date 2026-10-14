@@ -1755,7 +1755,7 @@ export default function Page() {
               </div>
               <div className="brand-text">
                 <span className="brand-name">LASTRO</span>
-                <small className="brand-caption">DO APRENDIZADO À PROVA</small>
+                <small className="brand-caption">EVIDENCE INFRASTRUCTURE</small>
               </div>
             </a>
           </button>
@@ -1769,10 +1769,9 @@ export default function Page() {
             <LastroSymbolReduced size={18} />
           </span>
           <span className="workspace-copy">
-            <b>LASTRO</b>
-            <small>MVP Protocol</small>
+            <small className="workspace-kicker">DEMO WORKSPACE</small>
+            <b>MVP Environment</b>
           </span>
-          <ChevronDown size={14} />
         </div>
 
         {/* Grupo 1: Operação & Trilha — fluxo do colaborador (topo) */}
@@ -1874,7 +1873,7 @@ export default function Page() {
             <span className="avatar-mini">
               <LastroSymbolReduced size={16} />
             </span>{' '}
-            LASTRO (Protocol) <ChevronDown size={14} />
+            LASTRO (Demo)
           </div>
         </header>
 
