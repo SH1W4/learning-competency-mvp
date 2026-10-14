@@ -69,7 +69,9 @@ type M4Projection = {
   evidence: Array<{ evidence_id: string; type: string; activity_id: string; source_ref: string; content_ref: string; trust_level: string; synthetic: boolean }>
   interpretation: { id: string; model: string; signals: Array<{ signal_id: string; criterion_id: string; support: string; confidence: number; evidence_refs: string[] }> }
   verification: { mechanisms: Verification[] }
-  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION' | 'NOT_EVALUATED'; can_auto_advance: boolean; requires_adjudication: boolean }
+  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'NOT_EVALUATED'; can_auto_advance: boolean; requires_adjudication: boolean }
+  resolution: { status: 'NOT_REQUIRED' | 'PENDING' | 'RESOLVED'; mechanism: 'consensus' | 'human_adjudication' | 'none'; outcome: 'ESTABLISHED' | 'NOT_ESTABLISHED' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'REQUIRES_VERIFICATION' | null }
+  competency_state: { adapter_version: string; value: 'ESTABLISHED' | 'NOT_ESTABLISHED' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'REQUIRES_VERIFICATION' | null; mapping_status: 'MAPPED' | 'UNMAPPED' | 'INCONSISTENT'; reason: string }
   state: { value: 'NOT_STARTED' | 'IN_DEVELOPMENT' | 'UNDER_REVIEW' | 'DEMONSTRATED'; history: unknown[] }
   handoff: { record_version: string; record_hash: string; competency_id: string; state: string; decision_mode: string }
   attestation: null | { version: string; record_hash: string; tx_signature?: string; network?: string; verified?: boolean | null }
@@ -117,7 +119,6 @@ const consensusDescriptions: Record<M4Projection['consensus']['status'], string>
   AGREEMENT: 'The mechanisms reported agreement. The state is displayed separately and is not recalculated by the interface.',
   INSUFFICIENT_EVIDENCE: 'The available evidence was deemed insufficient by the runtime. Do not interpret this result as a demonstration.',
   CONFLICT: 'Conflict reported. Auto-advancement must remain blocked; this interface does not resolve the conflict.',
-  HUMAN_ADJUDICATION: 'The runtime indicates human adjudication is required. This interface does not record or simulate a human decision.',
   NOT_EVALUATED: 'This is a local draft. No verification mechanism or consensus was executed by the canonical runtime.',
 }
 
@@ -818,6 +819,13 @@ print("Pipeline executado com integridade.")
         status: 'NOT_EVALUATED',
         can_auto_advance: false,
         requires_adjudication: false,
+      },
+      resolution: { status: 'PENDING', mechanism: 'none', outcome: null },
+      competency_state: {
+        adapter_version: 'lastro-competency-adapter/0.1.0',
+        value: null,
+        mapping_status: 'UNMAPPED',
+        reason: 'verification_missing',
       },
       state: {
         value: 'UNDER_REVIEW',
@@ -1803,6 +1811,21 @@ export default function Page() {
                             <strong>{data.consensus.requires_adjudication ? 'yes' : 'no'}</strong>
                           </span>
                         </div>
+                      </div>
+                    </div>
+                    <div className="runtime-state-grid runtime-semantic-grid">
+                      <div className="runtime-state-card">
+                        <span className="eyebrow">RESOLUTION</span>
+                        <strong>{data.resolution.status}</strong>
+                        <p>Mechanism: {data.resolution.mechanism}</p>
+                        <p>Outcome: {data.resolution.outcome ?? 'No explicit resolution'}</p>
+                      </div>
+                      <div className="runtime-state-card">
+                        <span className="eyebrow">CANONICAL COMPETENCY STATE</span>
+                        <strong>{data.competency_state.value ?? 'Not mapped'}</strong>
+                        <code>{data.competency_state.mapping_status}</code>
+                        <p>{data.competency_state.reason}</p>
+                        <small>Adapter {data.competency_state.adapter_version}</small>
                       </div>
                     </div>
                     {data.consensus.status === 'CONFLICT' || data.consensus.requires_adjudication ? (
