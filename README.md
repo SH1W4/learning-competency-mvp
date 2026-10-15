@@ -41,6 +41,8 @@ ATTESTATION
 INDEPENDENT VERIFICATION
 ```
 
+The diagram describes the conceptual verification flow. The current implementation demonstrates a bounded synthetic scenario and a recorded Devnet proof; it does not mean every step is already connected in the currently published public frontend journey.
+
 LASTRO is not another credentialing platform. It investigates the layer connecting evidence of demonstrated work to a bounded, verifiable capability state.
 
 ## How the mechanism works
@@ -85,7 +87,7 @@ The flow separates source evidence, AI interpretation, deterministic checks, con
 - The system can represent agreement, insufficient evidence, and conflict as distinct outcomes.
 - Conflict can enter an explicit human adjudication path.
 - A bounded state can be represented in a deterministic record.
-- The record can be anchored on Solana Devnet and its integrity relationship independently checked when the transaction is available.
+- A record can be anchored on Solana Devnet and its integrity relationship independently checked when the transaction is available.
 
 ## Why Solana—and what blockchain does not do
 
@@ -115,7 +117,11 @@ The repository documents a verified synthetic Ana attestation:
 - **Reproducibility record:** [Issue #21 / execution evidence](https://github.com/SH1W4/learning-competency-mvp/issues/21)
 - **Demo and verification runbook:** [Demo & Technical Proof](docs/evaluation/04_DEMO_AND_PROOF.md) · [Local Devnet Proof Runbook](docs/evaluation/M4_LOCAL_DEVNET_PROOF.md)
 
-This is recorded proof of an integrity/attestation path for a bounded synthetic state. It is **not** proof of universal competency or completion of the public frontend's end-to-end journey.
+This is recorded proof of an integrity/attestation path for one bounded synthetic state. It is **not** proof of universal competency or completion of the public frontend's end-to-end journey.
+
+**Current integration limitation:** the recorded Devnet attestation demonstrates verification for one specific synthetic record. The currently published runtime does not yet provide durable persistence and retrieval of the complete record and its verification report, so the recorded proof must not be interpreted as a fully integrated, persistent public frontend-to-attestation workflow. The historical proof and the current public integration status are separate claims.
+
+For the distinction between recorded proof and current implementation status, see [Public Project Status](docs/PROJECT_STATUS.md). A historical success does not validate a later code candidate unless that candidate is tested separately.
 
 ## Scope and limits
 
@@ -151,12 +157,16 @@ For a focused technical review:
 
 ## Quick start
 
+The following commands run the local demonstration and automated checks:
+
 ```bash
 npm install
 npm run typecheck
 npm test
 npm run demo
 ```
+
+This Quick Start does not, by itself, reproduce a Solana Devnet attestation. Reproducing that proof requires the separate runbook, a Devnet wallet, and a locally configured signing key.
 
 Attestation and verification commands:
 
