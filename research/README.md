@@ -7,7 +7,6 @@ This directory contains curated research that helps readers understand and chall
 - [Research map](RESEARCH_MAP.md)
 - [Related work and external evidence](RELATED_WORK_AND_EVIDENCE.md)
 - [Article research track](article/README.md)
-- [Ethical compliance layer](02_ETHICAL_COMPLIANCE_LAYER.md)
 
 ## Article research
 
