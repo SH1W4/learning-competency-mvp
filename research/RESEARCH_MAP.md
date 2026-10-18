@@ -10,7 +10,6 @@ This map covers the research currently published to support LASTRO's bounded MVP
 4. [Verification, consensus, provenance and attestation](./article/02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md)
 5. [Related work matrix](./article/RELATED_WORK_MATRIX.md)
 6. [Literature closure protocol](./article/LITERATURE_CLOSURE_PROTOCOL.md)
-7. [Ethical compliance layer](./02_ETHICAL_COMPLIANCE_LAYER.md)
 
 ## Questions addressed
 
