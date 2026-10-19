@@ -66,13 +66,12 @@ The case-study layer deliberately distinguishes:
 ## Navigation
 
 - [Research Map](../../research/RESEARCH_MAP.md)
-- [Article Research Track](../../research/article/README.md)
 - [Reproducible Demo Contract](../demo/REPRODUCIBLE_DEMO_CONTRACT.md)
-- [Evaluator Walkthrough](../evaluation/EVALUATOR_WALKTHROUGH.md)
+- [Evaluation Guide](../evaluation/README.md)
 - [Project Status](../PROJECT_STATUS.md)
 - [Technical Architecture](../architecture/TECHNICAL_ARCHITECTURE.md)
 - [Consensus Core](../architecture/CONSENSUS_CORE.md)
-- [Publication Classification Matrix](../governance/PUBLICATION_CLASSIFICATION_MATRIX.md)
+- [Publication Boundary](../governance/PUBLICATION_BOUNDARY.md)
 
 ## External references
 
