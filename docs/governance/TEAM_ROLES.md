@@ -1,114 +1,39 @@
-# Team Roles & Decision Governance
+# LASTRO — Contribution and Decision Model
 
-> **Status:** working team operating model. Roles can evolve with demonstrated contribution and validated project needs.
+> **Purpose:** describe how project work and decisions are governed without exposing person-by-person operational assignments.
 
-## Purpose
+## Contribution areas
 
-Make ownership explicit without creating unnecessary hierarchy or blocking contribution.
+The MVP brings together four complementary areas:
 
-## Current role model
+- **Architecture and systems:** coherence of the evidence, verification, consensus, state, and attestation model.
+- **Implementation and quality:** code, tests, API contracts, integrations, and failure behavior.
+- **Research and validation:** bounded research, evidence organization, validation methods, and documentation of findings.
+- **Product design and UX:** interface, information hierarchy, accessibility, and visual consistency with the implemented system.
 
-### JX / SH1W4 — Architecture, AI & Systems
-
-Primary responsibility:
-
-- system architecture;
-- AI/evidence pipeline;
-- data and integration design;
-- technical coherence;
-- attestation/verification architecture;
-- technical decisions affecting the MVP contract;
-- implementation or review of critical technical paths.
-
-### Erick — Research, Operations & Validation
-
-Primary responsibility:
-
-- research organization;
-- documentation;
-- spreadsheets and operational material;
-- market/demand research;
-- interview coordination;
-- validation evidence;
-- commercial/operational support.
-
-### JP Carvalho — Technical Implementation
-
-GitHub: `Joaopedro0s`
-
-Primary responsibility:
-
-- implementation tasks assigned through the technical backlog;
-- evidence ingestion and normalization;
-- AI output contract and competency relation;
-- human review flow;
-- provenance and critical pipeline tests;
-- feature development;
-- technical investigation;
-- pull requests and implementation documentation.
-
-**M3 support:** JP Carvalho may support the M3 technical execution when requested, including integration, implementation, debugging and tests. M3 ownership and final technical responsibility remain with **JX / SH1W4**.
-
-### JP Fernandes — UX/UI, Interface & Product Presentation
-
-Primary responsibility:
-
-- UX/UI of the vertical slice;
-- mapping screens and navigation flow;
-- interface for evidence submission;
-- interface for AI interpretation and human review;
-- visualization of competency state;
-- attestation and verification result presentation;
-- frontend implementation where assigned;
-- visual/brand consistency of the product experience.
-
-The interface materializes the product and architecture already defined by the team. It does not create parallel product logic or expand the MVP scope.
+These are contribution areas, not a statement that every area is complete or that any individual has unilateral authority over the whole product.
 
 ## Decision classes
 
 | Class | Examples | Required handling |
 | --- | --- | --- |
-| Product | target user, use case, MVP scope | team decision before implementation |
-| Architecture | data model, pipeline, attestation design | technical review + documented decision |
-| Implementation | code, tests, refactors | issue/PR workflow |
-| Validation | interviews, experiments | record evidence and outcome |
-| Documentation | guides, wording, diagrams | maintain consistency with current decisions |
-| Future hypothesis | ideas outside MVP | document without treating as requirement |
+| Product | target user, use case, MVP scope | record the decision before implementation |
+| Architecture | data model, pipeline, attestation design | technical review and documented rationale |
+| Implementation | code, tests, refactors | scoped issue and reviewable pull request where practical |
+| Validation | interviews, experiments, evaluation | record evidence, method, and outcome |
+| Documentation | guides, wording, diagrams | align with current implementation and evidence |
+| Future hypothesis | ideas outside the bounded MVP | label as hypothesis, not as a requirement or demonstrated capability |
 
 ## Decision rule
 
-A contributor may propose any change.
+A proposal becomes a project requirement only after the appropriate decision is recorded. Assumptions must not silently become product requirements, market facts, traction, architectural constraints, or public claims.
 
-A proposal becomes a project requirement only after the appropriate decision is recorded.
+## Working principles
 
-No individual assumption should silently become:
+- Prefer small, reviewable changes and traceable decisions.
+- Distinguish implemented behavior from plans and hypotheses.
+- Keep source evidence, AI interpretation, deterministic verification, consensus, competency state, and attestation conceptually distinct.
+- Treat human adjudication as an exception path, not the default pipeline.
+- Do not claim customer adoption, product-market fit, ROI, production readiness, or protocol conformance without corresponding evidence and authorization.
 
-- a product requirement;
-- a market fact;
-- traction;
-- an architectural constraint;
-- a claim in the hackathon pitch.
-
-## GitHub operating rule
-
-Use issues for scoped work and pull requests for implementation when practical.
-
-Prefer small, reviewable commits.
-
-Critical changes should reference the relevant product/architecture decision or issue.
-
-## Responsibility principle
-
-Ownership means responsibility for keeping a domain coherent, not unilateral authority over unrelated domains.
-
-## Conflict resolution
-
-When two proposals conflict:
-
-1. identify the decision class;
-2. return to the current source of truth;
-3. separate validated facts from hypotheses;
-4. document the decision or unresolved question;
-5. update affected implementation/docs.
-
-The goal is traceability, not hierarchy.
+The goal is traceability and product coherence, not hierarchy.

@@ -27,7 +27,7 @@ A hierarquia atual é:
 1. **LASTRO Identity v0.2** — referência canônica de identidade;
 2. **Visual System Specification v0.2** — regras operacionais de execução;
 3. **Brandbook Draft** — direção verbal, personalidade e narrativa;
-4. **Design Brief — JP Fernandes** — orientação operacional para UX/UI;
+4. **Public Design Implementation Brief** — princípios públicos de execução UX/UI;
 5. **Assets** — referências e materiais de produção.
 
 O sistema visual deve projetar a arquitetura existente, não criar uma arquitetura semântica paralela.
@@ -37,7 +37,7 @@ O sistema visual deve projetar a arquitetura existente, não criar uma arquitetu
 - [LASTRO Identity v0.2](LASTRO_IDENTIDADE_v0.2.html) — referência canônica de identidade.
 - [Visual System Specification v0.2](VISUAL_SYSTEM_SPEC.md) — mini design system e regras de execução.
 - [Brandbook](BRANDBOOK_DRAFT.md) — essência, personalidade, linguagem e direção visual.
-- [Design Brief — JP Fernandes](DESIGN_BRIEF_JP_FERNANDES.md) — frente de execução visual.
+- [Public Design Implementation Brief](DESIGN_BRIEF_JP_FERNANDES.md) — princípios públicos para a interface e sua coerência com o produto.
 - [Naming Exploration](NAMING_EXPLORATION.md) — histórico da exploração de naming; não reabre a decisão atual.
 
 ## Identidade atual
@@ -75,7 +75,7 @@ A pasta [assets](assets/) contém atualmente referências de trabalho do símbol
 
 Esses arquivos não devem ser reinterpretados como uma nova identidade. O SVG é a referência vetorial de trabalho atual; os arquivos flat/3D são referências visuais.
 
-Variantes finais de produção (wordmark, favicon/app icon, monochrome/inverted exports, templates e pacote final) devem ser geradas pelo responsável de design a partir do sistema v0.2 e aprovadas antes de serem tratadas como assets canônicos.
+Variantes finais de produção (wordmark, favicon/app icon, monochrome/inverted exports, templates e pacote final) devem ser geradas a partir do sistema v0.2 e aprovadas antes de serem tratadas como assets canônicos.
 
 ## Governança
 
