@@ -1,56 +1,43 @@
-# Brief de Identidade e Interface — JP Fernandes
+# LASTRO — Public Design Implementation Brief
 
-**Status:** execução / exploração visual  
-**Responsável:** JP Fernandes  
-**Contexto:** LASTRO — Learning Competency / Colosseum
+**Status:** public visual direction and product-interface principles  
+**Context:** LASTRO — bounded Learning Competency MVP
 
-## Objetivo
+## Objective
 
-Materializar no produto a identidade visual do LASTRO e tornar legível, para um avaliador, a arquitetura já implementada.
+Make the implemented product and its evidence boundaries legible to an evaluator. The interface should express the existing product and architecture, not introduce a second domain model.
 
-O trabalho de frontend/UX/UI deve **projetar a arquitetura existente**, não criar uma segunda arquitetura.
+## Public references
 
-## Fontes de trabalho
-
-- [Brandbook v0.2](./LASTRO_IDENTIDADE_v0.2.html)
-- [Frontend Product Spec](../product/FRONTEND_PRODUCT_SPEC.md)
-- [User Journeys](../product/USER_JOURNEYS.md)
-- [Pitch Architecture](../product/PITCH_ARCHITECTURE.md)
-- [README](../../README.md)
+- [Brand identity](./LASTRO_IDENTIDADE_v0.2.html)
+- [Visual system specification](./VISUAL_SYSTEM_SPEC.md)
+- [Frontend product specification](../product/FRONTEND_PRODUCT_SPEC.md)
+- [User journeys](../product/USER_JOURNEYS.md)
+- [Product README](../../README.md)
 - [Consensus Core](../architecture/CONSENSUS_CORE.md)
 
-## Referência de identidade
+## Identity direction
 
-A identidade deve preservar:
-- geometria em camadas;
-- estrutura simétrica de sustentação;
-- anel associado a integridade/verificação;
-- preto, branco e cinza;
-- azul #1683FF reservado para prova/atestado/verificação;
-- ausência de texto dentro do símbolo;
-- alto contraste;
-- linguagem técnica sem estética crypto genérica.
+Preserve:
+- layered geometry and a stable, symmetrical support structure;
+- a ring associated with integrity and verification;
+- black, white, and gray as the primary palette;
+- blue `#1683FF` only for proof, attestation, or explicitly verified elements;
+- no text embedded in the symbol;
+- strong contrast and a technical, restrained visual language.
 
-O símbolo e a identidade não devem depender de IA, blockchain, Solana, certificado ou microcredencial.
+The identity must not depend on AI, blockchain, Solana, certificates, or microcredentials to communicate the product.
 
-## Posicionamento visual
+## Product grammar
 
-A marca é **LASTRO**.
-
-Tagline recomendada no Brandbook v0.2:
-
-> **Competências que deixam lastro.**
-
-A tese de produto é:
-
-> **Evidence-backed competency.**
-
-Mecanismo visual central:
+The interface should distinguish the following stages:
 
 ```text
 EVIDENCE
    ↓
-VERIFICATION
+AI INTERPRETATION
+   ↓
+INDEPENDENT VERIFICATION
    ↓
 CONSENSUS
    ↓
@@ -61,67 +48,20 @@ ATTESTATION
 PUBLIC VERIFICATION
 ```
 
-A narrativa estratégica pode contextualizar:
+Keep these concepts separate:
 
-```text
-WORK CHANGE
-   ↓
-ROLE DELTA
-   ↓
-COMPETENCY GAP
-   ↓
-REQUALIFICATION
-```
+- source evidence ≠ AI interpretation;
+- AI interpretation ≠ verification decision;
+- verification ≠ consensus;
+- competency state ≠ certificate;
+- attestation ≠ raw evidence;
+- public integrity proof ≠ authority over a person's overall competence.
 
-Mas essa camada é **narrativa estratégica / hipótese de pesquisa**. Não deve parecer uma capacidade backend já validada.
+## State semantics
 
-## Gramática visual do produto
+### Competency state
 
-A interface deve diferenciar visualmente:
-
-```text
-EVIDÊNCIA
-    ↓
-INTERPRETAÇÃO IA
-    ↓
-VERIFICAÇÃO
-    ↓
-CONSENSO
-    ↓
-ESTADO DE COMPETÊNCIA
-    ↓
-ATTESTATION
-    ↓
-VERIFICAÇÃO PÚBLICA
-```
-
-### Princípios
-- evidência original ≠ interpretação da IA;
-- interpretação da IA ≠ decisão de consenso;
-- verificação ≠ consenso;
-- estado de competência ≠ certificado;
-- attestation ≠ evidência bruta;
-- prova pública ≠ autoridade sobre competência.
-
-### Human Adjudication
-
-**Human Adjudication não é uma etapa normal do pipeline.**
-
-Ela aparece somente como exceção quando houver:
-- conflito entre verificações;
-- evidência ambígua;
-- contexto não formalizado;
-- contestação;
-- impacto que exija resolução adicional;
-- caso não coberto pelas regras.
-
-Quando ocorrer, deve ser visualmente explícita e preservar sua proveniência.
-
-## Estados que não devem ser confundidos
-
-### Competency State
-
-Usar somente:
+Use the product's defined competency states only:
 
 ```text
 NOT_STARTED
@@ -130,192 +70,63 @@ UNDER_REVIEW
 DEMONSTRATED
 ```
 
-### Consensus Outcome
+### Consensus outcome
 
-Usar somente:
+Use only the canonical outcomes:
 
 ```text
 AGREEMENT
 INSUFFICIENT_EVIDENCE
 CONFLICT
-HUMAN_ADJUDICATION
 ```
 
-### Evidence / verification presentation
+**Human adjudication is an exception-resolution path, not a consensus outcome or a normal pipeline stage.** If invoked, the interface must preserve the prior verification results, evidence, rationale, and provenance.
 
-Não criar novos estados de domínio apenas para facilitar a interface.
+Do not invent new domain states to simplify the interface.
 
-## Azul como semântica
+## Proof color
 
-#1683FF não é decoração.
+Blue `#1683FF` is semantic, not decorative. Reserve it for a recorded proof, attestation, public verification, or explicitly verified state. Do not use it as a generic accent for hypotheses, AI interpretation, or unverified cards.
 
-Usar azul para:
-- prova registrada;
-- attestation;
-- verificação pública;
-- elementos explicitamente verificados.
+## Bounded MVP journey
 
-Evitar azul em:
-- decoração;
-- backgrounds genéricos;
-- cards sem significado de prova;
-- elementos que ainda representam hipótese ou interpretação.
+The strategic narrative may refer to work change, role deltas, competency gaps, and requalification. These remain research/product hypotheses unless implemented and independently evidenced.
 
-Isso mantém o azul como sinal semântico de **proof**.
-
-## Jornada principal da interface
-
-A experiência deve permitir que o avaliador acompanhe:
+The bounded demonstration centers on:
 
 ```text
-ORGANIZATION
-↓
-WORK CHANGE
-↓
-ROLE DELTA
-↓
-COMPETENCY GAP
-↓
-REQUALIFICATION
-↓
-EVIDENCE
-↓
-VERIFICATION
-↓
-CONSENSUS
-↓
-DEMONSTRATED
-↓
-ATTESTATION
-↓
-PUBLIC VERIFICATION
+COMPETENCY
+→ ACTIVITIES
+→ EVIDENCE
+→ AI INTERPRETATION
+→ INDEPENDENT VERIFICATION
+→ CONSENSUS
+→ COMPETENCY STATE
+→ ATTESTATION
+→ PUBLIC VERIFICATION
 ```
 
-A parte realmente demonstrável do MVP começa no núcleo:
+The interface must not imply that every stage is connected end-to-end in the published public journey. The README and proof runbooks define the current limits.
 
-```text
-Competency
-→ Activities
-→ Evidence
-→ AI Interpretation
-→ Independent Verification
-→ Consensus
-→ DEMONSTRATED
-→ Attestation
-→ Public Verification
-```
+## Data and claims
 
-## Prioridade de implementação
+The demo may use synthetic data. Clearly identify synthetic scenarios when confusion is possible.
 
-### P0 — Core wedge
-1. Competency
-2. Evidence
-3. Verification
-4. Consensus
-5. Competency State
+Never present synthetic data as a customer, pilot, production deployment, traction, or market validation. Do not imply regulatory compliance, universal competence, bias-free assessment, or production readiness without evidence.
 
-### P1 — Proof
-6. Attestation
-7. Record hash
-8. Public verification
+If the backend does not supply a value, show that it is unavailable or unverified; do not invent it in the frontend.
 
-### P2 — Strategic narrative
-9. Work Change
-10. Role Delta
-11. Competency Gap
-12. Requalification
+## Minimum implementation criteria
 
-Se houver restrição de tempo, **P0 + P1 vencem P2**.
+1. Evidence and AI interpretation are visually distinct.
+2. Verification and consensus are visually distinct.
+3. Competency state is not presented as a certificate.
+4. Human adjudication is shown only as an exception path.
+5. The meaning of proof blue remains consistent.
+6. Synthetic scenarios are identified.
+7. Missing or unverified data is not represented as authoritative.
+8. The design remains consistent across product, documentation, and demo.
+9. The interface does not duplicate domain logic or create new state semantics.
+10. Public claims do not exceed the implementation and evidence.
 
-## Critério de produto
-
-O avaliador deve conseguir responder:
-1. O que aconteceu?
-2. Que competência está sendo demonstrada?
-3. Que evidência sustenta isso?
-4. Como a evidência foi verificada?
-5. Qual foi o resultado de consenso?
-6. Qual estado foi produzido?
-7. Como esse estado pode ser verificado externamente?
-
-O frontend não deve começar pela blockchain.
-
-A blockchain aparece como infraestrutura da camada de prova:
-
-```text
-Verified competency state
-        ↓
-Integrity / attestation reference
-        ↓
-Public verification
-```
-
-## O frontend NÃO deve criar
-
-Não implementar lógica própria para:
-- critérios de competência;
-- elegibilidade de evidência;
-- regras determinísticas;
-- consenso;
-- transições de estado;
-- validação de attestation;
-- governança;
-- autoridade de reviewer;
-- resultados de verificação;
-- claims de mercado;
-- traction.
-
-Se o backend não fornecer um dado, a interface deve mostrar o estado ausente — não inventar um valor.
-
-## Dados sintéticos
-
-O demo pode usar dados sintéticos.
-
-Quando houver risco de confusão, mostrar claramente:
-
-> **Demo scenario — synthetic data**
-
-Nunca apresentar dados sintéticos como:
-- cliente;
-- piloto;
-- produção;
-- traction;
-- validação de mercado.
-
-## Sistema visual mínimo
-
-O handoff deve permitir reprodução sem depender do autor original.
-
-Documentar:
-- símbolo;
-- variantes;
-- proporções;
-- área de proteção;
-- tamanho mínimo;
-- paleta;
-- tipografia;
-- hierarquia;
-- componentes visuais;
-- uso do azul;
-- estados;
-- aplicações;
-- usos incorretos.
-
-## Critérios de aceite
-
-1. O símbolo funciona sem nome?
-2. Funciona em tamanhos pequenos?
-3. Funciona em preto e branco?
-4. A identidade é consistente entre produto, apresentação, GitHub e documentação?
-5. Comunica competência/evidência/verificação sem depender de blockchain?
-6. Evidência e interpretação de IA são visualmente distintas?
-7. Consensus e Human Adjudication são visualmente distintos?
-8. Competency State não é apresentado como certificado?
-9. O azul mantém significado de prova/verificação?
-10. O sistema pode ser reproduzido por outro integrante?
-11. Dados sintéticos estão identificados?
-12. Nenhuma lógica de domínio foi duplicada no frontend?
-
-## Regra final
-
-> **O frontend deve tornar a arquitetura legível. Ele não deve se tornar uma segunda arquitetura.**
+> **The interface makes the system legible; it does not become a second system.**
