@@ -20,6 +20,21 @@ import { join, resolve } from 'node:path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
+function isSemanticProjection(value: any): boolean {
+  const outcomes = ['AGREEMENT', 'INSUFFICIENT_EVIDENCE', 'CONFLICT']
+  const states = ['ESTABLISHED', 'NOT_ESTABLISHED', 'INSUFFICIENT_EVIDENCE', 'CONFLICT', 'REQUIRES_VERIFICATION']
+  if (!value || value.synthetic !== true || !value.consensus || !outcomes.includes(value.consensus.status)) return false
+  if (!value.resolution || !['NOT_REQUIRED', 'PENDING', 'RESOLVED'].includes(value.resolution.status)) return false
+  if (!['consensus', 'human_adjudication', 'none'].includes(value.resolution.mechanism)) return false
+  if (value.resolution.outcome !== null && !states.includes(value.resolution.outcome)) return false
+  if (!value.competency_state || typeof value.competency_state.adapter_version !== 'string') return false
+  if (value.competency_state.value !== null && !states.includes(value.competency_state.value)) return false
+  if (!['MAPPED', 'UNMAPPED', 'INCONSISTENT'].includes(value.competency_state.mapping_status)) return false
+  if (typeof value.competency_state.reason !== 'string') return false
+  if (!value.state || !['NOT_STARTED', 'IN_DEVELOPMENT', 'UNDER_REVIEW', 'DEMONSTRATED'].includes(value.state.value)) return false
+  return value.attestation === null && value.public_verification === null
+}
+
 const LOCAL_RUNTIME_URL = 'http://127.0.0.1:8787/api/m4/competency?scenario=synthetic-ana'
 
 function resolveLatestAttestation() {
