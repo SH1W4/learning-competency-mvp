@@ -1318,7 +1318,7 @@ function CreateTrailView({
           <p className="eyebrow">NEW ROLE · CAPABILITY DESIGN</p>
           <h1>Create Competency Trail</h1>
           <p className="page-subtitle">
-            Build a local draft of a competency and its observable criteria. Publishing to the canonical protocol is not yet available in this interface.
+            Build a local draft of a competency and its observable criteria. Publishing is not available in this interface yet.
           </p>
         </div>
       </div>
@@ -1344,7 +1344,7 @@ function CreateTrailView({
             <CheckCircle2 />
             <div>
               <strong>Trail draft created for this session</strong>
-              <p>The trail exists only in the local state of this session. It has not been published or registered in the canonical protocol.</p>
+              <p>The trail exists only in the local state of this session. It has not been published or registered.</p>
             </div>
           </div>
           <button className="primary-button" onClick={() => setView('Submit Evidence')}>
@@ -1488,7 +1488,7 @@ function CreateTrailView({
             Cancel
           </button>
           <button type="submit" className="primary-button">
-            <Layers size={16} /> Publish Trail to Protocol
+            <Layers size={16} /> Save Trail Draft
           </button>
         </div>
       </form>
@@ -1497,7 +1497,7 @@ function CreateTrailView({
 }
 
 // ─── Nav items ───────────────────────────────────────────────────────────────
-const protocolNavItems: [typeof LayoutDashboard, View][] = [
+const reviewNavItems: [typeof LayoutDashboard, View][] = [
   [LayoutDashboard, 'Dashboard'],
   [ClipboardCheck, 'Attestation Queue'],
   [ShieldCheck, 'Adjudication Center'],
@@ -1919,13 +1919,13 @@ export default function Page() {
 
         {/* Divisor visual entre os dois grupos */}
         <div className="nav-section-divider" aria-hidden="true">
-          <span>protocol</span>
+          <span>review</span>
         </div>
 
-        {/* Grupo 2: Protocolo & Auditoria — fluxo do avaliador (abaixo) */}
-        <div className="nav-label">Protocol &amp; Audit</div>
-        <nav aria-label="Protocol navigation">
-          {protocolNavItems.map(([Icon, label]) => (
+        {/* Group 2: Review & Audit — evaluator workflow */}
+        <div className="nav-label">Review &amp; Audit</div>
+        <nav aria-label="Review navigation">
+          {reviewNavItems.map(([Icon, label]) => (
             <button
               key={label}
               onClick={() => {
