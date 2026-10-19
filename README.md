@@ -177,14 +177,9 @@ npm run m3:verify <tx_signature> [record_hash]
 
 For a reproducible Devnet run, follow the [M4 Local Devnet Proof Runbook](docs/evaluation/M4_LOCAL_DEVNET_PROOF.md). Never commit or expose the signing key.
 
-## Team
+## Contribution areas
 
-| Contributor | Primary contribution |
-|---|---|
-| Erick | Research, market context, and operations |
-| JP Carvalho | Evidence pipeline, AI, and verification mechanisms |
-| JP Fernandes | Branding, UX/UI, and interface specification |
-| JX | Architecture, evidence, cryptographic attestation, and Solana integration |
+The project combines architecture and systems design, evidence and verification implementation, research and validation, and product design/UX. This summary describes areas of work rather than individual assignments; it does not imply that every capability is complete or independently validated.
 
 ---
 
