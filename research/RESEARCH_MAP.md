@@ -5,11 +5,6 @@ This map covers the research currently published to support LASTRO's bounded MVP
 ## Public research path
 
 1. [Related work and external evidence](./RELATED_WORK_AND_EVIDENCE.md)
-2. [Article research track](./article/README.md)
-3. [Work evidence → competency inference](./article/01_WORK_EVIDENCE_TO_COMPETENCY_INFERENCE.md)
-4. [Verification, consensus, provenance and attestation](./article/02_VERIFICATION_CONSENSUS_PROVENANCE_ATTESTATION.md)
-5. [Related work matrix](./article/RELATED_WORK_MATRIX.md)
-6. [Literature closure protocol](./article/LITERATURE_CLOSURE_PROTOCOL.md)
 
 ## Questions addressed
 
