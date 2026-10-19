@@ -141,7 +141,6 @@ LASTRO builds on existing work in competency frameworks, provenance, machine-ver
 
 - [Public Research Map](research/RESEARCH_MAP.md)
 - [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md)
-- [Article Research Track](research/article/README.md)
 
 ## Evaluator path
 
