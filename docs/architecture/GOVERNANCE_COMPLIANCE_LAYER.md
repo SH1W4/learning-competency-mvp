@@ -149,7 +149,7 @@ Ainda precisam ser definidos empiricamente:
 - pesos, se houver;
 - critérios de independência;
 - política de conflito de interesse;
-- protocolo de adjudicação;
+- procedimento de adjudicação;
 - métricas de concordância interavaliador;
 - mecanismos de teste contra viés;
 - requisitos específicos por competência.
