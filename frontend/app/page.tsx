@@ -211,7 +211,9 @@ type M4Projection = {
   evidence: Array<{ evidence_id: string; type: string; activity_id: string; source_ref: string; content_ref: string; trust_level: string; synthetic: boolean }>
   interpretation: { id: string; model: string; signals: Array<{ signal_id: string; criterion_id: string; support: string; confidence: number; evidence_refs: string[] }> }
   verification: { mechanisms: Verification[] }
-  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'HUMAN_ADJUDICATION' | 'NOT_EVALUATED'; can_auto_advance: boolean; requires_adjudication: boolean }
+  consensus: { status: 'AGREEMENT' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'NOT_EVALUATED'; can_auto_advance: boolean; requires_adjudication: boolean }
+  resolution?: { status: 'NOT_REQUIRED' | 'PENDING' | 'RESOLVED'; mechanism: 'consensus' | 'human_adjudication' | 'none'; outcome: 'ESTABLISHED' | 'NOT_ESTABLISHED' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'REQUIRES_VERIFICATION' | null }
+  competency_state?: { adapter_version: string; value: 'ESTABLISHED' | 'NOT_ESTABLISHED' | 'INSUFFICIENT_EVIDENCE' | 'CONFLICT' | 'REQUIRES_VERIFICATION' | null; mapping_status: 'MAPPED' | 'UNMAPPED' | 'INCONSISTENT'; reason: string }
   state: { value: 'NOT_STARTED' | 'IN_DEVELOPMENT' | 'UNDER_REVIEW' | 'DEMONSTRATED'; history: unknown[] }
   handoff: { record_version: string; record_hash: string; competency_id: string; state: string; decision_mode: string }
   attestation: null | { version: string; record_hash: string; tx_signature?: string; network?: string; verified?: boolean | null }
@@ -796,7 +798,9 @@ function AuditView({ data }: { data: M4Projection | null }) {
     `Verification submitted · ${data.synthetic ? 'Ana Synthetic' : 'Competency Record'}`,
     'Evidence integrity check · VERIFIED',
     'Deterministic criteria check · PASS',
-    data.consensus.status === 'CONFLICT' ? 'Consensus conflict opened · Awaiting adjudication' : 'Consensus reached · AGREEMENT',
+    data.consensus.status === 'CONFLICT' ? 'Consensus conflict opened · Awaiting adjudication' : `Consensus outcome · ${data.consensus.status}`,
+    ...(data.resolution ? [`Resolution · ${data.resolution.status} / ${data.resolution.mechanism} / ${data.resolution.outcome ?? 'no final outcome'}`] : []),
+    ...(data.competency_state ? [`Canonical competency state · ${data.competency_state.value ?? 'UNMAPPED'} (${data.competency_state.mapping_status})`, `Semantic adapter · ${data.competency_state.adapter_version} / ${data.competency_state.reason}`] : []),
     `Rule version ${data.handoff.record_version} recorded`,
   ] : []
 
