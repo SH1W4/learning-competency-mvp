@@ -299,7 +299,7 @@ export async function GET(request: Request) {
         } catch {
           return NextResponse.json({ error: 'invalid_runtime_contract' }, { status: 502, headers: { 'cache-control': 'no-store' } })
         }
-        if (!decoded.resolution || !decoded.competency_state) {
+        if (!isSemanticProjection(decoded)) {
           return NextResponse.json({ error: 'invalid_runtime_contract' }, { status: 502, headers: { 'cache-control': 'no-store' } })
         }
         return new Response(body, {
