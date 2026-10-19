@@ -262,7 +262,6 @@ const consensusDescriptions: Record<M4Projection['consensus']['status'], string>
   AGREEMENT: 'The mechanisms reported agreement. The state is displayed separately and is not recalculated by the interface.',
   INSUFFICIENT_EVIDENCE: 'The available evidence was deemed insufficient by the runtime. Do not interpret this result as a demonstration.',
   CONFLICT: 'Conflict reported. Auto-advancement must remain blocked; this interface does not resolve the conflict.',
-  HUMAN_ADJUDICATION: 'The runtime indicates human adjudication is required. This interface does not record or simulate a human decision.',
   NOT_EVALUATED: 'This is a local draft. No verification mechanism or consensus was executed by the canonical runtime.',
 }
 
