@@ -83,7 +83,7 @@
   user-select: none;
 }
 
-/* divider between Operation & Trail and Protocol & Audit */
+/* divider between Operation & Trail and Review & Audit */
 .nav-section-divider {
   display: flex;
   align-items: center;
