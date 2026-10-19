@@ -273,7 +273,7 @@ export async function GET(request: Request) {
     try {
       const upstream = await fetch(runtimeUrl, {
         cache: 'no-store',
-        signal: AbortSignal.timeout(5000),
+        signal: AbortSignal.timeout(45_000),
       })
 
       if (upstream.ok) {
