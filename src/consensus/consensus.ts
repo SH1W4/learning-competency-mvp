@@ -13,8 +13,7 @@ import type { RelationResult } from "../relation/relate.js";
 export type ConsensusStatus =
   | "AGREEMENT"
   | "INSUFFICIENT_EVIDENCE"
-  | "CONFLICT"
-  | "HUMAN_ADJUDICATION";
+  | "CONFLICT";
 
 export type VerificationStatus = "PASS" | "FAIL";
 
