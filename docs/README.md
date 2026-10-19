@@ -34,7 +34,7 @@ Research and market documents provide context and hypotheses; they do not indepe
 
 ## Public governance
 - [Security threat model](governance/SECURITY_THREAT_MODEL.md)
-- [Publication boundary](governance/VAULT_BOUNDARY.md)
+- [Publication boundary](governance/PUBLICATION_BOUNDARY.md)
 - [Public source-of-truth map](governance/SOURCE_OF_TRUTH.md)
 - [Brand overview](brand/README.md)
 - [Visual system](brand/VISUAL_SYSTEM_SPEC.md)

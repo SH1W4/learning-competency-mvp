@@ -37,7 +37,7 @@ O sistema visual deve projetar a arquitetura existente, não criar uma arquitetu
 - [LASTRO Identity v0.2](LASTRO_IDENTIDADE_v0.2.html) — referência canônica de identidade.
 - [Visual System Specification v0.2](VISUAL_SYSTEM_SPEC.md) — mini design system e regras de execução.
 - [Brandbook](BRANDBOOK_DRAFT.md) — essência, personalidade, linguagem e direção visual.
-- [Public Design Implementation Brief](DESIGN_BRIEF_JP_FERNANDES.md) — princípios públicos para a interface e sua coerência com o produto.
+- [Public Design Implementation Brief](PUBLIC_DESIGN_IMPLEMENTATION_BRIEF.md) — princípios públicos para a interface e sua coerência com o produto.
 - [Naming Exploration](NAMING_EXPLORATION.md) — histórico da exploração de naming; não reabre a decisão atual.
 
 ## Identidade atual

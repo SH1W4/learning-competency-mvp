@@ -15,7 +15,7 @@ The public evidence must not be interpreted as proving:
 
 - durable public retrieval of a complete record together with its matching verification report;
 - a fully integrated, persistent frontend-to-attestation workflow;
-- protocol conformance;
+- conformance to a separately specified contract;
 - production readiness or independent security certification;
 - customer adoption, a live customer deployment, product-market fit, willingness to pay, or ROI.
 
@@ -30,7 +30,7 @@ Before making a stronger integration or release claim, the exact candidate shoul
 3. public retrieval of the exact persisted record and its matching verification result;
 4. explicit negative-path behavior for missing, invalid, conflicting, or unverifiable evidence;
 5. tests and live end-to-end inspection tied to the exact candidate commit;
-6. a separate, authorized protocol-conformance decision where such a claim is intended.
+6. a separate, authorized separate-contract-conformance decision where such a claim is intended.
 
 Signing material must remain outside source control and the browser. No personal evidence belongs on-chain.
 
