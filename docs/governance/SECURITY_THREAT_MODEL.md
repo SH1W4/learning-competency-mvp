@@ -80,7 +80,7 @@ The MVP does **not** fully solve:
 - correctness/fairness of competency criteria;
 - compromised provider infrastructure;
 - production-grade secret management;
-- replay prevention as a generalized distributed protocol;
+- replay prevention as a generalized distributed mechanism;
 - universal resistance to correlated verifier failure;
 - legal/regulatory validity of a competency claim.
 
