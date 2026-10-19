@@ -116,7 +116,7 @@ An earlier `main` CI run on 2026-10-05 completed successfully for test, typechec
 
 The repository contains the attestation and verification path. A fresh `m3.attestation.v2` attestation was generated and verified on Solana Devnet on 2026-10-09 via the M4 API. The recorded execution evidence is in [PR #26](https://github.com/SH1W4/learning-competency-mvp/pull/26); the current fallback fixture and transaction details are documented below. This closes the recorded fresh Devnet proof step. It does not independently establish that the currently published frontend is connected to the runtime or that the full live browser-to-runtime journey is passing.
 
-## Demo resilience protocol
+## Demo resilience procedure
 
 The live attestation path is:
 
