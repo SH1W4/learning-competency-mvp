@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { CompetencySession } from "../pipeline.js";
 import { providerFromEnv } from "../ai/provider.js";
 import { ANA, SUBJECT } from "../scenario.js";
+import { adaptCompetencyState, type ConsensusOutcome, type ProfileCompetencyState } from "../semantics/competency-adapter.js";
 
 export interface M4Verification {
   mechanism: "evidence_integrity" | "deterministic_criteria" | "ai_interpretation";
@@ -51,7 +52,7 @@ export interface M4Projection {
   };
   verification: { mechanisms: M4Verification[] };
   consensus: {
-    status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT" | "HUMAN_ADJUDICATION";
+    status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
     criteria: Array<{
       criterion_id: string;
       status: string;
@@ -60,6 +61,8 @@ export interface M4Projection {
     can_auto_advance: boolean;
     requires_adjudication: boolean;
   };
+  resolution: { status: "NOT_REQUIRED" | "PENDING" | "RESOLVED"; mechanism: "consensus" | "human_adjudication" | "none"; outcome: ProfileCompetencyState | null };
+  competency_state: { adapter_version: string; value: ProfileCompetencyState | null; mapping_status: "MAPPED" | "UNMAPPED" | "INCONSISTENT"; reason: string };
   state: {
     value: "NOT_STARTED" | "IN_DEVELOPMENT" | "UNDER_REVIEW" | "DEMONSTRATED";
     history: unknown[];
@@ -145,6 +148,19 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
   }
 
   const mechanisms = consensus.criteria.flatMap((criterion) => criterion.verifications);
+  const consensusOutcome = consensus.status as ConsensusOutcome;
+  const verificationCompleted = mechanisms.length > 0 && mechanisms.every((item) => item.status === "PASS" || item.status === "FAIL");
+  const resolution = consensus.status === "AGREEMENT"
+    ? { status: "RESOLVED" as const, mechanism: "consensus" as const, outcome: "ESTABLISHED" as const }
+    : consensus.status === "INSUFFICIENT_EVIDENCE"
+      ? { status: "RESOLVED" as const, mechanism: "consensus" as const, outcome: "INSUFFICIENT_EVIDENCE" as const }
+      : { status: "PENDING" as const, mechanism: "none" as const, outcome: null };
+  const semanticState = adaptCompetencyState({
+    productState: session.state.value,
+    consensusOutcome,
+    resolution,
+    verificationCompleted,
+  });
   const uniqueMechanisms = new Map(
     mechanisms.map((item) => [`${item.mechanism}:${item.criterion_id}`, item]),
   );
@@ -197,6 +213,13 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
       criteria: consensus.criteria,
       can_auto_advance: consensus.can_auto_advance,
       requires_adjudication: consensus.requires_adjudication,
+    },
+    resolution: semanticState.resolution,
+    competency_state: {
+      adapter_version: semanticState.adapterVersion,
+      value: semanticState.competencyState,
+      mapping_status: semanticState.mappingStatus,
+      reason: semanticState.reason,
     },
     state: { value: session.state.value, history: session.state.history },
     handoff: {
