@@ -10,7 +10,7 @@ coverage/
 .DS_Store
 Thumbs.db
 
-# Future private vault / restricted project material.
+# Future restricted project material.
 # IMPORTANT: this does not make already tracked files private.
 docs/business/
 docs/pitch/

@@ -224,7 +224,7 @@ Source: https://www.nist.gov/artificial-intelligence/ai-research/tevv-athlon-fra
 
 ## 7. Distributed verification infrastructure
 
-The detailed verification-infrastructure benchmark is currently maintained in the private Vault. This public document therefore limits itself to the bounded architectural conclusion supported by the public research track.
+The detailed verification-infrastructure benchmark is outside the scope of this public research document. This document therefore limits itself to the bounded architectural conclusion supported by the evidence cited here.
 
 Relevant prior-art classes include:
 
