@@ -2025,7 +2025,7 @@ export default function Page() {
   const conflictCount = queueItems.filter((i) => i.status === 'CONFLICT').length
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${view === 'Landing' ? 'landing-mode' : 'workspace-mode'}`} data-view={view.toLowerCase().replaceAll(' ', '-')}>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -2160,7 +2160,9 @@ export default function Page() {
         </header>
 
         <div className="page-content">
-          {loading && (
+          {view === 'Landing' && <LandingView setView={setView} />}
+
+          {view !== 'Landing' && loading && (
             <section className="panel runtime-panel" role="status" aria-live="polite">
               <span className="eyebrow">CONNECTION</span>
               <h2>Querying runtime…</h2>
@@ -2168,7 +2170,7 @@ export default function Page() {
             </section>
           )}
 
-          {error && (
+          {view !== 'Landing' && error && (
             <section className="panel runtime-panel runtime-error" role="alert">
               <span className="eyebrow">CONNECTION</span>
               <h2>Runtime not connected</h2>
@@ -2184,7 +2186,6 @@ export default function Page() {
 
           {!loading && !error && view !== 'Workspace Settings' && (
             <>
-              {view === 'Landing' && <LandingView setView={setView} />}
               {view === 'Dashboard' && (
                 <DashboardView data={data} queueItems={queueItems} setView={setView} />
               )}
