@@ -699,8 +699,24 @@
   object-position: center 50%;
 }
 .app-shell.landing-mode .landing-image-overlay {
-  background: linear-gradient(90deg, rgba(5,8,13,.22) 0%, rgba(5,8,13,0) 56%, rgba(5,8,13,.12) 100%),
-              linear-gradient(0deg, rgba(5,8,13,.62) 0%, transparent 55%, rgba(5,8,13,.08) 100%);
+  background: linear-gradient(90deg, rgba(5,8,13,.06) 0%, rgba(5,8,13,0) 64%, rgba(5,8,13,.06) 100%),
+              linear-gradient(0deg, rgba(5,8,13,.5) 0%, transparent 62%, rgba(5,8,13,.03) 100%);
+}
+.app-shell.landing-mode .landing-image-caption {
+  left: clamp(1.25rem, 3vw, 2.5rem);
+  bottom: clamp(1.1rem, 2.5vw, 1.8rem);
+  color: rgba(244,248,255,.96);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .19em;
+  text-shadow: 0 1px 12px rgba(0,0,0,.65);
+}
+.app-shell.landing-mode .landing-image-caption > span {
+  display: inline-block;
+  max-width: calc(100vw - 4rem);
+}
+.app-shell.landing-mode .landing-copy h1 {
+  max-width: 650px;
 }
 .app-shell.landing-mode .landing-hero {
   padding-top: clamp(2.5rem, 6vw, 5rem);
