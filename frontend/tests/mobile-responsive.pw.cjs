@@ -3,28 +3,41 @@ const { test, expect } = require('@playwright/test');
 const widths = [320, 375, 390, 430, 1280];
 
 test.describe('LASTRO responsive shell', () => {
+  async function expectNoHorizontalOverflow(page) {
+    const dimensions = await page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+    }));
+    expect(dimensions.document, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
+    expect(dimensions.body, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
+  }
+
+  async function enterWorkspace(page) {
+    const bannerEntry = page.locator('.landing-image-cta');
+    await expect(bannerEntry).toBeVisible();
+    await bannerEntry.click();
+    await expect(page.locator('.app-shell.workspace-mode')).toBeVisible();
+  }
+
   for (const width of widths) {
-    test(`has no horizontal document overflow at ${width}px`, async ({ page }) => {
+    test(`landing and workspace have no horizontal overflow at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto('http://127.0.0.1:3000/');
+      await expect(page.locator('.app-shell.landing-mode')).toBeVisible();
+      await expectNoHorizontalOverflow(page);
+
+      await enterWorkspace(page);
       if (width < 768) {
         await expect(page.locator('button.mobile-menu[aria-label="Abrir menu"]')).toBeVisible();
       }
-
-      const dimensions = await page.evaluate(() => ({
-        viewport: document.documentElement.clientWidth,
-        document: document.documentElement.scrollWidth,
-        body: document.body.scrollWidth,
-      }));
-
-      expect(dimensions.document, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
-      expect(dimensions.body, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
+      await expectNoHorizontalOverflow(page);
     });
   }
-
   test('mobile navigation opens, traps focus, closes on Escape and restores focus', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('http://127.0.0.1:3000/');
+    await enterWorkspace(page);
 
     const trigger = page.locator('button.mobile-menu[aria-label="Abrir menu"]');
     await trigger.click();
@@ -42,6 +55,7 @@ test.describe('LASTRO responsive shell', () => {
   test('navigation drawer closes after selecting a destination', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto('http://127.0.0.1:3000/');
+    await enterWorkspace(page);
 
     const trigger = page.locator('button.mobile-menu[aria-label="Abrir menu"]');
     await trigger.click();
