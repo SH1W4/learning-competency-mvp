@@ -325,15 +325,15 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
         />
         <div className="landing-image-overlay" />
         <div className="landing-image-caption">
-          <span>FROM EVIDENCE</span><span className="landing-image-line" /><span>TO VERIFIABLE CAPABILITY</span>
+          <span>FROM EVIDENCE TO VERIFIABLE CAPABILITY</span>
         </div>
       </section>
       <section className="landing-hero">
         <div className="landing-copy">
           <p className="eyebrow"><span className="landing-status-dot" /> EVIDENCE INFRASTRUCTURE FOR CAPABILITY</p>
-          <h1>From observable work to <span>verifiable capability.</span></h1>
+          <h1>Make capability claims <span>reviewable.</span></h1>
           <p className="landing-lede">
-            LASTRO is an evidence infrastructure that connects observable work to explicit competency criteria, separates AI interpretation from deterministic verification, and preserves bounded outcomes in an auditable record.
+            LASTRO connects observable work to explicit criteria, separates AI interpretation from deterministic verification, and preserves bounded outcomes in an auditable record.
           </p>
           <div className="landing-actions">
             <button className="primary-button" onClick={() => setView('Dashboard')}>
