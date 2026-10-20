@@ -304,73 +304,128 @@ function explorerUrl(network: string | undefined, signature: string | undefined)
 // Landing View Component
 function LandingView({ setView }: { setView: (view: View) => void }) {
   return (
-    <div className="landing-view">
+    <div className="landing-view landing-infrastructure">
+      <header className="landing-topbar">
+        <a className="landing-brand-lockup" href="#top" aria-label="LASTRO home">
+          <span className="brand-mark"><LastroSymbol size={29} /></span>
+          <span className="landing-brand-copy">
+            <span className="landing-brand-name">LASTRO</span>
+            <span className="landing-brand-descriptor">EVIDENCE INFRASTRUCTURE</span>
+          </span>
+        </a>
+        <button
+          type="button"
+          className="landing-topbar-action"
+          onClick={() => document.getElementById('for-organizations')?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          For Organizations <ArrowRight size={13} aria-hidden="true" />
+        </button>
+      </header>
+      <section className="landing-image-banner" aria-label="LASTRO evidence journey">
+        <img
+          src="/images/EC433A47-1B59-4B22-A512-D90390027697.png"
+          alt="A cinematic journey through a dark landscape toward a luminous geometric portal, representing the path from evidence to verifiable capability"
+          fetchPriority="high"
+          onError={(event) => { event.currentTarget.style.display = 'none'; }}
+        />
+        <div className="landing-image-overlay" />
+        <div className="landing-image-caption">
+          <span>FROM EVIDENCE TO<br />VERIFIABLE CAPABILITY</span>
+        </div>
+        <button
+          type="button"
+          className="landing-image-cta"
+          onClick={() => setView('Dashboard')}
+          aria-label="Enter LASTRO workspace"
+        >
+          <span>Enter workspace</span><ArrowRight size={16} aria-hidden="true" />
+        </button>
+      </section>
       <section className="landing-hero">
         <div className="landing-copy">
-          <p className="eyebrow">EVIDENCE INFRASTRUCTURE FOR CAPABILITY</p>
-          <h1>From evidence of work to verifiable capability.</h1>
+          <p className="eyebrow"><span className="landing-status-dot" /> EVIDENCE INFRASTRUCTURE FOR CAPABILITY</p>
+          <h1>Make capability claims <span>reviewable.</span></h1>
           <p className="landing-lede">
-            LASTRO connects observable work to explicit competency criteria, verifies evidence through multiple mechanisms, and preserves every decision in an auditable record.
+            LASTRO connects observable work to explicit criteria, separates AI interpretation from deterministic verification, and preserves bounded outcomes in an auditable record.
           </p>
           <div className="landing-actions">
-            <button className="primary-button" onClick={() => setView('Dashboard')}>
-              Enter workspace <span aria-hidden="true">→</span>
-            </button>
             <button
               className="text-button"
               onClick={() => document.getElementById('how-lastro-works')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              How it works
+              Explore the architecture
             </button>
           </div>
+          <div className="landing-trustline">
+            <span><ShieldCheck size={15} /> Evidence-led</span>
+            <span><Activity size={15} /> Bounded states</span>
+            <span><LockKeyhole size={15} /> Privacy-aware design</span>
+          </div>
         </div>
-        <div className="landing-signal" aria-label="LASTRO model summary">
-          <div className="signal-top">
-            <span className="live-dot" /> bounded capability state
-          </div>
+        <div className="landing-signal landing-architecture-card" aria-label="LASTRO evidence-to-state model">
+          <div className="signal-top"><span className="live-dot" /> THE EVIDENCE-TO-STATE MODEL</div>
+          <div className="landing-model-intro">A traceable path from evidence to a bounded outcome.</div>
           <div className="signal-flow">
-            <div>
-              <span>01</span>
-              <b>Observable work</b>
-              <small>artifacts and context</small>
-            </div>
-            <i>↓</i>
-            <div>
-              <span>02</span>
-              <b>Independent verification</b>
-              <small>criteria + interpretation</small>
-            </div>
-            <i>↓</i>
-            <div className="signal-final">
-              <span>03</span>
-              <b>Verifiable capability</b>
-              <small>bounded and auditable state</small>
-            </div>
+            <div><span>01</span><b>Observable work</b><small>Evidence and context</small></div>
+            <i aria-hidden="true">↓</i>
+            <div><span>02</span><b>Independent verification</b><small>Deterministic checks and AI interpretation</small></div>
+            <i aria-hidden="true">↓</i>
+            <div className="signal-final"><span>03</span><b>Bounded state</b><small>Auditable outcome with provenance</small></div>
           </div>
+          <p className="landing-model-note">AI provides an interpretive signal. It does not independently determine the final state.</p>
         </div>
       </section>
-      <section id="how-lastro-works" className="landing-principles">
-        <div>
-          <p className="eyebrow">WHAT IS LASTRO</p>
-          <h2>An evidence layer, not another credential platform.</h2>
+
+      <section id="how-lastro-works" className="landing-principles landing-core-section">
+        <div className="landing-section-heading">
+          <p className="eyebrow">THE CORE PRINCIPLES</p>
+          <h2>Infrastructure for evidence, not another credential platform.</h2>
+          <p>LASTRO is designed to make the basis of a capability claim reviewable without treating an AI output or a blockchain transaction as the decision-maker.</p>
         </div>
         <div className="principle-grid">
-          <article>
-            <span>01</span>
-            <h3>Evidence before the claim</h3>
-            <p>Decisions start with work that can be observed, contextualized, and reviewed.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>States, not absolute labels</h3>
-            <p>Each competency maintains a bounded state: demonstrated, in development, or in conflict.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Human at the decision point</h3>
-            <p>When mechanisms diverge, adjudication preserves reason and provenance.</p>
-          </article>
+          <article><span>01</span><h3>Evidence before assertion</h3><p>Claims are grounded in observable work, its context, and the evidence available for review.</p></article>
+          <article><span>02</span><h3>Verification stays distinct</h3><p>Deterministic criteria and AI interpretation serve different purposes and remain distinguishable.</p></article>
+          <article><span>03</span><h3>Bounded, reviewable outcomes</h3><p>Agreement, insufficient evidence, and conflict are distinct outcomes. Human adjudication remains an exception path when required.</p></article>
         </div>
+      </section>
+
+      <section className="landing-attestation-section" aria-labelledby="landing-attestation-title">
+        <div className="landing-attestation-copy">
+          <p className="eyebrow">CRYPTOGRAPHIC ATTESTATION</p>
+          <h2 id="landing-attestation-title">Integrity can be verified. Competence is not decided by a blockchain.</h2>
+          <p>When an attestation is available, a blockchain can anchor a reference to a reviewed state so its integrity can be checked independently. The decision itself remains the responsibility of the verification and review process.</p>
+          <div className="landing-attestation-points">
+            <div><CheckCircle2 size={18} /><span>Integrity references can be checked against the reviewed record.</span></div>
+            <div><CheckCircle2 size={18} /><span>Sensitive evidence belongs off-chain; public records should avoid personal data.</span></div>
+            <div><CheckCircle2 size={18} /><span>Verification status must reflect actual evidence, not a visual mock result.</span></div>
+          </div>
+          <button className="primary-button" onClick={() => setView('Runtime Details')}>Inspect runtime details <ArrowRight size={16} aria-hidden="true" /></button>
+        </div>
+        <div className="landing-proof-card">
+          <div className="landing-proof-header"><span className="landing-proof-mark"><ShieldCheck size={18} /></span><div><b>Verification record</b><small>Runtime-backed details</small></div><span className="landing-readonly">READ-ONLY</span></div>
+          <div className="landing-proof-row"><span>Evidence integrity</span><b>Reported by runtime</b></div>
+          <div className="landing-proof-row"><span>Deterministic criteria</span><b>Reported by runtime</b></div>
+          <div className="landing-proof-row"><span>AI interpretation</span><b>Separate signal</b></div>
+          <div className="landing-proof-footer"><LockKeyhole size={15} /><span>No fabricated transaction, hash, signer, or verification result is displayed here.</span></div>
+        </div>
+      </section>
+
+      <section id="for-organizations" className="landing-organizations-section" aria-labelledby="landing-organizations-title">
+        <div className="landing-section-heading">
+          <p className="eyebrow">FOR ORGANIZATIONS</p>
+          <h2 id="landing-organizations-title">Make capability decisions easier to inspect.</h2>
+          <p>LASTRO is designed for contexts where an organization needs to connect a capability claim to observable evidence, explicit criteria, and a reviewable outcome.</p>
+        </div>
+        <div className="principle-grid landing-organization-grid">
+          <article><span>01</span><h3>Define the claim</h3><p>Make the capability being assessed and its criteria explicit before reviewing evidence.</p></article>
+          <article><span>02</span><h3>Review the evidence</h3><p>Keep source material, deterministic checks, and AI interpretation distinguishable for human review.</p></article>
+          <article><span>03</span><h3>Inspect the outcome</h3><p>Preserve a bounded state and a traceable record so reviewers can understand what was concluded—and what was not.</p></article>
+        </div>
+        <div className="landing-organizations-footer">
+          <p>Explore the current MVP to see how the evidence-to-state model is represented in the workspace.</p>
+          <button className="primary-button" onClick={() => setView('Dashboard')}>Explore the workspace <ArrowRight size={16} aria-hidden="true" /></button>
+        </div>
+        <p className="landing-organizations-note">This overview describes the product approach, not a claim of commercial validation or universal applicability.</p>
       </section>
     </div>
   )
@@ -2010,7 +2065,7 @@ export default function Page() {
   const conflictCount = queueItems.filter((i) => i.status === 'CONFLICT').length
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${view === 'Landing' ? 'landing-mode' : 'workspace-mode'}`} data-view={view.toLowerCase().replaceAll(' ', '-')}>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -2145,7 +2200,9 @@ export default function Page() {
         </header>
 
         <div className="page-content">
-          {loading && (
+          {view === 'Landing' && <LandingView setView={setView} />}
+
+          {view !== 'Landing' && loading && (
             <section className="panel runtime-panel" role="status" aria-live="polite">
               <span className="eyebrow">CONNECTION</span>
               <h2>Querying runtime…</h2>
@@ -2153,7 +2210,7 @@ export default function Page() {
             </section>
           )}
 
-          {error && (
+          {view !== 'Landing' && error && (
             <section className="panel runtime-panel runtime-error" role="alert">
               <span className="eyebrow">CONNECTION</span>
               <h2>Runtime not connected</h2>
@@ -2169,7 +2226,6 @@ export default function Page() {
 
           {!loading && !error && view !== 'Workspace Settings' && (
             <>
-              {view === 'Landing' && <LandingView setView={setView} />}
               {view === 'Dashboard' && (
                 <DashboardView data={data} queueItems={queueItems} setView={setView} />
               )}
