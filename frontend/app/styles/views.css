@@ -495,3 +495,74 @@
   }
   .runtime-heading > *, .runtime-section-heading > * { min-width: 0; max-width: 100%; }
 }
+
+
+/* Final deep-tech landing refresh — scoped to the public landing view. */
+.landing-infrastructure { --landing-accent: #1683ff; --landing-cyan: #67d7ff; }
+.landing-infrastructure .landing-hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding-top: clamp(3.5rem, 8vw, 7.5rem); padding-bottom: clamp(3.5rem, 7vw, 6.5rem);
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+.landing-infrastructure .landing-hero::before {
+  content: ""; position: absolute; z-index: -1; width: min(56vw, 680px); aspect-ratio: 1;
+  top: -35%; left: 20%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(22,131,255,.15), rgba(22,131,255,0) 68%);
+}
+.landing-infrastructure .landing-copy h1 { max-width: 760px; letter-spacing: -.055em; text-wrap: balance; }
+.landing-infrastructure .landing-copy h1 span {
+  display: block; color: transparent; background: linear-gradient(100deg, #7ab8ff 0%, #66dcff 100%);
+  -webkit-background-clip: text; background-clip: text;
+}
+.landing-infrastructure .landing-copy .eyebrow { display: flex; align-items: center; gap: .6rem; }
+.landing-status-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: #59d6a5; box-shadow: 0 0 14px rgba(89,214,165,.55); }
+.landing-infrastructure .landing-actions { flex-wrap: wrap; }
+.landing-infrastructure .landing-actions .primary-button { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; }
+.landing-trustline { display: flex; flex-wrap: wrap; gap: .7rem 1.1rem; margin-top: 1.8rem; color: var(--muted, #a1a1aa); font-size: .76rem; }
+.landing-trustline span { display: inline-flex; align-items: center; gap: .4rem; }
+.landing-trustline svg { color: #70baff; }
+.landing-architecture-card {
+  border: 1px solid rgba(130,160,190,.22); border-radius: 18px; padding: clamp(1.2rem, 3vw, 2rem);
+  background: linear-gradient(150deg, rgba(22,30,43,.9), rgba(12,15,21,.94));
+  box-shadow: 0 25px 80px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.035);
+}
+.landing-model-intro { color: #e5e7eb; font-size: 1.05rem; line-height: 1.55; margin: 1.2rem 0 1.4rem; }
+.landing-infrastructure .signal-flow { gap: .7rem; }
+.landing-infrastructure .signal-flow > div { border: 1px solid rgba(130,160,190,.15); border-radius: 11px; padding: 1rem; background: rgba(255,255,255,.025); }
+.landing-infrastructure .signal-flow > div span { color: #7ab8ff; font-family: var(--font-mono, monospace); }
+.landing-infrastructure .signal-flow > div b { display: block; margin: .35rem 0; }
+.landing-infrastructure .signal-flow > div small { display: block; line-height: 1.5; }
+.landing-model-note { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.08); color: #a1a1aa; font-size: .78rem; line-height: 1.6; }
+.landing-core-section { padding-top: clamp(3.5rem, 7vw, 6rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); }
+.landing-section-heading { max-width: 760px; margin-bottom: 2rem; }
+.landing-section-heading h2, .landing-attestation-copy h2 { letter-spacing: -.04em; text-wrap: balance; }
+.landing-section-heading > p:last-child { max-width: 680px; color: var(--muted, #a1a1aa); line-height: 1.75; }
+.landing-infrastructure .principle-grid article { border: 1px solid rgba(130,160,190,.16); border-radius: 13px; background: rgba(255,255,255,.018); padding: 1.4rem; }
+.landing-infrastructure .principle-grid article > span { color: #70baff; font-family: var(--font-mono, monospace); }
+.landing-attestation-section { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; padding: clamp(3.5rem, 7vw, 6.5rem) 0; border-top: 1px solid rgba(255,255,255,.08); }
+.landing-attestation-copy h2 { font-size: clamp(1.8rem, 3.5vw, 2.7rem); line-height: 1.13; margin: .8rem 0 1.2rem; }
+.landing-attestation-copy > p:not(.eyebrow) { color: var(--muted, #a1a1aa); line-height: 1.8; }
+.landing-attestation-points { display: grid; gap: 1rem; margin: 1.7rem 0 2rem; }
+.landing-attestation-points > div { display: flex; align-items: flex-start; gap: .7rem; color: #d4d4d8; font-size: .9rem; line-height: 1.65; }
+.landing-attestation-points svg { color: #69b8ff; flex: 0 0 auto; margin-top: .15rem; }
+.landing-attestation-copy .primary-button { display: inline-flex; align-items: center; gap: .6rem; }
+.landing-proof-card { border: 1px solid rgba(130,160,190,.2); border-radius: 16px; overflow: hidden; background: linear-gradient(145deg, rgba(20,25,34,.95), rgba(10,12,17,.98)); }
+.landing-proof-header { display: flex; align-items: center; gap: .8rem; padding: 1.25rem; border-bottom: 1px solid rgba(255,255,255,.08); }
+.landing-proof-mark { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(22,131,255,.25); border-radius: 10px; color: #7ab8ff; background: rgba(22,131,255,.09); }
+.landing-proof-header b, .landing-proof-header small { display: block; }
+.landing-proof-header small { margin-top: .2rem; color: #9ca3af; font-size: .75rem; }
+.landing-readonly { margin-left: auto; color: #9ca3af; font: 10px var(--font-mono, monospace); letter-spacing: .08em; }
+.landing-proof-row { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,.055); font-size: .8rem; }
+.landing-proof-row span { color: #a1a1aa; }
+.landing-proof-row b { color: #d4d4d8; font-weight: 500; text-align: right; }
+.landing-proof-footer { display: flex; align-items: flex-start; gap: .6rem; padding: 1rem 1.25rem; color: #9ca3af; font-size: .75rem; line-height: 1.6; background: rgba(255,255,255,.02); }
+.landing-proof-footer svg { flex: 0 0 auto; margin-top: .1rem; color: #70baff; }
+@media (max-width: 760px) {
+  .landing-attestation-section { grid-template-columns: 1fr; }
+  .landing-trustline { gap: .65rem .9rem; }
+  .landing-proof-row { flex-direction: column; gap: .35rem; }
+  .landing-proof-row b { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-infrastructure *, .landing-infrastructure *::before, .landing-infrastructure *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
