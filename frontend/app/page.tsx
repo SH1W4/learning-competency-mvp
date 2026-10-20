@@ -348,9 +348,6 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
             LASTRO connects observable work to explicit criteria, separates AI interpretation from deterministic verification, and preserves bounded outcomes in an auditable record.
           </p>
           <div className="landing-actions">
-            <button className="primary-button" onClick={() => setView('Dashboard')}>
-              Enter workspace <ArrowRight size={16} aria-hidden="true" />
-            </button>
             <button
               className="text-button"
               onClick={() => document.getElementById('how-lastro-works')?.scrollIntoView({ behavior: 'smooth' })}
