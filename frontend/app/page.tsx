@@ -313,8 +313,12 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
             <span className="landing-brand-descriptor">EVIDENCE INFRASTRUCTURE</span>
           </span>
         </a>
-        <button type="button" className="landing-topbar-action" onClick={() => setView('Dashboard')}>
-          Enter workspace <ArrowRight size={13} aria-hidden="true" />
+        <button
+          type="button"
+          className="landing-topbar-action"
+          onClick={() => document.getElementById('how-lastro-works')?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Explore principles <ArrowRight size={13} aria-hidden="true" />
         </button>
       </header>
       <section className="landing-image-banner" aria-label="LASTRO evidence journey">
