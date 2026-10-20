@@ -1035,3 +1035,37 @@
     transform: none;
   }
 }
+
+
+/* Stage-coded principle cards: each principle gets a consistent semantic accent. */
+.app-shell.landing-mode .principle-grid article {
+  --principle-accent: #72c8ff;
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--principle-accent) 48%, transparent);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--principle-accent) 7%, transparent), transparent 62%),
+    rgba(255,255,255,.012);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--principle-accent) 10%, transparent);
+  transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+.app-shell.landing-mode .principle-grid article:nth-child(1) { --principle-accent: #72c8ff; }
+.app-shell.landing-mode .principle-grid article:nth-child(2) { --principle-accent: #9c8cff; }
+.app-shell.landing-mode .principle-grid article:nth-child(3) { --principle-accent: #62dfb2; }
+.app-shell.landing-mode .principle-grid article > span {
+  color: var(--principle-accent);
+}
+.app-shell.landing-mode .principle-grid article:hover {
+  border-color: var(--principle-accent);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--principle-accent) 11%, transparent), transparent 68%),
+    rgba(255,255,255,.018);
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--principle-accent) 8%, transparent), inset 0 1px 0 color-mix(in srgb, var(--principle-accent) 14%, transparent);
+  transform: translateY(-2px);
+}
+.app-shell.landing-mode .principle-grid article:nth-child(2):focus-within {
+  border-color: #9c8cff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell.landing-mode .principle-grid article { transition: none !important; }
+  .app-shell.landing-mode .principle-grid article:hover { transform: none; }
+}
