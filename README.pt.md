@@ -364,7 +364,7 @@ A blockchain **não** prova que uma pessoa é universalmente competente, verdade
 - Uma plataforma universal de credenciamento, recrutamento, LMS ou gestão da força de trabalho.
 - Que extensões estratégicas como Dynamic Role Architecture estejam atualmente implementadas ou comercialmente validadas.
 
-Conceitos estratégicos como evolução de funções, planejamento da força de trabalho e Dynamic Role Architecture são mantidos intencionalmente fora da história do MVP. Eles pertencem à hipótese de produto futuro e à camada de pesquisa.
+Aplicações além do fluxo delimitado do MVP permanecem fora do escopo demonstrado e exigem validação independente.
 
 ## 12. Para Avaliadores — Caminho de Leitura Recomendado
 
@@ -383,23 +383,6 @@ Se você está avaliando o LASTRO pela primeira vez, siga este caminho:
 **Se você tiver apenas 5 minutos:** README → [Demo e prova técnica](docs/evaluation/04_DEMO_AND_PROOF.md) → [Claims e limitações](docs/evaluation/05_LIMITATIONS_AND_CLAIMS.md).
 
 O repositório contém pesquisas, governança, produto, marca e documentos de execução adicionais para uma análise mais profunda.
-
-## 13. Status Atual e Roadmap de Execução
-
-O vertical slice central M1–M3 está implementado. O projeto está agora na **fase M4 de execução/fechamento**, focada em prova reproduzível, demonstração, validação externa, comunicação e submissão final.
-
-Ordem canônica de execução:
-
-```
-PROVAR → DEMONSTRAR → VALIDAR → COMUNICAR → SUBMISSÃO FINAL
-```
-
-Para o status autoritativo e o roadmap de execução, consulte:
-- `docs/PROJECT_STATUS.md`
-- `docs/product/VICTORY_EXECUTION.md`
-- `tasks/CURRENT_EXECUTION_001.md`
-
-O repositório está sob **Feature Freeze** e **Documentation Freeze**, exceto para trabalho explícito de prova, validação, interface ou submissão.
 
 ## 14. Quick Start e Demo Resiliente
 
