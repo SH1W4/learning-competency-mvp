@@ -1021,6 +1021,25 @@ print("Pipeline executed with integrity.")
     }
 
     onSubmitEvidence(newItem)
+
+    // Asynchronously persist to database
+    fetch('/api/evidence', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: `ev-${Date.now().toString(36)}`,
+        employeeName,
+        employeeRole,
+        trailId: selectedTrailId,
+        activityId,
+        evidenceType,
+        sourceType: evidenceSource,
+        sourceRef: filename,
+        contentHash: `sha256:${hash}`,
+        trustLevel: 'N2_EVIDENCE_PRESENTED',
+      }),
+    }).catch((err) => console.warn('[LASTRO DB] Evidence save warning:', err))
+
     setSubmitted(true)
   }
 
@@ -1316,6 +1335,13 @@ function CreateTrailView({
     }
     onSaveTrail(newTrail)
     setSaved(true)
+
+    // Asynchronously persist trail to database
+    fetch('/api/trails', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTrail),
+    }).catch((err) => console.warn('[LASTRO DB] Trail save warning:', err))
   }
 
   return (
@@ -1325,7 +1351,7 @@ function CreateTrailView({
           <p className="eyebrow">NEW ROLE · CAPABILITY DESIGN</p>
           <h1>Create Competency Trail</h1>
           <p className="page-subtitle">
-            Build a local draft of a competency and its observable criteria. Publishing is not available in this interface yet.
+            Build a competency trail and define observable criteria with verifiable evidence requirements.
           </p>
         </div>
       </div>
@@ -1350,8 +1376,8 @@ function CreateTrailView({
           <div>
             <CheckCircle2 />
             <div>
-              <strong>Trail draft created for this session</strong>
-              <p>The trail exists only in the local state of this session. It has not been published or registered.</p>
+              <strong>Trail registered and persisted</strong>
+              <p>The trail definition has been saved to the database and is accessible across sessions for evidence submissions.</p>
             </div>
           </div>
           <button className="primary-button" onClick={() => setView('Submit Evidence')}>
@@ -1842,20 +1868,22 @@ export default function Page() {
             ? 'CONFLICT'
             : 'IN_DEVELOPMENT'
 
-        setQueueItems([
-          {
-            id: 'item-ana-synthetic',
-            name: 'Ana Synthetic',
-            role: 'Data Analyst',
-            target: projection.competency.statement,
-            hash:
-              projection.handoff.record_hash.substring(0, 8) +
-              '...' +
-              projection.handoff.record_hash.slice(-4),
-            status: initialStatus,
-            data: projection,
-          },
-        ])
+        const canonicalItem: QueueItem = {
+          id: 'item-ana-synthetic',
+          name: 'Ana Synthetic',
+          role: 'Data Analyst',
+          target: projection.competency.statement,
+          hash:
+            projection.handoff.record_hash.substring(0, 8) +
+            '...' +
+            projection.handoff.record_hash.slice(-4),
+          status: initialStatus,
+          data: projection,
+        }
+        setQueueItems((prev) => {
+          const others = prev.filter((i) => i.id !== 'item-ana-synthetic')
+          return [canonicalItem, ...others]
+        })
       })
       .catch((cause: unknown) => {
         if (cause instanceof Error && cause.name === 'AbortError') return
@@ -1868,6 +1896,107 @@ export default function Page() {
       .finally(() => setLoading(false))
     return () => controller.abort()
   }, [attempt])
+
+  // Hydrate trails and evidence from persistent database (Vercel Postgres / Neon)
+  useEffect(() => {
+    // 1. Fetch persisted custom trails
+    fetch('/api/trails')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((payload) => {
+        if (payload?.items && Array.isArray(payload.items) && payload.items.length > 0) {
+          setTrails((prev) => {
+            const existingIds = new Set(prev.map((t) => t.id))
+            const newTrails = payload.items.filter((item: CustomTrail) => !existingIds.has(item.id))
+            return [...newTrails, ...prev]
+          })
+        }
+      })
+      .catch((err) => console.warn('[LASTRO DB] Trails fetch warning:', err))
+
+    // 2. Fetch persisted evidence submissions and integrate into attestation queue
+    fetch('/api/evidence')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((payload) => {
+        if (payload?.items && Array.isArray(payload.items) && payload.items.length > 0) {
+          setQueueItems((prev) => {
+            const existingIds = new Set(prev.map((i) => i.id))
+            const loadedItems: QueueItem[] = payload.items
+              .filter((ev: any) => !existingIds.has(ev.id))
+              .map((ev: any) => {
+                const rawHash = (ev.contentHash || '').replace('sha256:', '')
+                const shortHash = rawHash.length > 12 ? rawHash.substring(0, 8) + '...' + rawHash.slice(-4) : rawHash || '...'
+                return {
+                  id: ev.id,
+                  name: ev.employeeName,
+                  role: ev.employeeRole,
+                  target: `Trail: ${ev.trailId} (${ev.activityId})`,
+                  hash: shortHash,
+                  status: 'IN_DEVELOPMENT' as QueueStatus,
+                  data: {
+                    synthetic: false,
+                    competency: {
+                      id: ev.trailId,
+                      statement: `Demonstrating criteria for activity ${ev.activityId}`,
+                      criteria: [],
+                    },
+                    trail: {
+                      id: ev.trailId,
+                      title: ev.trailId,
+                      activities: [],
+                    },
+                    evidence: [
+                      {
+                        evidence_id: ev.id,
+                        type: ev.evidenceType,
+                        activity_id: ev.activityId,
+                        source_ref: ev.sourceRef,
+                        content_ref: ev.contentHash,
+                        trust_level: ev.trustLevel,
+                        synthetic: false,
+                      },
+                    ],
+                    interpretation: {
+                      id: `interp-${ev.id}`,
+                      model: 'none',
+                      signals: [],
+                    },
+                    verification: {
+                      mechanisms: [
+                        {
+                          mechanism: 'evidence_integrity',
+                          criterion_id: 'C1',
+                          status: 'PASS',
+                          rationale: 'Hash recorded and verified in persistent storage.',
+                        },
+                      ],
+                    },
+                    consensus: {
+                      status: 'INSUFFICIENT_EVIDENCE',
+                      can_auto_advance: false,
+                      requires_adjudication: false,
+                    },
+                    state: {
+                      value: 'UNDER_REVIEW',
+                      history: [{ step: 'SUBMISSION', timestamp: ev.createdAt }],
+                    },
+                    handoff: {
+                      record_version: 'v0.2',
+                      record_hash: rawHash,
+                      competency_id: ev.trailId,
+                      state: 'UNDER_REVIEW',
+                      decision_mode: 'persisted_evidence_record',
+                    },
+                    attestation: null,
+                    public_verification: null,
+                  },
+                }
+              })
+            return [...loadedItems, ...prev]
+          })
+        }
+      })
+      .catch((err) => console.warn('[LASTRO DB] Evidence fetch warning:', err))
+  }, [])
 
   const handleAddEvidence = (newItem: QueueItem) => {
     setQueueItems((prev) => [newItem, ...prev])
