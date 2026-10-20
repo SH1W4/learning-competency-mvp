@@ -757,3 +757,95 @@
 @media (prefers-reduced-motion: reduce) {
   .landing-topbar-action { transition: none !important; }
 }
+
+
+/* Strong editorial banner: the statement is a headline, not a footnote. */
+.app-shell.landing-mode .landing-image-banner {
+  height: clamp(300px, 43vw, 540px);
+  margin-top: 1rem;
+  border-radius: 18px;
+  border-color: rgba(130,160,190,.24);
+}
+.app-shell.landing-mode .landing-image-banner img {
+  object-position: center 48%;
+  transform: scale(1.015);
+}
+.app-shell.landing-mode .landing-image-overlay {
+  background:
+    linear-gradient(90deg, rgba(3,6,11,.56) 0%, rgba(3,6,11,.16) 50%, rgba(3,6,11,0) 78%),
+    linear-gradient(0deg, rgba(3,6,11,.78) 0%, rgba(3,6,11,.14) 42%, rgba(3,6,11,0) 72%);
+}
+.app-shell.landing-mode .landing-image-caption {
+  left: clamp(1.4rem, 4vw, 3.25rem);
+  right: clamp(1.2rem, 4vw, 3rem);
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  display: block;
+  max-width: min(920px, 88%);
+  font-family: var(--font-sans, Inter, ui-sans-serif, sans-serif);
+  font-size: clamp(2rem, 5.5vw, 5.25rem);
+  font-weight: 650;
+  line-height: .94;
+  letter-spacing: -.065em;
+  text-transform: uppercase;
+  color: #f5f8ff;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px rgba(0,0,0,.72);
+}
+.app-shell.landing-mode .landing-image-caption > span {
+  display: block;
+  max-width: 13ch;
+}
+.app-shell.landing-mode .landing-image-caption > span::after {
+  content: "";
+  display: block;
+  width: clamp(52px, 8vw, 112px);
+  height: 3px;
+  margin-top: clamp(.85rem, 2vw, 1.35rem);
+  background: linear-gradient(90deg, #72c8ff, rgba(114,200,255,.12));
+  box-shadow: 0 0 20px rgba(114,200,255,.35);
+}
+.app-shell.landing-mode .landing-hero {
+  padding-top: clamp(2rem, 3.8vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+.app-shell.landing-mode .landing-copy h1 {
+  font-size: clamp(2.4rem, 4.4vw, 4.25rem);
+  line-height: .98;
+  max-width: 650px;
+}
+@media (max-width: 640px) {
+  .app-shell.landing-mode .landing-image-banner {
+    height: clamp(300px, 88vw, 390px);
+    border-radius: 13px;
+  }
+  .app-shell.landing-mode .landing-image-banner img {
+    object-position: 53% center;
+  }
+  .app-shell.landing-mode .landing-image-overlay {
+    background:
+      linear-gradient(90deg, rgba(3,6,11,.38), rgba(3,6,11,.02) 95%),
+      linear-gradient(0deg, rgba(3,6,11,.82), rgba(3,6,11,.08) 76%);
+  }
+  .app-shell.landing-mode .landing-image-caption {
+    left: 1.15rem;
+    right: 1rem;
+    bottom: 1.35rem;
+    max-width: calc(100% - 2.15rem);
+    font-size: clamp(2.05rem, 9vw, 3.3rem);
+    line-height: .95;
+    letter-spacing: -.06em;
+  }
+  .app-shell.landing-mode .landing-image-caption > span { max-width: 11ch; }
+  .app-shell.landing-mode .landing-image-caption > span::after {
+    height: 2px;
+    margin-top: .9rem;
+  }
+  .app-shell.landing-mode .landing-hero {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+  .app-shell.landing-mode .landing-copy h1 {
+    font-size: clamp(2.25rem, 9.5vw, 3.3rem);
+    line-height: .98;
+  }
+}
