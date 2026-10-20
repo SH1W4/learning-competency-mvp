@@ -142,12 +142,6 @@ LASTRO builds on existing work in competency frameworks, provenance, machine-ver
 - [Public Research Map](research/RESEARCH_MAP.md)
 - [Related Work, Prior Art & External Evidence](research/RELATED_WORK_AND_EVIDENCE.md)
 
-## Product vision and roadmap
-
-Beyond the bounded verification slice, the project roadmap explores the evolution into an enterprise capability infrastructure:
-
-- [Strategic Roadmap & Talent Liquidity Engine](docs/architecture/FUTURE_ROADMAP_AND_LIQUIDITY_ENGINE.md) — natural evidence connectors (Google Drive, Notion, LinkedIn), tenant workspace ontologies, and proof-based reverse talent matching.
-
 ## Evaluator path
 
 For a focused technical review:
