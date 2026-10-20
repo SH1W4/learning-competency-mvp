@@ -19,19 +19,38 @@ import { join, resolve } from 'node:path'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
+// Render's free instance can take ~40s to wake. Keep a margin for the proxy.
+export const maxDuration = 60
 
-function isSemanticProjection(value: any): boolean {
-  const outcomes = ['AGREEMENT', 'INSUFFICIENT_EVIDENCE', 'CONFLICT']
-  const states = ['ESTABLISHED', 'NOT_ESTABLISHED', 'INSUFFICIENT_EVIDENCE', 'CONFLICT', 'REQUIRES_VERIFICATION']
-  if (!value || value.synthetic !== true || !value.consensus || !outcomes.includes(value.consensus.status)) return false
-  if (!value.resolution || !['NOT_REQUIRED', 'PENDING', 'RESOLVED'].includes(value.resolution.status)) return false
-  if (!['consensus', 'human_adjudication', 'none'].includes(value.resolution.mechanism)) return false
-  if (value.resolution.outcome !== null && !states.includes(value.resolution.outcome)) return false
-  if (!value.competency_state || typeof value.competency_state.adapter_version !== 'string') return false
-  if (value.competency_state.value !== null && !states.includes(value.competency_state.value)) return false
-  if (!['MAPPED', 'UNMAPPED', 'INCONSISTENT'].includes(value.competency_state.mapping_status)) return false
-  if (typeof value.competency_state.reason !== 'string') return false
-  if (!value.state || !['NOT_STARTED', 'IN_DEVELOPMENT', 'UNDER_REVIEW', 'DEMONSTRATED'].includes(value.state.value)) return false
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+function isOneOf<T extends string>(value: unknown, values: readonly T[]): value is T {
+  return typeof value === 'string' && values.includes(value as T)
+}
+
+function isSemanticProjection(value: unknown): boolean {
+  const outcomes = ['AGREEMENT', 'INSUFFICIENT_EVIDENCE', 'CONFLICT'] as const
+  const competencyStates = ['ESTABLISHED', 'NOT_ESTABLISHED', 'INSUFFICIENT_EVIDENCE', 'CONFLICT', 'REQUIRES_VERIFICATION'] as const
+  if (!isRecord(value) || value.synthetic !== true) return false
+  if (!isRecord(value.consensus) ||
+      !isOneOf(value.consensus.status, outcomes) ||
+      typeof value.consensus.can_auto_advance !== 'boolean' ||
+      typeof value.consensus.requires_adjudication !== 'boolean' ||
+      !Array.isArray(value.consensus.criteria)) return false
+  if (!isRecord(value.resolution) ||
+      !isOneOf(value.resolution.status, ['NOT_REQUIRED', 'PENDING', 'RESOLVED'] as const) ||
+      !isOneOf(value.resolution.mechanism, ['consensus', 'human_adjudication', 'none'] as const) ||
+      !(value.resolution.outcome === null || isOneOf(value.resolution.outcome, competencyStates))) return false
+  if (!isRecord(value.competency_state) ||
+      typeof value.competency_state.adapter_version !== 'string' ||
+      !(value.competency_state.value === null || isOneOf(value.competency_state.value, competencyStates)) ||
+      !isOneOf(value.competency_state.mapping_status, ['MAPPED', 'UNMAPPED', 'INCONSISTENT'] as const) ||
+      typeof value.competency_state.reason !== 'string') return false
+  if (!isRecord(value.state) ||
+      !isOneOf(value.state.value, ['NOT_STARTED', 'IN_DEVELOPMENT', 'UNDER_REVIEW', 'DEMONSTRATED'] as const) ||
+      !Array.isArray(value.state.history)) return false
   return value.attestation === null && value.public_verification === null
 }
 
