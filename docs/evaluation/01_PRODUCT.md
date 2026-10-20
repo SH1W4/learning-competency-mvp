@@ -32,7 +32,7 @@ The first MVP intentionally starts with the smallest testable wedge:
 Evidence → Competency → Verification → State → Attestation → Verification
 ```
 
-Dynamic Role Architecture is a research hypothesis and strategic extension, not a validated commercial capability of the current MVP.
+Broader product extensions remain research hypotheses, not validated commercial capabilities of the current MVP.
 
 ## Core user journey
 
