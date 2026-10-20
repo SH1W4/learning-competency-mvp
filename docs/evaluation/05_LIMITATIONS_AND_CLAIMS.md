@@ -56,7 +56,7 @@ The project does not intend to:
 
 ## Research status
 
-Dynamic Role Architecture remains a research direction:
+Broader future-product extensions remain research directions:
 
 ```
 Organizational Data
