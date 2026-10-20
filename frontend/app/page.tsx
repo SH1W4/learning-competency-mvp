@@ -218,11 +218,15 @@ type M4Projection = {
   public_verification: null | { href: string; label: string }
 }
 
+export type TrailPurpose = 'internal_reskilling' | 'external_hiring'
+
 export type CustomTrail = {
   id: string
   role: string
   title: string
   statement: string
+  purpose?: TrailPurpose
+  externalChallenge?: { slug: string; instructions: string }
   criteria: Array<{ id: string; title: string; observables: string[] }>
   activities: Array<{ id: string; title: string; objective: string; expectedEvidence: string[]; criteria: string[] }>
 }
@@ -849,6 +853,8 @@ function SubmitEvidenceView({
   const [activityId, setActivityId] = useState('A2')
   const [evidenceType, setEvidenceType] = useState('analysis_artifact')
   const [filename, setFilename] = useState('pipeline_desidentificacao_v2.py')
+  const [evidenceSource, setEvidenceSource] = useState<'file' | 'drive' | 'notion' | 'linkedin' | 'github'>('file')
+  const [externalUrl, setExternalUrl] = useState('')
   const [content, setContent] = useState(`import hashlib
 import pandas as pd
 
@@ -872,17 +878,18 @@ print("Pipeline executed with integrity.")
   // Compute the cryptographic SHA-256 hash in real time
   useEffect(() => {
     async function computeHash() {
-      if (!content) {
+      const raw = evidenceSource === 'file' ? content : externalUrl.trim()
+      if (!raw) {
         setHash('')
         return
       }
       setHashError('')
       try {
         const encoder = new TextEncoder()
-        const data = encoder.encode(content)
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data)
-        const hashArray = Array.from(new Uint8Array(hashBuffer))
-        const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+        const hashBuffer = await crypto.subtle.digest('SHA-256', encoder.encode(raw))
+        const hashHex = Array.from(new Uint8Array(hashBuffer))
+          .map((b) => b.toString(16).padStart(2, '0'))
+          .join('')
         setHash(hashHex)
       } catch {
         setHash('')
@@ -890,7 +897,7 @@ print("Pipeline executed with integrity.")
       }
     }
     computeHash()
-  }, [content])
+  }, [content, externalUrl, evidenceSource])
 
   const currentTrail = trails.find((t) => t.id === selectedTrailId) ?? trails[0]
 
@@ -1509,6 +1516,13 @@ const operationNavItems: [typeof FolderUp, View][] = [
   [FolderUp, 'Submit Evidence'],
   [Layers, 'Create Trail'],
 ]
+const workspaceProfile = {
+  name: 'Learning Ops',
+  subtitle: 'Evidence workspace',
+  organization: 'Demo Organization',
+  initials: 'LO',
+  protocolLabel: 'LASTRO (Protocol)',
+}
 
 // ─── Default Initial Trail ───────────────────────────────────────────────────
 const initialDefaultTrail: CustomTrail = {
@@ -1965,10 +1979,10 @@ export default function Page() {
             )}
           </div>
           <div className="user-card">
-            <div className="user-avatar">LS</div>
+            <div className="user-avatar">{workspaceProfile.initials}</div>
             <div>
-              <b>LASTRO</b>
-              <small>Workspace</small>
+              <b>{workspaceProfile.organization}</b>
+              <small>Workspace context</small>
             </div>
             <UserRound />
           </div>
