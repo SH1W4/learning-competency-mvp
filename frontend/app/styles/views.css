@@ -593,3 +593,62 @@
   .landing-image-banner img { object-position: 54% center; }
   .landing-image-caption { font-size: 8px; letter-spacing: .1em; gap: .45rem; }
 }
+
+
+/* Intentional entry flow: public landing first, operational workspace on demand. */
+.app-shell.landing-mode {
+  display: block;
+  min-height: 100vh;
+  background: var(--bg, #080b10);
+}
+.app-shell.landing-mode > .sidebar,
+.app-shell.landing-mode > .mobile-menu-backdrop,
+.app-shell.landing-mode .topbar {
+  display: none !important;
+}
+.app-shell.landing-mode > .main-content {
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  margin: 0;
+  animation: landing-arrive 420ms cubic-bezier(.2,.7,.2,1) both;
+}
+.app-shell.landing-mode .page-content {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: clamp(1rem, 3.2vw, 2.75rem) clamp(1rem, 4vw, 3.5rem) 4rem;
+}
+.app-shell.landing-mode .landing-view {
+  width: 100%;
+}
+.app-shell.workspace-mode > .sidebar {
+  animation: workspace-nav-arrive 280ms ease-out both;
+}
+.app-shell.workspace-mode .page-content {
+  animation: workspace-content-arrive 300ms ease-out both;
+}
+@keyframes landing-arrive {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes workspace-nav-arrive {
+  from { opacity: .75; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes workspace-content-arrive {
+  from { opacity: .7; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 640px) {
+  .app-shell.landing-mode .page-content {
+    padding: .75rem .9rem 2.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell.landing-mode > .main-content,
+  .app-shell.workspace-mode > .sidebar,
+  .app-shell.workspace-mode .page-content {
+    animation: none !important;
+  }
+}
