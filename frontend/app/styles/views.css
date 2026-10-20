@@ -944,3 +944,94 @@
 @media (prefers-reduced-motion: reduce) {
   .app-shell.landing-mode .landing-image-cta { transition: none; }
 }
+
+
+/* Evidence-to-state model: restrained motion clarifies sequence and hierarchy. */
+.app-shell.landing-mode .landing-architecture-card .signal-flow {
+  position: relative;
+  gap: .7rem;
+}
+.app-shell.landing-mode .landing-architecture-card .signal-flow > div {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(138,160,190,.2);
+  background: linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+  transition: border-color 220ms ease, background 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  animation: evidence-step-arrive 650ms cubic-bezier(.2,.7,.2,1) both;
+}
+.app-shell.landing-mode .landing-architecture-card .signal-flow > div:nth-of-type(1) { animation-delay: 80ms; }
+.app-shell.landing-mode .landing-architecture-card .signal-flow > div:nth-of-type(2) { animation-delay: 190ms; }
+.app-shell.landing-mode .landing-architecture-card .signal-flow > div:nth-of-type(3) { animation-delay: 300ms; }
+.app-shell.landing-mode .landing-architecture-card .signal-flow > div:hover {
+  transform: translateY(-2px);
+  border-color: rgba(114,200,255,.55);
+  background: linear-gradient(135deg, rgba(22,131,255,.1), rgba(255,255,255,.025));
+  box-shadow: 0 8px 26px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.app-shell.landing-mode .landing-architecture-card .signal-flow > div > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 1.5rem;
+  margin-bottom: .55rem;
+  border: 1px solid rgba(114,200,255,.22);
+  border-radius: 6px;
+  background: rgba(22,131,255,.08);
+}
+.app-shell.landing-mode .landing-architecture-card .signal-flow > i {
+  display: block;
+  width: 1px;
+  height: 1.1rem;
+  margin: -.15rem 0 -.15rem 1.1rem;
+  overflow: hidden;
+  color: transparent;
+  background: linear-gradient(180deg, rgba(114,200,255,.1), #72c8ff, rgba(114,200,255,.1));
+  position: relative;
+}
+.app-shell.landing-mode .landing-architecture-card .signal-flow > i::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  bottom: 1px;
+  width: 5px;
+  height: 5px;
+  border-right: 1px solid #8bd5ff;
+  border-bottom: 1px solid #8bd5ff;
+  transform: rotate(45deg);
+}
+.app-shell.landing-mode .landing-architecture-card .signal-flow > div.signal-final {
+  border-color: rgba(114,200,255,.42);
+  background: linear-gradient(135deg, rgba(22,131,255,.09), rgba(255,255,255,.02));
+}
+.app-shell.landing-mode .landing-topbar-action {
+  white-space: nowrap;
+}
+@keyframes evidence-step-arrive {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 640px) {
+  .app-shell.landing-mode .landing-architecture-card .signal-flow { gap: .55rem; }
+  .app-shell.landing-mode .landing-architecture-card .signal-flow > div {
+    padding: 1rem;
+    border-radius: 13px;
+  }
+  .app-shell.landing-mode .landing-architecture-card .signal-flow > div:hover {
+    transform: none;
+  }
+  .app-shell.landing-mode .landing-topbar-action {
+    padding: .62rem .7rem;
+    font-size: .64rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell.landing-mode .landing-architecture-card .signal-flow > div {
+    animation: none !important;
+    transition: none !important;
+  }
+  .app-shell.landing-mode .landing-architecture-card .signal-flow > div:hover {
+    transform: none;
+  }
+}
