@@ -52,7 +52,7 @@ Competency → Activities → Evidence → Interpretation
 Work Change → Role Delta → Competency Gap → Requalification
 ```
 
-Dynamic Role Architecture is a research hypothesis. Do not present these strategic screens as validated backend capabilities unless the corresponding implementation exists and is explicitly validated.
+Broader future-product concepts are research hypotheses. Do not present strategic screens as validated backend capabilities unless the corresponding implementation exists and is explicitly validated.
 
 ## 3. Canonical demo journey
 
