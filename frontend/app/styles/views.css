@@ -1078,3 +1078,62 @@
     radial-gradient(ellipse at 35% 72%, rgba(114,200,255,.09), transparent 42%),
     linear-gradient(135deg, #090d14 0%, #05070b 58%, #0a1019 100%);
 }
+
+
+/* Institutional overview destination for the landing-page organization CTA. */
+.app-shell.landing-mode .landing-organizations-section {
+  padding: clamp(3.5rem, 7vw, 6.5rem) clamp(1.25rem, 5vw, 5rem);
+  border-top: 1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(ellipse at 82% 18%, rgba(114,200,255,.07), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.012), transparent 70%);
+  scroll-margin-top: 2rem;
+}
+.app-shell.landing-mode .landing-organizations-section .landing-section-heading {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+}
+.app-shell.landing-mode .landing-organization-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.app-shell.landing-mode .landing-organizations-footer {
+  max-width: 1180px;
+  margin: 2rem auto 0;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid rgba(255,255,255,.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.app-shell.landing-mode .landing-organizations-footer p {
+  max-width: 580px;
+  margin: 0;
+  color: var(--muted, #a4afc0);
+}
+.app-shell.landing-mode .landing-organizations-note {
+  max-width: 1180px;
+  margin: 1.25rem auto 0;
+  color: var(--muted, #a4afc0);
+  font-size: .78rem;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .app-shell.landing-mode .landing-organizations-section {
+    padding: 3rem 1rem;
+  }
+  .app-shell.landing-mode .landing-organizations-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .app-shell.landing-mode .landing-organizations-footer .primary-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell.landing-mode .landing-organizations-section * {
+    scroll-behavior: auto !important;
+  }
+}
