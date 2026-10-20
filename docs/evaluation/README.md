@@ -53,7 +53,7 @@ The repository contains a working M1→M3 vertical slice covering:
 - integrity and payload-binding verification;
 - automated tests and type checking.
 
-The attestation implementation is complete, while the current `m3.attestation.v2` public Devnet proof is a remaining M4 validation artifact. Market validation, pricing, recurring commercial adoption, and the broader Dynamic Role Architecture remain hypotheses under validation.
+The attestation implementation is complete, while the current `m3.attestation.v2` public Devnet proof is a remaining M4 validation artifact. Market validation, pricing, recurring commercial adoption, and broader product extensions remain hypotheses under validation.
 
 ## Important distinction
 

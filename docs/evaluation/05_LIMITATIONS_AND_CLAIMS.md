@@ -26,7 +26,7 @@ The following are intentionally not presented as validated facts:
 - recurring commercial adoption;
 - quantitative economic impact;
 - superiority over existing organizational workflows;
-- Dynamic Role Architecture as a validated commercial wedge;
+- broader future-product extensions as a validated commercial wedge;
 - universal competency taxonomy;
 - universal suitability of automated competency decisions.
 
@@ -56,7 +56,7 @@ The project does not intend to:
 
 ## Research status
 
-Dynamic Role Architecture remains a research direction:
+Broader future-product extensions remain research directions:
 
 ```
 Organizational Data
