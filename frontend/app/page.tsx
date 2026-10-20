@@ -325,8 +325,16 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
         />
         <div className="landing-image-overlay" />
         <div className="landing-image-caption">
-          <span>FROM EVIDENCE TO VERIFIABLE CAPABILITY</span>
+          <span>FROM EVIDENCE TO<br />VERIFIABLE CAPABILITY</span>
         </div>
+        <button
+          type="button"
+          className="landing-image-cta"
+          onClick={() => setView('Dashboard')}
+          aria-label="Enter LASTRO workspace"
+        >
+          <span>Enter workspace</span><ArrowRight size={16} aria-hidden="true" />
+        </button>
       </section>
       <section className="landing-hero">
         <div className="landing-copy">
