@@ -305,6 +305,17 @@ function explorerUrl(network: string | undefined, signature: string | undefined)
 function LandingView({ setView }: { setView: (view: View) => void }) {
   return (
     <div className="landing-view landing-infrastructure">
+      <section className="landing-image-banner" aria-label="LASTRO evidence journey">
+        <img
+          src="/images/EC433A47-1B59-4B22-A512-D90390027697.png"
+          alt="A cinematic journey through a dark landscape toward a luminous geometric portal, representing the path from evidence to verifiable capability"
+          fetchPriority="high"
+        />
+        <div className="landing-image-overlay" />
+        <div className="landing-image-caption">
+          <span>FROM EVIDENCE</span><span className="landing-image-line" /><span>TO VERIFIABLE CAPABILITY</span>
+        </div>
+      </section>
       <section className="landing-hero">
         <div className="landing-copy">
           <p className="eyebrow"><span className="landing-status-dot" /> EVIDENCE INFRASTRUCTURE FOR CAPABILITY</p>
