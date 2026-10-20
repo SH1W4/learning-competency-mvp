@@ -1069,3 +1069,12 @@
   .app-shell.landing-mode .principle-grid article { transition: none !important; }
   .app-shell.landing-mode .principle-grid article:hover { transform: none; }
 }
+
+
+/* Graceful banner fallback if the remote/static image cannot be decoded. */
+.app-shell.landing-mode .landing-image-banner {
+  background:
+    radial-gradient(ellipse at 72% 48%, rgba(22,131,255,.18), transparent 34%),
+    radial-gradient(ellipse at 35% 72%, rgba(114,200,255,.09), transparent 42%),
+    linear-gradient(135deg, #090d14 0%, #05070b 58%, #0a1019 100%);
+}
