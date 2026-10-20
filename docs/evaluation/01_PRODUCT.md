@@ -109,4 +109,4 @@ Not yet validated:
 - willingness to pay;
 - recurring adoption;
 - quantitative economic impact;
-- Dynamic Role Architecture as a commercial wedge.
+- broader future-product extensions as a commercial wedge.
