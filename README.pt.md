@@ -362,7 +362,7 @@ A blockchain **não** prova que uma pessoa é universalmente competente, verdade
 - ROI ou impacto econômico quantificado.
 - Superioridade sobre alternativas existentes.
 - Uma plataforma universal de credenciamento, recrutamento, LMS ou gestão da força de trabalho.
-- Que extensões estratégicas como Dynamic Role Architecture estejam atualmente implementadas ou comercialmente validadas.
+- Que extensões futuras estejam atualmente implementadas ou comercialmente validadas.
 
 Aplicações além do fluxo delimitado do MVP permanecem fora do escopo demonstrado e exigem validação independente.
 
