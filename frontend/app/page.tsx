@@ -326,6 +326,7 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
           src="/images/EC433A47-1B59-4B22-A512-D90390027697.png"
           alt="A cinematic journey through a dark landscape toward a luminous geometric portal, representing the path from evidence to verifiable capability"
           fetchPriority="high"
+          onError={(event) => { event.currentTarget.style.display = 'none'; }}
         />
         <div className="landing-image-overlay" />
         <div className="landing-image-caption">
