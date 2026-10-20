@@ -305,6 +305,18 @@ function explorerUrl(network: string | undefined, signature: string | undefined)
 function LandingView({ setView }: { setView: (view: View) => void }) {
   return (
     <div className="landing-view landing-infrastructure">
+      <header className="landing-topbar">
+        <a className="landing-brand-lockup" href="#top" aria-label="LASTRO home">
+          <span className="brand-mark"><LastroSymbol size={29} /></span>
+          <span className="landing-brand-copy">
+            <span className="landing-brand-name">LASTRO</span>
+            <span className="landing-brand-descriptor">EVIDENCE INFRASTRUCTURE</span>
+          </span>
+        </a>
+        <button type="button" className="landing-topbar-action" onClick={() => setView('Dashboard')}>
+          Enter workspace <ArrowRight size={13} aria-hidden="true" />
+        </button>
+      </header>
       <section className="landing-image-banner" aria-label="LASTRO evidence journey">
         <img
           src="/images/EC433A47-1B59-4B22-A512-D90390027697.png"
