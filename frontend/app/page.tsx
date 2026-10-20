@@ -316,9 +316,9 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
         <button
           type="button"
           className="landing-topbar-action"
-          onClick={() => document.getElementById('how-lastro-works')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={() => document.getElementById('for-organizations')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          Explore principles <ArrowRight size={13} aria-hidden="true" />
+          For Organizations <ArrowRight size={13} aria-hidden="true" />
         </button>
       </header>
       <section className="landing-image-banner" aria-label="LASTRO evidence journey">
@@ -408,6 +408,24 @@ function LandingView({ setView }: { setView: (view: View) => void }) {
           <div className="landing-proof-row"><span>AI interpretation</span><b>Separate signal</b></div>
           <div className="landing-proof-footer"><LockKeyhole size={15} /><span>No fabricated transaction, hash, signer, or verification result is displayed here.</span></div>
         </div>
+      </section>
+
+      <section id="for-organizations" className="landing-organizations-section" aria-labelledby="landing-organizations-title">
+        <div className="landing-section-heading">
+          <p className="eyebrow">FOR ORGANIZATIONS</p>
+          <h2 id="landing-organizations-title">Make capability decisions easier to inspect.</h2>
+          <p>LASTRO is designed for contexts where an organization needs to connect a capability claim to observable evidence, explicit criteria, and a reviewable outcome.</p>
+        </div>
+        <div className="principle-grid landing-organization-grid">
+          <article><span>01</span><h3>Define the claim</h3><p>Make the capability being assessed and its criteria explicit before reviewing evidence.</p></article>
+          <article><span>02</span><h3>Review the evidence</h3><p>Keep source material, deterministic checks, and AI interpretation distinguishable for human review.</p></article>
+          <article><span>03</span><h3>Inspect the outcome</h3><p>Preserve a bounded state and a traceable record so reviewers can understand what was concluded—and what was not.</p></article>
+        </div>
+        <div className="landing-organizations-footer">
+          <p>Explore the current MVP to see how the evidence-to-state model is represented in the workspace.</p>
+          <button className="primary-button" onClick={() => setView('Dashboard')}>Explore the workspace <ArrowRight size={16} aria-hidden="true" /></button>
+        </div>
+        <p className="landing-organizations-note">This overview describes the product approach, not a claim of commercial validation or universal applicability.</p>
       </section>
     </div>
   )
