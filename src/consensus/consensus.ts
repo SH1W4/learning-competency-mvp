@@ -13,8 +13,7 @@ import type { RelationResult } from "../relation/relate.js";
 export type ConsensusStatus =
   | "AGREEMENT"
   | "INSUFFICIENT_EVIDENCE"
-  | "CONFLICT"
-  | "HUMAN_ADJUDICATION";
+  | "CONFLICT";
 
 export type VerificationStatus = "PASS" | "FAIL";
 
@@ -27,7 +26,7 @@ export interface VerificationResult {
 
 export interface CriterionConsensus {
   criterion_id: CriterionId;
-  status: Exclude<ConsensusStatus, "HUMAN_ADJUDICATION">;
+  status: ConsensusStatus;
   verifications: VerificationResult[];
 }
 
