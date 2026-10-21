@@ -114,8 +114,9 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
     verificationCompleted: true,
   });
 
+  // Preserve each verifier result per criterion; deduplicating by mechanism loses
+  // the criterion-level evidence needed to audit the full verification matrix.
   const mechanisms = consensus.criteria.flatMap((criterion) => criterion.verifications);
-  const uniqueMechanisms = new Map(mechanisms.map((item) => [item.mechanism, item]));
 
   return {
     synthetic: true,
@@ -159,7 +160,7 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
         evidence_refs: s.evidence_refs.map((r) => r.evidence_id),
       })),
     },
-    verification: { mechanisms: [...uniqueMechanisms.values()] },
+    verification: { mechanisms },
     consensus: {
       status: consensus.status,
       criteria: consensus.criteria,
