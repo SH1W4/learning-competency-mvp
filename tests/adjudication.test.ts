@@ -47,7 +47,7 @@ describe("Human Adjudication — exceptional conflict path", () => {
       by: "adjudicator",
       to: "DEMONSTRATED",
     });
-    expect(s.consensus?.status).toBe("HUMAN_ADJUDICATION");
+    expect(s.consensus?.status).toBe("CONFLICT");
     expect(s.handoff().decision.mode).toBe("human_adjudication");
   });
 
@@ -79,7 +79,7 @@ describe("Human Adjudication — exceptional conflict path", () => {
   it("a new evidence submission clears the previous consensus/adjudication context", async () => {
     const { s, env } = await conflictingSession();
     s.adjudicate(adjudicationFor(s, {}, false, env));
-    expect(s.consensus?.status).toBe("HUMAN_ADJUDICATION");
+    expect(s.consensus?.status).toBe("CONFLICT");
     expect(s.adjudication).toBeDefined();
 
     s.submit(ANA.synthesis());
