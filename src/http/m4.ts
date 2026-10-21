@@ -1,8 +1,7 @@
-import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
 import { CompetencySession } from "../pipeline.js";
 import { providerFromEnv } from "../ai/provider.js";
 import { ANA, SUBJECT } from "../scenario.js";
+import { adaptCompetencyState } from "../semantics/competency-adapter.js";
 
 export interface M4Verification {
   mechanism: "evidence_integrity" | "deterministic_criteria" | "ai_interpretation";
@@ -51,7 +50,7 @@ export interface M4Projection {
   };
   verification: { mechanisms: M4Verification[] };
   consensus: {
-    status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT" | "HUMAN_ADJUDICATION";
+    status: "AGREEMENT" | "INSUFFICIENT_EVIDENCE" | "CONFLICT";
     criteria: Array<{
       criterion_id: string;
       status: string;
@@ -59,6 +58,17 @@ export interface M4Projection {
     }>;
     can_auto_advance: boolean;
     requires_adjudication: boolean;
+  };
+  resolution: {
+    status: "NOT_REQUIRED" | "PENDING" | "RESOLVED";
+    mechanism: "consensus" | "human_adjudication" | "none";
+    outcome: "ESTABLISHED" | "NOT_ESTABLISHED" | "INSUFFICIENT_EVIDENCE" | "CONFLICT" | "REQUIRES_VERIFICATION" | null;
+  };
+  competency_state: {
+    adapter_version: string;
+    value: "ESTABLISHED" | "NOT_ESTABLISHED" | "INSUFFICIENT_EVIDENCE" | "CONFLICT" | "REQUIRES_VERIFICATION" | null;
+    mapping_status: "MAPPED" | "UNMAPPED" | "INCONSISTENT";
+    reason: string;
   };
   state: {
     value: "NOT_STARTED" | "IN_DEVELOPMENT" | "UNDER_REVIEW" | "DEMONSTRATED";
@@ -73,58 +83,8 @@ export interface M4Projection {
   };
   /** Complete, hash-verifiable M2→M3 record for operator-side attestation. */
   reviewed_state_record: ReturnType<CompetencySession["handoff"]>;
-  attestation: null | {
-    version: string;
-    record_hash: string;
-    tx_signature?: string;
-    network?: string;
-    verified?: boolean | null;
-  };
-  public_verification: null | {
-    href: string;
-    label: string;
-  };
-}
-
-/**
- * Expose only a verified attestation for this exact reviewed-state hash.
- * A historical report must never be attached to a newly generated record.
- */
-function resolveMatchingAttestation(recordHash: string): Pick<M4Projection, "attestation" | "public_verification"> {
-  try {
-    const reportPath = join(process.cwd(), "out", "m4-attestation-verification.json");
-    if (!existsSync(reportPath)) {
-      return { attestation: null, public_verification: null };
-    }
-
-    const report = JSON.parse(readFileSync(reportPath, "utf-8"));
-    if (
-      report.verified !== true ||
-      report.network !== "devnet" ||
-      report.record_hash !== recordHash ||
-      typeof report.signature !== "string" ||
-      !report.signature.trim()
-    ) {
-      return { attestation: null, public_verification: null };
-    }
-
-    const href = `https://explorer.solana.com/tx/${encodeURIComponent(report.signature)}?cluster=devnet`;
-    return {
-      attestation: {
-        version: report.record_version ?? "m3.attestation.v2",
-        record_hash: report.record_hash,
-        tx_signature: report.signature,
-        network: "devnet",
-        verified: true,
-      },
-      public_verification: {
-        href,
-        label: "Solana Explorer (Devnet)",
-      },
-    };
-  } catch {
-    return { attestation: null, public_verification: null };
-  }
+  attestation: null;
+  public_verification: null;
 }
 
 export async function buildM4SyntheticProjection(): Promise<M4Projection> {
@@ -144,10 +104,19 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
     throw new Error(`M4 synthetic projection requires DEMONSTRATED; got ${session.state.value}`);
   }
 
+  const resolution = consensus.status === "AGREEMENT"
+    ? { status: "RESOLVED" as const, mechanism: "consensus" as const, outcome: "ESTABLISHED" as const }
+    : { status: "PENDING" as const, mechanism: "none" as const, outcome: null };
+  const semantic = adaptCompetencyState({
+    productState: session.state.value,
+    consensusOutcome: consensus.status,
+    resolution,
+    verificationCompleted: true,
+  });
+
+  // Preserve each verifier result per criterion; deduplicating by mechanism loses
+  // the criterion-level evidence needed to audit the full verification matrix.
   const mechanisms = consensus.criteria.flatMap((criterion) => criterion.verifications);
-  const uniqueMechanisms = new Map(
-    mechanisms.map((item) => [`${item.mechanism}:${item.criterion_id}`, item]),
-  );
 
   return {
     synthetic: true,
@@ -191,12 +160,19 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
         evidence_refs: s.evidence_refs.map((r) => r.evidence_id),
       })),
     },
-    verification: { mechanisms: [...uniqueMechanisms.values()] },
+    verification: { mechanisms },
     consensus: {
       status: consensus.status,
       criteria: consensus.criteria,
       can_auto_advance: consensus.can_auto_advance,
       requires_adjudication: consensus.requires_adjudication,
+    },
+    resolution: semantic.resolution,
+    competency_state: {
+      adapter_version: semantic.adapterVersion,
+      value: semantic.competencyState,
+      mapping_status: semantic.mappingStatus,
+      reason: semantic.reason,
     },
     state: { value: session.state.value, history: session.state.history },
     handoff: {
@@ -207,6 +183,7 @@ export async function buildM4SyntheticProjection(): Promise<M4Projection> {
       decision_mode: handoff.decision.mode,
     },
     reviewed_state_record: handoff,
-    ...resolveMatchingAttestation(handoff.record_hash),
+    attestation: null,
+    public_verification: null,
   };
 }
