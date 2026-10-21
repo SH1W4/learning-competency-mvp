@@ -189,7 +189,7 @@ export class CompetencySession {
     if (!this.relation) throw new TransitionError("não há interpretação para adjudicação");
 
     this.adjudication = applyAdjudication(this.state, this.relation, this.consensus, record);
-    this.consensus = { ...this.consensus, status: "HUMAN_ADJUDICATION" };
+    // Keep the Consensus Core result immutable. The adjudication is a separate resolution record.
     this.state = this.adjudication.state;
     return this.adjudication;
   }
